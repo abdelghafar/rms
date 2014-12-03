@@ -51,6 +51,8 @@ if (isset($_GET['person_id'])) {
             $(document).ready(function () {
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
                 $("#IBAN").jqxInput({rtl: true, height: 25, width: 423, disabled: true, minLength: 1, theme: 'energyblue'});
+                $("#email").jqxInput({rtl: true, height: 25, width: 250, disabled: true, minLength: 1, theme: 'energyblue'});
+                $("#mobile").jqxInput({rtl: true, height: 25, width: 250, disabled: true, minLength: 1, theme: 'energyblue'});
                 $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
@@ -156,15 +158,17 @@ if (isset($_GET['person_id'])) {
                             البريدالالكتروني                 </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="email" name="email" class="textbox" type="text" placeholder="البريد الالكتروني" value="<? echo $Email; ?>"/>
+                        <input id="email" name="email" type="text" placeholder="البريد الالكتروني" value="<? echo $Email; ?>"/>
                     </div>
-                    <div class="panel-cell" style="width:150px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                </div>
+                <div class="panel_row">
+                    <div class="panel-cell" style="width:180px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
-                            جوال
+                            رقم الجوال
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="mobile" name="mobile" class="textbox" type="text" placeholder="جوال" value="<? echo $Mobile; ?>"/>
+                        <input id="mobile" name="mobile" type="text" placeholder="جوال" value="<? echo $Mobile; ?>"/><span>966+</span>
                     </div>
                 </div>
                 <div class="panel_row">
@@ -174,7 +178,7 @@ if (isset($_GET['person_id'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="IBAN" name="IBAN" class="textbox" type="text" placeholder="" value="<? echo $IBAN; ?>"/>
+                        <input id="IBAN" name="IBAN" type="text" placeholder="" value="<? echo $IBAN; ?>"/>
                     </div>
 
                 </div>
