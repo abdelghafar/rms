@@ -51,8 +51,8 @@ if (isset($_GET['person_id'])) {
             $(document).ready(function () {
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
                 $("#IBAN").jqxInput({rtl: true, height: 25, width: 423, disabled: true, minLength: 1, theme: 'energyblue'});
-                $("#email").jqxInput({rtl: true, height: 25, width: 250, disabled: true, minLength: 1, theme: 'energyblue'});
-                $("#mobile").jqxInput({rtl: true, height: 25, width: 250, disabled: true, minLength: 1, theme: 'energyblue'});
+                $("#email").jqxInput({rtl: true, height: 25, width: 250, minLength: 1, theme: 'energyblue'});
+                $("#mobile").jqxInput({rtl: true, height: 25, width: 250, minLength: 1, theme: 'energyblue'});
                 $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
@@ -168,7 +168,9 @@ if (isset($_GET['person_id'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="mobile" name="mobile" type="text" placeholder="جوال" value="<? echo $Mobile; ?>"/><span>966+</span>
+                        <input id="mobile" name="mobile" type="text" placeholder="جوال" value="<? echo $Mobile; ?>"/>
+                        <span style="text-decoration: none;">966+</span>
+
                     </div>
                 </div>
                 <div class="panel_row">
