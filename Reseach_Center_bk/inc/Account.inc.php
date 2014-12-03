@@ -12,7 +12,6 @@ if (md5($password) != md5($passwordConfirm)) {
     echo 'من فضلك ادخل كلمة المرور بشكل صحيح';
 } else {
     $out = $u->ChnagePasswordWithDate($userId, $password, $fromDate, $thruDate);
-
     if ($out == 1)
         echo 'تم حفظ البيانات بنجاح';
     else
