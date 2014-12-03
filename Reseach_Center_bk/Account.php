@@ -102,12 +102,21 @@ while ($row = mysql_fetch_array($result)) {
             $(document).ready(function () {
                 //Bind Event Handler
                 $('#fromDateVal').val(function () {
-                    $('#fromDate').val()
+                    $('#fromDate').val();
                 });
                 $('#fromDate').on('change', function (event)
                 {
                     var jsDate = event.args.date;
                     $('#fromDateVal').val(jsDate);
+                });
+                //Bind ThruDate Cal
+                $('#thruDateVal').val(function () {
+                    $('#thruDate').val();
+                });
+                $('#thruDate').on('change', function (event)
+                {
+                    var jsDate = event.args.date;
+                    $('#thruDateVal').val(jsDate);
                 });
             });
         </script>
