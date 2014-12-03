@@ -157,8 +157,8 @@ while ($row = mysql_fetch_array($result)) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div style="float:right;" id="thruDate" class="Calander">
-                            <input type="hidden" id="thruDateVal" name="thruDateVal"/>
+                        <div style="float:right;" id="thruDate" class="Calander" name="thruDateVal">
+
                         </div>
 
                     </div>
