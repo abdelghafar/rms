@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
+
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
 
@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var source =
                         {
                             datatype: "json",
@@ -57,10 +57,10 @@
                 $(".Calander").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
                 $("#notes").jqxInput({rtl: true, height: 75, width: 450, minLength: 1, theme: 'energyblue'});
 
-                $('#sendButton').on('click', function() {
+                $('#sendButton').on('click', function () {
                     $('#changeResearchStatusForm').jqxValidator('validate');
                 });
-                $('#changeResearchStatusForm').bind('validationError', function(event) {
+                $('#changeResearchStatusForm').bind('validationError', function (event) {
                     alert('Error while validating!');
                 });
 
@@ -71,10 +71,10 @@
 
         <script type="text/javascript">
             $(document).ready(
-                    function() {
+                    function () {
                         var item = 0;
                         $("#jqxPhases").val(item);
-                        $('#jqxPhases').bind('select', function(event) {
+                        $('#jqxPhases').bind('select', function (event) {
                             var args = event.args;
                             item = $('#jqxPhases').jqxDropDownList('getItem', args.index);
                             var Phase_Id = item.value;
@@ -106,9 +106,9 @@
         </script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#changeResearchStatusForm').jqxValidator({rules: [
-                        {input: '#jqxPhases', message: 'من فضلك إختار حالة البحث ', action: 'valuechanged, blur', rtl: true, position: 'topcenter', rule: function(input, commit) {
+                        {input: '#jqxPhases', message: 'من فضلك إختار حالة البحث ', action: 'valuechanged, blur', rtl: true, position: 'topcenter', rule: function (input, commit) {
                                 var index = $("#research_status").val();
                                 if (index === '0')
                                     return false;
@@ -119,18 +119,18 @@
         </script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
-                $("#changeResearchStatusForm").submit(function() {
+            $(document).ready(function () {
+                $("#changeResearchStatusForm").submit(function () {
 
                     $.ajax({
                         type: 'post',
                         url: 'inc/change_research_status.inc.php',
                         datatype: "html",
                         data: $("#changeResearchStatusForm").serialize(),
-                        beforeSend: function() {
+                        beforeSend: function () {
                             $("#result").html("<img src='../imag/ajax-loader.gif'/>loading...");
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#result").html(data);
                         }
                     });
