@@ -47,7 +47,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -78,7 +78,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                         type: 'post',
                         url: 'inc/Del_Reviwers.inc.php?person_id=' + person_id,
                         datatype: "html",
-                        success: function(data) {
+                        success: function (data) {
                             location.reload();
                         }
                     });
@@ -102,7 +102,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" class="Button"/>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
 
                 <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
@@ -135,7 +135,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                                 <td style=" text-align: right"><? echo $row['Speical_Field']; ?></td>
                                 <td><? echo $row['Mobile']; ?></td>
                                 <td><? echo $row['Email']; ?></td>
-                                <td><a href="#" onClick="DisplayAccount(<? echo $row['Person_id']; ?>);"><img src="images/account.png" style="border:none !important" alt="انشاء حساب"/></a></td>     
+                                <td><a href="#" onClick="javascript:DisplayAccount(<? echo $row['Person_id']; ?>);"><img src="images/account.png" style="border:none !important" alt="انشاء حساب"/></a></td>     
                                 <td><a href="#" onClick="Display_Update(<? echo $row['Person_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
 
                                 <td><a href="#" onClick="Delete(<? echo $row['Person_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
