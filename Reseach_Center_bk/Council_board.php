@@ -88,8 +88,16 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
             }
             function Display_Update(person_id)
             {
-                window.showModalDialog("AddEdit_Council_board.php?person_id=" + person_id + "&Action=Update", 'PopupPage', 'dialogHeight:380px; dialogWidth:895px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddEdit_Council_board.php?person_id=" + person_id + "&Action=Update");
+                    $('#window').jqxWindow('setTitle', 'تعديل بيانات الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function Delete(person_id)
             {
@@ -107,8 +115,14 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
             }
             function DisplayAccount(person_id)
             {
-                window.showModalDialog("Account.php?person_id=" + person_id + "&Rule=Council_board", 'PopupPage', 'dialogHeight:340px; dialogWidth:650px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("Account.php?person_id=" + person_id + "&Rule=Council_board");
+                    $('#window').jqxWindow('setTitle', 'تعديل حساب الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
+
             }
 
         </script>
