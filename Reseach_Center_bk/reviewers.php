@@ -56,9 +56,11 @@ $rs = $obj->GetRCenterReviwers($center_id);
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
 
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
+                $('#btnAddNew').jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -137,9 +139,8 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     ?>
                 </label>
             </legend>
-            <input id="btnAddNew" type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input id="btnAddNew" type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" style="margin-bottom: 10px;"/>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
-
                 <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
                     <thead>
                         <tr>
