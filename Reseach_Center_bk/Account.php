@@ -101,17 +101,14 @@ while ($row = mysql_fetch_array($result)) {
         <script type="text/javascript">
             $(document).ready(function () {
                 //Bind Event Handler
-                $('#fromDateVal').val(function () {
-                    $('#fromDate').jqxCalendar('getDate');
-                });
+
                 $('#fromDate').on('change', function (event)
                 {
-                    var jsDate = $('#fromDate').jqxCalendar('getDate');
-                    $('#fromDateVal').val(jsDate);
+                    var jsDate = $('#fromDate').jqxCalendar('val', 'date');
                     alert(jsDate);
                 });
                 //Bind ThruDate Cal
-                
+
             });
         </script>
     </head>
