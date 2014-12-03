@@ -50,6 +50,7 @@ if (isset($_GET['person_id'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
+                $("#IBAN").jqxInput({rtl: true, height: 25, width: 423, disabled: true, minLength: 1, theme: 'energyblue'});
                 $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
@@ -110,8 +111,7 @@ if (isset($_GET['person_id'])) {
                     </label>
                 </legend>
                 <div class="panel_row">
-
-                    <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
+                    <div class="panel-cell" style="width: 230px;text-align: left;padding-left: 10px;"> 
                         <p style="font-weight: bold">اسم المحكم  باللغة العربية</p>
                     </div>
                     <div class="panel-cell" style="width: 700px;">
@@ -120,16 +120,16 @@ if (isset($_GET['person_id'])) {
                         <input id="GrandName-ar" class="textbox" type="text" placeholder="اسم الجد" name="GrandName_ar" value="<? echo $GrandName_ar; ?>"/>
                         <input id="FamilyName-ar" class="textbox" type="text" placeholder="لقب العائلة" name="FamilyName_ar" value="<? echo $FamilyName_ar; ?>"/> 
                     </div>
-                    <div class="panel_row">
-                        <div class="panel-cell" style="width: 185px;text-align: left;padding-left: 10px;"> 
-                            <p style="font-weight: bold">اسم المحكم باللغة الانجليزية</p>
-                        </div>
-                        <div class="panel-cell" style="width: 700px;">
-                            <input id="FamilyName-en" class="textbox" type="text" placeholder="FamilyName" name="FamilyName_en" value="<? echo $FamilyName_en; ?>"/>  
-                            <input id="GrandName-en" class="textbox" type="text" placeholder="GrandName" name="GrandName_en" value="<? echo $GrandName_en; ?>"/> 
-                            <input id="FatherName-en" class="textbox" type="text" placeholder="FatherName" name="FatherName_en" value="<? echo $FatherName_en; ?>"/>
-                            <input id="FirstName-en" class="textbox" type="text" placeholder="FirstName" name="FirstName_en" value="<? echo $FirstName_en; ?>"/>
-                        </div>
+                </div>
+                <div class="panel_row">
+                    <div class="panel-cell" style="width: 227px;text-align: left;padding-left: 10px;"> 
+                        <p style="font-weight: bold">اسم المحكم باللغة الانجليزية</p>
+                    </div>
+                    <div class="panel-cell" style="width: 700px;">
+                        <input id="FamilyName-en" class="textbox" type="text" placeholder="FamilyName" name="FamilyName_en" value="<? echo $FamilyName_en; ?>"/>  
+                        <input id="GrandName-en" class="textbox" type="text" placeholder="GrandName" name="GrandName_en" value="<? echo $GrandName_en; ?>"/> 
+                        <input id="FatherName-en" class="textbox" type="text" placeholder="FatherName" name="FatherName_en" value="<? echo $FatherName_en; ?>"/>
+                        <input id="FirstName-en" class="textbox" type="text" placeholder="FirstName" name="FirstName_en" value="<? echo $FirstName_en; ?>"/>
                     </div>
                 </div>
 

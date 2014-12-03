@@ -122,7 +122,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" class="Button"/>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
 
                 <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
