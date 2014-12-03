@@ -49,7 +49,7 @@ if (isset($_GET['person_id'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
+                $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
                 $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
