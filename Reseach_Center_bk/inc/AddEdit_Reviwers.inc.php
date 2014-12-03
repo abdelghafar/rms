@@ -86,8 +86,8 @@ switch ($Action) {
                 $user = new Users();
                 $userName = generatePassword(8);
                 $SaveUserAcc = $user->Save(0, $userName, '', '', $LastPersonId, 'Reviewer', 1, 0, '', '', 1, '', '');
-                
-                if ($SaveToResearchCenter == 1 && $SaveUserAcc == 1) {
+
+                if ($SaveToResearchCenter != 0 && $SaveUserAcc != 0) {
                     $Result = 1;
                 } else {
                     $Result = 0;
