@@ -80,6 +80,9 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     $('#window').jqxWindow('setTitle', 'اضافة محكم');
                     $('#window').jqxWindow('open');
                 });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function Display_Update(person_id)
             {
