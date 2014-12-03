@@ -25,6 +25,8 @@ $Email = mysql_escape_string($_POST['email']);
 $Mobile = mysql_escape_string($_POST['mobile']);
 $IBAN = '';
 $isValid = True;
+print_r($_POST); 
+
 if (empty($FirstName_ar) || strlen($FirstName_ar) == 0) {
     $isValid = FALSE;
 }
