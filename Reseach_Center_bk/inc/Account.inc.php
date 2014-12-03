@@ -4,8 +4,8 @@ require_once '../../lib/users.php';
 $u = new Users();
 $password = $_POST['password'];
 $userId = $_POST['user_id'];
-$fromDate = $_POST['fromDate'];
-$thruDate = $_POST['thruDate'];
+$fromDate = $_POST['fromDateVal'];
+$thruDate = $_POST['thruDateVal'];
 
 $passwordConfirm = $_POST['passwordConfirm'];
 if (md5($password) != md5($passwordConfirm)) {
