@@ -82,12 +82,11 @@ switch ($Action) {
                 $LastPersonId = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN, '');
                 $obj = new ResearchCenter_Reviewers();
                 $SaveToResearchCenter = $obj->Save($center_id, $LastPersonId);
-
                 //Create Basic Reviewer Account 
                 $user = new Users();
                 $userName = generatePassword(8);
                 $SaveUserAcc = $user->Save(0, $userName, '', '', $LastPersonId, 'Reviewer', 1, 0, '', '', 1, '', '');
-
+                
                 if ($SaveToResearchCenter == 1 && $SaveUserAcc == 1) {
                     $Result = 1;
                 } else {
