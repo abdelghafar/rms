@@ -14,7 +14,7 @@ class ResearchCenter_Reviewers {
         $stmt = "insert into rcenter_reviewers (Rcenter_id,person_id) values (" . $Rcenter_id . "," . $Person_id . ")";
         $conn = new MysqlConnect();
         $res = $conn->ExecuteNonQuery($stmt);
-        return $res;
+        return mysql_insert_id();
     }
 
     public function GetRCenterReviwers($RCenterId) {
