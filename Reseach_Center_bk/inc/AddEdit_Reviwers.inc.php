@@ -86,7 +86,7 @@ switch ($Action) {
 //                $SavePersonResult = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN);
 
                 $LastPersonId = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN, '');
-
+                var_dump($LastPersonId);
                 $obj = new ResearchCenter_Reviewers();
                 $SaveToResearchCenter = $obj->Save($center_id, $LastPersonId);
 
