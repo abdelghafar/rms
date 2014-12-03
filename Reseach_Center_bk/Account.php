@@ -62,7 +62,6 @@ while ($row = mysql_fetch_array($result)) {
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = "energyblue";
-                //$("#createAccount").jqxExpander({theme: theme, toggleMode: 'none', width: '480px', showArrow: false, rtl: true});
                 $("#userName").jqxInput({disabled: true});
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 200, minLength: 1, theme: theme});
                 $("#password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
@@ -97,6 +96,19 @@ while ($row = mysql_fetch_array($result)) {
                     $("#form-iframe").fadeIn('fast');
                 });
 
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //Bind Event Handler
+                $('#fromDateVal').val(function () {
+                    $('#fromDate').val()
+                });
+                $('#fromDate').on('change', function (event)
+                {
+                    var jsDate = event.args.date;
+                    $('#fromDateVal').val(jsDate);
+                });
             });
         </script>
     </head>
@@ -148,7 +160,7 @@ while ($row = mysql_fetch_array($result)) {
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <div style="float:right;" id="fromDate" class="Calander">
-
+                            <input type="hidden" id="fromDateVal" name="fromDateVal"/>
                         </div>
 
                     </div>
@@ -159,7 +171,7 @@ while ($row = mysql_fetch_array($result)) {
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <div style="float:right;" id="thruDate" class="Calander">
-
+                            <input type="hidden" id="thruDateVal" name="thruDateVal"/>
                         </div>
 
                     </div>
