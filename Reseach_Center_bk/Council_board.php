@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Reseach_Center')
+    if ($rule != 'Reseach_Center') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -39,14 +40,26 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <script src="../js/jquery-ui/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
+                $('#btnAddNew').jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -61,8 +74,17 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
         <script type="text/javascript">
             function Display_Add_frm()
             {
-                window.showModalDialog("AddEdit_Council_board.php?Action=Insert", 'PopupPage', 'dialogHeight:380px; dialogWidth:895px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load('AddEdit_Council_board.php?Action=Insert');
+                    $('#window').jqxWindow('setTitle', 'اضافة فاحص مبدئي');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
+
             }
             function Display_Update(person_id)
             {
@@ -77,7 +99,7 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
                         type: 'post',
                         url: 'inc/Del_Council_board.inc.php?person_id=' + person_id,
                         datatype: "html",
-                        success: function(data) {
+                        success: function (data) {
                             location.reload();
                         }
                     });
@@ -93,6 +115,11 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
     </head>
     <body>
     <center>
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -101,7 +128,7 @@ $rs = $obj->GetCouncilBoardMembers($center_id);
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input id="btnAddNew" type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" style="margin-bottom: 10px;"/>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
 
                 <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >

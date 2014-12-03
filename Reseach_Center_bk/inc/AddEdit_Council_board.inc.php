@@ -1,4 +1,5 @@
 <?
+
 session_start();
 require_once '../../lib/persons.php';
 require_once '../../lib/Council_board.php';
@@ -71,7 +72,6 @@ switch ($Action) {
     case "Update": {
             $personId = $_POST['person_id'];
             $Result = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', $empCode, $EqamaCode, $Email, $Mobile, '', '', '', '', '', $IBAN, '');
-
             break;
         }
     case "Insert": {
@@ -114,7 +114,3 @@ if ($Result == 1) {
 }
 
 echo $mesg;
-?>
-<head>
-    <link rel="stylesheet" href="../../common/css/reigster-layout.css"/> 
-</head>

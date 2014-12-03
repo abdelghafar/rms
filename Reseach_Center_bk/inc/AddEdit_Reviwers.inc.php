@@ -69,7 +69,6 @@ $person = new Persons();
 
 $Action = $_POST['Action'];
 
-
 switch ($Action) {
     case "Update": {
             $personId = $_POST['person_id'];
@@ -102,6 +101,7 @@ switch ($Action) {
                     $Result = 0;
                 }
             }
+            break;
         }
 }
 
