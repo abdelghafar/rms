@@ -75,7 +75,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
                     $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
-                    $('#windowContent').load('AddEdit_Reviwers.php');
+                    $('#windowContent').load('AddEdit_Reviwers.php?Action=Insert');
                     $('#window').jqxWindow('setTitle', 'اضافة محكم');
                     $('#window').jqxWindow('open');
                 });
