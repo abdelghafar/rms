@@ -28,7 +28,6 @@ while ($row = mysql_fetch_array($result)) {
         </title>
         <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -40,7 +39,7 @@ while ($row = mysql_fetch_array($result)) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxpasswordinput.js"></script>
@@ -61,9 +60,9 @@ while ($row = mysql_fetch_array($result)) {
             }
         </style>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
-                $("#createAccount").jqxExpander({theme: theme, toggleMode: 'none', width: '480px', showArrow: false, rtl: true});
+                //$("#createAccount").jqxExpander({theme: theme, toggleMode: 'none', width: '480px', showArrow: false, rtl: true});
                 $("#userName").jqxInput({disabled: true});
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 200, minLength: 1, theme: theme});
                 $("#password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
@@ -75,7 +74,7 @@ while ($row = mysql_fetch_array($result)) {
                     rules: [
                         {input: '#password', message: 'من فضلك ادخل كلمة المرور', action: 'keyup, blur', rule: 'required', position: 'top'}, {input: '#passwordConfirm', message: 'من فضلك ادخل كلمة المرور', action: 'keyup, blur', rule: 'required', position: 'top'},
                         {input: '#password', message: 'كلمة المرور يجب أن تكون 8 حروف علي الاقل', action: 'keyup, blur', rule: 'length=8,20', position: 'top'},
-                        {input: '#passwordConfirm', message: 'من فضلك ادخل كلمة المرور بشكل صحيح', action: 'keyup, focus', position: 'top', rule: function(input, commit) {
+                        {input: '#passwordConfirm', message: 'من فضلك ادخل كلمة المرور بشكل صحيح', action: 'keyup, focus', position: 'top', rule: function (input, commit) {
                                 if (input.val() === $('#password').val()) {
                                     return true;
                                 }
@@ -85,8 +84,8 @@ while ($row = mysql_fetch_array($result)) {
                     ], theme: theme
 
                 });
-                $("#sendButton").click(function() {
-                    var validationResult = function(isValid) {
+                $("#sendButton").click(function () {
+                    var validationResult = function (isValid) {
                         if (isValid) {
                             $("#form").submit();
                         }
@@ -94,7 +93,7 @@ while ($row = mysql_fetch_array($result)) {
                     $('#form').jqxValidator('validate', validationResult);
                 });
 
-                $("#form").on('validationSuccess', function() {
+                $("#form").on('validationSuccess', function () {
                     $("#form-iframe").fadeIn('fast');
                 });
 
@@ -148,7 +147,7 @@ while ($row = mysql_fetch_array($result)) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div style="float:right;" id="fromDate" name='fromDate' class="Calander">
+                        <div style="float:right;" id="fromDate" class="Calander">
 
                         </div>
 
@@ -159,7 +158,7 @@ while ($row = mysql_fetch_array($result)) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div style="float:right;" id="thruDate" name='thruDate' class="Calander">
+                        <div style="float:right;" id="thruDate" class="Calander">
 
                         </div>
 
