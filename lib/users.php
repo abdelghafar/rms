@@ -16,10 +16,9 @@ class Users {
         } else {
             
         }
-
         $conn = new MysqlConnect();
         $rs = $conn->ExecuteNonQuery($stmt);
-        return $rs;
+        return mysql_insert_id();
     }
 
     public function GetUser($userId) {
