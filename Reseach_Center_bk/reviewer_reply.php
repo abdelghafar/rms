@@ -40,17 +40,35 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
         <script type="text/javascript">
             function Display_AddReviewerReply(seqId, research_code)
             {
-                window.showModalDialog("AddReviewerReply.php?seqId=" + seqId + "&researchCode=" + research_code, 'PopupPage', 'dialogHeight:350px; dialogWidth:730px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 550, width: 850, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load('AddReviewerReply.php?seqId=' + seqId + "?researchCode=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'اضافة الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
             }
             function update_research_status(research_id, research_code)
             {
-                window.showModalDialog("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', "dialogWidth:780px;dialogHeight:350px");
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 550, width: 850, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'اضافة الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
             }
         </script>
         <script type="text/javascript">
@@ -70,6 +88,11 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
     </head>
     <body>
     <center>
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
