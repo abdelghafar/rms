@@ -98,20 +98,7 @@ while ($row = mysql_fetch_array($result)) {
 
             });
         </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //Bind Event Handler
-                var value = $('#fromDate').jqxCalendar('value');
-                alert(value);
-                $('#fromDate').on('change', function (event)
-                {
-                    var value = $('#fromDate').jqxCalendar('value');
-                    alert(value);
-                });
-                //Bind ThruDate Cal
 
-            });
-        </script>
     </head>
     <body style="background-color: #ededed;">
 
@@ -160,8 +147,7 @@ while ($row = mysql_fetch_array($result)) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div style="float:right;" id="fromDate" class="Calander">
-                            <input type="hidden" id="fromDateVal" name="fromDateVal"/>
+                        <div style="float:right;" id="fromDate" class="Calander" name="fromDateVal">
                         </div>
 
                     </div>
