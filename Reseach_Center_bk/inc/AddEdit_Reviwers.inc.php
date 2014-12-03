@@ -85,9 +85,7 @@ switch ($Action) {
             if ($isExitId == 0) {
 //                $SavePersonResult = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN);
 
-                $SavePersonResult = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN, '');
-                //Add to RCenter_Reviwers
-                $LastPersonId = $person->GetLastPersonId();
+                $LastPersonId = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN, '');
 
                 $obj = new ResearchCenter_Reviewers();
                 $SaveToResearchCenter = $obj->Save($center_id, $LastPersonId);
@@ -97,27 +95,29 @@ switch ($Action) {
                 $userName = generatePassword(8);
                 $SaveUserAcc = $user->Save(0, $userName, '', '', $LastPersonId, 'Reviewer', 1, 0, '', '', 1, '', '');
 
-                if ($SavePersonResult == 1 && $SaveToResearchCenter == 1 && $SaveUserAcc == 1)
+                if ($SaveToResearchCenter == 1 && $SaveUserAcc == 1) {
                     $Result = 1;
-                else
+                } else {
                     $Result = 0;
+                }
             } else {
                 //Add to RCenter_Reviwers
                 $obj = new ResearchCenter_Reviewers();
                 $SaveToResearchCenter = $obj->Save($center_id, $isExitId);
-                if ($SaveToResearchCenter == 1)
+                if ($SaveToResearchCenter == 1) {
                     $Result = 1;
-                else
+                } else {
                     $Result = 0;
+                }
             }
         }
 }
 
-if ($Result == 1)
+if ($Result == 1) {
     $mesg = 'تم حفظ البيانات بنجاح';
-else {
+} else {
     $mesg = 'لقد فشلت عملية حفظ البيانات برجاء اعادة المحاولة لاحقا';
 }
 
 echo $mesg;
-?>
+
