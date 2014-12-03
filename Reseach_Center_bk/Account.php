@@ -102,23 +102,16 @@ while ($row = mysql_fetch_array($result)) {
             $(document).ready(function () {
                 //Bind Event Handler
                 $('#fromDateVal').val(function () {
-                    $('#fromDate').val();
+                    $('#fromDate').jqxCalendar('getDate');
                 });
                 $('#fromDate').on('change', function (event)
                 {
-                    var jsDate = event.args.date;
+                    var jsDate = $('#fromDate').jqxCalendar('getDate');
                     $('#fromDateVal').val(jsDate);
                     alert(jsDate);
                 });
                 //Bind ThruDate Cal
-                $('#thruDateVal').val(function () {
-                    $('#thruDate').val();
-                });
-                $('#thruDate').on('change', function (event)
-                {
-                    var jsDate = event.args.date;
-                    $('#thruDateVal').val(jsDate);
-                });
+                
             });
         </script>
     </head>
