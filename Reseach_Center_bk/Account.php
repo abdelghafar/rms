@@ -149,7 +149,6 @@ while ($row = mysql_fetch_array($result)) {
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <div style="float:right;" id="fromDate" class="Calander" name="fromDateVal">
                         </div>
-
                     </div>
                     <div class="panel-cell" style="padding-right: 75px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p class="classic">
@@ -158,7 +157,6 @@ while ($row = mysql_fetch_array($result)) {
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <div style="float:right;" id="thruDate" class="Calander" name="thruDateVal">
-
                         </div>
 
                     </div>
