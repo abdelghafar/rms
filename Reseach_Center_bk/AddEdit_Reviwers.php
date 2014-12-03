@@ -170,7 +170,6 @@ if (isset($_GET['person_id'])) {
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input id="mobile" name="mobile" type="text" placeholder="جوال" value="<? echo $Mobile; ?>"/>
                         <span style="text-decoration: none;">966+</span>
-
                     </div>
                 </div>
                 <div class="panel_row">
@@ -187,7 +186,6 @@ if (isset($_GET['person_id'])) {
             </fieldset>
             <input type="submit" value="حفظ" id='sendButton' style="margin-top: 10px;"/>
             <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0" >
-
             </iframe>
         </form>
 
