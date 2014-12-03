@@ -71,6 +71,7 @@ if (isset($_GET['person_id'])) {
                     $("#form-iframe").fadeIn('fast');
                 });
             });</script>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#form').jqxValidator({rules: [
@@ -164,8 +165,7 @@ if (isset($_GET['person_id'])) {
                             رقم المنسوب                    </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div id="empCode"></div> 
-                        <input type="hidden" name="empCodeVal" id="empCodeVal"/>  
+                        <div id="empCode" name="empCodeVal"></div>   
                     </div>
                     <div class="panel-cell" style="width:152px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
@@ -173,9 +173,8 @@ if (isset($_GET['person_id'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div id="eqamaCode">
-                        </div>
-                        <input type="hidden" name="eqamaCodeVal" id="eqamaCodeVal"/>  
+                        <div id="eqamaCode" name="eqamaCodeVal">
+                        </div> 
                     </div>
                 </div>
                 <div class="panel_row">

@@ -17,8 +17,8 @@ $GrandName_ar = mysql_escape_string($_POST['GrandName_ar']);
 $GrandName_en = mysql_escape_string($_POST['GrandName_en']);
 $FamilyName_ar = mysql_escape_string($_POST['FamilyName_ar']);
 $FamilyName_en = mysql_escape_string($_POST['FamilyName_en']);
-$empCode = $_POST['empCode'];
-$EqamaCode = $_POST['eqamaCode'];
+$empCode = $_POST['empCodeVal'];
+$EqamaCode = $_POST['eqamaCodeVal'];
 $Major_Field = mysql_escape_string($_POST['major_field']);
 $Speical_Field = mysql_escape_string($_POST['special_field']);
 $Email = mysql_escape_string($_POST['email']);
@@ -73,7 +73,7 @@ $Action = $_POST['Action'];
 switch ($Action) {
     case "Update": {
             $personId = $_POST['person_id'];
-            $Result = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', $empCode, $EqamaCode, $Email, $Mobile, '', '', '', '', '', $IBAN, '');
+            $Result = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', $empCode, $EqamaCode, $Email, $Mobile, '', '', '', '', '', $IBAN, '');  
             break;
         }
     case "Insert": {
