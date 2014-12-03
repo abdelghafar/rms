@@ -86,8 +86,16 @@ $rs = $obj->GetRCenterReviwers($center_id);
             }
             function Display_Update(person_id)
             {
-                window.showModalDialog("AddEdit_Reviwers.php?person_id=" + person_id + "&Action=Update", 'PopupPage', 'dialogHeight:430px; dialogWidth:895px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddEdit_Reviwers.php?person_id=" + person_id + "&Action=Update");
+                    $('#window').jqxWindow('setTitle', 'تعديل بيانات محكم');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function Delete(person_id)
             {
@@ -105,10 +113,14 @@ $rs = $obj->GetRCenterReviwers($center_id);
             }
             function DisplayAccount(person_id)
             {
-                window.showModalDialog("Account.php?person_id=" + person_id + "&Rule=Reviewer", 'PopupPage', 'dialogHeight:340px; dialogWidth:650px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("Account.php?person_id=" + person_id + "&Rule=Reviewer");
+                    $('#window').jqxWindow('setTitle', 'تعديل بيانات محكم');
+                    $('#window').jqxWindow('open');
+                });
             }
-
         </script>
     </head>
     <body>
