@@ -99,6 +99,16 @@ if (isset($_GET['person_id'])) {
                 float: right; 
                 margin-right: 15px;
             }
+            .textbox
+            {
+                border: #0000cc thin outset;
+            }
+            #email{
+                border: #0000cc thin outset;
+            }
+            #mobile{
+                border: #0000cc thin outset;
+            }
         </style>
 
     </head>
