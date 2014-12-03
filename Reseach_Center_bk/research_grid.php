@@ -1,7 +1,7 @@
 <?
 session_start();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-   header('Location:../Login.php');
+    header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Reseach_Center') {
@@ -183,7 +183,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
 
                                 <td>
                                     <a href="#" onClick="display_Research_details(<? echo $row['seq_id']; ?>)
-                                                    ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
+                                                        ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
 
                                 </td>
                             </tr>
