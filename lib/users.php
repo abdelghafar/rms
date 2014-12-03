@@ -52,8 +52,8 @@ class Users {
     }
 
     public function ChnagePasswordWithDate($userId, $Password, $fromDate, $thruDate) {
-        $Password = md5($Password);
-        $stmt = "update users set pass='$Password', fromDate='$fromDate',thruDate='$thruDate' where user_id=" . $userId;
+        $hash_password = md5($Password);
+        $stmt = "update users set pass='$hash_password', fromDate='$fromDate',thruDate='$thruDate' where user_id=" . $userId;
         $conn = new MysqlConnect();
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
