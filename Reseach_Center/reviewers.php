@@ -40,7 +40,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <script src="../js/jquery-ui/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui/js/jquery-1.9.0.js" type="text/javascript"></script>
         <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
