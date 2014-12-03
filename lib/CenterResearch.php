@@ -38,7 +38,7 @@ class CenterResearch {
 
     public function AllCenterResearch($center_id) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT DISTINCT seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` WHERE Withdraw=0 and `isCorrsAuthor` =1 AND center_id= 8" . $center_id . " Order By seq_id";
+        $stmt = "SELECT DISTINCT seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` WHERE Withdraw=0 and `isCorrsAuthor` =1 AND center_id= " . $center_id . " Order By seq_id";
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
