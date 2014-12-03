@@ -68,7 +68,6 @@ $rs = $obj->GetRCenterReviwers($center_id);
                         sUrl: "../js/dataTables/media/ar_Ar.txt"}
                 });
             });
-
         </script>
         <script type="text/javascript">
             function Display_Add_frm()
@@ -138,7 +137,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input id="btnAddNew" type="button" onclick="javascript:Display_Add_frm();" value="اضافة جديد" class="Button"/>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
 
                 <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
