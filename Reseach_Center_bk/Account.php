@@ -54,7 +54,7 @@ while ($row = mysql_fetch_array($result)) {
             .demo-iframe {
                 border: none;
                 width: 400px;
-                height: 20px;
+                height: auto;
                 display:none; 
                 clear: both;
             }
@@ -108,6 +108,7 @@ while ($row = mysql_fetch_array($result)) {
                 {
                     var jsDate = event.args.date;
                     $('#fromDateVal').val(jsDate);
+                    alert(jsDate);
                 });
                 //Bind ThruDate Cal
                 $('#thruDateVal').val(function () {
