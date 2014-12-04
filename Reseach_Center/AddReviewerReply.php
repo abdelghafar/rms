@@ -10,9 +10,8 @@ $research_Code = $_GET['researchCode'];
         <title>
             تسجيل رد المحكم
         </title>
-        <link rel="stylesheet" href="css/reigster-layout.css"/> 
+        <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -24,15 +23,29 @@ $research_Code = $_GET['researchCode'];
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
-
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxpasswordinput.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcombobox.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxexpander.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.export.js"></script>
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
+        <style type="text/css">
+            .demo-iframe {
+                border: none;
+                width: 400px;
+                height: auto;
+                display:none; 
+                clear: both;
+            }
+        </style>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
 
                 var comboSrc = ["مقبول", "مرفوض"];
                 $("#jqxdropdownlist").jqxDropDownList({rtl: true, source: comboSrc, selectedIndex: 0, width: '150px', height: '25px', theme: 'energyblue'});
@@ -40,10 +53,10 @@ $research_Code = $_GET['researchCode'];
                 $(".Calander").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
                 $("#notes").jqxInput({rtl: true, height: 75, width: 450, minLength: 1, theme: 'energyblue'});
 
-                $('#sendButton').on('click', function() {
+                $('#sendButton').on('click', function () {
                     $('#changeResearchStatusForm').jqxValidator('validate');
                 });
-                $('#changeResearchStatusForm').bind('validationError', function(event) {
+                $('#changeResearchStatusForm').bind('validationError', function (event) {
                     alert('Error while validating!');
                 });
 
@@ -53,10 +66,10 @@ $research_Code = $_GET['researchCode'];
         </script>
         <script type="text/javascript">
             $(document).ready(
-                    function() {
+                    function () {
                         var item = 0;
                         $("#research_status").val(item);
-                        $('#jqxdropdownlist').bind('select', function(event) {
+                        $('#jqxdropdownlist').bind('select', function (event) {
                             var args = event.args;
                             item = $('#jqxdropdownlist').jqxDropDownList('getItem', args.index);
                             // alert(item);
@@ -66,9 +79,9 @@ $research_Code = $_GET['researchCode'];
 
         </script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#changeResearchStatusForm').jqxValidator({rules: [
-                        {input: '#jqxdropdownlist', message: 'من فضلك إختار حالة البحث ', action: 'valuechanged, blur', rtl: true, position: 'topcenter', rule: function(input, commit) {
+                        {input: '#jqxdropdownlist', message: 'من فضلك إختار حالة البحث ', action: 'valuechanged, blur', rtl: true, position: 'topcenter', rule: function (input, commit) {
                                 var index = $("#research_status").val();
                                 if (index === '0')
                                     return false;
