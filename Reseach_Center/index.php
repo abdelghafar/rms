@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Reseach_Center')
+    if ($rule != 'Reseach_Center') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -51,8 +52,14 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
                 </div>
-
-
+                <div class="panel-cell" style="padding-right:100px;">
+                    <a href="Council_board.php">
+                        <img src="images/Council.png" alt="أعضاء المجلس" title ="أعضاء المجلس" style ="border:0;margin-right: 23px;"/>
+                        <p style="margin-top: 0px;">
+                            لجنة الفصح المبدئي
+                        </p>
+                    </a>
+                </div>
                 <div class="panel-cell"  style="padding-right:100px;">
                     <a href="reviewers.php">
                         <img id="reviwers" src="images/reviwers.png" alt="المحكمين" title="المحكمين" style ="border:0" /> 
@@ -61,16 +68,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
                 </div>
-                <div class="panel-cell" style="padding-right:100px;">
-                    <a href="Council_board.php">
-                        <img src="images/Council.png" alt="أعضاء المجلس" title ="أعضاء المجلس" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            أعضاء المجلس
-                        </p>
-                    </a>
-
-                </div>
-
                 <div class="panel-cell"  style="padding-right:100px;">
                     <a href="reviewer_reply.php">
                         <img id="new_Research" src="images/reply.png" alt="ردود المحكين" title="ردود المحكين" style ="border:0" /> 
