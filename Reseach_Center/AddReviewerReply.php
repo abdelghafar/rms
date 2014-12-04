@@ -10,39 +10,21 @@ $research_Code = $_GET['researchCode'];
         <title>
             تسجيل رد المحكم
         </title>
-        <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
-        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcalendar.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxtooltip.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxpasswordinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcombobox.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxexpander.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.export.js"></script>
-
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
+        <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
+        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
+        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
-        <style type="text/css">
-            .demo-iframe {
-                border: none;
-                width: 400px;
-                height: auto;
-                display:none; 
-                clear: both;
-            }
-        </style>
+
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
 
         <script type="text/javascript">
             $(document).ready(function () {
