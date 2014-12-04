@@ -89,7 +89,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
             {
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
-                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade', okButton: $('#okButton')});
                     $('#windowContent').load("AddEdit_Reviwers.php?person_id=" + person_id + "&Action=Update");
                     $('#window').jqxWindow('setTitle', 'تعديل بيانات محكم');
                     $('#window').jqxWindow('open');
