@@ -53,8 +53,16 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
         <script type="text/javascript">
             function Display_AddReviewerReply(seqId, research_code)
             {
-                window.showModalDialog("AddReviewerReply.php?seqId=" + seqId + "&researchCode=" + research_code, 'PopupPage', 'dialogHeight:350px; dialogWidth:730px; resizable:0');
-                location.reload();
+//                window.showModalDialog("AddReviewerReply.php?seqId=" + seqId + "&researchCode=" + research_code, 'PopupPage', 'dialogHeight:350px; dialogWidth:730px; resizable:0');
+//                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 550, width: 850, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddReviewerReply.php?seqId=" + seqId + "&researchCode=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'اضافة الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
+
             }
             function update_research_status(research_id, research_code)
             {
