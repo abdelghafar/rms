@@ -62,7 +62,6 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
                     $('#window').jqxWindow('setTitle', 'اضافة الفاحص المبدئي');
                     $('#window').jqxWindow('open');
                 });
-
             }
             function update_research_status(research_id, research_code)
             {
