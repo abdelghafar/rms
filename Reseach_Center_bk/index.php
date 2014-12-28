@@ -64,7 +64,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     <a href="Council_board.php">
                         <img src="images/Council.png" alt="أعضاء المجلس" title ="أعضاء المجلس" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            الفحص المبدئي
+                            لجنة الفصح المبدئي
                         </p>
                     </a>
                 </div>

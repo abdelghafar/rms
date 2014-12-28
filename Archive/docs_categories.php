@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Archive')
+    if ($rule != 'Archive') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -37,11 +38,19 @@ $rs = $obj->GetList();
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -50,19 +59,35 @@ $rs = $obj->GetList();
                     oLanguage: {
                         sUrl: "../js/dataTables/media/ar_Ar.txt"}
                 });
-                $(".Button").jqxButton({width: '100px', height: '30px', theme: 'energyblue', rtl: true});
+                $("#submitButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue', rtl: true});
             });</script>
         <script type="text/javascript">
             function Display_Update_frm(doc_cat_id)
             {
-                window.showModalDialog("AddEdit_doc_Categories.php?doc_cat_id=" + doc_cat_id, 'PopupPage', 'dialogHeight:250px; dialogWidth:450px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 300, width: 440, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load('AddEdit_doc_Categories.php?doc_cat_id=' + doc_cat_id);
+                    $('#window').jqxWindow('setTitle', 'اضافة نوع مستند');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
 
             function Display_Add_frm()
             {
-                window.showModalDialog("AddEdit_doc_Categories.php", 'PopupPage', 'dialogHeight:250px; dialogWidth:450px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 300, width: 440, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddEdit_doc_Categories.php");
+                    $('#window').jqxWindow('setTitle', 'تعديل فئة مستند');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function Delete(doc_cat_id)
             {
@@ -72,7 +97,7 @@ $rs = $obj->GetList();
                         type: 'post',
                         url: 'inc/Del_doc_Categories.inc.php?seq_id=' + doc_cat_id,
                         datatype: "html",
-                        success: function(data) {
+                        success: function (data) {
                             location.reload();
                         }
                     });
@@ -83,6 +108,11 @@ $rs = $obj->GetList();
     </head>
     <body>
     <center>
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -91,9 +121,9 @@ $rs = $obj->GetList();
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="Display_Add_frm();" value="اضافة جديد" class="Button"/> 
+            <input id="submitButton" type="button" onclick="Display_Add_frm();" value="اضافة جديد" style="margin-bottom: 10px;"/> 
 
-            <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
+            <table id="datatables" class="display" style="text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
                 <thead>
                     <tr>
                         <th><em>م</em></th>

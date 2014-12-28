@@ -2,8 +2,6 @@
 session_start();
 require_once('../lib/Reseaches.php');
 require_once '../lib/ResearchCenter_Reviewers.php';
-
-
 require_once('../lib/CenterResearch.php');
 
 $c_researches = new CenterResearch();
@@ -14,21 +12,17 @@ $research_Code = $_GET['research_code'];
 $obj = new ResearchCenter_Reviewers();
 $rs = $obj->GetRCenterReviwers($center_id);
 ?>
-
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="../js/dataTables/media/js/jquery.js"></script>
+        <title></title>
         <script type="text/javascript" src="../js/dataTables/media/js/jquery.dataTables.js"></script>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css"/>
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css"/>
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css"/>
         <link rel="stylesheet" type="text/css" href="css/reigster-layout.css"/>
-
-        <title></title>
         <script type="text/javascript">
-            $(document).ready(function() {
-                $('#datatables').dataTable({
+            $(document).ready(function () {
+                $('#grid').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
                     bLengthChange: true,
@@ -38,9 +32,19 @@ $rs = $obj->GetRCenterReviwers($center_id);
                 });
             });
         </script>
-
+        <style type="text/css">
+            .demo-iframe {
+                border: none;
+                width: 500px;
+                height: auto; 
+                clear: both;
+                float: right; 
+                margin:0px;
+                padding: 0px;
+            }
+        </style>
     </head>
-    <body style="background-color: #ededed;">
+    <body>
         <div class="panel_row">
             <div class="panel-cell" style="padding-left: 25px;padding-top: 10px;">
                 <p> 
@@ -56,9 +60,8 @@ $rs = $obj->GetRCenterReviwers($center_id);
 
             </div>
         </div>
-        <form action="inc/Assign_Reviewer.inc.php" method="post">
+        <form action="inc/Assign_Reviewer.inc.php" method="post" target="form-iframe">
             <input type="hidden" value="<? echo $researchId; ?>" name="researchId" /> 
-
             <fieldset style="width: 95%;text-align: right;"> 
                 <legend>
                     <label>
@@ -66,7 +69,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                     </label>
                 </legend>
 
-                <table id="datatables" class="display" style="text-align: right;font-size:14px; font-weight: bold;border: 1px solid gray;" dir="rtl" >
+                <table id="grid" class="display" style="text-align: right;font-size:14px; font-weight: bold;border: 1px solid gray;" dir="rtl" >
                     <thead>
                         <tr>
                             <th><em>م</em></th>
@@ -107,7 +110,9 @@ $rs = $obj->GetRCenterReviwers($center_id);
                 </table>
             </fieldset>
             <input type="submit" value="تسجيـل" id='sendButton' style="margin-top: 20px;"/>
-        </form>
+            <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0" >
 
+            </iframe>
+        </form>
     </body>
 </html>

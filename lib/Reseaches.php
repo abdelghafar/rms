@@ -93,11 +93,11 @@ class Reseaches {
         $stmt = "select researches.seq_id from researches where research_code=" . $ResearchCode;
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
-        $ResearchCode = 0;
+        $ResearchId = 0;
         while ($row = mysql_fetch_array($result)) {
-            $ResearchCode = $row[0];
+            $ResearchId = $row[0];
         }
-        return $ResearchCode;
+        return $ResearchId;
     }
 
     public function GenerateResearchCode($CenterId) {

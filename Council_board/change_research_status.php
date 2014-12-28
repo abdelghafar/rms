@@ -35,9 +35,9 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
-        
+
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var source =
                         {
                             datatype: "json",
@@ -64,10 +64,10 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
                 $(".Calander").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
                 $("#notes").jqxInput({rtl: true, height: 75, width: 450, minLength: 1, theme: 'energyblue'});
 
-                $('#sendButton').on('click', function() {
+                $('#sendButton').on('click', function () {
                     $('#changeResearchStatusForm').jqxValidator('validate');
                 });
-                $('#changeResearchStatusForm').bind('validationError', function(event) {
+                $('#changeResearchStatusForm').bind('validationError', function (event) {
                     alert('Error while validating!');
                 });
 
@@ -75,11 +75,22 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
             });
 
         </script>
+        <style type="text/css">
+            .demo-iframe {
+                border: none;
+                width: 600px;
+                height: auto; 
+                clear: both;
+                float: right; 
+                margin:0px;
+                padding: 0px;
+            }
+        </style>
 
         <title>تعديل حالة المشروع البحثى</title>
     </head>
     <body style="background-color: #ededed;">
-        <form method="POST" id="changeResearchStatusForm" enctype="multipart/form-data" action="inc/change_research_status.inc.php"> 
+        <form method="POST" id="changeResearchStatusForm" enctype="multipart/form-data" action="inc/change_research_status.inc.php" target="form-iframe"> 
             <fieldset>
                 <legend>
                     <img src="images/personal.png"/>
@@ -110,7 +121,7 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="hidden" name="research_status" id="research_status"/>
-                        <div id='jqxdropdownlist' style="height: 20px;">
+                        <div id='jqxdropdownlist' style="height: 20px;" name="jqxdropdownlist">
                         </div>
                     </div>
                 </div> 
@@ -122,7 +133,6 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <div style="float:right;" id="track_date" class="Calander" name="track_date">
-
                         </div>
 
                     </div>
@@ -157,7 +167,9 @@ $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Council_board');
             </fieldset>
 
             <input type="submit" value="ارسال" id='sendButton' style="margin-top: 10px;"/>
+            <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0" >
 
+            </iframe>
         </form>
         <div id="result" dir="rtl" style="text-align: center"></div>
     </body>

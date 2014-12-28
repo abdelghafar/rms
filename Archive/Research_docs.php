@@ -4,12 +4,14 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Archive')
+    if ($rule != 'Archive') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/doc_categories.php';
+
 $smarty = new Smarty();
 
 $smarty->assign('style_css', '../style.css');
@@ -40,9 +42,18 @@ $rs = $doc->GetAllDocuments();
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-        <script type="text/javascript" charset="utf-8">
-            $(document).ready(function() {
+        <script type="text/javascript">
+            $(document).ready(function () {
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -51,14 +62,22 @@ $rs = $doc->GetAllDocuments();
                     oLanguage: {
                         sUrl: "../js/dataTables/media/ar_Ar.txt"}
                 });
+                $("#submitButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue', rtl: true});
             });
-
         </script>
         <script type="text/javascript">
             function Display_Add_frm()
             {
-                window.showModalDialog("AddEdit_Research_docs.php", 'PopupPage', 'dialogHeight:430px; dialogWidth:650px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 420, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddEdit_Research_docs.php");
+                    $('#window').jqxWindow('setTitle', 'اضافة مستند جديد');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function Delete(doc_cat_id)
             {
@@ -68,7 +87,7 @@ $rs = $doc->GetAllDocuments();
                         type: 'post',
                         url: 'inc/Del_Research_Doc.inc.php?seq_id=' + doc_cat_id,
                         datatype: "html",
-                        success: function(data) {
+                        success: function (data) {
                             location.reload();
                         }
                     });
@@ -79,7 +98,13 @@ $rs = $doc->GetAllDocuments();
         <title></title>
     </head>
 
-    <body style="background-color: #ededed;">
+    <body>
+    <center>
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -88,7 +113,7 @@ $rs = $doc->GetAllDocuments();
                     ?>
                 </label>
             </legend>
-            <input type="button" onclick="Display_Add_frm();" value="اضافة جديد" class="Button"/>
+            <input id="submitButton" type="button" onclick="Display_Add_frm();" value="اضافة جديد" style="margin-bottom: 10px;"/>
             <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
                 <thead>
                     <tr>
@@ -100,8 +125,15 @@ $rs = $doc->GetAllDocuments();
                             نوع المستند
                         </th>
                         <th>
+                            الحجم (MB)
+                        </th>
+                        <th>
+                            Md5
+                        </th>
+                        <th>
                             ملاحظات
                         </th>
+
                         <th>
                             تحميل
                         </th>
@@ -121,10 +153,12 @@ $rs = $doc->GetAllDocuments();
                                 ?></td>
                             <td style=" text-align: right;"><? echo $row['research_code']; ?></td>
                             <td style=" text-align: right;"><? echo $row['cat_name']; ?></td>
+                            <td><? echo round($row['size'] / (1024 * 1024), 2); ?></td>
+                            <td><? echo $row['hash']; ?></td>
                             <td><? echo $row['notes']; ?></td>
                             <td style=" text-align: center;width: 50px;">
-                                <a href="<? echo 'upload/' . $row['doc_url']; ?>">
-                                    <img style="border: 0;" src="../common/images/download.png"/>
+                                <a href="<? echo '../' . $row['doc_url']; ?>">
+                                    <img style="border: 0;" src="../common/images/download.png" alt="download"/>
                                 </a>
                             </td>
                             <td  style="width: 50px;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);" ><img src="../common/images/delete.png" style="border:none !important" alt="حذف"/></a></td>
@@ -141,8 +175,8 @@ $rs = $doc->GetAllDocuments();
             <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
                 رجوع
             </a></label>
-
-    </body>
+    </center>
+</body>
 
 </html>
 <?

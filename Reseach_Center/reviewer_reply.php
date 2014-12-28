@@ -53,8 +53,6 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
         <script type="text/javascript">
             function Display_AddReviewerReply(seqId, research_code)
             {
-//                window.showModalDialog("AddReviewerReply.php?seqId=" + seqId + "&researchCode=" + research_code, 'PopupPage', 'dialogHeight:350px; dialogWidth:730px; resizable:0');
-//                location.reload();
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
                     $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 550, width: 850, autoOpen: false, isModal: true, animationType: 'fade'});
@@ -65,8 +63,13 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
             }
             function update_research_status(research_id, research_code)
             {
-                window.showModalDialog("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', "dialogWidth:780px;dialogHeight:350px");
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 850, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'اضافة الفاحص المبدئي');
+                    $('#window').jqxWindow('open');
+                });
             }
         </script>
         <script type="text/javascript">
@@ -109,6 +112,10 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
 
                             <th>اسم المحكم</th>
                             <th>
+                                اسم المستخدم
+                            </th>
+                            <th>البريد الالكتروني</th>
+                            <th>
                                 ت.الارسال
                             </th>
                             <th>م. التحكيم</th>
@@ -139,6 +146,16 @@ $rs = $c_researches->GetLstOfResearchReviwers($center_id);
                                 <td><? echo $row['research_code']; ?></td>
 
                                 <td><? echo $row['reveiwer_name']; ?></td>
+                                <td>
+                                    <?php
+                                    echo $row['user_name'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    echo $row['reviewer_email'];
+                                    ?>
+                                </td>
                                 <td><? echo $row['submission_date']; ?></td>
                                 <td style=" text-align:center;">
                                     <? echo $row['Phase_Title']; ?>

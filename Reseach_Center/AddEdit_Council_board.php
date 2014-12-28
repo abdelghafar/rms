@@ -31,7 +31,6 @@ if (isset($_GET['person_id'])) {
         <title></title>
         <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -40,27 +39,27 @@ if (isset($_GET['person_id'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-        <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
-
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
         <script type="text/javascript">
-            $(document).ready(function() {
-                $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
+            $(document).ready(function () {
+                $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
+                $("#email").jqxInput({rtl: true, height: 25, width: 200, minLength: 1, theme: 'energyblue'});
+                $("#mobile").jqxInput({rtl: true, height: 25, width: 132, minLength: 1, theme: 'energyblue'});
                 $("#empCode").jqxMaskedInput({rtl: true, width: 150, height: '25px', mask: '#######', theme: 'energyblue', value: '<? echo $empCode; ?>'});
                 $("#eqamaCode").jqxMaskedInput({rtl: true, width: 150, height: '25px', mask: '##########', theme: 'energyblue', value: '<? echo $EqamaCode; ?>'});
-                $('#sendButton').on('click', function() {
+                $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
                 $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
                 // validate form.
-                $("#sendButton").click(function() {
-                    var validationResult = function(isValid) {
+                $("#sendButton").click(function () {
+                    var validationResult = function (isValid) {
                         if (isValid) {
                             $("#form").submit();
                         }
@@ -68,12 +67,13 @@ if (isset($_GET['person_id'])) {
                     };
                     $('#form').jqxValidator('validate', validationResult);
                 });
-                $("#form").on('validationSuccess', function() {
+                $("#form").on('validationSuccess', function () {
                     $("#form-iframe").fadeIn('fast');
                 });
             });</script>
+
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#form').jqxValidator({rules: [
                         {input: '#FirstName-ar', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                         {input: '#FatherName-ar', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
@@ -104,12 +104,32 @@ if (isset($_GET['person_id'])) {
                 margin:0px;
                 padding: 0px;
             }
+            .textbox
+            {
+                border: #0000cc thin outset;
+            }
+            #email{
+                border: #0000cc thin outset;
+            }
+            #mobile{
+                border: #0000cc thin outset;
+            }
+            #empcode{
+                border: #0000cc thin outset;
+            }
+            #eqamaCode{
+                border: #0000cc thin outset;
+            }
         </style>
 
     </head>
     <body style="background-color: #ededed;">
         <form method="POST" id="form" target="form-iframe" action="inc/AddEdit_Council_board.inc.php">
-            <input type="hidden" name="person_id" value="<? if (isset($person_id)) echo $person_id; ?>"/>
+            <input type="hidden" name="person_id" value="<?
+            if (isset($person_id)) {
+                echo $person_id;
+            }
+            ?>"/>
             <input type="hidden" name="Action" value="<? echo $Action; ?>"/>
             <fieldset style="width: 95%;text-align: right;"> 
                 <legend>
@@ -118,7 +138,7 @@ if (isset($_GET['person_id'])) {
                     </label>
                 </legend>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
+                    <div class="panel-cell" style="width: 189px;text-align: left;padding-left: 10px;margin-bottom: 10px;"> 
                         <p style="font-weight: bold">الاسم باللغة العربية</p>
                     </div>
                     <div class="panel-cell" style="width: 700px;">
@@ -127,6 +147,7 @@ if (isset($_GET['person_id'])) {
                         <input id="GrandName-ar" class="textbox" type="text" placeholder="اسم الجد" name="GrandName_ar" value="<? echo $GrandName_ar; ?>"/>
                         <input id="FamilyName-ar" class="textbox" type="text" placeholder="لقب العائلة" name="FamilyName_ar" value="<? echo $FamilyName_ar; ?>"/> 
                     </div>
+                </div>
                     <div class="panel_row">
                         <div class="panel-cell" style="width: 185px;text-align: left;padding-left: 10px;"> 
                             <p style="font-weight: bold">الاسم باللغة الانجليزية</p>
@@ -138,15 +159,13 @@ if (isset($_GET['person_id'])) {
                             <input id="FirstName-en" class="textbox" type="text" placeholder="FirstName" name="FirstName_en" value="<? echo $FirstName_en; ?>"/>
                         </div>
                     </div>
-                </div>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:181px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell" style="width:155px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
                             رقم المنسوب                    </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div id="empCode"></div> 
-                        <input type="hidden" name="empCodeVal" id="empCodeVal"/>  
+                        <div id="empCode" name="empCodeVal"></div>   
                     </div>
                     <div class="panel-cell" style="width:152px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
@@ -154,20 +173,19 @@ if (isset($_GET['person_id'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <div id="eqamaCode">
+                        <div id="eqamaCode" name="eqamaCodeVal">
                         </div>
-                        <input type="hidden" name="eqamaCodeVal" id="eqamaCodeVal"/>  
                     </div>
                 </div>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:181px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell" style="width:154px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
                             التخصص العام                    </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input id="major-field" name="major_field" class="textbox" type="text" placeholder="التخصص العام" value="<? echo $Major_Field; ?>"/> 
                     </div>
-                    <div class="panel-cell" style="width:150px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell" style="width:173px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
                             التخصص الدقيق
                         </p>
@@ -177,14 +195,14 @@ if (isset($_GET['person_id'])) {
                     </div>
                 </div>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:181px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell" style="width:153px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
                             البريدالالكتروني                 </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input id="email" name="email" class="textbox" type="text" placeholder="@uqu.edu.sa" value="<? echo $Email; ?>"/>
                     </div>
-                    <div class="panel-cell" style="width:150px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell" style="width:103px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
                             جوال
                         </p>

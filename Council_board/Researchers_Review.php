@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Council_board')
+    if ($rule != 'Council_board') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -40,14 +41,27 @@ $rs = $obj->GetCouncilBoardLstOfResearches($personId);
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <script src="../js/jquery-ui/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
+
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -62,19 +76,40 @@ $rs = $obj->GetCouncilBoardLstOfResearches($personId);
         <script type="text/javascript">
             function display_Research_details(research_code)
             {
-                window.showModalDialog("Research_details.php?research_code=" + research_code, 'PopupPage', 'dialogHeight:500px; dialogWidth:850px; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("Research_details.php?research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'تفاصيل البحث');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
             function display_Research_Review(research_id, research_code)
             {
-                window.showModalDialog("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', 'dialogHeight:565px; dialogWidth:842; resizable:0');
-                location.reload();
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 600, width: 950, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("change_research_status.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'التحكيم');
+                    $('#window').jqxWindow('open');
+                });
+                $('#window').on('close', function (event) {
+                    location.reload();
+                });
             }
 
         </script>
     </head>
     <body>
     <center>
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>

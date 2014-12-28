@@ -5,7 +5,6 @@
         <title></title>
         <link rel="stylesheet" href="css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
-        <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -13,34 +12,34 @@
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxtooltip.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.export.js"></script>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
         <style type="text/css">
             .demo-iframe {
                 border: none;
-                width: 510px;
-                height: 100px;
-                display: block;
+                width: 350px;
+                height: 60px; 
+                clear: both;
+                float: right; 
+                margin:0px;
+                padding: 0px;
             }
         </style>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
-                $(".textbox").jqxInput({rtl: true, height: 25, width: 300, minLength: 1, theme: theme});
-                $(".textArea").jqxInput({rtl: true, height: 100, width: 300, minLength: 1, theme: theme});
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
-                $("#research_Code").jqxMaskedInput({rtl: true, width: 100, height: 25, theme: theme, mask: '########'});
-                $("#sendButton").on('click', function() {
+                $("#research_Code").jqxMaskedInput({rtl: true, width: 100, height: 30, theme: theme, mask: '########'});
+                $("#sendButton").on('click', function () {
                     $("#AddEdit_Research_docs").jqxValidator('validate');
                 });
                 $('#AddEdit_Research_docs').jqxValidator({
@@ -48,18 +47,16 @@
                         {input: '#research_Code', message: 'من فضلك ادخل رقم البحث', action: 'keyup, blur', rule: 'required', position: 'left'}
                     ], theme: theme
                 });
-                $("#AddEdit_Research_docs").on('validationSuccess', function() {
+                $("#AddEdit_Research_docs").on('validationSuccess', function () {
                     $("#form-iframe").fadeIn('fast');
                 });
 
             });
         </script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 Reload_Data();
             });
-        </script>
-        <script type="text/javascript">
             function Reload_Data() {
                 var theme = "energyblue";
                 var source =
@@ -86,6 +83,7 @@
                         });
             }
         </script>
+
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEdit_Research_docs.inc.php" target="form-iframe">
@@ -106,7 +104,7 @@
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
 
-                        <div id="research_Code"></div>
+                        <div id="research_Code" name="research_Code"></div>
                     </div>
                 </div> 
 
@@ -144,23 +142,15 @@
 
                     </div>
                     <div class="panel-cell" style="vertical-align: top;"> 
-                        <textarea id="notes" name="notes" class="textArea" cols="20" rows="10" style="vertical-align: top;">
+                        <textarea id="notes" name="notes" cols="20" rows="10" style="vertical-align: top;width:300px;">
                         
                         </textarea>
                     </div>
                 </div> 
-
+                <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;"/>
+                <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0" >
             </fieldset>
-            <div class="panel_row">
-                <div class="panel-cell"style="width: 132px;padding-left: 10px;">
-                    <input type="submit" value="حفظ" id="sendButton"/>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle">
-                    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0">
-
-                    </iframe>
-                </div>
-            </div>
         </form>
+
     </body>
 </html>

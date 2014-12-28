@@ -23,8 +23,6 @@ if (!empty($_POST['chklst'])) {
 }
 ?>
 <html>
-    <head></head>
-    <body style="background-color: #ededed;">
     <center>
         <p style=" font-size: 16px;font-weight: bold;color:red; alignment-adjust:central;  ">
             <?php
@@ -33,7 +31,7 @@ if (!empty($_POST['chklst'])) {
                 exit();
             }
             if ($IsOk == TRUE)
-                echo 'تم تسجيل أعضاء المجلس بنجاح  من فضلك اغلق هذه النافذة' . '<br/>';
+                echo 'تم تسجيل أعضاء المجلس بنجاح' . '<br/>';
             else
                 echo 'لقد حدث خطأ من قبل النظام برجاء اعادة المحاولة في وقت لاحق' . '<br/>';
             ?>

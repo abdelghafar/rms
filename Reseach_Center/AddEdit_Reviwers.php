@@ -167,9 +167,12 @@ if (isset($_GET['person_id'])) {
                         <p style="font-weight: bold">
                             البريدالالكتروني                 </p>
                     </div>
+
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input id="email" name="email" type="text" placeholder="البريد الالكتروني" value="<? echo $Email; ?>"/>
+                        <span id="ack">sss</span>
                     </div>
+
                 </div>
                 <div class="panel_row">
                     <div class="panel-cell" style="width:180px;text-align: left;padding-left: 10px;vertical-align: middle;">

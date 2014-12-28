@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-01 22:50:00
+<?php /* Smarty version Smarty-3.1.13, created on 2014-12-05 00:57:38
          compiled from "..\templates\Loggedin.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14091529ba0f8bd99c0-32224241%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd708c831ebea94065db9d5159fbf6f4e49867c13' => 
     array (
       0 => '..\\templates\\Loggedin.tpl',
-      1 => 1384171056,
+      1 => 1397444589,
       2 => 'file',
     ),
   ),
@@ -15,21 +15,33 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_529ba0f90741c0_16714688',
   'variables' => 
   array (
+    'title' => 0,
     'style_css' => 0,
     'style_responsive_css' => 0,
     'jquery_js' => 0,
     'script_js' => 0,
     'script_responsive_js' => 0,
+    'index_php' => 0,
+    'contactus_php' => 0,
+    'logout_php' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_529ba0f90741c0_16714688',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_529ba0f90741c0_16714688')) {function content_529ba0f90741c0_16714688($_smarty_tpl) {?><html dir="rtl" lang="en-US"><head>
         <meta charset="utf-8">
-        <title>الصفحة الرئيسية</title>
+        <title>
+            <?php if (!isset($_smarty_tpl->tpl_vars['title']->value)){?>
+                 نظام الباحث لادارة المشروعات البحثية
+            <?php }else{ ?>
+                <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+
+            <?php }?>
+            
+        </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
 
@@ -48,7 +60,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 "></script>
  </head>
 <body>
-        <div id="art-main">
+     <div id="art-main">
+            <nav class="art-nav">
+                <div class="art-nav-inner">
+                    <ul class="art-hmenu">
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['index_php']->value;?>
+" class="active">الصفحة الرئيسية</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['contactus_php']->value;?>
+" class="active">بيانات الإتصال</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['logout_php']->value;?>
+" class="active">خروج</a></li>
+                    </ul> 
+                </div>
+            </nav>
             
    <div class="art-sheet clearfix">
                 <header class="art-header">

@@ -7,31 +7,30 @@ $research_status = 0;
 $track_date = "";
 $notes = "";
 
+//print_r($_POST);
 
 $isValid = TRUE;
 
 if (!isset($_POST['research_code']) || empty($_POST['research_code'])) {
     echo 'هناك خطأ فى إختيار المشروع البحثى من فضلك أعد إختياره من جديد' . '<br/>';
     $isValid = FALSE;
-}
-else
+} else
     $research_code = $_POST['research_code'];
 $research = new Reseaches();
 $research_id = $research->GetResearchId($research_code);
 
 
-if (!isset($_POST['research_status']) || empty($_POST['jqxPhaseStatus'])) {
+if (!isset($_POST['jqxPhaseStatusVal']) || empty($_POST['jqxPhaseStatusVal'])) {
     echo 'من فضلك إختار حالة المشروع البحثى' . '<br/>';
     $isValid = FALSE;
-}
-else
-    $research_status = $_POST['jqxPhaseStatus'];
+} else
+    $research_status = $_POST['jqxPhaseStatusVal'];
 
-if (!isset($_POST['track_date'])) {
+if (!isset($_POST['trackDateVal'])) {
     echo 'من فضلك أ أختار تاريخ تغيير حالة المشروع البحثى' . '<br/>';
     $isValid = FALSE;
 } else {
-    $track_date = date_parse($_POST['track_date']);
+    $track_date = date_parse($_POST['trackDateVal']);
     $track_date = $track_date['year'] . '-' . $track_date['month'] . '-' . $track_date['day'];
 }
 

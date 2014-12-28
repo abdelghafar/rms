@@ -21,25 +21,15 @@ if (!empty($_POST['chklst'])) {
     }
 }
 ?>
-<html>
-    <head></head>
-    <body style="background-color: #ededed;">
-    <center>
-        <p style=" font-size: 16px;font-weight: bold;color:red; alignment-adjust:central;  ">
-            <?php
-            if ($IsOk == FALSE) {
-                echo 'من فضلك اختر محكم واحد علي الاقل' . '<br/>';
-                exit();
-            }
-            if ($IsOk == TRUE)
-                echo 'تم تسجيل المحكمين بنجاح  من فضلك اغلق هذه النافذة' . '<br/>';
-            else
-                echo 'لقد حدث خطأ من قبل النظام برجاء اعادة المحاولة في وقت لاحق' . '<br/>';
-            ?>
-        </p>
-
-
-    </center>
-
-</body>
-</html>
+<p style=" font-size: 16px;font-weight: bold;color:red; alignment-adjust:central;  ">
+    <?php
+    if ($IsOk == FALSE) {
+        echo 'من فضلك اختر محكم واحد علي الاقل' . '<br/>';
+        exit();
+    }
+    if ($IsOk == TRUE)
+        echo 'تم تسجيل المحكمين بنجاح' . '<br/>';
+    else
+        echo 'لقد حدث خطأ من قبل النظام برجاء اعادة المحاولة في وقت لاحق' . '<br/>';
+    ?>
+</p>
