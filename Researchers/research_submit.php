@@ -45,16 +45,18 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
-    <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
+    <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
 
+    <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
+    
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-            $(".textArea").jqxInput({rtl: true, height: 125, width: 600, minLength: 1, theme: 'energyblue'});
+            
             $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
-            $("#proposed_reports_count").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
+             
             $("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             $("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             $(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
@@ -62,24 +64,24 @@ $smarty->display('../templates/Loggedin.tpl');
 
             $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
 
-            $("#proposed_duration").val(function() {
+            $("#proposed_duration").val(function () {
                 return $("#proposed_duration").jqxMaskedInput('value');
             });
 
-            $("#proposed_reports_count").val(function() {
+            $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
 
-            $('#sendButton').on('click', function() {
+            $('#sendButton').on('click', function () {
                 $('#researchSubmitForm').jqxValidator('validate');
             });
-            $('#sendButton').on('click', function() {
+            $('#sendButton').on('click', function () {
                 $('#researchSubmitForm').submit();
             });
         });
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#researchSubmitForm').jqxValidator({rules: [
                     {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
