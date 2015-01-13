@@ -73,7 +73,7 @@ $smarty->display('templates/header.tpl');
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var theme = "energyblue";
             $("#username, #password").addClass('jqx-input');
             $("#rememberme").jqxCheckBox({width: 130, theme: theme});
@@ -86,14 +86,14 @@ $smarty->display('templates/header.tpl');
                     {input: '#username', message: 'اسم المستخدم يجب أن يبدأ بحرف', action: 'keyup, blur', rule: 'startWithLetter'},
                     {input: '#password', message: 'من فضلك أدخل كلمة المرور', action: 'keyup, blur', rule: 'required', position: 'left'}
                 ]
-                        , theme: 'energyblue'
+                , theme: 'energyblue'
             });
             // validate form.
-            $("#loginButton").click(function() {
+            $("#loginButton").click(function () {
                 $('#form').jqxValidator('validate');
             });
 
-            $("#form").on('validationSuccess', function() {
+            $("#form").on('validationSuccess', function () {
                 $("#form-iframe").fadeIn('fast');
             });
         });
