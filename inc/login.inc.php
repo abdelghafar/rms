@@ -75,7 +75,9 @@ if ($rule == 'Researcher') {
 } else if ($rule == 'Council_board') {
     header('Location:../Council_board/index.php');
     exit();
+} else {
+    header('Location:../login.php');
+    exit();
 }
 ob_flush();
 $smarty->display('../templates/footer.tpl');
-?>
