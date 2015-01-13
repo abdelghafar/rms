@@ -48,15 +48,15 @@ $smarty->display('../templates/Loggedin.tpl');
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
 
     <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
-    
+
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
     <script type="text/javascript">
         $(document).ready(function () {
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-            
+
             $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
-             
+
             $("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             $("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             $(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});

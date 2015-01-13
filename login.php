@@ -114,8 +114,9 @@ $smarty->display('templates/header.tpl');
             <p style="color:red;">
                 <?
                 $Attempt = $_GET['Attempt'];
-                if ($Attempt == 'False')
+                if ($Attempt == 'False') {
                     echo 'من فضلك ادخل اسم المستخدم و كلمة المرور بشكل صحيح';
+                }
                 ?>
             </p>
             <form class="form" id="form" method="post" action="inc/login.inc.php" style="width: 650px;text-align: right;">

@@ -17,7 +17,7 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
+$smarty->assign('index_php', '../Researchers/index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
@@ -70,8 +70,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="padding-right:100px;">
 
-                    <a href="#">
-                        <img id="new_Research" src="images/new_Research_disable.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
+                    <a href="research_submit.php">
+                        <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
                         <p style="margin-top: 0px;">
                             تقديم بحث
                         </p>
@@ -135,4 +135,3 @@ $smarty->display('../templates/Loggedin.tpl');
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
-?>
