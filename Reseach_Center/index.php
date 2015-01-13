@@ -95,4 +95,3 @@ $smarty->display('../templates/Loggedin.tpl');
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
-?>
