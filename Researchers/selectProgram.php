@@ -55,10 +55,13 @@ $smarty->display('../templates/Loggedin.tpl');
     <script src="../js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script type='text/javascript'>
         $(document).ready(function () {
-            $('#Wa3da').click(function () {
+            $('#wa3da').click(function () {
                 window.location.assign('testForm.php?p=wa3da');
             });
-            $('#Ba7th').click(function () {
+            $('#ba7th').click(function () {
+                window.location.assign('testForm.php?p=ba7th');
+            });
+            $('#ra2d').click(function () {
                 window.location.assign('testForm.php?p=ba7th');
             });
         });
@@ -67,17 +70,15 @@ $smarty->display('../templates/Loggedin.tpl');
 <body>
     <?php
     if ($_SESSION['gender'] == 0) {
-        echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
-        نظام رائد
-    </button>
+        echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">نظام رائد</button>
 
-    <button id="Ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
+    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
     } else {
-        echo '<button id="Wa3da" type="button" class="btn btn-warning btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
+        echo '<button id="wa3da" type="button" class="btn btn-warning btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
         نظام واعدة
     </button>
 
-    <button id="Ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
+    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
     }
     ?>
 
