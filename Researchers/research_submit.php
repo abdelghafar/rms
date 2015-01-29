@@ -4,8 +4,29 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher')
+    if ($rule != 'Researcher') {
         header('Location:../Login.php');
+    }
+}
+if (!isset($_GET['program'])) {
+    header('Location:selectProgram.php');
+} else {
+    $prog = $_GET['program'];
+
+    switch ($prog) {
+        case'ba7th':
+            $_SESSION['program'] = 'ba7th';
+            break;
+        case 'wa3da':
+            $_SESSION['program'] = 'wa3da';
+            break;
+        case 'ra2d':
+            $_SESSION['program'] = 'ra2d';
+            break;
+        default :
+            header('Location:selectProgram.php');
+            break;
+    }
 }
 
 require_once '../js/fckeditor/fckeditor.php';
@@ -20,10 +41,9 @@ $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
 $smarty->assign('index_php', '../index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('login_php', '../login.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-
 $smarty->display('../templates/Loggedin.tpl');
 ?>
 
@@ -45,7 +65,10 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
+
 
     <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
 
@@ -64,10 +87,6 @@ $smarty->display('../templates/Loggedin.tpl');
 
             $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
 
-            $("#proposed_duration").val(function () {
-                return $("#proposed_duration").jqxMaskedInput('value');
-            });
-
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
@@ -78,6 +97,57 @@ $smarty->display('../templates/Loggedin.tpl');
             $('#sendButton').on('click', function () {
                 $('#researchSubmitForm').submit();
             });
+            var durationDS = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'duration_title'},
+                    {name: 'duration_month'}
+                ],
+                url: '../Data/durations.php'
+            };
+
+            var ResearchCenterDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'id'},
+                    {name: 'center_name'}
+                ],
+                url: '../Data/ResearchCenters.php'
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(durationDS);
+            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '100px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
+            $('#durationList').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#proposed_duration').val(value);
+                }
+            });
+
+            dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
+            $("#centers").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'center_name', valueMember: 'id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص"});
+            $('#centers').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#research_center').val(value);
+                }
+            });
+
         });
     </script>
     <script type="text/javascript">
@@ -86,11 +156,9 @@ $smarty->display('../templates/Loggedin.tpl');
                     {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#major_field', message: 'من فضلك ادخل التخصص العام', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                    {input: '#special_field', message: 'من فضلك ادخل التخصص الدقيق', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                    {input: '#proposed_duration', message: 'من فضلك ادخل رقم صحيح', action: 'keyup,blur', rtl: true, position: 'topcenter', rule: 'minLength=2,required'}
+                    {input: '#special_field', message: 'من فضلك ادخل التخصص الدقيق', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}
                 ], theme: 'energyblue', animation: 'fade'});
         });
-
     </script>
 
     <title>
@@ -134,9 +202,8 @@ $smarty->display('../templates/Loggedin.tpl');
                     </p>
                 </div>
                 <div class="panel-cell" style="vertical-align: middle">
-                    <div id="proposed_duration" >
-                        <input type="hidden" id="proposed_duration" name="proposed_duration"/>
-                    </div> 
+                    <div id='durationList' style="vertical-align: middle"></div>
+                    <input type="hidden" id="proposed_duration" name="proposed_duration"/>
                 </div>
                 <div class="panel-cell" style="width:394px;text-align: left;padding-left:10px;vertical-align: middle"> 
                     <p>
@@ -144,26 +211,18 @@ $smarty->display('../templates/Loggedin.tpl');
                     </p>
                 </div>
                 <div class="panel-cell" style="vertical-align: middle">
-                    <div id='currencyInput' style="vertical-align: middle"></div>
+                    <div id='currencyInput' style="vertical-align: middle" name='currencyInput'></div>
                 </div>
             </div>
             <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
                     <p>
-                        المركز البحثي
+                        التخصص العام
                     </p>
                 </div>
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <select id="research_center" name="research_center" style="width: 200px; height: 25px;">
-                        <?
-                        $v = new CenterResearch();
-                        $array = $v->GetpairValues();
-
-                        for ($i = 0; $i < count($array['PairValues']); $i++) {
-                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
-                        }
-                        ?>
-                    </select>
+                    <div id='centers'></div>
+                    <input type="hidden" id='centerValue' name="research_center"/>
                 </div>
             </div>
             <div class="panel_row">
