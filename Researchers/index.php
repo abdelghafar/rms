@@ -34,21 +34,9 @@ $smarty->display('../templates/Loggedin.tpl');
         <title></title>
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.Infobox').hide();
-                $(".Infobox").fadeIn(4000, 'swing');
-            });
-        </script>
     </head>
-
     <body>
-
     <center>
-
-        <div class="Infobox" style="direction:rtl;width:850px;text-align: right;">
-            تم غلق باب تسجيل الابحاث
-        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
