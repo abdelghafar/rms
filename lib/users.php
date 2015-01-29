@@ -186,5 +186,14 @@ class Users {
         return $result;
     }
 
+    public function GetUserGender($user_id) {
+        $stmt = "select persons.Gender from persons join users on persons.person_id= users.person_id where users.user_id=" . $user_id;
+        $result = mysql_query($stmt);
+        $gender = '';
+        while ($row = mysql_fetch_array($result)) {
+            $gender = $row["Gender"];
+        }
+        return $gender;
+    }
+
 }
-?>
