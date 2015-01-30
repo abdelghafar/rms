@@ -56,7 +56,43 @@ if (isset($_GET['q'])) {
                 $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '35px', rtl: true, mask: '#######', theme: Curr_theme});
                 $("#searchButton").jqxButton({width: 50, height: 35, theme: Curr_theme});
                 $('#searchButton').on('click', function () {
+                    $.ajax({
+                        url: "Data/GetPersonByEmpCode.php?empCode=" + SearchByEmpCodeVal,
+                        type: "GET",
+                        dataType: "json",
+                        beforeSend: function () {
+                            $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
+                        },
+                        success: function (data) {
+                            if (data === null)
+                            {
+                                tmpPerson_id = null;
+                                tmpName = null;
+                                tmpGender = null;
+                                tmpEmpCode = null;
+                                tmpSpeicalField = null;
+                                tmpMajor_Field = null;
+                                tmpEmail = null;
+                                tmpDept = null;
+                                tmpCollege = null;
+                                $('#coAuthorName').html('هذا الرقم غير مسجل برجاء تسجيل الباحث أولا');
 
+                            } else {
+                                tmpPersonData = data;
+                                console.log(tmpPersonData);
+                                tmpPerson_id = data[0]['person_id'];
+                                tmpName = data[0]['name'];
+                                tmpGender = data[0]['gender'];
+                                tmpEmpCode = data[0]['empCode'];
+                                tmpSpeicalField = data[0]['Speical_Field'];
+                                tmpMajor_Field = data[0]['Major_Field'];
+                                tmpEmail = data[0]['Email'];
+                                tmpDept = data[0]['Dept'];
+                                tmpCollege = data[0]['College'];
+                                $('#coAuthorName').html(tmpName);
+                            }
+                        }
+                    });
 
                 });
             });
