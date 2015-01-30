@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once '../../lib/budget.php';
+require_once '../../lib/projectPlan.php';
 
 if (isset($_GET['seq_id'])) {
     $seqId = $_GET['seq_id'];
