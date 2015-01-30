@@ -96,7 +96,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
                 type: "post",
                 datatype: "html",
-                data: $("#coAuthorsForm").serialize(),
+                data: $("#workingPlanForm").serialize(),
                 success: function (data) {
                     $('#Result').html(data);
                 }
@@ -107,7 +107,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
                     type: "post",
                     datatype: "html",
-                    data: $("#coAuthorsForm").serialize(),
+                    data: $("#workingPlanForm").serialize(),
                     success: function (data) {
                         $('#Result').html(data);
                     }
@@ -115,20 +115,18 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
             });
             $('#window').on('close', function (event) {
-                $('#lstOfResearches').on('change', function () {
-                    valueSelected = this.value;
-                    $.ajax({
-                        url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
-                        type: "post",
-                        datatype: "html",
-                        data: $("#workingPlanForm").serialize(),
-                        success: function (data) {
-                            $('#Result').html(data);
-                        }
-                    });
-
+                var valueSelected = $('#lstOfResearches').val();
+                $.ajax({
+                    url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
+                    type: "post",
+                    datatype: "html",
+                    data: $("#workingPlanForm").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
                 });
             });
+
         });
 
     </script>
