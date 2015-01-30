@@ -115,12 +115,13 @@ class Reseaches {
         $CenterCode = $center->GetCenterCode($CenterId);
 
         $codeFormat = '';
-        if (strlen($count) == 1)
+        if (strlen($count) == 1) {
             $codeFormat = '00' . $count;
-        else if (strlen($count) == 2)
+        } else if (strlen($count) == 2) {
             $codeFormat = '0' . $count;
-        else if (strlen($count) == 3)
+        } else if (strlen($count) == 3) {
             $codeFormat = $count;
+        }
 
         $code = $year[1] . $year[2] . $year[3] . $CenterCode . $codeFormat;
 

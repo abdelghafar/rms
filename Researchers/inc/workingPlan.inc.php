@@ -61,7 +61,7 @@ $rs = $obj->GetProjectPlan($research_id);
                             ?></td>
                         <td style=" text-align: right;"><? echo $row['plan_title']; ?></td>
 
-                        <td style=" text-align: right;"><? echo $row['plan_url']; ?></td>
+                        <td style=" text-align: right;"><? echo '<a href="../' . $row['plan_url'] . '">' . 'تحميل' . '</a>'; ?></td>
 
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
 

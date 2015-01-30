@@ -45,7 +45,7 @@ $rcode = $_GET['rcode'];
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
                 $("#planTitle").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
                 $("#sendButton").on('click', function () {
-                    $("#AddEdit_Research_docs").jqxValidator('validate');
+
                 });
             });
         </script>

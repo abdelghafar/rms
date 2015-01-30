@@ -107,6 +107,35 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="workingPlan.php">
+                        <img src="images/view-calendar.png" alt="خطة العمل" title ="خطة العمل" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            خطة العمل
+                        </p>
+                    </a>
+
+                </div>
+
+                <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="#">
+                        <img src="images/budget.png" alt="الميزانية" title ="الميزانية" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            الميزانية
+                        </p>
+                    </a>
+
+                </div>
+                <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="#">
+                        <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            اهداف المشروع
+                        </p>
+                    </a>
+
+                </div>
+
+                <div class="panel-cell" style="padding-right: 100px;">
                     <a href="../inc/logout.inc.php">
                         <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
                         <p style="margin-top: 0px;">
@@ -114,6 +143,27 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
 
+                </div>
+            </div>
+
+            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
+                <div class="panel-cell" style="padding-right: 0px;">
+
+                    <a href="#">
+                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            جدول المهام
+                        </p>
+                    </a>
+                </div>
+
+                <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="#">
+                        <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            المستندات الهامة
+                        </p>
+                    </a>
                 </div>
 
             </div>

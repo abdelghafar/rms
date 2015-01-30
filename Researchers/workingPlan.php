@@ -73,16 +73,25 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             });
         }
 
-        function Delete(person_id)
+        function Delete(seq_id)
         {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
                 $.ajax({
                     type: 'post',
-                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + $('#lstOfResearches').find(":selected").text(),
+                    url: 'inc/DelWorkingPlan.inc.php?seq_id=' + seq_id,
                     datatype: "html",
                     success: function (data) {
-                        location.reload();
+                        var valueSelected = $('#lstOfResearches').val();
+                        $.ajax({
+                            url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
+                            type: "post",
+                            datatype: "html",
+                            data: $("#workingPlanForm").serialize(),
+                            success: function (data) {
+                                $('#Result').html(data);
+                            }
+                        });
                     }
                 });
             }
