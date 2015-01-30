@@ -2,14 +2,15 @@
 session_start();
 require_once '../../lib/Reseaches.php';
 require_once('../../lib/CenterResearch.php');
+require_once '../../lib/projectPlan.php';
 require_once '../../lib/research_Authors.php';
 require_once '../../lib/users.php';
 $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
 $research_id = $_GET['research_id'];
-$obj = new research_Authors();
-$rs = $obj->GetNonCorrsResearchAuthors($research_id);
+$obj = new projectPlan();
+$rs = $obj->GetProjectPlan($research_id);
 ?>
 <html>
     <head>
@@ -58,9 +59,9 @@ $rs = $obj->GetNonCorrsResearchAuthors($research_id);
                             echo $x;
                             $x++; //$row['id']; 
                             ?></td>
-                        <td style=" text-align: right;"><? echo $row['name_ar']; ?></td>
-                        <td style=" text-align: right;"><? echo $row['name_en']; ?></td>
-                        <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['person_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
+                        <td style=" text-align: right;"><? echo $row['plan_url']; ?></td>
+                        <td style=" text-align: right;"><? echo $row['plan_title']; ?></td>
+                        <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
 
                     </tr>
                     <?php
