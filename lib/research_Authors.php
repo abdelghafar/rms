@@ -51,6 +51,11 @@ class research_Authors {
         return $count;
     }
 
-}
+    public function DeleteAuthor($ResearchId, $PersonId) {
+        $conn = new MysqlConnect();
+        $stmt = "Delete From research_authors where research_id=" . $ResearchId . " and person_id=" . $PersonId;
+        echo $stmt;
+        $conn->ExecuteNonQuery($stmt);
+    }
 
-?>
+}
