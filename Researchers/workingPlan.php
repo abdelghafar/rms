@@ -1,5 +1,6 @@
 <?
 session_start();
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">';
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
@@ -8,10 +9,10 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-
 require_once '../lib/Smarty/libs/Smarty.class.php';
-require_once '../lib/doc_categories.php';
-
+require_once('../lib/CenterResearch.php');
+require_once '../lib/research_Authors.php';
+require_once '../lib/users.php';
 $smarty = new Smarty();
 
 $smarty->assign('style_css', '../style.css');
@@ -21,164 +22,163 @@ $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
 $smarty->assign('index_php', '../index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('login_php', '../login.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-
 $smarty->display('../templates/Loggedin.tpl');
+require_once '../lib/Reseaches.php';
+$users = new Users();
+$userId = $_SESSION['User_Id'];
+$personId = $users->GetPerosnId($userId, 'Researcher');
 ?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>خطة العمل</title>
+    <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
+    <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
+    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
+    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
 
-<?
-require_once '../lib/research_docs.php';
-$doc = new Research_Documents();
-$rs = $doc->GetAllDocuments();
-?>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8">
-        <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
-        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
-
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-        <script type="text/javascript">
+    <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+    <Script type="text/javascript">
+        $('#datatables').dataTable({
+            sPaginationType: "full_numbers",
+            bJQueryUI: true,
+            bLengthChange: true,
+            width: 400,
+            oLanguage: {
+                sUrl: "../js/dataTables/media/ar_Ar.txt"}
+        });
+    </script>
+    <script type="text/javascript">
+        function Display_AddCoAuthor()
+        {
             $(document).ready(function () {
-                $('#datatables').dataTable({
-                    sPaginationType: "full_numbers",
-                    bJQueryUI: true,
-                    bLengthChange: true,
-                    width: 600,
-                    oLanguage: {
-                        sUrl: "../js/dataTables/media/ar_Ar.txt"}
-                });
-                $("#submitButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue', rtl: true});
+                $('#window').css('visibility', 'visible');
+                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                $('#windowContent').load("AddWorkingPlan.php?rcode=" + $('#lstOfResearches').find(":selected").text());
+                $('#window').jqxWindow('setTitle', 'اضافة خطة العمل');
+                $('#window').jqxWindow('open');
             });
-        </script>
-        <script type="text/javascript">
-            function Display_Add_frm()
+        }
+
+        function Delete(person_id)
+        {
+            if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
-                $(document).ready(function () {
-                    $('#window').css('visibility', 'visible');
-                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 420, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                    $('#windowContent').load("AddEdit_Research_docs.php");
-                    $('#window').jqxWindow('setTitle', 'اضافة مستند جديد');
-                    $('#window').jqxWindow('open');
-                });
-                $('#window').on('close', function (event) {
-                    location.reload();
+                $.ajax({
+                    type: 'post',
+                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + $('#lstOfResearches').find(":selected").text(),
+                    datatype: "html",
+                    success: function (data) {
+                        location.reload();
+                    }
                 });
             }
-            function Delete(doc_cat_id)
-            {
-                if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
-                {
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var valueSelected = $('#lstOfResearches').val();
+            $.ajax({
+                url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
+                type: "post",
+                datatype: "html",
+                data: $("#coAuthorsForm").serialize(),
+                success: function (data) {
+                    $('#Result').html(data);
+                }
+            });
+            $('#lstOfResearches').on('change', function () {
+                valueSelected = this.value;
+                $.ajax({
+                    url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
+                    type: "post",
+                    datatype: "html",
+                    data: $("#coAuthorsForm").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
+                });
+
+            });
+            $('#window').on('close', function (event) {
+                $('#lstOfResearches').on('change', function () {
+                    valueSelected = this.value;
                     $.ajax({
-                        type: 'post',
-                        url: 'inc/Del_Research_Doc.inc.php?seq_id=' + doc_cat_id,
+                        url: "inc/workingPlan.inc.php?research_id=" + valueSelected,
+                        type: "post",
                         datatype: "html",
+                        data: $("#workingPlanForm").serialize(),
                         success: function (data) {
-                            location.reload();
+                            $('#Result').html(data);
                         }
                     });
-                }
-            }
 
-        </script>
-        <title></title>
-    </head>
+                });
+            });
+        });
 
-    <body>
-    <center>
-        <div id="window" style="visibility: hidden;">
-            <div id="windowHeader">
-            </div>
-            <div id="windowContent" style="overflow: auto;" ></div>
+    </script>
+</head>
+<body>
+    <div id="window" style="visibility: hidden;">
+        <div id="windowHeader">
         </div>
-        <fieldset style="width: 95%;text-align: right;"> 
-            <legend>
-                <label>
-                    <?
-                    echo 'مرحبا ' . $_SESSION['User_Name'];
-                    ?>
-                </label>
-            </legend>
-            <input id="submitButton" type="button" onclick="Display_Add_frm();" value="اضافة جديد" style="margin-bottom: 10px;"/>
-            <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
-                <thead>
-                    <tr>
-                        <th><em>م</em></th>
-                        <th>
-                            رقم البحث
-                        </th>
-                        <th>
-                            نوع المستند
-                        </th>
-                        <th>
-                            الحجم (MB)
-                        </th>
-                        <th>
-                            Md5
-                        </th>
-                        <th>
-                            ملاحظات
-                        </th>
+        <div id="windowContent" style="overflow: auto;" ></div>
+    </div>
+    <fieldset style="width: 95%;text-align: right;"> 
+        <legend>
+            <label>
+                الباحثين المشاركين
+            </label>
+        </legend>
 
-                        <th>
-                            تحميل
-                        </th>
-                        <th>حذف</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="panel_row" style="height: 50px;">
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+                <p>
+                    اختر البحث
+                </p>
+            </div>
+            <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                <form action="inc/workingPlan.inc.php" method="post" id="workingPlanForm"> 
 
-                    <?php
-                    $x = 1;
-                    while ($row = mysql_fetch_array($rs)) {
+                    <select id="lstOfResearches" name="lstOfResearches" style="width: 200px; height: 25px;">
+                        <?
+                        $v = new Reseaches();
+                        $array = $v->GetListOfResearchPerResearcherId($personId);
+                        for ($i = 0; $i < count($array['PairValues']); $i++) {
+                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
+                        }
                         ?>
-                        <tr>
-                            <td style="width: 30px;"><?
-                                echo $x;
-                                $x++; //$row['id']; 
-                                ?></td>
-                            <td style=" text-align: right;"><? echo $row['research_code']; ?></td>
-                            <td style=" text-align: right;"><? echo $row['cat_name']; ?></td>
-                            <td><? echo round($row['size'] / (1024 * 1024), 2); ?></td>
-                            <td><? echo $row['hash']; ?></td>
-                            <td><? echo $row['notes']; ?></td>
-                            <td style=" text-align: center;width: 50px;">
-                                <a href="<? echo '../' . $row['doc_url']; ?>">
-                                    <img style="border: 0;" src="../common/images/download.png" alt="download"/>
-                                </a>
-                            </td>
-                            <td  style="width: 50px;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);" ><img src="../common/images/delete.png" style="border:none !important" alt="حذف"/></a></td>
+                    </select>
 
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                </form>
+            </div>
+        </div>
+        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor();">اضافة خطة العمل</a>
+        <div id="Result">
 
-        </fieldset>
-        <label>
-            <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
-                رجوع
-            </a></label>
-    </center>
+        </div>
+    </fieldset>
+<label>
+    <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+        رجوع
+    </a></label>
+
 </body>
-
-</html>
 <?
 $smarty->display('../templates/footer.tpl');
 ?>
