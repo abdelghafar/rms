@@ -19,12 +19,11 @@ if (isset($_GET['rcode'])) {
     $ResearchCode = $_GET['rcode'];
 }
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
+
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
@@ -50,6 +49,7 @@ if (isset($_GET['rcode'])) {
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
+        <link rel="stylesheet" href="../common/css/reigster-layout.css"/>
         <script type="text/javascript">
             $(document).ready(function () {
                 var Curr_theme = 'energyblue';
