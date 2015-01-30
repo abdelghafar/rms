@@ -68,25 +68,11 @@ if (isset($_GET['rcode'])) {
     </head>
     <body>
 
-        <div id="search" style="direction: rtl;float: right;padding-right: 25px;padding-top: 10px;">
+        
 
-            <label for="txtSearch">
-                رقم المنسوب
-            </label>
-            <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
+       
 
-            <input id="searchButton" value="بحث"/>
-
-        </div>
-
-        <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;margin-right: 25px;"></div>
-
-        <div id='row' class="panel_row" style="width: 350px; height: 50px;float: right;direction: rtl;padding-top:10px;">
-            <label>
-                الموافقة الخطية
-            </label>
-            <input type="file" name="approve" value="" />
-        </div>
+        
 
         <div id='row' class="panel_row" style="width: 400px; height: 50px;float: right;">
             <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 14px;"  />
