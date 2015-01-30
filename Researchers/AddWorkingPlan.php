@@ -53,6 +53,7 @@ if (isset($_GET['rcode'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 var Curr_theme = 'energyblue';
+                $('#plan_title').jqxInput({width: '250', height: '25', theme: Curr_theme, rtl: true});
                 $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
                 $('#btnSave').on('click', function () {
                     $.ajax({
@@ -67,20 +68,30 @@ if (isset($_GET['rcode'])) {
 
     </head>
     <body>
-        <div class="panel_row">
-
+        <div class="panel_row" style="width: 98%;">
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+                <span class="classic">
+                    عنوان الخطة
+                </span>
+            </div>
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+                <input type="text" id="plan_title"/>
+            </div>
+        </div>  
+        <div class="panel_row" style="width: 98%;">
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+                <span class="classic">
+                    ملف الخطة
+                </span>
+            </div>
+            <div class="panel-cell" style="text-align: left;padding-right: 10px;"> 
+                <input type="file" name="file"/>
+            </div>
         </div>  
 
+    <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 14px;"  />
 
 
 
-
-
-        <div id='row' class="panel_row" style="width: 400px; height: 50px;float: right;">
-            <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 14px;"  />
-
-        </div>
-
-
-    </body>
+</body>
 </html>
