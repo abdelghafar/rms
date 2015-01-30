@@ -67,12 +67,14 @@ if (isset($_GET['rcode'])) {
 
     </head>
     <body>
+        <div class="panel_row">
 
-        
+        </div>  
 
-       
 
-        
+
+
+
 
         <div id='row' class="panel_row" style="width: 400px; height: 50px;float: right;">
             <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 14px;"  />
