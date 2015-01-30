@@ -33,6 +33,7 @@ if ($userId != 0) {
     $_SESSION['User_Name'] = $userName;
     $_SESSION['Rule'] = $rule;
     $_SESSION['Alias_Name'] = $user->GetAliasName($userId);
+    $_SESSION['gender'] = $user->GetUserGender($userId);
     $user->SetLastAccess($userId);
 }
 

@@ -83,7 +83,15 @@ $smarty->display('../templates/Loggedin.tpl');
             $("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             $("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             $(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '100px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6});
+            $("#currencyInput").jqxNumberInput({rtl: true, width: '100px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
+            $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
+            //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
+            $('#currencyInput').on('change', function (event) {
+                var value = event.args.value;
+                $('#budgetValue').val(value);
+                //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
+
+            });
 
             $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
 
@@ -118,6 +126,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
             $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '100px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
+
             $('#durationList').on('change', function (event)
             {
                 var args = event.args;
@@ -129,11 +138,13 @@ $smarty->display('../templates/Loggedin.tpl');
                     var label = item.label;
                     var value = item.value;
                     $('#proposed_duration').val(value);
+                    //alert('proposed_duration is :' + $("#durationList").val());
                 }
             });
 
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
             $("#centers").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'center_name', valueMember: 'id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص"});
+
             $('#centers').on('change', function (event)
             {
                 var args = event.args;
@@ -145,8 +156,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     var label = item.label;
                     var value = item.value;
                     $('#research_center').val(value);
+                    //alert('centers is:' + $("#durationList").val());
                 }
             });
+
 
         });
     </script>
@@ -156,18 +169,32 @@ $smarty->display('../templates/Loggedin.tpl');
                     {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#major_field', message: 'من فضلك ادخل التخصص العام', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                    {input: '#special_field', message: 'من فضلك ادخل التخصص الدقيق', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}
-                ], theme: 'energyblue', animation: 'fade'});
+                    {input: '#special_field', message: 'من فضلك ادخل التخصص الدقيق', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+                    {
+                        input: "#centers", message: "من فضلك اختر المركز البحثي", action: 'blur', rule: function (input, commit) {
+                            var index = $("#centers").jqxDropDownList('getSelectedIndex');
+                            return index !== -1;
+                        }
+                    }
+
+                ], theme: 'energyblue', animation: 'fade'
+            });
         });
     </script>
-
     <title>
         بحث جديد
     </title>
+    <style type="text/css">
+        .demo-iframe {
+            border: none;
+            width: 900px;
+            height: 150px;
+        }
+    </style>
 </head>
 
 <center>
-    <form method="POST" id="researchSubmitForm" enctype="multipart/form-data" action="inc/research_submit.inc.php"> 
+    <form method="POST" id="researchSubmitForm"  target="form-iframe" enctype="multipart/form-data" action="inc/research_submit.inc.php"> 
 
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
@@ -211,7 +238,9 @@ $smarty->display('../templates/Loggedin.tpl');
                     </p>
                 </div>
                 <div class="panel-cell" style="vertical-align: middle">
-                    <div id='currencyInput' style="vertical-align: middle" name='currencyInput'></div>
+                    <div id='currencyInput' style="vertical-align: middle">
+                        <input type='hidden' id='budgetValue' name="budgetValue"/>
+                    </div>
                 </div>
             </div>
             <div class="panel_row">
@@ -222,7 +251,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
                     <div id='centers'></div>
-                    <input type="hidden" id='centerValue' name="research_center"/>
+                    <input type="hidden" id='research_center' name="research_center"/>
                 </div>
             </div>
             <div class="panel_row">
@@ -232,7 +261,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     </p>
                 </div>
                 <div class="panel-cell">
-                    <input id="major_field" class="textbox" type="text" placeholder="التخصص العام" name="major_field"/>  
+                    <input id="major_field" class="textbox" type="text" placeholder="مجال البحث" name="major_field"/>  
                 </div>
                 <div class="panel-cell" style="width: 363px;text-align: left;padding-left: 10px;"> 
                     <p>
@@ -304,13 +333,10 @@ $smarty->display('../templates/Loggedin.tpl');
                         رجوع
                     </a></label>
             </div>
-
         </div>
-
     </form>
-    <div id="result" dir="rtl">
-    </div>
+    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
+
 </center>
 <?
 $smarty->display('../templates/footer.tpl');
-?>

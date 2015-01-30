@@ -50,6 +50,8 @@ if ($isExist > 0) {
 if (!isset($_POST['proposed_duration']) || empty($_POST['proposed_duration'])) {
     echo 'من فضلك ادخل فترة المشروع المقترحة' . '<br/>';
     $isValid = FALSE;
+} else {
+    $proposed_duration = $_POST['proposed_duration'];
 }
 
 if (!isset($_POST['major_field']) || empty($_POST['major_field'])) {

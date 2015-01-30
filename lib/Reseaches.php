@@ -10,13 +10,14 @@ class Reseaches {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seqId, $title_ar, $title_en, $proposed_duration, $major_field, $speical_field, $reseach_code, $Approve_session_no, $Approve_date, $url, $abstract_ar, $abstract_en, $Status_id, $Status_date, $center_id, $research_year, $budget) {
+    public function Save($seqId, $title_ar, $title_en, $proposed_duration, $major_field, $speical_field, $reseach_code, $Approve_session_no, $Approve_date, $url, $abstract_ar, $abstract_en, $Status_id, $Status_date, $center_id, $research_year, $budget, $program) {
         $conn = new MysqlConnect();
         $stmt = "";
         if ($seqId == 0) {
-            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,url,abstract_ar,abstract_en,Status_Id,Status_Date,center_id,research_year,budget) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $url . "','" . $abstract_ar . "','" . $abstract_en . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $budget . ")";
+            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,url,abstract_ar,abstract_en,Status_Id,Status_Date,center_id,research_year,budget,program) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $url . "','" . $abstract_ar . "','" . $abstract_en . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $budget . ",'" . $program . "'" . ")";
             $stat = $conn->ExecuteNonQuery($stmt);
-            //echo $stmt;
+//            echo $stmt.'<br/>';
+//            echo mysql_insert_id();
             return mysql_insert_id();
         } else {
             $stmt = "Update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "',proposed_duration=" . $proposed_duration . ",major_field='" . $major_field . "',special_field='" . $speical_field . "',research_code='" . $reseach_code . "',Approve_session_no=" . $Approve_session_no . ",Approve_date='" . $Approve_date . "',url='" . $url . "',abstract_ar='" . $abstract_ar . "',abstract_en='" . $abstract_en . "',Status_Id=" . $Status_id . ",Status_Date='" . $Status_date . "',center_id=" . $center_id . ",research_year='" . $research_year . "',budget=" . $budget . " Where seq_id=" . $seqId;

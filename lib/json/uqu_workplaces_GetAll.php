@@ -7,4 +7,3 @@ while ($row = mysql_fetch_array($result)) {
     $Researches[] = array('name' => $row['name']);
 }
 echo json_encode($Researches);
-?>

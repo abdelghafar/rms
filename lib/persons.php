@@ -31,14 +31,10 @@ class Persons {
         return $result;
     }
 
-    public function GetLastPersonId() {
-        $stmt = "SELECT max(person_id) FROM persons ORDER BY person_id ASC";
+    public function GetPersonByEmpCode($EmpCode) {
+        $stmt = "SELECT  `Person_id` ,  `FirstName_ar` ,  `FirstName_en` ,  `FatherName_ar` ,  `FatherName_en` ,  `GrandName_ar` ,  `GrandName_en` ,  `FamilyName_ar` ,  `FamilyName_en` ,  `Gender` ,  `Nationality` , `DateOfBirth` ,  `CountryOfBirth` ,  `Position` ,  `Major_Field` ,  `Speical_Field` ,  `university` ,  `College` ,  `Dept` ,  `empCode` ,  `EqamaCode` ,  `Email` ,  `Mobile` ,  `Fax` ,  `city` ,  `country` ,  `POX` , `Postal_Code` ,  `IBAN` ,  `SWIFT` FROM  `persons` where `empcode`=" . $EmpCode;
         $result = mysql_query($stmt);
-        $id = 0;
-        while ($row = mysql_fetch_array($result)) {
-            $id = $row[0];
-        }
-        return $id;
+        return $result;
     }
 
     public function IsExist($EqamaCode) {
@@ -72,7 +68,4 @@ class Persons {
         $result = mysql_query($stmt);
         return $result;
     }
-
 }
-
-?>

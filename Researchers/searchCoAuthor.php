@@ -15,6 +15,9 @@ if (isset($_GET['q'])) {
         echo 'Not registed EmpCode';
     }
 }
+if (isset($_GET['rcode'])) {
+    $ResearchCode = $_GET['rcode'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,6 +40,13 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+        <script src="../js/jqwidgets/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
@@ -56,8 +66,10 @@ if (isset($_GET['q'])) {
                 $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '35px', rtl: true, mask: '#######', theme: Curr_theme});
                 $("#searchButton").jqxButton({width: 50, height: 35, theme: Curr_theme});
                 $('#searchButton').on('click', function () {
+                    $('#gridCoAuthors').jqxGrid('clear');
+                    var SearchByEmpCodeVal = $('#SearchByEmpCode').jqxMaskedInput('inputValue');
                     $.ajax({
-                        url: "Data/GetPersonByEmpCode.php?empCode=" + SearchByEmpCodeVal,
+                        url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchByEmpCodeVal,
                         type: "GET",
                         dataType: "json",
                         beforeSend: function () {
@@ -75,7 +87,7 @@ if (isset($_GET['q'])) {
                                 tmpEmail = null;
                                 tmpDept = null;
                                 tmpCollege = null;
-                                $('#coAuthorName').html('هذا الرقم غير مسجل برجاء تسجيل الباحث أولا');
+                                //$('#coAuthorName').html('هذا الرقم غير مسجل برجاء تسجيل الباحث أولا');
 
                             } else {
                                 tmpPersonData = data;
@@ -89,26 +101,76 @@ if (isset($_GET['q'])) {
                                 tmpEmail = data[0]['Email'];
                                 tmpDept = data[0]['Dept'];
                                 tmpCollege = data[0]['College'];
-                                $('#coAuthorName').html(tmpName);
+                                //$('#coAuthorName').html(tmpName);
+                                $("#gridCoAuthors").jqxGrid('addrow', null, tmpPersonData);
                             }
                         }
                     });
-
+                });
+                var CoAuthorsSource = {
+                    datafields: [{
+                            name: 'name',
+                            type: 'string'
+                        }, {
+                            name: 'empCode',
+                            type: 'string'
+                        }, {
+                            name: 'College',
+                            type: 'string'
+                        }, {
+                            name: 'Dept',
+                            type: 'string'
+                        }],
+                    datatype: "json"
+                };
+                var CoAuthorsSourceAdapter = new $.jqx.dataAdapter(CoAuthorsSource);
+                $("#gridCoAuthors").jqxGrid(
+                        {
+                            width: 650,
+                            height: 400,
+                            autoheight: true,
+                            sortable: true,
+                            rtl: true,
+                            theme: Curr_theme,
+                            source: CoAuthorsSourceAdapter,
+                            columns: [
+                                {text: 'اسم الباحث', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
+                                {text: 'رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 100},
+                                {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
+                                {text: 'التخصص العام', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150}
+                            ]
+                        });
+                $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
+                $('#btnSave').on('click', function () {
+                    $.ajax({
+                        url: "../Data/saveCoAuthor.php?researchCode=" + <? echo $ResearchCode ?> + "&personId=" + tmpPerson_id,
+                        success: function (data) {
+                        }
+                    });
+                    $('#window').jqxWindow('close');
                 });
             });
         </script>
 
     </head>
     <body>
-        <div id="search" style="direction: rtl;float: right;padding-right: 15px;padding-top: 10px;">
-            <form id='searchfrom' action="#" method="post">
-                <label for="txtSearch">
-                    رقم المنسوب
-                </label>
-                <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
-                <input id="searchButton" type="submit" value="بحث"/>
 
-            </form>
+        <div id="search" style="direction: rtl;float: right;padding-right: 25px;padding-top: 10px;">
+
+            <label for="txtSearch">
+                رقم المنسوب
+            </label>
+            <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
+
+            <input id="searchButton" value="بحث"/>
+
+        </div>
+
+        <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;margin-right: 25px;"></div>
+
+        <div id='row' class="panel_row" style="width: 300px; height: 50px;float: right;">
+            <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 75px;float: right;margin-right: 14px;"  />
+
         </div>
 
 
