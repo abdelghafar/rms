@@ -3,7 +3,6 @@
 require_once '../../lib/projectPlan.php';
 require_once '../../lib/Reseaches.php';
 
-$p = new projectPlan();
 $rcode = $_POST['rcode'];
 $title = $_POST['planTitle'];
 $r = new Reseaches();
