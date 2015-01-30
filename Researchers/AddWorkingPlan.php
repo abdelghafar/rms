@@ -1,29 +1,13 @@
 <?php
 session_start();
-
-require_once '../lib/persons.php';
-if (isset($_GET['q'])) {
-    $q = $_GET['q'];
-
-    $p = new Persons();
-    $rs = $p->GetPersonByEmpCode($q);
-    while ($row = mysql_fetch_array($rs)) {
-        echo $row['Email'] . '<br/>';
-        echo $row['Person_id'];
-    }
-    if (mysql_affected_rows() == 0) {
-        echo 'Not registed EmpCode';
-    }
-}
-if (isset($_GET['rcode'])) {
-    $ResearchCode = $_GET['rcode'];
-}
+$rcode = $_GET['rcode'];
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-
+        <link rel="stylesheet" href="css/reigster-layout.css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
@@ -38,60 +22,77 @@ if (isset($_GET['rcode'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxgrid.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxmenu.js" type="text/javascript"></script>
-        <script src="../js/jqwidgets/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
-        <link rel="stylesheet" href="../common/css/reigster-layout.css"/>
+        <style type="text/css">
+            .demo-iframe {
+                border: none;
+                width: 600px;
+                height: auto; 
+                clear: both;
+                float: right; 
+                margin:0px;
+                padding: 0px;
+            }
+        </style>
         <script type="text/javascript">
             $(document).ready(function () {
-                var Curr_theme = 'energyblue';
-                $('#plan_title').jqxInput({width: '250', height: '25', theme: Curr_theme, rtl: true});
-                $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
-                $('#btnSave').on('click', function () {
-                    $.ajax({
-                        url: "../Data/saveCoAuthor.php?researchCode=" + <? echo $ResearchCode ?> + "&personId=" + tmpPerson_id,
-                        success: function (data) {
-                        }
-                    });
-                    $('#window').jqxWindow('close');
+                var theme = "energyblue";
+                $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
+                $("#planTitle").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
+                $("#sendButton").on('click', function () {
+                    $("#AddEdit_Research_docs").jqxValidator('validate');
                 });
             });
         </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+            });
+
+        </script>
 
     </head>
-    <body>
-        <div class="panel_row" style="width: 98%;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <span class="classic">
-                    عنوان الخطة
-                </span>
-            </div>
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <input type="text" id="plan_title"/>
-            </div>
-        </div>  
-        <div class="panel_row" style="width: 98%;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <span class="classic">
-                    ملف الخطة
-                </span>
-            </div>
-            <div class="panel-cell" style="text-align: left;padding-right: 10px;"> 
-                <input type="file" name="file"/>
-            </div>
-        </div>  
+    <body style="background-color: #ededed;">
+        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddWorkingPlan.inc.php" target="form-iframe">
+            <input type="hidden" id="rcode" name="rcode" value="<? echo $rcode; ?>"/>
+            <fieldset style="width: 600px;text-align: right;">
+                <legend>
+                    <p>
+                        اضافة خطة العمل
+                    </p>
+                </legend>
+                <div class="panel_row">
 
-    <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 14px;"  />
+                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
 
+                        <p>
+                            عنوان الخطة 
+                        </p>
 
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <input type="text" id="planTitle" name="planTitle"/>
+                    </div>
+                </div> 
 
-</body>
+                <div class="panel_row">
+                    <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
+                        <p>
+                            المستند
+                        </p>
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <input type="file" name="file" id="file" style="width:300px;" dir="ltr"/>
+                    </div>
+                </div> 
+
+                <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;"/>
+            </fieldset>
+        </form>
+        <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0" >
+    </body>
 </html>
