@@ -38,10 +38,10 @@ $rs = $obj->GetProjectPlan($research_id);
                 <tr>
                     <th><em>م</em></th>
                     <th>
-                        اسم الباحث - اللغة العربية
+                        عنوان الخطة
                     </th>
                     <th>
-                        اسم الباحث - اللغة الانجليزية
+                        تحميل
                     </th>
                     <th>
                         حذف
@@ -59,8 +59,10 @@ $rs = $obj->GetProjectPlan($research_id);
                             echo $x;
                             $x++; //$row['id']; 
                             ?></td>
-                        <td style=" text-align: right;"><? echo $row['plan_url']; ?></td>
                         <td style=" text-align: right;"><? echo $row['plan_title']; ?></td>
+
+                        <td style=" text-align: right;"><? echo $row['plan_url']; ?></td>
+
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
 
                     </tr>
