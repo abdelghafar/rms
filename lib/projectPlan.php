@@ -19,16 +19,16 @@ class projectPlan {
         $connection = new MysqlConnect();
     }
 
-    public function Save($projectId, $planTitle, $planUrl, $size) {
+    public function Save($projectId, $phaseTitle, $phaseDesc) {
         $conn = new MysqlConnect();
-        $stmt = "insert into project_plan (project_id,plan_title,plan_url,size) values (" . $projectId . ",'" . $planTitle . "','" . $planUrl . "'," . $size . ")";
+        $stmt = "insert into project_plan (project_id,phase_title,phase_desc) values (" . $projectId . ",'" . $phaseTitle . "','" . $phaseDesc . "')";
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
 
     public function GetProjectPlan($projectId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,plan_url,project_id,plan_title FROM project_plan WHERE project_id=" . $projectId;
+        $stmt = "SELECT seq_id,phase_desc,project_id,phase_title FROM project_plan WHERE project_id=" . $projectId;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
