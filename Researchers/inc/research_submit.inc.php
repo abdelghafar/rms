@@ -1,5 +1,4 @@
 <?
-
 session_start();
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/CenterResearch.php';
@@ -106,13 +105,13 @@ $res = new Reseaches();
 $research_code = $res->GenerateResearchCode($research_center);
 if ($isValid == TRUE) {
     $researcher = new Reseaches();
-    print_r($_POST) . '<br/>';
+
     $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $major_field, $special_field, $research_code, $Approve_session_no, $Approve_date, "uploads/Researchers/" . $fileName, $abstract_ar, $abstract_en, $Status_Id, $Status_Date, $research_center, $research_year, $budget, $program);
     $x = $research_id;
 
     $track = new Reseaches_track();
     $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
-    echo 'y is:' . $y;
+//    echo 'y is:' . $y;
     $research_author = new research_Authors();
     $research_author->Save($research_id, $person_id, 1);
 
@@ -122,11 +121,11 @@ if ($isValid == TRUE) {
         echo $_FILES["file"]["name"] . " already exists. ";
     } else {
         $rs = move_uploaded_file($_FILES["file"]["tmp_name"], "../../uploads/Researchers/" . $fileName);
-        echo 'move_uploaded_file=' . $rs;
+        //echo 'move_uploaded_file=' . $rs;
     }
     if ($x != 0 && $rs == 1 && $y == 1) {
-        echo '<div class="successbox" style="width:850px;">';
-        echo 'تم حفظ البيانات بنجاح' . ' ' . '<a href="Print.php?research_code=' . base64_encode($research_code) . '&title_ar=' . base64_encode($title_ar) . '&rcenter=' . base64_encode($researchCenterName) . '&submit=' . base64_encode($Status_Date) . '&budget=' . base64_encode($budget) . '">من فضلك اضغط هنا للحصول علي ايصال الاستلام</a>';
+        echo '<div class="successbox" style="width:800px;direction: rtl;">';
+        echo 'تم حفظ البيانات بنجاح' . ' ' . '<a target="_blank" href="Print.php?' . 'title_ar=' . base64_encode($title_ar) . '&program=' . base64_encode($program) . '&submit=' . base64_encode($Status_Date) . '&budget=' . base64_encode($budget) . '">من فضلك اضغط هنا للحصول علي ايصال الاستلام</a>';
         echo '</div>';
     } else {
         echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
@@ -135,5 +134,7 @@ if ($isValid == TRUE) {
         echo 'y= ' . $y . '<br/>';
     }
 }
-
+?>
+<link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
