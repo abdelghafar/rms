@@ -6,8 +6,8 @@ ini_set("memory_limit", "18M");
 //============================================================
 // Include the main TCPDF library (search for installation path).
 require_once '../../lib/tcpdf/tcpdf.php';
-require_once '../../Reports/inc/GetResearchBudgetAndCountByYearFn.php';
 
+//require_once '../../Reports/inc/GetResearchBudgetAndCountByYearFn.php';
 // create new PDF document
 class MYPDF extends TCPDF {
 
@@ -29,7 +29,7 @@ class MYPDF extends TCPDF {
 
 $Research_code = base64_decode($_GET['research_code']);
 $title_ar = base64_decode($_GET['title_ar']);
-$rcenter = base64_decode($_GET['rcenter']);
+$program = base64_decode($_GET['program']);
 $submitDate = base64_decode($_GET['submit']);
 $budget = base64_decode($_GET['budget']);
 
@@ -37,7 +37,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('معهد البحوث العلمية و احياء التراث الاسلامي');
+$pdf->SetAuthor('عمادة البحث العلمي');
 $pdf->SetTitle('ايصال استلام بحث');
 
 // set default header data
@@ -107,20 +107,28 @@ $pdf->Ln();
 
 $pdf->SetFont('aealarabiya', '', 18);
 
-// Arabic and English content
-$list = GetResearchBudgetAndCountByYearFn(1435);
-foreach ($list as $row) {
-    echo $row['center_name'] . '<br/>';
-}
-
-
-
-
 $htmlcontent2 = <<<EOD
 <table cellspacing="0" cellpadding="1" border="1" dir="rtl" style="width: 630px;">
+    <tbody>
+        <tr>
+            <td>العنوان</td>
+            <td>$title_ar</td>
+        </tr>
+        <tr>
+            <td>البرنامج</td>
+            <td>$program</td>
+        </tr>
+        <tr>
+            <td>ت الارسال</td>
+            <td>$submitDate</td>
+        </tr>
+        <tr>
+            <td>الميزانية المقترحة</td>
+            <td>$budget<span>ريال سعودي</span></td>
+        </tr>
+    </tbody>
         
-        
-           </table>
+</table>
 EOD;
 
 
