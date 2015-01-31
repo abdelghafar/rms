@@ -29,7 +29,7 @@ $c_researches = new CenterResearch();
 $user = new Users();
 $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Researcher');
 $program = $_SESSION[program];
-$rs = $c_researches->GetResearchesByResearcher($personId, $program);
+$rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
 ?>
 <html>
     <head>
