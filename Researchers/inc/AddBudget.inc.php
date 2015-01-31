@@ -1,13 +1,13 @@
 <?php
 
-require_once '../../lib/projectPlan.php';
+require_once '../../lib/budget.php';
 require_once '../../lib/Reseaches.php';
 
 $rcode = $_POST['rcode'];
 $title = $_POST['budgetTitle'];
 $r = new Reseaches();
 $Rid = $r->GetResearchId($rcode);
-$p = new projectPlan();
+$p = new Budget();
 $fileExtension = end(explode(".", $_FILES["file"]["name"]));
 $fileName = md5(date('Y-m-d H:i:s')) . '.' . $fileExtension;
 $destination = '../../uploads/budget/' . $_FILES['file']['name'];

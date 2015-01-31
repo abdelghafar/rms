@@ -9,7 +9,7 @@ $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
 $research_id = $_GET['research_id'];
-$obj = new BudgetPlan();
+$obj = new Budget();
 $rs = $obj->GetBudget($research_id);
 ?>
 <html>
