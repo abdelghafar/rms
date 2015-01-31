@@ -8,9 +8,9 @@ class Research_Documents {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seqId, $research_id, $doc_cat_id, $doc_url, $size, $hash, $notes) {
+    public function Save($seqId, $title, $research_id, $doc_cat_id, $doc_url, $size, $hash, $notes) {
         if ($seqId == 0) {
-            $stmt = "INSERT INTO research_docs (research_id,doc_cat_id,doc_url,size,hash,notes) Values (" . $research_id . "," . $doc_cat_id . ",'" . $doc_url . "'," . $size . ",'" . $hash . "','" . $notes . "')";
+            $stmt = "INSERT INTO research_docs (research_id,doc_cat_id,doc_url,size,hash,notes,title) Values (" . $research_id . "," . $doc_cat_id . ",'" . $doc_url . "'," . $size . ",'" . $hash . "','" . $notes . "','" . $title . "')";
             $conn = new MysqlConnect();
             $result = $conn->ExecuteNonQuery($stmt);
             return $result;
