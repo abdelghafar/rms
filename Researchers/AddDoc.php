@@ -44,16 +44,50 @@ $rcode = $_GET['rcode'];
                 var theme = "energyblue";
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
                 $("#Title").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
+
                 $("#sendButton").on('click', function () {
 
                 });
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
+                var source =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'cat_name'}
+                            ],
+                            url: '../Data/doc_categories_GetList.php',
+                            async: false
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $("#doc_Cat_list").jqxDropDownList(
+                        {
+                            source: dataAdapter,
+                            displayMember: 'cat_name',
+                            valueMember: 'seq_id',
+                            width: '200px',
+                            height: '25px',
+                            theme: theme,
+                            selectedIndex: 0,
+                            rtl: true
+                        });
+
+                var item = $("#doc_Cat_list").jqxDropDownList('getSelectedItem');
+                $('#doc_cat_id').val(item.value);
+                $('#doc_Cat_list').on('select', function (event)
+                {
+                    var args = event.args;
+                    if (args) {
+                        // index represents the item's index.                      
+                        var index = args.index;
+                        var item = args.item;
+                        // get item's label and value.
+                        var label = item.label;
+                        var value = item.value;
+                        $('#doc_cat_id').val(value);
+                    }
+                });
 
             });
-
         </script>
 
     </head>
@@ -77,6 +111,20 @@ $rcode = $_GET['rcode'];
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="text" id="Title" name="Title"/>
+                    </div>
+                </div> 
+                <div class="panel_row">
+
+                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+
+                        <p>
+                            نوع المستند
+                        </p>
+
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <div id="doc_Cat_list"></div>
+                        <input type="hidden" id="doc_cat_id" name="doc_cat_id"/> 
                     </div>
                 </div> 
 
