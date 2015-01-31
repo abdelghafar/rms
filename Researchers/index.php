@@ -86,10 +86,10 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="schedule.php">
-                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
+                    <a href="Objectivies.php">
+                        <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            جدول المهام
+                            اهداف المشروع
                         </p>
                     </a>
 
@@ -97,10 +97,10 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
             <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
                 <div class="panel-cell" style="padding-right: 0px;">
-                    <a href="Forms.php">
-                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
+                    <a href="schedule.php">
+                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            النماذج  و الاستمارات
+                            جدول المهام
                         </p>
                     </a>
 
@@ -126,10 +126,12 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="Objectivies.php">
-                        <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
+
+
+                    <a href="Forms.php">
+                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            اهداف المشروع
+                            النماذج  و الاستمارات
                         </p>
                     </a>
 
