@@ -68,7 +68,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
                 $('#windowContent').load("AddSchedule.php?rcode=" + $('#lstOfResearches').find(":selected").text());
-                $('#window').jqxWindow('setTitle', 'اضافة الميزانية');
+                $('#window').jqxWindow('setTitle', 'اضافة مهام المشروع');
                 $('#window').jqxWindow('open');
             });
         }
@@ -149,7 +149,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
-                جدول المهام
+                مهام المشروع
             </label>
         </legend>
 
@@ -175,7 +175,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 </form>
             </div>
         </div>
-        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جدول المهام</a>
+        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
         <div id="Result">
 
         </div>
