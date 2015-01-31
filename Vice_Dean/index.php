@@ -78,10 +78,10 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right:100px;">
-                    <a href="../inc/logout.inc.php">
-                        <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            خروج
+                    <a href="Reports/index.php">
+                        <img src="images/reports.png" alt="التقارير" title = "التقارير" style ="border:0;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            التقارير
                         </p>
                     </a>
 
