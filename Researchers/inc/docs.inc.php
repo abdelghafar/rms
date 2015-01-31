@@ -41,6 +41,9 @@ $rs = $obj->GetResearchListDocuments($research_id);
                         عنوان المستند
                     </th>
                     <th>
+                        نوع المستند
+                    </th>
+                    <th>
                         تحميل
                     </th>
                     <th>
@@ -60,7 +63,7 @@ $rs = $obj->GetResearchListDocuments($research_id);
                             $x++; //$row['id']; 
                             ?></td>
                         <td style=" text-align: right;"><? echo $row['title']; ?></td>
-
+                        <td style=" text-align: right;"><? echo $row['cat_name']; ?></td>
                         <td style=" text-align: right;"><? echo '<a href="../' . $row['doc_url'] . '">' . 'تحميل' . '</a>'; ?></td>
 
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>

@@ -92,7 +92,7 @@ $rcode = $_GET['rcode'];
 
     </head>
     <body style="background-color: #ededed;">
-        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddSchedule.inc.php" target="form-iframe">
+        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddDoc.inc.php" target="form-iframe">
             <input type="hidden" id="rcode" name="rcode" value="<? echo $rcode; ?>"/>
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
