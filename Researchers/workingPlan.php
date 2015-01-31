@@ -149,7 +149,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
-                الباحثين المشاركين
+                خطة العمل
             </label>
         </legend>
 
