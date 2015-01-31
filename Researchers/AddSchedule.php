@@ -71,7 +71,7 @@ $rcode = $_GET['rcode'];
 
                     <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
                         <p>
-                            اضافة المهام
+                            عنوان المهمة
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
