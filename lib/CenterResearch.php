@@ -59,7 +59,15 @@ class CenterResearch {
 
     public function GetResearchesByResearcher($ResearcherId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT DISTINCT seq_id, title_ar, title_en, research_code, researches.major_field, special_field, research_year, `FirstName_ar`, `FatherName_ar`, `GrandName_ar`, `FamilyName_ar`, `Status_name`, status_date,center_name FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` join reseacher_centers on reseacher_centers.id = researches.center_id WHERE `isCorrsAuthor`=1 and `Withdraw`=0 and research_authors.person_id =  " . $ResearcherId;
+        $stmt = "SELECT DISTINCT seq_id, title_ar, title_en, research_code, researches.major_field, special_field, research_year, `FirstName_ar`, `FatherName_ar`, `GrandName_ar`, `FamilyName_ar`, `Status_name`, status_date,center_name, case program when 'ra2d' then 'رائد' when 'ba7th' then 'باحث' when 'wa3da' then 'واعدة' end as 'program' FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` join reseacher_centers on reseacher_centers.id = researches.center_id WHERE `isCorrsAuthor`=1 and `Withdraw`=0 and research_authors.person_id = " . $ResearcherId;
+
+        $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
+
+    public function GetResearchesByResearcher($ResearcherId, $program) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT DISTINCT seq_id, title_ar, title_en, research_code, researches.major_field, special_field, research_year, `FirstName_ar`, `FatherName_ar`, `GrandName_ar`, `FamilyName_ar`, `Status_name`, status_date,center_name, case program when 'ra2d' then 'رائد' when 'ba7th' then 'باحث' when 'wa3da' then 'واعدة' end as 'program' FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` join reseacher_centers on reseacher_centers.id = researches.center_id WHERE `isCorrsAuthor`=1 and `Withdraw`=0 and program='" . $program . "' and research_authors.person_id = " . $ResearcherId;
 
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
@@ -110,8 +118,8 @@ class CenterResearch {
             return 1;
         }
     }
-    
-    public function IsExist($research_id,$research_status, $track_date) {
+
+    public function IsExist($research_id, $research_status, $track_date) {
         $stmt = "Select seq_id from reseach_track where research_id = " . $research_id . " AND Status_Id = " . $research_status . " AND track_date = '" . $track_date . "'";
         $result = mysql_query($stmt);
         $id = 0;
