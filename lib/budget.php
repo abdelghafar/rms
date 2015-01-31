@@ -13,7 +13,7 @@
  */
 require_once 'mysqlConnection.php';
 
-class BudgetPlan {
+class Budget {
 
     public function __construct() {
         $connection = new MysqlConnect();
@@ -21,21 +21,21 @@ class BudgetPlan {
 
     public function Save($projectId, $BudgetTitle, $BudgetUrl, $size) {
         $conn = new MysqlConnect();
-        $stmt = "insert into budget_plan (project_id,budget_title,budget_url,size) values (" . $projectId . ",'" . $BudgetTitle . "','" . $BudgetUrl . "'," . $size . ")";
+        $stmt = "insert into project_budget (project_id,budget_title,budget_url,size) values (" . $projectId . ",'" . $BudgetTitle . "','" . $BudgetUrl . "'," . $size . ")";
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
 
-    public function GetProjectPlan($projectId) {
+    public function GetBudget($projectId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,budget_url,project_id,budget_title FROM budget_plan WHERE project_id=" . $projectId;
+        $stmt = "SELECT seq_id,budget_url,project_id,budget_title FROM project_budget WHERE project_id=" . $projectId;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
     public function Delete($seqId) {
         $conn = new MysqlConnect();
-        $stmt = "Delete from budget_plan where seq_id =" . $seqId;
+        $stmt = "Delete from project_budget where seq_id =" . $seqId;
         echo $stmt;
         $conn->ExecuteNonQuery($stmt);
     }
