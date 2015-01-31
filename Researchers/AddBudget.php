@@ -22,7 +22,7 @@ $rcode = $_GET['rcode'];
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
 
@@ -32,7 +32,7 @@ $rcode = $_GET['rcode'];
             .demo-iframe {
                 border: none;
                 width: 600px;
-                height: auto; 
+                height: 60px; 
                 clear: both;
                 float: right; 
                 margin:0px;
@@ -44,7 +44,11 @@ $rcode = $_GET['rcode'];
                 var theme = "energyblue";
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
                 $("#budgetTitle").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
-                $("#sendButton").on('click', function () {
+                $("#Amount").jqxNumberInput({rtl: true, width: '200px', height: '30px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
+                $('#Amount').on('change', function (event) {
+                    var value = event.args.value;
+                    $('#budget_amount').val(value);
+                    //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
 
                 });
             });
@@ -60,6 +64,7 @@ $rcode = $_GET['rcode'];
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddBudget.inc.php" target="form-iframe">
             <input type="hidden" id="rcode" name="rcode" value="<? echo $rcode; ?>"/>
+            <input type="hidden" id="budget_amount" name="budget_amount"/> 
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
@@ -71,7 +76,7 @@ $rcode = $_GET['rcode'];
                     <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
 
                         <p>
-                            عنوان الميزانية 
+                            عنوان البند
                         </p>
 
                     </div>
@@ -83,11 +88,11 @@ $rcode = $_GET['rcode'];
                 <div class="panel_row">
                     <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                         <p>
-                            المستند
+                            المبلغ
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="file" name="file" id="file" style="width:300px;" dir="ltr"/>
+                        <div id="Amount"></div>
                     </div>
                 </div> 
 

@@ -38,10 +38,10 @@ $rs = $obj->GetBudget($research_id);
                 <tr>
                     <th><em>م</em></th>
                     <th>
-                        الميزانية
+                        بند الميزانية
                     </th>
                     <th>
-                        تحميل
+                        القيمة
                     </th>
                     <th>
                         حذف
@@ -61,7 +61,7 @@ $rs = $obj->GetBudget($research_id);
                             ?></td>
                         <td style=" text-align: right;"><? echo $row['budget_title']; ?></td>
 
-                        <td style=" text-align: right;"><? echo '<a href="../' . $row['budget_url'] . '">' . 'تحميل' . '</a>'; ?></td>
+                        <td style=" text-align: right;"><? echo number_format($row['budget_amount'], 2); ?></td>
 
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
 
