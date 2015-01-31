@@ -48,6 +48,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <div class="panel_row" style="padding-right: 50px; height: 100px;">
 
                 <div class="panel-cell">
+
                     <a href="UpdateInfo.php">
                         <img src="images/Profile.png" alt="تعديل البيانات" title ="تعديل البيانات" style ="border:0;"/>
                         <p style="margin-top: 0px;">
@@ -58,14 +59,22 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="padding-right:100px;">
 
+                    <a href="Researchers_View.php">
+                        <img src="images/view_research.png" alt="متابعة الأبحاث" title ="متابعة الأبحاث" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            متابعة الابحاث
+                        </p>
+                    </a>
+                </div>
+                <div class="panel-cell" style="padding-right: 100px;">
                     <a href="research_submit.php">
                         <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
                         <p style="margin-top: 0px;">
                             تقديم بحث
                         </p>
                     </a>
-                </div>
 
+                </div>
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="CoAuthors.php"> 
                         <img src="images/team.png" alt="الباحثين المشاركين" title ="الباحثين المشاركين" style ="border:0"/>
@@ -77,19 +86,10 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="Researchers_View.php">
-                        <img src="images/view_research.png" alt="متابعة الأبحاث" title ="متابعة الأبحاث" style ="border:0"/>
+                    <a href="schedule.php">
+                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            متابعة الابحاث
-                        </p>
-                    </a>
-
-                </div>
-                <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="Forms.php">
-                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            النماذج  و الاستمارات
+                            جدول المهام
                         </p>
                     </a>
 
@@ -97,13 +97,13 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
             <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
                 <div class="panel-cell" style="padding-right: 0px;">
-
-                    <a href="ChangePassword.php">
-                        <img src="images/password_change.png" alt="تغير كلمة المرور" title ="تغير كلمة المرور" style ="border:0"/>
+                    <a href="Forms.php">
+                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            تغير كلمة المرور
+                            النماذج  و الاستمارات
                         </p>
                     </a>
+
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
@@ -126,7 +126,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="#">
+                    <a href="Objectivies.php">
                         <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             اهداف المشروع
@@ -136,6 +136,27 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="docs.php">
+                        <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            المستندات الهامة
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
+
+                <div class="panel-cell" style="padding-right: 0px;">
+
+                    <a href="ChangePassword.php">
+                        <img src="images/password_change.png" alt="تغير كلمة المرور" title ="تغير كلمة المرور" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            تغير كلمة المرور
+                        </p>
+                    </a>
+                </div>
+                <div class="panel-cell" style="padding-right: 100px;">
                     <a href="../inc/logout.inc.php">
                         <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
                         <p style="margin-top: 0px;">
@@ -143,27 +164,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
 
-                </div>
-            </div>
-
-            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
-                <div class="panel-cell" style="padding-right: 0px;">
-
-                    <a href="schedule.php">
-                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            جدول المهام
-                        </p>
-                    </a>
-                </div>
-
-                <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="docs.php">
-                        <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            المستندات الهامة
-                        </p>
-                    </a>
                 </div>
 
             </div>
