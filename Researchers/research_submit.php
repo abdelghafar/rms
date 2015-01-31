@@ -68,7 +68,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
-
+    
 
     <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
 
