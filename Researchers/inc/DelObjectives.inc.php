@@ -9,7 +9,7 @@ require_once '../../lib/objectives.php';
 
 if (isset($_GET['seq_id'])) {
     $seqId = $_GET['seq_id'];
-    $project = new Objectives(); 
+    $project = new Objectives();
     $res = $project->Delete($seqId);
 } else {
     echo 'person_id and rcode are required..';
