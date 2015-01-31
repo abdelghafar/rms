@@ -2,83 +2,80 @@
 session_start();
 
 require_once('../lib/CenterResearch.php');
-require_once '../lib/Reseaches.php';
 
+$research_id = $_GET['research_id'];
 $research_code = $_GET['research_code'];
-$c = new Reseaches();
-$research_id = $c->GetResearchId($research_code);
 $cr = new CenterResearch();
 $rs = $cr->getResearchAllStatus($research_id);
 ?>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
-    <script type="text/javascript" src="../jquery.js"></script>
-    <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
-    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-            $('#datatables').dataTable({width: 500, bJQueryUI: true, oLanguage: {
-                    sUrl: "../js/dataTables/media/ar_Ar.txt"}});
+    <script type="text/javascript" src="../js/dataTables/media/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css"/>
+    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css"/>
+    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="css/reigster-layout.css"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#grid').dataTable({
+                sPaginationType: "full_numbers",
+                bJQueryUI: true,
+                bLengthChange: true,
+                width: 500,
+                oLanguage: {
+                    sUrl: "../js/dataTables/media/ar_Ar.txt"}
+            });
         });
-
     </script>
-
 </head>
 
-<body style="background-color: #ededed;">
-
-    <div class="panel_row" style="padding-bottom: 10px;">
-        <div class="panel-cell" style="width: 80px;text-align: left;padding-left: 10px;"> 
-            <p>
-                رقم المشروع
-            </p>
-        </div>
-        <div class="panel-cell" style="width: 450px;height: 30px;"> 
-            <label style="font-weight: bold;">
-                <?php echo $research_code; ?>
-            </label>
-        </div>
+<div class="panel_row" style="padding-bottom: 10px;">
+    <div class="panel-cell" style="width: 80px;text-align: left;padding-left: 10px;"> 
+        <label>
+            رقم المشروع
+        </label>
     </div>
-    <table id="datatables" class="display" dir="rtl" style="text-align: center;font-size:14px; font-weight: bold" >
-        <thead>
-            <tr>
-                <th><em>م</em></th>
-                <th>حالة البحث</th>
-                <th>التاريخ</th>
-                <th>ملاحظات </th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="panel-cell" style="width: 450px;height: 30px;"> 
+        <p style="font-weight: bold;">
+            <?php echo $research_code; ?>
+        </p>
+    </div>
+</div>
+<table id="grid" class="display" dir="rtl" style="text-align: center;font-size:14px; font-weight: bold" >
+    <thead>
+        <tr>
+            <th><em>م</em></th>
+            <th>حالة البحث</th>
+            <th>التاريخ</th>
+            <th>ملاحظات </th>
+        </tr>
+    </thead>
+    <tbody>
 
-            <?php
-            $x = 1;
+        <?php
+        $x = 1;
 
-            while ($row = mysql_fetch_array($rs)) {
-                ?>
-
-                <tr style="text-align: center;" >
-
-                    <td><?
-                        echo $x;
-                        $x++; //$row['id']; 
-                        ?></td>
-
-                    <td><? echo $row['Status_name']; ?></td>
-
-                    <td><? echo $row['track_date']; ?></td>
-
-                    <td><? echo $row['notes']; ?></td>
-
-                </tr>
-
-                <?php
-            }
+        while ($row = mysql_fetch_array($rs)) {
             ?>
 
-        </tbody>
+            <tr style="text-align: center;" >
 
-    </table>
-</body>
+                <td><?
+                    echo $x;
+                    $x++; //$row['id']; 
+                    ?></td>
+
+                <td><? echo $row['Status_name']; ?></td>
+
+                <td><? echo $row['track_date']; ?></td>
+
+                <td><? echo $row['notes']; ?></td>
+
+            </tr>
+
+            <?php
+        }
+        ?>
+
+    </tbody>
+
+</table>

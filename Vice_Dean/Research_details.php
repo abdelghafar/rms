@@ -128,7 +128,7 @@ $row = mysql_fetch_array($array);
                     </td>
                     <td>
                         <?
-                        echo '<a href="../' . $row['url'] . '"/>تحميل' . '</a>';
+                        echo '<a href="../' . $row['url'] . '">' . 'تحميل' . '</a>';
                         ?>
                     </td>
                 </tr>
