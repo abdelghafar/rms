@@ -99,10 +99,6 @@ $smarty->display('../templates/Loggedin.tpl');
             </a></label>
     </center>
 </body>
-
-
-
-
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
