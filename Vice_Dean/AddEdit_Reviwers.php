@@ -63,7 +63,6 @@ if (isset($_GET['person_id'])) {
                         if (isValid) {
                             $("#form").submit();
                         }
-                        ;
                     };
                     $('#form').jqxValidator('validate', validationResult);
                 });
