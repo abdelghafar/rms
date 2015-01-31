@@ -34,7 +34,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('.Infobox').hide();
                 $(".Infobox").fadeIn(4000, 'swing');
             });
@@ -92,16 +92,11 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
                 </div>
-                <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="../inc/logout.inc.php">
-                        <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            خروج
-                        </p>
-                    </a>
-
-                </div>
         </fieldset>
+        <label>
+            <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                رجوع
+            </a></label>
     </center>
 </body>
 
