@@ -47,7 +47,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
-    
+
 
     <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
 
@@ -308,7 +308,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <div class="panel_row">
             <div class="panel-cell" style="float: left ; ">
                 <label>
-                    <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         رجوع
                     </a></label>
             </div>

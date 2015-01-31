@@ -8,23 +8,41 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
+if (!isset($_GET['program'])) {
+    header('Location:selectProgram.php');
+} else {
+    $prog = $_GET['program'];
+    switch ($prog) {
+        case'ba7th':
+            $_SESSION['program'] = 'ba7th';
+            break;
+        case 'wa3da':
+            $_SESSION['program'] = 'wa3da';
+            break;
+        case 'ra2d':
+            $_SESSION['program'] = 'ra2d';
+            break;
+        default :
+            header('Location:selectProgram.php');
+            break;
+    }
+    require_once '../lib/Smarty/libs/Smarty.class.php';
+    $smarty = new Smarty();
 
-require_once '../lib/Smarty/libs/Smarty.class.php';
-$smarty = new Smarty();
+    $smarty->assign('style_css', '../style.css');
+    $smarty->assign('style_responsive_css', '../style.responsive.css');
+    $smarty->assign('jquery_js', '../jquery.js');
+    $smarty->assign('script_js', '../script.js');
+    $smarty->assign('script_responsive_js', '../script.responsive.js');
+    $smarty->assign('index_php', '../Researchers/index.php');
+    $smarty->assign('Researchers_register_php', '../Researchers/register.php');
+    $smarty->assign('login_php', '../login.php');
+    $smarty->assign('logout_php', '../inc/logout.inc.php');
+    $smarty->assign('fqa_php', '../fqa.php');
+    $smarty->assign('contactus_php', '../contactus.php');
 
-$smarty->assign('style_css', '../style.css');
-$smarty->assign('style_responsive_css', '../style.responsive.css');
-$smarty->assign('jquery_js', '../jquery.js');
-$smarty->assign('script_js', '../script.js');
-$smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../Researchers/index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('login_php', '../login.php');
-$smarty->assign('logout_php', '../inc/logout.inc.php');
-$smarty->assign('fqa_php', '../fqa.php');
-$smarty->assign('contactus_php', '../contactus.php');
-
-$smarty->display('../templates/Loggedin.tpl');
+    $smarty->display('../templates/Loggedin.tpl');
+}
 ?>
 <html>
     <head>
@@ -49,7 +67,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <div class="panel-cell">
 
-                    <a href="UpdateInfo.php">
+                    <a href="UpdateInfo.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/Profile.png" alt="تعديل البيانات" title ="تعديل البيانات" style ="border:0;"/>
                         <p style="margin-top: 0px;">
                             تعديل بيانات
@@ -59,7 +77,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="padding-right:100px;">
 
-                    <a href="Researchers_View.php">
+                    <a href="Researchers_View.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/view_research.png" alt="متابعة الأبحاث" title ="متابعة الأبحاث" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             متابعة الابحاث
@@ -67,7 +85,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     </a>
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="research_submit.php">
+                    <a href="research_submit.php?program=<? echo $_SESSION['program'] ?>">
                         <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
                         <p style="margin-top: 0px;">
                             تقديم بحث
@@ -76,7 +94,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="CoAuthors.php"> 
+                    <a href="CoAuthors.php?program=<? echo $_SESSION['program'] ?>"> 
                         <img src="images/team.png" alt="الباحثين المشاركين" title ="الباحثين المشاركين" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             الباحثين المشاركين
@@ -86,7 +104,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="Objectivies.php">
+                    <a href="Objectivies.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             اهداف المشروع
@@ -97,7 +115,7 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
             <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
                 <div class="panel-cell" style="padding-right: 0px;">
-                    <a href="workingPlan.php">
+                    <a href="workingPlan.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/view-calendar.png" alt="خطة العمل" title ="خطة العمل" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             خطة العمل
@@ -108,7 +126,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="schedule.php">
+                    <a href="schedule.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             جدول المهام
@@ -119,7 +137,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="budget.php">
+                    <a href="budget.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/budget.png" alt="الميزانية" title ="الميزانية" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             الميزانية التفصلية
@@ -130,7 +148,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <div class="panel-cell" style="padding-right: 100px;">
 
 
-                    <a href="Forms.php">
+                    <a href="Forms.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             النماذج  و الاستمارات
@@ -140,7 +158,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="docs.php">
+                    <a href="docs.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             المستندات الهامة
@@ -153,7 +171,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <div class="panel-cell" style="padding-right: 0px;">
 
-                    <a href="ChangePassword.php">
+                    <a href="ChangePassword.php?program=<? echo $_SESSION['program'] ?>">
                         <img src="images/password_change.png" alt="تغير كلمة المرور" title ="تغير كلمة المرور" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             تغير كلمة المرور

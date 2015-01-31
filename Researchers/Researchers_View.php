@@ -98,9 +98,7 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                         <th>
                             التخصص العام
                         </th>
-                        <th>
-                            البرنامج
-                        </th>
+
                         <th>سنة التقدم</th>
                         <th>حالة البحث</th>
                         <th>متابعة الحالة</th>
@@ -122,7 +120,6 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                             <td style=" text-align: right"><? echo $row['title_ar']; ?></td>
                             <td style=" text-align: left"><? echo $row['title_en']; ?></td>
                             <td style=" text-align: left"><? echo $row['center_name']; ?></td>
-                            <td style=" text-align: right;"><? echo $row['program']; ?></td>
                             <td><? echo $row['research_year']; ?></td>
                             <td style=" text-align: center;"><? echo $row['Status_name']; ?></td>
                             <td style=" text-align: center;"><a href="#" onClick="display_research_status(<? echo $row['seq_id'] . ",'" . $row['research_code'] . "'"; ?>);"><img src="images/track.png" style="border:none !important" alt="متابعة الحالة"/></a></td>
@@ -138,7 +135,7 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
 
         </fieldset>
     <label>
-        <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+        <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
             رجوع
         </a></label>
 
@@ -146,4 +143,3 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
-?>

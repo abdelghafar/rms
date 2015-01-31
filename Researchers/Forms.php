@@ -50,10 +50,10 @@ $smarty->display('../templates/Loggedin.tpl');
             <br/>
             <ul type="disc" style="text-align: right;">
                 <li  style="color:#00529B;text-align: right;">
-                    (للرجال) في الفترة من  4-5-1435 هـ  الي 3-6-1435 هـ
+                    (للرجال) في الفترة من  4-5-1436 هـ  الي 3-6-1436 هـ
                 </li>
                 <li  style="color:#00529B;text-align: right;">
-                    (للنساء) في الفترة من 9-5-1435 هـ الي 8-6-1435 هـ
+                    (للنساء) في الفترة من 9-5-1436 هـ الي 8-6-1436 هـ
                 </li>
             </ul>
 
@@ -94,7 +94,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
         </fieldset>
         <label>
-            <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+            <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                 رجوع
             </a></label>
     </center>

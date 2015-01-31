@@ -181,7 +181,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         </div>
     </fieldset>
 <label>
-    <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
         رجوع
     </a></label>
 

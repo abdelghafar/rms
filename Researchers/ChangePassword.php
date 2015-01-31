@@ -151,7 +151,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <div class="panel_row">
                 <div class="panel-cell" style="float: left ; ">
                     <label>
-                        <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                             رجوع
                         </a></label>
                 </div>
