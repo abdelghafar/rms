@@ -136,6 +136,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
                             <th>رقم البحث</th>
                             <th>عنوان المشروع - عربى </th>
                             <th>عنوان المشروع - انجليزى</th>
+                            <th>البرنامج</th>
                             <th>الباحث الرئيسي</th>
                             <th>سنة التقدم</th>
                             <th>حالة البحث</th>
@@ -168,9 +169,10 @@ $rs = $c_researches->AllCenterResearch($center_id);
                                     ?>
                                 </td>
                                 <td style=" text-align: left"><? echo $row['title_en']; ?></td>
+                                <td style=" text-align: right;"><? echo $row['program']; ?></td>
                                 <td><? echo $row['name']; ?></td>
                                 <td><? echo $row['research_year']; ?></td>
-                                
+
                                 <td><? echo $row['Status_name']; ?></td>
                                 <td style="text-align: center;
                                     "><a href="#" onClick="display_Assign_council_board(<?php echo $row['seq_id'] . "," . $row['research_code'] ?>);">
@@ -185,7 +187,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
 
                                 <td>
                                     <a href="#" onClick="display_Research_details(<? echo $row['seq_id']; ?>)
-                                                        ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
+                                                    ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
 
                                 </td>
                             </tr>

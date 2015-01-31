@@ -4,7 +4,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'DeanShip') {
+    if ($rule != 'Vice_Dean') {
         header('Location:../Login.php');
     }
 }
@@ -17,8 +17,9 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
+$smarty->assign('index_php', 'index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('login_php', '../login.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
@@ -29,22 +30,11 @@ $smarty->display('../templates/Loggedin.tpl');
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="../js/jquery.tools.min.js"></script>
         <title></title>
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/>
-        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/> 
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="css/wall.css" type="text/css"/>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.Infobox').hide();
-                $(".Infobox").fadeIn(4000, 'swing');
-            });
-        </script>
+        <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
     </head>
     <body>
     <center>
-
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -53,13 +43,13 @@ $smarty->display('../templates/Loggedin.tpl');
                     ?>
                 </label>
             </legend>
-            <div class="panel_row" style="padding-right:50px; height: 150px;">
+            <div class="panel_row" style="padding-right:50px; height: 200px;">
 
                 <div class="panel-cell">
                     <a href="Researches.php">
-                        <img id="Researches" src="images/researchers.png" alt=" الأبحاث" title=" الأبحاث" style ="border:0" /> 
+                        <img id="new_Research" src="images/document-open-8.png" alt=" الأبحاث" title=" الأبحاث" style ="border:0" /> 
                         <p style="margin-top: 0px;font-size: 13px;">
-                            الباحثين
+                            الأبحاث
                         </p>
                     </a>
                 </div>
@@ -82,42 +72,36 @@ $smarty->display('../templates/Loggedin.tpl');
                     </a>
 
                 </div>
-
-                <div class="panel-cell" style="padding-right:100px;" id="wall">
+                <div class="panel-cell" style="padding-right:100px;">
                     <a href="Reports/index.php">
-                        <img  src="images/reports.png" alt=" التقارير" title =" التقارير" style ="border:0;"/>
+                        <img src="images/reports.png" alt="التقارير" title = "التقارير" style ="border:0;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             التقارير
                         </p>
                     </a>
 
                 </div>
+
                 <div class="panel-cell" style="padding-right:100px;">
                     <a href="Charts/index.php">
-                        <img id="ChangePassword" src="images/Statistics.png" alt="الاحصائيات" title="الاحصائيات" style ="border:0" /> 
+                        <img src="images/Statistics.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
-                            الاحصائيات
+                            بيانات احصائية
                         </p>
                     </a>
+
                 </div>
+
             </div>
             <div class="panel_row" style="padding-right:50px; height: 200px;">
                 <div class="panel-cell" style="padding-right:0px;">
-                    <a href="ChangePassword.php">
-                        <img id="ChangePassword" src="images/password_change.png" alt="تغير كلمة المرور" title="تغير كلمة المرور" style ="border:0" /> 
-                        <p style="margin-top: 0px;font-size: 13px;">
-                            تغير كلمة المرور
-                        </p>
-                    </a>
-                </div>
-
-                <div class="panel-cell" style="padding-right:100px;">
                     <a href="../inc/logout.inc.php">
-                        <img id="exit" src="images/exit.png" alt="خروج" title="خروج" style ="border:0" /> 
+                        <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             خروج
                         </p>
                     </a>
+
                 </div>
 
             </div>

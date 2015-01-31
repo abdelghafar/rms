@@ -24,6 +24,13 @@ class ResearchCenter_Reviewers {
         return $result;
     }
 
+    public function GetAllReviwers() {
+        $stmt = "select persons.Person_id,persons.`empCode`,concat(persons.`FirstName_ar`,' ',persons.`FatherName_ar`,' ',persons.`GrandName_ar`,' ',persons.`FamilyName_ar`) as `name`, program_name , persons.`Major_Field`, persons.`Speical_Field`, persons.`Email`, persons.`Mobile` from persons right join rcenter_reviewers on rcenter_reviewers.person_id = persons.`Person_id` join programs on programs.program_id= rcenter_reviewers.program_id";
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
+
     public function DeleteByPersonId($PersonId) {
         $stmt = "Delete From rcenter_reviewers Where person_id=" . $PersonId;
         $conn = new MysqlConnect();

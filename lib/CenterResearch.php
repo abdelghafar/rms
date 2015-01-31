@@ -38,14 +38,14 @@ class CenterResearch {
 
     public function AllCenterResearch($center_id) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT DISTINCT seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date,concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`) as 'name' FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` WHERE Withdraw=0 and `isCorrsAuthor` =1 AND center_id= " . $center_id . " Order By seq_id";
+        $stmt = "SELECT DISTINCT seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date,concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`) as 'name' , case researches.program when 'ra2d'  then 'رائد' when 'ba7th'  then 'باحث'  when 'wa3da'  then 'واعدة'  end as `program` FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` WHERE Withdraw=0 and `isCorrsAuthor` =1 AND center_id=" . $center_id . " Order By seq_id";
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
 
     public function GetResearchesList() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT distinct researches.seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date, reseacher_centers.center_name,concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`) as 'name',researches.major_field, researches.special_field,researches.budget FROM researches left JOIN research_authors ON research_authors.research_id = researches.seq_id left JOIN persons ON persons.`Person_id` = research_authors.person_id left JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` join reseacher_centers on reseacher_centers.id = researches.center_id WHERE `isCorrsAuthor` =1 and `Withdraw`=0 order by center_id,researches.research_code";
+        $stmt = "SELECT DISTINCT seq_id, researches.research_code,title_ar, title_en,research_year,`Status_name`, status_date,concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`) as 'name' , case researches.program when 'ra2d'  then 'رائد' when 'ba7th'  then 'باحث'  when 'wa3da'  then 'واعدة'  end as `program` FROM researches left JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` WHERE Withdraw=0 and `isCorrsAuthor` =1 Order By seq_id";
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
@@ -151,9 +151,14 @@ class CenterResearch {
         return $Code;
     }
 
-    public function GetLstOfResearchReviwers(
-    $CenterId) {
+    public function GetLstOfResearchReviwers($CenterId) {
         $stmt = "select research_review.seq_id, researches.research_code, researches.title_ar, research_review.submission_date, reseach_status.`Status_name`, concat(persons.`FirstName_ar`, ' ', persons.`FatherName_ar`, ' ', persons.`GrandName_ar`, ' ', persons.`FamilyName_ar`) as `reveiwer_name`, persons.email as `reviewer_email`, reseacher_centers.center_name, review_phase.`Phase_Title`, research_review.submission_date, research_review.responce_date, research_review.attachment_url, research_review.notes, users.user_name from research_review join persons on persons.`Person_id` = research_review.reviewer_person_id join researches on research_review.research_id = researches.seq_id join reseach_status on reseach_status.`Status_Id` = research_review.`responce_Status_id` join reseacher_centers on reseacher_centers.id = researches.center_id join review_phase on review_phase.`Phase_id` = research_review.`Phase_id` join users on users.person_id = persons.Person_id  where researches.center_id = " . $CenterId;
+        $conn = new MysqlConnect();
+        return $conn->ExecuteNonQuery($stmt);
+    }
+
+    public function GetAllOffResearchReviwers() {
+        $stmt = "select research_review.seq_id, researches.research_code, researches.title_ar, research_review.submission_date, reseach_status.`Status_name`, concat(persons.`FirstName_ar`, ' ', persons.`FatherName_ar`, ' ', persons.`GrandName_ar`, ' ', persons.`FamilyName_ar`) as `reveiwer_name`, persons.email as `reviewer_email`, reseacher_centers.center_name, review_phase.`Phase_Title`, research_review.submission_date, research_review.responce_date, research_review.attachment_url, research_review.notes, users.user_name from research_review join persons on persons.`Person_id` = research_review.reviewer_person_id join researches on research_review.research_id = researches.seq_id join reseach_status on reseach_status.`Status_Id` = research_review.`responce_Status_id` join reseacher_centers on reseacher_centers.id = researches.center_id join review_phase on review_phase.`Phase_id` = research_review.`Phase_id` join users on users.person_id = persons.Person_id";
         $conn = new MysqlConnect();
         return $conn->ExecuteNonQuery($stmt);
     }
