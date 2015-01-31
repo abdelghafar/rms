@@ -19,16 +19,16 @@ class Budget {
         $connection = new MysqlConnect();
     }
 
-    public function Save($projectId, $BudgetTitle, $BudgetUrl, $size) {
+    public function Save($projectId, $BudgetTitle, $BudgetAmount) {
         $conn = new MysqlConnect();
-        $stmt = "insert into project_budget (project_id,budget_title,budget_url,size) values (" . $projectId . ",'" . $BudgetTitle . "','" . $BudgetUrl . "'," . $size . ")";
+        $stmt = "insert into project_budget (project_id,budget_title,budget_amount) values (" . $projectId . ",'" . $BudgetTitle . "'," . $BudgetAmount . ")";
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
 
     public function GetBudget($projectId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,budget_url,project_id,budget_title FROM project_budget WHERE project_id=" . $projectId;
+        $stmt = "SELECT seq_id,budget_amount,project_id,budget_title FROM project_budget WHERE project_id=" . $projectId;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
