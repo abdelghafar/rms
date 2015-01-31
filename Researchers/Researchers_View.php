@@ -28,8 +28,8 @@ $smarty->display('../templates/Loggedin.tpl');
 $c_researches = new CenterResearch();
 $user = new Users();
 $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Researcher');
-
-$rs = $c_researches->GetResearchesByResearcher($personId);
+$program = $_SESSION[program];
+$rs = $c_researches->GetResearchesByResearcher($personId, $program);
 ?>
 <html>
     <head>
