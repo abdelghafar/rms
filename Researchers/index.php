@@ -120,7 +120,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     <a href="budget.php">
                         <img src="images/budget.png" alt="الميزانية" title ="الميزانية" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            الميزانية
+                            الميزانية التفصلية
                         </p>
                     </a>
 
@@ -158,7 +158,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="#">
+                    <a href="docs.php">
                         <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             المستندات الهامة
