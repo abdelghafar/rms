@@ -42,7 +42,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     ?>
                 </label>
             </legend>
-            <div class="panel_row" style="padding-right:  50px; height: 400px;">
+            <div class="panel_row" style="padding-right:  50px; height: 150px;">
 
                 <div class="panel-cell">
                     <a href="research_grid.php">
@@ -52,14 +52,7 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
                 </div>
-                <div class="panel-cell" style="padding-right:100px;">
-                    <a href="Council_board.php">
-                        <img src="images/Council.png" alt="أعضاء المجلس" title ="أعضاء المجلس" style ="border:0;margin-right: 23px;"/>
-                        <p style="margin-top: 0px;">
-                            لجنة الفصح المبدئي
-                        </p>
-                    </a>
-                </div>
+
                 <div class="panel-cell"  style="padding-right:100px;">
                     <a href="reviewers.php">
                         <img id="reviwers" src="images/reviwers.png" alt="المحكمين" title="المحكمين" style ="border:0" /> 
@@ -86,6 +79,28 @@ $smarty->display('../templates/Loggedin.tpl');
                     </a>
 
                 </div>
+                <div class="panel-cell" style="padding-right:100px;">
+                    <a href="Charts/index.php">
+                        <img src="images/Statistics.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 0px;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            بيانات احصائية
+                        </p>
+                    </a>
+
+                </div>
+
+            </div>
+            <div class="panel_row" style="padding-right:  50px; height: 200px;">
+                <div class="panel-cell">
+                    <a href="../inc/logout.inc.php">
+                        <img src="images/exit.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            خروج
+                        </p>
+                    </a>
+
+                </div>
+
             </div>
 
         </fieldset>

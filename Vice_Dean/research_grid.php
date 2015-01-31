@@ -28,9 +28,7 @@ $smarty->display('../templates/Loggedin.tpl');
 require_once('../lib/CenterResearch.php');
 
 $c_researches = new CenterResearch();
-$center_id = $c_researches->GetResearchCenterByUserName($_SESSION['User_Name']);
-
-$rs = $c_researches->AllCenterResearch($center_id);
+$rs = $c_researches->GetResearchesList();
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +138,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
                             <th>الباحث الرئيسي</th>
                             <th>سنة التقدم</th>
                             <th>حالة البحث</th>
-                            <th>الفرز المبدئي</th>
+
                             <th>التحكيم</th>
                             <th>متابعة الحالة</th>
                             <th>التفاصيل</th>
@@ -174,10 +172,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
                                 <td><? echo $row['research_year']; ?></td>
 
                                 <td><? echo $row['Status_name']; ?></td>
-                                <td style="text-align: center;
-                                    "><a href="#" onClick="display_Assign_council_board(<?php echo $row['seq_id'] . "," . $row['research_code'] ?>);">
-                                        <img src="images/edit.png" style="border:none !important" alt="الفرز المبدئي"/></a>
-                                </td>
+
                                 <td>
                                     <a href="#" onClick="display_Assign_Reviewer(<? echo $row['seq_id'] . "," . $row['research_code'] ?>);"><img src="images/edit.png" style="border:none !important" alt="تحكيم"/></a>
                                 </td>

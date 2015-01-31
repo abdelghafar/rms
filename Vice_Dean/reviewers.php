@@ -33,7 +33,7 @@ require_once('../lib/CenterResearch.php');
 $c_researches = new CenterResearch();
 $center_id = $c_researches->GetResearchCenterByUserName($_SESSION['User_Name']);
 $obj = new ResearchCenter_Reviewers();
-$rs = $obj->GetRCenterReviwers($center_id);
+$rs = $obj->GetAllReviwers();
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +89,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
             {
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
-                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 900, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 950, autoOpen: false, isModal: true, animationType: 'fade'});
                     $('#windowContent').load("AddEdit_Reviwers.php?person_id=" + person_id + "&Action=Update");
                     $('#window').jqxWindow('setTitle', 'تعديل بيانات محكم');
                     $('#window').jqxWindow('open');
@@ -146,8 +146,8 @@ $rs = $obj->GetRCenterReviwers($center_id);
                         <tr>
                             <th><em>م</em></th>
                             <th>الاسم</th>
+                            <th>البرنامج</th>
                             <th>التخصص العام</th>
-                            <th>التخصص الدقيق</th>
                             <th>الجوال</th>
                             <th>البريد الالكتروني</th>
                             <th>الحساب</th>
@@ -167,8 +167,8 @@ $rs = $obj->GetRCenterReviwers($center_id);
                                     $x++; //$row['id']; 
                                     ?></td>
                                 <td><? echo $row['name']; ?></td>
+                                <td style=" text-align: right"><? echo $row['program_name']; ?></td>
                                 <td style=" text-align: right"><? echo $row['Major_Field']; ?></td>
-                                <td style=" text-align: right"><? echo $row['Speical_Field']; ?></td>
                                 <td><? echo $row['Mobile']; ?></td>
                                 <td><? echo $row['Email']; ?></td>
                                 <td><a href="#" onClick="DisplayAccount(<? echo $row['Person_id']; ?>);"><img src="images/account.png" style="border:none !important" alt="انشاء حساب"/></a></td>     

@@ -30,7 +30,7 @@ require_once('../lib/CenterResearch.php');
 
 $c_researches = new CenterResearch();
 $center_id = $c_researches->GetResearchCenterByUserName($_SESSION['User_Name']);
-$rs = $c_researches->GetLstOfResearchReviwers($center_id);
+$rs = $c_researches->GetAllOffResearchReviwers();
 ?>
 <html>
     <head>

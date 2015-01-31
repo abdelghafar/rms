@@ -44,13 +44,52 @@ if (isset($_GET['person_id'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 130, minLength: 1, theme: 'energyblue'});
-                $("#IBAN").jqxInput({rtl: true, height: 25, width: 423, disabled: true, minLength: 1, theme: 'energyblue'});
+                var source =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'id'},
+                                {name: 'program_name'}
+                            ],
+                            url: '../Data/Programs.php',
+                            async: false
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $("#prog").jqxDropDownList(
+                        {
+                            source: dataAdapter,
+                            displayMember: 'program_name',
+                            valueMember: 'id',
+                            width: '200px',
+                            height: '25px',
+                            theme: 'energyblue',
+                            selectedIndex: 0,
+                            rtl: true
+                        });
+
+                var item = $("#prog").jqxDropDownList('getSelectedItem');
+                $('#progVal').val(item.value);
+                $('#prog').on('select', function (event)
+                {
+                    var args = event.args;
+                    if (args) {
+                        // index represents the item's index.                      
+                        var index = args.index;
+                        var item = args.item;
+                        // get item's label and value.
+                        var label = item.label;
+                        var value = item.value;
+                        $('#progVal').val(value);
+                    }
+                });
+
                 $("#email").jqxInput({rtl: true, height: 25, width: 250, minLength: 1, theme: 'energyblue'});
                 $("#mobile").jqxInput({rtl: true, height: 25, width: 250, minLength: 1, theme: 'energyblue'});
                 $('#sendButton').on('click', function () {
@@ -115,6 +154,8 @@ if (isset($_GET['person_id'])) {
         <form method="POST" id="form" target="form-iframe" action="inc/AddEdit_Reviwers.inc.php">
             <input type="hidden" name="Action" value="<? echo $Action; ?>"/>
             <input type="hidden" name="person_id" value="<? if (isset($person_id)) echo $person_id; ?>"/>
+            <input type="hidden" name="progVal" id="progVal"/> 
+
             <fieldset style="width: 95%;text-align: right;"> 
                 <legend>
                     <label>
@@ -143,7 +184,6 @@ if (isset($_GET['person_id'])) {
                         <input id="FirstName-en" class="textbox" type="text" placeholder="FirstName" name="FirstName_en" value="<? echo $FirstName_en; ?>"/>
                     </div>
                 </div>
-
                 <div class="panel_row">
                     <div class="panel-cell" style="width:181px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
@@ -169,7 +209,7 @@ if (isset($_GET['person_id'])) {
 
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input id="email" name="email" type="text" placeholder="البريد الالكتروني" value="<? echo $Email; ?>"/>
-                        <span id="ack">sss</span>
+
                     </div>
 
                 </div>
@@ -187,11 +227,11 @@ if (isset($_GET['person_id'])) {
                 <div class="panel_row">
                     <div class="panel-cell" style="width:181px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p style="font-weight: bold">
-                            رقم   IBAN
+                            البرنامج 
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="IBAN" name="IBAN" type="text" placeholder="" value="<? echo $IBAN; ?>"/>
+                        <div id="prog"></div>
                     </div>
 
                 </div>

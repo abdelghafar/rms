@@ -10,7 +10,7 @@ $researchId = $_GET['research_id'];
 $research_Code = $_GET['research_code'];
 
 $obj = new ResearchCenter_Reviewers();
-$rs = $obj->GetRCenterReviwers($center_id);
+$rs = $obj->GetAllReviwers();
 ?>
 <html>
     <head>
@@ -74,7 +74,8 @@ $rs = $obj->GetRCenterReviwers($center_id);
                         <tr>
                             <th><em>م</em></th>
                             <th>اختر</th>
-                            <th>اسم المحكم-اللغة العربية</th>
+                            <th>اسم المحكم</th>
+                            <th>البرنامج</th>
                             <th>التخصص العام  </th>
                             <th>التخصص الدقيق</th>
                             <th>الجوال</th>
@@ -95,6 +96,7 @@ $rs = $obj->GetRCenterReviwers($center_id);
                                     <input type="checkbox" name="chklst[]" value="<? echo $row['Person_id']; ?> "/>
                                 </td>
                                 <td><? echo $row['name']; ?></td>
+                                <td><? echo $row['program_name']; ?></td>
                                 <td ><? echo $row['Major_Field']; ?></td>
                                 <td><? echo $row['Speical_Field']; ?></td>
                                 <td><? echo $row['Mobile']; ?></td>

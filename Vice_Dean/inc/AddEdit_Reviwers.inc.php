@@ -23,7 +23,8 @@ $Major_Field = mysql_escape_string($_POST['major_field']);
 $Speical_Field = mysql_escape_string($_POST['special_field']);
 $Email = mysql_escape_string($_POST['email']);
 $Mobile = mysql_escape_string($_POST['mobile']);
-$IBAN = $_POST['IBAN'];
+$programId = $_POST['progVal'];
+$IBAN = "";
 
 $isValid = True;
 if (empty($FirstName_ar) || strlen($FirstName_ar) == 0) {
@@ -80,7 +81,7 @@ switch ($Action) {
             if ($isExitId == 0) {
                 $LastPersonId = $person->Save($personId, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, 1, '', '', '', '', $Major_Field, $Speical_Field, '', '', '', '', '', $Email, $Mobile, '', '', '', '', '', $IBAN, '');
                 $obj = new ResearchCenter_Reviewers();
-                $SaveToResearchCenter = $obj->Save($center_id, $LastPersonId);
+                $SaveToResearchCenter = $obj->Save($programId, $LastPersonId);
                 //Create Basic Reviewer Account 
                 $user = new Users();
                 $userName = generatePassword(8);
@@ -94,7 +95,7 @@ switch ($Action) {
             } else {
                 //Add to RCenter_Reviwers
                 $obj = new ResearchCenter_Reviewers();
-                $SaveToResearchCenter = $obj->Save($center_id, $isExitId);
+                $SaveToResearchCenter = $obj->Save($programId, $isExitId);
                 if ($SaveToResearchCenter == 1) {
                     $Result = 1;
                 } else {
