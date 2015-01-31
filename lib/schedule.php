@@ -13,7 +13,7 @@
  */
 require_once 'mysqlConnection.php';
 
-class Budget {
+class Schedule {
 
     public function __construct() {
         $connection = new MysqlConnect();
