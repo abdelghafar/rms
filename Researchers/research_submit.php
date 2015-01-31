@@ -8,27 +8,6 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-if (!isset($_GET['program'])) {
-    header('Location:selectProgram.php');
-} else {
-    $prog = $_GET['program'];
-
-    switch ($prog) {
-        case'ba7th':
-            $_SESSION['program'] = 'ba7th';
-            break;
-        case 'wa3da':
-            $_SESSION['program'] = 'wa3da';
-            break;
-        case 'ra2d':
-            $_SESSION['program'] = 'ra2d';
-            break;
-        default :
-            header('Location:selectProgram.php');
-            break;
-    }
-}
-
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
