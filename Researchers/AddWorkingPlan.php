@@ -43,19 +43,13 @@ $rcode = $_GET['rcode'];
             $(document).ready(function () {
                 var theme = "energyblue";
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
-                $("#planTitle").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
+                $("#Title").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
+                $("#desc").jqxInput({width: '200', height: '130', theme: theme, rtl: true});
                 $("#sendButton").on('click', function () {
 
                 });
             });
         </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-
-            });
-
-        </script>
-
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddWorkingPlan.inc.php" target="form-iframe">
@@ -71,7 +65,7 @@ $rcode = $_GET['rcode'];
                     <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
 
                         <p>
-                            عنوان الخطة 
+                            عنوان المرحلة
                         </p>
 
                     </div>
@@ -83,11 +77,12 @@ $rcode = $_GET['rcode'];
                 <div class="panel_row">
                     <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                         <p>
-                            المستند
+                            التفاصيل
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="file" name="file" id="file" style="width:300px;" dir="ltr"/>
+                        <textarea name="desc" rows="4" cols="20" id="desc">
+                        </textarea>
                     </div>
                 </div> 
 
