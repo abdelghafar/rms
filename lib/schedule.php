@@ -19,16 +19,16 @@ class Schedule {
         $connection = new MysqlConnect();
     }
 
-    public function Save($projectId, $scheduleTitle, $scheduleUrl, $size) {
+    public function Save($projectId, $scheduleTitle, $scheduleDesc, $phaseId) {
         $conn = new MysqlConnect();
-        $stmt = "insert into project_schedule (project_id,schedule_title,schedule_url,size) values (" . $projectId . ",'" . $scheduleTitle . "','" . $scheduleUrl . "'," . $size . ")";
+        $stmt = "insert into project_schedule (project_id,schedule_title,schedule_desc,phase_id) values (" . $projectId . ",'" . $scheduleTitle . "','" . $scheduleDesc . "'," . $phaseId . ")";
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
 
     public function GetSchedule($projectId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,schedule_url,project_id,schedule_title FROM project_schedule WHERE project_id=" . $projectId;
+        $stmt = "SELECT schedule_desc,schedule_title,phase_title FROM project_schedule join project_plan on project_plan.seq_id = project_schedule.phase_id where project_schedule.project_id=" . $projectId;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
