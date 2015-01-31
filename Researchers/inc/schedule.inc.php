@@ -41,6 +41,9 @@ $rs = $obj->GetSchedule($research_id);
                         عنوان المهمة
                     </th>
                     <th>
+                        المرحلة
+                    </th>
+                    <th>
                         التفاصيل
                     </th>
                     <th>
@@ -60,6 +63,7 @@ $rs = $obj->GetSchedule($research_id);
                             $x++; //$row['id']; 
                             ?></td>
                         <td style=" text-align: right;"><? echo $row['schedule_title']; ?></td>
+                        <td style=" text-align: right;"><? echo $row['phase_title']; ?></td>
 
                         <td style=" text-align: right;"><? echo $row['schedule_desc']; ?></td>
 
