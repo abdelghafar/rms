@@ -87,7 +87,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="Forms.php">
-                        <img src="images/documents.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
+                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
                         <p style="margin-top: 0px;">
                             النماذج  و الاستمارات
                         </p>
