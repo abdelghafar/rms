@@ -97,7 +97,7 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                         <th>عنوان المشروع - انجليزى</th>
                         <th>رقم البحث</th>
                         <th>
-                            المركز البحثي
+                           التخصص  العام
                         </th>
                         <th>سنة التقدم</th>
                         <th>حالة البحث</th>

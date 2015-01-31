@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher')
+    if ($rule != 'Researcher') {
         header('Location:../Login.php');
+    }
 }
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -83,7 +84,7 @@ while ($row = mysql_fetch_array($rs)) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
@@ -99,15 +100,15 @@ while ($row = mysql_fetch_array($rs)) {
             }
         </style>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = 'energyblue';
-                $("#gender").jqxSwitchButton({rtl: true, height: 25, width: '70', onLabel: "أنثي", offLabel: "ذكر", checked: false, theme: theme});
+                 
                 $(".Calander").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
                 $(".Calander").jqxDateTimeInput('val', '<? echo $DateOfBirth; ?>');
-                $("#user_name").jqxInput({rtl: true, height: 25, width: 200, minLength: 1, theme: 'energyblue', disabled: true});
-                $("#password").jqxPasswordInput({theme: 'energyblue', width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
-                $("#passwordConfirm").jqxPasswordInput({theme: 'energyblue', width: '200px', height: '25px', minLength: 8, maxLength: 20, rtl: true});
+                 
+                 
+                
                 $("#POX").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
                 $("#postal_code").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
                 $("#university").jqxInput({disabled: true});
@@ -117,14 +118,14 @@ while ($row = mysql_fetch_array($rs)) {
                 $("#jqxdropdownlist").jqxDropDownList({rtl: true, source: comboSrc, selectedIndex: 0, width: '150px', height: '25px', theme: 'energyblue'});
                 $("#jqxdropdownlist").jqxDropDownList('val', '<? echo $Position; ?>');
                 $("#eqamaCode").jqxInput({rtl: true, width: '150px', height: '25px', disabled: true, value: '<? echo $EqamaCode; ?>', theme: 'energyblue'});
-                $("#iban").jqxMaskedInput({width: 250, height: 25, mask: 'cccc-####-####-####-####-####', theme: theme, value: '<? echo $IBAN; ?>'});
+                
 
 
-                $("#form").on('validationSuccess', function() {
+                $("#form").on('validationSuccess', function () {
                     $("#form-iframe").fadeIn('fast');
                 });
 
-                $('#sendButton').on('click', function() {
+                $('#sendButton').on('click', function () {
                     $('#form').jqxValidator('validate');
                 });
 
@@ -132,11 +133,11 @@ while ($row = mysql_fetch_array($rs)) {
             });</script>
         <script type="text/javascript">
             $(document).ready(
-                    function() {
+                    function () {
                         checked = false;
                         genderText = "ذكر";
                         $('#genderType').val(genderText);
-                        $("#gender").bind('change', function(event) {
+                        $("#gender").bind('change', function (event) {
                             checked = event.args.check;
                             if (checked === true)
                             {
@@ -152,7 +153,7 @@ while ($row = mysql_fetch_array($rs)) {
                         var item = "أستاذ مساعد";
                         $("#Position").val(item);
 
-                        $('#jqxdropdownlist').bind('select', function(event) {
+                        $('#jqxdropdownlist').bind('select', function (event) {
                             var args = event.args;
                             item = $('#jqxdropdownlist').jqxDropDownList('getItem', args.index);
                             $("#Position").val(item.label);
@@ -161,7 +162,7 @@ while ($row = mysql_fetch_array($rs)) {
                     });</script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#form').jqxValidator({rules: [
                         {input: '#FirstName-ar', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                         {input: '#FatherName-ar', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
@@ -179,17 +180,17 @@ while ($row = mysql_fetch_array($rs)) {
             });</script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
-                $("#form").submit(function() {
+            $(document).ready(function () {
+                $("#form").submit(function () {
                     $.ajax({
                         type: 'post',
                         url: 'inc/UpdateInfo.inc.php',
                         datatype: "html",
                         data: $("#form").serialize(),
-                        beforeSend: function() {
+                        beforeSend: function () {
                             $("#result").html("<img src='../images/ajax-loader.gif'/>loading...");
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#result").html(data);
                         }
                     });

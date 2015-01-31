@@ -45,7 +45,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxpasswordinput.js"></script>
@@ -67,7 +67,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript">
             $(document).ready(function() {
                 var theme = "energyblue";
-                $("#createAccount").jqxExpander({theme: theme, toggleMode: 'none', width: '480px', showArrow: false, rtl: true});
+                
                 $("#Current_Password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, rtl: true});
                 $("#password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
                 $("#passwordConfirm").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, rtl: true});
