@@ -5,11 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once '../../lib/projectPlan.php';
+require_once '../../lib/budget.php';
 
 if (isset($_GET['seq_id'])) {
     $seqId = $_GET['seq_id'];
-    $project = new BudgetPlan();
+    $project = new Budget();
     $res = $project->Delete($seqId);
 } else {
     echo 'person_id and rcode are required..';
