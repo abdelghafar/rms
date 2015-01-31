@@ -1,6 +1,9 @@
 <?php
 session_start();
+require_once '../lib/Reseaches.php';
 $rcode = $_GET['rcode'];
+$r = new Reseaches();
+$Rid = $r->GetResearchId($rcode);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +25,7 @@ $rcode = $_GET['rcode'];
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
-
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
 
@@ -32,7 +35,7 @@ $rcode = $_GET['rcode'];
             .demo-iframe {
                 border: none;
                 width: 600px;
-                height: auto; 
+                height: 60px; 
                 clear: both;
                 float: right; 
                 margin:0px;
@@ -45,6 +48,40 @@ $rcode = $_GET['rcode'];
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
                 $("#Title").jqxInput({width: '300', height: '30', theme: theme, rtl: true});
                 $("#Desc").jqxInput({width: '300', height: '100', theme: theme, rtl: true});
+                var source =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'phase_title'}
+                            ],
+                            url: '../Data/ProjectPhases.php?pid=' +<? echo $Rid; ?>,
+                            async: false
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $('#phases').jqxDropDownList({source: dataAdapter,
+                    displayMember: 'phase_title',
+                    valueMember: 'seq_id',
+                    width: '300px',
+                    height: '30px',
+                    theme: theme,
+                    selectedIndex: 0,
+                    rtl: true});
+                var item = $("#phases").jqxDropDownList('getSelectedItem');
+                $('#PhaseId').val(item.value);
+                $('#phases').on('select', function (event)
+                {
+                    var args = event.args;
+                    if (args) {
+                        // index represents the item's index.                      
+                        var index = args.index;
+                        var item = args.item;
+                        // get item's label and value.
+                        var label = item.label;
+                        var value = item.value;
+                        $('#PhaseId').val(value);
+                    }
+                });
                 $("#sendButton").on('click', function () {
 
                 });
@@ -78,7 +115,18 @@ $rcode = $_GET['rcode'];
                         <input type="text" id="Title" name="Title"/>
                     </div>
                 </div> 
+                <div class="panel_row">
 
+                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+                        <p>
+                            المرحلة
+                        </p>
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <div id="phases"></div>
+                        <input type="hidden" id="PhaseId" name="PhaseId"/>
+                    </div>
+                </div> 
                 <div class="panel_row">
                     <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                         <p>
