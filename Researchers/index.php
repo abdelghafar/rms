@@ -97,6 +97,17 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
             <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
                 <div class="panel-cell" style="padding-right: 0px;">
+                    <a href="workingPlan.php">
+                        <img src="images/view-calendar.png" alt="خطة العمل" title ="خطة العمل" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            خطة العمل
+                        </p>
+                    </a>
+
+
+                </div>
+
+                <div class="panel-cell" style="padding-right: 100px;">
                     <a href="schedule.php">
                         <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
                         <p style="margin-top: 0px;">
@@ -104,15 +115,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a>
 
-                </div>
-
-                <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="workingPlan.php">
-                        <img src="images/view-calendar.png" alt="خطة العمل" title ="خطة العمل" style ="border:0"/>
-                        <p style="margin-top: 0px;">
-                            خطة العمل
-                        </p>
-                    </a>
 
                 </div>
 

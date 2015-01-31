@@ -175,7 +175,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 </form>
             </div>
         </div>
-        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor();">اضافة خطة العمل</a>
+        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor();">اضافة مرحلة عمل</a>
         <div id="Result">
 
         </div>

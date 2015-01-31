@@ -43,8 +43,8 @@ $rcode = $_GET['rcode'];
             $(document).ready(function () {
                 var theme = "energyblue";
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
-                $("#Title").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
-                $("#desc").jqxInput({width: '200', height: '130', theme: theme, rtl: true});
+                $("#title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
+                $("#desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
                 $("#sendButton").on('click', function () {
 
                 });
@@ -57,7 +57,7 @@ $rcode = $_GET['rcode'];
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <p>
-                        اضافة خطة العمل
+                        اضافة مرحلة عمل
                     </p>
                 </legend>
                 <div class="panel_row">
@@ -70,7 +70,7 @@ $rcode = $_GET['rcode'];
 
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="text" id="planTitle" name="planTitle"/>
+                        <input type="text" id="title" name="title"/>
                     </div>
                 </div> 
 
