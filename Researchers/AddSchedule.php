@@ -43,7 +43,8 @@ $rcode = $_GET['rcode'];
             $(document).ready(function () {
                 var theme = "energyblue";
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
-                $("#Title").jqxInput({width: '200', height: '30', theme: theme, rtl: true});
+                $("#Title").jqxInput({width: '300', height: '30', theme: theme, rtl: true});
+                $("#Desc").jqxInput({width: '300', height: '100', theme: theme, rtl: true});
                 $("#sendButton").on('click', function () {
 
                 });
@@ -63,17 +64,15 @@ $rcode = $_GET['rcode'];
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
-                        اضافة جدول المهام
+                        اضافة المهام
                     </label>
                 </legend>
                 <div class="panel_row">
 
                     <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
-
                         <p>
-                            عنوان جدول المهام
+                            اضافة المهام
                         </p>
-
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="text" id="Title" name="Title"/>
@@ -83,11 +82,12 @@ $rcode = $_GET['rcode'];
                 <div class="panel_row">
                     <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                         <p>
-                            المستند
+                            التفاصيل
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="file" name="file" id="file" style="width:300px;" dir="ltr"/>
+                        <textarea id="Desc" name="Desc" rows="4" cols="20">
+                        </textarea>
                     </div>
                 </div> 
 

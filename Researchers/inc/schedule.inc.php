@@ -38,10 +38,10 @@ $rs = $obj->GetSchedule($research_id);
                 <tr>
                     <th><em>م</em></th>
                     <th>
-                        جدول المهام
+                        عنوان المهمة
                     </th>
                     <th>
-                        تحميل
+                        التفاصيل
                     </th>
                     <th>
                         حذف
@@ -61,7 +61,7 @@ $rs = $obj->GetSchedule($research_id);
                             ?></td>
                         <td style=" text-align: right;"><? echo $row['schedule_title']; ?></td>
 
-                        <td style=" text-align: right;"><? echo '<a href="../' . $row['schedule_url'] . '">' . 'تحميل' . '</a>'; ?></td>
+                        <td style=" text-align: right;"><? echo $row['schedule_desc']; ?></td>
 
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="تعديل"/></a></td>
 
