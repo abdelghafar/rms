@@ -40,7 +40,7 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -64,7 +64,7 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                         type: 'post',
                         url: 'inc/WithDraw.inc.php?ResearchId=' + ResearchId,
                         datatype: "html",
-                        success: function(data) {
+                        success: function (data) {
                             location.reload();
                         }
                     });
@@ -95,9 +95,11 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                         <th><em>م</em></th>
                         <th>عنوان المشروع - عربى </th>
                         <th>عنوان المشروع - انجليزى</th>
-                        <th>رقم البحث</th>
                         <th>
-                           التخصص  العام
+                            التخصص العام
+                        </th>
+                        <th>
+                            البرنامج
                         </th>
                         <th>سنة التقدم</th>
                         <th>حالة البحث</th>
@@ -119,8 +121,8 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
                                 ?></td>
                             <td style=" text-align: right"><? echo $row['title_ar']; ?></td>
                             <td style=" text-align: left"><? echo $row['title_en']; ?></td>
-                            <td style=" text-align: left"><? echo $row['research_code']; ?></td>
-                            <td style=" text-align: right;"><? echo $row['center_name']; ?></td>
+                            <td style=" text-align: left"><? echo $row['center_name']; ?></td>
+                            <td style=" text-align: right;"><? echo $row['program']; ?></td>
                             <td><? echo $row['research_year']; ?></td>
                             <td style=" text-align: center;"><? echo $row['Status_name']; ?></td>
                             <td style=" text-align: center;"><a href="#" onClick="display_research_status(<? echo $row['seq_id'] . ",'" . $row['research_code'] . "'"; ?>);"><img src="images/track.png" style="border:none !important" alt="متابعة الحالة"/></a></td>
@@ -135,12 +137,12 @@ $rs = $c_researches->GetResearchesByResearcher($personId);
             </table>
 
         </fieldset>
-        <label>
-            <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
-                رجوع
-            </a></label>
+    <label>
+        <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+            رجوع
+        </a></label>
 
-    </body>
+</body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
