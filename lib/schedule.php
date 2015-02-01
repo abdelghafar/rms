@@ -19,16 +19,16 @@ class Schedule {
         $connection = new MysqlConnect();
     }
 
-    public function Save($projectId, $scheduleTitle, $scheduleDesc, $phaseId) {
+    public function Save($projectId, $scheduleTitle, $scheduleDesc, $phaseId, $StatDate, $endDate) {
         $conn = new MysqlConnect();
-        $stmt = "insert into project_schedule (project_id,schedule_title,schedule_desc,phase_id) values (" . $projectId . ",'" . $scheduleTitle . "','" . $scheduleDesc . "'," . $phaseId . ")";
+        $stmt = "insert into project_schedule (project_id,schedule_title,schedule_desc,phase_id,start_date,end_date) values (" . $projectId . ",'" . $scheduleTitle . "','" . $scheduleDesc . "'," . $phaseId . ",'" . $StatDate . "','" . $endDate . "')";
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
 
     public function GetSchedule($projectId) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT schedule_desc,schedule_title,phase_title FROM project_schedule join project_plan on project_plan.seq_id = project_schedule.phase_id where project_schedule.project_id=" . $projectId;
+        $stmt = "SELECT schedule_desc,schedule_title,phase_title,start_date,end_date FROM project_schedule join project_plan on project_plan.seq_id = project_schedule.phase_id where project_schedule.project_id=" . $projectId;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
