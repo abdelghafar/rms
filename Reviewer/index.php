@@ -46,7 +46,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <body>
     <center>
         <div class="Infobox" style="direction:rtl;width:850px;text-align: right;">
-            لتحميل نموذج التحكيم <a href="forms/Evaluation.pdf">اضغط هنا</a>
+            لتحميل نموذج التحكيم <a href="forms/Evaluation.pdf" target="_blank">اضغط هنا</a>
 
         </div>
         <fieldset style="width: 95%;text-align: right;"> 
