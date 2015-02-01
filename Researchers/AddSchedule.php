@@ -35,7 +35,7 @@ $Rid = $r->GetResearchId($rcode);
             .demo-iframe {
                 border: none;
                 width: 600px;
-                height: 60px; 
+                height: 50px; 
                 clear: both;
                 float: right; 
                 margin:0px;
@@ -48,6 +48,16 @@ $Rid = $r->GetResearchId($rcode);
                 $("#sendButton").jqxButton({width: '100', height: '30', theme: theme});
                 $("#Title").jqxInput({width: '300', height: '30', theme: theme, rtl: true});
                 $("#Desc").jqxInput({width: '300', height: '100', theme: theme, rtl: true});
+                $("#startDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+                $("#endDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+                $('#startDate').on('change', function (event)
+                {
+                    $("#start_date").val($('#startDate').jqxDateTimeInput('getText'));
+                });
+                $('#endDate').on('change', function (event)
+                {
+                    $("#end_date").val($('#endDate').jqxDateTimeInput('getText'));
+                });
                 var source =
                         {
                             datatype: "json",
@@ -82,11 +92,7 @@ $Rid = $r->GetResearchId($rcode);
                         $('#PhaseId').val(value);
                     }
                 });
-                $("#sendButton").on('click', function () {
-
-                });
-            });
-        </script>
+            });</script>
         <script type="text/javascript">
             $(document).ready(function () {
 
@@ -127,6 +133,34 @@ $Rid = $r->GetResearchId($rcode);
                         <input type="hidden" id="PhaseId" name="PhaseId"/>
                     </div>
                 </div> 
+
+                <div class="panel_row">
+
+                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+                        <p>
+                            تاريخ البدء
+                        </p>
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <div id="startDate"></div>
+                        <input type="hidden" id="start_date" name="start_date"/>
+                    </div>
+                </div> 
+
+                <div class="panel_row">
+
+                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+                        <p>
+                            تاريخ الانتهاء
+                        </p>
+                    </div>
+                    <div class="panel-cell" style="vertical-align: middle"> 
+                        <div id="endDate"></div>
+                        <input type="hidden" id="end_date" name="end_date"/>
+                    </div>
+                </div> 
+
+
                 <div class="panel_row">
                     <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                         <p>
