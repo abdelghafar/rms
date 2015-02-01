@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Reviewer')
+    if ($rule != 'Reviewer') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -29,14 +30,25 @@ $smarty->display('../templates/Loggedin.tpl');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
+        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/> 
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.Infobox').hide();
+                $(".Infobox").fadeIn(4000, 'swing');
+            });
+        </script>
         <title>
 
         </title>
     </head>
     <body>
     <center>
+        <div class="Infobox" style="direction:rtl;width:850px;text-align: right;">
+            لتحميل نموذج التحكيم <a href="forms/Evaluation.pdf">اضغط هنا</a>
+
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -54,7 +66,6 @@ $smarty->display('../templates/Loggedin.tpl');
                             متابعة الابحاث
                         </p>
                     </a>
-
                 </div>
 
                 <div class="panel-cell" style="padding-right:100px;">
