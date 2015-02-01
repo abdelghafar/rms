@@ -11,15 +11,21 @@ $rs = $cr->getResearchAllStatus($research_id);
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-    <script type="text/javascript" src="../jquery.js"></script>
+    <title></title>
     <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
     <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
     <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#datatables').dataTable({width: 500, bJQueryUI: true, oLanguage: {
-                    sUrl: "../js/dataTables/media/ar_Ar.txt"}});
+        $(document).ready(function () {
+            $('#grid').dataTable({
+                sPaginationType: "full_numbers",
+                bJQueryUI: true,
+                bLengthChange: true,
+                width: 500,
+                oLanguage: {
+                    sUrl: "../js/dataTables/media/ar_Ar.txt"}
+            });
         });
 
     </script>
@@ -34,13 +40,13 @@ $rs = $cr->getResearchAllStatus($research_id);
                 رقم المشروع
             </label>
         </div>
-        <div class="panel-cell" style="width: 450px;height: 30px;"> 
+        <div class="panel-cell" style="width:100px;height: 30px;"> 
             <p style="font-weight: bold;">
                 <?php echo $research_code; ?>
             </p>
         </div>
     </div>
-    <table id="datatables" class="display" dir="rtl" style="text-align: center;font-size:14px; font-weight: bold" >
+    <table id="grid" class="display" dir="rtl" style="text-align: center;font-size:14px; font-weight: bold;" >
         <thead>
             <tr>
                 <th><em>م</em></th>

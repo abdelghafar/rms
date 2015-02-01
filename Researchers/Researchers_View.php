@@ -34,11 +34,23 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#datatables').dataTable({
@@ -54,7 +66,13 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
         <script type="text/javascript">
             function display_research_status(research_id, research_code)
             {
-                window.showModalDialog("research_status_details_View.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', 'dialogHeight:450px; dialogWidth:850px; resizable:0');
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("research_status_details_View.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'حالة البحث');
+                    $('#window').jqxWindow('open');
+                });
             }
             function WithDraw(ResearchId)
             {
@@ -72,8 +90,15 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
             }
             function display_research_Edit(research_id, research_code)
             {
-                window.showModalDialog("ResearchEdit.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', 'dialogHeight:450px; dialogWidth:900px; resizable:0');
-                location.reload();
+//                window.showModalDialog("ResearchEdit.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', 'dialogHeight:450px; dialogWidth:900px; resizable:0');
+
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("ResearchEdit.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow('setTitle', 'تفاصيل البحث');
+                    $('#window').jqxWindow('open');
+                });
             }
 
 
@@ -81,6 +106,11 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
         <title></title>
     </head>
     <body style="background-color: #ededed;">
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
+        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -102,7 +132,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                         <th>سنة التقدم</th>
                         <th>حالة البحث</th>
                         <th>متابعة الحالة</th>
-                        <th>تعديل</th>
+
                         <th>حذف</th>
                     </tr>
                 </thead>
@@ -124,7 +154,6 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                             <td style=" text-align: center;"><? echo $row['Status_name']; ?></td>
                             <td style=" text-align: center;"><a href="#" onClick="display_research_status(<? echo $row['seq_id'] . ",'" . $row['research_code'] . "'"; ?>);"><img src="images/track.png" style="border:none !important" alt="متابعة الحالة"/></a></td>
 
-                            <td style=" text-align: center;"><a href="#" onClick="display_research_Edit(<? echo $row['seq_id'] . ",'" . $row['research_code'] . "'"; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
                             <td style=" text-align: center;"><a href="#" onClick="WithDraw(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
                         </tr>
                         <?php

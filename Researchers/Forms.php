@@ -34,31 +34,10 @@ $smarty->display('../templates/Loggedin.tpl');
         <title></title>
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
         <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.Infobox').hide();
-                $(".Infobox").fadeIn(4000, 'swing');
-            });
-        </script>
+
     </head>
     <body>
     <center>
-
-        <div class="Infobox" style="direction:rtl;width:850px;text-align: right;">
-            <span>
-                فترة التقديم
-            </span>
-            <br/>
-            <ul type="disc" style="text-align: right;">
-                <li  style="color:#00529B;text-align: right;">
-                    (للرجال) في الفترة من  4-5-1436 هـ  الي 3-6-1436 هـ
-                </li>
-                <li  style="color:#00529B;text-align: right;">
-                    (للنساء) في الفترة من 9-5-1436 هـ الي 8-6-1436 هـ
-                </li>
-            </ul>
-
-        </div>
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -79,7 +58,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
                 <div class="panel-cell" style="padding-right:100px;">
                     <a href="forms/ISR-Proposal-Form.doc">
-                        <img id="new_Research" src="images/document-open-8.png" alt="نموذج-2" title="نموذج-2" style ="border:0" /> 
+                        <img id="new_Research" src="images/invoice.png" alt="نموذج-2" title="نموذج-2" style ="border:0" /> 
                         <p style="margin-top: 0px;">
                             نموذج-2
                         </p>
