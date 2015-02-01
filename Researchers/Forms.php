@@ -4,8 +4,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher')
+    if ($rule != 'Researcher') {
         header('Location:../Login.php');
+    }
 }
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
