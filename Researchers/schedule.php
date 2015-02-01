@@ -66,7 +66,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         {
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
-                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 500, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
                 $('#windowContent').load("AddSchedule.php?rcode=" + $('#lstOfResearches').find(":selected").text());
                 $('#window').jqxWindow('setTitle', 'اضافة مهام المشروع');
                 $('#window').jqxWindow('open');
