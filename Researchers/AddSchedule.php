@@ -50,10 +50,12 @@ $Rid = $r->GetResearchId($rcode);
                 $("#Desc").jqxInput({width: '300', height: '100', theme: theme, rtl: true});
                 $("#startDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
                 $("#endDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+                $("#start_date").val($('#startDate').jqxDateTimeInput('getText'));
                 $('#startDate').on('change', function (event)
                 {
                     $("#start_date").val($('#startDate').jqxDateTimeInput('getText'));
                 });
+                $("#end_date").val($('#endDate').jqxDateTimeInput('getText'));
                 $('#endDate').on('change', function (event)
                 {
                     $("#end_date").val($('#endDate').jqxDateTimeInput('getText'));
