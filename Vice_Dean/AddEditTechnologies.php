@@ -1,11 +1,12 @@
 <?php
 session_start();
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-    echo $action;
-}
 if (isset($_GET['seq_id']) && isset($_GET['action'])) {
     $action = $_GET['action'] . '&seq_id=' . $_GET['seq_id'];
+    echo $action;
+}
+
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
     echo $action;
 }
 ?>
