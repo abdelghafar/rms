@@ -25,7 +25,8 @@ $rs = $obj->GetAllTechnologies();
                     oLanguage: {
                         sUrl: "../js/dataTables/media/ar_Ar.txt"}
                 });
-            });</script>
+            });
+        </script>
     </head>
     <body>
         <table id="datatables" class="display"  style=" text-align: center;font-size:14px; font-weight: bold;" dir="rtl" >
@@ -42,6 +43,9 @@ $rs = $obj->GetAllTechnologies();
                         متاحة/غير متاحة
                     </th>
                     <th>
+                        تعديل
+                    </th>
+                    <th>
                         حذف
                     </th>
                 </tr>
@@ -53,7 +57,8 @@ $rs = $obj->GetAllTechnologies();
                 while ($row = mysql_fetch_array($rs)) {
                     ?>
                     <tr>
-                        <td><?
+                        <td>
+                            <?
                             echo $x;
                             $x++; //$row['id']; 
                             ?></td>
@@ -68,6 +73,7 @@ $rs = $obj->GetAllTechnologies();
                             }
                             ?>
                         </td>
+                        <td style=" text-align: center;"><a href="#" onClick="Display_Edit(<? echo $row['seq_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
 
                     </tr>
