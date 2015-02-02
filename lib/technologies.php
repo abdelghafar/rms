@@ -57,6 +57,13 @@ class Technologies {
         $conn->ExecuteNonQuery($stmt);
     }
 
+    public function GetTechnologies($seq_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT seq_id,title,`desc`,isVisible FROM  technologies where seq_id=" . $seq_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return $rs;
+    }
+
 }
 
 //$t = new Technologies();
