@@ -1,7 +1,10 @@
 <?php
 session_start();
 $action = $_GET['action'];
-echo $action;
+echo $action . '<br/>';
+if (isset($_GET[seq_id])) {
+    echo $_GET['seq_id'];
+}
 ?>
 <!DOCTYPE html>
 <html>
