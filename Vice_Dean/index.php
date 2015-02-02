@@ -93,10 +93,10 @@ $smarty->display('../templates/Loggedin.tpl');
             <div class="panel_row" style="padding-right:  50px; height: 200px;">
 
                 <div class="panel-cell">
-                    <a href="Charts/index.php">
-                        <img src="images/Statistics.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 0px;"/>
+                    <a href="technologies.php">
+                        <img src="images/settings.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
-                            اعدادت
+                            أولويات البحث
                         </p>
                     </a> 
                 </div>
