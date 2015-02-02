@@ -21,25 +21,42 @@ class Technologies {
         $connection = new MysqlConnect();
     }
 
-    public function Save($title, $desc, $year, $isVisible, $ordering) {
+    public function Save($seq_id, $title, $desc, $isVisible, $ordering) {
         $conn = new MysqlConnect();
-        $stmt = "insert into project_schedule (project_id,schedule_title,schedule_desc,phase_id,start_date,end_date) values (" . $projectId . ",'" . $scheduleTitle . "','" . $scheduleDesc . "'," . $phaseId . ",'" . $StatDate . "','" . $endDate . "')";
-        $conn->ExecuteNonQuery($stmt);
-        return mysql_insert_id();
+        if ($seq_id == null || $seq_id == 0) {
+            $stmt = "insert into " . $this->tableName . " (title,`desc`,isVisible,ordering) values ('" . $title . "','" . $desc . "'," . $isVisible . "," . $ordering . ")";
+            //echo $stmt . '<br/>';
+            $conn->ExecuteNonQuery($stmt);
+            return mysql_insert_id();
+        } else {
+            $stmt = "Update " . $this->tableName . " Set title='" . $title . "',`desc`='" . $desc . "',isVisible=" . $isVisible . ",ordering=" . $ordering . " where seq_id=" . $seq_id;
+            echo $stmt . '<br/>';
+            $conn->ExecuteNonQuery($stmt);
+            return mysql_affected_rows();
+        }
     }
 
-    public function GetSchedule($projectId) {
+    public function GetVisibileTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT schedule_desc,schedule_title,phase_title,start_date,end_date FROM project_schedule join project_plan on project_plan.seq_id = project_schedule.phase_id where project_schedule.project_id=" . $projectId;
+        $stmt = "SELECT title,desc FROM  technologies where isVisible=1";
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return $rs;
+    }
+
+    public function GetAllTechnologies() {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT title,desc,isVisible FROM technologies";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
     public function Delete($seqId) {
         $conn = new MysqlConnect();
-        $stmt = "Delete from project_schedule where seq_id =" . $seqId;
-        echo $stmt;
+        $stmt = "Delete from " . $this->tableName . " where seq_id =" . $seqId;
         $conn->ExecuteNonQuery($stmt);
     }
 
 }
+
+//$t = new Technologies();
+//echo $t->Save(1, 'update test', 'updatae test', 1437, true, 2);
