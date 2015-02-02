@@ -42,9 +42,6 @@ $rs = $obj->GetAllTechnologies();
                         متاحة/غير متاحة
                     </th>
                     <th>
-                        الترتيب
-                    </th>
-                    <th>
                         حذف
                     </th>
                 </tr>
@@ -71,7 +68,6 @@ $rs = $obj->GetAllTechnologies();
                             }
                             ?>
                         </td>
-                        <td style=" text-align: right;"><? echo $row['ordering']; ?></td>
                         <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
 
                     </tr>
