@@ -1,12 +1,14 @@
 <?php
 session_start();
+require_once '../lib/technologies.php';
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     if (isset($_GET['seq_id'])) {
         $action .= '&seq_id=' . $_GET['seq_id'];
+        $t = new Technologies();
+        $rs = $t->GetTechnologies($seq_id);
     }
 }
-echo $action;
 ?>
 <!DOCTYPE html>
 <html>
