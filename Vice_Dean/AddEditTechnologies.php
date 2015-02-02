@@ -7,6 +7,12 @@ if (isset($_GET['action'])) {
         $action .= '&seq_id=' . $_GET['seq_id'];
         $t = new Technologies();
         $rs = $t->GetTechnologies($seq_id);
+        while ($row = mysql_fetch_array($rs)) {
+            $title = $row['title'];
+            $desc = $row['desc'];
+            $isVisible = $row['isVisible'];
+            $seq_id = $row['seq_id'];
+        }
     }
 }
 ?>
@@ -77,7 +83,11 @@ if (isset($_GET['action'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="text" id="Title" name="Title"/>
+                        <input type="text" id="Title" name="Title" value="<?
+                        if ($seq_id > 0) {
+                            echo $title;
+                        }
+                        ?>"/>
                     </div>
                 </div> 
 
@@ -89,6 +99,11 @@ if (isset($_GET['action'])) {
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <textarea id="Desc" name="Desc" rows="4" cols="20">
+                            <?
+                            if ($seq_id > 0) {
+                                echo $desc;
+                            }
+                            ?>
                         </textarea>
                     </div>
                 </div> 
@@ -99,7 +114,11 @@ if (isset($_GET['action'])) {
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
-                        <input type="checkbox" name="chkIsVisible" value="1" />
+                        <input type="checkbox" name="chkIsVisible" value="1" <?
+                        if ($isVisible == 1) {
+                            echo 'checked="checked"';
+                        }
+                        ?> />
                     </div>
                 </div> 
                 <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;"/>
