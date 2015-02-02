@@ -21,7 +21,7 @@ if ($isValid == TRUE) {
         $obj = new Technologies();
         $result = $obj->Save(0, $title, $desc, $isVisible);
     } else if ($_GET['action'] == 'edit') {
-        //ToDO://Update
+        $seq_id = $_GET['seq_id'];
     }
     $result;
     if ($result > 0) {
