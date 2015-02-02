@@ -38,14 +38,14 @@ class Technologies {
 
     public function GetVisibileTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT title,desc FROM  technologies where isVisible=1";
+        $stmt = "SELECT title,`desc` FROM  technologies where isVisible=1 order by ordering";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
     public function GetAllTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT title,desc,isVisible FROM technologies";
+        $stmt = "SELECT title,`desc`,isVisible,ordering FROM technologies order by ordering";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
