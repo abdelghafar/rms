@@ -57,9 +57,7 @@ echo $action;
             $(document).ready(function () {
 
             });
-
         </script>
-
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
