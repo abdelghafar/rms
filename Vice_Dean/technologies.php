@@ -67,8 +67,19 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddTechnologies.php");
+                $('#windowContent').load("AddEditTechnologies.php?action=insert");
                 $('#window').jqxWindow('setTitle', 'اضافة اولوية بحث');
+                $('#window').jqxWindow('open');
+            });
+        }
+
+        function Display_Edit(seq_id)
+        {
+            $(document).ready(function () {
+                $('#window').css('visibility', 'visible');
+                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                $('#windowContent').load("AddEditTechnologies.php?action=edit&seq_id=" + seq_id);
+                $('#window').jqxWindow('setTitle', 'تعديل اولوية بحث');
                 $('#window').jqxWindow('open');
             });
         }
@@ -95,6 +106,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 });
             }
         }
+
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -143,9 +155,9 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 <label>
     <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
         رجوع
-    </a></label>
+    </a>
+</label>
 
 </body>
 <?
 $smarty->display('../templates/footer.tpl');
-?>
