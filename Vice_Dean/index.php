@@ -91,14 +91,23 @@ $smarty->display('../templates/Loggedin.tpl');
 
             </div>
             <div class="panel_row" style="padding-right:  50px; height: 200px;">
+
                 <div class="panel-cell">
+                    <a href="Charts/index.php">
+                        <img src="images/Statistics.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 0px;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            اعدادت
+                        </p>
+                    </a> 
+                </div>
+                <div class="panel-cell" style="padding-right:100px;">
+
                     <a href="../inc/logout.inc.php">
                         <img src="images/exit.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             خروج
                         </p>
                     </a>
-
                 </div>
 
             </div>
