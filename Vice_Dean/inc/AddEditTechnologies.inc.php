@@ -22,12 +22,13 @@ if ($isValid == TRUE) {
         $result = $obj->Save(0, $title, $desc, $isVisible);
     } else if ($_GET['action'] == 'edit') {
         $seq_id = $_GET['seq_id'];
+        $result = $obj->Save($seq_id, $title, $desc, $isVisible);
     }
     $result;
     if ($result > 0) {
         echo 'تم حفظ البيانات بنجاح';
     } else {
-        
+        echo 'error';
     }
 } else {
     exit();
