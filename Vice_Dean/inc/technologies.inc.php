@@ -57,14 +57,15 @@ $rs = $obj->GetAllTechnologies();
                 while ($row = mysql_fetch_array($rs)) {
                     ?>
                     <tr>
-                        <td>
+                        <td style=" text-align: center;width: 30px;">
                             <?
                             echo $x;
                             $x++; //$row['id']; 
-                            ?></td>
+                            ?>
+                        </td>
                         <td style=" text-align: right;"><? echo $row['title']; ?></td>
                         <td style=" text-align: right;"><? echo $row['desc']; ?></td>
-                        <td style=" text-align: right;">
+                        <td style=" text-align: center;width: 90px;">
                             <?
                             if ($row['isVisible'] == 1) {
                                 echo '<input type="checkbox" name="" value="ON" checked="checked" disabled="disabled" />';
@@ -73,8 +74,8 @@ $rs = $obj->GetAllTechnologies();
                             }
                             ?>
                         </td>
-                        <td style=" text-align: center;"><a href="#" onClick="Display_Edit(<? echo $row['seq_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
-                        <td style=" text-align: center;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
+                        <td style=" text-align: center;width: 50px;"><a href="#" onClick="Display_Edit(<? echo $row['seq_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
+                        <td style=" text-align: center;width: 40px;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
 
                     </tr>
                     <?php
