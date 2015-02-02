@@ -7,6 +7,7 @@ if (isset($_GET['seq_id']) && isset($_GET['action'])) {
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 }
+echo $action;
 ?>
 <!DOCTYPE html>
 <html>
