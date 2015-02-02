@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (isset($_GET['seq_id']) && isset($_GET['action'])) {
-    $action = $_GET['action'] . '&seq_id=' . $_GET['seq_id'];
-}
+//if (isset($_GET['seq_id']) && isset($_GET['action'])) {
+//    $action = $_GET['action'] . '&seq_id=' . $_GET['seq_id'];
+//}
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 }
@@ -63,7 +63,7 @@ echo $action;
 
     </head>
     <body style="background-color: #ededed;">
-        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
+        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php" target="form-iframe">
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
