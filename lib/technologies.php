@@ -25,7 +25,7 @@ class Technologies {
         $conn = new MysqlConnect();
         if ($seq_id == null || $seq_id == 0) {
             $stmt = "insert into " . $this->tableName . " (title,`desc`,isVisible) values ('" . $title . "','" . $desc . "'," . $isVisible . ")";
-            //echo $stmt . '<br/>';
+            echo $stmt . '<br/>';
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
@@ -45,7 +45,7 @@ class Technologies {
 
     public function GetAllTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT title,`desc`,isVisible,ordering FROM technologies";
+        $stmt = "SELECT seq_id,title,`desc`,isVisible FROM technologies";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
@@ -53,6 +53,7 @@ class Technologies {
     public function Delete($seqId) {
         $conn = new MysqlConnect();
         $stmt = "Delete from " . $this->tableName . " where seq_id =" . $seqId;
+        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
     }
 
