@@ -8,6 +8,7 @@ if (isset($_GET['action'])) {
     }
     if (isset($_GET['seq_id'])) {
         $action .= '&seq_id=' . $_GET['seq_id'];
+        echo $action;
         $t = new Tracks();
         $track_id = $_GET['seq_id'];
         $rs = $t->GetTrack($track_id);
@@ -70,6 +71,7 @@ if (isset($_GET['action'])) {
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTrack.inc.php?action=<? echo $action; ?>" target="form-iframe">
+            <input type="hidden" name="track_id" value="<? echo $track_id; ?>"/>
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>

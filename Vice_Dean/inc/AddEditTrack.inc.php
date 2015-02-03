@@ -4,6 +4,8 @@ require_once '../../lib/Tracks.php';
 
 $track_name = $_POST['Title'];
 $tech_id = $_GET['tech_id'];
+print_r($_POST);
+echo $_GET['action'] . '<br/>';
 $isValid = true;
 if (strlen($track_name) == 0) {
     $isValid = FALSE;
@@ -15,7 +17,9 @@ if ($isValid == TRUE) {
         $obj = new Tracks();
         $result = $obj->Save(0, $track_name, $tech_id);
     } else if ($_GET['action'] == 'edit') {
-        
+        $seq_id = $_POST['track_id'];
+        $obj = new Tracks();
+        $result = $obj->Save($seq_id, $track_name, $tech_id);
     }
     $result;
     if ($result > 0) {

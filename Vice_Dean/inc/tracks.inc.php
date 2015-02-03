@@ -58,8 +58,8 @@ $rs = $obj->GetAllTracksPerTechId($techId);
                             ?>
                         </td>
                         <td style=" text-align: right;width: 150px;"><? echo $row['track_name']; ?></td>
-                        <td style=" text-align: center;width: 20px;"><a href="#" onClick="Display_Edit(<? echo $row['track_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
-                        <td style=" text-align: center;width: 20px;"><a href="#" onClick="Delete(<? echo $row['track_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
+                        <td style=" text-align: center;width: 10px;"><a href="#" onClick="Display_Edit(<? echo $row['track_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
+                        <td style=" text-align: center;width: 10px;"><a href="#" onClick="Delete(<? echo $row['track_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
 
                     </tr>
                     <?php
