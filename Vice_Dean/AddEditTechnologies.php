@@ -4,14 +4,16 @@ require_once '../lib/technologies.php';
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     if (isset($_GET['seq_id'])) {
+        echo 'get seq_id is set...';
         $action .= '&seq_id=' . $_GET['seq_id'];
+        echo $action;
         $t = new Technologies();
         $rs = $t->GetTechnologies($seq_id);
         while ($row = mysql_fetch_array($rs)) {
+            $seq_id = $row['seq_id'];
             $title = $row['title'];
             $desc = $row['tech_desc'];
             $isVisible = $row['isVisible'];
-            $seq_id = $row['seq_id'];
         }
     }
 }
@@ -69,6 +71,7 @@ if (isset($_GET['action'])) {
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
+            <input type="hidden" name="tech_id" value="<? echo $_GET['seq_id']; ?>"/>
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
