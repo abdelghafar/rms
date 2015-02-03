@@ -63,7 +63,7 @@ $rs = $obj->GetAllTechnologies();
                             $x++; //$row['id']; 
                             ?>
                         </td>
-                        <td style=" text-align: right;"><? echo $row['title']; ?></td>
+                        <td style=" text-align: right;width: 150px;"><? echo $row['title']; ?></td>
                         <td style=" text-align: right;"><? echo $row['desc']; ?></td>
                         <td style=" text-align: center;width: 90px;">
                             <?
