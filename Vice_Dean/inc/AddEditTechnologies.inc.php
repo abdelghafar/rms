@@ -21,7 +21,8 @@ if ($isValid == TRUE) {
         $obj = new Technologies();
         $result = $obj->Save(0, $title, $desc, $isVisible);
     } else if ($_GET['action'] == 'edit') {
-        $seq_id = $_GET['seq_id'];
+        $seq_id = $_POST['track_id'];
+        print_r($_POST);
         $obj = new Technologies();
         $result = $obj->Save($seq_id, $title, $desc, $isVisible);
     }
