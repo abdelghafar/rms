@@ -91,10 +91,9 @@ $smarty->display('../templates/Loggedin.tpl');
 
             </div>
             <div class="panel_row" style="padding-right:  50px; height: 200px;">
-
                 <div class="panel-cell">
                     <a href="technologies.php">
-                        <img src="images/help-contents-2.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 10px;"/>
+                        <img src="images/map-compass.png" alt="أولويات البحث" title ="أولويات البحث" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             أولويات البحث
                         </p>
@@ -103,7 +102,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <div class="panel-cell" style="padding-right:100px;">
                     <a href="tracks.php">
-                        <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                        <img src="images/molicule-stilleite_zinc_selenide_unit.png" alt=" التخصصات العامة" title =" التخصصات العامة" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             التخصصات العامة
                         </p>
@@ -111,8 +110,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right:100px;">
-                    <a href="#">
-                        <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                    <a href="subtracks.php">
+                        <img src="images/molicule-sphalerite_unit.png" alt=" التخصصات الدقيقة" title =" التخصصات الدقيقة" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             التخصصات الدقيقة
                         </p>
@@ -121,7 +120,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <div class="panel-cell" style="padding-right:100px;">
                     <a href="../inc/logout.inc.php">
-                        <img src="images/exit.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                        <img src="images/exit.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             خروج
                         </p>
