@@ -64,7 +64,7 @@ $rs = $obj->GetAllTechnologies();
                             ?>
                         </td>
                         <td style=" text-align: right;width: 150px;"><? echo $row['title']; ?></td>
-                        <td style=" text-align: right;"><? echo $row['desc']; ?></td>
+                        <td style=" text-align: right;"><? echo $row['tech_desc']; ?></td>
                         <td style=" text-align: center;width: 90px;">
                             <?
                             if ($row['isVisible'] == 1) {
