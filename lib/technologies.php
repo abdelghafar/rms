@@ -64,7 +64,16 @@ class Technologies {
         return $rs;
     }
 
-   
+    public function GetPairValues() {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT seq_id,title FROM " . $this->tableName;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $result = Array("PairValues" => Array());
+        while ($row = mysql_fetch_array($rs)) {
+            array_push($result['PairValues'], Array($row['seq_id'], $row['title']));
+        }
+        return $result;
+    }
 
 }
 
