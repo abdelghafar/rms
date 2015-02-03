@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
         $rs = $t->GetTechnologies($seq_id);
         while ($row = mysql_fetch_array($rs)) {
             $title = $row['title'];
-            $desc = $row['desc'];
+            $desc = $row['tech_desc'];
             $isVisible = $row['isVisible'];
             $seq_id = $row['seq_id'];
         }
