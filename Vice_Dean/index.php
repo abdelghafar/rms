@@ -94,7 +94,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <div class="panel-cell">
                     <a href="technologies.php">
-                        <img src="images/settings.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 10px;"/>
+                        <img src="images/help-contents-2.png" alt=" بيانات احصائية" title =" بيانات احصائية" style ="border:0;margin-right: 10px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             أولويات البحث
                         </p>
@@ -102,7 +102,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
 
                 <div class="panel-cell" style="padding-right:100px;">
-                    <a href="#">
+                    <a href="tracks.php">
                         <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             التخصصات العامة
@@ -110,14 +110,14 @@ $smarty->display('../templates/Loggedin.tpl');
                     </a>
                 </div>
 
-                <div class="panel-cell" style="padding-right:100px;">
+<!--                <div class="panel-cell" style="padding-right:100px;">
                     <a href="#">
                         <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
                             التخصصات الدقيقة
                         </p>
                     </a>
-                </div>
+                </div>-->
 
                 <div class="panel-cell" style="padding-right:100px;">
                     <a href="../inc/logout.inc.php">
