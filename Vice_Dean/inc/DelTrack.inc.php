@@ -10,7 +10,7 @@ require_once '../../lib/Tracks.php';
 
 if (isset($_GET['seq_id'])) {
     $seqId = $_GET['seq_id'];
-    $obj = new Technologies();
+    $obj = new Tracks();
     $res = $obj->Delete($seqId);
 } else {
     echo 'seq_id is required..';
