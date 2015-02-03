@@ -100,8 +100,26 @@ $smarty->display('../templates/Loggedin.tpl');
                         </p>
                     </a> 
                 </div>
-                <div class="panel-cell" style="padding-right:100px;">
 
+                <div class="panel-cell" style="padding-right:100px;">
+                    <a href="#">
+                        <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            التخصصات العامة
+                        </p>
+                    </a>
+                </div>
+
+                <div class="panel-cell" style="padding-right:100px;">
+                    <a href="#">
+                        <img src="images/settings.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
+                        <p style="margin-top: 0px;font-size: 13px;">
+                            التخصصات الدقيقة
+                        </p>
+                    </a>
+                </div>
+
+                <div class="panel-cell" style="padding-right:100px;">
                     <a href="../inc/logout.inc.php">
                         <img src="images/exit.png" alt="خروج" title =" خروج" style ="border:0;margin-right: 0px;"/>
                         <p style="margin-top: 0px;font-size: 13px;">
