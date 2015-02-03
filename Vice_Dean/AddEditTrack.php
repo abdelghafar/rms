@@ -1,16 +1,15 @@
 <?php
 session_start();
-require_once '../lib/technologies.php';
+require_once '../lib/Tracks.php';
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     if (isset($_GET['tech_id'])) {
         $action.= '&tech_id=' . $_GET['tech_id'];
-        echo $action;
     }
     if (isset($_GET['seq_id'])) {
         $action .= '&seq_id=' . $_GET['seq_id'];
         $t = new Tracks();
-        $track_id = $_GET['track_id'];
+        $track_id = $_GET['seq_id'];
         $rs = $t->GetTrack($track_id);
         while ($row = mysql_fetch_array($rs)) {
             $title = $row['track_name'];
