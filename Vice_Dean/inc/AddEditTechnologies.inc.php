@@ -9,7 +9,6 @@ if (isset($_POST['chkIsVisible'])) {
 } else {
     $isVisible = 0;
 }
-print_r($_POST);
 $isValid = true;
 if (strlen($title) == 0) {
     $isValid = FALSE;
