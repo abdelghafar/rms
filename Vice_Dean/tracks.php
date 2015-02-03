@@ -65,9 +65,10 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         function Display_New()
         {
             $(document).ready(function () {
+                var valueSelected = $('#lstOfTech').val();
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddEditTrack.php?action=insert");
+                $('#windowContent').load("AddEditTrack.php?action=insert&tech_id=" + valueSelected);
                 $('#window').jqxWindow('setTitle', 'اضافة التخصص العام');
                 $('#window').jqxWindow('open');
             });
@@ -88,13 +89,14 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
+                var valueSelected = $('#lstOfTech').val();
                 $.ajax({
                     type: 'post',
                     url: 'inc/DelTrack.inc.php?seq_id=' + seq_id,
                     datatype: "html",
                     success: function (data) {
                         $.ajax({
-                            url: "inc/tracks.inc.php",
+                            url: "inc/tracks.inc.php?tech_id=" + valueSelected,
                             type: "post",
                             datatype: "html",
                             data: $("#Form").serialize(),
