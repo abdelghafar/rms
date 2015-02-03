@@ -17,16 +17,20 @@ if (strlen($title) == 0) {
 if ($isValid == TRUE) {
     if ($_GET['action'] == 'insert') {
         //ToDO:insert
+        echo $action;
         $obj = new Technologies();
         $result = $obj->Save(0, $title, $desc, $isVisible);
     } else if ($_GET['action'] == 'edit') {
         $seq_id = $_GET['seq_id'];
+        $obj = new Technologies();
+        $result = $obj->Save($seq_id, $title, $desc, $isVisible);
     }
     $result;
     if ($result > 0) {
         echo 'تم حفظ البيانات بنجاح';
     } else {
-        
+        print_r($_POST);
+        echo $result;
     }
 } else {
     exit();
