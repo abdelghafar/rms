@@ -7,17 +7,16 @@ if (isset($_GET['action'])) {
         $action.= '&tech_id=' . $_GET['tech_id'];
         echo $action;
     }
-//    if (isset($_GET['seq_id'])) {
-//        $action .= '&seq_id=' . $_GET['seq_id'];
-//        $t = new Technologies();
-//        $rs = $t->GetTechnologies($seq_id);
-//        while ($row = mysql_fetch_array($rs)) {
-//            $title = $row['title'];
-//            $desc = $row['desc'];
-//            $isVisible = $row['isVisible'];
-//            $seq_id = $row['seq_id'];
-//        }
-//    }
+    if (isset($_GET['seq_id'])) {
+        $action .= '&seq_id=' . $_GET['seq_id'];
+        $t = new Tracks();
+        $track_id = $_GET['track_id'];
+        $rs = $t->GetTrack($track_id);
+        while ($row = mysql_fetch_array($rs)) {
+            $title = $row['track_name'];
+            $seq_id = $row['track_id'];
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -71,7 +70,7 @@ if (isset($_GET['action'])) {
         </script>
     </head>
     <body style="background-color: #ededed;">
-        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
+        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTrack.inc.php?action=<? echo $action; ?>" target="form-iframe">
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
