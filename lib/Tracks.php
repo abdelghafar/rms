@@ -44,12 +44,12 @@ class Tracks {
         return $rs;
     }
 
-    public function GetAllTracksPerTechId($tech_id) {
-        $conn = new MysqlConnect();
-        $stmt = "SELECT track_id,track_name FROM " . $this->tableName . " where tech_id=" . $tech_id;
-        $rs = $conn->ExecuteNonQuery($stmt);
-        return $rs;
-    }
+//    public function GetAllTracksPerTechId($tech_id) {
+//        $conn = new MysqlConnect();
+//        $stmt = "SELECT track_id,track_name FROM " . $this->tableName . " where tech_id=" . $tech_id;
+//        $rs = $conn->ExecuteNonQuery($stmt);
+//        return $rs;
+//    }
 
     public function Delete($track_id) {
         $conn = new MysqlConnect();
@@ -63,6 +63,17 @@ class Tracks {
         $stmt = "SELECT track_id,track_name,tech_id FROM " . $this->tableName . " where track_id=" . $track_id;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
+    }
+
+    public function GetAllTracksPerTechId($tech_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT track_id,track_name FROM " . $this->tableName . " where tech_id=" . $tech_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $result = Array("PairValues" => Array());
+        while ($row = mysql_fetch_array($rs)) {
+            array_push($result['PairValues'], Array($row['track_id'], $row['track_name']));
+        }
+        return $result;
     }
 
 }
