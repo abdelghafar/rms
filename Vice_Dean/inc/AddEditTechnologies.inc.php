@@ -16,14 +16,14 @@ if (strlen($title) == 0) {
     $isValid = FALSE;
     echo 'title must not be empty';
 }
-if ($_POST['token'] == $_SESSION['AddEditTechnologies']['token']) {
+if (isset($_SESSION['AddEditTechnologies']['token'])) {
     if ($isValid == TRUE) {
         switch ($action) {
             case 'insert': {
                     echo 'insert call';
                     $obj = new Technologies();
                     $result = $obj->Save(0, $title, $desc, $isVisible);
-
+                    unset($_SESSION['AddEditTechnologies']['token']);
                     break;
                 }
             case 'edit': {
@@ -31,6 +31,7 @@ if ($_POST['token'] == $_SESSION['AddEditTechnologies']['token']) {
                     $seqId = $_POST['seq_id'];
                     $obj = new Technologies();
                     $result = $obj->Save($seqId, $title, $desc, $isVisible);
+                    unset($_SESSION['AddEditTechnologies']['token']);
                     break;
                 }
         }
