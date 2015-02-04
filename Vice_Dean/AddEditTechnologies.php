@@ -1,32 +1,22 @@
 <?php
 session_start();
 require_once '../lib/technologies.php';
-//if (isset($_GET['action'])) {
-//    $action = $_GET['action'];
-//    if (isset($_GET['seq_id'])) {
-//        echo 'get seq_id is set...';
-//        $action .= '&seq_id=' . $_GET['seq_id'];
-//        echo $action;
-//        $t = new Technologies();
-//        $rs = $t->GetTechnologies($seq_id);
-//        while ($row = mysql_fetch_array($rs)) {
-//            $seq_id = $row['seq_id'];
-//            $title = $row['title'];
-//            $desc = $row['tech_desc'];
-//            $isVisible = $row['isVisible'];
-//        }
-//    }
-//}
-
+$token = $_SESSION['AddEditTechnologies']['token'] = sha1(uniqid());
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     switch ($action) {
         case 'insert': {
-                print_r($_GET);
                 break;
             }
         case 'edit': {
-                print_r($_GET);
+                $t = new Technologies();
+                $rs = $t->GetTechnologies($seq_id);
+                while ($row = mysql_fetch_array($rs)) {
+                    $seq_id = $row['seq_id'];
+                    $title = $row['title'];
+                    $desc = $row['tech_desc'];
+                    $isVisible = $row['isVisible'];
+                }
                 break;
             }
     }
@@ -85,8 +75,10 @@ if (isset($_GET['action'])) {
         </script>
     </head>
     <body style="background-color: #ededed;">
-        <form id="AddEdit_Research_docs" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
-            <input type="hidden" name="tech_id" value="<? echo $_GET['seq_id']; ?>"/>
+        <form id="AddEditTechnologies" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
+            <input type="hidden" name="seq_id" value="<? echo $seq_id; ?>"/>
+            <input type="hidden" name="action" value="<? echo $action; ?>"/>
+            <input type="hidden" name="token" value="<? echo $token; ?>"/>
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
