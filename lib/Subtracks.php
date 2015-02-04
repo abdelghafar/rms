@@ -25,7 +25,7 @@ class Subtracks {
         $conn = new MysqlConnect();
         if ($seq_id == null || $seq_id == 0) {
             $stmt = "insert into " . $this->tableName . " (subTrack_name,track_id) values ('" . $subtrack_name . "'," . $track_id . ")";
-            echo $stmt . '<br/>';
+
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
