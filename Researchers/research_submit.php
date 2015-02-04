@@ -39,7 +39,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/globalization/jquery.global.js"></script>
+
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
@@ -59,7 +59,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
             $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
 
-            $("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
+            //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             $("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             $(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             $("#currencyInput").jqxNumberInput({rtl: true, width: '100px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
@@ -97,11 +97,21 @@ $smarty->display('../templates/Loggedin.tpl');
             var ResearchCenterDataSource = {
                 datatype: "json",
                 datafields: [
-                    {name: 'id'},
-                    {name: 'center_name'}
+                    {name: 'seq_id'},
+                    {name: 'title'}
                 ],
-                url: '../Data/ResearchCenters.php'
+                url: '../Data/technologies.php'
             };
+
+            var TracksDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'track_id'},
+                    {name: 'track_name'}
+                ],
+                url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
+            };
+
 
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
             $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '100px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
@@ -122,9 +132,9 @@ $smarty->display('../templates/Loggedin.tpl');
             });
 
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
-            $("#centers").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'center_name', valueMember: 'id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص"});
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
 
-            $('#centers').on('change', function (event)
+            $('#technologies').on('change', function (event)
             {
                 var args = event.args;
                 if (args) {
@@ -134,11 +144,39 @@ $smarty->display('../templates/Loggedin.tpl');
                     // get item's label and value.
                     var label = item.label;
                     var value = item.value;
-                    $('#research_center').val(value);
-                    //alert('centers is:' + $("#durationList").val());
+                    $('#technologiesVal').val(value);
+                    alert('centers is:' + $("#technologies").val());
+                    TracksDataSource = {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'track_id'},
+                            {name: 'track_name'}
+                        ],
+                        url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
+                    };
+                    dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
             });
 
+            //-----------------------------------------------------------------
+            dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+
+            $('#track').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#trackVal').val(value);
+                    alert('track is:' + $("#track").val());
+                }
+            });
 
         });
     </script>
@@ -150,7 +188,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     {input: '#major_field', message: 'من فضلك ادخل التخصص العام', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#special_field', message: 'من فضلك ادخل التخصص الدقيق', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {
-                        input: "#centers", message: "من فضلك اختر المركز البحثي", action: 'blur', rule: function (input, commit) {
+                        input: "#technologies", message: "من فضلك اختر أولوية البحث", action: 'blur', rule: function (input, commit) {
                             var index = $("#centers").jqxDropDownList('getSelectedIndex');
                             return index !== -1;
                         }
@@ -225,22 +263,23 @@ $smarty->display('../templates/Loggedin.tpl');
             <div class="panel_row">
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
                     <p>
-                        التخصص العام
+                        اولوية البحث
                     </p>
                 </div>
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <div id='centers'></div>
-                    <input type="hidden" id='research_center' name="research_center"/>
+                    <div id='technologies'></div>
+                    <input type="hidden" id='technologiesVal' name="technologies"/>
                 </div>
             </div>
             <div class="panel_row">
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
                     <p>
-                        مجال البحث
+                        التخصص العام
                     </p>
                 </div>
                 <div class="panel-cell">
-                    <input id="major_field" class="textbox" type="text" placeholder="مجال البحث" name="major_field"/>  
+                    <div id="track"></div>
+                    <input type="hidden" name="trackVal" id="trackVal"/>
                 </div>
                 <div class="panel-cell" style="width: 363px;text-align: left;padding-left: 10px;"> 
                     <p>
@@ -252,42 +291,48 @@ $smarty->display('../templates/Loggedin.tpl');
                 </div>
             </div>
             <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:top;"> 
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
                     <p>
                         الملخص باللغة العربية
                     </p>
                 </div>
-                <div class="panel-cell">
-                    <?
-                    $oFCKeditor = new FCKeditor('abstract_ar');
-                    $oFCKeditor->Height = "250px";
-                    $oFCKeditor->Width = "605px";
-                    $oFCKeditor->BasePath = '../js/fckeditor/';
-                    $oFCKeditor->ToolbarSet = 'Basic';
-                    $oFCKeditor->Create();
-                    ?>
-
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                    <input type="file" name="abstract_ar_file" id="abstract_ar_file" style="width:300px;" accept="application/pdf"/>
                 </div>
-
             </div>
             <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:top;"> 
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
                     <p>
                         الملخص باللغة الانجليزية
                     </p>
                 </div>
-                <div class="panel-cell">
-                    <?
-                    $oFCKeditor = new FCKeditor('abstract_en');
-                    $oFCKeditor->Height = "250px";
-                    $oFCKeditor->Width = "605px";
-                    $oFCKeditor->BasePath = '../js/fckeditor/';
-                    $oFCKeditor->ToolbarSet = 'Basic';
-                    $oFCKeditor->Create();
-                    ?>
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                    <input type="file" name="abstract_en_file" id="abstract_en_file" style="width:300px;" accept="application/pdf"/>
                 </div>
-
             </div>
+
+            <div class="panel_row">
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
+                    <p>
+                        مقدمة المشروع
+                    </p>
+                </div>
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                    <input type="file" name="introduction_file" id="introduction_file" style="width:300px;" accept="application/pdf"/>
+                </div>
+            </div>
+
+            <div class="panel_row">
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
+                    <p>
+                        المسح الأدبي
+                    </p>
+                </div>
+                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                    <input type="file" name="literature_review_file" id="literature_review_file" style="width:300px;" accept="application/pdf"/>
+                </div>
+            </div>
+
             <div class="panel_row">
                 <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
                     <p>
