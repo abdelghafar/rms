@@ -65,7 +65,9 @@ if (isset($_GET['action'])) {
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-
+                function clear() {
+                    alert('clear');
+                }
             });
         </script>
     </head>
@@ -124,7 +126,7 @@ if (isset($_GET['action'])) {
                         ?> />
                     </div>
                 </div> 
-                <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;"/>
+                <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;" onclick="clear();"/>
             </fieldset>
         </form>
         <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0">
