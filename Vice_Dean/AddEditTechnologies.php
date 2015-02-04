@@ -64,11 +64,11 @@ if (isset($_GET['action'])) {
             });
         </script>
         <script type="text/javascript">
-            $(document).ready(function () {
-                function clear() {
-                    alert('clear');
-                }
-            });
+            function clear()
+            {
+                $('#Title').val('');
+                $("#Desc").val('');
+            }
         </script>
     </head>
     <body style="background-color: #ededed;">
