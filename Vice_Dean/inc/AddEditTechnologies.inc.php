@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once '../../lib/technologies.php';
 
 $action = $_POST['action'];
