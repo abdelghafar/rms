@@ -16,29 +16,42 @@ if (strlen($title) == 0) {
     $isValid = FALSE;
     echo 'title must not be empty';
 }
-if ($isValid == TRUE) {
-//    if ($_GET['action'] == 'insert') {
-//        //ToDO:insert
-//        echo $action;
-//        $obj = new Technologies();
-//        $result = $obj->Save(0, $title, $desc, $isVisible);
-//    } else if ($_GET['action'] == 'edit') {
-//        $seq_id = $_POST['track_id'];
-//        print_r($_POST);
-//        $obj = new Technologies();
-//        $result = $obj->Save($seq_id, $title, $desc, $isVisible);
-//    }
+if ($_POST['token'] == $_SESSION['AddEditTechnologies']['token']) {
+    if ($isValid == TRUE) {
+        switch ($action) {
+            case 'insert': {
+                    echo 'insert call';
+                    $obj = new Technologies();
+                    $result = $obj->Save(0, $title, $desc, $isVisible);
 
-    $result;
-    if ($result > 0) {
-        echo 'تم حفظ البيانات بنجاح';
+                    break;
+                }
+            case 'edit': {
+                    echo 'update call';
+                    $seqId = $_POST['seq_id'];
+                    $obj = new Technologies();
+                    $result = $obj->Save($seqId, $title, $desc, $isVisible);
+                    break;
+                }
+        }
+        $result;
+        if ($result > 0) {
+            echo 'تم حفظ البيانات بنجاح';
+        } else {
+            print_r($_POST);
+            echo $result;
+        }
     } else {
-        print_r($_POST);
-        echo $result;
+        exit();
     }
+    unset($_SESSION['AddEditTechnologies']['token']);
 } else {
-    exit();
+    echo 'لقد تم حفظ هذه البيانات من قبل';
 }
+
+
+
+
 
 
 
