@@ -116,10 +116,10 @@ if (isset($_GET['action'])) {
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="text" id="title" name="title" value="<?
-if (isset($subtrack_id)) {
-    echo $title;
-}
-?>"/>
+                        if (isset($subtrack_id)) {
+                            echo $title;
+                        }
+                        ?>"/>
                     </div>
                 </div> 
                 <input type="submit" value="حفظ" id="sendButton" style="margin-top: 10px;"/>

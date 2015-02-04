@@ -10,8 +10,8 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     }
 }
 require_once '../lib/Smarty/libs/Smarty.class.php';
-require_once('../lib/CenterResearch.php');
-require_once '../lib/research_Authors.php';
+require_once '../lib/technologies.php';
+require_once '../lib/Tracks.php';
 require_once '../lib/users.php';
 $smarty = new Smarty();
 
@@ -33,7 +33,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>أولويات البحث</title>
+    <title>التخصصات الدقيقة</title>
     <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
     <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
@@ -65,10 +65,11 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         function Display_New()
         {
             $(document).ready(function () {
+                var valueSelected = $('#lstOfTech').val();
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddEditTechnologies.php?action=insert");
-                $('#window').jqxWindow('setTitle', 'اضافة اولوية بحث');
+                $('#windowContent').load("AddEditSubtrack.php?action=insert&track_id=" + valueSelected);
+                $('#window').jqxWindow('setTitle', 'اضافة التخصص العام');
                 $('#window').jqxWindow('open');
             });
         }
@@ -78,8 +79,8 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddEditTechnologies.php?action=edit&seq_id=" + seq_id);
-                $('#window').jqxWindow('setTitle', 'تعديل اولوية بحث');
+                $('#windowContent').load("AddEditSubtrack.php?action=edit&subtrack_id=" + seq_id);
+                $('#window').jqxWindow('setTitle', 'تعديل التخصص العام');
                 $('#window').jqxWindow('open');
             });
         }
@@ -88,13 +89,14 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
+                var valueSelected = $('#lstOfTech').val();
                 $.ajax({
                     type: 'post',
-                    url: 'inc/DelTechnologies.inc.php?seq_id=' + seq_id,
+                    url: 'inc/DelSubtrack.inc.php?seq_id=' + seq_id,
                     datatype: "html",
                     success: function (data) {
                         $.ajax({
-                            url: "inc/technologies.inc.php",
+                            url: "inc/subtracks.inc.php?track_id=" + valueSelected,
                             type: "post",
                             datatype: "html",
                             data: $("#Form").serialize(),
@@ -106,15 +108,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 });
             }
         }
-        function clear()
-        {
-            alert('clear');
-        }
+
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            var valueSelected = $('#lstOfTech').val();
             $.ajax({
-                url: "inc/technologies.inc.php",
+                url: "inc/subtracks.inc.php?track_id=" + valueSelected,
                 type: "post",
                 datatype: "html",
                 data: $("#Form").serialize(),
@@ -122,9 +122,23 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     $('#Result').html(data);
                 }
             });
+            $('#lstOfTech').on('change', function () {
+                valueSelected = this.value;
+                $.ajax({
+                    url: "inc/subtracks.inc.php?track_id=" + valueSelected,
+                    type: "post",
+                    datatype: "html",
+                    data: $("#Form").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
+                });
+
+            });
+
             $('#window').on('close', function (event) {
                 $.ajax({
-                    url: "inc/technologies.inc.php",
+                    url: "inc/subtracks.inc.php?track_id=" + valueSelected,
                     type: "post",
                     datatype: "html",
                     data: $("#Form").serialize(),
@@ -147,9 +161,31 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
-                أولويات البحث
+                التخصصات الدقيقة
             </label>
         </legend>
+        <div class="panel_row" style="height: 50px;">
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+                <p>
+                    اختر التخصص العام
+                </p>
+            </div>
+            <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
+                <form action="inc/subtracks.inc.php" method="post" id="Form"> 
+
+                    <select id="lstOfTech" name="lstOfTech" style="width: 200px; height: 25px;">
+                        <?
+                        $v = new Tracks();
+                        $array = $v->GetPairValues();
+                        for ($i = 0; $i < count($array['PairValues']); $i++) {
+                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
+                        }
+                        ?>
+                    </select>
+
+                </form>
+            </div>
+        </div>
         <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
         <div id="Result">
 
