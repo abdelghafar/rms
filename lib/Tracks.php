@@ -30,7 +30,8 @@ class Tracks {
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            $stmt = "Update " . $this->tableName . " Set track_name='" . $track_name . "',tech_id=" . $tech_id . " where track_id=" . $track_id;
+            $stmt = "Update " . $this->tableName . " Set track_name='" . $track_name . "'" . " where track_id=" . $track_id;
+            echo $stmt;
             $conn->ExecuteNonQuery($stmt);
             return mysql_affected_rows();
         }
@@ -62,6 +63,17 @@ class Tracks {
         $stmt = "SELECT track_id,track_name,tech_id FROM " . $this->tableName . " where track_id=" . $track_id;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
+    }
+
+    public function GetPairValues() {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT track_id,track_name FROM " . $this->tableName;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $result = Array("PairValues" => Array());
+        while ($row = mysql_fetch_array($rs)) {
+            array_push($result['PairValues'], Array($row['track_id'], $row['track_name']));
+        }
+        return $result;
     }
 
 }
