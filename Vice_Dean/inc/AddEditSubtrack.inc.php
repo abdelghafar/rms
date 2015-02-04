@@ -1,8 +1,6 @@
 <?php
 
 require_once '../../lib/Subtracks.php';
-
-print_r($_POST);
 $isValid = true;
 if (strlen($title) == 0) {
     $isValid = FALSE;
@@ -32,7 +30,7 @@ if ($isValid == TRUE) {
     if ($result > 0) {
         echo 'تم حفظ البيانات بنجاح';
     } else {
-        echo 'error' . $result;
+        echo 'error is: ' . $result;
     }
 } else {
     exit();
