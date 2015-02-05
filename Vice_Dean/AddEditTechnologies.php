@@ -4,6 +4,7 @@ require_once '../lib/technologies.php';
 $token = $_SESSION['AddEditTechnologies']['token'] = sha1(uniqid());
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
+    echo $action;
     switch ($action) {
         case 'insert': {
                 break;
