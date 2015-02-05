@@ -2,22 +2,25 @@
 session_start();
 require_once '../lib/technologies.php';
 $token = $_SESSION['AddEditTechnologies']['token'] = sha1(uniqid());
+$action = $_GET['action'];
 if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-    echo $action;
     switch ($action) {
         case 'insert': {
                 break;
             }
         case 'edit': {
                 $t = new Technologies();
-                $rs = $t->GetTechnologies($seq_id);
+                $tech_Id = $_GET['seq_id'];
+                $rs = $t->GetTechnologies($tech_Id);
                 while ($row = mysql_fetch_array($rs)) {
                     $seq_id = $row['seq_id'];
                     $title = $row['title'];
                     $desc = $row['tech_desc'];
                     $isVisible = $row['isVisible'];
                 }
+                break;
+            }
+            deafult : {
                 break;
             }
     }
@@ -77,7 +80,7 @@ if (isset($_GET['action'])) {
     </head>
     <body style="background-color: #ededed;">
         <form id="AddEditTechnologies" enctype="multipart/form-data" method="POST" action="inc/AddEditTechnologies.inc.php?action=<? echo $action; ?>" target="form-iframe">
-            <input type="hidden" name="seq_id" value="<? echo $seq_id; ?>"/>
+            <input type="hidden" name="techId" value="<? echo $tech_Id; ?>"/>
             <input type="hidden" name="action" value="<? echo $action; ?>"/>
             <input type="hidden" name="token" value="<? echo $token; ?>"/>
             <fieldset style="width: 600px;text-align: right;">
