@@ -3,6 +3,7 @@
 require_once '../../lib/Subtracks.php';
 $action = $_POST['action'];
 $isValid = true;
+$title = $_POST['title'];
 if (strlen($title) == 0) {
     $isValid = FALSE;
     echo 'title must not be empty';
