@@ -6,7 +6,6 @@ require_once '../../lib/technologies.php';
 $action = $_POST['action'];
 $title = $_POST['Title'];
 $desc = $_POST['Desc'];
-print_r($_POST);
 if (isset($_POST['chkIsVisible'])) {
     $isVisible = 1;
 } else {
@@ -21,17 +20,17 @@ if (isset($_SESSION['AddEditTechnologies']['token'])) {
     if ($isValid == TRUE) {
         switch ($action) {
             case 'insert': {
-                    echo 'insert call';
+
                     $obj = new Technologies();
                     $result = $obj->Save(0, $title, $desc, $isVisible);
                     unset($_SESSION['AddEditTechnologies']['token']);
                     break;
                 }
             case 'edit': {
-                    echo 'update call';
-                    $seqId = $_POST['seq_id'];
+
+                    $tech_Id = $_POST['techId'];
                     $obj = new Technologies();
-                    $result = $obj->Save($seqId, $title, $desc, $isVisible);
+                    $result = $obj->Save($tech_Id, $title, $desc, $isVisible);
                     unset($_SESSION['AddEditTechnologies']['token']);
                     break;
                 }
