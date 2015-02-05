@@ -30,6 +30,3 @@ if ($isValid == TRUE) {
 } else {
     exit();
 }
-
-
-
