@@ -6,7 +6,7 @@ require_once '../../lib/technologies.php';
 $action = $_POST['action'];
 $title = $_POST['Title'];
 $desc = $_POST['Desc'];
-
+print_r($_POST);
 if (isset($_POST['chkIsVisible'])) {
     $isVisible = 1;
 } else {
