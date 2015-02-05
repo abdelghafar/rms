@@ -18,8 +18,7 @@ class Persons {
             $res = $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            $stmt = "update persons set FirstName_ar='" . $FirstName_ar . "',FirstName_en='" . $FirstName_en . "',FatherName_ar='" . $FatherName_ar . "',FatherName_en='" . $FatherName_en . "',GrandName_ar='" . $GrandName_ar . "',GrandName_en='" . $GrandName_en . "',FamilyName_ar='" . $FamilyName_ar . "',FamilyName_en='" . $FamilyName_en . "' , Nationality='" . $Nationality . "',DateOfBirth='" . $BirthDate . "',CountryOfBirth='" . $CountryOfBirth . "',Position='" . $Position . "',Major_Field='" . $Major_Field . "',Speical_Field='" . $Speical_Field . "',College='" . $College . "',Dept='" . $Dept . "',empCode=" . $empCode . ",EqamaCode=" . $EqamaCode . ",Mobile='" . $Mobile . "',Fax='" . $Fax . "',city='" . $city . "',country='" . $country . "',POX='" . $POX . "',Postal_Code='" . $Postal_Code . "',IBAN='" . $IBAN . "' ,ResumeUrl ='" . $ResumeUrl . "' where `Person_id`=" . $id;
-            echo $stmt;
+            $stmt = "update persons set FirstName_ar='" . $FirstName_ar . "',FirstName_en='" . $FirstName_en . "',FatherName_ar='" . $FatherName_ar . "',FatherName_en='" . $FatherName_en . "',GrandName_ar='" . $GrandName_ar . "',GrandName_en='" . $GrandName_en . "',FamilyName_ar='" . $FamilyName_ar . "',FamilyName_en='" . $FamilyName_en . "' , Nationality='" . $Nationality . "',DateOfBirth='" . $BirthDate . "',CountryOfBirth='" . $CountryOfBirth . "',Position='" . $Position . "',Major_Field='" . $Major_Field . "',Speical_Field='" . $Speical_Field . "',College='" . $College . "',Dept='" . $Dept . "', Mobile='" . $Mobile . "',Fax='" . $Fax . "',city='" . $city . "',country='" . $country . "',POX='" . $POX . "',Postal_Code='" . $Postal_Code . "',IBAN='" . $IBAN . "' ,ResumeUrl ='" . $ResumeUrl . "' where `Person_id`=" . $id;
             $res = $conn->ExecuteNonQuery($stmt);
         }
         return $res;
@@ -68,4 +67,5 @@ class Persons {
         $result = mysql_query($stmt);
         return $result;
     }
+
 }
