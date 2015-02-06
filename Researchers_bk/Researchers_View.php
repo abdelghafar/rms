@@ -90,8 +90,6 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
             }
             function display_research_Edit(research_id, research_code)
             {
-//                window.showModalDialog("ResearchEdit.php?research_id=" + research_id + "&research_code=" + research_code, 'PopupPage', 'dialogHeight:450px; dialogWidth:900px; resizable:0');
-
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
                     $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
@@ -119,7 +117,10 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                     ?>
                 </label>
             </legend>
-            <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
+            <a href="research_submit.php?program<? echo $_SESSION['program']; ?>">
+                اضافة بحث جديد
+            </a>
+            <table id="datatables" class="display" style="text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
                 <thead>
                     <tr>
                         <th><em>م</em></th>
