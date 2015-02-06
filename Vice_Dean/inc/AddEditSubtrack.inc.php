@@ -30,11 +30,9 @@ if ($isValid == TRUE) {
     }
     $result;
     if ($action == 'insert' && $result > 0) {
-        //echo 'تم حفظ البيانات بنجاح';
-        ob_start();
-        header('Location:sucess.php');
+        echo 'تم حفظ البيانات بنجاح';
     } else if ($action == 'insert' && $result <= 0) {
-        // echo 'error is: ' . $result;
+        echo 'error is: ' . $result;
     }
     if ($action == 'edit' && $result >= 0) {
         echo 'تم حفظ البيانات بنجاح';
