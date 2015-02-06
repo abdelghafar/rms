@@ -58,8 +58,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             width: 400,
             oLanguage: {
                 sUrl: "../js/dataTables/media/ar_Ar.txt"}
-        });
-    </script>
+        });</script>
     <script type="text/javascript">
         function Display_New()
         {
@@ -71,7 +70,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 $('#window').jqxWindow('open');
             });
         }
-
         function Display_Edit(seq_id)
         {
             $(document).ready(function () {
@@ -105,10 +103,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 });
             }
         }
-        function clear()
-        {
-            alert('clear');
-        }
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -132,16 +126,15 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     }
                 });
             });
-
-        });
-
-    </script>
+        });</script>
 </head>
 <body>
     <div id="window" style="visibility: hidden;">
         <div id="windowHeader">
         </div>
-        <div id="windowContent" style="overflow: auto;" ></div>
+        <div id="windowContent" style="overflow: auto;" >
+            <input type="button" id="cancel" value="Cancel" />
+        </div>
     </div>
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
