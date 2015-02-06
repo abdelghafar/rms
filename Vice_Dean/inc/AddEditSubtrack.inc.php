@@ -6,7 +6,7 @@ $isValid = true;
 $title = $_POST['title'];
 if (strlen($title) == 0) {
     $isValid = FALSE;
-    echo 'title must not be empty';
+    //echo 'title must not be empty';
 }
 if ($isValid == TRUE) {
     switch ($action) {
@@ -30,9 +30,11 @@ if ($isValid == TRUE) {
     }
     $result;
     if ($action == 'insert' && $result > 0) {
-        echo 'تم حفظ البيانات بنجاح';
+        //echo 'تم حفظ البيانات بنجاح';
+        ob_start();
+        header('Location:sucess.php');
     } else if ($action == 'insert' && $result <= 0) {
-        echo 'error is: ' . $result;
+        // echo 'error is: ' . $result;
     }
     if ($action == 'edit' && $result >= 0) {
         echo 'تم حفظ البيانات بنجاح';
