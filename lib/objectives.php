@@ -33,6 +33,17 @@ class Objectives {
         return $rs;
     }
 
+    public function GetObjectiviesCount($projectId) {
+        $conn = new MysqlConnect();
+        $stmt = 'SELECT COUNT(*) as  count FROM  `project_objectivies` WHERE  `project_id` =' . $projectId;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $count = 0;
+        while ($row = mysql_fetch_array($rs)) {
+            $count = $row['count'];
+        }
+        return $count;
+    }
+
     public function Delete($seqId) {
         $conn = new MysqlConnect();
         $stmt = "Delete from project_objectivies where seq_id =" . $seqId;
