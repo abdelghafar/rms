@@ -55,6 +55,18 @@ $smarty->display('../templates/Loggedin.tpl');
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#submit_button').click(function () {
+                $.ajax({
+                    url: "inc/research_submit.inc.php",
+                    type: "post",
+                    datatype: "html",
+                    data: $("#researchSubmitForm").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
+                });
+            });
+
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
 
             $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
@@ -71,8 +83,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
 
             });
-
-            $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
 
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
@@ -242,6 +252,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 ], theme: 'energyblue', animation: 'fade'
             });
         });
+
+
     </script>
     <title>
         بحث جديد
@@ -256,8 +268,7 @@ $smarty->display('../templates/Loggedin.tpl');
 </head>
 
 <center>
-    <form method="POST" id="researchSubmitForm"  target="form-iframe" enctype="multipart/form-data" action="inc/research_submit.inc.php"> 
-
+    <form method="POST" id="researchSubmitForm" enctype="multipart/form-data"> 
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
@@ -395,19 +406,21 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
 
         </fieldset>
-        <div class="panel_row">
-            <div class="panel-cell">
-                <input type="submit" value="ارسال" id='sendButton' style="margin-top: 20px;"/>
-            </div>
+        <div id="Result" style="width: 800px; height: 50px;">
+
         </div>
-        <div class="panel_row">
-            <div class="panel-cell" style="float: left ; ">
-                <label>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
+                </td>
+                <td>
                     <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         رجوع
-                    </a></label>
-            </div>
-        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </form>
     <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
 
