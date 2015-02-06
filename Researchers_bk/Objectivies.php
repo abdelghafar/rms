@@ -30,6 +30,7 @@ require_once '../lib/Reseaches.php';
 $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
+$projectId = $_GET['q'];
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -47,7 +48,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
-
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxfileupload.js"></script>
     <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
@@ -67,7 +68,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddObjective.php?rcode=" + $('#lstOfResearches').find(":selected").text());
+                $('#windowContent').load("AddObjective.php?rcode=" + '<?php echo $projectId; ?>');
                 $('#window').jqxWindow('setTitle', 'اضافة اهداف المشروع');
                 $('#window').jqxWindow('open');
             });
@@ -99,43 +100,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-            var valueSelected = $('#lstOfResearches').val();
-            $.ajax({
-                url: "inc/Objectivies.inc.php?research_id=" + valueSelected,
-                type: "post",
-                datatype: "html",
-                data: $("#Form").serialize(),
-                success: function (data) {
-                    $('#Result').html(data);
-                }
-            });
-            $('#lstOfResearches').on('change', function () {
-                valueSelected = this.value;
-                $.ajax({
-                    url: "inc/Objectivies.inc.php?research_id=" + valueSelected,
-                    type: "post",
-                    datatype: "html",
-                    data: $("#Form").serialize(),
-                    success: function (data) {
-                        $('#Result').html(data);
-                    }
-                });
-
-            });
-            $('#window').on('close', function (event) {
-                var valueSelected = $('#lstOfResearches').val();
-                $.ajax({
-                    url: "inc/Objectivies.inc.php?research_id=" + valueSelected,
-                    type: "post",
-                    datatype: "html",
-                    data: $("#Form").serialize(),
-                    success: function (data) {
-                        $('#Result').html(data);
-                    }
-                });
-            });
-
         });
 
     </script>
@@ -160,7 +124,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 </p>
             </div>
             <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                <form action="inc/Objectivies.inc.php.inc.php" method="post" id="Form"> 
+                <form action="inc/Objectivies.inc.php" method="post" id="Form"> 
 
                     <select id="lstOfResearches" name="lstOfResearches" style="width: 200px; height: 25px;">
                         <?
@@ -179,14 +143,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         <div id="Result">
 
         </div>
-        <a href="CoAuthors.php">next</a>
+
     </fieldset>
 <label>
-    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-        رجوع
-    </a>
+
 </label>
+
 </body>
 <?
 $smarty->display('../templates/footer.tpl');
-?>
