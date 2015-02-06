@@ -10,6 +10,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 $research_id = $_GET['research_id'];
 $obj = new research_Authors();
 $rs = $obj->GetNonCorrsResearchAuthors($research_id);
+$count = 2;
 ?>
 <html>
     <head>
@@ -20,7 +21,7 @@ $rs = $obj->GetNonCorrsResearchAuthors($research_id);
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
         <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#datatables').dataTable({
                     sPaginationType: "full_numbers",
                     bJQueryUI: true,
@@ -70,6 +71,23 @@ $rs = $obj->GetNonCorrsResearchAuthors($research_id);
             </tbody>
 
         </table>
-
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <?
+                    if ($count > 0) {
+                        echo '<a href="workingPlan.php?q=' . $research_id . '"' . ' style="float: right;margin-left: 25px;margin-top: 20px;">next</a>';
+                    } else {
+                        echo '<a href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>';
+                    }
+                    ?>
+                </td>
+                <td>
+                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        رجوع
+                    </a>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>

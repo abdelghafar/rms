@@ -8,9 +8,12 @@ require_once '../../lib/users.php';
 $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
-$research_id = $_GET['research_id'];
+$research_id = $_GET['pid'];
 $obj = new Objectives();
 $rs = $obj->GetObjectivies($research_id);
+$count = $obj->GetObjectiviesCount($research_id);
+echo 'count:' . $count;
+print_r($_POST);
 ?>
 <html>
     <head>
@@ -73,6 +76,23 @@ $rs = $obj->GetObjectivies($research_id);
             </tbody>
 
         </table>
-
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <?
+                    if ($count > 0) {
+                        echo '<a href="CoAuthors.php?q=' . $research_id . '"' . ' style="float: right;margin-left: 25px;margin-top: 20px;">next</a>';
+                    } else {
+                        echo '<a href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>';
+                    }
+                    ?>
+                </td>
+                <td>
+                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        رجوع
+                    </a>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
