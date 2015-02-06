@@ -28,7 +28,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/reigster-layout.css"/> 
+    <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
     <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
     <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
@@ -70,7 +70,6 @@ $smarty->display('../templates/Loggedin.tpl');
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
 
             $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
-
             //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
@@ -275,135 +274,78 @@ $smarty->display('../templates/Loggedin.tpl');
                     بيانات البحث
                 </label>
             </legend>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
+            <table style="width: 100%;">
+                <tr>
+                    <td>
                         عنوان البحث-اللغة العربية
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar"/>  
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar"/>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         عنوان البحث - اللغة الانجليزية
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en"/>  
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
-                    <p>
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en"/>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         المدة المقترحة بالشهر
-                    </p>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle">
-                    <div id='durationList' style="vertical-align: middle"></div>
-                    <input type="hidden" id="proposed_duration" name="proposed_duration"/>
-                </div>
-                <div class="panel-cell" style="width:394px;text-align: left;padding-left:10px;vertical-align: middle"> 
-                    <p>
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <div id='durationList' style="vertical-align: middle"></div>
+                        <input type="hidden" id="proposed_duration" name="proposed_duration"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         الميزانية المقترحة
-                    </p>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle">
-                    <div id='currencyInput' style="vertical-align: middle">
-                        <input type='hidden' id='budgetValue' name="budgetValue"/>
-                    </div>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
-                    <p>
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <div id='currencyInput' style="vertical-align: middle">
+                            <input type='hidden' id='budgetValue' name="budgetValue"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         اولوية البحث
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <div id='technologies'></div>
-                    <input type="hidden" id='technologiesVal' name="technologiesVal"/>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
+                    </td>
+                    <td>
+                        <div id='technologies'></div>
+                        <input type="hidden" id='technologiesVal' name="technologiesVal"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         التخصص العام
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <div id="track"></div>
-                    <input type="hidden" name="trackVal" id="trackVal"/>
-                </div>
-            </div>
-
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
+                    </td>
+                    <td>
+                        <div id="track"></div>
+                        <input type="hidden" name="trackVal" id="trackVal"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         التخصص الدقيق
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <div id="subtrack"></div>
-                    <input type="hidden" name="subtrackVal" id="subtrackVal"/>
-                </div>
-            </div>
+                    </td>
+                    <td>
+                        <div id="subtrack"></div>
+                        <input type="hidden" name="subtrackVal" id="subtrackVal"/>
+                    </td>
+                </tr>
+            </table>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        الملخص باللغة العربية
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="abstract_ar_file" id="abstract_ar_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        الملخص باللغة الانجليزية
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="abstract_en_file" id="abstract_en_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        مقدمة المشروع
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="introduction_file" id="introduction_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        المسح الأدبي
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="literature_review_file" id="literature_review_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        رفع نموذج-2
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="file" id="file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
 
         </fieldset>
         <div id="Result" style="width: 800px; height: 50px;">
