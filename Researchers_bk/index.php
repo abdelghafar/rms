@@ -85,7 +85,7 @@ if (!isset($_GET['program'])) {
                     </a>
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="research_submit.php?program=<? echo $_SESSION['program'] ?>">
+                    <a href="understanding.php?program=<? echo $_SESSION['program'] ?>">
                         <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
                         <p style="margin-top: 0px;">
                             تقديم بحث
