@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
                 exit();
             }
     }
-    echo $url;
+    //echo $url;
 }
 ?>
 <!DOCTYPE html>
@@ -104,7 +104,7 @@ if (isset($_GET['action'])) {
             <fieldset style="width: 600px;text-align: right;">
                 <legend>
                     <label>
-                        اولوية البحث
+                        التخصص الدقيق
                     </label>
                 </legend>
                 <div class="panel_row">
