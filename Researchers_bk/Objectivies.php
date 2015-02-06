@@ -30,7 +30,11 @@ require_once '../lib/Reseaches.php';
 $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
-$projectId = $_GET['q'];
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+} else {
+    exit();
+}
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -100,6 +104,22 @@ $projectId = $_GET['q'];
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $.ajax({
+                type: 'post',
+                url: 'inc/Objectivies.inc.php?pid=' + '<? echo $_GET['q']; ?>',
+                datatype: "html",
+                success: function (data) {
+                    $.ajax({
+                        url: "inc/Objectivies.inc.php?pid=" + '<? echo $_GET['q']; ?>',
+                        type: "post",
+                        datatype: "html",
+                        data: $("#Form").serialize(),
+                        success: function (data) {
+                            $('#Result').html(data);
+                        }
+                    });
+                }
+            });
         });
 
     </script>
@@ -111,34 +131,18 @@ $projectId = $_GET['q'];
         <div id="windowContent" style="overflow: auto;" ></div>
     </div>
     <fieldset style="width: 95%;text-align: right;"> 
+        <form id='Form' method="post">
+            <input type="hidden" name="pid" value="<?
+            if (isset($_GET['q'])) {
+                echo $projectId;
+            }
+            ?>"/>
+        </form>
         <legend>
             <label>
                 أهداف المشروع
             </label>
         </legend>
-
-        <div class="panel_row" style="height: 50px;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <p>
-                    اختر البحث
-                </p>
-            </div>
-            <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                <form action="inc/Objectivies.inc.php" method="post" id="Form"> 
-
-                    <select id="lstOfResearches" name="lstOfResearches" style="width: 200px; height: 25px;">
-                        <?
-                        $v = new Reseaches();
-                        $array = $v->GetListOfResearchPerResearcherId($personId);
-                        for ($i = 0; $i < count($array['PairValues']); $i++) {
-                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
-                        }
-                        ?>
-                    </select>
-
-                </form>
-            </div>
-        </div>
         <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
         <div id="Result">
 
