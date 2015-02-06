@@ -179,12 +179,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         <div id="Result">
 
         </div>
+        <a href="CoAuthors.php">next</a>
     </fieldset>
 <label>
     <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
         رجوع
-    </a></label>
-
+    </a>
+</label>
 </body>
 <?
 $smarty->display('../templates/footer.tpl');
