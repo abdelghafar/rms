@@ -24,7 +24,7 @@ class Tracks {
 
     public function Save($track_id, $track_name, $tech_id) {
         $conn = new MysqlConnect();
-        if ($track_id == null || $track_id == 0) {
+        if ($track_id == 0) {
             $stmt = "insert into " . $this->tableName . " (track_name,tech_id) values ('" . $track_name . "'," . $tech_id . ")";
             echo $stmt . '<br/>';
             $conn->ExecuteNonQuery($stmt);

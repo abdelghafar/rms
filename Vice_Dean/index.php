@@ -19,6 +19,7 @@ $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
 $smarty->assign('index_php', '../index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');

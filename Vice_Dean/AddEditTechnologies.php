@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             }
-            deafult : {
+        default : {
                 break;
             }
     }
@@ -70,12 +70,6 @@ if (isset($_GET['action'])) {
                 $("#Title").jqxInput({width: '300', height: '30', theme: theme, rtl: true});
                 $("#Desc").jqxInput({width: '300', height: '100', theme: theme, rtl: true});
             });
-        </script>
-        <script type="text/javascript">
-            function clear()
-            {
-                alert('clear');
-            }
         </script>
     </head>
     <body style="background-color: #ededed;">

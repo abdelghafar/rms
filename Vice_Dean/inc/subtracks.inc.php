@@ -6,6 +6,9 @@ $users = new Users();
 $track_id = $_GET['track_id'];
 $obj = new Subtracks();
 $rs = $obj->GetSubtracksBytrackId($track_id);
+if ($rs == NULL) {
+    exit();
+}
 ?>
 <html>
     <head>
@@ -29,47 +32,48 @@ $rs = $obj->GetSubtracksBytrackId($track_id);
         </script>
     </head>
     <body>
-        <table id="datatables" class="display"  style=" text-align: center;font-size:14px; font-weight: bold;" dir="rtl" >
-            <thead>
-                <tr>
-                    <th><em>م</em></th>
-                    <th>
-                        التخصص الدقيق
-                    </th>
-                    <th>
-                        تعديل
-                    </th>
-                    <th>
-                        حذف
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+    <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
+    <table id="datatables" class="display"  style=" text-align: center;font-size:14px; font-weight: bold;" dir="rtl" >
+        <thead>
+            <tr>
+                <th><em>م</em></th>
+                <th>
+                    التخصص الدقيق
+                </th>
+                <th>
+                    تعديل
+                </th>
+                <th>
+                    حذف
+                </th>
+            </tr>
+        </thead>
+        <tbody>
 
-                <?php
-                $x = 1;
-                while ($row = mysql_fetch_array($rs)) {
-                    ?>
-                    <tr>
-                        <td style=" text-align: center;width: 30px;">
-                            <?
-                            echo $x;
-                            $x++; //$row['id']; 
-                            ?>
-                        </td>
-                        <td style=" text-align: right;width: 150px;"><? echo $row['subTrack_name']; ?></td>
-                        <td style=" text-align: center;width: 10px;"><a href="#" onClick="Display_Edit(<? echo $row['seq_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
-                        <td style=" text-align: center;width: 10px;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
-
-                    </tr>
-                    <?php
-                }
+            <?php
+            $x = 1;
+            while ($row = mysql_fetch_array($rs)) {
                 ?>
+                <tr>
+                    <td style=" text-align: center;width: 30px;">
+                        <?
+                        echo $x;
+                        $x++; //$row['id']; 
+                        ?>
+                    </td>
+                    <td style=" text-align: right;width: 150px;"><? echo $row['subTrack_name']; ?></td>
+                    <td style=" text-align: center;width: 10px;"><a href="#" onClick="Display_Edit(<? echo $row['seq_id']; ?>);"><img src="images/edit.png" style="border:none !important" alt="تعديل"/></a></td>
+                    <td style=" text-align: center;width: 10px;"><a href="#" onClick="Delete(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
 
-            </tbody>
+                </tr>
+                <?php
+            }
+            ?>
 
-        </table>
+        </tbody>
+
+    </table>
 
 
-    </body>
+</body>
 </html>

@@ -1,6 +1,5 @@
 <?
 session_start();
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">';
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
@@ -47,8 +46,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+    <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
 
-    <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+    <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <Script type="text/javascript">
@@ -65,11 +68,11 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         function Display_New()
         {
             $(document).ready(function () {
-                var valueSelected = $('#lstOfTech').val();
+                var valueSelected = $('#track').val();
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
                 $('#windowContent').load("AddEditSubtrack.php?action=insert&track_id=" + valueSelected);
-                $('#window').jqxWindow('setTitle', 'اضافة التخصص العام');
+                $('#window').jqxWindow('setTitle', 'اضافة التخصص الدقيق');
                 $('#window').jqxWindow('open');
             });
         }
@@ -80,7 +83,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
                 $('#windowContent').load("AddEditSubtrack.php?action=edit&subtrack_id=" + seq_id);
-                $('#window').jqxWindow('setTitle', 'تعديل التخصص العام');
+                $('#window').jqxWindow('setTitle', 'تعديل التخصص الدقيق');
                 $('#window').jqxWindow('open');
             });
         }
@@ -89,7 +92,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
-                var valueSelected = $('#lstOfTech').val();
+                var valueSelected = $('#track').val();
                 $.ajax({
                     type: 'post',
                     url: 'inc/DelSubtrack.inc.php?seq_id=' + seq_id,
@@ -102,6 +105,9 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             data: $("#Form").serialize(),
                             success: function (data) {
                                 $('#Result').html(data);
+                                $('#loading-image').hide();
+                            }, beforeSend: function () {
+                                $("#loading-image").show();
                             }
                         });
                     }
@@ -112,25 +118,33 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var valueSelected = $('#lstOfTech').val();
+            var valueSelected = $('#track').val();
             $.ajax({
                 url: "inc/subtracks.inc.php?track_id=" + valueSelected,
                 type: "post",
                 datatype: "html",
                 data: $("#Form").serialize(),
                 success: function (data) {
+                    $('#loading-image').hide();
                     $('#Result').html(data);
+                },
+                beforeSend: function () {
+                    $("#loading-image").show();
                 }
             });
-            $('#lstOfTech').on('change', function () {
-                valueSelected = this.value;
+            $('#track').on('change', function () {
+                valueSelected = $('#track').val();
                 $.ajax({
                     url: "inc/subtracks.inc.php?track_id=" + valueSelected,
                     type: "post",
                     datatype: "html",
                     data: $("#Form").serialize(),
                     success: function (data) {
+                        $('#loading-image').hide();
                         $('#Result').html(data);
+                    },
+                    beforeSend: function () {
+                        $("#loading-image").show();
                     }
                 });
 
@@ -143,9 +157,66 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     datatype: "html",
                     data: $("#Form").serialize(),
                     success: function (data) {
+                        $('#loading-image').hide();
                         $('#Result').html(data);
+                    }, beforeSend: function () {
+                        $("#loading-image").show();
                     }
                 });
+            });
+
+            //--------------------------------------------------------------------
+            var ResearchCenterDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'title'}
+                ],
+                url: '../Data/technologies.php'
+            };
+            var TracksDataSource = null;
+            var dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '300px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $('#technologies').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#technologiesVal').val(value);
+                    //alert('centers is:' + $("#technologies").val());
+                    TracksDataSource = {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'track_id'},
+                            {name: 'track_name'}
+                        ],
+                        url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
+                    };
+                    dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '300px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+                }
+            });
+            dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '300px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+            //----------------------------------------------------------------------------
+            $('#track').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    //alert($('#track').val());
+                    $('#trackVal').val($('#track').val());
+                }
             });
 
         });
@@ -158,38 +229,45 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         </div>
         <div id="windowContent" style="overflow: auto;" ></div>
     </div>
+
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
                 التخصصات الدقيقة
             </label>
         </legend>
-        <div class="panel_row" style="height: 50px;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <p>
-                    اختر التخصص العام
-                </p>
+        <form action="inc/subtracks.inc.php" method="post" id="Form"> 
+            <table style="width: 450px;border-width: 0;">
+                <tr>
+                    <td>
+                        <p>
+                            أولوية البحث
+                        </p>
+                    </td>
+                    <td>
+                        <div id="technologies"></div>
+                        <input type="hidden" name="technologiesVal" id="technologiesVal"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            التخصص  العام
+                        </p>
+                    </td>
+                    <td>
+                        <div id="track"></div>
+                        <input type="hidden" name="trackVal" id="trackVal"/>
+                    </td>
+                </tr>
+            </table>
+            <div id="loading-image">
+                <img src="../common/images/ajax-loader.gif" width="16" height="16" alt="Loading"/>
             </div>
-            <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                <form action="inc/subtracks.inc.php" method="post" id="Form"> 
+            <div id="Result">
 
-                    <select id="lstOfTech" name="lstOfTech" style="width: 200px; height: 25px;">
-                        <?
-                        $v = new Tracks();
-                        $array = $v->GetPairValues();
-                        for ($i = 0; $i < count($array['PairValues']); $i++) {
-                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
-                        }
-                        ?>
-                    </select>
-
-                </form>
             </div>
-        </div>
-        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
-        <div id="Result">
-
-        </div>
+        </form>
     </fieldset>
 <label>
     <a href="index.php" style="float: left;margin-left: 25px;margin-top: 20px;">

@@ -23,14 +23,14 @@ class Technologies {
 
     public function Save($seq_id, $title, $desc, $isVisible) {
         $conn = new MysqlConnect();
-        if ($seq_id == null || $seq_id == 0) {
-            $stmt = "insert into " . $this->tableName . " (title,`desc`,isVisible) values ('" . $title . "','" . $desc . "'," . $isVisible . ")";
-            echo $stmt . '<br/>';
+        if ($seq_id == 0) {
+            $stmt = "insert into " . $this->tableName . " (title,tech_desc,isVisible) values ('" . $title . "','" . $desc . "'," . $isVisible . ")";
+
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            $stmt = "Update " . $this->tableName . " Set title='" . $title . "',`desc`='" . $desc . "',isVisible=" . $isVisible . " where seq_id=" . $seq_id;
-            echo $stmt . '<br/>';
+            $stmt = "Update " . $this->tableName . " Set title='" . $title . "',tech_desc='" . $desc . "',isVisible=" . $isVisible . " where seq_id=" . $seq_id;
+
             $conn->ExecuteNonQuery($stmt);
             return mysql_affected_rows();
         }
@@ -38,14 +38,14 @@ class Technologies {
 
     public function GetVisibileTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT title,`desc` FROM  technologies where isVisible=1";
+        $stmt = "SELECT title,tech_desc FROM  technologies where isVisible=1";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
     public function GetAllTechnologies() {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,title,`desc`,isVisible FROM technologies";
+        $stmt = "SELECT seq_id,title,tech_desc,isVisible FROM technologies";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
@@ -59,7 +59,8 @@ class Technologies {
 
     public function GetTechnologies($seq_id) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,title,`desc`,isVisible FROM  technologies where seq_id=" . $seq_id;
+        $stmt = "SELECT seq_id,title,tech_desc,isVisible FROM " . $this->tableName . " where seq_id=" . $seq_id;
+
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }

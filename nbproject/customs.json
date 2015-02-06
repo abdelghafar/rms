@@ -1,6 +1,9 @@
 {
     "attributes": {
-        "name": {}
+        "name": {},
+        "charset": {
+            "context": "meta"
+        }
     },
     "elements": {}
 }
