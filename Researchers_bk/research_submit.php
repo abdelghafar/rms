@@ -11,6 +11,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
+require_once '../lib/Reseaches.php';
 $smarty = new Smarty();
 
 $smarty->assign('style_css', '../style.css');
@@ -24,6 +25,19 @@ $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
+if (isset($_GET['q'])) {
+    $action = 'edit';
+    $projectId = $_GET['q'];
+    $obj = new Reseaches();
+    $project = $obj->GetResearch($projectId);
+    $title_ar = $project['title_ar'];
+    $title_en = $project['title_en'];
+    $duration = $project['proposed_duration'];
+    $budget = $project['budget'];
+    $techId = $project['center_id'];
+    $major_field_id = $project['major_field'];
+    $speical_field_id = $project['special_field'];
+}
 ?>
 
 <head>
@@ -66,14 +80,15 @@ $smarty->display('../templates/Loggedin.tpl');
                     }
                 });
             });
-
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-
-            $("#proposed_duration").jqxMaskedInput({rtl: true, width: '200px', height: '25px', mask: '##', theme: 'energyblue'});
             //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
+            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true, value: '<? if (isset($project))
+    echo $budget;
+else
+    echo 0;
+?>'});
             $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
             //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
             $('#currencyInput').on('change', function (event) {
@@ -82,11 +97,9 @@ $smarty->display('../templates/Loggedin.tpl');
                 //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
 
             });
-
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
-
             $('#sendButton').on('click', function () {
                 $('#researchSubmitForm').jqxValidator('validate');
             });
@@ -102,7 +115,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/durations.php'
             };
-
             var ResearchCenterDataSource = {
                 datatype: "json",
                 datafields: [
@@ -111,7 +123,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/technologies.php'
             };
-
             var TracksDataSource = {
                 datatype: "json",
                 datafields: [
@@ -120,7 +131,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
             };
-
             var SubtrackracksDataSource = {
                 datatype: "json",
                 datafields: [
@@ -129,11 +139,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/tracks.php?track_id=' + $("#track").val()
             };
-
-
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
             $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
-
             $('#durationList').on('change', function (event)
             {
                 var args = event.args;
@@ -147,11 +154,14 @@ $smarty->display('../templates/Loggedin.tpl');
                     $('#proposed_duration').val(value);
                     //alert('proposed_duration is :' + $("#durationList").val());
                 }
+                $('#durationList').jqxDropDownList('val', '<?
+if (isset($projectId)) {
+    echo $duration;
+}
+?>');
             });
-
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
             $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
-
             $('#technologies').on('change', function (event)
             {
                 var args = event.args;
@@ -160,10 +170,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     var index = args.index;
                     var item = args.item;
                     // get item's label and value.
-                    var label = item.label;
+                    //var label = item.label;
                     var value = item.value;
                     $('#technologiesVal').val(value);
-                    alert('centers is:' + $("#technologies").val());
+                    //alert('centers is:' + $("#technologies").val());
                     TracksDataSource = {
                         datatype: "json",
                         datafields: [
@@ -176,11 +186,17 @@ $smarty->display('../templates/Loggedin.tpl');
                     $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
             });
-
+            $("#technologies").on('bindingComplete', function (event) {
+                $('#technologies').val('<?
+if (isset($projectId))
+    echo $techId;
+else
+    echo -1;
+?>');
+            });
             //-----------------------------------------------------------------
             dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
             $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
-
             $('#track').on('change', function (event)
             {
                 var args = event.args;
@@ -204,6 +220,14 @@ $smarty->display('../templates/Loggedin.tpl');
                     $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
                 }
             });
+            $("#track").on('bindingComplete', function (event) {
+                $('#track').val('<?
+if (isset($projectId))
+    echo $major_field_id;
+else
+    echo -1;
+?>');
+            });
             dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
             $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
             $('#subtrack').on('change', function (event)
@@ -217,13 +241,18 @@ $smarty->display('../templates/Loggedin.tpl');
                     var label = item.label;
                     var value = item.value;
                     $('#subtrackVal').val(value);
-                    alert('subtrackVal is :' + $("#subtrackVal").val());
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
                 }
             });
-
-
-        });
-    </script>
+            $("#subtrack").on('bindingComplete', function (event) {
+                $('#subtrack').val('<?
+if (isset($projectId))
+    echo $speical_field_id;
+else
+    echo -1;
+?>');
+            });
+        });</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#researchSubmitForm').jqxValidator({rules: [
@@ -281,7 +310,11 @@ $smarty->display('../templates/Loggedin.tpl');
                         <span class="required">*</span>
                     </td>
                     <td>
-                        <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar"/>  
+                        <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar" value="<?
+                               if (isset($projectId)) {
+                                   echo $title_ar;
+                               }
+                               ?>"/>  
                     </td>
                 </tr>
                 <tr>
@@ -290,7 +323,11 @@ $smarty->display('../templates/Loggedin.tpl');
                         <span class="required">*</span>
                     </td>
                     <td>
-                        <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en"/>  
+                        <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en" value="<?
+                               if (isset($projectId)) {
+                                   echo $title_en;
+                               }
+                               ?>"/>  
                     </td>
                 </tr>
                 <tr>
@@ -355,7 +392,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
                 </td>
                 <td>
-                   
+
                 </td>
             </tr>
         </table>
