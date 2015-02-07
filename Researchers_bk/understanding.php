@@ -54,10 +54,10 @@ $program = $_SESSION['program'];
         <table>
             <tr>
                 <td>
-                    <input type="submit" value="Agree" onclick="agree();" />
+                    <input type="submit" value="not agree" onclick="notAgree();"/>
                 </td>
                 <td>
-                    <input type="submit" value="not agree" onclick="notAgree();"/>
+                    <input type="submit" value="Agree" onclick="agree();" />
                 </td>
             </tr>
         </table>

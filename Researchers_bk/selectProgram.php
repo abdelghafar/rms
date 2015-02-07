@@ -55,13 +55,13 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type='text/javascript'>
         $(document).ready(function () {
             $('#wa3da').click(function () {
-                window.location.assign('index.php?program=wa3da');
+                window.location.assign('Researchers_View.php?program=wa3da');
             });
             $('#ba7th').click(function () {
-                window.location.assign('index.php?program=ba7th');
+                window.location.assign('Researchers_View.php?program=ba7th');
             });
             $('#ra2d').click(function () {
-                window.location.assign('index.php?program=ra2d');
+                window.location.assign('Researchers_View.php?program=ra2d');
             });
         });
     </script>
