@@ -69,11 +69,11 @@ $smarty->display('../templates/Loggedin.tpl');
 
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
 
-            $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
+            $("#proposed_duration").jqxMaskedInput({rtl: true, width: '200px', height: '25px', mask: '##', theme: 'energyblue'});
             //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '100px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
+            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
             $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
             //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
             $('#currencyInput').on('change', function (event) {
@@ -132,7 +132,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
 
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
-            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '100px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
+            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
 
             $('#durationList').on('change', function (event)
             {
@@ -317,6 +317,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <tr>
                     <td>
                         اولوية البحث
+                        <span class="required">*</span>
                     </td>
                     <td>
                         <div id='technologies'></div>
@@ -326,6 +327,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <tr>
                     <td>
                         التخصص العام
+                        <span class="required">*</span>
                     </td>
                     <td>
                         <div id="track"></div>
@@ -335,6 +337,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <tr>
                     <td>
                         التخصص الدقيق
+                        <span class="required">*</span>
                     </td>
                     <td>
                         <div id="subtrack"></div>
@@ -342,11 +345,6 @@ $smarty->display('../templates/Loggedin.tpl');
                     </td>
                 </tr>
             </table>
-
-
-
-
-
         </fieldset>
         <div id="Result" style="width: 800px; height: 50px;">
 
@@ -357,9 +355,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
                 </td>
                 <td>
-                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        رجوع
-                    </a>
+                   
                 </td>
             </tr>
         </table>

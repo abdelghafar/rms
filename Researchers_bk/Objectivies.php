@@ -131,6 +131,12 @@ if (isset($_GET['q'])) {
         <div id="windowContent" style="overflow: auto;" ></div>
     </div>
     <fieldset style="width: 95%;text-align: right;"> 
+
+        <legend>
+            <label>
+                أهداف المشروع
+            </label>
+        </legend>
         <form id='Form' method="post">
             <input type="hidden" name="pid" value="<?
             if (isset($_GET['q'])) {
@@ -138,11 +144,6 @@ if (isset($_GET['q'])) {
             }
             ?>"/>
         </form>
-        <legend>
-            <label>
-                أهداف المشروع
-            </label>
-        </legend>
         <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
         <div id="Result">
 

@@ -26,6 +26,11 @@ $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+} else {
+    exit();
+}
 ?>
 
 <?
@@ -65,18 +70,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         });
     </script>
     <script type="text/javascript">
-        function display_research_status(research_id, research_name)
-        {
-            window.showModalDialog("research_status_details_View.php?research_id=" + research_id + "&research_name=" + research_name, 'PopupPage', "dialogWidth:620px;dialogHeight:300px");
-            location.reload();
-        }
-
         function Display_AddCoAuthor()
         {
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 300, width: 700, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("searchCoAuthor.php?rcode=" + $('#lstOfResearches').find(":selected").text());
+                $('#windowContent').load("searchCoAuthor.php?rcode=" + '<? echo $_GET['q']; ?>');
                 $('#window').jqxWindow('setTitle', 'اضافة باحث مشارك');
                 $('#window').jqxWindow('open');
             });
@@ -88,7 +87,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             {
                 $.ajax({
                     type: 'post',
-                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + $('#lstOfResearches').find(":selected").text(),
+                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + '<? echo $_GET['q']; ?>',
                     datatype: "html",
                     success: function (data) {
                         location.reload();
@@ -99,32 +98,14 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-            var valueSelected = $('#lstOfResearches').val();
             $.ajax({
-                url: "inc/coAuthors.inc.php?research_id=" + valueSelected,
+                url: "inc/coAuthors.inc.php?research_id=" + '<? echo $_GET['q']; ?>',
                 type: "post",
                 datatype: "html",
                 data: $("#coAuthorsForm").serialize(),
                 success: function (data) {
                     $('#Result').html(data);
                 }
-            });
-            $('#lstOfResearches').on('change', function () {
-                valueSelected = this.value;
-                $.ajax({
-                    url: "inc/coAuthors.inc.php?research_id=" + valueSelected,
-                    type: "post",
-                    datatype: "html",
-                    data: $("#coAuthorsForm").serialize(),
-                    success: function (data) {
-                        $('#Result').html(data);
-                    }
-                });
-
-            });
-            $('#window').on('close', function (event) {
-                location.reload();
             });
         });
 
@@ -143,28 +124,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             </label>
         </legend>
 
-        <div class="panel_row" style="height: 50px;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
-                <p>
-                    اختر البحث
-                </p>
-            </div>
-            <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                <form action="inc/co_authors.inc.php" method="post" id="coAuthorsForm"> 
-
-                    <select id="lstOfResearches" name="lstOfResearches" style="width: 200px; height: 25px;">
-                        <?
-                        $v = new Reseaches();
-                        $array = $v->GetListOfResearchPerResearcherId($personId);
-                        for ($i = 0; $i < count($array['PairValues']); $i++) {
-                            print '<option value="' . $array['PairValues'][$i][0] . '">' . $array['PairValues'][$i][1] . '</option>';
-                        }
-                        ?>
-                    </select>
-
-                </form>
-            </div>
-        </div>
         <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor()
                         ;">اضافة باحث</a>
         <div id="Result">

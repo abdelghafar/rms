@@ -179,6 +179,15 @@ if (!isset($_GET['program'])) {
                     </a>
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
+                    <a href="understanding.php">
+                        <img src="images/appointment-new.png" alt="المعالج" title ="المعالج" style ="border:0"/>
+                        <p style="margin-top: 0px;">
+                            المعالج
+                        </p>
+                    </a>
+
+                </div>
+                <div class="panel-cell" style="padding-right: 100px;">
                     <a href="../inc/logout.inc.php">
                         <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
                         <p style="margin-top: 0px;">
