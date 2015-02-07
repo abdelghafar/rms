@@ -205,6 +205,23 @@ class Reseaches {
         return $result;
     }
 
-}
+    public function SetAbstract_ar_url($projectId, $url) {
+        $stmt = "update researches set `abstract_ar_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
 
+    public function GetAbstract_ar_url($projectId) {
+        $stmt = "Select abstract_ar_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+}
 ?>
