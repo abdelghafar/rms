@@ -208,7 +208,7 @@ class Reseaches {
     public function SetAbstract_ar_url($projectId, $url) {
         $stmt = "update researches set `abstract_ar_url` = '" . $url . "' where seq_id =" . $projectId;
         $conn = new MysqlConnect();
-        $result = $conn->ExecuteNonQuery($stmt);
+        $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
 
@@ -224,4 +224,5 @@ class Reseaches {
     }
 
 }
+
 ?>
