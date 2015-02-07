@@ -102,7 +102,7 @@ if ($isValid == TRUE) {
     if ($x != 0 && $y == 1) {
 //        echo '<div class="successbox" style="width:800px;direction: rtl;">';
 //        echo 'تم حفظ البيانات بنجاح' . ' ' . '<a target="_blank" href="Print.php?' . 'research_code=' . base64_encode($research_id) . 'title_ar=' . base64_encode($title_ar) . '&program=' . base64_encode($program) . '&submit=' . base64_encode($Status_Date) . '&budget=' . base64_encode($budget) . '">طباعة نموذج التقديم الإلكتروني</a>';
-        echo '<script>' . 'window.location.assign("../Objectivies.php?q=43600123")' . '</script>';
+        echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $research_id . '")' . '</script>';
     } else {
         echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
         echo 'x= ' . $x . '<br/>';
@@ -112,4 +112,3 @@ if ($isValid == TRUE) {
 ?>
 <link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-

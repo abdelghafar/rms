@@ -36,7 +36,7 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    var_dump($check);
+    //var_dump($check);
     if ($check !== false) {
         echo "File is PDF - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -50,8 +50,8 @@ if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 5000000) {
+// Check file size 2*1024*1024
+if ($_FILES["fileToUpload"]["size"] > 2 * 1024 * 1024) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -68,7 +68,27 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
         $obj = new Reseaches();
-        $obj->SetAbstract_ar_url($_GET['q'], $file_name);
+        switch ($_GET['type']) {
+            case 'arAbsUpload': {
+                    $obj->SetAbstract_ar_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'enAbsUpload': {
+                    $obj->SetAbstract_en_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'introUpload': {
+                    $obj->SetIntro_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'reviewUpload': {
+                    $obj->SetLitReview_url($_GET['q'], $file_name);
+                    break;
+                }
+            default : {
+                    break;
+                }
+        }
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
