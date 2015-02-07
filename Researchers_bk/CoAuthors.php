@@ -75,7 +75,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             $(document).ready(function () {
                 $('#window').css('visibility', 'visible');
                 $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 300, width: 700, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("searchCoAuthor.php?rcode=" + '<? echo $_GET['q']; ?>');
+                $('#windowContent').load("searchCoAuthor.php?rcode=" + '<? echo $projectId ?>');
                 $('#window').jqxWindow('setTitle', 'اضافة باحث مشارك');
                 $('#window').jqxWindow('open');
             });
@@ -124,16 +124,11 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             </label>
         </legend>
 
-        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor()
-                        ;">اضافة باحث</a>
+        <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_AddCoAuthor();">اضافة باحث</a>
         <div id="Result">
 
         </div>
     </fieldset>
-<label>
-    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-        رجوع
-    </a></label>
 
 </body>
 <?
