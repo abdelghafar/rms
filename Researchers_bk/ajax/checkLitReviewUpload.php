@@ -12,7 +12,7 @@ $conn = new MysqlConnect();
 
 if (isset($_GET['q'])) {
     $projectId = $_GET['q'];
-    $stmt = 'select CHAR_LENGTH(abstract_ar_url) from researches where seq_id=' . $projectId;
+    $stmt = 'select CHAR_LENGTH(literature_review_url) from researches where seq_id=' . $projectId;
     //echo $stmt;
     $result = $conn->ExecuteNonQuery($stmt);
     $r = 0;
@@ -24,8 +24,7 @@ if (isset($_GET['q'])) {
     } else {
         $result = 0;
     }
-
-   echo json_encode($result);
+    echo json_encode($result);
 } else {
     echo json_encode('Parameter Required...');
 } 

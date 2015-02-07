@@ -12,7 +12,7 @@ $conn = new MysqlConnect();
 
 if (isset($_GET['q'])) {
     $projectId = $_GET['q'];
-    $stmt = 'select CHAR_LENGTH(abstract_ar_url) from researches where seq_id=' . $projectId;
+    $stmt = 'select CHAR_LENGTH(introduction_url) from researches where seq_id=' . $projectId;
     //echo $stmt;
     $result = $conn->ExecuteNonQuery($stmt);
     $r = 0;
