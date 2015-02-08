@@ -172,7 +172,8 @@ class Reseaches {
     }
 
     public function GetResearch($ResearchId) {
-        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar` ,  `abstract_en` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `budget` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` FROM  `researches` WHERE seq_id =" . $ResearchId;
+        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar_url` ,  `abstract_en_url` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `budget` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` FROM  `researches` WHERE seq_id =" . $ResearchId;
+
         $conn = new MysqlConnect();
         $resultSet = $conn->ExecuteNonQuery($stmt);
         while ($row = mysql_fetch_array($resultSet)) {
@@ -186,8 +187,8 @@ class Reseaches {
                 'Approve_session_no' => $row['Approve_session_no'],
                 'Approve_date' => $row['Approve_date'],
                 'url' => $row['url'],
-                'abstract_ar' => $row['abstract_ar'],
-                'abstract_en' => $row['abstract_en'],
+                'abstract_ar' => $row['abstract_ar_url'],
+                'abstract_en' => $row['abstract_en_url'],
                 'status_id' => $row['status_id'],
                 'status_date' => $row['status_date'],
                 'center_id' => $row['center_id'],
@@ -205,6 +206,7 @@ class Reseaches {
         return $result;
     }
 
+    //Get, set Abstract_ar_url
     public function SetAbstract_ar_url($projectId, $url) {
         $stmt = "update researches set `abstract_ar_url` = '" . $url . "' where seq_id =" . $projectId;
         $conn = new MysqlConnect();
@@ -223,6 +225,75 @@ class Reseaches {
         return $url;
     }
 
-}
+    //Get set Abstract_en_url
+    public function SetAbstract_en_url($projectId, $url) {
+        $stmt = "update researches set `abstract_en_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
 
-?>
+    public function GetAbstract_en_url($projectId) {
+        $stmt = "Select abstract_en_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //---------get set introduction_url--------------------------------------
+    public function SetIntro_url($projectId, $url) {
+        $stmt = "update researches set `introduction_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetIntro_url($projectId) {
+        $stmt = "Select introduction_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set review ------------------------------------------------------
+    public function SetLitReview_url($projectId, $url) {
+        $stmt = "update researches set `literature_review_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetLitReview_url($projectId) {
+        $stmt = "Select literature_review_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function Lock($projectId) {
+        $stmt = "update researches set `isLocked` =  1 where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function Unlock($projectId) {
+        $stmt = "update researches set `isLocked` =  0 where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+}
