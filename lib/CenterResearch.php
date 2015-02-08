@@ -67,8 +67,7 @@ class CenterResearch {
 
     public function GetResearchesByResearcherAndProgram($ResearcherId, $program) {
         $conn = new MysqlConnect();
-        $stmt = "SELECT DISTINCT seq_id, title_ar, title_en, research_code, researches.major_field, special_field, research_year, `FirstName_ar`, `FatherName_ar`, `GrandName_ar`, `FamilyName_ar`, `Status_name`, status_date,center_name, case program when 'ra2d' then 'رائد' when 'ba7th' then 'باحث' when 'wa3da' then 'واعدة' end as 'program' FROM researches JOIN research_authors ON research_authors.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_authors.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` join reseacher_centers on reseacher_centers.id = researches.center_id WHERE `isCorrsAuthor`=1 and `Withdraw`=0 and program='" . $program . "' and research_authors.person_id = " . $ResearcherId;
-
+        $stmt = "SELECT DISTINCT seq_id, title_ar, title_en, research_code, researches.major_field, special_field, research_year,  `FirstName_ar` ,  `FatherName_ar` ,  `GrandName_ar` ,  `FamilyName_ar` ,  `Status_name` , status_date, center_name,CASE program WHEN  'ra2d' THEN  'رائد' WHEN  'ba7th' THEN  'باحث' WHEN  'wa3da'THEN  'واعدة'END AS  'program' FROM researches JOIN research_stuff ON research_stuff.research_id = researches.seq_id JOIN persons ON persons.`Person_id` = research_stuff.person_id JOIN reseach_status ON researches.status_id = reseach_status.`Status_Id` JOIN reseacher_centers ON reseacher_centers.id = researches.center_id WHERE  `role_id` =1 AND  `Withdraw` =0 AND program ='" . $program . "' and research_stuff.person_id = " . $ResearcherId;
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
