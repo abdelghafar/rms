@@ -303,12 +303,15 @@ class Reseaches {
         while ($row = mysql_fetch_array($rs)) {
             $result = $row[0];
         }
-        return $result;
+        if ($result == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public function IsAuthorized($projectId, $personId) {
-        $stmt = "SELECT research_stuff.seq_no FROM research_stuff WHERE research_stuff.research_id =  " . $projectId . " AND
-research_stuff.person_id = " . $personId . " AND research_stuff.role_id =1 LIMIT 0,1";
+        $stmt = "SELECT research_stuff.seq_no FROM research_stuff WHERE research_stuff.research_id =  " . $projectId . " AND research_stuff.person_id = " . $personId . " AND research_stuff.role_id =1 LIMIT 0,1";
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         if (mysql_num_rows($result) == 1) {
@@ -319,6 +322,3 @@ research_stuff.person_id = " . $personId . " AND research_stuff.role_id =1 LIMIT
     }
 
 }
-
-$t = new Reseaches();
-echo $t->IsAuthorized(2, 6);
