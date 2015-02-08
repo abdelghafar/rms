@@ -117,7 +117,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                     ?>
                 </label>
             </legend>
-            <a href="research_submit.php?program<? echo $_SESSION['program']; ?>">
+            <a href="understanding.php?program=<? echo $_SESSION['program']; ?>">
                 اضافة بحث جديد
             </a>
             <table id="datatables" class="display" style="text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
