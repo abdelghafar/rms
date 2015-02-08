@@ -27,7 +27,7 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 if (isset($_GET['q'])) {
-    $projectId = $_GET['q'];
+    $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
 } else {
     exit();
 }
@@ -87,7 +87,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             {
                 $.ajax({
                     type: 'post',
-                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + '<? echo $_GET['q']; ?>',
+                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + '<? echo $projectId; ?>',
                     datatype: "html",
                     success: function (data) {
                         location.reload();
@@ -128,9 +128,20 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         <div id="Result">
 
         </div>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <a id="submit_button" href="workingPlan.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
+                </td>
+                <td>
+                    <a href="uploadIntro.php?program=<? echo $_SESSION['program'] . '&q=' . $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        رجوع
+                    </a>
+                </td>
+            </tr>
+        </table>
     </fieldset>
 
 </body>
 <?
 $smarty->display('../templates/footer.tpl');
-?>
