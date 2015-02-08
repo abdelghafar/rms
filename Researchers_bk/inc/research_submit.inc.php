@@ -68,9 +68,16 @@ $budget = $_POST['budgetValue'];
 if ($isValid == FALSE) {
     echo '<label>' . 'برجاء التأكد من صحة البيانات' . '<label/>';
 }
+
+//ToDo:Update Query
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $r = new Reseaches();
+    $isExist = $res->IsExist($title_en);
+    if ($isExist !== $projectId) {
+        echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
+        $isValid = FALSE;
+    }
     if ($isValid == TRUE) {
         $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $budget, $proposed_duration, $technologiesId, $trackId, $subtrackId);
         if ($updateResult == 1) {
@@ -78,8 +85,12 @@ if (isset($_GET['q'])) {
         } else {
             echo 'Error in update data ...';
         }
+    } else {
+        
     }
-} else {
+}
+//ToDo:insert stmt
+else {
     $setting = new Settings();
     $research_year = $setting->GetCurrYear();
     $Status_Id = 1;
