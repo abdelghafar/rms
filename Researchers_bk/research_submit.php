@@ -26,7 +26,6 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 if (isset($_GET['q'])) {
-    $action = 'edit';
     $projectId = $_GET['q'];
     $obj = new Reseaches();
     $project = $obj->GetResearch($projectId);
@@ -71,7 +70,7 @@ if (isset($_GET['q'])) {
         $(document).ready(function () {
             $('#submit_button').click(function () {
                 $.ajax({
-                    url: "inc/research_submit.inc.php",
+                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?action=edit&q=' . $projectId; ?>',
                     type: "post",
                     datatype: "html",
                     data: $("#researchSubmitForm").serialize(),
@@ -84,10 +83,12 @@ if (isset($_GET['q'])) {
             //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
             //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
             //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true, value: '<? if (isset($project))
+            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true, value: '<?
+if (isset($project)) {
     echo $budget;
-else
+} else {
     echo 0;
+}
 ?>'});
             $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
             //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
@@ -188,10 +189,9 @@ if (isset($projectId)) {
             });
             $("#technologies").on('bindingComplete', function (event) {
                 $('#technologies').val('<?
-if (isset($projectId))
+if (isset($projectId)) {
     echo $techId;
-else
-    echo -1;
+}
 ?>');
             });
             //-----------------------------------------------------------------
@@ -222,10 +222,9 @@ else
             });
             $("#track").on('bindingComplete', function (event) {
                 $('#track').val('<?
-if (isset($projectId))
+if (isset($projectId)) {
     echo $major_field_id;
-else
-    echo -1;
+}
 ?>');
             });
             dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
@@ -246,10 +245,9 @@ else
             });
             $("#subtrack").on('bindingComplete', function (event) {
                 $('#subtrack').val('<?
-if (isset($projectId))
+if (isset($projectId)) {
     echo $speical_field_id;
-else
-    echo -1;
+}
 ?>');
             });
         });</script>
@@ -311,10 +309,10 @@ else
                     </td>
                     <td>
                         <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar" value="<?
-                               if (isset($projectId)) {
-                                   echo $title_ar;
-                               }
-                               ?>"/>  
+                        if (isset($projectId)) {
+                            echo $title_ar;
+                        }
+                        ?>"/>  
                     </td>
                 </tr>
                 <tr>
@@ -324,10 +322,10 @@ else
                     </td>
                     <td>
                         <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en" value="<?
-                               if (isset($projectId)) {
-                                   echo $title_en;
-                               }
-                               ?>"/>  
+                        if (isset($projectId)) {
+                            echo $title_en;
+                        }
+                        ?>"/>  
                     </td>
                 </tr>
                 <tr>
