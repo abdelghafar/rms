@@ -296,4 +296,29 @@ class Reseaches {
         return mysql_affected_rows();
     }
 
+    public function CanEdit($projectId) {
+        $stmt = "select `isLocked` From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $rs = $conn->ExecuteNonQuery($stmt);
+        while ($row = mysql_fetch_array($rs)) {
+            $result = $row[0];
+        }
+        return $result;
+    }
+
+    public function IsAuthorized($projectId, $personId) {
+        $stmt = "SELECT research_stuff.seq_no FROM research_stuff WHERE research_stuff.research_id =  " . $projectId . " AND
+research_stuff.person_id = " . $personId . " AND research_stuff.role_id =1 LIMIT 0,1";
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        if (mysql_num_rows($result) == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }
+
+$t = new Reseaches();
+echo $t->IsAuthorized(2, 6);
