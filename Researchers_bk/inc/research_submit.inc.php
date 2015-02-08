@@ -90,7 +90,6 @@ if (isset($_GET['q'])) {
         echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
         $isValid = FALSE;
     }
-
     $research_code = '';
     if ($isValid == TRUE) {
         $researcher = new Reseaches();
