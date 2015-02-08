@@ -13,7 +13,6 @@ require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 $smarty = new Smarty();
-
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
@@ -26,16 +25,24 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 if (isset($_GET['q'])) {
+
     $projectId = $_GET['q'];
     $obj = new Reseaches();
-    $project = $obj->GetResearch($projectId);
-    $title_ar = $project['title_ar'];
-    $title_en = $project['title_en'];
-    $duration = $project['proposed_duration'];
-    $budget = $project['budget'];
-    $techId = $project['center_id'];
-    $major_field_id = $project['major_field'];
-    $speical_field_id = $project['special_field'];
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $project = $obj->GetResearch($projectId);
+        $title_ar = $project['title_ar'];
+        $title_en = $project['title_en'];
+        $duration = $project['proposed_duration'];
+        $budget = $project['budget'];
+        $techId = $project['center_id'];
+        $major_field_id = $project['major_field'];
+        $speical_field_id = $project['special_field'];
+    }
 }
 ?>
 
@@ -70,7 +77,7 @@ if (isset($_GET['q'])) {
         $(document).ready(function () {
             $('#submit_button').click(function () {
                 $.ajax({
-                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?action=edit&q=' . $projectId; ?>',
+                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?action=edit'; ?>',
                     type: "post",
                     datatype: "html",
                     data: $("#researchSubmitForm").serialize(),
