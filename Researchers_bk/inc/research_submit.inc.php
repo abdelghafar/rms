@@ -4,7 +4,7 @@ require_once '../../lib/Reseaches.php';
 require_once '../../lib/CenterResearch.php';
 require_once '../../lib/Settings.php';
 require_once '../../lib/reseach_track.php';
-require_once '../../lib/research_Authors.php';
+require_once '../../lib/research_stuff.php';
 require_once '../../lib/Smarty/libs/Smarty.class.php';
 require_once '../../lib/users.php';
 
@@ -21,6 +21,13 @@ $user = new Users();
 $UserId = $_SESSION['User_Id'];
 $person_id = $user->GetPerosnId($UserId, 'Researcher');
 $isValid = TRUE;
+if (isset($_GET['action']) && isset($_GET['q'])) {
+    print_r($_POST);
+    echo '<hr/>';
+    print_r($_GET);
+    exit();
+}
+
 
 if (!isset($_POST['title_ar']) || empty($_POST['title_ar'])) {
     echo 'من فضلك ادخل العنوان باللغة العربية' . '<br/>';
@@ -93,7 +100,7 @@ if ($isValid == TRUE) {
     $track = new Reseaches_track();
     $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
 //    echo 'y is:' . $y;
-    $research_author = new research_Authors();
+    $research_author = new research_stuff();
     $research_author->Save($research_id, $person_id, 1);
 
 //    $researchCenter = new CenterResearch();
