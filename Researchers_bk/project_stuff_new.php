@@ -66,6 +66,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = 'energyblue';
@@ -247,7 +248,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     </script>
 </head>
 <body>
-
     <div id="window" style="visibility: hidden;">
         <div id="windowHeader">
         </div>
@@ -265,9 +265,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             <div id="gridPI"></div>
             <br/><br/>
             <span class="classic-font">الباحثين المشاركين</span>
+            <br/>
+            <a href="#" class="classic-font" id='AddNewCoIs'>اضافة جديد</a>
             <div id='gridCoI'></div>
             <br/><br/>
             <span class="classic-font">أخري</span>
+            <br/>
+            <a href="#" class="classic-font" id='AddNewOtherPersonal'>اضافة جديد</a>
             <div id='gridOthers'></div>
 
         </div>
