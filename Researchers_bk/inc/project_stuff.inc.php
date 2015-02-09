@@ -72,8 +72,9 @@ $rs = $obj->GetProjectMembers($research_id);
                 ?>
 
             </tbody>
-
         </table>
+
+
 
     </body>
 </html>
