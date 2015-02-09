@@ -16,17 +16,18 @@ class Reseaches {
         if ($seqId == 0) {
             $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,budget,program,generated_proposal_url,complete_proposal_url) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $budget . ",'" . $program . "','" . $generated_proposal_url . "','$complete_proposal_url" . "'" . ")";
             $stat = $conn->ExecuteNonQuery($stmt);
-            //echo $stmt . '<br/>';
-//            echo mysql_insert_id();
             return mysql_insert_id();
-        } else {
-            $stmt = "Update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "',proposed_duration=" . $proposed_duration . ",major_field='" . $major_field . "',special_field='" . $speical_field . "',research_code='" . $reseach_code . "',Approve_session_no=" . $Approve_session_no . ",Approve_date='" . $Approve_date . "',abstract_ar_url='" . $abstract_ar_url . "',abstract_en_url='" . $abstract_en_url . "',introduction_url='" . $introduction_url . "',literature_review_url='" . $literature_review_url . "',url='" . $url . "',Status_Id=" . $Status_id . ",Status_Date='" . $Status_date . "',center_id=" . $center_id . ",research_year='" . $research_year . "',budget=" . $budget . ",generated_proposal_url='" . $generated_proposal_url . "',complete_proposal_url='" . $complete_proposal_url . "' Where seq_id=" . $seqId;
-            return $conn->ExecuteNonQuery($stmt);
         }
     }
 
-    public function IsExist($title_en) {
-        $stmt = "SELECT seq_id FROM `researches` WHERE  `title_en`='" . $title_en . "'";
+    public function UpdateIntro($seqId, $title_ar, $title_en, $budget, $proposed_duration, $techId, $trackId, $subtrackId) {
+        $conn = new MysqlConnect();
+        $stmt = "update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "',budget=" . $budget . ",proposed_duration=" . $proposed_duration . ",major_field=" . $trackId . ",special_field=" . $subtrackId . ",center_id=" . $techId . " where seq_id=" . $seqId;
+        return $conn->ExecuteNonQuery($stmt);
+    }
+
+    public function IsExist($title_ar) {
+        $stmt = "SELECT seq_id FROM researches WHERE title_ar= '" . $title_ar . "'";
         $result = mysql_query($stmt);
         $seq_id = 0;
         while ($row = mysql_fetch_array($result)) {
