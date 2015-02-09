@@ -35,41 +35,97 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
-        <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
-        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
-
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.columnsresize.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.selection.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.pager.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.sort.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.edit.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.filter.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#datatables').dataTable({
-                    sPaginationType: "full_numbers",
-                    bJQueryUI: true,
-                    bLengthChange: true,
-                    width: 600,
-                    oLanguage: {
-                        sUrl: "../js/dataTables/media/ar_Ar.txt"}
+                var theme = 'energyblue';
+                $('#AddNew').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+                $('#AddNew').click(function () {
+                    window.location.assign('understanding.php?program=<? echo $_SESSION['program']; ?>');
                 });
+                var source =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'title_ar'},
+                                {name: 'status_date'},
+                                {name: 'status_name'}
+                            ],
+                            id: 'seq_id',
+                            url: 'ajax/Researchers_View?id=<? echo $personId; ?>' + '&p=<? echo $program; ?>'
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $("#jqxgrid").jqxGrid(
+                        {
+                            source: source,
+                            theme: theme,
+                            editable: false,
+                            pageable: true,
+                            filterable: true,
+                            width: 850,
+                            pagesize: 20,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'العنوان', dataField: 'title_ar', width: 350, align: 'right', cellsalign: 'right'},
+                                {text: 'تاريخ التقديم', dataField: 'status_date', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'الحالة', dataField: 'status_name', width: 250, align: 'center', cellsalign: 'center'},
+                                {text: 'الحالة', datafield: 'الحالة', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
+                                        return 'الحالة';
+                                    }, buttonclick: function (row) {
+                                        var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
+                                        display_research_status(projectId);
+                                    }
+                                },
+                                {text: 'تعديل', datafield: 'تعديل', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
+                                        return 'تعديل';
+                                    }, buttonclick: function (row) {
+                                        console.log($("#jqxgrid").jqxGrid('getrowdata', row)['seq_id']);
+                                        var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
+                                        window.location.assign('research_submit.php?program=<? echo $program ?>' + '&q=' + projectId);
+                                    }
+                                },
+                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return "..";
+                                    }, buttonclick: function (row) {
+                                        var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
+                                        WithDraw(projectId);
+                                    }
+                                }
+                            ]
+                        });
             });
         </script>
         <script type="text/javascript">
-            function display_research_status(research_id, research_code)
+            function display_research_status(research_id)
             {
                 $(document).ready(function () {
                     $('#window').css('visibility', 'visible');
-                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                    $('#windowContent').load("research_status_details_View.php?research_id=" + research_id + "&research_code=" + research_code);
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 400, width: 600, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("research_status_details_View.php?research_id=" + research_id);
                     $('#window').jqxWindow('setTitle', 'حالة البحث');
                     $('#window').jqxWindow('open');
                 });
@@ -98,8 +154,6 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                     $('#window').jqxWindow('open');
                 });
             }
-
-
         </script>
         <title></title>
     </head>
@@ -117,59 +171,14 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                     ?>
                 </label>
             </legend>
-            <a href="understanding.php?program=<? echo $_SESSION['program']; ?>">
-                اضافة بحث جديد
-            </a>
-            <table id="datatables" class="display" style="text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
-                <thead>
-                    <tr>
-                        <th><em>م</em></th>
-                        <th>عنوان المشروع - عربى </th>
-                        <th>عنوان المشروع - انجليزى</th>
-                        <th>
-                            التخصص العام
-                        </th>
-
-                        <th>سنة التقدم</th>
-                        <th>حالة البحث</th>
-                        <th>متابعة الحالة</th>
-
-                        <th>حذف</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
-                    $x = 1;
-                    while ($row = mysql_fetch_array($rs)) {
-                        ?>
-                        <tr>
-                            <td><?
-                                echo $x;
-                                $x++;
-                                ?></td>
-                            <td style=" text-align: right"><? echo $row['title_ar']; ?></td>
-                            <td style=" text-align: left"><? echo $row['title_en']; ?></td>
-                            <td style=" text-align: left"><? echo $row['center_name']; ?></td>
-                            <td><? echo $row['research_year']; ?></td>
-                            <td style=" text-align: center;"><? echo $row['Status_name']; ?></td>
-                            <td style=" text-align: center;"><a href="#" onClick="display_research_status(<? echo $row['seq_id'] . ",'" . $row['research_code'] . "'"; ?>);"><img src="images/track.png" style="border:none !important" alt="متابعة الحالة"/></a></td>
-
-                            <td style=" text-align: center;"><a href="#" onClick="WithDraw(<? echo $row['seq_id']; ?>);"><img src="images/delete.png" style="border:none !important" alt="حذف"/></a></td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+            <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
+                <input type="button" value="إضافة جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 25px;"/>
+                <div id="jqxgrid"></div>
+            </div>
 
         </fieldset>
-    <label>
-        <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-            رجوع
-        </a></label>
 
-</body>
+    </body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
