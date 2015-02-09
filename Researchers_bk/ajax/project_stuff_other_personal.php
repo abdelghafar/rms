@@ -21,7 +21,7 @@ if (isset($_GET['q'])) {
             'email' => $row['Email'],
             'position' => $row['Position'],
             'major_Field' => $row['Major_Field'],
-            'nationality'=>$row['Nationality']
+            'nationality' => $row['Nationality']
         );
     }
     echo json_encode($result);
