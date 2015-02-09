@@ -12,6 +12,8 @@ require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
+
 $smarty = new Smarty();
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
@@ -25,7 +27,6 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 if (isset($_GET['q'])) {
-
     $projectId = $_GET['q'];
     $obj = new Reseaches();
     $UserId = $_SESSION['User_Id'];
@@ -42,6 +43,9 @@ if (isset($_GET['q'])) {
         $techId = $project['center_id'];
         $major_field_id = $project['major_field'];
         $speical_field_id = $project['special_field'];
+    } else {
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
     }
 }
 ?>
@@ -67,17 +71,15 @@ if (isset($_GET['q'])) {
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
-
-
     <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
-
+    <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#submit_button').click(function () {
                 $.ajax({
-                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?action=edit'; ?>',
+                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?q=' . $projectId; ?>',
                     type: "post",
                     datatype: "html",
                     data: $("#researchSubmitForm").serialize(),
@@ -162,12 +164,17 @@ if (isset($project)) {
                     $('#proposed_duration').val(value);
                     //alert('proposed_duration is :' + $("#durationList").val());
                 }
-                $('#durationList').jqxDropDownList('val', '<?
+            });
+
+            $("#durationList").on('bindingComplete', function (event) {
+                $('#durationList').val('<?
 if (isset($projectId)) {
     echo $duration;
 }
 ?>');
             });
+
+
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
             $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
             $('#technologies').on('change', function (event)
@@ -301,6 +308,7 @@ if (isset($projectId)) {
 </head>
 
 <center>
+
     <form method="POST" id="researchSubmitForm" enctype="multipart/form-data"> 
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
