@@ -283,6 +283,26 @@ class Reseaches {
         return $url;
     }
 
+    //get,set accept_letter urls-------------------------------------------------------
+    public function SetAccept_letter_url_url($projectId, $url) {
+        $stmt = "update researches set `accept_letter_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetAccept_letter_url_url($projectId) {
+        $stmt = "Select accept_letter_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //--------------------------------------------------------------------------
     public function Lock($projectId) {
         $stmt = "update researches set `isLocked` =  1 where seq_id =" . $projectId;
         $conn = new MysqlConnect();
@@ -297,6 +317,7 @@ class Reseaches {
         return mysql_affected_rows();
     }
 
+//------------------------------------------------------
     public function CanEdit($projectId) {
         $stmt = "select `isLocked` From researches where seq_id =" . $projectId;
         $conn = new MysqlConnect();
