@@ -97,7 +97,7 @@ if (!isset($_GET['program'])) {
                     <a href="project_stuff.php?program=<? echo $_SESSION['program'] ?>"> 
                         <img src="images/team.png" alt="الباحثين المشاركين" title ="الباحثين المشاركين" style ="border:0"/>
                         <p style="margin-top: 0px;">
-                            الفريق البحثي
+                           الفريق البحثي
                         </p>
                     </a>
 

@@ -336,10 +336,10 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <div id="result" class="errormsgbox" style="width: 700px;height:auto;display: none;">
                             <p>
-                                you must upload All files....
+                                يجب تحميل جميع الملفات
                             </p>
                         </div>
                     </td>
@@ -352,7 +352,7 @@ if (isset($_GET['q'])) {
                     <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
                 </td>
                 <td>
-                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <a href="research_submit.php?program=<? echo $_SESSION['program'] . '&q=' . $projectId ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         رجوع
                     </a>
                 </td>

@@ -63,7 +63,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
 
-    <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+    <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <script type="text/javascript">
@@ -92,7 +92,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         editable: false,
                         pageable: false,
                         filterable: true,
-                        width: 850,
+                        width: 800,
                         pagesize: 5,
                         autoheight: true,
                         columnsresize: true,
@@ -102,7 +102,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                             {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
                             {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                            {text: 'رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                             {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
                             {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
                             {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
@@ -116,6 +116,60 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         ]
                     });
         }
+
+        function ReloadOtherPeronsal()
+        {
+            var theme = 'energyblue';
+            var OtherDataSource =
+                    {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'person_id'},
+                            {name: 'name_ar'},
+                            {name: 'role_name'},
+                            {name: 'email'},
+                            {name: 'position'},
+                            {name: 'major_Field'},
+                            {name: 'nationality'}
+                        ],
+                        id: 'person_id',
+                        url: 'ajax/project_stuff_other_personal?q=<? echo $projectId; ?>'
+                    };
+            var dataAdapter = new $.jqx.dataAdapter(OtherDataSource);
+            $("#gridOthers").jqxGrid(
+                    {
+                        source: dataAdapter,
+                        theme: theme,
+                        editable: false,
+                        pageable: false,
+                        filterable: true,
+                        width: 800,
+                        pagesize: 5,
+                        autoheight: true,
+                        columnsresize: true,
+                        sortable: true,
+                        rtl: true,
+                        columns: [
+                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                    return '..';
+                                }, buttonclick: function (row) {
+                                    var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
+                                    var person_id = dataRecord['person_id'];
+                                    Delete(person_id);
+                                }
+                            }
+                        ]
+                    });
+
+        }
+
+
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -145,7 +199,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         editable: false,
                         pageable: false,
                         filterable: true,
-                        width: 850,
+                        width: 800,
                         pagesize: 5,
                         autoheight: true,
                         columnsresize: true,
@@ -165,49 +219,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             ReloadCoIs();
             //------------------------------------------------------
             //Others
-            var OtherDataSource =
-                    {
-                        datatype: "json",
-                        datafields: [
-                            {name: 'person_id'},
-                            {name: 'name_ar'},
-                            {name: 'role_name'},
-                            {name: 'email'},
-                            {name: 'position'},
-                            {name: 'major_Field'},
-                            {name: 'nationality'}
-                        ],
-                        id: 'person_id',
-                        url: 'ajax/project_stuff_other_personal?q=<? echo $projectId; ?>'
-                    };
-            dataAdapter = new $.jqx.dataAdapter(OtherDataSource);
-            $("#gridOthers").jqxGrid(
-                    {
-                        source: dataAdapter,
-                        theme: theme,
-                        editable: false,
-                        pageable: false,
-                        filterable: true,
-                        width: 850,
-                        pagesize: 5,
-                        autoheight: true,
-                        columnsresize: true,
-                        sortable: true,
-                        rtl: true,
-                        columns: [
-                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                    return '..';
-                                }, buttonclick: function (row) {
-                                }
-                            }
-                        ]
-                    });
+            ReloadOtherPeronsal();
 
         });
 

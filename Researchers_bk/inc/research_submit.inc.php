@@ -73,8 +73,8 @@ if ($isValid == FALSE) {
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $r = new Reseaches();
-    $isExist = $res->IsExist($title_en);
-    if ($isExist !== $projectId) {
+    $isExist = $r->IsExist($title_ar);
+    if ($isExist > 0 && $isExist != $projectId) {
         echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
         $isValid = FALSE;
     }
@@ -86,7 +86,7 @@ if (isset($_GET['q'])) {
             echo 'Error in update data ...';
         }
     } else {
-        
+        echo 'لقد  فشلت عمليه ادخال البيانات' . '<br/>';
     }
 }
 //ToDo:insert stmt
@@ -96,7 +96,7 @@ else {
     $Status_Id = 1;
     $Status_Date = date('Y-m-d');
     $res = new Reseaches();
-    $isExist = $res->IsExist($title_en);
+    $isExist = $res->IsExist($title_ar);
     if ($isExist > 0) {
         echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
         $isValid = FALSE;

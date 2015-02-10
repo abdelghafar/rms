@@ -19,7 +19,7 @@ if (isset($_GET['q'])) {
         var tmpDept = null;
         var tmpCollege = null;
         $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 50, height: 25, theme: Curr_theme});
+        $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
             var SearchByEmpCodeVal = $('#SearchByEmpCode').jqxMaskedInput('inputValue');
@@ -57,7 +57,6 @@ if (isset($_GET['q'])) {
                         //$('#coAuthorName').html(tmpName);
                         $("#gridCoAuthors").jqxGrid('addrow', null, tmpPersonData);
                     }
-                    console.log(tmpPerson_id);
                 }
             });
         });
@@ -74,13 +73,21 @@ if (isset($_GET['q'])) {
                 }, {
                     name: 'Dept',
                     type: 'string'
+                },
+                {
+                    name: 'Speical_Field',
+                    type: 'string'
+                },
+                {
+                    name: 'Position',
+                    type: 'string'
                 }],
             datatype: "json"
         };
         var CoAuthorsSourceAdapter = new $.jqx.dataAdapter(CoAuthorsSource);
         $("#gridCoAuthors").jqxGrid(
                 {
-                    width: 650,
+                    width: '100%',
                     height: 400,
                     autoheight: true,
                     sortable: true,
@@ -91,7 +98,9 @@ if (isset($_GET['q'])) {
                         {text: 'اسم الباحث', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
                         {text: 'رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 100},
                         {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص العام', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150}
+                        {text: 'التخصص العام', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'التخصص الدقيق', datafield: 'Speical_Field', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150}
                     ]
                 });
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
@@ -100,10 +109,13 @@ if (isset($_GET['q'])) {
                 url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id,
                 success: function (data) {
                     $('#SearchFrm').html('');
-                    
+                    ReloadCoIs();
                 }
             });
-            $('#window').jqxWindow('close');
+        });
+        $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
+        $('#btnClose').on('click', function () {
+            $('#SearchFrm').html('');
         });
     });
 </script>
@@ -111,10 +123,11 @@ if (isset($_GET['q'])) {
     <legend>
         اضافة باحث مشارك
     </legend>
-    <table>
+    <table style="width: 800px;">
         <tr>
             <td>
                 رقم المنسوب
+                <span class="error">*</span>
             </td>
             <td>
                 <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
@@ -137,6 +150,7 @@ if (isset($_GET['q'])) {
         <tr>
             <td colspan="2">
                 <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 0px;"  />
+                <input type="button" value="اغلاق" id='btnClose' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 10px;"  />
             </td>
         </tr>
     </table>

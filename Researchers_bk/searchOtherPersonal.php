@@ -146,15 +146,18 @@ if (isset($_GET['q'])) {
                 success: function (data) {
                     if (data === "")
                     {
-                        //$('#SearchPersonalFrm').html('');
+                        $('#SearchPersonalFrm').html('');
                     }
                     else
                     {
                         $('#SearchPersonalFrm').html(data);
                     }
-                    //ReloadCoIs();
+                    ReloadOtherPeronsal();
                 }
+
             });
+
+
         });
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnClose').on('click', function () {
@@ -164,21 +167,24 @@ if (isset($_GET['q'])) {
 </script>
 <fieldset style="width: 98%;text-align: right;margin-bottom: 25px;">
     <legend>
-        اضافة باحث مشارك
+        اضافة الموارد البشرية
     </legend>
     <table style="width: 800px;">
         <tr>
             <td>
                 الاسم
+                <span class="error">*</span>
             </td>
             <td>
                 <input type="text" id="SearchByName"/>
                 <input id="searchButton" value="بحث"/>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>
                 الوظيفة
+                <span class="error">*</span>
             </td>
             <td>
                 <div id="role_list"></div>
@@ -191,14 +197,15 @@ if (isset($_GET['q'])) {
             <td>
                 <input type="file" name="approve" />
             </td>
+            <td></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <div id='error' style="height: 20px;">
 
                 </div>

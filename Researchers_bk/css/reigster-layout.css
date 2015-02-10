@@ -5,6 +5,12 @@
     Description:
         Purpose of the stylesheet follows.
 */
+.classic-font{
+    font-size:14px;
+    color: black; 
+    line-height: 100%; 
+    text-decoration: none;
+}
 
 .panel-header
 {

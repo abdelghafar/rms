@@ -4,7 +4,6 @@ session_start();
 require_once('../lib/CenterResearch.php');
 
 $research_id = $_GET['research_id'];
-$research_code = $_GET['research_code'];
 $cr = new CenterResearch();
 $rs = $cr->getResearchAllStatus($research_id);
 ?>
@@ -33,19 +32,6 @@ $rs = $cr->getResearchAllStatus($research_id);
 </head>
 
 <body style="background-color: #ededed;">
-
-    <div class="panel_row" style="padding-bottom: 10px;">
-        <div class="panel-cell" style="width: 80px;text-align: left;padding-left: 10px;"> 
-            <label>
-                رقم المشروع
-            </label>
-        </div>
-        <div class="panel-cell" style="width:100px;height: 30px;"> 
-            <p style="font-weight: bold;">
-                <?php echo $research_code; ?>
-            </p>
-        </div>
-    </div>
     <table id="grid" class="display" dir="rtl" style="text-align: center;font-size:14px; font-weight: bold;" >
         <thead>
             <tr>

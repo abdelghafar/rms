@@ -77,7 +77,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                 var dataAdapter = new $.jqx.dataAdapter(source);
                 $("#jqxgrid").jqxGrid(
                         {
-                            source: source,
+                            source: dataAdapter,
                             theme: theme,
                             editable: false,
                             pageable: true,
@@ -172,7 +172,8 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <input type="button" value="إضافة جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 25px;"/>
+                <input type="button" value="إضافة جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
+                <hr/>
                 <div id="jqxgrid"></div>
             </div>
 
