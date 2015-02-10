@@ -59,7 +59,7 @@ if ($userId == 0) {
 }
 
 if ($rule == 'Researcher') {
-    header('Location:../Researchers/selectProgram.php');
+    header('Location:../Researchers_bk/selectProgram.php');
     exit();
 } else if ($rule == 'Reseach_Center') {
     header('Location:../Reseach_Center/index.php');
