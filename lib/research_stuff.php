@@ -17,6 +17,22 @@ class research_stuff {
         return mysql_insert_id();
     }
 
+    public function IsExist($ResearchId, $PersonId) {
+        $con = new MysqlConnect();
+        $stmt = "SELECT `seq_no` FROM " . $this->table_name . " WHERE `research_id`=" . $ResearchId . " and `person_id`=" . $PersonId;
+        //echo $stmt; 
+        $rs = $con->ExecuteNonQuery($stmt);
+        $result = 0;
+        while ($row = mysql_fetch_array($rs)) {
+            $result = $row[0];
+        }
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     //get all stuff
     public function GetProjectStuff($projectId) {
         $con = new MysqlConnect();
