@@ -1,6 +1,5 @@
 <?
 session_start();
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">';
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');
 } else {
@@ -45,12 +44,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-
+    
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.columnsresize.js"></script>
@@ -66,14 +66,63 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
-
+    <script type="text/javascript">
+        function ReloadCoIs()
+        {
+            var theme = 'energyblue';
+            var CoIsDataSource =
+                    {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'person_id'},
+                            {name: 'name_ar'},
+                            {name: 'role_name'},
+                            {name: 'empCode'},
+                            {name: 'position'},
+                            {name: 'major_Field'}
+                        ],
+                        id: 'person_id',
+                        url: 'ajax/project_stuff_CoI?q=<? echo $projectId; ?>'
+                    };
+            var dataAdapter = new $.jqx.dataAdapter(CoIsDataSource);
+            $("#gridCoI").jqxGrid(
+                    {
+                        source: dataAdapter,
+                        theme: theme,
+                        editable: false,
+                        pageable: false,
+                        filterable: true,
+                        width: 850,
+                        pagesize: 5,
+                        autoheight: true,
+                        columnsresize: true,
+                        sortable: true,
+                        rtl: true,
+                        columns: [
+                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                    return '..';
+                                }, buttonclick: function (row) {
+                                    var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
+                                    var person_id = dataRecord['person_id'];
+                                    Delete(person_id);
+                                }
+                            }
+                        ]
+                    });
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = 'energyblue';
-//            $('#AddNew').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
-//            $('#AddNew').click(function () {
-//                window.location.assign('understanding.php?program=<? echo $_SESSION['program']; ?>');
-//            });
+            $('#AddNewCoIs').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+            $('#AddNewOtherPersonal').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+
             var PIDataSource =
                     {
                         datatype: "json",
@@ -113,49 +162,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     });
 
             //CoI Data Source------------------------------------------------------------
-            var CoIsDataSource =
-                    {
-                        datatype: "json",
-                        datafields: [
-                            {name: 'person_id'},
-                            {name: 'name_ar'},
-                            {name: 'role_name'},
-                            {name: 'empCode'},
-                            {name: 'position'},
-                            {name: 'major_Field'}
-                        ],
-                        id: 'person_id',
-                        url: 'ajax/project_stuff_CoI?q=<? echo $projectId; ?>'
-                    };
-            dataAdapter = new $.jqx.dataAdapter(CoIsDataSource);
-            $("#gridCoI").jqxGrid(
-                    {
-                        source: dataAdapter,
-                        theme: theme,
-                        editable: false,
-                        pageable: false,
-                        filterable: true,
-                        width: 850,
-                        pagesize: 5,
-                        autoheight: true,
-                        columnsresize: true,
-                        sortable: true,
-                        rtl: true,
-                        columns: [
-                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
-                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                    return '..';
-                                }, buttonclick: function (row) {
-                                }
-                            }
-                        ]
-                    });
-
+            ReloadCoIs();
             //------------------------------------------------------
             //Others
             var OtherDataSource =
@@ -191,9 +198,9 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                             {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
                             {text: 'البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'الجنسية', dataField: 'nationality', width: 100, align: 'center', cellsalign: 'center'},
                             {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
                             {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
                             {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                     return '..';
                                 }, buttonclick: function (row) {
@@ -206,53 +213,50 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
     </script>
     <script type="text/javascript">
-        function Display_AddCoAuthor()
-        {
-            $(document).ready(function () {
-                $('#window').css('visibility', 'visible');
-                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 300, width: 700, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("searchCoAuthor.php?rcode=" + '<? echo $projectId ?>');
-                $('#window').jqxWindow('setTitle', 'اضافة باحث مشارك');
-                $('#window').jqxWindow('open');
-            });
-        }
-
         function Delete(person_id)
         {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
             {
                 $.ajax({
                     type: 'post',
-                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&rcode=" + '<? echo $projectId; ?>',
+                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
                     datatype: "html",
                     success: function (data) {
-                        location.reload();
+                        window.location.assign('project_stuff_new.php?q=' +<? echo $projectId; ?>);
                     }
                 });
+
             }
         }
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $.ajax({
-                url: "inc/project_stuff.inc.php?research_id=" + '<? echo $_GET['q']; ?>',
-                type: "post",
-                datatype: "html",
-                data: $("#coAuthorsForm").serialize(),
-                success: function (data) {
-                    $('#Result').html(data);
-                }
+            $('#AddNewCoIs').click(function () {
+                $.ajax({
+                    url: "searchCoAuthor.php?q=" + '<? echo $projectId; ?>',
+                    type: "post",
+                    datatype: "html",
+                    success: function (data) {
+                        $('#SearchFrm').html(data);
+                    }
+                });
+            });
+
+            $('#AddNewOtherPersonal').click(function () {
+                $.ajax({
+                    url: "searchOtherPersonal.php?q=" + '<? echo $projectId; ?>',
+                    type: "post",
+                    datatype: "html",
+                    success: function (data) {
+                        $('#SearchPersonalFrm').html(data);
+                    }
+                });
             });
         });
 
     </script>
 </head>
 <body>
-    <div id="window" style="visibility: hidden;">
-        <div id="windowHeader">
-        </div>
-        <div id="windowContent" style="overflow: auto;" ></div>
-    </div>
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
@@ -262,18 +266,24 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
 
             <span class="classic-font">الباحث الرئيسي</span>
+            <hr/>
             <div id="gridPI"></div>
             <br/><br/>
             <span class="classic-font">الباحثين المشاركين</span>
-            <br/>
-            <a href="#" class="classic-font" id='AddNewCoIs'>اضافة جديد</a>
+            <hr/>
+            <input type="button" id='AddNewCoIs' value="اضافة جديد"/>
+
+            <div id='SearchFrm' style="width: 852px;height: auto;">
+
+            </div>
+
             <div id='gridCoI'></div>
             <br/><br/>
             <span class="classic-font">أخري</span>
-            <br/>
-            <a href="#" class="classic-font" id='AddNewOtherPersonal'>اضافة جديد</a>
+            <hr/>
+            <input type="button" id='AddNewOtherPersonal' value="اضافة جديد"/>
+            <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
             <div id='gridOthers'></div>
-
         </div>
         <table style="width: 100%;">
             <tr>
