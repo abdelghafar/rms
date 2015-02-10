@@ -18,13 +18,28 @@ if (isset($_GET['q'])) {
         var tmpEmail = null;
         var tmpDept = null;
         var tmpCollege = null;
-        $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
+        $("#SearchByName").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
         $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
+        var roles_lst_dataSource = {
+            datatype: "json",
+            datafields: [
+                {name: 'seq_id'},
+                {name: 'role_name'}
+            ],
+            url: '../Data/GetStuff_Roles.php',
+            async: false
+        };
+        var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
+        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 250, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
+
+
+
+
         $('#searchButton').on('click', function () {
-            $('#gridCoAuthors').jqxGrid('clear');
-            var SearchByEmpCodeVal = $('#SearchByEmpCode').jqxMaskedInput('inputValue');
+            $('#gridOtherStuff').jqxGrid('clear');
+            var SearchByName = $('#SearchByName').jqxInput('val');
             $.ajax({
-                url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchByEmpCodeVal,
+                url: "../Data/searchPersonByName.php?q=" + SearchByName,
                 type: "GET",
                 dataType: "json",
                 beforeSend: function () {
@@ -42,7 +57,8 @@ if (isset($_GET['q'])) {
                         tmpEmail = null;
                         tmpDept = null;
                         tmpCollege = null;
-                        //$('#coAuthorName').html('هذا الرقم غير مسجل برجاء تسجيل الباحث أولا');
+                        $('#error').html('هذا الرقم غير مسجل برجاء تسجيل الباحث أولا');
+                        alert('no data ');
                     } else {
                         tmpPersonData = data;
                         tmpPerson_id = data[0]['person_id'];
@@ -55,18 +71,26 @@ if (isset($_GET['q'])) {
                         tmpDept = data[0]['Dept'];
                         tmpCollege = data[0]['College'];
                         //$('#coAuthorName').html(tmpName);
-                        $("#gridCoAuthors").jqxGrid('addrow', null, tmpPersonData);
+                        $("#gridOtherStuff").jqxGrid('addrow', null, tmpPersonData);
                     }
-                    console.log(tmpPerson_id);
                 }
             });
         });
         var CoAuthorsSource = {
             datafields: [{
-                    name: 'name',
+                    name: 'name_ar',
                     type: 'string'
-                }, {
-                    name: 'empCode',
+                },
+                {
+                    name: 'name_en',
+                    type: 'string'
+                },
+                {
+                    name: 'person_id',
+                    type: 'int'
+                },
+                {
+                    name: 'Major_Field',
                     type: 'string'
                 }, {
                     name: 'College',
@@ -86,37 +110,55 @@ if (isset($_GET['q'])) {
             datatype: "json"
         };
         var CoAuthorsSourceAdapter = new $.jqx.dataAdapter(CoAuthorsSource);
-        $("#gridCoAuthors").jqxGrid(
+        $("#gridOtherStuff").jqxGrid(
                 {
                     width: '100%',
                     height: 400,
                     autoheight: true,
                     sortable: true,
+                    pagesize: 10,
+                    filterable: true,
+                    pageable: true,
                     rtl: true,
                     theme: Curr_theme,
                     source: CoAuthorsSourceAdapter,
                     columns: [
-                        {text: 'اسم الباحث', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
-                        {text: 'رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 100},
-                        {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص العام', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'اسم الباحث-ع', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
+                        {text: 'اسم الباحث -E', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
                         {text: 'التخصص الدقيق', datafield: 'Speical_Field', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150}
+                        {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
                     ]
                 });
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
+            var r = $('#role_list').jqxDropDownList('val');
+
+            var rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
+            var dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
+            var person_id = dataRecord['person_id'];
+
             $.ajax({
-                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id,
+                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val'),
                 success: function (data) {
-                    $('#SearchFrm').html('');
-                    ReloadCoIs();
+                    if (data === "")
+                    {
+                        //$('#SearchPersonalFrm').html('');
+                    }
+                    else
+                    {
+                        $('#SearchPersonalFrm').html(data);
+                    }
+                    //ReloadCoIs();
                 }
             });
         });
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnClose').on('click', function () {
-            $('#SearchFrm').html('');
+            $('#SearchPersonalFrm').html('');
         });
     });
 </script>
@@ -127,10 +169,10 @@ if (isset($_GET['q'])) {
     <table style="width: 800px;">
         <tr>
             <td>
-                رقم المنسوب
+                الاسم
             </td>
             <td>
-                <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
+                <input type="text" id="SearchByName"/>
                 <input id="searchButton" value="بحث"/>
             </td>
         </tr>
@@ -139,10 +181,7 @@ if (isset($_GET['q'])) {
                 الوظيفة
             </td>
             <td>
-                <select name="roles">
-                    <option>role_1</option>
-                    <option>role_2</option>
-                </select>
+                <div id="role_list"></div>
             </td>
         </tr>
         <tr>
@@ -155,7 +194,14 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="2">
-                <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+                <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id='error' style="height: 20px;">
+
+                </div>
             </td>
         </tr>
         <tr>
