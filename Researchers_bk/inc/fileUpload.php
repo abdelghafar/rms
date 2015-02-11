@@ -24,9 +24,9 @@ switch ($_GET['type']) {
             $file_name.="literature_reviews/";
             break;
         }
-    case 'accept_letter': {
-            $target_dir = "../../uploads/accept_letter/";
-            $file_name.="accept_letter/";
+    case 'agree_letter': {
+            $target_dir = "../../uploads/agree_letter/";
+            $file_name.="agree_letter/";
             break;
         }
     default : {
