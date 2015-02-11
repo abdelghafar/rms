@@ -119,7 +119,7 @@ if (isset($_GET['q'])) {
         });
     });
 </script>
-<fieldset style="width: 98%;text-align: right;margin-bottom: 25px;">
+<fieldset style="width: 95%;text-align: right;margin-bottom: 25px;">
     <legend>
         اضافة باحث مشارك
     </legend>
@@ -133,14 +133,7 @@ if (isset($_GET['q'])) {
                 <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
                 <input id="searchButton" value="بحث"/>
             </td>
-        </tr>
-        <tr>
-            <td>
-                الموافقة الخطية
-            </td>
-            <td>
-                <input type="file" name="approve" />
-            </td>
+
         </tr>
         <tr>
             <td colspan="2">
