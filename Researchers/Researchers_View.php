@@ -23,6 +23,10 @@ if (isset($_GET['program'])) {
                 $_SESSION['program'] = 'wa3da';
                 break;
             }
+        default : {
+                header("Location: index.php");
+                break;
+            }
     }
 } else {
     header('Location: selectProgram.php');
