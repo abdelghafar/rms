@@ -34,6 +34,7 @@ if (isset($_GET['q'])) {
     $engAbs = $obj->GetAbstract_en_url($projectId);
     $intro = $obj->GetIntro_url($projectId);
     $review = $obj->GetLitReview_url($projectId);
+    $research_method = $obj->GetResearch_method_url($projectId);
 } else {
     exit();
 }
@@ -119,6 +120,15 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#log4').html(serverResponce);
                 });
+
+                $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#research_method_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var fileName = args.file;
+                    var serverResponce = args.response;
+                    $('#research_method_upload_log').html(serverResponce);
+                });
+
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
         <script type="text/javascript">
@@ -126,6 +136,7 @@ if (isset($_GET['q'])) {
             var eng_abs_file = 0;
             var intro_file = 0;
             var lit_review_file = 0;
+            var research_method_url = 0;
             function CheckFiles(projectId)
             {
                 $(document).ready(function () {
@@ -170,7 +181,7 @@ if (isset($_GET['q'])) {
                                 console.log(eng_abs_file);
                             },
                             error: function (err) {
-                                console.log(err);
+
                             }
                         });
                         $.ajax({
@@ -190,7 +201,7 @@ if (isset($_GET['q'])) {
                                 console.log(intro_file);
                             },
                             error: function (err) {
-                                console.log(err);
+
                             }
                         });
                         $.ajax({
@@ -207,10 +218,30 @@ if (isset($_GET['q'])) {
                                     msg += 'Please upload the Review';
                                     lit_review_file = 0;
                                 }
-                                console.log(lit_review_file);
+
                             },
                             error: function (err) {
-                                console.log(err);
+
+                            }
+                        });
+                        $.ajax({
+                            url: 'ajax/check_research_methodology?q=' + projectId,
+                            data: {url: projectId},
+                            dataType: 'JSON',
+                            type: 'POST',
+                            cache: false,
+                            success: function (result) {
+                                if (result == 1) {
+                                    research_method_url = 1;
+                                }
+                                else {
+                                    msg += 'Please upload the Review';
+                                    research_method_url = 0;
+                                }
+
+                            },
+                            error: function (err) {
+
                             }
                         });
 
@@ -333,6 +364,30 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <div id="log4" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        منهجية البحث
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-منهجية البحث
+                        </a>
+                    </td>
+                    <td>
+                        <div id='research_method_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($research_method) > 0) {
+                            echo '<a href="' . '../' . $research_method . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="research_method_upload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
                 <tr>
