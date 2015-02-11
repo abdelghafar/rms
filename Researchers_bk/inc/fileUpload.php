@@ -24,9 +24,9 @@ switch ($_GET['type']) {
             $file_name.="literature_reviews/";
             break;
         }
-    case 'agree_letter': {
-            $target_dir = "../../uploads/agree_letter/";
-            $file_name.="agree_letter/";
+    case 'coAuthor_agreement': {
+            $target_dir = "../../uploads/coAuthor_agreement/";
+            $file_name.="coAuthor_agreement/";
             break;
         }
     default : {
@@ -37,7 +37,7 @@ $prefix = $_GET['q'];
 $target_file = $target_dir . $prefix . '_' . basename($_FILES["fileToUpload"]["name"]);
 
 $file_name .= $prefix . '_' . basename($_FILES["fileToUpload"]["name"]);
-if ($_GET['type'] == 'accept_letter') {
+if ($_GET['type'] == 'coAuthor_agreement') {
     $person_id = $_GET['person_id'];
     $file_name = uniqid() . $file_name;
 }
@@ -93,6 +93,12 @@ if ($uploadOk == 0) {
                 }
             case 'reviewUpload': {
                     $obj->SetLitReview_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'agree_letter': {
+
+
+
                     break;
                 }
             default : {
