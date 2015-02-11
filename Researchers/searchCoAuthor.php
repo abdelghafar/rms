@@ -178,6 +178,13 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="2">
+                <p class="error">
+                    لاضافة الموافقة الخطية قم بالنقر المذدوج علي الباحث
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
                 <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
