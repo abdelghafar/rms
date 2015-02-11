@@ -283,16 +283,54 @@ class Reseaches {
         return $url;
     }
 
-    //get,set accept_letter urls-------------------------------------------------------
-    public function SetAccept_letter_url_url($projectId, $url) {
-        $stmt = "update researches set `accept_letter_url` = '" . $url . "' where seq_id =" . $projectId;
+    //----get set research_method_url ------------------------------------------------------
+    public function SetResearch_method_url($projectId, $url) {
+        $stmt = "update researches set `research_method_url` = '" . $url . "' where seq_id =" . $projectId;
         $conn = new MysqlConnect();
         $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
 
-    public function GetAccept_letter_url_url($projectId) {
-        $stmt = "Select accept_letter_url From researches where seq_id =" . $projectId;
+    public function GetResearch_method_url($projectId) {
+        $stmt = "Select research_method_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set objective_tasks_url ------------------------------------------------------
+    public function SetObjective_tasks_url($projectId, $url) {
+        $stmt = "update researches set `objective_tasks_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetObjective_tasks_url($projectId) {
+        $stmt = "Select objective_tasks_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set objective_approach_url ------------------------------------------------------
+    public function SetObjective_approach_url($projectId, $url) {
+        $stmt = "update researches set `objective_approach_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetObjective_approach_url($projectId) {
+        $stmt = "Select objective_approach_url From researches where seq_id =" . $projectId;
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         $url = null;
