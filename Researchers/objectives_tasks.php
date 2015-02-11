@@ -8,7 +8,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["research_id"];
+$project_id = $_GET["q"];
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
