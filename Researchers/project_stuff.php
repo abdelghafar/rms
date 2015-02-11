@@ -300,7 +300,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
             <div id='gridOthers'></div>
         </div>
-        
+
         <table style="width: 100%;">
             <tr>
                 <td>
