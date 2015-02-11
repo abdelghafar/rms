@@ -54,4 +54,23 @@ class research_stuff {
         $conn->ExecuteNonQuery($stmt);
     }
 
+    //get,set accept_letter urls-------------------------------------------------------
+    public function SetCoAuthor_agreement_url($research_id, $person_id, $url) {
+        $stmt = "update " . $this->table_name . " set `agreement_url` = '" . $url . "' where research_id =" . $research_id . " and person_id=" . $person_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetAccept_letter_url_url($projectId) {
+        $stmt = "Select agreement_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
 }
