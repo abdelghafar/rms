@@ -286,7 +286,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr style="background-color: #CAD6E2">
                 <td>
-                    <label><a id="submit_button" href="objectives_tasks.php?research_id=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <label><a id="submit_button" href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
                 </td>
                 <td>
 
