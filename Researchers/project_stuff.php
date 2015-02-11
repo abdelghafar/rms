@@ -300,14 +300,17 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
             <div id='gridOthers'></div>
         </div>
+        
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" href="workingPlan.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
+                    <a id="submit_button" href="phases.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/next.png" style="border: none;" alt="next"/>
+                    </a>
                 </td>
                 <td>
-                    <a href="uploadIntro.php?program=<? echo $_SESSION['program'] . '&q=' . $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        رجوع
+                    <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/back.png" style="border: none;" alt="back"/>
                     </a>
                 </td>
             </tr>
