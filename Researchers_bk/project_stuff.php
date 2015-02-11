@@ -116,6 +116,8 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             }
                         ]
                     });
+            
+
         }
 
         function ReloadOtherPeronsal()
