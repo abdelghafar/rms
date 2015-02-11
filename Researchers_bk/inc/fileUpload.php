@@ -39,7 +39,7 @@ $target_file = $target_dir . $prefix . '_' . basename($_FILES["fileToUpload"]["n
 $file_name .= $prefix . '_' . basename($_FILES["fileToUpload"]["name"]);
 if ($_GET['type'] == 'coAuthor_agreement') {
     $person_id = $_GET['person_id'];
-    $file_name = uniqid() . $file_name;
+    $target_file = $target_dir . $prefix . '_' . $person_id . '_' . basename($_FILES["fileToUpload"]["name"]);
 }
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
