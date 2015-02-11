@@ -205,16 +205,16 @@ $smarty->display('../templates/Loggedin.tpl');
         <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
 
         <table style="width: 100%;">
-            <tr style="background-color: #CAD6E2">
+            <tr>
                 <td>
-                    <label><a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/next.png" style="border: none;" alt="next"/>
+                    </a>
                 </td>
                 <td>
-
-                </td>
-
-                <td>
-                    <label><a href="objectives_tasks.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
+                    <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/back.png" style="border: none;" alt="back"/>
+                    </a>
                 </td>
             </tr>
         </table>
