@@ -70,7 +70,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 $("#ObjectiveNewButton").jqxButton({width: '100', height: '30', theme: theme});
                 /*$("#obj_title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
@@ -83,7 +83,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 objectives_list();
@@ -122,9 +122,9 @@ $smarty->display('../templates/Loggedin.tpl');
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'إسم الهدف', datafield: 'obj_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
                                     {text: 'طريقة تحقيق الهدف', datafield: 'obj_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
-                                    {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
+                                    {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
                                             return "..";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
                                             var post_data = 'seq_id=' + dataRecord.seq_id + '&project_id=' + dataRecord.project_id + '&obj_title=' + dataRecord.obj_title + '&obj_desc=' + dataRecord.obj_desc;
                                             $.ajax({
@@ -132,19 +132,19 @@ $smarty->display('../templates/Loggedin.tpl');
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
 
                                         }
                                     },
-                                    {text: 'تخصيص مهام', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function() {
+                                    {text: 'تخصيص مهام', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
                                             return "تخصيص مهام";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
                                             $("#form_div").html("");
                                             var post_data = 'project_id=' + dataRecord.project_id + '&objective_id=' + dataRecord.seq_id;
@@ -154,18 +154,18 @@ $smarty->display('../templates/Loggedin.tpl');
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
                                         }
                                     },
-                                    {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
+                                    {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                             return "..";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             //window.confirm("هل انت متأكد من حذف هذا البيان");
                                             var r = confirm("هل انت متأكد من حذف هذا البيان");
                                             if (r == true)
@@ -179,10 +179,10 @@ $smarty->display('../templates/Loggedin.tpl');
                                                     url: 'inc/deleteObjective.php',
                                                     datatype: "html",
                                                     data: post_data,
-                                                    beforeSend: function() {
+                                                    beforeSend: function () {
                                                         $("#objectiveresult").html("<img src='images/load.gif'/>loading...");
                                                     },
-                                                    success: function(data) {
+                                                    success: function (data) {
                                                         $("#objectiveresult").html(data);
                                                         if ($("#objective_operation_flag").val() === 'true')
                                                         {
@@ -199,23 +199,23 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#objectives_grd").on('rowdoubleclick', function(event) {
+                $("#objectives_grd").on('rowdoubleclick', function (event) {
                     var objective_id = $('#objectives_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_objective_id').val(objective_id);
                     load_tasks_grd();
                 });
 
-                $('#ObjectiveNewButton').on('click', function() {
+                $('#ObjectiveNewButton').on('click', function () {
                     var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
                     $.ajax({
                         url: "objective_data_form.php",
                         dataType: "html",
                         data: post_data,
                         type: 'POST',
-                        beforeSend: function() {
+                        beforeSend: function () {
                             $("#form_div").html("<img src='images/load.gif'/>loading...");
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#form_div").html(data);
                         }
                     });
@@ -232,10 +232,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#tasks_div").html(data);
                     }
                 });
@@ -276,20 +276,20 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr style="background-color: #CAD6E2">
                 <td>
-                    <label><a id="submit_button" href="resources_tasks.php?research_id=<? echo $project_id;?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <label><a id="submit_button" href="resources_tasks.php?q=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
                 </td>
                 <td>
 
                 </td>
-                
+
                 <td>
                     <label><a href="phases.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
                 </td>
             </tr>
         </table>
-        
 
-</body>
+
+    </body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
