@@ -26,6 +26,11 @@ switch ($_GET['type']) {
             $file_name.="literature_reviews/";
             break;
         }
+    case 'research_method': {
+            $target_dir = "../../uploads/research_method/";
+            $file_name.="research_method/";
+            break;
+        }
     case 'coAuthor_agreement': {
             $target_dir = "../../uploads/coAuthor_agreement/";
             $file_name.="coAuthor_agreement/";
@@ -92,7 +97,9 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
         $obj = new Reseaches();
+
         switch ($_GET['type']) {
+
             case 'arAbsUpload': {
                     $obj->SetAbstract_ar_url($_GET['q'], $file_name);
                     break;
@@ -107,6 +114,10 @@ if ($uploadOk == 0) {
                 }
             case 'reviewUpload': {
                     $obj->SetLitReview_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'research_method': {
+                    $obj->SetResearch_method_url($_GET['q'], $file_name);
                     break;
                 }
             case 'coAuthor_agreement': {
