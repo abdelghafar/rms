@@ -31,10 +31,6 @@ if (isset($_GET['q'])) {
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
         $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 250, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
-
-
-
-
         $('#searchButton').on('click', function () {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
@@ -156,8 +152,6 @@ if (isset($_GET['q'])) {
                 }
 
             });
-
-
         });
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnClose').on('click', function () {
@@ -165,7 +159,7 @@ if (isset($_GET['q'])) {
         });
     });
 </script>
-<fieldset style="width: 98%;text-align: right;margin-bottom: 25px;">
+<fieldset style="width: 90%;text-align: right;margin-bottom: 25px;">
     <legend>
         اضافة الموارد البشرية
     </legend>
@@ -179,7 +173,7 @@ if (isset($_GET['q'])) {
                 <input type="text" id="SearchByName"/>
                 <input id="searchButton" value="بحث"/>
             </td>
-            <td></td>
+
         </tr>
         <tr>
             <td>
@@ -191,21 +185,12 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr>
-            <td>
-                الموافقة الخطية
-            </td>
-            <td>
-                <input type="file" name="approve" />
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="3">
+            <td colspan="2">
                 <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="2">
                 <div id='error' style="height: 20px;">
 
                 </div>
