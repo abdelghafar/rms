@@ -283,7 +283,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 </td>
 
                 <td>
-                    <label><a href="phases.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
+                    <label><a href="phases.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
                 </td>
             </tr>
         </table>
