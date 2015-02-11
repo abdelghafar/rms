@@ -128,7 +128,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                                     }, buttonclick: function (row) {
                                         console.log($("#jqxgrid").jqxGrid('getrowdata', row)['seq_id']);
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                        window.location.assign('research_submit.php?program=<? echo $program ?>' + '&q=' + projectId);
+                                        window.location.assign('research_submit.php?q=' + projectId);
                                     }
                                 },
                                 {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
@@ -166,16 +166,6 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
                         }
                     });
                 }
-            }
-            function display_research_Edit(research_id, research_code)
-            {
-                $(document).ready(function () {
-                    $('#window').css('visibility', 'visible');
-                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 450, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                    $('#windowContent').load("ResearchEdit.php?research_id=" + research_id + "&research_code=" + research_code);
-                    $('#window').jqxWindow('setTitle', 'تفاصيل البحث');
-                    $('#window').jqxWindow('open');
-                });
             }
         </script>
         <title></title>
