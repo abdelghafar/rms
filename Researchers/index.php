@@ -122,7 +122,6 @@ if (!isset($_GET['program'])) {
                         </p>
                     </a>
 
-
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
@@ -132,8 +131,6 @@ if (!isset($_GET['program'])) {
                             جدول المهام
                         </p>
                     </a>
-
-
                 </div>
 
                 <div class="panel-cell" style="padding-right: 100px;">
