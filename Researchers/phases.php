@@ -293,7 +293,11 @@ $smarty->display('../templates/Loggedin.tpl');
                 </td>
 
                 <td>
-                    <label><a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
+                    <label>
+                        <a href="research_submit.php?program=<? echo $_SESSION['program'] . '&q=' . $projectId ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                            رجوع
+                        </a>
+                    </label>
                 </td>
             </tr>
         </table>
