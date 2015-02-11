@@ -1,6 +1,8 @@
 <?php
 
 require_once '../../lib/Reseaches.php';
+require_once '../../lib/research_stuff.php';
+
 $target_dir = "../../uploads/";
 $file_name = "uploads/";
 switch ($_GET['type']) {
@@ -95,10 +97,12 @@ if ($uploadOk == 0) {
                     $obj->SetLitReview_url($_GET['q'], $file_name);
                     break;
                 }
-            case 'agree_letter': {
-
-
-
+            case 'coAuthor_agreement': {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $url = $file_name;
+                    //$obj->SetCoAuthor_agreement_url($project_id, $person_id, $url);
                     break;
                 }
             default : {
