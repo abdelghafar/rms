@@ -8,7 +8,8 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["research_id"];
+
+$project_id = $_GET["q"];
 
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
@@ -70,7 +71,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 $("#PhaseNewButton").jqxButton({width: '100', height: '30', theme: theme});
                 /*$("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
@@ -83,7 +84,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 phases_list();
@@ -125,9 +126,9 @@ $smarty->display('../templates/Loggedin.tpl');
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'إسم المرحلة', datafield: 'phase_name', type: 'string', width: 350, align: 'center', cellsalign: 'right'},
                                     {text: 'الوصف', datafield: 'phase_desc', type: 'string', width: 380, align: 'center', cellsalign: 'right'},
-                                    {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
+                                    {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
                                             return "..";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             var dataRecord = $("#phases_grd").jqxGrid('getrowdata', row);
                                             var post_data = 'seq_id=' + dataRecord.seq_id + '&project_id=' + dataRecord.project_id + '&phase_name=' + dataRecord.phase_name + '&phase_desc=' + dataRecord.phase_desc;
                                             $.ajax({
@@ -135,19 +136,19 @@ $smarty->display('../templates/Loggedin.tpl');
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
 
                                         }
                                     },
-                                    {text: 'إضافة مهام', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function() {
+                                    {text: 'إضافة مهام', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
                                             return "إضافة مهام";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             var dataRecord = $("#phases_grd").jqxGrid('getrowdata', row);
                                             $("#form_div").html("");
                                             var post_data = 'project_id=' + dataRecord.project_id + '&phase_id=' + dataRecord.seq_id + '&task_id=' + 0;
@@ -157,35 +158,35 @@ $smarty->display('../templates/Loggedin.tpl');
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
                                         }
                                     },
-                                    {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
+                                    {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                             return "..";
-                                        }, buttonclick: function(row) {
+                                        }, buttonclick: function (row) {
                                             //window.confirm("هل انت متأكد من حذف هذا البيان");
                                             var r = confirm("هل انت متأكد من حذف هذا البيان");
                                             if (r == true)
                                             {
                                                 var dataRecord = $("#phases_grd").jqxGrid('getrowdata', row);
                                                 var post_data = '&phase_id=' + dataRecord.seq_id;
-                                                var project_id= dataRecord.project_id;
-                                                
+                                                var project_id = dataRecord.project_id;
+
                                                 $.ajax({
                                                     type: 'post',
                                                     url: 'inc/deletePhase.php',
                                                     datatype: "html",
                                                     data: post_data,
-                                                    beforeSend: function() {
+                                                    beforeSend: function () {
                                                         $("#phaseresult").html("<img src='images/load.gif'/>loading...");
                                                     },
-                                                    success: function(data) {
+                                                    success: function (data) {
                                                         $("#phaseresult").html(data);
                                                         if ($("#phase_operation_flag").val() === 'true')
                                                         {
@@ -202,7 +203,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#phases_grd").on('rowdoubleclick', function(event) {
+                $("#phases_grd").on('rowdoubleclick', function (event) {
                     var phase_id = $('#phases_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_phase_id').val(phase_id);
 
@@ -211,17 +212,17 @@ $smarty->display('../templates/Loggedin.tpl');
                 });
 
 
-                $('#PhaseNewButton').on('click', function() {
+                $('#PhaseNewButton').on('click', function () {
                     var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
                     $.ajax({
                         url: "phase_data_form.php",
                         dataType: "html",
                         data: post_data,
                         type: 'POST',
-                        beforeSend: function() {
+                        beforeSend: function () {
                             $("#form_div").html("<img src='images/load.gif'/>loading...");
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#form_div").html(data);
                         }
                     });
@@ -240,10 +241,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#tasks_div").html(data);
                     }
                 });
@@ -285,21 +286,21 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr style="background-color: #CAD6E2">
                 <td>
-                    <label><a id="submit_button" href="objectives_tasks.php?research_id=<? echo $project_id;?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <label><a id="submit_button" href="objectives_tasks.php?research_id=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
                 </td>
                 <td>
 
                 </td>
-                
+
                 <td>
                     <label><a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
                 </td>
             </tr>
         </table>
-        
-    
 
-</body>
+
+
+    </body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
