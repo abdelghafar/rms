@@ -9,7 +9,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     }
 }
 if (!isset($_GET['program'])) {
-    header('Location:selectProgram.php');
+    header('Location: selectProgram.php');
 } else {
     $prog = $_GET['program'];
     switch ($prog) {
@@ -23,7 +23,7 @@ if (!isset($_GET['program'])) {
             $_SESSION['program'] = 'ra2d';
             break;
         default :
-            header('Location:selectProgram.php');
+            header('Location: selectProgram.php');
             break;
     }
     require_once '../lib/Smarty/libs/Smarty.class.php';
