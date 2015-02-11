@@ -115,13 +115,13 @@ if (isset($_GET['q'])) {
             var fileName = args.file;
             var serverResponce = args.response;
             uploaded_file_name = fileName;
-            $('#log').html(fileName);
+            $('#log').html(serverResponce);
         });
 
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
             $.ajax({
-                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id + "&file_name=" + uploaded_file_name,
+                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id + "&file_name=" + uploaded_file_name + "",
                 success: function (data) {
                     $('#SearchFrm').html('');
                     ReloadCoIs();
@@ -147,7 +147,6 @@ if (isset($_GET['q'])) {
             rowindex = $('#gridCoAuthors').jqxGrid('getselectedrowindex');
             dataRecord = $("#gridCoAuthors").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
-            console.log(person_id);
             $('#agreeLetter').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=coAuthor_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
             $('#showUploadfile').show();
         });

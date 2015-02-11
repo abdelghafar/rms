@@ -116,7 +116,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             }
                         ]
                     });
-            
+
 
         }
 
@@ -237,7 +237,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
                     datatype: "html",
                     success: function (data) {
-                        window.location.assign('project_stuff.php?q=' +<? echo $projectId; ?>);
+                        window.location.reload();
                     }
                 });
 
