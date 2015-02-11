@@ -226,6 +226,11 @@ if (isset($_GET['q'])) {
                 <div id="log"></div>
             </td>
         </tr>
+        <td colspan="2">
+            <p class="error">
+                لاضافة الموافقة الخطية قم بالنقر المذدوج علي الباحث
+            </p>
+        </td>
         <tr>
             <td colspan="2">
                 <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
