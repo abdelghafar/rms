@@ -8,7 +8,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["research_id"];
+$project_id = $_GET["q"];
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty();
@@ -69,10 +69,10 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 /*$("#PhaseNewButton").jqxButton({width: '100', height: '30', theme: theme});
-                $("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
+                 $("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
                  $("#phase_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
                  $("#sendButton").on('click', function () {
                  
@@ -82,7 +82,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 phases_list();
@@ -126,7 +126,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#phases_grd").on('rowdoubleclick', function(event) {
+                $("#phases_grd").on('rowdoubleclick', function (event) {
                     var phase_id = $('#phases_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_phase_id').val(phase_id);
 
@@ -136,20 +136,20 @@ $smarty->display('../templates/Loggedin.tpl');
 
 
                 /*$('#PhaseNewButton').on('click', function() {
-                    var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
-                    $.ajax({
-                        url: "phase_data_form.php",
-                        dataType: "html",
-                        data: post_data,
-                        type: 'POST',
-                        beforeSend: function() {
-                            $("#form_div").html("<img src='images/load.gif'/>loading...");
-                        },
-                        success: function(data) {
-                            $("#form_div").html(data);
-                        }
-                    });
-                });*/
+                 var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
+                 $.ajax({
+                 url: "phase_data_form.php",
+                 dataType: "html",
+                 data: post_data,
+                 type: 'POST',
+                 beforeSend: function() {
+                 $("#form_div").html("<img src='images/load.gif'/>loading...");
+                 },
+                 success: function(data) {
+                 $("#form_div").html(data);
+                 }
+                 });
+                 });*/
 
             });
         </script>
@@ -164,10 +164,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#tasks_div").html(data);
                     }
                 });
@@ -207,21 +207,21 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr style="background-color: #CAD6E2">
                 <td>
-                    <label><a id="submit_button" href="_tasks.php?research_id=<? echo $project_id;?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <label><a id="submit_button" href="_tasks.php?research_id=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
                 </td>
                 <td>
 
                 </td>
-                
+
                 <td>
                     <label><a href="objectives_tasks.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">السابق</a></label>
                 </td>
             </tr>
         </table>
-        
-    
 
-</body>
+
+
+    </body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
