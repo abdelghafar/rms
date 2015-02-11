@@ -41,7 +41,7 @@ if (strlen($review) != 0) {
 }
 if ($arabicAbs_file == 1 && $engAbs_file == 1 && $into_file == 1 && $review_file == 1) {
 
-    echo '<script>' . ' window.location.assign("phases.php?q=' . $projectId . '");' . '</script>';
+    echo '<script>' . ' window.location.assign("project_stuff.php?q=' . $projectId . '");' . '</script>';
 } else {
     echo $msg;
 }
