@@ -24,13 +24,23 @@ switch ($_GET['type']) {
             $file_name.="literature_reviews/";
             break;
         }
+    case 'accept_letter': {
+            $target_dir = "../../uploads/accept_letter/";
+            $file_name.="accept_letter/";
+            break;
+        }
     default : {
             break;
         }
 }
 $prefix = $_GET['q'];
 $target_file = $target_dir . $prefix . '_' . basename($_FILES["fileToUpload"]["name"]);
+
 $file_name .= $prefix . '_' . basename($_FILES["fileToUpload"]["name"]);
+if ($_GET['type'] == 'accept_letter') {
+    $person_id = $_GET['person_id'];
+    $file_name = uniqid() . $file_name;
+}
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
