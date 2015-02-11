@@ -197,6 +197,7 @@ if (isset($projectId)) {
                         ],
                         url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
                     };
+
                     dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
                     $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
