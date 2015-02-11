@@ -294,7 +294,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                 <td>
                     <label>
-                        <a href="research_submit.php?program=<? echo $_SESSION['program'] . '&q=' . $projectId ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                             رجوع
                         </a>
                     </label>
