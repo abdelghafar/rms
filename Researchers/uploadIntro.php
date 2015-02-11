@@ -404,11 +404,11 @@ if (isset($_GET['q'])) {
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">next</a>
+                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
                 </td>
                 <td>
                     <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        رجوع
+                        <img src="images/back.png" style="border: none;" alt="back"/>
                     </a>
                 </td>
             </tr>
