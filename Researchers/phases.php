@@ -284,20 +284,18 @@ $smarty->display('../templates/Loggedin.tpl');
         <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
 
         <table style="width: 100%;">
-            <tr style="background-color: #CAD6E2">
+            <tr>
                 <td>
-                    <label><a id="submit_button" href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">التالي</a></label>
+                    <a id="submit_button" href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/next.png" style="border: none;" alt="next"/>
+                    </a>
                 </td>
                 <td>
 
-                </td>
+                    <a href="project_stuff.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/back.png" style="border: none;" alt="back"/>
+                    </a>
 
-                <td>
-                    <label>
-                        <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                            رجوع
-                        </a>
-                    </label>
                 </td>
             </tr>
         </table>
