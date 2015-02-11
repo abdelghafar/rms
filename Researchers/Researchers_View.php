@@ -8,6 +8,25 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
+if (isset($_GET['program'])) {
+    $program_string = filter_input(INPUT_GET, 'program', FILTER_SANITIZE_STRING);
+    switch ($program_string) {
+        case 'ba7th': {
+                $_SESSION['program'] = 'ba7th';
+                break;
+            }
+        case 'ra2d': {
+                $_SESSION['program'] = 'ra2d';
+                break;
+            }
+        case 'wa3da': {
+                $_SESSION['program'] = 'wa3da';
+                break;
+            }
+    }
+} else {
+    header('Location: selectProgram.php');
+}
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once('../lib/CenterResearch.php');
 require_once '../lib/users.php';
@@ -29,8 +48,6 @@ $smarty->display('../templates/Loggedin.tpl');
 $c_researches = new CenterResearch();
 $user = new Users();
 $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Researcher');
-$program = $_SESSION[program];
-echo 'program=' . $program;
 $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
 ?>
 <html>
