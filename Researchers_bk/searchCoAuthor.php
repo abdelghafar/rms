@@ -18,6 +18,9 @@ if (isset($_GET['q'])) {
         var tmpEmail = null;
         var tmpDept = null;
         var tmpCollege = null;
+        var rowindex = null;
+        var dataRecord = null;
+        var person_id = null;
         $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
         $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
@@ -59,6 +62,7 @@ if (isset($_GET['q'])) {
                     }
                 }
             });
+            $('#showUploadfile').hide();
         });
         var CoAuthorsSource = {
             datafields: [{
@@ -103,6 +107,15 @@ if (isset($_GET['q'])) {
                         {text: 'الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150}
                     ]
                 });
+
+        $('#agreeLetter').jqxFileUpload({width: 250, uploadUrl: 'inc/fileUpload.php?type=introUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+        $('#agreeLetter').on('uploadEnd', function (event) {
+            var args = event.args;
+            var fileName = args.file;
+            var serverResponce = args.response;
+            $('#log').html(serverResponce);
+        });
+
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
             $.ajax({
@@ -116,6 +129,23 @@ if (isset($_GET['q'])) {
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnClose').on('click', function () {
             $('#SearchFrm').html('');
+        });
+
+        $('#gridCoAuthors').on('rowdoubleclick', function (event)
+        {
+            var args = event.args;
+            // row's bound index.
+            var boundIndex = args.rowindex;
+            // row's visible index.
+            var visibleIndex = args.visibleindex;
+            // right click.
+            var rightclick = args.rightclick;
+            // original event.
+            var ev = args.originalEvent;
+//            var rowindex = $('#gridCoAuthors').jqxGrid('getselectedrowindex');
+//            var dataRecord = $("#gridCoAuthors").jqxGrid('getrowdata', rowindex);
+//            var person_id = dataRecord['person_id'];
+            $('#showUploadfile').show();
         });
     });
 </script>
@@ -133,13 +163,22 @@ if (isset($_GET['q'])) {
                 <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
                 <input id="searchButton" value="بحث"/>
             </td>
-
+        </tr>
+        <tr id="showUploadfile" style="display: none; ">
+            <td>
+                الموافقة الخطية
+            </td>
+            <td>
+                <div id="agreeLetter"></div>
+                <div id="log"></div>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
                 <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
+
         <tr>
             <td colspan="2">
                 <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 0px;"  />
