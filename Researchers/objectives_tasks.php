@@ -266,8 +266,6 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="objectives_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
             </div>
-
-
         </fieldset>
         <div id="objectiveresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
         <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
