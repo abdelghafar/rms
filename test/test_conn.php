@@ -9,9 +9,9 @@
 $servername = "localhost";
 $username = "dsr_uisr";
 $password = "2zxrXZwET~e+";
-
+$db = "dsr_rms";
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $db);
 
 // Check connection
 if ($conn->connect_error) {
