@@ -22,7 +22,7 @@ $smarty->display('templates/header.tpl');
     <script type="text/javascript" src="js/jqwidgets/scripts/gettheme.js"></script> 
     <script type="text/javascript" src="js/jquery-ui/js/jquery-1.9.0.js"></script>
     <script type="text/javascript" src="js/jqwidgets/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqwidgets/jqxinput.js"></script>
     <script type="text/javascript" src="js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
     <script type="text/javascript" src="js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
     <script type="text/javascript" src="js/jqwidgets/jqwidgets/jqxcheckbox.js"></script>
@@ -76,7 +76,6 @@ $smarty->display('templates/header.tpl');
         $(document).ready(function () {
             var theme = "energyblue";
             $("#username, #password").addClass('jqx-input');
-            $("#rememberme").jqxCheckBox({width: 130, theme: theme});
             $("#loginButton").jqxButton({theme: theme});
 
             // add validation rules.
