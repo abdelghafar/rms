@@ -83,7 +83,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             {name: 'major_Field'}
                         ],
                         id: 'person_id',
-                        url: 'ajax/project_stuff_CoI?q=<? echo $projectId; ?>'
+                        url: 'ajax/project_stuff_CoI.php?q=<? echo $projectId; ?>'
                     };
             var dataAdapter = new $.jqx.dataAdapter(CoIsDataSource);
             $("#gridCoI").jqxGrid(
@@ -136,7 +136,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             {name: 'nationality'}
                         ],
                         id: 'person_id',
-                        url: 'ajax/project_stuff_other_personal?q=<? echo $projectId; ?>'
+                        url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
                     };
             var dataAdapter = new $.jqx.dataAdapter(OtherDataSource);
             $("#gridOthers").jqxGrid(
@@ -192,7 +192,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                             {name: 'major_Field'}
                         ],
                         id: 'person_id',
-                        url: 'ajax/project_stuff_PIs?q=<? echo $projectId; ?>'
+                        url: 'ajax/project_stuff_PIs.php?q=<? echo $projectId; ?>'
                     };
             var dataAdapter = new $.jqx.dataAdapter(PIDataSource);
             $("#gridPI").jqxGrid(
