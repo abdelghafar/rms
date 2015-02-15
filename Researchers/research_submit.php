@@ -411,8 +411,6 @@ if (isset($projectId)) {
             </tr>
         </table>
     </form>
-    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
-
 </center>
 <?
 $smarty->display('../templates/footer.tpl');
