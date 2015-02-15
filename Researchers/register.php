@@ -62,7 +62,13 @@ $smarty->display('../templates/header.tpl');
 
                 $("#gender").jqxSwitchButton({rtl: true, height: 25, theme: 'energyblue', width: 70, onLabel: "أنثي", offLabel: "ذكر"});
 
-                $(".Calander").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+                $("#BirthDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+
+                $('#BirthDate').on('change', function (event)
+                {
+                    $('#BirthDateVal').val($('#BirthDate').jqxDateTimeInput('getText'));
+                });
+
                 $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
                 $("#user_name").jqxInput({rtl: true, height: 25, width: 200, minLength: 1, theme: 'energyblue', disabled: true});
                 $("#password").jqxPasswordInput({theme: 'energyblue', width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
@@ -257,9 +263,9 @@ $smarty->display('../templates/header.tpl');
                             </p>
                         </div>
                         <div class="panel-cell" style="vertical-align: middle"> 
-                            <div style="float:right;" id="BirthDate" class="Calander">
-
+                            <div style="float:right;" id="BirthDate">
                             </div>
+                            <input type="hidden" id="BirthDateVal" name="BirthDateVal"/> 
 
                         </div>
 
@@ -500,9 +506,9 @@ $smarty->display('../templates/header.tpl');
 
             <input type="submit" value="ارسال" id='sendButton' style="margin-top: 10px;"/>
         </form>
-        <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
+    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
 
-    </body>
+</body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');

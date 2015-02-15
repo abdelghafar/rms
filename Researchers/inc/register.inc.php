@@ -103,10 +103,10 @@ if (!isset($_POST['Nationality']) || empty($_POST['Nationality'])) {
 } else
     $Nationality = mysql_escape_string(trim($_POST['Nationality']));
 
-if (!isset($_POST['BirthDate']))
+if (!isset($_POST['BirthDateVal']))
     $response.= 'من فضلك ادخل تاريخ الميلاد' . '<br/>';
 else {
-    $BirthDate = date_parse($_POST['BirthDate']);
+    $BirthDate = date_parse($_POST['BirthDateVal']);
     $BirthDate = $BirthDate['year'] . '-' . $BirthDate['month'] . '-' . $BirthDate['day'];
 }
 
