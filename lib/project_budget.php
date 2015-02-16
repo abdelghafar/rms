@@ -21,8 +21,16 @@ class project_budget {
         
     }
 
-    public function Save() {
-        
+    public function Save($seq_id, $project_id, $item_id, $stuff_id, $amount, $duration, $dunit_id, $compensation) {
+        $con = new MysqlConnect();
+        if ($seq_id == 0) {
+            $stmt = "insert into " . $this->tableName . " (project_id,item_id,stuff_id,amount,duration,dunit_id,compensation) values (" . $project_id . "," . $item_id . "," . $stuff_id . "," . $amount . "," . $duration . "," . $dunit_id . "," . $compensation . ")";
+            echo $stmt . '<br/>';
+            $con->ExecuteNonQuery($stmt);
+            return mysql_insert_id();
+        } else {
+            
+        }
     }
 
 }
