@@ -29,7 +29,10 @@ class project_budget {
             $con->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            
+            $stmt = "Update " . $this->tableName . " Set project_id=" . $project_id . ", item_id=" . $item_id . ",stuff_id=" . $stuff_id . ",amount=" . $amount . ",duration=" . $duration . ",dunit_id=" . $dunit_id . ",compensation=" . $compensation . " where seq_id=" . $seq_id;
+            echo $stmt;
+            $con->ExecuteNonQuery($stmt);
+            return mysql_affected_rows();
         }
     }
 
