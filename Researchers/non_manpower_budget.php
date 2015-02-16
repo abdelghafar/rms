@@ -96,14 +96,14 @@ if (isset($_GET['q'])) {
                             rtl: true,
                             columns: [
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'العنوان', dataField: 'item_title', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
                                 {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'ملاحظات', dataField: 'desc', width: 200, align: 'center', cellsalign: 'center'},
+                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
                                 {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
-                                        var person_id = dataRecord['person_id'];
+                                        var person_id = dataRecord['seq_id'];
                                         Delete(person_id);
                                     }
                                 }
