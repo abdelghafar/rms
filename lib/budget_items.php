@@ -15,7 +15,7 @@ require_once 'mysqlConnection.php';
 
 class budget_items {
 
-    private $tableName = 'tracks';
+    private $tableName = 'budget_items';
 
     public function __construct() {
         
@@ -37,4 +37,15 @@ class budget_items {
         }
     }
 
+    public function GetSysItems() {
+        $conn = new MysqlConnect();
+        $stmt = "Select * from " . $this->tableName . " where isSys=1";
+        echo $stmt;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return $rs;
+    }
+
 }
+
+$t = new budget_items();
+var_dump($t->GetSysItems());
