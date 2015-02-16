@@ -99,9 +99,17 @@ if (isset($_GET['q'])) {
                                 {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
                                 {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                                {text: 'رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                                 {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'}
+                                {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return '..';
+                                    }, buttonclick: function (row) {
+                                        var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
+                                        var person_id = dataRecord['person_id'];
+                                        Delete(person_id);
+                                    }
+                                }
                             ]
                         });
             });
@@ -112,14 +120,14 @@ if (isset($_GET['q'])) {
             {
                 if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
                 {
-                    $.ajax({
-                        type: 'post',
-                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
-                        datatype: "html",
-                        success: function (data) {
-                            window.location.reload();
-                        }
-                    });
+//                    $.ajax({
+//                        type: 'post',
+//                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
+//                        datatype: "html",
+//                        success: function (data) {
+//                            window.location.reload();
+//                        }
+//                    });
 
                 }
             }
@@ -129,7 +137,7 @@ if (isset($_GET['q'])) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    تابع-الملزانية
+                    الميزانية-تابع
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
