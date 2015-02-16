@@ -74,28 +74,53 @@ if (isset($_GET['q'])) {
                         }
                     });
                 });
-                $('#arAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=arAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#arAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=arAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }});
                 $('#arAbsUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
                     $('#log').html(serverResponce);
                 });
-                $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
+                    localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }});
                 $('#enAbsUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
                     $('#log').html(serverResponce);
                 });
-                $('#introUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=introUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#introUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=introUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }});
                 $('#introUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
                     $('#log').html(serverResponce);
                 });
-                $('#reviewUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=reviewUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#reviewUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=reviewUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }});
                 $('#arAbsUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
@@ -121,7 +146,13 @@ if (isset($_GET['q'])) {
                     $('#log4').html(serverResponce);
                 });
 
-                $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
                 $('#research_method_upload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
