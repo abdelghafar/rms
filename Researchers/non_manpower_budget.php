@@ -71,14 +71,16 @@ if (isset($_GET['q'])) {
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
                 $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000});
                 $('#material_save_button').jqxButton({width: 50, height: 30, theme: theme});
+
                 $('#material_save_button').on('click', function () {
-                    $.ajax({url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchByEmpCodeVal,
+                    $.ajax({url:"",
                         type: "GET",
                         dataType: "json",
                         beforeSend: function () {
-                            $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
+                            //$('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
                         },
                         success: function (data) {
+                            
                         }
                     });
                 });
