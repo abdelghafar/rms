@@ -145,7 +145,6 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#log4').html(serverResponce);
                 });
-
                 $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
                         browseButton: 'استعراض',
                         uploadButton: 'تحميل الملف',
