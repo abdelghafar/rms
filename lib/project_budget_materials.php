@@ -52,8 +52,4 @@ class project_budget_materials {
         $rs = $con->ExecuteNonQuery($stmt);
         return $rs;
     }
-
 }
-
-$t = new project_budget_materials();
-print_r($t->GetProjectMaterials(1));
