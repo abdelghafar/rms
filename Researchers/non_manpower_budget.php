@@ -103,8 +103,8 @@ if (isset($_GET['q'])) {
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
-                                        var person_id = dataRecord['seq_id'];
-                                        Delete(person_id);
+                                        var seq_id = dataRecord['seq_id'];
+                                        Delete(seq_id);
                                     }
                                 }
                             ]
@@ -113,13 +113,13 @@ if (isset($_GET['q'])) {
 
         </script> 
         <script type="text/javascript">
-            function Delete(person_id)
+            function Delete(seq_id)
             {
                 if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
                 {
                     $.ajax({
                         type: 'post',
-                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
+                        url: 'inc/Del_project_budget.inc.php?q=' + seq_id,
                         datatype: "html",
                         success: function (data) {
                             window.location.reload();
