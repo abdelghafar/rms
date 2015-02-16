@@ -95,12 +95,10 @@ if (isset($_GET['q'])) {
                             sortable: true,
                             rtl: true,
                             columns: [
-                                {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
-                                {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'العنوان', dataField: 'item_title', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'ملاحظات', dataField: 'desc', width: 200, align: 'center', cellsalign: 'center'},
                                 {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                         return '..';
                                     }, buttonclick: function (row) {
