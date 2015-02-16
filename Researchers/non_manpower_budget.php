@@ -72,7 +72,7 @@ if (isset($_GET['q'])) {
                             datatype: "json",
                             datafields: [
                                 {name: 'seq_id'},
-                                {name: 'amount'},
+                                {name: 'amount', type: 'float'},
                                 {name: 'compensation'},
                                 {name: 'desc'},
                                 {name: 'item_title'}
@@ -117,14 +117,14 @@ if (isset($_GET['q'])) {
             {
                 if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
                 {
-//                    $.ajax({
-//                        type: 'post',
-//                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
-//                        datatype: "html",
-//                        success: function (data) {
-//                            window.location.reload();
-//                        }
-//                    });
+                    $.ajax({
+                        type: 'post',
+                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
+                        datatype: "html",
+                        success: function (data) {
+                            window.location.reload();
+                        }
+                    });
 
                 }
             }
