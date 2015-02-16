@@ -66,7 +66,18 @@ if (isset($_GET['q'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = 'energyblue';
-                $('#AddNewMaterials').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+                $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
+                var materials_items_source = {datatype: "json",
+                    datafields: [
+                        {name: 'item_id'},
+                        {name: 'item_title'}
+                    ],
+                    id: 'item_id',
+                    url: '../Data/materials_items.php'};
+                var materials_items_adapter = new $.jqx.dataAdapter(materials_items_source);
+
+                $('#lst_materials_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: materials_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -129,6 +140,16 @@ if (isset($_GET['q'])) {
                 }
             }
         </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#AddNewMaterials').click(function () {
+                    $('#materialsFrm').show();
+
+                });
+
+            });
+
+        </script>
     </head>
     <body>
         <fieldset style="width: 95%;text-align: right;"> 
@@ -140,7 +161,27 @@ if (isset($_GET['q'])) {
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
                 <span class="classic-font">المواد الخام و الأجهزة</span>
                 <hr/>
-                <input type="button" id='AddNewMaterials' value="اضافة جديد"/>
+                <input type="button" id='AddNewMaterials' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <br/>
+                <table id="materialsFrm" style="display: none; width: 100%">
+                    <tr>
+                        <td valign="middle">
+                            <span class="classic">اخترالنوع</span>
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <div id="lst_materials_items"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
                 <div id="grid_materials"></div>
                 <br/><br/>
             </div>
