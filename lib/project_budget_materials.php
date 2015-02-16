@@ -54,6 +54,3 @@ class project_budget_materials {
     }
 
 }
-
-$t = new project_budget_materials();
-echo $t->Save(2, 1, 10, 20000, 'sss');
