@@ -63,9 +63,94 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var theme = 'energyblue';
+                $('#AddNewMaterials').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+
+
+                var MaterialsDataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'person_id'},
+                                {name: 'name_ar'},
+                                {name: 'role_name'},
+                                {name: 'empCode'},
+                                {name: 'position'},
+                                {name: 'major_Field'}
+                            ],
+                            id: 'person_id',
+                            url: 'ajax/project_stuff_PIs.php?q=<? echo $projectId; ?>'
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
+                $("#grid_materials").jqxGrid(
+                        {
+                            source: dataAdapter,
+                            theme: theme,
+                            editable: false,
+                            pageable: false,
+                            filterable: true,
+                            width: 800,
+                            pagesize: 5,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                                {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'}
+                            ]
+                        });
+            });
+
+        </script> 
+        <script type="text/javascript">
+            function Delete(person_id)
+            {
+                if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
+                {
+                    $.ajax({
+                        type: 'post',
+                        url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
+                        datatype: "html",
+                        success: function (data) {
+                            window.location.reload();
+                        }
+                    });
+
+                }
+            }
+        </script>
     </head>
     <body>
-
+        <fieldset style="width: 95%;text-align: right;"> 
+            <legend>
+                <label>
+                    تابع-الملزانية
+                </label>
+            </legend>
+            <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <a id="submit_button" href="phases.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
+                                <img src="images/next.png" style="border: none;" alt="next"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                                <img src="images/back.png" style="border: none;" alt="back"/>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
     </body>
 </html>
 <?
