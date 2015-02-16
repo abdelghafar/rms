@@ -16,7 +16,6 @@ require_once 'mysqlConnection.php';
 class project_budget_materials {
 
     private $tableName = 'project_budget';
-    private $budget_type = 'materials';
 
     public function __construct() {
         
