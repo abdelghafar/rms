@@ -67,8 +67,6 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
-
-
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -135,20 +133,11 @@ if (isset($_GET['q'])) {
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <table style="width: 100%;">
-                    <tr>
-                        <td>
-                            <a id="submit_button" href="phases.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
-                                <img src="images/next.png" style="border: none;" alt="next"/>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                                <img src="images/back.png" style="border: none;" alt="back"/>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
+                <span class="classic-font">المواد الخام و الأجهزة</span>
+                <hr/>
+                <input type="button" id='AddNewMaterials' value="اضافة جديد"/>
+                <div id="grid_materials"></div>
+                <br/><br/>
             </div>
         </fieldset>
     </body>
