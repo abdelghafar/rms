@@ -71,15 +71,14 @@ if (isset($_GET['q'])) {
                         {
                             datatype: "json",
                             datafields: [
-                                {name: 'person_id'},
-                                {name: 'name_ar'},
-                                {name: 'role_name'},
-                                {name: 'empCode'},
-                                {name: 'position'},
-                                {name: 'major_Field'}
+                                {name: 'seq_id'},
+                                {name: 'amount'},
+                                {name: 'compensation'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
                             ],
                             id: 'person_id',
-                            url: 'ajax/project_stuff_PIs.php?q=<? echo $projectId; ?>'
+                            url: 'ajax/project_budget_materials.php?q=<? echo $projectId; ?>'
                         };
                 var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
                 $("#grid_materials").jqxGrid(
