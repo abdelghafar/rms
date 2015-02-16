@@ -69,7 +69,23 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
-                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme});
+                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000});
+                $('#material_save_button').jqxButton({width: 50, height: 30, theme: theme});
+                $('#material_save_button').on('click', function () {
+                    $.ajax({url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchByEmpCodeVal,
+                        type: "GET",
+                        dataType: "json",
+                        beforeSend: function () {
+                            $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
+                        },
+                        success: function (data) {
+                        }
+                    });
+                });
+                $('#material_cancel_button').jqxButton({width: 50, height: 30, theme: theme});
+                $('#material_cancel_button').on('click', function () {
+                    $('#materialsFrm').hide();
+                });
                 var materials_items_source = {datatype: "json",
                     datafields: [
                         {name: 'item_id'},
@@ -78,9 +94,7 @@ if (isset($_GET['q'])) {
                     id: 'item_id',
                     url: '../Data/materials_items.php'};
                 var materials_items_adapter = new $.jqx.dataAdapter(materials_items_source);
-
                 $('#lst_materials_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: materials_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
-
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -123,9 +137,7 @@ if (isset($_GET['q'])) {
                                 }
                             ]
                         });
-            });
-
-        </script> 
+            });</script> 
         <script type="text/javascript">
             function Delete(seq_id)
             {
@@ -139,7 +151,6 @@ if (isset($_GET['q'])) {
                             window.location.reload();
                         }
                     });
-
                 }
             }
         </script>
@@ -147,9 +158,7 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 $('#AddNewMaterials').click(function () {
                     $('#materialsFrm').show();
-
                 });
-
             });
 
         </script>
@@ -178,10 +187,29 @@ if (isset($_GET['q'])) {
                     </tr>
                     <tr>
                         <td>
-                            القيمة
+                            <span class="classic">
+                                القيمة
+                            </span>
                         </td>
                         <td>
                             <div id="item_amount"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="classic">
+                                ملاحظات
+                            </span>
+                        </td>
+                        <td>
+                            <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" value="حفظ" id='material_save_button' />
+                            <input type="button" value="اغلاق" id='material_cancel_button' />
                         </td>
                     </tr>
                 </table>
