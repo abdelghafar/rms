@@ -59,6 +59,8 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
+
 
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
@@ -67,6 +69,7 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
+                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme});
                 var materials_items_source = {datatype: "json",
                     datafields: [
                         {name: 'item_id'},
@@ -175,10 +178,10 @@ if (isset($_GET['q'])) {
                     </tr>
                     <tr>
                         <td>
-
+                            القيمة
                         </td>
                         <td>
-
+                            <div id="item_amount"></div>
                         </td>
                     </tr>
                 </table>
