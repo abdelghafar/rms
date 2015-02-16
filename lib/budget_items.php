@@ -44,7 +44,5 @@ class budget_items {
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
-    
-    
 
 }
