@@ -46,6 +46,3 @@ class budget_items {
     }
 
 }
-
-$t = new budget_items();
-var_dump($t->GetSysItems());
