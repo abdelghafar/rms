@@ -67,6 +67,8 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
+                $('#AddNewTravel').jqxButton({width: 75, height: '30', theme: theme});
+
                 $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
                 $('#item_amount').on('change', function ()
                 {
@@ -74,7 +76,7 @@ if (isset($_GET['q'])) {
                     $('#item_amount_val').val(value);
                 });
 
-                $('#material_save_button').jqxButton({width: 50, height: 30, theme: theme});
+                $('#material_save_button').jqxButton({width: 80, height: 30, theme: theme});
 
                 $('#material_save_button').on('click', function () {
                     $.ajax({url: "inc/save_material_items.inc.php",
@@ -91,7 +93,7 @@ if (isset($_GET['q'])) {
                         }
                     });
                 });
-                $('#material_cancel_button').jqxButton({width: 50, height: 30, theme: theme});
+                $('#material_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#material_cancel_button').on('click', function () {
                     $('#materialsFrm').hide();
                 });
@@ -120,7 +122,6 @@ if (isset($_GET['q'])) {
                             datafields: [
                                 {name: 'seq_id'},
                                 {name: 'amount', type: 'float'},
-                                {name: 'compensation'},
                                 {name: 'desc'},
                                 {name: 'item_title'}
                             ],
@@ -156,6 +157,12 @@ if (isset($_GET['q'])) {
                                 }
                             ]
                         });
+                $('#grid_materials').on('rowdoubleclick', function (event) {
+//                    var rowindex = $('#grid_materials').jqxGrid('getselectedrowindex');
+//                    var dataRecord = $("#grid_materials").jqxGrid('getrowdata', rowindex);
+//                    var material_seq_id = dataRecord['seq_id'];
+
+                });
             });</script> 
         <script type="text/javascript">
             function Delete(seq_id)
@@ -180,7 +187,6 @@ if (isset($_GET['q'])) {
                             datafields: [
                                 {name: 'seq_id'},
                                 {name: 'amount', type: 'float'},
-                                {name: 'compensation'},
                                 {name: 'desc'},
                                 {name: 'item_title'}
                             ],
@@ -230,6 +236,7 @@ if (isset($_GET['q'])) {
                                 <span class="classic">
                                     القيمة:
                                 </span>
+                                <span class="required">*</span>
                             </td>
                             <td>
                                 <div id="item_amount"></div>
@@ -255,11 +262,16 @@ if (isset($_GET['q'])) {
                         </tr>
                     </table>
                 </form>
-                <span class="error" style="float: right;clear: both;">
-                    *للتعديل قم بالنقر المزدوج علي الصف
-                </span>
                 <div id="grid_materials"></div>
                 <br/><br/>
+                <span class="classic">المؤتمرات و الرحلات العلمية</span>
+                <hr/>
+                <input type="button" id='AddNewTravel' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <br/>
+
+
+
+
             </div>
         </fieldset>
     </body>
