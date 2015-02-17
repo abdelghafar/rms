@@ -58,7 +58,7 @@ $smarty->display('../templates/Loggedin.tpl');
 $c_researches = new CenterResearch();
 $user = new Users();
 $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Researcher');
-$rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $program);
+$rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['program']);
 ?>
 <html>
     <head>
