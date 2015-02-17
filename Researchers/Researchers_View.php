@@ -20,11 +20,13 @@ if (isset($_GET['program'])) {
                 break;
             }
         case 'ra2d': {
-                $_SESSION['program'] = 'ra2d';
+                $program_id = $t->GetProgramId('ra2d');
+                $_SESSION['program'] = $program_id;
                 break;
             }
         case 'wa3da': {
-                $_SESSION['program'] = 'wa3da';
+                $program_id = $t->GetProgramId('wa3da');
+                $_SESSION['program'] = $program_id;
                 break;
             }
         default : {
