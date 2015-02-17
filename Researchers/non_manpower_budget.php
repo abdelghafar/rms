@@ -76,7 +76,16 @@ if (isset($_GET['q'])) {
                     $('#item_amount_val').val(value);
                 });
 
+                $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
+                $('#travel_amount').on('change', function ()
+                {
+                    var value = $('#travel_amount').jqxNumberInput('getDecimal');
+                    $('#travel_amount').val(value);
+                });
+
                 $('#material_save_button').jqxButton({width: 80, height: 30, theme: theme});
+                $('#travel_save_button').jqxButton({width: 80, height: 30, theme: theme});
+
 
                 $('#material_save_button').on('click', function () {
                     $.ajax({url: "inc/save_material_items.inc.php",
@@ -89,6 +98,21 @@ if (isset($_GET['q'])) {
                                 $('#materialsFrm').hide();
                                 //window.location.reload();
                                 Reload_grid_materials();
+                            }
+                        }
+                    });
+                });
+                $('#travel_save_button').on('click', function () {
+                    $.ajax({url: "inc/save_travel_items.inc.php",
+                        type: "post",
+                        dataType: "json",
+                        data: $('#travel_form').serialize(),
+                        success: function (data) {
+                            if (data > 0)
+                            {
+                                $('#travel_table').hide();
+                                //window.location.reload();
+                                //Reload_grid_materials();
                             }
                         }
                     });
@@ -116,6 +140,26 @@ if (isset($_GET['q'])) {
                     }
                 });
 
+                var travel_items_source = {datatype: "json",
+                    datafields: [
+                        {name: 'item_id'},
+                        {name: 'item_title'}
+                    ],
+                    id: 'item_id',
+                    url: '../Data/travel_items.php'};
+                var travel_items_adapter = new $.jqx.dataAdapter(travel_items_source);
+                $('#lst_travel_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: travel_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+
+                $('#lst_travel_items').on('select', function (event) {
+                    var args = event.args;
+                    var item = $('#lst_travel_items').jqxDropDownList('getItem', args.index);
+                    var item_value = item.value;
+                    if (item !== null) {
+                        $('#travel_items_val').val(item_value);
+                    }
+                });
+
+
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -125,7 +169,7 @@ if (isset($_GET['q'])) {
                                 {name: 'desc'},
                                 {name: 'item_title'}
                             ],
-                            id: 'person_id',
+                            id: 'seq_id',
                             url: 'ajax/project_budget_materials.php?q=<? echo $projectId; ?>'
                         };
                 var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
@@ -163,7 +207,54 @@ if (isset($_GET['q'])) {
 //                    var material_seq_id = dataRecord['seq_id'];
 
                 });
-            });</script> 
+                var TravelDataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'amount', type: 'float'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
+                            ],
+                            id: 'seq_id',
+                            url: 'ajax/project_budget_travel.php?q=<? echo $projectId; ?>'
+                        };
+                dataAdapter = new $.jqx.dataAdapter(TravelDataSource);
+                $("#grid_travel").jqxGrid(
+                        {
+                            source: dataAdapter,
+                            theme: theme,
+                            editable: false,
+                            pageable: false,
+                            filterable: true,
+                            width: 800,
+                            pagesize: 5,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
+                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return '..';
+                                    }, buttonclick: function (row) {
+                                        var dataRecord = $("#grid_travel").jqxGrid('getrowdata', row);
+                                        var seq_id = dataRecord['seq_id'];
+                                        Delete(seq_id);
+                                    }
+                                }
+                            ]
+                        });
+                $('#grid_travel').on('rowdoubleclick', function (event) {
+
+                });
+
+
+            });
+        </script> 
         <script type="text/javascript">
             function Delete(seq_id)
             {
@@ -202,6 +293,9 @@ if (isset($_GET['q'])) {
                 $('#AddNewMaterials').click(function () {
                     $('#materialsFrm').show();
                 });
+                $('#AddNewTravel').click(function () {
+                    $('#travel_table').show();
+                });
             });
 
         </script>
@@ -219,7 +313,7 @@ if (isset($_GET['q'])) {
                 <input type="button" id='AddNewMaterials' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
                 <form id="material_form" action="#" method="post">
-                    <input type="hidden" id="project_id" name="project_id" value="<? echo $projectId; ?>"/>
+                    <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="materialsFrm" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
@@ -268,7 +362,51 @@ if (isset($_GET['q'])) {
                 <hr/>
                 <input type="button" id='AddNewTravel' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
-
+                <form id="travel_form" action="#" method="post">
+                    <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
+                    <table id="travel_table" style="display: none; width: 100%">
+                        <tr>
+                            <td valign="middle">
+                                <span class="classic">اخترالنوع</span>
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <div id="lst_travel_items"></div>
+                                <input type="hidden" id="travel_items_val" name="travel_items_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    القيمة:
+                                </span>
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <div id="travel_amount"></div>
+                                <input type="hidden" id="travel_amount_val" name="travel_amount_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    ملاحظات
+                                </span>
+                            </td>
+                            <td>
+                                <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="حفظ" id='travel_save_button' />
+                                <input type="button" value="اغلاق" id='travel_cancel_button' />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div id="grid_travel"></div>
 
 
 
