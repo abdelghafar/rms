@@ -15,11 +15,11 @@ $t = new project_budget_materials();
 
 if (isset($_GET['seq_id'])) {
     $seq_id = filter_input(INPUT_GET, 'seq_id', FILTER_VALIDATE_INT);
-    $stmt = 'select project_budget.seq_id, project_budget.amount, project_budget.compensation, project_budget.`desc`, budget_items.item_title  from project_budget join budget_items on project_budget.item_id= budget_items.item_id where project_budget.seq_id=' . $seq_id;
+    $stmt = 'select project_budget.seq_id, project_budget.amount, project_budget.`desc`, budget_items.item_title  from project_budget join budget_items on project_budget.item_id= budget_items.item_id where project_budget.seq_id=' . $seq_id;
     $result = $conn->ExecuteNonQuery($stmt);
     $jsonArray = array();
     while ($row = mysql_fetch_array($result)) {
-        $jsonArray[] = array('seq_id' => $row['seq_id'], 'amount' => $row['amount'], 'compensation' => $row['compensation'], 'desc' => $row['desc'], 'item_title' => $row['item_title']);
+        $jsonArray[] = array('seq_id' => $row['seq_id'], 'amount' => $row['amount'], 'desc' => $row['desc'], 'item_title' => $row['item_title']);
     }
     echo json_encode($jsonArray);
 } else {
