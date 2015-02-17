@@ -48,6 +48,7 @@ class project_budget_materials {
     public function GetProjectMaterials($project_id) {
         $con = new MysqlConnect();
         $stmt = 'select project_budget.seq_id, project_budget.amount, project_budget.compensation, project_budget.`desc`, budget_items.item_title  from project_budget join budget_items on project_budget.item_id= budget_items.item_id where budget_items.parent_item_id=' . $this->materials_code() . ' and project_budget.project_id=' . $project_id;
+        echo $stmt;
         $rs = $con->ExecuteNonQuery($stmt);
         return $rs;
     }
