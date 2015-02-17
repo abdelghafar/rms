@@ -34,4 +34,10 @@ class project_budget {
         }
     }
 
+    public function Delete($seq_id) {
+        $con = new MysqlConnect();
+        $stmt = "delete from " . $this->tableName . " where seq_id=" . $seq_id;
+        return $con->ExecuteNonQuery($stmt);
+    }
+
 }
