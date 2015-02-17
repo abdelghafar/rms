@@ -94,7 +94,7 @@ if (isset($_GET['q'])) {
                         success: function (data) {
                             if (data > 0)
                             {
-                                $('#materialsFrm').hide();
+                                $('#materials_table').hide();
                                 //window.location.reload();
                                 Reload_grid_materials();
                             }
@@ -117,7 +117,7 @@ if (isset($_GET['q'])) {
                 });
                 $('#material_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#material_cancel_button').on('click', function () {
-                    $('#materialsFrm').hide();
+                    $('#materials_table').hide();
                 });
 
                 $('#travel_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
@@ -207,9 +207,29 @@ if (isset($_GET['q'])) {
                             ]
                         });
                 $('#grid_materials').on('rowdoubleclick', function (event) {
-//                    var rowindex = $('#grid_materials').jqxGrid('getselectedrowindex');
-//                    var dataRecord = $("#grid_materials").jqxGrid('getrowdata', rowindex);
-//                    var material_seq_id = dataRecord['seq_id'];
+                    var rowindex = $('#grid_materials').jqxGrid('getselectedrowindex');
+                    var dataRecord = $("#grid_materials").jqxGrid('getrowdata', rowindex);
+                    var material_seq_id = dataRecord['seq_id'];
+                    $.ajax({datatype: "json", url: '../Data/get_project_material_item.php?seq_id=' + material_seq_id,
+                        success: function (data) {
+                            if (data === null)
+                            {
+                                console.error('No data found...');
+                            }
+                            else
+                            {
+                                var json_data = JSON.parse(data);
+                                $('#materials_table').show();
+                                var materials_seq_id = json_data[0]['seq_id'];
+                                var materials_amount = json_data[0]['amount'];
+                                var materials_desc = json_data[0]['desc'];
+                                var materials_item_id = json_data[0]['item_id'];
+                                $('#item_amount').jqxNumberInput({value: materials_amount});
+                                $('#lst_materials_items').val(materials_item_id);
+                                $('#materials_desc').val(materials_desc);
+                            }
+                        }
+                    });
 
                 });
                 var TravelDataSource =
@@ -257,8 +277,6 @@ if (isset($_GET['q'])) {
                 $('#grid_travel').on('rowdoubleclick', function (event) {
 
                 });
-
-
             });
         </script> 
         <script type="text/javascript">
@@ -316,13 +334,19 @@ if (isset($_GET['q'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#AddNewMaterials').click(function () {
-                    $('#materialsFrm').show();
+                    $('#materials_table').show();
                 });
                 $('#AddNewTravel').click(function () {
                     $('#travel_table').show();
                 });
             });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var theme = 'energyblue';
+                $('#AddNewOthers').jqxButton({width: 75, height: '30', theme: theme});
 
+            });
         </script>
     </head>
     <body>
@@ -339,7 +363,7 @@ if (isset($_GET['q'])) {
                 <br/>
                 <form id="material_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
-                    <table id="materialsFrm" style="display: none; width: 100%">
+                    <table id="materials_table" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
                                 <span class="classic">اخترالنوع</span>
@@ -369,7 +393,7 @@ if (isset($_GET['q'])) {
                                 </span>
                             </td>
                             <td>
-                                <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
+                                <textarea id="materials_desc" name="item_desc" rows="4" cols="1" style="width: 450px;">
                                 </textarea>
                             </td>
                         </tr>
@@ -432,8 +456,11 @@ if (isset($_GET['q'])) {
                     </table>
                 </form>
                 <div id="grid_travel"></div>
-
-
+                <br/><br/>
+                <span class="classic">المؤتمرات و الرحلات العلمية</span>
+                <hr/>
+                <input type="button" id='AddNewOthers' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <br/>
 
             </div>
         </fieldset>
