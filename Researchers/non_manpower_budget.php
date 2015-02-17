@@ -60,8 +60,6 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
-
-
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
@@ -86,10 +84,11 @@ if (isset($_GET['q'])) {
                         success: function (data) {
                             if (data > 0)
                             {
-                                alert('save done with id='.data);
+                                $('#materialsFrm').hide();
+                                //window.location.reload();
+                                Reload_grid_materials();
                             }
                         }
-                        $('#materialsFrm').hide();
                     });
                 });
                 $('#material_cancel_button').jqxButton({width: 50, height: 30, theme: theme});
@@ -173,6 +172,24 @@ if (isset($_GET['q'])) {
                     });
                 }
             }
+            function Reload_grid_materials()
+            {
+                var MaterialsDataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'amount', type: 'float'},
+                                {name: 'compensation'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
+                            ],
+                            id: 'person_id',
+                            url: 'ajax/project_budget_materials.php?q=<? echo $projectId; ?>'
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
+                $("#grid_materials").jqxGrid({source: dataAdapter});
+            }
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -238,7 +255,9 @@ if (isset($_GET['q'])) {
                         </tr>
                     </table>
                 </form>
-
+                <span class="error" style="float: right;clear: both;">
+                    *للتعديل قم بالنقر المزدوج علي الصف
+                </span>
                 <div id="grid_materials"></div>
                 <br/><br/>
             </div>
