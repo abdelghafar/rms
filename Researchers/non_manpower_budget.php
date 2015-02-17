@@ -69,18 +69,25 @@ if (isset($_GET['q'])) {
             $(document).ready(function () {
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
-                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000});
+                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
+                $('#item_amount').on('change', function ()
+                {
+                    var value = event.args.value;
+                    $('#item_amount_val').val(value);
+                });
+
                 $('#material_save_button').jqxButton({width: 50, height: 30, theme: theme});
 
                 $('#material_save_button').on('click', function () {
-                    $.ajax({url:"",
+                    $.ajax({url: "inc/save_material_items.inc.php",
                         type: "GET",
                         dataType: "json",
+                        data: $('#material_form').serialize(),
                         beforeSend: function () {
                             //$('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
                         },
                         success: function (data) {
-                            
+
                         }
                     });
                 });
@@ -97,6 +104,17 @@ if (isset($_GET['q'])) {
                     url: '../Data/materials_items.php'};
                 var materials_items_adapter = new $.jqx.dataAdapter(materials_items_source);
                 $('#lst_materials_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: materials_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+
+                $('#lst_materials_items').on('select', function (event) {
+                    var args = event.args;
+                    var item = $('#lst_materials_items').jqxDropDownList('getItem', args.index);
+                    var item_value = item.value;
+                    if (item !== null) {
+                        $('#materials_items_val').val(item_value);
+                        alert(item_value);
+                    }
+                });
+
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -177,44 +195,48 @@ if (isset($_GET['q'])) {
                 <hr/>
                 <input type="button" id='AddNewMaterials' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
-                <table id="materialsFrm" style="display: none; width: 100%">
-                    <tr>
-                        <td valign="middle">
-                            <span class="classic">اخترالنوع</span>
-                            <span class="required">*</span>
-                        </td>
-                        <td>
-                            <div id="lst_materials_items"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="classic">
-                                القيمة
-                            </span>
-                        </td>
-                        <td>
-                            <div id="item_amount"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="classic">
-                                ملاحظات
-                            </span>
-                        </td>
-                        <td>
-                            <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
-                            </textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="button" value="حفظ" id='material_save_button' />
-                            <input type="button" value="اغلاق" id='material_cancel_button' />
-                        </td>
-                    </tr>
-                </table>
+                <form id="material_form" action="#" method="post">
+                    <table id="materialsFrm" style="display: none; width: 100%">
+                        <tr>
+                            <td valign="middle">
+                                <span class="classic">اخترالنوع</span>
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <div id="lst_materials_items"></div>
+                                <input type="hidden" id="materials_items_val" name="materials_items_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    القيمة
+                                </span>
+                            </td>
+                            <td>
+                                <div id="item_amount"></div>
+                                <input type="hidden" id="item_amount_val" name="item_amount_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    ملاحظات
+                                </span>
+                            </td>
+                            <td>
+                                <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="حفظ" id='material_save_button' />
+                                <input type="button" value="اغلاق" id='material_cancel_button' />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
                 <div id="grid_materials"></div>
                 <br/><br/>
             </div>
