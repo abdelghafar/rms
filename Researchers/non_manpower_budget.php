@@ -72,7 +72,7 @@ if (isset($_GET['q'])) {
                 $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
                 $('#item_amount').on('change', function ()
                 {
-                    var value = event.args.value;
+                    var value = $('#item_amount').jqxNumberInput('getDecimal');
                     $('#item_amount_val').val(value);
                 });
 
@@ -80,15 +80,16 @@ if (isset($_GET['q'])) {
 
                 $('#material_save_button').on('click', function () {
                     $.ajax({url: "inc/save_material_items.inc.php",
-                        type: "GET",
+                        type: "post",
                         dataType: "json",
                         data: $('#material_form').serialize(),
-                        beforeSend: function () {
-                            //$('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
-                        },
                         success: function (data) {
-
+                            if (data > 0)
+                            {
+                                alert('save done with id='.data);
+                            }
                         }
+                        $('#materialsFrm').hide();
                     });
                 });
                 $('#material_cancel_button').jqxButton({width: 50, height: 30, theme: theme});
@@ -111,7 +112,6 @@ if (isset($_GET['q'])) {
                     var item_value = item.value;
                     if (item !== null) {
                         $('#materials_items_val').val(item_value);
-                        alert(item_value);
                     }
                 });
 
@@ -191,11 +191,12 @@ if (isset($_GET['q'])) {
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <span class="classic-font">المواد الخام و الأجهزة</span>
+                <span class="classic">المواد الخام و الأجهزة</span>
                 <hr/>
                 <input type="button" id='AddNewMaterials' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
                 <form id="material_form" action="#" method="post">
+                    <input type="hidden" id="project_id" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="materialsFrm" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
@@ -210,7 +211,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    القيمة
+                                    القيمة:
                                 </span>
                             </td>
                             <td>
@@ -237,6 +238,7 @@ if (isset($_GET['q'])) {
                         </tr>
                     </table>
                 </form>
+
                 <div id="grid_materials"></div>
                 <br/><br/>
             </div>
