@@ -176,7 +176,7 @@ if (isset($projectId)) {
 
 
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
-            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
             $('#technologies').on('change', function (event)
             {
                 var args = event.args;
@@ -199,7 +199,7 @@ if (isset($projectId)) {
                     };
 
                     dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
             });
             $("#technologies").on('bindingComplete', function (event) {
@@ -211,7 +211,7 @@ if (isset($projectId)) {
             });
             //-----------------------------------------------------------------
             dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
             $('#track').on('change', function (event)
             {
                 var args = event.args;
@@ -232,7 +232,7 @@ if (isset($projectId)) {
                         url: '../Data/subtracks.php?track_id=' + $("#track").val()
                     };
                     dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
                 }
             });
             $("#track").on('bindingComplete', function (event) {
@@ -243,7 +243,7 @@ if (isset($projectId)) {
 ?>');
             });
             dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
             $('#subtrack').on('change', function (event)
             {
                 var args = event.args;
