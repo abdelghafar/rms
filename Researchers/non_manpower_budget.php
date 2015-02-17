@@ -80,7 +80,7 @@ if (isset($_GET['q'])) {
                 $('#travel_amount').on('change', function ()
                 {
                     var value = $('#travel_amount').jqxNumberInput('getDecimal');
-                    $('#travel_amount').val(value);
+                    $('#travel_amount_val').val(value);
                 });
 
                 $('#material_save_button').jqxButton({width: 80, height: 30, theme: theme});
@@ -111,8 +111,7 @@ if (isset($_GET['q'])) {
                             if (data > 0)
                             {
                                 $('#travel_table').hide();
-                                //window.location.reload();
-                                //Reload_grid_materials();
+                                Reaload_grid_travel();
                             }
                         }
                     });
@@ -121,6 +120,14 @@ if (isset($_GET['q'])) {
                 $('#material_cancel_button').on('click', function () {
                     $('#materialsFrm').hide();
                 });
+
+                $('#travel_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
+                $('#travel_cancel_button').on('click', function () {
+                    $('#materialsFrm').hide();
+                });
+
+
+
                 var materials_items_source = {datatype: "json",
                     datafields: [
                         {name: 'item_id'},
@@ -286,6 +293,24 @@ if (isset($_GET['q'])) {
                         };
                 var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
                 $("#grid_materials").jqxGrid({source: dataAdapter});
+            }
+
+            function Reaload_grid_travel()
+            {
+                var TravelDataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'amount', type: 'float'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
+                            ],
+                            id: 'seq_id',
+                            url: 'ajax/project_budget_travel.php?q=<? echo $projectId; ?>'
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(TravelDataSource);
+                $("#grid_travel").jqxGrid({source: dataAdapter});
             }
         </script>
         <script type="text/javascript">
