@@ -69,14 +69,14 @@ if (isset($_GET['q'])) {
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
                 $('#AddNewTravel').jqxButton({width: 75, height: '30', theme: theme});
 
-                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
+                $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
                 $('#item_amount').on('change', function ()
                 {
                     var value = $('#item_amount').jqxNumberInput('getDecimal');
                     $('#item_amount_val').val(value);
                 });
 
-                $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0});
+                $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
                 $('#travel_amount').on('change', function ()
                 {
                     var value = $('#travel_amount').jqxNumberInput('getDecimal');
@@ -85,7 +85,6 @@ if (isset($_GET['q'])) {
 
                 $('#material_save_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#travel_save_button').jqxButton({width: 80, height: 30, theme: theme});
-
 
                 $('#material_save_button').on('click', function () {
                     $.ajax({url: "inc/save_material_items.inc.php",
@@ -111,7 +110,7 @@ if (isset($_GET['q'])) {
                             if (data > 0)
                             {
                                 $('#travel_table').hide();
-                                Reaload_grid_travel();
+                                Reload_grid_travel();
                             }
                         }
                     });
@@ -123,10 +122,8 @@ if (isset($_GET['q'])) {
 
                 $('#travel_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#travel_cancel_button').on('click', function () {
-                    $('#materialsFrm').hide();
+                    $('#travel_table').hide();
                 });
-
-
 
                 var materials_items_source = {datatype: "json",
                     datafields: [
@@ -204,6 +201,7 @@ if (isset($_GET['q'])) {
                                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
                                         var seq_id = dataRecord['seq_id'];
                                         Delete(seq_id);
+                                        Reload_grid_materials();
                                     }
                                 }
                             ]
@@ -251,6 +249,7 @@ if (isset($_GET['q'])) {
                                         var dataRecord = $("#grid_travel").jqxGrid('getrowdata', row);
                                         var seq_id = dataRecord['seq_id'];
                                         Delete(seq_id);
+                                        Reload_grid_travel();
                                     }
                                 }
                             ]
@@ -272,13 +271,14 @@ if (isset($_GET['q'])) {
                         url: 'inc/Del_project_budget.inc.php?q=' + seq_id,
                         datatype: "html",
                         success: function (data) {
-                            window.location.reload();
+                            //window.location.reload();
                         }
                     });
                 }
             }
             function Reload_grid_materials()
             {
+                //$('#lst_materials_items').jqxDropDownList({selectedIndex: -1});
                 var MaterialsDataSource =
                         {
                             datatype: "json",
@@ -295,7 +295,7 @@ if (isset($_GET['q'])) {
                 $("#grid_materials").jqxGrid({source: dataAdapter});
             }
 
-            function Reaload_grid_travel()
+            function Reload_grid_travel()
             {
                 var TravelDataSource =
                         {
