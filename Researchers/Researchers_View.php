@@ -9,10 +9,14 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     }
 }
 if (isset($_GET['program'])) {
+    require_once '../lib/program.php';
+    $t = new program();
+
     $program_string = filter_input(INPUT_GET, 'program', FILTER_SANITIZE_STRING);
     switch ($program_string) {
         case 'ba7th': {
-                $_SESSION['program'] = 'ba7th';
+                $program_id = $t->GetProgramId('ba7th');
+                $_SESSION['program'] = $program_id;
                 break;
             }
         case 'ra2d': {
