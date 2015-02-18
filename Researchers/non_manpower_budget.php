@@ -271,7 +271,6 @@ if (isset($_GET['q'])) {
                             else
                             {
                                 var json_data = JSON.parse(data);
-
                                 $('#materials_table').show();
                                 materials_seq_id = json_data[0]['seq_id'];
                                 materials_amount = json_data[0]['amount'];
@@ -459,6 +458,9 @@ if (isset($_GET['q'])) {
 
                 $('#others_save_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#others_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
+                $('#others_cancel_button').on('click', function () {
+                    $('#others_table').hide();
+                });
                 var others_items_source = {datatype: "json",
                     datafields: [
                         {name: 'item_id'},
@@ -526,7 +528,7 @@ if (isset($_GET['q'])) {
                     var rowindex = $('#grid_others').jqxGrid('getselectedrowindex');
                     var dataRecord = $("#grid_others").jqxGrid('getrowdata', rowindex);
                     others_seq_id = dataRecord['seq_id'];
-                    $.ajax({datatype: "json", url: '../Data/get_project_budget_item.php?seq_id=' + travel_seq_id,
+                    $.ajax({datatype: "json", url: '../Data/get_project_budget_item.php?seq_id=' + others_seq_id,
                         success: function (data) {
                             if (data === null)
                             {
@@ -535,17 +537,50 @@ if (isset($_GET['q'])) {
                             else
                             {
                                 var json_data = JSON.parse(data);
-                                $('#travel_table').show();
-                                travel_seq_id = json_data[0]['seq_id'];
-                                travel_amount = json_data[0]['amount'];
-                                travel_desc = json_data[0]['desc'];
-                                travel_item_id = json_data[0]['item_id'];
-                                $('#travel_amount').jqxNumberInput({value: travel_amount});
-                                $('#lst_travel_items').val(travel_item_id);
-                                $('#travel_desc').val(travel_desc);
+                                $('#others_table').show();
+                                others_seq_id = json_data[0]['seq_id'];
+                                others_amount = json_data[0]['amount'];
+                                others_desc = json_data[0]['desc'];
+                                others_item_id = json_data[0]['item_id'];
+                                $('#others_amount').jqxNumberInput({value: others_amount});
+                                $('#lst_others_items').val(others_item_id);
+                                $('#others_desc').val(others_desc);
                             }
                         }
                     });
+                });
+
+                $('#others_save_button').on('click', function () {
+                    if (others_seq_id === null)
+                    {
+                        $.ajax({url: "inc/save_other_items.inc.php",
+                            type: "post",
+                            dataType: "json",
+                            data: $('#others_form').serialize(),
+                            success: function (data) {
+                                if (data > 0)
+                                {
+                                    $('#others_table').hide();
+                                    Reload_other_items();
+                                }
+                            }
+                        });
+                    } else
+                    {
+                        $.ajax({url: "inc/save_other_items.inc.php?seq_id=" + others_seq_id,
+                            type: "post",
+                            dataType: "json",
+                            data: $('#others_form').serialize(),
+                            success: function (data) {
+                                if (data > 0)
+                                {
+                                    $('#others_table').hide();
+                                    Reload_other_items();
+                                }
+                            }
+                        });
+                    }
+
                 });
 
             });
