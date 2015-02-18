@@ -183,11 +183,15 @@ if (isset($_GET['q'])) {
 
                 $('#lst_materials_items').on('select', function (event) {
                     var args = event.args;
-                    var item = $('#lst_materials_items').jqxDropDownList('getItem', args.index);
-                    var item_value = item.value;
-                    if (item !== null) {
-                        $('#materials_items_val').val(item_value);
+                    if (args.index !== -1)
+                    {
+                        var item = $('#lst_materials_items').jqxDropDownList('getItem', args.index);
+                        var item_value = item.value;
+                        if (item !== null) {
+                            $('#materials_items_val').val(item_value);
+                        }
                     }
+
                 });
 
                 var travel_items_source = {datatype: "json",
@@ -202,10 +206,13 @@ if (isset($_GET['q'])) {
 
                 $('#lst_travel_items').on('select', function (event) {
                     var args = event.args;
-                    var item = $('#lst_travel_items').jqxDropDownList('getItem', args.index);
-                    var item_value = item.value;
-                    if (item !== null) {
-                        $('#travel_items_val').val(item_value);
+                    if (args.index !== -1)
+                    {
+                        var item = $('#lst_travel_items').jqxDropDownList('getItem', args.index);
+                        var item_value = item.value;
+                        if (item !== null) {
+                            $('#travel_items_val').val(item_value);
+                        }
                     }
                 });
 
@@ -346,6 +353,21 @@ if (isset($_GET['q'])) {
                         }
                     });
                 });
+                $('#AddNewTravel').click(function () {
+                    travel_seq_id = null;
+                    $('#lst_travel_items').jqxDropDownList({selectedIndex: -1});
+                    $('#travel_amount').jqxNumberInput('clear');
+                    $('#travel_desc').val('');
+                    $('#travel_table').show();
+                });
+                $('#AddNewMaterials').click(function () {
+                    materials_seq_id = null;
+                    $('#lst_materials_items').jqxDropDownList({selectedIndex: -1});
+                    $('#item_amount').jqxNumberInput('clear');
+                    $('#materials_desc').val('');
+                    $('#materials_table').show();
+                });
+
             });
         </script> 
         <script type="text/javascript">
@@ -400,12 +422,7 @@ if (isset($_GET['q'])) {
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#AddNewMaterials').click(function () {
-                    $('#materials_table').show();
-                });
-                $('#AddNewTravel').click(function () {
-                    $('#travel_table').show();
-                });
+
             });
         </script>
         <script type="text/javascript">
@@ -524,7 +541,7 @@ if (isset($_GET['q'])) {
                 </form>
                 <div id="grid_travel"></div>
                 <br/><br/>
-                <span class="classic">المؤتمرات و الرحلات العلمية</span>
+                <span class="classic">أخري</span>
                 <hr/>
                 <input type="button" id='AddNewOthers' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
