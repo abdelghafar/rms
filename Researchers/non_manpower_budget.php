@@ -366,7 +366,6 @@ if (isset($_GET['q'])) {
                     $('#materials_desc').val('');
                     $('#materials_table').show();
                 });
-
             });
         </script> 
         <script type="text/javascript">
@@ -417,6 +416,23 @@ if (isset($_GET['q'])) {
                         };
                 var dataAdapter = new $.jqx.dataAdapter(TravelDataSource);
                 $("#grid_travel").jqxGrid({source: dataAdapter});
+            }
+            function Reload_other_items()
+            {
+                var Others_Items_DataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'amount', type: 'float'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
+                            ],
+                            id: 'seq_id',
+                            url: 'ajax/project_budget_otherItems.php?q=<? echo $projectId; ?>'
+                        };
+                var dataAdapter = new $.jqx.dataAdapter(Others_Items_DataSource);
+                $("#grid_others").jqxGrid({source: dataAdapter});
             }
         </script>
         <script type="text/javascript">
@@ -476,8 +492,61 @@ if (isset($_GET['q'])) {
                             id: 'seq_id',
                             url: 'ajax/project_budget_otherItems.php?q=<? echo $projectId; ?>'
                         };
-                        
-
+                var dataAdapter = new $.jqx.dataAdapter(Others_Items_DataSource);
+                $("#grid_others").jqxGrid(
+                        {
+                            source: dataAdapter,
+                            theme: theme,
+                            editable: false,
+                            pageable: false,
+                            filterable: true,
+                            width: 800,
+                            pagesize: 5,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
+                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return '..';
+                                    }, buttonclick: function (row) {
+                                        var dataRecord = $("#grid_others").jqxGrid('getrowdata', row);
+                                        var seq_id = dataRecord['seq_id'];
+                                        Delete(seq_id);
+                                        Reload_other_items();
+                                    }
+                                }
+                            ]
+                        });
+                $('#grid_others').on('rowdoubleclick', function (event) {
+                    var rowindex = $('#grid_others').jqxGrid('getselectedrowindex');
+                    var dataRecord = $("#grid_others").jqxGrid('getrowdata', rowindex);
+                    others_seq_id = dataRecord['seq_id'];
+                    $.ajax({datatype: "json", url: '../Data/get_project_budget_item.php?seq_id=' + travel_seq_id,
+                        success: function (data) {
+                            if (data === null)
+                            {
+                                console.error('No data found...');
+                            }
+                            else
+                            {
+                                var json_data = JSON.parse(data);
+                                $('#travel_table').show();
+                                travel_seq_id = json_data[0]['seq_id'];
+                                travel_amount = json_data[0]['amount'];
+                                travel_desc = json_data[0]['desc'];
+                                travel_item_id = json_data[0]['item_id'];
+                                $('#travel_amount').jqxNumberInput({value: travel_amount});
+                                $('#lst_travel_items').val(travel_item_id);
+                                $('#travel_desc').val(travel_desc);
+                            }
+                        }
+                    });
+                });
 
             });
         </script>
@@ -638,6 +707,8 @@ if (isset($_GET['q'])) {
                         </tr>
                     </table>
                 </form>
+                <div id="grid_others"></div>
+                <br/><br/>
             </div>
         </fieldset>
     </body>
