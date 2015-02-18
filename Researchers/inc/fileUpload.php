@@ -66,7 +66,11 @@ switch ($_GET['type']) {
             $file_name.="budget/";
             break;
         }
-
+    case 'outcome_objectives': {
+            $target_dir = "../../uploads/outcome_objectives/";
+            $file_name.="outcome_objectives/";
+            break;
+        }
     default : {
             break;
         }
@@ -164,6 +168,10 @@ if ($uploadOk == 0) {
                 }
             case 'budget': {
                     $obj->SetBudgetUrl($_GET['q'], $file_name);
+                    break;
+                }
+            case 'outcome_objectives': {
+                    $obj->SetOutcomeObjectiveUrl($_GET['q'], $file_name);
                     break;
                 }
             case 'coAuthor_agreement': {
