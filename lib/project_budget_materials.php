@@ -29,7 +29,6 @@ class project_budget_materials {
             return mysql_insert_id();
         } else {
             $stmt = "Update " . $this->tableName . " Set project_id=" . $project_id . ", item_id=" . $budget_item_id . ",amount=" . $amount . ",`desc`='" . $desc . "'" . " where seq_id=" . $seq_id;
-            echo $stmt;
             $con->ExecuteNonQuery($stmt);
             return mysql_affected_rows();
         }
