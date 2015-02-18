@@ -216,7 +216,19 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#value_to_kingdom_upload_log').html(serverResponce);
                 });
-                //---------------------------------
+                //---------------------------------budget_upload
+                $('#budget_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=budget&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#budget_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#budget_upload_log').html(serverResponce);
+                });
 
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
@@ -568,6 +580,31 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <div id="value_to_kingdom_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        الميزانية
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-الميزانية
+                        </a>
+                    </td>
+                    <td>
+                        <div id='budget_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($budget) > 0) {
+                            echo '<a href="' . '../' . $budget . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="budget_upload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
 
