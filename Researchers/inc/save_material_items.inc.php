@@ -17,13 +17,13 @@ if (!isset($_GET['seq_id'])) {
     $rs = $t->Save($seq_id, $project_id, $budget_item_id, $item_amount_val, $item_desc);
     echo $rs;
 } else {
-    $project_id = $_POST['project_id'];
-    $seq_id = filter_input(INPUT_GET, 'seq_id', FILTER_VALIDATE_INT);
-    $materials_amount = filter_input(INPUT_GET, 'materials_amount');
-    $materials_item_id = filter_input(INPUT_GET, 'materials_item_id');
-    $materials_desc = filter_input(INPUT_GET, 'materials_desc', FILTER_SANITIZE_STRING);
+    $seq_id = filter_input(INPUT_GET, 'seq_id');
+    $project_id = filter_input(INPUT_POST, 'project_id');
+    $materials_items_val = filter_input(INPUT_GET, 'materials_items_val');
+    $item_amount_val = filter_input(INPUT_GET, 'item_amount_val');
+    $item_desc = filter_input(INPUT_GET, 'item_desc');
     $t = new project_budget_materials();
-    $rs = $t->Save($seq_id, $project_id, $materials_item_id, $materials_amount, $materials_desc);
+    $rs = $t->Save($seq_id, $project_id, $materials_items_val, $item_amount_val, $item_desc);
     echo $rs;
 }
 
