@@ -130,18 +130,36 @@ if (isset($_GET['q'])) {
 
                 });
                 $('#travel_save_button').on('click', function () {
-                    $.ajax({url: "inc/save_travel_items.inc.php",
-                        type: "post",
-                        dataType: "json",
-                        data: $('#travel_form').serialize(),
-                        success: function (data) {
-                            if (data > 0)
-                            {
-                                $('#travel_table').hide();
-                                Reload_grid_travel();
+                    if (travel_seq_id === null)
+                    {
+                        $.ajax({url: "inc/save_travel_items.inc.php",
+                            type: "post",
+                            dataType: "json",
+                            data: $('#travel_form').serialize(),
+                            success: function (data) {
+                                if (data > 0)
+                                {
+                                    $('#travel_table').hide();
+                                    Reload_grid_travel();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else
+                    {
+                        $.ajax({url: "inc/save_travel_items.inc.php?seq_id=" + travel_seq_id,
+                            type: "post",
+                            dataType: "json",
+                            data: $('#travel_form').serialize(),
+                            success: function (data) {
+                                if (data > 0)
+                                {
+                                    $('#travel_table').hide();
+                                    Reload_grid_travel();
+                                }
+                            }
+                        });
+                    }
+
                 });
                 $('#material_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
                 $('#material_cancel_button').on('click', function () {
