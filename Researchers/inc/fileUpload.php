@@ -46,6 +46,27 @@ switch ($_GET['type']) {
             $file_name.="objective_approach/";
             break;
         }
+    case 'objective_tasks': {
+            $target_dir = "../../uploads/objective_tasks/";
+            $file_name.="objective_tasks/";
+            break;
+        }
+    case 'working_plan': {
+            $target_dir = "../../uploads/working_plan/";
+            $file_name.="working_plan/";
+            break;
+        }
+    case 'value_to_kingdom': {
+            $target_dir = "../../uploads/value_to_kingdom/";
+            $file_name.="value_to_kingdom/";
+            break;
+        }
+    case 'budget': {
+            $target_dir = "../../uploads/budget/";
+            $file_name.="budget/";
+            break;
+        }
+
     default : {
             break;
         }
@@ -127,6 +148,22 @@ if ($uploadOk == 0) {
                 }
             case 'objective_approach': {
                     $obj->SetObjective_approach_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'objective_tasks': {
+                    $obj->SetObjective_tasks_url($_GET['q'], $file_name);
+                    break;
+                }
+            case 'working_plan': {
+                    $obj->SetWorkingPlanUrl($_GET['q'], $file_name);
+                    break;
+                }
+            case 'value_to_kingdom': {
+                    $obj->SetValueToKingdomUrl($_GET['q'], $file_name);
+                    break;
+                }
+            case 'budget': {
+                    $obj->SetBudgetUrl($_GET['q'], $file_name);
                     break;
                 }
             case 'coAuthor_agreement': {
