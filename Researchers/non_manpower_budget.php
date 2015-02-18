@@ -74,7 +74,6 @@ if (isset($_GET['q'])) {
                 var travel_amount = null;
                 var travel_desc = null;
                 var travel_item_id = null;
-
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
                 $('#AddNewTravel').jqxButton({width: 75, height: '30', theme: theme});
@@ -422,13 +421,63 @@ if (isset($_GET['q'])) {
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
+                var others_seq_id = null;
+                var others_amount = null;
+                var others_desc = null;
+                var others_item_id = null;
                 var theme = 'energyblue';
                 $('#AddNewOthers').jqxButton({width: 75, height: '30', theme: theme});
+                $('#AddNewOthers').click(function () {
+                    others_seq_id = null;
+                    $('#lst_others_items').jqxDropDownList({selectedIndex: -1});
+                    $('#others_amount').jqxNumberInput('clear');
+                    $('#others_desc').val('');
+                    $('#others_table').show();
+                });
+                $('#others_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
+                $('#others_amount').on('valueChanged', function ()
+                {
+                    var value = $('#others_amount').jqxNumberInput('getDecimal');
+                    $('#others_amount_val').val(value);
+                });
+
+                $('#others_save_button').jqxButton({width: 80, height: 30, theme: theme});
+                $('#others_cancel_button').jqxButton({width: 80, height: 30, theme: theme});
+                var others_items_source = {datatype: "json",
+                    datafields: [
+                        {name: 'item_id'},
+                        {name: 'item_title'}
+                    ],
+                    id: 'item_id',
+                    url: '../Data/other_items.php'};
+                var others_items_adapter = new $.jqx.dataAdapter(others_items_source);
+                $('#lst_others_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: others_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+
+                $('#lst_others_items').on('select', function (event) {
+                    var args = event.args;
+                    if (args.index !== -1)
+                    {
+                        var item = $('#lst_others_items').jqxDropDownList('getItem', args.index);
+                        var item_value = item.value;
+                        if (item !== null) {
+                            $('#others_items_val').val(item_value);
+                        }
+                    }
+                });
+                var Others_Items_DataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'seq_id'},
+                                {name: 'amount', type: 'float'},
+                                {name: 'desc'},
+                                {name: 'item_title'}
+                            ],
+                            id: 'seq_id',
+                            url: 'ajax/project_budget_otherItems.php?q=<? echo $projectId; ?>'
+                        };
+                        
+
 
             });
         </script>
@@ -545,7 +594,50 @@ if (isset($_GET['q'])) {
                 <hr/>
                 <input type="button" id='AddNewOthers' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
-
+                <form id="others_form" action="#" method="post">
+                    <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
+                    <table id="others_table" style="display: none; width: 100%">
+                        <tr>
+                            <td valign="middle">
+                                <span class="classic">اخترالنوع</span>
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <div id="lst_others_items"></div>
+                                <input type="hidden" id="others_items_val" name="others_items_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    القيمة:
+                                </span>
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <div id="others_amount"></div>
+                                <input type="hidden" id="others_amount_val" name="others_amount_val"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="classic">
+                                    ملاحظات
+                                </span>
+                            </td>
+                            <td>
+                                <textarea id="others_desc" name="others_desc" rows="4" cols="20" style="width: 450px;">
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="حفظ" id='others_save_button' />
+                                <input type="button" value="اغلاق" id='others_cancel_button' />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </fieldset>
     </body>
