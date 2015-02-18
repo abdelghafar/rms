@@ -160,6 +160,21 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#research_method_upload_log').html(serverResponce);
                 });
+                //Objective Approach FileUpload with Event handler.....
+                $('#objective_approach_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=objective_approach&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#objective_approach_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#objective_approach_upload_log').html(serverResponce);
+                });
+
+
 
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
