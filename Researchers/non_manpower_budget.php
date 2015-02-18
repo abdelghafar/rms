@@ -71,6 +71,9 @@ if (isset($_GET['q'])) {
                 var materials_item_id = null;
 
                 var travel_seq_id = null;
+                var travel_amount = null;
+                var travel_desc = null;
+                var travel_item_id = null;
 
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
@@ -244,6 +247,7 @@ if (isset($_GET['q'])) {
                             else
                             {
                                 var json_data = JSON.parse(data);
+
                                 $('#materials_table').show();
                                 materials_seq_id = json_data[0]['seq_id'];
                                 materials_amount = json_data[0]['amount'];
@@ -313,13 +317,13 @@ if (isset($_GET['q'])) {
                             {
                                 var json_data = JSON.parse(data);
                                 $('#travel_table').show();
-                                materials_seq_id = json_data[0]['seq_id'];
-                                materials_amount = json_data[0]['amount'];
-                                materials_desc = json_data[0]['desc'];
-                                materials_item_id = json_data[0]['item_id'];
-                                $('#item_amount').jqxNumberInput({value: materials_amount});
-                                $('#lst_materials_items').val(materials_item_id);
-                                $('#materials_desc').val(materials_desc);
+                                travel_seq_id = json_data[0]['seq_id'];
+                                travel_amount = json_data[0]['amount'];
+                                travel_desc = json_data[0]['desc'];
+                                travel_item_id = json_data[0]['item_id'];
+                                $('#travel_amount').jqxNumberInput({value: travel_amount});
+                                $('#lst_travel_items').val(travel_item_id);
+                                $('#travel_desc').val(travel_desc);
                             }
                         }
                     });
@@ -488,7 +492,7 @@ if (isset($_GET['q'])) {
                                 </span>
                             </td>
                             <td>
-                                <textarea name="item_desc" rows="4" cols="20" style="width: 450px;">
+                                <textarea id="travel_desc" name="item_desc" rows="4" cols="20" style="width: 450px;">
                                 </textarea>
                             </td>
                         </tr>
