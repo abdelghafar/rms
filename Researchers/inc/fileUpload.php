@@ -41,6 +41,11 @@ switch ($_GET['type']) {
             $file_name.="OtherPersonal_agreement/";
             break;
         }
+    case 'objective_approach': {
+            $target_dir = "../../uploads/objective_approach/";
+            $file_name.="objective_approach/";
+            break;
+        }
     default : {
             break;
         }
@@ -120,6 +125,10 @@ if ($uploadOk == 0) {
                     $obj->SetResearch_method_url($_GET['q'], $file_name);
                     break;
                 }
+            case 'objective_approach': {
+                    $obj->SetObjective_approach_url($_GET['q'], $file_name);
+                    break;
+                }
             case 'coAuthor_agreement': {
                     $obj = new research_stuff();
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
@@ -132,6 +141,7 @@ if ($uploadOk == 0) {
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     break;
                 }
+
             default : {
                     break;
                 }
