@@ -35,6 +35,8 @@ if (isset($_GET['q'])) {
     $intro = $obj->GetIntro_url($projectId);
     $review = $obj->GetLitReview_url($projectId);
     $research_method = $obj->GetResearch_method_url($projectId);
+    $objective_approach = $obj->GetObjective_approach_url($projectId);
+    $objective_tasks = $obj->GetObjective_tasks_url($projectId);
 } else {
     exit();
 }
@@ -420,6 +422,32 @@ if (isset($_GET['q'])) {
                         <div id="research_method_upload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        أهداف المشروع
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-أهداف المشروع
+                        </a>
+                    </td>
+                    <td>
+                        <div id='objective_approach_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($objective_approach) > 0) {
+                            echo '<a href="' . '../' . $objective_approach . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="objective_approach_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
                 <tr>
                     <td colspan="5">
                         <div id="result" class="errormsgbox" style="width: 700px;height:auto;display: none;">
