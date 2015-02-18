@@ -229,6 +229,19 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#budget_upload_log').html(serverResponce);
                 });
+                //------------outcome_objectives_upload
+                $('#outcome_objectives_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=outcome_objectives&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#outcome_objectives_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#outcome_objectives_upload_log').html(serverResponce);
+                });
 
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
@@ -608,6 +621,30 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
+                <tr>
+                    <td>
+                        المخرجات و الاهداف
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-المخرجات و الاهداف
+                        </a>
+                    </td>
+                    <td>
+                        <div id='outcome_objectives_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($outcome_objective) > 0) {
+                            echo '<a href="' . '../' . $outcome_objective . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="outcome_objectives_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
 
                 <tr>
                     <td colspan="5">
