@@ -7,12 +7,17 @@
  */
 
 require_once '../../lib/project_budget_travel.php';
+$seq_id = 0;
+if (!isset($_GET['seq_id'])) {
+    $budget_item_id = $_POST['travel_items_val'];
+    $item_amount_val = $_POST['travel_amount_val'];
+    $item_desc = $_POST['item_desc'];
+    $project_id = $_POST['project_id'];
+    $t = new project_budget_travel();
+    $rs = $t->Save(0, $project_id, $budget_item_id, $item_amount_val, $item_desc);
+    echo $rs;
+} else {
+    print_r($_POST);
+}
 
-$budget_item_id = $_POST['travel_items_val'];
-$item_amount_val = $_POST['travel_amount_val'];
-$item_desc = $_POST['item_desc'];
-$project_id = $_POST['project_id'];
-$t = new project_budget_travel();
-$rs = $t->Save(0, $project_id, $budget_item_id, $item_amount_val, $item_desc);
-echo $rs;
 
