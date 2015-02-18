@@ -37,6 +37,10 @@ if (isset($_GET['q'])) {
     $research_method = $obj->GetResearch_method_url($projectId);
     $objective_approach = $obj->GetObjective_approach_url($projectId);
     $objective_tasks = $obj->GetObjective_tasks_url($projectId);
+    $working_plan = $obj->GetWorkingPlanUrl($projectId);
+    $value_to_kingdom = $obj->GetValueToKingdomUrl($projectId);
+    $budget = $obj->GetBudgetUrl($projectId);
+    $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
 } else {
     exit();
 }
@@ -173,12 +177,51 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#objective_approach_upload_log').html(serverResponce);
                 });
-
-
+                //Objective tasks FileUpload with event handler....
+                $('#objective_tasks_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=objective_tasks&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#objective_tasks_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#objective_tasks_upload_log').html(serverResponce);
+                });
+                //working plan FileUpload with event handler....
+                $('#working_plan_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=working_plan&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#working_plan_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#working_plan_upload_log').html(serverResponce);
+                });
+                //---------------------------------------------value_to_kingdom_upload 
+                $('#value_to_kingdom_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=value_to_kingdom&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#value_to_kingdom_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#value_to_kingdom_upload_log').html(serverResponce);
+                });
+                //---------------------------------
 
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
         <script type="text/javascript">
+            //Check Files
             var arabic_abs_file = 0;
             var eng_abs_file = 0;
             var intro_file = 0;
@@ -301,21 +344,11 @@ if (isset($_GET['q'])) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    بيانات البحث
+                    تحميل الملفات
                 </label>
             </legend>
             <table style="direction: rtl;border: 1px;width: 100%;">
-
-                <thead style="font-size: medium;font-weight: bold;">
-                    <tr style="margin-bottom: 25px;">
-                        <td style="width: 200px;">العنوان</td>
-                        <td style="width:100px;">النموذج</td>
-                        <td style="width: 150px;">تحميل</td>
-                        <td style="width: 100px;"></td>
-                        <td style="width: auto;"></td>
-                    </tr>
-                </thead>
-                <tr>
+                <tr style="margin-top: 25px;">
                     <td>
                         الملخص-اللغة العربية
                         <span class="required">*</span>
@@ -462,6 +495,82 @@ if (isset($_GET['q'])) {
                         <div id="objective_approach_upload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        المهام و الأهداف
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-المهام و الاهداف
+                        </a>
+                    </td>
+                    <td>
+                        <div id='objective_tasks_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($objective_tasks) > 0) {
+                            echo '<a href="' . '../' . $objective_tasks . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="objective_tasks_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        خطة العمل
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-خطة العمل
+                        </a>
+                    </td>
+                    <td>
+                        <div id='working_plan_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($working_plan) > 0) {
+                            echo '<a href="' . '../' . $working_plan . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="working_plan_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        الأهمية للمملكة
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج-الاهمية للمملكة
+                        </a>
+                    </td>
+                    <td>
+                        <div id='value_to_kingdom_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($value_to_kingdom) > 0) {
+                            echo '<a href="' . '../' . $value_to_kingdom . '"/>تحميل</a>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <div id="value_to_kingdom_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td colspan="5">
