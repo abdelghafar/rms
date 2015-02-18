@@ -330,6 +330,82 @@ class Reseaches {
         return $url;
     }
 
+    //----get set working plan url ------------------------------------------------------
+    public function SetWorkingPlanUrl($projectId, $url) {
+        $stmt = "update researches set `working_plan_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetWorkingPlanUrl($projectId) {
+        $stmt = "Select working_plan_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set value to kingdom url ------------------------------------------------------
+    public function SetValueToKingdomUrl($projectId, $url) {
+        $stmt = "update researches set `value_to_kingdom_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetValueToKingdomUrl($projectId) {
+        $stmt = "Select value_to_kingdom_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set budget url ------------------------------------------------------
+    public function SetBudgetUrl($projectId, $url) {
+        $stmt = "update researches set `budget_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetBudgetUrl($projectId) {
+        $stmt = "Select budget_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //----get set outcome objectives url ------------------------------------------------------
+    public function SetOutcomeObjectiveUrl($projectId, $url) {
+        $stmt = "update researches set `outcome_objective_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetOutcomeObjectiveUrl($projectId) {
+        $stmt = "Select outcome_objective_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
     //--------------------------------------------------------------------------
     public function Lock($projectId) {
         $stmt = "update researches set `isLocked` =  1 where seq_id =" . $projectId;
