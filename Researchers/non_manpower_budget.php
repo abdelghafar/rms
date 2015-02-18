@@ -65,19 +65,28 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
+                var materials_seq_id = null;
+                var materials_amount = null;
+                var materials_desc = null;
+                var materials_item_id = null;
+
+                var travel_seq_id = null;
+
                 var theme = 'energyblue';
                 $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
                 $('#AddNewTravel').jqxButton({width: 75, height: '30', theme: theme});
 
                 $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
-                $('#item_amount').on('change', function ()
+                $('#item_amount_val').val($('#item_amount').jqxNumberInput('getDecimal'));
+
+                $('#item_amount').on('valueChanged', function ()
                 {
                     var value = $('#item_amount').jqxNumberInput('getDecimal');
                     $('#item_amount_val').val(value);
                 });
 
                 $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
-                $('#travel_amount').on('change', function ()
+                $('#travel_amount').on('valueChanged', function ()
                 {
                     var value = $('#travel_amount').jqxNumberInput('getDecimal');
                     $('#travel_amount_val').val(value);
@@ -87,19 +96,35 @@ if (isset($_GET['q'])) {
                 $('#travel_save_button').jqxButton({width: 80, height: 30, theme: theme});
 
                 $('#material_save_button').on('click', function () {
-                    $.ajax({url: "inc/save_material_items.inc.php",
-                        type: "post",
-                        dataType: "json",
-                        data: $('#material_form').serialize(),
-                        success: function (data) {
-                            if (data > 0)
-                            {
-                                $('#materials_table').hide();
-                                //window.location.reload();
-                                Reload_grid_materials();
+                    if (materials_seq_id === null)
+                    {
+                        $.ajax({url: "inc/save_material_items.inc.php",
+                            type: "post",
+                            dataType: "json",
+                            data: $('#material_form').serialize(),
+                            success: function (data) {
+                                if (data > 0)
+                                {
+                                    $('#materials_table').hide();
+                                    Reload_grid_materials();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else
+                    {
+                        $.ajax({url: "inc/save_material_items.inc.php?seq_id=" + materials_seq_id,
+                            data: $('#material_form').serialize(),
+                            type: "post",
+                            success: function (data) {
+                                if (data >= 0)
+                                {
+                                    $('#materials_table').hide();
+                                    Reload_grid_materials();
+                                }
+                            }
+                        });
+                    }
+
                 });
                 $('#travel_save_button').on('click', function () {
                     $.ajax({url: "inc/save_travel_items.inc.php",
@@ -210,7 +235,7 @@ if (isset($_GET['q'])) {
                     var rowindex = $('#grid_materials').jqxGrid('getselectedrowindex');
                     var dataRecord = $("#grid_materials").jqxGrid('getrowdata', rowindex);
                     var material_seq_id = dataRecord['seq_id'];
-                    $.ajax({datatype: "json", url: '../Data/get_project_material_item.php?seq_id=' + material_seq_id,
+                    $.ajax({datatype: "json", url: '../Data/get_project_budget_item.php?seq_id=' + material_seq_id,
                         success: function (data) {
                             if (data === null)
                             {
@@ -220,10 +245,10 @@ if (isset($_GET['q'])) {
                             {
                                 var json_data = JSON.parse(data);
                                 $('#materials_table').show();
-                                var materials_seq_id = json_data[0]['seq_id'];
-                                var materials_amount = json_data[0]['amount'];
-                                var materials_desc = json_data[0]['desc'];
-                                var materials_item_id = json_data[0]['item_id'];
+                                materials_seq_id = json_data[0]['seq_id'];
+                                materials_amount = json_data[0]['amount'];
+                                materials_desc = json_data[0]['desc'];
+                                materials_item_id = json_data[0]['item_id'];
                                 $('#item_amount').jqxNumberInput({value: materials_amount});
                                 $('#lst_materials_items').val(materials_item_id);
                                 $('#materials_desc').val(materials_desc);
@@ -275,7 +300,29 @@ if (isset($_GET['q'])) {
                             ]
                         });
                 $('#grid_travel').on('rowdoubleclick', function (event) {
-
+                    var rowindex = $('#grid_travel').jqxGrid('getselectedrowindex');
+                    var dataRecord = $("#grid_travel").jqxGrid('getrowdata', rowindex);
+                    travel_seq_id = dataRecord['seq_id'];
+                    $.ajax({datatype: "json", url: '../Data/get_project_budget_item.php?seq_id=' + travel_seq_id,
+                        success: function (data) {
+                            if (data === null)
+                            {
+                                console.error('No data found...');
+                            }
+                            else
+                            {
+                                var json_data = JSON.parse(data);
+                                $('#travel_table').show();
+                                materials_seq_id = json_data[0]['seq_id'];
+                                materials_amount = json_data[0]['amount'];
+                                materials_desc = json_data[0]['desc'];
+                                materials_item_id = json_data[0]['item_id'];
+                                $('#item_amount').jqxNumberInput({value: materials_amount});
+                                $('#lst_materials_items').val(materials_item_id);
+                                $('#materials_desc').val(materials_desc);
+                            }
+                        }
+                    });
                 });
             });
         </script> 
@@ -289,14 +336,12 @@ if (isset($_GET['q'])) {
                         url: 'inc/Del_project_budget.inc.php?q=' + seq_id,
                         datatype: "html",
                         success: function (data) {
-                            //window.location.reload();
                         }
                     });
                 }
             }
             function Reload_grid_materials()
             {
-                //$('#lst_materials_items').jqxDropDownList({selectedIndex: -1});
                 var MaterialsDataSource =
                         {
                             datatype: "json",
