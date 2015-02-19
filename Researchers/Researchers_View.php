@@ -54,7 +54,6 @@ $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
-
 $c_researches = new CenterResearch();
 $user = new Users();
 $personId = $user->GetPerosnId($_SESSION['User_Id'], 'Researcher');
@@ -101,7 +100,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
                                 {name: 'status_name'}
                             ],
                             id: 'seq_id',
-                            url: 'ajax/Researchers_View?id=<? echo $personId; ?>' + '&p=<? echo $program; ?>'
+                            url: 'ajax/Researchers_View.php?id=<? echo $personId; ?>' + '&p=<? echo $_SESSION['program']; ?>'
                         };
                 var dataAdapter = new $.jqx.dataAdapter(source);
                 $("#jqxgrid").jqxGrid(
