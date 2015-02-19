@@ -86,7 +86,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = 'energyblue';
-                $('#AddNew').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+                $('#AddNew').jqxButton({width: '150', height: '30', theme: theme});
                 $('#AddNew').click(function () {
                     window.location.assign('understanding.php?program=<? echo $_SESSION['program']; ?>');
                 });
@@ -190,7 +190,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <input type="button" value="إضافة جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
+                <input type="button" value="اضافة مشروع جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
                 <hr/>
                 <div id="jqxgrid"></div>
             </div>
