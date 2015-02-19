@@ -39,7 +39,6 @@ if (isset($_GET['q'])) {
         $title_ar = $project['title_ar'];
         $title_en = $project['title_en'];
         $duration = $project['proposed_duration'];
-        $budget = $project['budget'];
         $techId = $project['center_id'];
         $major_field_id = $project['major_field'];
         $speical_field_id = $project['special_field'];
@@ -89,24 +88,7 @@ if (isset($_GET['q'])) {
                 });
             });
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-            //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
-            //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true, value: '<?
-if (isset($project)) {
-    echo $budget;
-} else {
-    echo 0;
-}
-?>'});
-            $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
-            //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
-            $('#currencyInput').on('change', function (event) {
-                var value = event.args.value;
-                $('#budgetValue').val(value);
-                //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
 
-            });
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
@@ -352,17 +334,6 @@ if (isset($projectId)) {
                     <td>
                         <div id='durationList' style="vertical-align: middle"></div>
                         <input type="hidden" id="proposed_duration" name="proposed_duration"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        الميزانية المقترحة
-                        <span class="required">*</span>
-                    </td>
-                    <td>
-                        <div id='currencyInput' style="vertical-align: middle">
-                            <input type='hidden' id='budgetValue' name="budgetValue"/>
-                        </div>
                     </td>
                 </tr>
                 <tr>
