@@ -10,12 +10,13 @@ class Reseaches {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seqId, $title_ar, $title_en, $proposed_duration, $major_field, $speical_field, $reseach_code, $Approve_session_no, $Approve_date, $abstract_ar_url, $abstract_en_url, $introduction_url, $literature_review_url, $url, $Status_id, $Status_date, $center_id, $research_year, $budget, $program) {
+    public function Save($seqId, $title_ar, $title_en, $proposed_duration, $major_field, $speical_field, $reseach_code, $Approve_session_no, $Approve_date, $abstract_ar_url, $abstract_en_url, $introduction_url, $literature_review_url, $url, $Status_id, $Status_date, $center_id, $research_year, $program) {
         $conn = new MysqlConnect();
         $stmt = "";
         if ($seqId == 0) {
-            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,budget,program) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $budget . ",'" . $program . "'" . ")";
-            $stat = $conn->ExecuteNonQuery($stmt);
+            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . ")";
+            echo $stmt;
+            $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         }
     }
@@ -23,6 +24,7 @@ class Reseaches {
     public function UpdateIntro($seqId, $title_ar, $title_en, $proposed_duration, $techId, $trackId, $subtrackId) {
         $conn = new MysqlConnect();
         $stmt = "update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "'," . " proposed_duration=" . $proposed_duration . ",major_field=" . $trackId . ",special_field=" . $subtrackId . ",center_id=" . $techId . " where seq_id=" . $seqId;
+        echo $stmt;
         return $conn->ExecuteNonQuery($stmt);
     }
 
@@ -135,7 +137,7 @@ class Reseaches {
     }
 
     public function GetResearchDetails($ResearchId) {
-        $stmt = "select researches.title_ar, researches.title_en,researches.major_field ,researches.special_field, researches.proposed_duration, researches.research_code, researches.abstract_ar, researches.abstract_en, researches.url,researches.budget,center_name FROM researches join reseacher_centers on researches.center_id=reseacher_centers.id where researches.seq_id = " . $ResearchId;
+        $stmt = "select researches.title_ar, researches.title_en,researches.major_field ,researches.special_field, researches.proposed_duration, researches.research_code, researches.abstract_ar, researches.abstract_en, researches.url,center_name FROM researches join reseacher_centers on researches.center_id=reseacher_centers.id where researches.seq_id = " . $ResearchId;
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
@@ -163,7 +165,7 @@ class Reseaches {
     }
 
     public function GetResearch($ResearchId) {
-        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar_url` ,  `abstract_en_url` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `budget` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` FROM  `researches` WHERE seq_id =" . $ResearchId;
+        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar_url` ,  `abstract_en_url` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` FROM  `researches` WHERE seq_id =" . $ResearchId;
 
         $conn = new MysqlConnect();
         $resultSet = $conn->ExecuteNonQuery($stmt);
@@ -186,7 +188,6 @@ class Reseaches {
                 'research_year' => $row['research_year'],
                 'RequiresUpdate' => $row['RequiresUpdate'],
                 'LastUpdate' => $row['LastUpdate'],
-                'budget' => $row['budget'],
                 'isLocked' => $row['isLocked'],
                 'lockFrom' => $row['lockFrom'],
                 'lockUntill' => $row['lockUntill'],
