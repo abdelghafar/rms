@@ -63,7 +63,6 @@ if (!isset($_POST['subtrackVal']) || empty($_POST['subtrackVal'])) {
 } else {
     $subtrackId = mysql_escape_string(trim($_POST['subtrackVal']));
 }
-$budget = $_POST['budgetValue'];
 
 if ($isValid == FALSE) {
     echo '<label>' . 'برجاء التأكد من صحة البيانات' . '<label/>';
