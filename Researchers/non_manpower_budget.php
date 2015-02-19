@@ -746,6 +746,18 @@ if (isset($_GET['q'])) {
                 <br/><br/>
             </div>
         </fieldset>
+        <table style="width: 100%;">
+            <tr>
+                <td style="display: none;">
+                    <a href="#" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
+                </td>
+                <td>
+                    <a href="manpower_budget.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/back.png" style="border: none;" alt="back"/>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
 <?
