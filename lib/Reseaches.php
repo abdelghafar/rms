@@ -20,9 +20,9 @@ class Reseaches {
         }
     }
 
-    public function UpdateIntro($seqId, $title_ar, $title_en, $budget, $proposed_duration, $techId, $trackId, $subtrackId) {
+    public function UpdateIntro($seqId, $title_ar, $title_en, $proposed_duration, $techId, $trackId, $subtrackId) {
         $conn = new MysqlConnect();
-        $stmt = "update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "',budget=" . $budget . ",proposed_duration=" . $proposed_duration . ",major_field=" . $trackId . ",special_field=" . $subtrackId . ",center_id=" . $techId . " where seq_id=" . $seqId;
+        $stmt = "update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "'," . " proposed_duration=" . $proposed_duration . ",major_field=" . $trackId . ",special_field=" . $subtrackId . ",center_id=" . $techId . " where seq_id=" . $seqId;
         return $conn->ExecuteNonQuery($stmt);
     }
 
