@@ -78,7 +78,7 @@ if (isset($_GET['q'])) {
         $isValid = FALSE;
     }
     if ($isValid == TRUE) {
-        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $budget, $proposed_duration, $technologiesId, $trackId, $subtrackId);
+        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId);
         if ($updateResult == 1) {
             echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $projectId . '")' . '</script>';
         } else {
@@ -103,13 +103,13 @@ else {
     $research_code = '';
     if ($isValid == TRUE) {
         $researcher = new Reseaches();
-        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $budget, $program, '', '');
+        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program, '', '');
         $x = $research_id;
         $track = new Reseaches_track();
         $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
         $research_author = new research_stuff();
         $research_author->Save($research_id, $person_id, 1);
-        if ($x != 0 && $y == 1) {
+        if ($x >= 0 && $y == 1) {
             echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $research_id . '")' . '</script>';
         } else {
             echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
