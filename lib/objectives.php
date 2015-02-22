@@ -18,31 +18,31 @@ class Objectives {
     public function __construct() {
         $connection = new MysqlConnect();
     }
-    
+
     public function Save($seqId, $projectId, $objTitle, $objDesc) {
         $conn = new MysqlConnect();
-        if ($seqId == 0)
+        if ($seqId == 0) {
             $stmt = "insert into project_objectivies (project_id,obj_title,obj_desc) values (" . $projectId . ",'" . $objTitle . "','" . $objDesc . "')";
-        else
+        } else {
             $stmt = "update project_objectivies set `project_id` = $projectId ,`obj_title` ='" . $objTitle . "' , `obj_desc` ='" . $objDesc . "' WHERE `seq_id` = $seqId";
+        }
         //echo $stmt;
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
         /* $conn->ExecuteNonQuery($stmt);
           return mysql_insert_id(); */
     }
-    
-   
-    public function edit_objective_task($task_id,$objective_id) {
+
+    public function edit_objective_task($task_id, $objective_id) {
         $conn = new MysqlConnect();
-            $stmt = "update project_tasks set `objective_id` = ". $objective_id . " WHERE `task_id` = ". $task_id;
+        $stmt = "update project_tasks set `objective_id` = " . $objective_id . " WHERE `task_id` = " . $task_id;
         //echo $stmt;
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
         /* $conn->ExecuteNonQuery($stmt);
           return mysql_insert_id(); */
     }
-    
+
     public function GetObjectiveData($seqId) {
         $conn = new MysqlConnect();
         $stmt = "SELECT * FROM project_objectivies WHERE seq_id=" . $seqId;
@@ -50,7 +50,7 @@ class Objectives {
         $row = mysql_fetch_array($result);
         return $row;
     }
-    
+
     public function GetObjectivies($projectId) {
         $conn = new MysqlConnect();
         $stmt = "SELECT * FROM project_objectivies WHERE project_id=" . $projectId;
@@ -61,12 +61,12 @@ class Objectives {
     public function Delete($seqId) {
         $conn = new MysqlConnect();
         $stmt = "Delete from project_objectivies where seq_id =" . $seqId;
-        
-        $result =$conn->ExecuteNonQuery($stmt);
+
+        $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
-    
-     public function isExist($project_id, $seq_id, $title) {
+
+    public function isExist($project_id, $seq_id, $title) {
         $conn = new MysqlConnect();
         $stmt = "SELECT count(seq_id) as obj_count FROM project_objectivies WHERE obj_title='" . $title .
                 "' AND project_id = " . $project_id;
@@ -93,15 +93,15 @@ class Objectives {
                 return false;
         }
     }
-    
+
     public function GetObjectiveTasksPhases($objectiveId) {
         $conn = new MysqlConnect();
         $stmt = "SELECT po.seq_id as obj_id, po.obj_title, po.obj_desc, pt.task_id,pt.project_id,pt.task_name, pt.objective_id,pt.phase_id, pp.phase_name 
                 FROM project_objectivies po INNER JOIN project_tasks pt ON po.seq_id = pt.objective_id 
                 INNER JOIN project_phases pp ON pt.phase_id = pp.seq_id WHERE po.seq_id =" . $objectiveId .
                 " ORDER BY po.seq_id , pp.seq_id, pt.task_id";
-        
-        
+
+
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
@@ -113,12 +113,12 @@ class Objectives {
                 INNER JOIN project_phases pp ON pt.phase_id = pp.seq_id
                 WHERE pp.project_id=" . $projectId .
                 " ORDER BY po.seq_id , pp.seq_id, pt.task_id";
-        
+
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
-    
-     public function hasReleatedData($id) {
+
+    public function hasReleatedData($id) {
         $conn = new MysqlConnect();
         $stmt = "SELECT task_id FROM project_tasks WHERE objective_id=" . $id . " LIMIT 1";
         $result = $conn->ExecuteNonQuery($stmt);
@@ -127,5 +127,5 @@ class Objectives {
         else
             return false;
     }
-    
+
 }
