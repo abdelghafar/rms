@@ -156,7 +156,6 @@ if (isset($projectId)) {
 ?>');
             });
 
-
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
             $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
             $('#technologies').on('change', function (event)
@@ -302,7 +301,7 @@ if (isset($projectId)) {
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        عنوان البحث-اللغة العربية
+                        عنوان البحث-اللغة العربية/Title in Arabic
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -315,7 +314,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        عنوان البحث - اللغة الانجليزية
+                        عنوان البحث - اللغة الانجليزية/Title in English
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -328,7 +327,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        المدة المقترحة بالشهر
+                        المدة المقترحة بالشهر/Proposed duration  
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -338,7 +337,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        اولوية البحث
+                        اولوية البحث/Priority 
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -348,7 +347,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        التخصص العام
+                        التخصص العام/Track
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -358,7 +357,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        التخصص الدقيق
+                        التخصص الدقيق/SubTrack
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -374,7 +373,9 @@ if (isset($projectId)) {
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
+                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">  <span>next</span><img src="images/next.png" style="border: none;" alt="next"/>
+
+                    </a>
                 </td>
                 <td>
 
