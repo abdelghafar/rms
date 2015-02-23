@@ -4,14 +4,16 @@ require_once 'mysqlConnection.php';
 
 class Settings {
 
+    private $table_name = 'settings';
+
     public function __construct() {
-        $connection = new MysqlConnect();
-        ;
+        
     }
 
     public function GetCurrYear() {
-        $stmt = "SELECT Curr_year FROM settings";
-        $result = mysql_query($stmt);
+        $con = new MysqlConnect();
+        $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'year' limit 0,1";
+        $result = $con->ExecuteNonQuery($stmt);
         $year = 0;
         while ($row = mysql_fetch_array($result)) {
             $year = $row[0];
@@ -19,6 +21,15 @@ class Settings {
         return $year;
     }
 
-}
+    public function GetCurrRound() {
+        $con = new MysqlConnect();
+        $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'round_month' limit 0,1";
+        $result = $con->ExecuteNonQuery($stmt);
+        $round = 0;
+        while ($row = mysql_fetch_array($result)) {
+            $round = $row[0];
+        }
+        return $round;
+    }
 
-?>
+}
