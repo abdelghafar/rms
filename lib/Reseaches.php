@@ -14,7 +14,9 @@ class Reseaches {
         $conn = new MysqlConnect();
         $stmt = "";
         if ($seqId == 0) {
-            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . ")";
+            $obj = new Settings();
+            $round = $obj->GetCurrRound();
+            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . "," . $round . ")";
             echo $stmt;
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
@@ -151,7 +153,7 @@ class Reseaches {
     }
 
     public function GetResearchDetailsMin($Research_Id) {
-        $stmt = "select `researches`.seq_id, `researches`.title_ar, `researches`.research_code, `researches`.research_year, `researches`.center_id,`reseacher_centers`.center_name,reseach_status.`Status_name`,reseach_status.`Status_Id`,`persons`.`empCode`, `persons`.FirstName_ar,`persons`.`FatherName_ar`, `persons`.`GrandName_ar`,`persons`.`FamilyName_ar` from `researches` join `reseacher_centers` on `researches`.center_id=`reseacher_centers`.id join `persons` on `persons`.`Person_id` join reseach_status on reseach_status.`Status_Id` = researches.status_id where `persons`.`Person_id` in (select research_authors.person_id from research_authors where `isCorrsAuthor`= 1 and research_id=" . $Research_Id . ") and `researches`.seq_id=" . $Research_Id . "";
+        $stmt = "select `researches`.seq_id, `researches`.title_ar,researches.title_en ,`researches`.research_code, `researches`.research_year, technologies.title as `tech_title`,reseach_status.`Status_name`,reseach_status.`Status_Id`,`persons`.`empCode`, persons.name_ar , persons.name_en , tracks.track_name, subtracks.subTrack_name, researches.proposed_duration from `researches` join `reseacher_centers` on `researches`.center_id=`reseacher_centers`.id join `persons` on `persons`.`Person_id` join reseach_status on reseach_status.`Status_Id` = researches.status_id join technologies on technologies.seq_id = researches.center_id join tracks on tracks.track_id = researches.major_field join subtracks on subtracks.seq_id = researches.special_field where `persons`.`Person_id` in (select research_stuff.person_id from research_stuff where research_stuff.role_id = 1 and research_id=$Research_Id) and `researches`.seq_id=$Research_Id";
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
@@ -405,6 +407,102 @@ class Reseaches {
             $url = $row[0];
         }
         return $url;
+    }
+
+    //-----------------------
+    //Get/set introduction text
+    public function GetIntroductionText($project_id) {
+        $stmt = "Select introduction_text From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetIntroductionText($project_id, $data) {
+        $stmt = "update researches set `introduction_text` = '" . $data . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    //Get/set abstract_ar text
+    public function GetAbstractArText($project_id) {
+        $stmt = "Select abstract_ar_text From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetAbstractArText($project_id, $data) {
+        $stmt = "update researches set `abstract_ar_text` = '" . $data . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    //Get/set abstract_en text
+    public function GetAbstractEnText($project_id) {
+        $stmt = "Select abstract_en_text From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetAbstractEnText($project_id, $data) {
+        $stmt = "update researches set `abstract_en_text` = '" . $data . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    //Get/set value_to_kingdom_text
+    public function GetValueToKingdomText($project_id) {
+        $stmt = "Select value_to_kingdom_text From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetValueToKingdomText($project_id, $data) {
+        $stmt = "update researches set `value_to_kingdom_text` = '" . $data . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    //Get/Set LiteratureReviewText
+    public function GetLiteratureReviewText($project_id) {
+        $stmt = "Select literature_review_text From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetLiteratureReviewText($project_id, $data) {
+        $stmt = "update researches set `literature_review_text` = '" . $data . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
     }
 
     //--------------------------------------------------------------------------
