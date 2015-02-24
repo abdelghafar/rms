@@ -93,7 +93,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         editable: false,
                         pageable: false,
                         filterable: true,
-                        width: 800,
+                        width: 850,
                         pagesize: 5,
                         autoheight: true,
                         columnsresize: true,
@@ -101,12 +101,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
-                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'رقم المنسوب/EmpCode', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
+                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
+                            {text: 'التخصص العام/Major', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'حذف/Delete', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                     return '..';
                                 }, buttonclick: function (row) {
                                     var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
@@ -146,7 +146,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         editable: false,
                         pageable: false,
                         filterable: true,
-                        width: 800,
+                        width: 850,
                         pagesize: 5,
                         autoheight: true,
                         columnsresize: true,
@@ -154,12 +154,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'البريد الالكتروني/Email', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
+                            {text: 'التخصص العام/Major', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'حذف/Delete', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
                                     return '..';
                                 }, buttonclick: function (row) {
                                     var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
@@ -177,8 +177,8 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = 'energyblue';
-            $('#AddNewCoIs').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
-            $('#AddNewOtherPersonal').jqxButton({rtl: true, width: 75, height: '30', theme: theme});
+            $('#AddNewCoIs').jqxButton({width: '150', height: '30', theme: theme});
+            $('#AddNewOtherPersonal').jqxButton({width: '150', height: '30', theme: theme});
 
             var PIDataSource =
                     {
@@ -202,7 +202,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         editable: false,
                         pageable: false,
                         filterable: true,
-                        width: 800,
+                        width: 850,
                         pagesize: 5,
                         autoheight: true,
                         columnsresize: true,
@@ -210,11 +210,11 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
-                            {text: 'الدرجة العلمية', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'}
+                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 150, align: 'right', cellsalign: 'right'},
+                            {text: 'رقم المنسوب/EmpCode', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
+                            {text: 'التخصص العام/Major Field', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'}
                         ]
                     });
 
@@ -280,13 +280,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         </legend>
         <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
 
-            <span class="classic-font">الباحث الرئيسي</span>
+            <span class="classic-font">الباحث الرئيسي -PI</span>
             <hr/>
             <div id="gridPI"></div>
             <br/><br/>
-            <span class="classic-font">الباحثين المشاركين</span>
+            <span class="classic-font">الباحثين المشاركين- CoIs</span>
             <hr/>
-            <input type="button" id='AddNewCoIs' value="اضافة جديد"/>
+            <input type="button" style="margin-bottom: 15px;" id='AddNewCoIs' value="اضافة جديد/ Add New"/>
 
             <div id='SearchFrm' style="width: 852px;height: auto;">
 
@@ -294,28 +294,38 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
             <div id='gridCoI'></div>
             <br/><br/>
-            <span class="classic-font">أخري</span>
+            <span class="classic-font">أخري -Other Personal </span>
             <hr/>
-            <input type="button" id='AddNewOtherPersonal' value="اضافة جديد"/>
+            <input type="button" style="margin-bottom: 15px;" id='AddNewOtherPersonal' value="اضافة جديد/ Add New"/>
             <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
             <div id='gridOthers'></div>
         </div>
-
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <a id="submit_button" href="phases.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/next.png" style="border: none;" alt="next"/>
-                    </a>
-                </td>
-                <td>
-                    <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/back.png" style="border: none;" alt="back"/>
-                    </a>
-                </td>
-            </tr>
-        </table>
     </fieldset>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a id="submit_button" href="phases.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/next.png" style="border: none;" alt="next"/>
+                    <div>
+                        <span>
+                            التالي / Next
+                        </span>
+                    </div>
+                </a>
+            </td>
+            <td>
+                <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;" alt="back"/>
+                    <div>
+                        <span>
+                            Prevoius / السابق
+                        </span>
+                    </div>
+                </a>
+            </td>
+        </tr>
+    </table>
+
 
 </body>
 <?

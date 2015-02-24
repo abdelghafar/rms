@@ -133,24 +133,6 @@ $smarty->display('../templates/Loggedin.tpl');
                     load_tasks_grd();
 
                 });
-
-
-                /*$('#PhaseNewButton').on('click', function() {
-                 var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
-                 $.ajax({
-                 url: "phase_data_form.php",
-                 dataType: "html",
-                 data: post_data,
-                 type: 'POST',
-                 beforeSend: function() {
-                 $("#form_div").html("<img src='images/load.gif'/>loading...");
-                 },
-                 success: function(data) {
-                 $("#form_div").html(data);
-                 }
-                 });
-                 });*/
-
             });
         </script>
 
@@ -209,11 +191,21 @@ $smarty->display('../templates/Loggedin.tpl');
                 <td>
                     <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
                         <img src="images/next.png" style="border: none;" alt="next"/>
+                        <div>
+                            <span>
+                                التالي / Next
+                            </span>
+                        </div>
                     </a>
                 </td>
                 <td>
                     <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         <img src="images/back.png" style="border: none;" alt="back"/>
+                        <div>
+                            <span>
+                                Prevoius / السابق
+                            </span>
+                        </div>
                     </a>
                 </td>
             </tr>
