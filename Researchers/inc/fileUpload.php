@@ -41,6 +41,11 @@ switch ($_GET['type']) {
             $file_name.="OtherPersonal_agreement/";
             break;
         }
+    case 'resume': {
+            $target_dir = "../../uploads/resume/";
+            $file_name.="resume/";
+            break;
+        }
     case 'objective_approach': {
             $target_dir = "../../uploads/objective_approach/";
             $file_name.="objective_approach/";
@@ -83,12 +88,16 @@ if ($_GET['type'] == 'coAuthor_agreement') {
     $person_id = $_GET['person_id'];
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 }
+//resume
+if ($_GET['type'] == 'resume') {
+    $person_id = $_GET['person_id'];
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+}
 
 if ($_GET['type'] == 'OtherPersonal_agreement') {
     $person_id = $_GET['person_id'];
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 }
-
 
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -178,12 +187,21 @@ if ($uploadOk == 0) {
                     $obj = new research_stuff();
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
                     break;
                 }
             case 'OtherPersonal_agreement': {
                     $obj = new research_stuff();
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
+                    break;
+                }
+            case 'resume': {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetResumeUrl($project_id, $person_id, $file_name);
                     break;
                 }
 

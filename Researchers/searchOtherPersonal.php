@@ -22,6 +22,7 @@ if (isset($_GET['q'])) {
         var dataRecord = null;
         var person_id = null;
         var uploaded_file_name = null;
+        var resume_file_name = null;
         $("#SearchByName").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
         $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
         var roles_lst_dataSource = {
@@ -151,7 +152,7 @@ if (isset($_GET['q'])) {
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            uploaded_file_name = fileName;
+            resume_file_name = fileName;
             $('#CVUpload_log').html(serverResponce);
         });
 
@@ -164,7 +165,7 @@ if (isset($_GET['q'])) {
             var person_id = dataRecord['person_id'];
 
             $.ajax({
-                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "",
+                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
                     if (data === "")
                     {

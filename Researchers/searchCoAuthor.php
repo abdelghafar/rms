@@ -22,6 +22,7 @@ if (isset($_GET['q'])) {
         var dataRecord = null;
         var person_id = null;
         var uploaded_file_name = null;
+        var resume_url = null;
         $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
         $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
@@ -124,14 +125,14 @@ if (isset($_GET['q'])) {
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            uploaded_file_name = fileName;
+            resume_url = fileName;
             $('#CVUpload_log').html(serverResponce);
         });
 
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
             $.ajax({
-                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id + "&file_name=" + uploaded_file_name + "",
+                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> + "&person_id=" + tmpPerson_id + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_url,
                 success: function (data) {
                     $('#SearchFrm').html('');
                     ReloadCoIs();
