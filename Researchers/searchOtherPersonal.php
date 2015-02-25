@@ -77,6 +77,7 @@ if (isset($_GET['q'])) {
             });
 
             $('#showUploadfile').hide();
+            $('#showUploadCV').hide();
         });
         var CoAuthorsSource = {
             datafields: [{
@@ -145,6 +146,15 @@ if (isset($_GET['q'])) {
             $('#log').html(serverResponce);
         });
 
+        $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+        $('#CVUpload').on('uploadEnd', function (event) {
+            var args = event.args;
+            var fileName = args.file;
+            var serverResponce = args.response;
+            uploaded_file_name = fileName;
+            $('#CVUpload_log').html(serverResponce);
+        });
+
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
             var r = $('#role_list').jqxDropDownList('val');
@@ -188,7 +198,10 @@ if (isset($_GET['q'])) {
             dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
             $('#agreeLetterOther').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=OtherPersonal_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+
             $('#showUploadfileOthers').show();
+            $('#showUploadCV').show();
         });
     });
 </script>
@@ -224,6 +237,15 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="agreeLetterOther"></div>
                 <div id="log"></div>
+            </td>
+        </tr>
+        <tr id="showUploadCV" style="display: none; ">
+            <td>
+                السيرة الذاتية
+            </td>
+            <td>
+                <div id="CVUpload"></div>
+                <div id="CVUpload_log"></div>
             </td>
         </tr>
         <td colspan="2">
