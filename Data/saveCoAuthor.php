@@ -19,6 +19,14 @@ if (isset($_GET['q']) && isset($_GET['person_id'])) {
             $url = "uploads/coAuthor_agreement/" . $url;
             $obj->SetCoAuthor_agreement_url($research_id, $person_id, $url);
         }
+        if (isset($_GET['resume_url'])) {
+            $url = filter_input(INPUT_GET, 'resume_url', FILTER_SANITIZE_STRING);
+            if (strlen($url)) {
+                $url = "uploads/resume/" . $url;
+                $obj->SetResumeUrl($research_id, $person_id, $url);
+            }
+        }
+
         $msg = "";
         if ($return_id != 0) {
             $msg = 'Error in insert stmt';
