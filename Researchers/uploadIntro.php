@@ -29,7 +29,6 @@ if (isset($_GET['q'])) {
     $projectId = $_GET['q'];
     $obj = new Reseaches();
     $program = $_SESSION['program'];
-
     $arabicAbs = $obj->GetAbstract_ar_url($projectId);
     $engAbs = $obj->GetAbstract_en_url($projectId);
     $intro = $obj->GetIntro_url($projectId);
@@ -258,7 +257,7 @@ if (isset($_GET['q'])) {
                     var msg = "";
                     if (projectId !== '') {
                         $.ajax({
-                            url: 'ajax/checkArabicAbstractUpload?q=' + projectId,
+                            url: 'ajax/checkArabicAbstractUpload.php?q=' + projectId,
                             data: {url: projectId},
                             dataType: 'JSON',
                             type: 'POST',
@@ -280,7 +279,7 @@ if (isset($_GET['q'])) {
                             }
                         });
                         $.ajax({
-                            url: 'ajax/checkEngAbstractUpload?q=' + projectId,
+                            url: 'ajax/checkEngAbstractUpload.php?q=' + projectId,
                             data: {url: projectId},
                             dataType: 'JSON',
                             type: 'POST',
@@ -300,7 +299,7 @@ if (isset($_GET['q'])) {
                             }
                         });
                         $.ajax({
-                            url: 'ajax/checkIntroUpload?q=' + projectId,
+                            url: 'ajax/checkIntroUpload.php?q=' + projectId,
                             data: {url: projectId},
                             dataType: 'JSON',
                             type: 'POST',
@@ -320,7 +319,7 @@ if (isset($_GET['q'])) {
                             }
                         });
                         $.ajax({
-                            url: 'ajax/checkLitReviewUpload?q=' + projectId,
+                            url: 'ajax/checkLitReviewUpload.php?q=' + projectId,
                             data: {url: projectId},
                             dataType: 'JSON',
                             type: 'POST',
@@ -340,7 +339,7 @@ if (isset($_GET['q'])) {
                             }
                         });
                         $.ajax({
-                            url: 'ajax/check_research_methodology?q=' + projectId,
+                            url: 'ajax/check_research_methodology.php?q=' + projectId,
                             data: {url: projectId},
                             dataType: 'JSON',
                             type: 'POST',
@@ -375,12 +374,12 @@ if (isset($_GET['q'])) {
             <table style="direction: rtl;border: 1px;width: 100%;">
                 <tr style="margin-top: 25px;">
                     <td>
-                        الملخص-اللغة العربية
+                        الملخص-اللغة العربية / Abstract in Arabic
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج الملخص-اللغة العربية
+                            نموذج الملخص-اللغة العربية/ Template
                         </a>
                     </td>
                     <td>
@@ -400,12 +399,12 @@ if (isset($_GET['q'])) {
                 </tr>
                 <tr>
                     <td>
-                        الملخص - اللغة الانجليزية
+                        الملخص - اللغة الانجليزية / Abstract in English
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج الملخص-اللغة الانجلزية
+                            نموذج الملخص-اللغة الانجلزية / Template
                         </a>
                     </td>
                     <td>
@@ -425,12 +424,12 @@ if (isset($_GET['q'])) {
                 </tr>
                 <tr>
                     <td>
-                        مقدمة المشروع
+                        مقدمة المشروع / Introduction 
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-مقدمة المشروع
+                            نموذج-مقدمة المشروع / Template
                         </a>
                     </td>
                     <td>
@@ -449,12 +448,12 @@ if (isset($_GET['q'])) {
                 </tr>
                 <tr>
                     <td>
-                        المسح الأدبي
+                        المسح الأدبي / Literature Review
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-المسح الادبي
+                            نموذج-المسح الادبي / Template
                         </a>
                     </td>
                     <td>
@@ -473,12 +472,12 @@ if (isset($_GET['q'])) {
                 </tr>
                 <tr>
                     <td>
-                        منهجية البحث
+                        منهجية البحث / Research Methodology
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-منهجية البحث
+                            نموذج-منهجية البحث / Template
                         </a>
                     </td>
                     <td>
@@ -498,12 +497,11 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        أهداف المشروع
-                        <span class="required">*</span>
+                        أهداف المشروع / Objectives 
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-أهداف المشروع
+                            نموذج-أهداف المشروع/ Template
                         </a>
                     </td>
                     <td>
@@ -523,12 +521,11 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        المهام و الأهداف
-                        <span class="required">*</span>
+                        المهام و الأهداف   / Tasks and Objectives 
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-المهام و الاهداف
+                            نموذج-المهام و الاهداف / Template
                         </a>
                     </td>
                     <td>
@@ -548,12 +545,11 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        خطة العمل
-                        <span class="required">*</span>
+                        خطة العمل / Working Plan
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-خطة العمل
+                            نموذج-خطة العمل / Template
                         </a>
                     </td>
                     <td>
@@ -573,12 +569,12 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        الأهمية للمملكة
-                        <span class="required">*</span>
+                        الأهمية للمملكة  / Value to Kingdom
+
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-الاهمية للمملكة
+                            نموذج-الاهمية للمملكة / Template
                         </a>
                     </td>
                     <td>
@@ -598,12 +594,11 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        الميزانية
-                        <span class="required">*</span>
+                        الميزانية / Budget
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-الميزانية
+                            نموذج-الميزانية / Template
                         </a>
                     </td>
                     <td>
@@ -623,12 +618,11 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        المخرجات و الاهداف
-                        <span class="required">*</span>
+                        المخرجات و الاهداف / Outcomes and Objectives 
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-المخرجات و الاهداف
+                            نموذج-المخرجات و الاهداف / Template
                         </a>
                     </td>
                     <td>
@@ -660,11 +654,23 @@ if (isset($_GET['q'])) {
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
+                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/next.png" style="border: none;" alt="next"/>
+                        <div>
+                            <span>
+                                التالي / Next
+                            </span>
+                        </div>
+                    </a>
                 </td>
                 <td>
                     <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         <img src="images/back.png" style="border: none;" alt="back"/>
+                        <div>
+                            <span>
+                                Prevoius / السابق
+                            </span>
+                        </div>
                     </a>
                 </td>
             </tr>

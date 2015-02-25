@@ -80,7 +80,7 @@ if (isset($_GET['q'])) {
     if ($isValid == TRUE) {
         $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId);
         if ($updateResult == 1) {
-            echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $projectId . '")' . '</script>';
+            echo '<script>' . 'window.location.assign("research_introduction.php?q=' . $projectId . '")' . '</script>';
         } else {
             echo 'Error in update data ...';
         }
@@ -111,7 +111,7 @@ else {
             $research_author = new research_stuff();
             $research_author->Save($research_id, $person_id, 1);
             if ($x >= 0 && $y == 1) {
-                echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $research_id . '")' . '</script>';
+                echo '<script>' . 'window.location.assign("research_introduction.php?q=' . $research_id . '")' . '</script>';
             } else {
                 echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
                 echo 'x= ' . $x . '<br/>';

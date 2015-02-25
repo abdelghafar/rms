@@ -34,7 +34,7 @@ if (isset($_GET['q'])) {
     $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($projectId);
     if ($isAuthorized == 1 && $CanEdit == 1) {
-        $introduction_text = $obj->GetIntroductionText($projectId);
+        $review = $obj->GetLiteratureReviewText($projectId);
     } else {
         echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
         exit();
@@ -55,7 +55,7 @@ if (isset($_GET['q'])) {
                     var sValue = inst.GetHTML();
                     $('#FCKeditor1_Val').val(sValue);
                     $.ajax({
-                        url: "inc/update_research_introduction_text.inc.php" + '<?
+                        url: "inc/update_research_review_text.inc.php" + '<?
 if (isset($projectId)) {
     echo '?q=' . $projectId;
 }
@@ -66,7 +66,7 @@ if (isset($projectId)) {
                         success: function (data) {
                             if (data == 1 || data == 0)
                             {
-                                window.location.assign('research_abstract.php?q=' + '<? echo $projectId; ?>');
+                                window.location.assign('research_value.php?q=' + '<? echo $projectId; ?>');
                             }
                             else
                             {
@@ -82,7 +82,7 @@ if (isset($projectId)) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    مقدمة المشروع
+                    المسح الأدبي
                 </label>
             </legend>
             <form id="frm" method="post">
@@ -90,7 +90,7 @@ if (isset($projectId)) {
                 <table style="direction: rtl;border: 1px;width: 100%;">
                     <tr style="margin-top: 25px;">
                         <td style="width: 200px;">
-                            المقدمة / Introduction 
+                            المسح الأدبي/ literature review
                             <span class="required">*</span>
                         </td>
                         <td>
@@ -101,7 +101,7 @@ if (isset($projectId)) {
                             $oFCKeditor->Width = 790;
                             $oFCKeditor->Height = 400;
                             if (isset($projectId)) {
-                                $oFCKeditor->Value = $introduction_text;
+                                $oFCKeditor->Value = $review;
                             }
                             $oFCKeditor->Create();
                             ?>
@@ -126,7 +126,7 @@ if (isset($projectId)) {
                     </a>
                 </td>
                 <td>
-                    <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;" onclick="GetData();">
+                    <a href="research_abstract.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                         <img src="images/back.png" style="border: none;" alt="back"/>
                         <div>
                             <span>

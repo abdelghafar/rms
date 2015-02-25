@@ -314,7 +314,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 </a>
             </td>
             <td>
-                <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                <a href="research_value.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
                     <div>
                         <span>
