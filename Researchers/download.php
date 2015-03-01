@@ -66,7 +66,7 @@ if (isset($_GET['q'])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 $.ajax({
-                    url: 'generate_pdf_test.php?q=<? echo $projectId; ?>', success: function (data) {
+                    url: 'generate_pdf.php?q=<? echo $projectId; ?>', success: function (data) {
                         if (data === null)
                         {
                             $('#download_file').hide();
