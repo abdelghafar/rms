@@ -1,4 +1,5 @@
 <?php
+
 require_once 'mysqlConnection.php';
 
 class CenterResearch {
@@ -190,4 +191,5 @@ class CenterResearch {
     }
 
 }
+
 ?>

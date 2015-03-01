@@ -76,7 +76,18 @@ class Technologies {
         return $result;
     }
 
+    public function GetTechCode($seq_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT technologies.tech_code FROM " . $this->tableName . " WHERE technologies.seq_id =" . $seq_id;
+        $res = $conn->ExecuteNonQuery($stmt);
+        $code = "";
+        while ($row = mysql_fetch_array($res)) {
+            $code = $row[0];
+        }
+        return $code;
+    }
+
 }
 
 //$t = new Technologies();
-//echo $t->Save(1, 'update test', 'updatae test', 1437, true, 2);
+//echo $t->GetTechCode(10); 

@@ -4,14 +4,24 @@
         <title></title>
     </head>
     <body>
-        <?php
+        <table border="1">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding-left:10px;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
 
-        function GetResearchDetails() {
-            return array('title_Ar' => 'ssssssssssssssssssss', 'year' => '2015');
-        }
-
-        $array = GetResearchDetails();
-        echo $array['title_Ar'];
-        ?>
     </body>
 </html>

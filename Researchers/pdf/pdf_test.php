@@ -9,6 +9,8 @@ require_once '../../lib/research_stuff.php';
 require_once '../../lib/objectives.php';
 require_once '../../lib/projectPhases.php';
 require_once '../../lib/Settings.php';
+require_once '../../lib/budget_items.php';
+require_once '../../lib/project_budget.php';
 
 // extend TCPF with custom functions
 
@@ -29,44 +31,29 @@ function GetRsearchDetails($research_id) {
     return $array;
 }
 
-function get_objectives() {
-    $objectives = new Objectives();
-    $project_id = 1; //$_REQUEST['project_id'];
-    $objectives_rs = $objectives->GetObjectivies($project_id);
-    $counter = 1;
-    while ($row = mysql_fetch_array($objectives_rs, MYSQL_ASSOC)) {
-        $objectives_list[] = array(
-            'seq_id' => $counter,
-            'obj_title' => $row['obj_title'],
-            'obj_desc' => $row['obj_desc']
-        );
-        $counter++;
-    }
-    return $objectives_list;
+function GetResearchIntro($research_id) {
+    $r = new Reseaches();
+    return $r->GetIntroductionText($research_id);
 }
 
-function get_phases() {
-    $obj = new projectPhase();
-    $rs = $obj->GetProjectPhases(1);
-    $i = 1;
-    while ($row = mysql_fetch_array($rs)) {
-        $lst[] = array('seq_id' => $i, 'phase_name' => $row['phase_name'], 'phase_desc' => $row['phase_desc']);
-        $i++;
-    }
-    return $lst;
+function GetResearchAbstractAr($research_id) {
+    $r = new Reseaches();
+    return $r->GetAbstractArText($research_id);
 }
 
-function get_stuff($project_id) {
-    $obj = new research_stuff();
-    $rs = $obj->GetProjectStuff($project_id);
-    $list = array();
-    while ($row = mysql_fetch_array($rs)) {
-        $list[] = array('name_ar' => $row['name_ar'],
-            'Major_Field' => $row['Major_Field'],
-            'role_name' => $row['role_name'],
-            'Position' => $row['Position']);
-    }
-    return $list;
+function GetResearchAbstractEng($research_id) {
+    $r = new Reseaches();
+    return $r->GetAbstractEnText($research_id);
+}
+
+function GetResearchReview($research_id) {
+    $r = new Reseaches();
+    return $r->GetLiteratureReviewText($research_id);
+}
+
+function GetResearchValue($research_id) {
+    $r = new Reseaches();
+    return $r->GetValueToKingdomText($research_id);
 }
 
 class PDF extends TCPDF {
@@ -75,100 +62,6 @@ class PDF extends TCPDF {
     public function GetCurrRound() {
         $obj = new Settings();
         return $obj->GetCurrRound();
-    }
-
-    public function ColoredTable($header, $data) {
-        // Colors, line width and bold font
-        $this->SetFillColor(7, 115, 161);
-        $this->SetTextColor(255);
-        $this->SetDrawColor(128, 0, 0);
-        $this->SetLineWidth(0.3);
-        $this->SetFont('aealarabiya', 'B');
-        //$pdf->SetFont('aealarabiya', '', 10);
-        // Header
-        $w = array(10, 70, 100);
-        $num_headers = count($header);
-        for ($i = 0; $i < $num_headers; ++$i) {
-            $this->Cell($w[$i], 10, $header[$i], 1, 0, 'C', 1);
-        }
-        $this->Ln();
-        // Color and font restoration
-        $this->SetFillColor(224, 235, 255);
-        $this->SetTextColor(0);
-        $this->SetFont('aealarabiya');
-        // Data
-        $fill = 0;
-        foreach ($data as $row) {
-            $this->Cell($w[0], 10, $row['seq_id'], 'LR', 0, 'C', $fill);
-            $this->Cell($w[1], 10, $row['obj_title'], 'LR', 0, 'R', $fill);
-            $this->Cell($w[2], 10, $row['obj_desc'], 'LR', 0, 'R', $fill);
-            $this->Ln();
-            $fill = !$fill;
-        }
-        $this->Cell(array_sum($w), 0, '', 'T');
-    }
-
-    public function phases_table($header, $data) {
-        // Colors, line width and bold font
-        $this->SetFillColor(7, 115, 161);
-        $this->SetTextColor(255);
-        $this->SetDrawColor(128, 0, 0);
-        $this->SetLineWidth(0.3);
-        $this->SetFont('aealarabiya', 'B');
-        //$pdf->SetFont('aealarabiya', '', 10);
-        // Header
-        $w = array(10, 170);
-        $num_headers = count($header);
-        for ($i = 0; $i < $num_headers; ++$i) {
-            $this->Cell($w[$i], 10, $header[$i], 1, 0, 'C', 1);
-        }
-        $this->Ln();
-        // Color and font restoration
-        $this->SetFillColor(224, 235, 255);
-        $this->SetTextColor(0);
-        $this->SetFont('aealarabiya');
-        // Data
-        $fill = 0;
-        foreach ($data as $row) {
-            $this->Cell($w[0], 10, $row['seq_id'], 'LR', 0, 'C', $fill);
-            $this->Cell($w[1], 10, $row['phase_name'], 'LR', 0, 'R', $fill);
-            //$this->Cell($w[2], 10, $row['phase_desc'], 'LR', 0, 'R', $fill);
-            $this->Ln();
-            $fill = !$fill;
-        }
-        $this->Cell(array_sum($w), 0, '', 'T');
-    }
-
-    public function stuff_render($header, $data) {
-        // Colors, line width and bold font
-        $this->SetFillColor(7, 115, 161);
-        $this->SetTextColor(255);
-        $this->SetDrawColor(128, 0, 0);
-        $this->SetLineWidth(0.3);
-        $this->SetFont('aealarabiya', 'B');
-        //$pdf->SetFont('aealarabiya', '', 10);
-        // Header
-        $w = array(45, 45, 45, 45);
-        $num_headers = count($header);
-        for ($i = 0; $i < $num_headers; ++$i) {
-            $this->Cell($w[$i], 10, $header[$i], 1, 0, 'C', 1);
-        }
-        $this->Ln();
-        // Color and font restoration
-        $this->SetFillColor(224, 235, 255);
-        $this->SetTextColor(0);
-        $this->SetFont('aealarabiya');
-        // Data
-        $fill = 0;
-        foreach ($data as $row) {
-            $this->Cell($w[0], 10, $row['name_ar'], 'LR', 0, 'C', $fill);
-            $this->Cell($w[1], 10, $row['Major_Field'], 'LR', 0, 'R', $fill);
-            $this->Cell($w[2], 10, $row['role_name'], 'LR', 0, 'R', $fill);
-            $this->Cell($w[3], 10, $row['Position'], 'LR', 0, 'R', $fill);
-            $this->Ln();
-            $fill = !$fill;
-        }
-        $this->Cell(array_sum($w), 0, '', 'T');
     }
 
 }
@@ -213,21 +106,6 @@ if (isset($_GET['q'])) {
     $pdf->setLanguageArray($lg);
     $pdf->SetFont('aealarabiya', '', 12);
 
-// add a page
-    $pdf->AddPage();
-// column titles
-    $header = array('م', 'الهدف', 'الوصف');
-// data loading
-    $obj_data = get_objectives();
-// print colored table
-    $pdf->ColoredTable($header, $obj_data);
-
-    $pdf->AddPage();
-    $p2_header = array('#', 'phases');
-// data loading
-    $p2_obj_data = get_phases();
-// print colored table
-    $pdf->phases_table($p2_header, $p2_obj_data);
     $pdf->AddPage();
     $title_ar = $details['title_ar'];
     $title_en = $details['title_en'];
@@ -291,25 +169,126 @@ if (isset($_GET['q'])) {
             <td class="tg-uy9o" style="font-weight: bold">مدة المشروع -بالشهور</td>
             <td class="tg-uy9o">' . $duration . '</td>
         </tr>
-        <tr>
-            <td class="tg-lrt0" style="font-weight: bold">اجمالي الميزانية</td>
-            <td class="tg-lrt0">125,000 SAR</td>
-        </tr>
     </table>';
-
-
-
-// output the HTML content
     $pdf->writeHTML($html, true, 0, true, 0);
+    //---------------------------
     $pdf->AddPage();
-    $stuff_header = array('name_ar', 'Major_Field', 'role_name', 'Position');
-// data loading
-    $stuff_data = get_stuff($project_id);
-// print colored table
-    $pdf->stuff_render($stuff_header, $stuff_data);
-
+    $html = '<p>' . 'مقدمة المشروع' . '</p>';
+    $html.='<hr/>';
+    $html .= '<p>' . GetResearchIntro($project_id) . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //-----------------------------------------------------------
+    $pdf->AddPage();
+    $html = '<p>' . 'الملخص باللغة العربية' . '</p>';
+    $html.='<hr/>';
+    $html .= '<p>' . GetResearchAbstractAr($project_id) . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //-----------------------------------------------------------
+    $pdf->AddPage();
+    $html = '<p>' . 'الملخص باللغة الانجليزية' . '</p>';
+    $html.='<hr/>';
+    $html .= '<p>' . GetResearchAbstractEng($project_id) . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //----------------------------------------------------------------
+    $pdf->AddPage();
+    $html = '<p>' . 'المسح الأدبي' . '</p>';
+    $html.='<hr/>';
+    $html .= '<p>' . GetResearchReview($project_id) . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //----------------------------------------------------------------
+    $pdf->AddPage();
+    $html = '<p>' . 'القيمة للمملكة' . '</p>';
+    $html.='<hr/>';
+    $html .= '<p>' . GetResearchValue($project_id) . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //----------------------------------------------------------------
+    //new page 
+    $pdf->AddPage();
+    $html = '<style type="text/css">
+        .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
+        .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+        .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+        .tg .tg-uy9o{font-size:18px}
+        .tg .tg-0bb8{font-weight:bold;font-size:18px;background-color:#0d516d}
+        .tg .tg-lrt0{background-color:#D2E4FC;font-size:18px}
+    </style>';
+    $obj = new research_stuff();
+    $rs = $obj->GetProjectStuff($project_id);
+    $list = array();
+    $html.='<table border = "1" class="tg" dir="rtl" style="width:760px;">
+    <thead>
+        <tr>
+            <th style="width: 30px;">#</th>
+            <th>اسم الباحث</th>
+            <th>التخصص العام</th>
+            <th>الوظيفة</th>
+            <th>الدرجة العلمية</th>
+        </tr>
+    </thead><tbody>';
+    $counter = 1;
+    while ($row = mysql_fetch_array($rs)) {
+        $html.= '<tr>';
+        $html.='<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
+        $html.='<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
+        $html.='<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
+        $html.='<td class="tg-uy9o">' . $row['role_name'] . '</td>';
+        $html.='<td class="tg-lrt0">' . $row['Position'] . '</td>';
+        $html.='</tr>';
+    }
+    $html.='</tbody></table>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+    //--------------------------------------------------------
+    $pdf->AddPage();
+    $budget_items = new budget_items();
+    $sysItems = $budget_items->GetSysItems();
+    $html = '<style type="text/css">
+        .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
+        .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+        .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+        .tg .tg-uy9o{font-size:18px}
+        .tg .tg-0bb8{font-weight:bold;font-size:18px;background-color:#0d516d}
+        .tg .tg-lrt0{background-color:#D2E4FC;font-size:18px}
+    </style>';
+    $html .= '<table border = "1" class="tg" dir="rtl" style="width:640px;">
+    <thead>
+        <tr>
+            <th>البند</th>
+            <th>القيمة بالريال السعودي</th>
+        </tr>
+    </thead><tbody>';
+    $total_amount = 0;
+    while ($sysItem_row = mysql_fetch_array($sysItems)) {
+        $parent_id = $sysItem_row['item_id'];
+        $items = $budget_items->GetChildItems($parent_id);
+        $items_total = 0;
+        $html.='<tr><td colspan="2" class="tg-lrt0">' . $sysItem_row['item_title'] . '</td></tr>';
+        while ($row = mysql_fetch_array($items)) {
+            $item_id = $row['item_id'];
+            $html.='<tr>' . '<td class="tg-uy9o">' . $row['item_title'] . '</td>';
+            $project_budget = new project_budget();
+            $project_budget_items = $project_budget->GetProjectBudget($project_id, $item_id);
+            if (mysql_num_rows($project_budget_items) != 0) {
+                while ($project_item_row = mysql_fetch_array($project_budget_items)) {
+                    $amount = $project_item_row['amount'];
+                    $total_amount+= $amount;
+                    $items_total+=$amount;
+                    $html.='<td>' . number_format($amount, 2) . '</td>';
+                }
+            } else {
+                $html.='<td>' . number_format(0, 2) . '</td>';
+            }
+            $html.='</tr>';
+        }
+        $html.='<tr>' . '<td>' . 'الاجمالي' . '</td>' . '<td>' . number_format($items_total, 2) . '</td>' . '</tr>';
+    }
+    $html.='<tr>' . '<td class="tg-lrt0">' . 'الاجمالي' . '</td>' . '<td class="tg-lrt0">' . number_format($total_amount, 2) . '</td>' . '</tr>';
+    $html.='</tbody></table>';
+    $pdf->writeHTML($html, true, 0, true, 0);
 // close and output PDF document
     $file_name = '1';
+    if (file_exists($file_name)) {
+        unlink($file_name);
+    }
     $pdf->Output($file_name . '.pdf', 'F');
 //============================================================+
 // END OF FILE

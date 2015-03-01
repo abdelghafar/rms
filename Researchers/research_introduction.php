@@ -118,21 +118,11 @@ if (isset($projectId)) {
                 <td>
                     <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
                         <img src="images/next.png" style="border: none;" alt="next"/>
-                        <div>
-                            <span>
-                                التالي / Next
-                            </span>
-                        </div>
                     </a>
                 </td>
                 <td>
                     <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;" onclick="GetData();">
                         <img src="images/back.png" style="border: none;" alt="back"/>
-                        <div>
-                            <span>
-                                Prevoius / السابق
-                            </span>
-                        </div>
                     </a>
                 </td>
             </tr>

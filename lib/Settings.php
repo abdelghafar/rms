@@ -23,7 +23,7 @@ class Settings {
 
     public function GetCurrRound() {
         $con = new MysqlConnect();
-        $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'round_month' limit 0,1";
+        $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'round_date' limit 0,1";
         $result = $con->ExecuteNonQuery($stmt);
         $round = 0;
         while ($row = mysql_fetch_array($result)) {

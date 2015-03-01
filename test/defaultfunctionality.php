@@ -25,45 +25,79 @@ and open the template in the editor.
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#jqxFileUpload').jqxFileUpload({width: 300, uploadUrl: 'imageUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: true, accept: 'application/pdf'});
-                $('#jqxFileUpload1').jqxFileUpload({width: 300, uploadUrl: 'imageUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: true, accept: 'application/pdf'});
-
-                $('#jqxFileUpload').on('uploadEnd', function (event) {
+                $('#arAbsUpload').jqxFileUpload({width: 300, uploadUrl: 'fileUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#arAbsUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
                     $('#log').html(serverResponce);
                 });
 
+                $('#enAbsUpload').jqxFileUpload({width: 300, uploadUrl: 'fileUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#enAbsUpload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var fileName = args.file;
+                    var serverResponce = args.response;
+                    $('#log').html(serverResponce);
+                });
 
+                $('#introUpload').jqxFileUpload({width: 300, uploadUrl: 'fileUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#introUpload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var fileName = args.file;
+                    var serverResponce = args.response;
+                    $('#log').html(serverResponce);
+                });
+                $('#reviewUpload').jqxFileUpload({width: 300, uploadUrl: 'fileUpload.php', fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+                $('#reviewUpload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var fileName = args.file;
+                    var serverResponce = args.response;
+                    $('#log').html(serverResponce);
+                });
             });
         </script>
     </head>
     <body>     
-        <table>
+        <table style="direction: rtl;">
             <tr>
                 <td>
-                    abs arabic 
+                    الملخص-اللغة العربية
                 </td>
                 <td>
-                    <div id='jqxFileUpload'></div>
+                    <div id='arAbsUpload'></div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    abs english 
+                    الملخص - اللغة الانجليزية
                 </td>
                 <td>
-                    <div id='jqxFileUpload1'></div>
+                    <div id='enAbsUpload'></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    مقدمة المشروع
+                </td>
+                <td>
+                    <div id='introUpload'></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    المسح الأدبي
+                </td>
+                <td>
+                    <div id='reviewUpload'></div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <div id="log" style="width: 200px;height: 50px;background-color: greenyellow;"></div>
+                    <div id="log" style="height: 90px;"></div>
                 </td>
             </tr>
         </table>
-
     <br />
 </body>
 </html>

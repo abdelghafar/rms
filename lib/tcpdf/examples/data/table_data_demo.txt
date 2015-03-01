@@ -13,3 +13,4 @@ Portugal;Lisbon;91906;9957
 Spain;Madrid;504790;39348
 Sweden;Stockholm;410934;8839
 United Kingdom;London;243820;58862
+Egypt;Cairo;243830;58895

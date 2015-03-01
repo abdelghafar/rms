@@ -409,6 +409,25 @@ class Reseaches {
         return $url;
     }
 
+    //Get / set url of generated file
+    public function GetURL($project_id) {
+        $stmt = "Select url From researches where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    public function SetURL($project_id, $url) {
+        $stmt = "update researches set `url` = '" . $url . "' where seq_id =" . $project_id;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
     //-----------------------
     //Get/set introduction text
     public function GetIntroductionText($project_id) {

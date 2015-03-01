@@ -40,7 +40,13 @@ class budget_items {
     public function GetSysItems() {
         $conn = new MysqlConnect();
         $stmt = "Select * from " . $this->tableName . " where isSys=1";
-        echo $stmt;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return $rs;
+    }
+
+    public function GetChildItems($parent_item_id) {
+        $conn = new MysqlConnect();
+        $stmt = "Select * from " . $this->tableName . " where isSys=0 and parent_item_id=" . $parent_item_id;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }

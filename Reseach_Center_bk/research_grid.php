@@ -128,8 +128,10 @@ $rs = $c_researches->AllCenterResearch($center_id);
                 </label>
             </legend>
             <div class="art-layout-cell layout-item-1" style="width: 950px" >
-
-                <table id="datatables" class="display" style=" text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
+                <a href="#">
+                    تقديم بحث جديد
+                </a>
+                <table id="datatables" class="display" style="margin-top: 20px; text-align: center;font-size:14px; font-weight: bold" dir="rtl" >
                     <thead>
                         <tr>
                             <th><em>م</em></th>
@@ -183,7 +185,7 @@ $rs = $c_researches->AllCenterResearch($center_id);
 
                                 <td>
                                     <a href="#" onClick="display_Research_details(<? echo $row['seq_id']; ?>)
-                                                        ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
+                                                    ;"><img src="../common/images/view-list-details.png" style="border:none !important" alt="حذف"/></a>
 
                                 </td>
                             </tr>

@@ -36,7 +36,7 @@ class projectPhase {
         $conn = new MysqlConnect();
         $stmt = "Delete from project_phases where seq_id =" . $seqId;
         //echo $stmt;
-        $result= $conn->ExecuteNonQuery($stmt);
+        $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
 

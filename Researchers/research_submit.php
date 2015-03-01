@@ -375,15 +375,7 @@ if (isset($projectId)) {
                 <td valign="middle">
                     <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
                         <img src="images/next.png" style="border: none;" alt="next"/>
-                        <div>
-                            <span>
-                                التالي / Next
-                            </span>
-                        </div>
                     </a>
-                </td>
-                <td>
-
                 </td>
             </tr>
         </table>

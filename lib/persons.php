@@ -14,7 +14,6 @@ class Persons {
         $stmt = "";
         if ($id == 0) {
             $stmt = "Insert into persons(FirstName_ar,FirstName_en,FatherName_ar,FatherName_en,GrandName_ar,GrandName_en,FamilyName_ar,FamilyName_en,Gender,Nationality,DateOfBirth,CountryOfBirth,Position,Major_Field,Speical_Field,university,College,Dept,empCode,EqamaCode,Email,Mobile,Fax,city,country,POX,Postal_Code,IBAN,name_ar,name_en) values('" . $FirstName_ar . "','" . $FirstName_en . "','" . $FatherName_ar . "','" . $FatherName_en . "','" . $GrandName_ar . "','" . $GrandName_en . "','" . $FamilyName_ar . "','" . $FamilyName_en . "','" . $gender . "','" . $Nationality . "','" . $BirthDate . "','" . $CountryOfBirth . "','" . $Position . "','" . $Major_Field . "','" . $Speical_Field . "','" . $university . "','" . $College . "','" . $Dept . "','" . $empCode . "','" . $EqamaCode . "','" . $Email . "','" . $Mobile . "','" . $Fax . "','" . $city . "','" . $country . "','" . $POX . "','" . $Postal_Code . "','" . $IBAN . "',concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`),concat(`FirstName_en`,' ',`FatherName_en`,' ',`GrandName_en`,' ',`FamilyName_en`)" . ")";
-            echo $stmt;
             $res = $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
