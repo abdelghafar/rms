@@ -1,0 +1,92 @@
+/* 
+    Document   : reigster-layout
+    Created on : Apr 7, 2013, 2:38:29 AM
+    Author     : Ahmed
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.panel-header
+{
+    width: 890px;
+    height:40px; 
+    background-color:#2F108C; 
+    background-color: #9b9485; 
+    color: #ffffff; 
+    direction: rtl; 
+    padding-right: 10px; 
+    background-image: url('../images/ui-bg_gloss-wave_60_fece2f_500x100.png') ;
+}
+.panel-header-p
+{
+    font-family: sans-serif;
+    color: white; 
+    font-size: 17px;
+    font-weight: bold; 
+    vertical-align: middle;  
+    padding-top: 10px;
+}
+
+.panel-content
+{
+    width: 900px;
+    direction: rtl; 
+    border-color: #2F108C;
+    border-style: solid;
+    border-width: thin;
+}
+.panel-cell{
+    display: table-cell; 
+}
+.panel_row{
+    min-height: 40px; 
+    padding-top: 0px; 
+    padding-right: 10px; 
+    vertical-align: middle; 
+    direction: rtl;
+}
+.textbox{
+    font-family: sans-serif; 
+    font-size: 15px; 
+}
+.Calander{
+    display:block;
+}
+#researchSubmitForm p{
+    font-size: 17px;
+    font-weight: bold; 
+    color:#2191c0;
+}
+
+#empCode input{
+    font-size: 17px;  
+}
+#eqamaCode input {
+    font-size: 17px; 
+}
+#result{
+    width: auto; 
+    color: red;
+}
+
+fieldset
+{
+    width: 900px;
+    direction: rtl; 
+    border-radius: 10px; 
+    border: 2px solid #011d94; 
+}
+
+fieldset legend
+{
+    font-weight: bold; 
+    color: #2F108C; 
+    padding-right: 8px; 
+    padding-left: 8px;
+}
+label
+{
+    font-weight: bold; 
+    color: #2F108C; 
+    font-size: 18px;
+}
