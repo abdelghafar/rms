@@ -17,7 +17,6 @@ class Reseaches {
             $obj = new Settings();
             $round = $obj->GetCurrRound();
             $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program,round) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . "," . $round . ")";
-            echo $stmt;
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         }
@@ -26,7 +25,6 @@ class Reseaches {
     public function UpdateIntro($seqId, $title_ar, $title_en, $proposed_duration, $techId, $trackId, $subtrackId) {
         $conn = new MysqlConnect();
         $stmt = "update researches set title_ar='" . $title_ar . "',title_en='" . $title_en . "'," . " proposed_duration=" . $proposed_duration . ",major_field=" . $trackId . ",special_field=" . $subtrackId . ",center_id=" . $techId . " where seq_id=" . $seqId;
-        echo $stmt;
         return $conn->ExecuteNonQuery($stmt);
     }
 
