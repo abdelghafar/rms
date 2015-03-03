@@ -60,6 +60,7 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
@@ -70,7 +71,7 @@ if (isset($_GET['q'])) {
                                         $.ajax({url: 'generate_pdf/merge_pdf_test.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
                                                 $('#download_file').show();
                                                 $('#loadingDiv').hide();
-                                                $('#download_file').attr('href', data);
+                                                $('#download_file_url').attr('href', data);
                                             }
                                         });
 
@@ -83,20 +84,22 @@ if (isset($_GET['q'])) {
                     }
                 });
 
-
-
             });
         </script>
     </head>
     <body>
-        <div id="loadingDiv" style="display: none;">
-            <img src="../common/images/ajax-loader.gif" alt=""/>
+        <div id="loadingDiv" style="display: none;width: 880px;" class="Infobox">
+            <img src="../common/images/loading.gif" style="border: none;" alt=""/>
             <p>
-                'يرجي الانتظار حتي يقوم النظام ببناء النموذج...
+                يرجي الانتظار حتي يقوم النظام ببناء الملف...
             </p>
         </div>
-    <a id="download_file" style="display: none;" href="#">Download File</a>
-</body>
+
+        <div id="download_file" style="display: none;width: 880px;" class="successbox">
+            لقد تم انشاء الملف بنجاح 
+            <a id="download_file_url" href="">اضعط هنا للحصول عليه</a>
+        </div>
+    </body>
 
 </html>
 <?
