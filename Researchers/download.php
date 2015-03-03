@@ -11,7 +11,6 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/project_budget.php';
 require_once '../lib/budget_items.php';
-
 require_once '../lib/users.php';
 $smarty = new Smarty();
 
@@ -36,7 +35,7 @@ if (isset($_GET['q'])) {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>تابع- الملزانية</title>
+        <title>تحميل الملف</title>
         <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
@@ -65,22 +64,26 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $.ajax({
-                    url: 'generate_pdf.php?q=<? echo $projectId; ?>', success: function (data) {
-                        if (data === null)
-                        {
-                            $('#download_file').hide();
-                        } else
-                        {
-                            $('#download_file').show();
-                            $('#loadingDiv').hide();
-                            $('#download_file').attr('href', data);
-                        }
-                    },
-                    beforeSend: function () {
+                $.ajax({url: 'generate_pdf/generate_summary.php?q=<? echo $projectId; ?>', success: function (data) {
+                        $.ajax({url: 'generate_pdf/generate_team.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                $.ajax({url: 'generate_pdf/generate_details.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                        $.ajax({url: 'generate_pdf/merge_pdf_test.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                                $('#download_file').show();
+                                                $('#loadingDiv').hide();
+                                                $('#download_file').attr('href', data);
+                                            }
+                                        });
+
+                                    }
+                                });
+                            }
+                        });
+                    }, beforeSend: function () {
                         $('#loadingDiv').show();
                     }
                 });
+
+
 
             });
         </script>
