@@ -83,7 +83,6 @@ if (isset($_GET['q'])) {
                         $('#loadingDiv').show();
                     }
                 });
-
             });
         </script>
     </head>
@@ -97,7 +96,7 @@ if (isset($_GET['q'])) {
 
         <div id="download_file" style="display: none;width: 880px;" class="successbox">
             لقد تم انشاء الملف بنجاح 
-            <a id="download_file_url" href="">اضعط هنا للحصول عليه</a>
+            <a id="download_file_url" href="#">اضعط هنا للحصول عليه</a>
         </div>
     </body>
 
