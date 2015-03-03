@@ -72,6 +72,10 @@ if ($isValid == FALSE) {
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $r = new Reseaches();
+    $upload_dir = '../../uploads/' . $projectId . '/';
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir);
+    }
     $isExist = $r->IsExist($title_ar);
     if ($isExist > 0 && $isExist != $projectId) {
         echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
@@ -105,6 +109,12 @@ else {
         $researcher = new Reseaches();
         $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program, '', '');
         $x = $research_id;
+        //create dir 
+
+        $upload_dir = '../../uploads/' . $research_id . '/';
+        if (!mkdir($upload_dir)) {
+            die('Can not create project Dir');
+        }
         $track = new Reseaches_track();
         if ($research_id != 0) {
             $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
