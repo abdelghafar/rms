@@ -584,7 +584,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr style="display: none;">
+                <tr>
                     <td>
                         الأهمية للمملكة  / Value to Kingdom
                         <span class="required">*</span>
@@ -600,7 +600,7 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($value_to_kingdom) > 0) {
-                            echo '<a href="' . '../' . $value_to_kingdom . '"/>تحميل</a>';
+                            echo '<a href = "' . '../' . $value_to_kingdom . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
