@@ -409,6 +409,25 @@ class Reseaches {
         return $url;
     }
 
+    //refs_url
+    public function SetRefsUrl($projectId, $url) {
+        $stmt = "update researches set `refs_url` = '" . $url . "' where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetRefsUrl($projectId) {
+        $stmt = "Select refs_url From researches where seq_id =" . $projectId;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
     //Get / set url of generated file
     public function GetURL($project_id) {
         $stmt = "Select url From researches where seq_id =" . $project_id;
