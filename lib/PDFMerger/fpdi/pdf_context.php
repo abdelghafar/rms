@@ -16,7 +16,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
+ini_set("memory_limit", "64M");
 class pdf_context {
 
     /**
