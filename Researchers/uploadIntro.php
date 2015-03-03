@@ -40,6 +40,7 @@ if (isset($_GET['q'])) {
     $value_to_kingdom = $obj->GetValueToKingdomUrl($projectId);
     $budget = $obj->GetBudgetUrl($projectId);
     $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
+    $refs_url = $obj->GetRefsUrl($projectId);
 } else {
     exit();
 }
@@ -91,6 +92,7 @@ if (isset($_GET['q'])) {
                     var fileName = args.file;
                     var serverResponce = args.response;
                     $('#log').html(serverResponce);
+                    console.log(fileName);
                 });
                 $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
                     localization: {
@@ -241,7 +243,19 @@ if (isset($_GET['q'])) {
                     var serverResponce = args.response;
                     $('#outcome_objectives_upload_log').html(serverResponce);
                 });
-
+                //------------------------ref_upload 
+                $('#ref_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=refs&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
+                        browseButton: 'استعراض',
+                        uploadButton: 'تحميل الملف',
+                        cancelButton: 'الغاء',
+                        uploadFileTooltip: 'تحميل الملف',
+                        cancelFileTooltip: 'الغاء التحميل'
+                    }, accept: 'application/pdf'});
+                $('#ref_upload').on('uploadEnd', function (event) {
+                    var args = event.args;
+                    var serverResponce = args.response;
+                    $('#ref_upload_log').html(serverResponce);
+                });
                 CheckFiles('<? echo $projectId; ?>');
             });</script>
         <script type="text/javascript">
@@ -388,7 +402,8 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($arabicAbs) > 0) {
-                            echo '<a href="' . '../' . $arabicAbs . '"/>تحميل</a>';
+
+                            echo '<a href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
@@ -413,7 +428,8 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($engAbs) > 0) {
-                            echo '<a href="' . '../' . $engAbs . '"/>تحميل</a>';
+
+                            echo '<a href = "' . '../' . $engAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
@@ -438,7 +454,8 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($intro) > 0) {
-                            echo '<a href="' . '../' . $intro . '"/>تحميل</a>';
+
+                            echo '<a href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
@@ -462,7 +479,7 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($review) > 0) {
-                            echo '<a href="' . '../' . $review . '"/>تحميل</a>';
+                            echo '<a href = "' . '../' . $review . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
@@ -486,7 +503,7 @@ if (isset($_GET['q'])) {
                     <td>
                         <?
                         if (strlen($research_method) > 0) {
-                            echo '<a href="' . '../' . $research_method . '"/>تحميل</a>';
+                            echo '<a href = "' . '../' . $research_method . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                         }
                         ?>
                     </td>
@@ -495,7 +512,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         أهداف المشروع / Objectives 
                     </td>
@@ -519,7 +536,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         المهام و الأهداف   / Tasks and Objectives 
                     </td>
@@ -543,7 +560,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         خطة العمل / Working Plan
                     </td>
@@ -567,10 +584,10 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         الأهمية للمملكة  / Value to Kingdom
-
+                        <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
@@ -592,7 +609,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         الميزانية / Budget
                     </td>
@@ -616,7 +633,7 @@ if (isset($_GET['q'])) {
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none;">
                     <td>
                         المخرجات و الاهداف / Outcomes and Objectives 
                     </td>
@@ -641,6 +658,32 @@ if (isset($_GET['q'])) {
                 </tr>
 
                 <tr>
+                    <td>
+                        المراجع العلمية/ References 
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <a href="#">
+                            نموذج المراجع العلمية / References Template
+                        </a>
+                    </td>
+                    <td>
+                        <div id='ref_upload'></div>
+                    </td>
+                    <td>
+                        <?
+                        if (strlen($refs_url) > 0) {
+                            echo '<a href = "' . '../' . $refs_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                        }
+                        ?>
+
+                    </td>
+                    <td>
+                        <div id="ref_upload_log" style="width: 100%;height: auto;"></div>
+                    </td>
+                </tr>
+
+                <tr>
                     <td colspan="5">
                         <div id="result" class="errormsgbox" style="width: 700px;height:auto;display: none;">
                             <p>
@@ -654,7 +697,8 @@ if (isset($_GET['q'])) {
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>');" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>')
+                                    ;" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
                         <img src="images/next.png" style="border: none;" alt="next"/>
                         <div>
                             <span>
