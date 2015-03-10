@@ -1,10 +1,12 @@
 <?
 session_start();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
+    ob_start();
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Researcher') {
+        ob_start();
         header('Location:../Login.php');
     }
 }
@@ -14,18 +16,6 @@ require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
-$smarty = new Smarty();
-$smarty->assign('style_css', '../style.css');
-$smarty->assign('style_responsive_css', '../style.responsive.css');
-$smarty->assign('jquery_js', '../jquery.js');
-$smarty->assign('script_js', '../script.js');
-$smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('logout_php', '../inc/logout.inc.php');
-$smarty->assign('fqa_php', '../fqa.php');
-$smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
 if (isset($_GET['q'])) {
     $projectId = $_GET['q'];
     $obj = new Reseaches();
@@ -43,10 +33,23 @@ if (isset($_GET['q'])) {
         $major_field_id = $project['major_field'];
         $speical_field_id = $project['special_field'];
     } else {
-        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
-        exit();
+        ob_start();
+        header('Location:./forbidden.php');
     }
 }
+
+$smarty = new Smarty();
+$smarty->assign('style_css', '../style.css');
+$smarty->assign('style_responsive_css', '../style.responsive.css');
+$smarty->assign('jquery_js', '../jquery.js');
+$smarty->assign('script_js', '../script.js');
+$smarty->assign('script_responsive_js', '../script.responsive.js');
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('fqa_php', '../fqa.php');
+$smarty->assign('contactus_php', '../contactus.php');
+$smarty->display('../templates/Loggedin.tpl');
 ?>
 
 <head>
@@ -295,13 +298,13 @@ if (isset($projectId)) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    بيانات البحث
+                    معلومات عامة/ General Infromation 
                 </label>
             </legend>
-            <table style="width: 100%;">
+            <table style="width: 100%;margin-top: 10px;">
                 <tr>
                     <td>
-                        عنوان البحث-اللغة العربية/Title in Arabic
+                        العنوان بالعربي /Arabic Title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -314,7 +317,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        عنوان البحث - اللغة الانجليزية/Title in English
+                        العنوان بالانجليزي/ English Title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -327,7 +330,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        المدة المقترحة بالشهر/Proposed duration  
+                        المدة / Duration
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -337,7 +340,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        اولوية البحث/Priority 
+                        الأولوية /Priority
                         <span class="required">*</span>
                     </td>
                     <td>
