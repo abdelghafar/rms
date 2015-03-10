@@ -10,9 +10,44 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 }
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
-$smarty = new Smarty();
+$projectId = null;
 
+//Check Authorization  
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+    $obj = new Reseaches();
+    $program = $_SESSION['program'];
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $arabicAbs = $obj->GetAbstract_ar_url($projectId);
+        $engAbs = $obj->GetAbstract_en_url($projectId);
+        $intro = $obj->GetIntro_url($projectId);
+        $review = $obj->GetLitReview_url($projectId);
+        $research_method = $obj->GetResearch_method_url($projectId);
+        $objective_approach = $obj->GetObjective_approach_url($projectId);
+        $objective_tasks = $obj->GetObjective_tasks_url($projectId);
+        $working_plan = $obj->GetWorkingPlanUrl($projectId);
+        $value_to_kingdom = $obj->GetValueToKingdomUrl($projectId);
+        $budget = $obj->GetBudgetUrl($projectId);
+        $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
+        $refs_url = $obj->GetRefsUrl($projectId);
+    } else {
+        ob_start();
+        header('Location:./forbidden.php');
+        exit();
+    }
+} else {
+    ob_start();
+    header('Location:./forbidden.php');
+    exit();
+}
+$smarty = new Smarty();
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
@@ -24,26 +59,6 @@ $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
-$projectId = null;
-if (isset($_GET['q'])) {
-    $projectId = $_GET['q'];
-    $obj = new Reseaches();
-    $program = $_SESSION['program'];
-    $arabicAbs = $obj->GetAbstract_ar_url($projectId);
-    $engAbs = $obj->GetAbstract_en_url($projectId);
-    $intro = $obj->GetIntro_url($projectId);
-    $review = $obj->GetLitReview_url($projectId);
-    $research_method = $obj->GetResearch_method_url($projectId);
-    $objective_approach = $obj->GetObjective_approach_url($projectId);
-    $objective_tasks = $obj->GetObjective_tasks_url($projectId);
-    $working_plan = $obj->GetWorkingPlanUrl($projectId);
-    $value_to_kingdom = $obj->GetValueToKingdomUrl($projectId);
-    $budget = $obj->GetBudgetUrl($projectId);
-    $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
-    $refs_url = $obj->GetRefsUrl($projectId);
-} else {
-    exit();
-}
 ?>
 <html>
     <head>
@@ -67,6 +82,7 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <link href="../common/css/reigster-layout.css" rel="stylesheet" type="text/css"/>
         <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/font/css/font-awesome.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#submit_button').click(function () {
@@ -132,25 +148,25 @@ if (isset($_GET['q'])) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
-                    $('#log1').html(serverResponce);
+                    $('#arAbsUpload_log').html(serverResponce);
                 });
                 $('#enAbsUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
-                    $('#log2').html(serverResponce);
+                    $('#enAbsUpload_log').html(serverResponce);
                 });
                 $('#introUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
-                    $('#log3').html(serverResponce);
+                    $('#introUpload_log').html(serverResponce);
                 });
                 $('#reviewUpload').on('uploadEnd', function (event) {
                     var args = event.args;
                     var fileName = args.file;
                     var serverResponce = args.response;
-                    $('#log4').html(serverResponce);
+                    $('#reviewUpload_log').html(serverResponce);
                 });
                 $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
                         browseButton: 'استعراض',
@@ -265,6 +281,7 @@ if (isset($_GET['q'])) {
             var intro_file = 0;
             var lit_review_file = 0;
             var research_method_url = 0;
+
             function CheckFiles(projectId)
             {
                 $(document).ready(function () {
@@ -287,11 +304,24 @@ if (isset($_GET['q'])) {
                                     msg += 'Please upload the arabic abstract';
                                 }
                                 console.log(arabic_abs_file);
-                            },
-                            error: function (err) {
-                                console.log(err);
                             }
                         });
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                console.log(data);
+                                if (data == 1)
+                                {
+                                    $('#arAbsUpload_log').html('');
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#arAbsUpload_log').html('');
+                                } else
+                                {
+                                    $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
+
                         $.ajax({
                             url: 'ajax/checkEngAbstractUpload.php?q=' + projectId,
                             data: {url: projectId},
@@ -312,6 +342,22 @@ if (isset($_GET['q'])) {
 
                             }
                         });
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                console.log(data);
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#enAbsUpload_log').html('');
+                                } else
+                                {
+                                    $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
+
                         $.ajax({
                             url: 'ajax/checkIntroUpload.php?q=' + projectId,
                             data: {url: projectId},
@@ -332,6 +378,20 @@ if (isset($_GET['q'])) {
 
                             }
                         });
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#introUpload_log').html('');
+                                } else
+                                {
+                                    $('#introUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
                         $.ajax({
                             url: 'ajax/checkLitReviewUpload.php?q=' + projectId,
                             data: {url: projectId},
@@ -352,6 +412,20 @@ if (isset($_GET['q'])) {
 
                             }
                         });
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=reviewUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#reviewUpload_log').html('');
+                                } else
+                                {
+                                    $('#reviewUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
                         $.ajax({
                             url: 'ajax/check_research_methodology.php?q=' + projectId,
                             data: {url: projectId},
@@ -372,6 +446,50 @@ if (isset($_GET['q'])) {
 
                             }
                         });
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=research_method", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#research_method_upload_log').html('');
+                                } else
+                                {
+                                    $('#research_method_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=value_to_kingdom", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#value_to_kingdom_upload_log').html('');
+                                } else
+                                {
+                                    $('#value_to_kingdom_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+
+
+                            }});
+                        $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=refs", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                                if (data == 1)
+                                {
+                                    //ok
+                                }
+                                else if (data == -1)
+                                {
+                                    $('#ref_upload_log').html('');
+                                } else
+                                {
+                                    $('#ref_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                                }
+
+                            }});
 
                     }
                 });
@@ -388,12 +506,12 @@ if (isset($_GET['q'])) {
             <table style="direction: rtl;border: 1px;width: 100%;">
                 <tr style="margin-top: 25px;">
                     <td>
-                        الملخص-اللغة العربية / Abstract in Arabic
+                        الملخص بالعربي / Arabic Summary 
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج الملخص-اللغة العربية/ Template
+                            النموذج / Template 
                         </a>
                     </td>
                     <td>
@@ -408,18 +526,18 @@ if (isset($_GET['q'])) {
                         ?>
                     </td>
                     <td>
-                        <div id="log1" style="width: 100%;height: auto;"></div>
+                        <div id="arAbsUpload_log" style="width: 100%;height: auto;"></div>
                     </td>
 
                 </tr>
                 <tr>
                     <td>
-                        الملخص - اللغة الانجليزية / Abstract in English
+                        الملخص بالانجليزي / English Summary 
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج الملخص-اللغة الانجلزية / Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
@@ -434,7 +552,7 @@ if (isset($_GET['q'])) {
                         ?>
                     </td>
                     <td>
-                        <div id="log2" style="width: 100%;height: auto;"></div>
+                        <div id="enAbsUpload_log" style="width: 100%;height: auto;"></div>
                     </td>
 
                 </tr>
@@ -445,7 +563,7 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-مقدمة المشروع / Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
@@ -460,7 +578,7 @@ if (isset($_GET['q'])) {
                         ?>
                     </td>
                     <td>
-                        <div id="log3" style="width: 100%;height: auto;"></div>
+                        <div id="introUpload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -470,7 +588,7 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-المسح الادبي / Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
@@ -484,7 +602,7 @@ if (isset($_GET['q'])) {
                         ?>
                     </td>
                     <td>
-                        <div id="log4" style="width: 100%;height: auto;"></div>
+                        <div id="reviewUpload_log" style="width: 100%;height: auto;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -494,7 +612,7 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-منهجية البحث / Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
@@ -586,12 +704,12 @@ if (isset($_GET['q'])) {
 
                 <tr>
                     <td>
-                        الأهمية للمملكة  / Value to Kingdom
+                        قيمة المشروع للدولة / Value To Kingdom
                         <span class="required">*</span>
                     </td>
                     <td>
                         <a href="#">
-                            نموذج-الاهمية للمملكة / Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
@@ -664,7 +782,7 @@ if (isset($_GET['q'])) {
                     </td>
                     <td>
                         <a href="#">
-                            نموذج المراجع العلمية / References Template
+                            النموذج / Template
                         </a>
                     </td>
                     <td>
