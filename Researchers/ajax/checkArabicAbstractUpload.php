@@ -25,7 +25,7 @@ if (isset($_GET['q'])) {
         $result = 0;
     }
 
-   echo json_encode($result);
+    echo json_encode($result);
 } else {
     echo json_encode('Parameter Required...');
 } 
