@@ -11,8 +11,32 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/project_budget.php';
 require_once '../lib/budget_items.php';
-
+require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
+
+
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+    $obj = new Reseaches();
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $project = $obj->GetResearch($projectId);
+        $title_ar = $project['title_ar'];
+        $title_en = $project['title_en'];
+        $duration = $project['proposed_duration'];
+        $techId = $project['center_id'];
+        $major_field_id = $project['major_field'];
+        $speical_field_id = $project['special_field'];
+    } else {
+        ob_start();
+        header('Location:./forbidden.php');
+        exit();
+    }
+}
 $smarty = new Smarty();
 
 $smarty->assign('style_css', '../style.css');
@@ -26,12 +50,6 @@ $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
-
-if (isset($_GET['q'])) {
-    $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-} else {
-    exit();
-}
 ?>
 <html>
     <head>
@@ -60,6 +78,7 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
+        <script src="../js/numeral.js" type="text/javascript"></script>
         <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
@@ -75,8 +94,8 @@ if (isset($_GET['q'])) {
                 var travel_desc = null;
                 var travel_item_id = null;
                 var theme = 'energyblue';
-                $('#AddNewMaterials').jqxButton({width: 75, height: '30', theme: theme});
-                $('#AddNewTravel').jqxButton({width: 75, height: '30', theme: theme});
+                $('#AddNewMaterials').jqxButton({width: 300, height: '30', theme: theme});
+                $('#AddNewTravel').jqxButton({width: 300, height: '30', theme: theme});
 
                 $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
                 $('#item_amount_val').val($('#item_amount').jqxNumberInput('getDecimal'));
@@ -244,10 +263,10 @@ if (isset($_GET['q'])) {
                             rtl: true,
                             columns: [
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
-                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                {text: 'Type/ النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
+                                {text: 'Cost / القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
@@ -312,10 +331,10 @@ if (isset($_GET['q'])) {
                             rtl: true,
                             columns: [
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
-                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                {text: 'Type/ النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
+                                {text: 'Cost / القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_travel").jqxGrid('getrowdata', row);
@@ -397,6 +416,7 @@ if (isset($_GET['q'])) {
                         };
                 var dataAdapter = new $.jqx.dataAdapter(MaterialsDataSource);
                 $("#grid_materials").jqxGrid({source: dataAdapter});
+                Calc_material_footer();
             }
 
             function Reload_grid_travel()
@@ -415,6 +435,7 @@ if (isset($_GET['q'])) {
                         };
                 var dataAdapter = new $.jqx.dataAdapter(TravelDataSource);
                 $("#grid_travel").jqxGrid({source: dataAdapter});
+                Calc_travels_footer();
             }
             function Reload_other_items()
             {
@@ -432,6 +453,56 @@ if (isset($_GET['q'])) {
                         };
                 var dataAdapter = new $.jqx.dataAdapter(Others_Items_DataSource);
                 $("#grid_others").jqxGrid({source: dataAdapter});
+                Calc_Others_footer();
+            }
+            function Calc_material_footer()
+            {
+                $(document).ready(function () {
+                    $.ajax({url: 'ajax/project_materials_total.php?q=<? echo $projectId ?>', success: function (data, textStatus, jqXHR) {
+                            var material_total = 0;
+                            material_total = data;
+                            $('#materials_total').html(material_total);
+                            $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
+                                    var project_total = 0;
+                                    project_total = xdata;
+                                    var material_percent = parseFloat(material_total) / parseFloat(project_total);
+                                    $('#materials_percent').html(numeral(material_percent).format('00.00%'));
+                                }});
+                        }});
+                });
+            }
+            function Calc_travels_footer()
+            {
+                $(document).ready(function () {
+                    $.ajax({url: 'ajax/project_travel_total.php?q=<? echo $projectId ?>', success: function (data, textStatus, jqXHR) {
+                            var travel_total = 0;
+                            travel_total = data;
+                            $('#travel_total').html(travel_total);
+                            $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
+                                    var project_total = 0;
+                                    project_total = xdata;
+                                    var travel_percent = parseFloat(travel_total) / parseFloat(project_total);
+                                    $('#travel_percent').html(numeral(travel_percent).format('00.00%'));
+                                }});
+                        }});
+                });
+            }
+            function Calc_Others_footer()
+            {
+                $(document).ready(function () {
+                    $.ajax({url: 'ajax/project_others_total.php?q=<? echo $projectId ?>', success: function (data, textStatus, jqXHR) {
+                            var others_total = 0;
+                            others_total = data;
+                            $('#others_total').html(others_total);
+                            $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
+                                    var project_total = 0;
+                                    project_total = xdata;
+                                    console.log(project_total);
+                                    var others_percent = parseFloat(others_total) / parseFloat(project_total);
+                                    $('#others_percent').html(numeral(others_percent).format('00.00%'));
+                                }});
+                        }});
+                });
             }
         </script>
         <script type="text/javascript">
@@ -441,7 +512,7 @@ if (isset($_GET['q'])) {
                 var others_desc = null;
                 var others_item_id = null;
                 var theme = 'energyblue';
-                $('#AddNewOthers').jqxButton({width: 75, height: '30', theme: theme});
+                $('#AddNewOthers').jqxButton({width: 300, height: '30', theme: theme});
                 $('#AddNewOthers').click(function () {
                     others_seq_id = null;
                     $('#lst_others_items').jqxDropDownList({selectedIndex: -1});
@@ -510,10 +581,10 @@ if (isset($_GET['q'])) {
                             rtl: true,
                             columns: [
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'العنوان', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
-                                {text: 'القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                {text: 'Type / النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
+                                {text: 'Cost/ القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
+                                {text: 'Notes/ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete/حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_others").jqxGrid('getrowdata', row);
@@ -582,7 +653,9 @@ if (isset($_GET['q'])) {
                     }
 
                 });
-
+                Calc_material_footer();
+                Calc_travels_footer();
+                Calc_Others_footer();
             });
         </script>
     </head>
@@ -590,20 +663,20 @@ if (isset($_GET['q'])) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    الميزانية-تابع
+                    المتطلبات / Requirements 
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <span class="classic">المواد الخام و الأجهزة</span>
+                <span class="classic">المواد و الاجهزة / Materials and Equipment </span>
                 <hr/>
-                <input type="button" id='AddNewMaterials' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <input type="button" id='AddNewMaterials' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
                 <form id="material_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="materials_table" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
-                                <span class="classic">اخترالنوع</span>
+                                <span class="classic">النوع / Type</span>
                                 <span class="required">*</span>
                             </td>
                             <td>
@@ -614,7 +687,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    القيمة:
+                                    التكلفة / Cost
                                 </span>
                                 <span class="required">*</span>
                             </td>
@@ -626,7 +699,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    ملاحظات
+                                    ملاحظات / Notes
                                 </span>
                             </td>
                             <td>
@@ -643,17 +716,41 @@ if (isset($_GET['q'])) {
                     </table>
                 </form>
                 <div id="grid_materials"></div>
+                <table id="materials_footer">
+                    <tr>
+                        <td>
+                            <span class="classic">
+                                الاجمالي / PROJECT TEAM MATERIALS TOTAL:
+                            </span>
+                        </td>
+                        <td>
+                            <label id="materials_total">
+                                0
+                            </label>
+                        </td>
+                        <td>
+                            <span class="classic">
+                                النسبة المئوية / PROJECT TEAM MATERIALS PERCENT
+                            </span>
+                        </td>
+                        <td>
+                            <label id="materials_percent">
+                                0
+                            </label>
+                        </td>
+                    </tr>
+                </table>
                 <br/><br/>
-                <span class="classic">المؤتمرات و الرحلات العلمية</span>
+                <span class="classic">الرحلات / Travel</span>
                 <hr/>
-                <input type="button" id='AddNewTravel' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <input type="button" id='AddNewTravel' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
                 <form id="travel_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="travel_table" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
-                                <span class="classic">اخترالنوع</span>
+                                <span class="classic">النوع / Type</span>
                                 <span class="required">*</span>
                             </td>
                             <td>
@@ -664,7 +761,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    القيمة:
+                                    القيمة / Cost 
                                 </span>
                                 <span class="required">*</span>
                             </td>
@@ -676,7 +773,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    ملاحظات
+                                    ملاحظات / Notes 
                                 </span>
                             </td>
                             <td>
@@ -693,17 +790,41 @@ if (isset($_GET['q'])) {
                     </table>
                 </form>
                 <div id="grid_travel"></div>
+                <table id="travel_footer">
+                    <tr>
+                        <td>
+                            <span class="classic">
+                                الاجمالي / PROJECT TEAM MATERIALS TOTAL:
+                            </span>
+                        </td>
+                        <td>
+                            <label id="travel_total">
+                                0
+                            </label>
+                        </td>
+                        <td>
+                            <span class="classic">
+                                النسبة المئوية / PROJECT TEAM MATERIALS PERCENT
+                            </span>
+                        </td>
+                        <td>
+                            <label id="travel_percent">
+                                0
+                            </label>
+                        </td>
+                    </tr>
+                </table>
                 <br/><br/>
-                <span class="classic">أخري</span>
+                <span class="classic">أخري / Others</span>
                 <hr/>
-                <input type="button" id='AddNewOthers' value="اضافة جديد" style="float: right;margin-bottom: 15px;"/>
+                <input type="button" id='AddNewOthers' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
                 <br/>
                 <form id="others_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="others_table" style="display: none; width: 100%">
                         <tr>
                             <td valign="middle">
-                                <span class="classic">اخترالنوع</span>
+                                <span class="classic">النوع / Type</span>
                                 <span class="required">*</span>
                             </td>
                             <td>
@@ -714,7 +835,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    القيمة:
+                                    القيمة / Cost
                                 </span>
                                 <span class="required">*</span>
                             </td>
@@ -726,7 +847,7 @@ if (isset($_GET['q'])) {
                         <tr>
                             <td>
                                 <span class="classic">
-                                    ملاحظات
+                                    ملاحظات / Notes
                                 </span>
                             </td>
                             <td>
@@ -743,6 +864,30 @@ if (isset($_GET['q'])) {
                     </table>
                 </form>
                 <div id="grid_others"></div>
+                <table id="others_footer">
+                    <tr>
+                        <td>
+                            <span class="classic">
+                                الاجمالي / PROJECT TEAM MATERIALS TOTAL:
+                            </span>
+                        </td>
+                        <td>
+                            <label id="others_total">
+                                0
+                            </label>
+                        </td>
+                        <td>
+                            <span class="classic">
+                                النسبة المئوية / PROJECT TEAM MATERIALS PERCENT
+                            </span>
+                        </td>
+                        <td>
+                            <label id="others_percent">
+                                0
+                            </label>
+                        </td>
+                    </tr>
+                </table>
                 <br/><br/>
             </div>
         </fieldset>
