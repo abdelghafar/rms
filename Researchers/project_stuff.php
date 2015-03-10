@@ -11,9 +11,37 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once('../lib/CenterResearch.php');
 require_once '../lib/research_stuff.php';
-require_once '../lib/users.php';
-$smarty = new Smarty();
+require_once '../lib/Reseaches.php';
 
+require_once '../lib/users.php';
+
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+    $obj = new Reseaches();
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $project = $obj->GetResearch($projectId);
+        $title_ar = $project['title_ar'];
+        $title_en = $project['title_en'];
+        $duration = $project['proposed_duration'];
+        $techId = $project['center_id'];
+        $major_field_id = $project['major_field'];
+        $speical_field_id = $project['special_field'];
+    } else {
+        ob_start();
+        header('Location:./forbidden.php');
+        exit();
+    }
+} else {
+    ob_start();
+    header('Location:./forbidden.php');
+    exit();
+}
+$smarty = new Smarty();
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
@@ -25,11 +53,6 @@ $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
-if (isset($_GET['q'])) {
-    $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-} else {
-    exit();
-}
 ?>
 
 <?
@@ -101,12 +124,11 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب/EmpCode', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
-                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام/Major', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف/Delete', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Name/ الاسم', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
+                            {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Delete/حذف', datafield: 'حذف', width: 80, align: 'center', columntype: 'button', cellsrenderer: function () {
                                     return '..';
                                 }, buttonclick: function (row) {
                                     var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
@@ -154,12 +176,12 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'البريد الالكتروني/Email', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام/Major', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'حذف/Delete', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'Specialization / التخصص', dataField: 'major_Field', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
+                            {text: 'Role / نوع المشاركة', dataField: 'role_name', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Email / البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                                     return '..';
                                 }, buttonclick: function (row) {
                                     var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
@@ -210,11 +232,10 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         rtl: true,
                         columns: [
                             {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'اسم الباحث/Name', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'الوظيفة/Position', dataField: 'role_name', width: 150, align: 'right', cellsalign: 'right'},
-                            {text: 'رقم المنسوب/EmpCode', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
-                            {text: 'الدرجة العلمية/Degree', dataField: 'position', width: 100, align: 'right', cellsalign: 'right'},
-                            {text: 'التخصص العام/Major Field', dataField: 'major_Field', width: 100, align: 'right', cellsalign: 'right'}
+                            {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
+                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 200, align: 'right', cellsalign: 'right'},
+                            {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 150, align: 'right', cellsalign: 'right'}
                         ]
                     });
 
@@ -275,18 +296,18 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <fieldset style="width: 95%;text-align: right;"> 
         <legend>
             <label>
-                الفريق البحثي
+                الفريق البحثي / Research Team
             </label>
         </legend>
         <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
 
-            <span class="classic-font">الباحث الرئيسي -PI</span>
+            <span class="classic-font">الباحث الرئيس/ PI</span>
             <hr/>
             <div id="gridPI"></div>
             <br/><br/>
-            <span class="classic-font">الباحثين المشاركين- CoIs</span>
+            <span class="classic-font">الباحثين المشاركين / CO-Is</span>
             <hr/>
-            <input type="button" style="margin-bottom: 15px;" id='AddNewCoIs' value="اضافة جديد/ Add New"/>
+            <input type="button" style="margin-bottom: 15px;" id='AddNewCoIs' value="Add / اضافة"/>
 
             <div id='SearchFrm' style="width: 852px;height: auto;">
 
@@ -296,7 +317,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             <br/><br/>
             <span class="classic-font">أخري -Other Personal </span>
             <hr/>
-            <input type="button" style="margin-bottom: 15px;" id='AddNewOtherPersonal' value="اضافة جديد/ Add New"/>
+            <input type="button" style="margin-bottom: 15px;" id='AddNewOtherPersonal' value="Add / اضافة"/>
             <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
             <div id='gridOthers'></div>
         </div>
@@ -310,7 +331,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 </a>
             </td>
             <td>
-                <a href="research_value.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                <a href="uploadIntro.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
 
                 </a>
