@@ -86,7 +86,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = 'energyblue';
-                $('#AddNew').jqxButton({width: '200', height: '30', theme: theme});
+                $('#AddNew').jqxButton({width: '350', height: '30', theme: theme});
                 $('#AddNew').click(function () {
                     window.location.assign('understanding.php?program=<? echo $_SESSION['program']; ?>');
                 });
@@ -118,26 +118,26 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
                             rtl: true,
                             columns: [
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'العنوان/title', dataField: 'title_ar', width: 350, align: 'right', cellsalign: 'right'},
-                                {text: 'ت.التقديم/Submitted date', dataField: 'status_date', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'حالة البحث/Status', dataField: 'status_name', width: 250, align: 'center', cellsalign: 'center'},
-                                {text: 'متابعة الحالة/track', datafield: 'الحالة', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
-                                        return 'الحالة';
+                                {text: 'Title/العنوان', dataField: 'title_ar', width: 350, align: 'right', cellsalign: 'right'},
+                                {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 200, align: 'right', cellsalign: 'right'},
+                                {text: 'Status/الحالة', dataField: 'status_name', width: 150, align: 'center', cellsalign: 'center'},
+                                {text: 'متابعة الحالات/ Track Status', datafield: 'الحالة', align: 'center', width: 200, columntype: 'button', cellsrenderer: function () {
+                                        return 'متابعة الحالات/ Track Status';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
                                         display_research_status(projectId);
                                     }
                                 },
-                                {text: 'تعديل/Edit', datafield: 'تعديل', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
-                                        return 'تعديل';
+                                {text: 'Edit/ الحالة', datafield: 'تعديل', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
+                                        return 'Edit/ الحالة';
                                     }, buttonclick: function (row) {
                                         console.log($("#jqxgrid").jqxGrid('getrowdata', row)['seq_id']);
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
                                         window.location.assign('research_submit.php?q=' + projectId);
                                     }
                                 },
-                                {text: 'حذف/Delete', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                        return "..";
+                                {text: 'Delete/حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return "Delete/حذف";
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
                                         WithDraw(projectId);
@@ -190,7 +190,7 @@ $rs = $c_researches->GetResearchesByResearcherAndProgram($personId, $_SESSION['p
                 </label>
             </legend>
             <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <input type="button" value="Submit New Proposal" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
+                <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
                 <hr/>
                 <div id="jqxgrid"></div>
             </div>
