@@ -127,14 +127,13 @@ if (isset($_GET['q'])) {
                     theme: Curr_theme,
                     source: CoAuthorsSourceAdapter,
                     columns: [
-                        {text: 'اسم الباحث-ع', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
-                        {text: 'اسم الباحث -E', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص الدقيق', datafield: 'Speical_Field', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
+                        {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
+                        {text: 'Name / الاسم', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
                     ]
                 });
 
@@ -208,12 +207,12 @@ if (isset($_GET['q'])) {
 </script>
 <fieldset style="width: 90%;text-align: right;margin-bottom: 25px;">
     <legend>
-        اضافة الموارد البشرية
+        اضافة عضو جديد/ Add a new member
     </legend>
     <table style="width: 800px;">
         <tr>
             <td>
-                الاسم
+                الاسم/Name
                 <span class="error">*</span>
             </td>
             <td>
@@ -224,7 +223,7 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td>
-                الوظيفة
+                نوع المشاركة / Role
                 <span class="error">*</span>
             </td>
             <td>

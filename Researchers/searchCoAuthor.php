@@ -102,12 +102,11 @@ if (isset($_GET['q'])) {
                     theme: Curr_theme,
                     source: CoAuthorsSourceAdapter,
                     columns: [
-                        {text: 'اسم الباحث', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
-                        {text: 'رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 100},
-                        {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص العام', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'التخصص الدقيق', datafield: 'Speical_Field', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150}
+                        {text: 'Employee Id / رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'Name / الاسم', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
+                        {text: 'College/ الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'Title/ الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Specialization / التخصص', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 200}
                     ]
                 });
 
@@ -169,12 +168,12 @@ if (isset($_GET['q'])) {
 </script>
 <fieldset style="width: 95%;text-align: right;margin-bottom: 25px;">
     <legend>
-        اضافة باحث مشارك
+        اضافة باحث مشارك / Add a new Co-I
     </legend>
     <table style="width: 800px;">
         <tr>
             <td>
-                رقم المنسوب
+                رقم المنسوب / Emplyee Id
                 <span class="error">*</span>
             </td>
             <td>
