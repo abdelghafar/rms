@@ -131,5 +131,5 @@ else {
     }
 }
 ?>
-<link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
+<link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
