@@ -1,7 +1,6 @@
 <?php
 
-ini_set("memory_limit", "128M");
-
+ini_set("memory_limit", "64M");
 // Include the main TCPDF library (search for installation path).
 require_once('../../lib/tcpdf/tcpdf.php');
 require_once 'pdf_proposal.php';
