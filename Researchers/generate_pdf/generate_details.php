@@ -496,7 +496,7 @@ if (isset($_GET['q'])) {
             $html.='<tr>' . '<td class="tg-uy9o">' . $row['item_title'] . '</td>';
             $project_budget = new project_budget();
             $project_budget_items = $project_budget->GetProjectBudget($project_id, $item_id);
-            if (mysql_num_rows($project_budget_items) != 0) {
+            if (mysql_num_rows($project_budget_items) > 0) {
                 while ($project_item_row = mysql_fetch_array($project_budget_items)) {
                     $amount = $project_item_row['amount'];
                     $total_amount+= $amount;
