@@ -3,11 +3,21 @@
 include 'PDFMerger.php';
 
 $pdf = new PDFMerger;
+$base_dir = 'samplepdfs/';
+$file_name = $base_dir . '2.pdf';
+$target_file = $base_dir . uniqid() . '_tmp.pdf';
 
-$str = $pdf->addPDF('samplepdfs/one.pdf', '1, 3, 4')
-        ->addPDF('samplepdfs/two.pdf', '1-2')
-        ->addPDF('samplepdfs/three.pdf', 'all')
-        ->merge('file', 'samplepdfs/TEST2.pdf');
+if (file_exists($target_file)) {
+    unlink($target_file);
+}
+
+$str = $pdf->addPDF($file_name, 'all')
+        ->merge('file', $target_file);
+
+if (file_exists($target_file)) {
+    unlink($target_file);
+    echo 1;
+}
 
 //REPLACE 'file' WITH 'browser', 'download', 'string', or 'file' for output options
 	//You do not need to give a file path for browser, string, or download - just the name.

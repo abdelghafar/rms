@@ -54,9 +54,11 @@ function get_time_difference_php($created_time) {
         return "منذ لحظات";
     }
 }
-?>
 
-<html>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+function encode($url) {
+    return urlencode(base64_encode($url));
+}
 
-</html>
+function decode($data) {
+    return base64_decode(urldecode($data));
+}

@@ -16,7 +16,7 @@ class Reseaches {
         if ($seqId == 0) {
             $obj = new Settings();
             $round = $obj->GetCurrRound();
-            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program,round,type_id,keywords,isDraft) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . "," . $round . "," . $typeId . ",'" . $keywords . "',0)";
+            $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program,round,type_id,keywords,isDraft) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . "," . $round . "," . $typeId . ",'" . $keywords . "',1)";
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         }
@@ -586,9 +586,14 @@ class Reseaches {
 
     public function Research_Submit($research_id) {
         $con = new MysqlConnect();
-        $stmt = "update researches set `isDraft`=1 where `seq_id`=" . $research_id;
+        $stmt = "update researches set `isDraft`=0 where `seq_id`=" . $research_id;
         $rs = $con->ExecuteNonQuery($stmt);
-        return $rs;
+        $rs2 = $this->Lock($research_id);
+        if ($rs == 1 && $rs2 == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

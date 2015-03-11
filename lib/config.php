@@ -1,4 +1,5 @@
 <?php
+
 define('Db_host', 'localhost');
 define('Db_User', 'root');
 define('Db_Name', 'uquedu_isr_rms');
