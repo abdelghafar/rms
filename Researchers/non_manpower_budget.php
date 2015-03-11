@@ -894,7 +894,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr>
                 <td style="display: block;">
-                    <a href="download.php?q=<? echo $projectId; ?>" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
+                    <a href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
                 </td>
 
                 <td>
