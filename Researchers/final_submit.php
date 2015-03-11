@@ -66,7 +66,7 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $.ajax({url: 'ajax/final_submit?q=<? echo $projectId; ?>', beforeSend: function (xhr) {
+                $.ajax({url: 'ajax/final_submit.php?q=<? echo $projectId; ?>', beforeSend: function (xhr) {
 
 
                     }, success: function (data, textStatus, jqXHR) {
