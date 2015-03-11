@@ -66,50 +66,49 @@ if (isset($_GET['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $.ajax({url: 'generate_pdf/generate_summary.php?q=<? echo $projectId; ?>', success: function (data) {
-                        $.ajax({url: 'generate_pdf/generate_team.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                                $.ajax({url: 'generate_pdf/generate_details.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                                        $.ajax({url: 'generate_pdf/merge_pdf.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                                                $('#download_file').show();
-                                                $('#loadingDiv').hide();
-                                                $('#download_file_url').attr('href', data);
-                                                $('#submit_button').show();
-                                            }
-                                        });
+                $.ajax({url: 'ajax/final_submit?q=<? echo $projectId; ?>', beforeSend: function (xhr) {
 
-                                    }
-                                });
-                            }
-                        });
-                    }, beforeSend: function () {
-                        $('#loadingDiv').show();
-                    }
-                });
+
+                    }, success: function (data, textStatus, jqXHR) {
+                        if (data == 1)
+                        {
+                            $('#ResultDiv').show();
+                            $('#submit_button').show();
+                            $('#loadingDiv').hide();
+                            $('#back_button').hide();
+                            $('#ResultText').html('<p>' + 'تم حفظ المشروع بنجاح' + '</p>');
+                        }
+                        else
+                        {
+                            $('#ResultDiv').show();
+                            $('#loadingDiv').hide();
+                            $('#ResultText').html(data);
+                        }
+
+                    }});
             });
         </script>
     </head>
     <body>
-        <div id="loadingDiv" style="display: none;width: 880px;" class="Infobox">
+        <div id="loadingDiv" style="width: 880px;" class="Infobox">
             <img src="../common/images/loading.gif" style="border: none;" alt=""/>
             <p>
-                يرجي الانتظار حتي يقوم النظام ببناء الملف...
+                يرجي الانتظار
             </p>
         </div>
-
-        <div id="download_file" style="display: none;width: 870px;margin-right: 10px;" class="successbox">
-            لقد تم انشاء الملف بنجاح 
-            <a id="download_file_url" href="#">اضعط هنا للحصول عليه</a>
+        <div id="ResultDiv" style="display: none;width: 880px;" class="successbox">
+            <label id="ResultText">
+            </label>
         </div>
-
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <a id="submit_button" href="final_submit.php?q=<? echo $rawId; ?>" style="float: right;margin-top: 20px;display: none;">
+                    <a id="submit_button" href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>" style="float: right;margin-top: 20px;display: none;">
                         <img src="images/next.png" style="border: none;margin-right: 0px;" alt="next"/>
                     </a>
                 </td>
                 <td>
-                    <a href="accept.php?q=<? echo $rawId; ?>" style="float: left;margin-top: 20px;">
+                    <a id="back_button" href="download.php?q=<? echo $rawId; ?>" style="float: left;margin-top: 20px;">
                         <img src="images/back.png" style="border: none;margin-left: 0px;" alt="back"/>
                     </a>
                 </td>
