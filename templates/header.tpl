@@ -26,7 +26,7 @@
                     <ul class="art-hmenu">
                         <li><a href="{$index_php}" class="active">الصفحة الرئيسية</a></li>
                         <li><a href="{$login_php}">الدخول</a></li>
-                        <li><a href="{$contactus_php}">بيانات الإتصال</a></li>
+                        <li><a href="{$about_php}">عنا</a></li>
                     </ul> 
                 </div>
             </nav>
