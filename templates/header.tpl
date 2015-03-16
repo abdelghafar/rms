@@ -1,8 +1,8 @@
 <html dir="rtl" lang="en-US"><head>
         <meta charset="utf-8">
         <title>
-           {if !isset($title)}
-                 نظام الباحث لادارة المشروعات البحثية
+            {if !isset($title)}
+                نظام ادارة المنح البحثية
             {else}
                 {$title}
             {/if}
@@ -10,16 +10,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
 
-    <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <link rel="stylesheet" href="{$style_css}" media="screen">
         <!--[if lte IE 7]><link rel="stylesheet" href="style.ie7.css" media="screen" /><![endif]-->
         <link rel="stylesheet" href="{$style_responsive_css}" media="all">
-        
+
         <script src="{$jquery_js}"></script>
         <script src="{$script_js}"></script>
         <script src="{$script_responsive_js}"></script>
- </head>
-<body>
+    </head>
+    <body>
         <div id="art-main">
             <nav class="art-nav">
                 <div class="art-nav-inner">
@@ -30,7 +30,7 @@
                     </ul> 
                 </div>
             </nav>
-   <div class="art-sheet clearfix">
+            <div class="art-sheet clearfix">
                 <header class="art-header">
                     <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
                         <div class="art-slider-inner">
