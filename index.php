@@ -14,7 +14,7 @@ $smarty->assign('index_php', 'index.php');
 $smarty->assign('Researchers_register_php', 'Researchers/register.php');
 $smarty->assign('login_php', 'login.php');
 $smarty->assign('fqa_php', 'fqa.php');
-$smarty->assign('contactus_php', 'contactus.php');
+$smarty->assign('about_php', 'aboutus.php');
 
 $smarty->display('templates/header.tpl');
 ?>
@@ -23,8 +23,6 @@ $smarty->display('templates/header.tpl');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-
-
     </head>
     <body>
         <div class="art-content-layout layout-item-1">
