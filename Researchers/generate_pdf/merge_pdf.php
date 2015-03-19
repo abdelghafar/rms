@@ -20,7 +20,7 @@ if (isset($_GET['q'])) {
     $details_url = '../../uploads/' . $project_id . '/' . 'details.pdf';
     $ref_url = '../../' . $obj->GetRefsUrl($project_id);
 
-    $stamp = date(DateTime_Format) . '_' . sha1(uniqid());
+    $stamp = date(DateTime_Format) . '_' . sha1($project_id);
     $file_name = '../../uploads/' . $project_id . '/' . 'final_' . $stamp . ".pdf";
     $pdf->addPDF($summary_url, 'all')
             ->addPDF($team_url, 'all')
