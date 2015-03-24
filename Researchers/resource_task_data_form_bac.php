@@ -1,17 +1,12 @@
 <?php
 session_start();
-$project_id = $_REQUEST['project_id'];
+//$project_id = $_REQUEST['project_id'];
 $phase_id = $_REQUEST['phase_id'];
 $seq_id = $_REQUEST['seq_id'];
 
-require_once '../lib/Reseaches.php';
 require_once '../lib/projectTasks.php';
-$project = new Reseaches();
-$project_duration = $project->GetResearchDuration($project_id);
-
-
 /* if ($seq_id != 0) {
-  $project = new projectTask();
+  $task = new projectTask();
   $task_resources_rs = $task->GetTasksData($task_id);
   } else {
 
@@ -22,8 +17,8 @@ $project_duration = $project->GetResearchDuration($project_id);
 <script type="text/javascript">
     $(document).ready(function() {
         var theme = "energyblue";
-        $("#duration_val").jqxNumberInput({width: '50px', height: '22px', groupSize: 5, promptChar: ' ', digits: 3, min: 1, max: 30, validationMessage: 'القيمة الصحيحة بين 1 و30', decimalDigits: 0, textAlign: 'center', theme: theme});
-        $("#saveButton").jqxButton({width: '100', height: '30', theme: theme});
+        $("#duration_val").jqxNumberInput({width: '50px', height: '22px', groupSize: 5, promptChar: ' ', digits: 3, min: 1, max: 999, decimalDigits: 0, textAlign: 'center', theme: theme});
+        $("#saveButton").jqxButton({width: '100', height: '30', theme: theme})
         $("#closeButton").jqxButton({width: '100', height: '30', theme: theme});
 
 
@@ -75,21 +70,21 @@ $project_duration = $project->GetResearchDuration($project_id);
         $("#start_month_val").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '250px', height: '30px', displayMember: 'month_name', valueMember: 'month_id', theme: 'energyblue', rtl: true, promptText: "Choose Start Month/ إختر بداية المهمة "});
 
         //-------------------------- Duration Unit dropdown list
-        /*var post_data = 'project_id=' + $('#project_id').val();
-         var source =
-         {
-         datatype: "json",
-         datafields: [
-         {name: 'seq_id'},
-         {name: 'unit_name'},
-         ],
-         url: '../Data/durationunits.php?' + post_data,
-         async: false
-         };
-         var dataAdapter = new $.jqx.dataAdapter(source);
-         $("#unit_id_val").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '250px', height: '30px', displayMember: 'unit_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "Choose Time Unit/  اختر الوحدة الزمنية"});
-         
-         */
+        var post_data = 'project_id=' + $('#project_id').val();
+        var source =
+                {
+                    datatype: "json",
+                    datafields: [
+                        {name: 'seq_id'},
+                        {name: 'unit_name'},
+                    ],
+                    url: '../Data/durationunits.php?' + post_data,
+                    async: false
+                };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        $("#unit_id_val").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '250px', height: '30px', displayMember: 'unit_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "Choose Time Unit/  اختر الوحدة الزمنية"});
+
+
         $('#taskresourcesdataForm').jqxValidator({rules: [
                 {
                     input: "#task_id_val", message: "Choose Task / إختر المهمة", position: 'left', action: 'blur', rule: function(input, commit) {
@@ -114,37 +109,9 @@ $project_duration = $project->GetResearchDuration($project_id);
                         var index = $("#unit_id_val").jqxDropDownList('getSelectedIndex');
                         return index != -1;
                     }
-                }
+                },
+                //{input: '#task_id', message: 'من فضلك ادخل عنوان المهمة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'}
             ]
-        });
-
-        $('#person_id_val').on('close', function(event) {
-            //alert($("#person_id_val").val());
-            //var args = event.args;
-            var item = $('#person_id_val').val();
-            if (item != -1) {
-                var post_data = 'person_id=' + $("#person_id_val").val() + '&project_id=' + $('#project_id').val();
-                $.ajax({
-                    type: 'post',
-                    url: '../Data/GetStuff_Roles_ByID.php?' + post_data,
-                    datatype: "html",
-                    beforeSend: function() {
-
-                    },
-                    success: function(data) {
-                        //alert(data);
-                        if (data == 3) {
-                            $("#unit_id").val(1);
-                            $("#unit_id_val").val('يوم');
-                        }
-                        else {
-                            $("#unit_id").val(2);
-                            $("#unit_id_val").val('شهر');
-                        }
-                    }
-                });
-                //$('#Events').jqxPanel('prepend', '<div style="margin-top: 5px;">Unselected: ' + item.label + '</div>');
-            }
         });
 
 
@@ -152,53 +119,46 @@ $project_duration = $project->GetResearchDuration($project_id);
 
             var valid = $('#taskresourcesdataForm').jqxValidator('validate');
 
-
             if (valid)
             {
-                var end_month = parseInt($("#start_month_val").val()) + parseInt($("#duration_val").val()) - 1;
-                var project_duration = parseInt($("#project_duration").val());
-                
-                if (($("#unit_id").val()=== '2') && (project_duration < end_month))
-                    alert("مدة تنفيذ المهمة يجب ألا تتجاوزة نهاية المشروع");
-                else
-                {
-                    //$("#taskresourcesdataForm").submit();
-                    $("#task_id").val($("#task_id_val").val());
-                    $("#person_id").val($("#person_id_val").val());
-                    $("#start_month").val($("#start_month_val").val());
-                    $("#duration").val($("#duration_val").val());
+                //$("#taskresourcesdataForm").submit();
+                $("#task_id").val($("#task_id_val").val());
+                $("#person_id").val($("#person_id_val").val());
+                $("#start_month").val($("#start_month_val").val());
+                $("#duration").val($("#duration_val").val());
+                $("#unit_id").val($("#unit_id_val").val());
 
 
-                    //phase_id = $("#phase_id").val();
-                    $.ajax({
-                        type: 'post',
-                        url: 'inc/saveResourceTask.php?project_id=' + $("#project_id").val(),
-                        datatype: "html",
-                        data: $("#taskresourcesdataForm").serialize(),
-                        beforeSend: function() {
-                            $("#taskresult").html("<img src='images/load.gif'/>loading...");
-                        },
-                        success: function(data) {
-                            $("#taskresult").html(data);
-                            if ($("#task_operation_flag").val() === 'true')
-                            {
-                                load_tasks_grd();
+                //project_id = $("#project_id").val();
+                //phase_id = $("#phase_id").val();
+                $.ajax({
+                    type: 'post',
+                    url: 'inc/saveResourceTask.php',
+                    datatype: "html",
+                    data: $("#taskresourcesdataForm").serialize(),
+                    beforeSend: function() {
+                        $("#taskresult").html("<img src='images/load.gif'/>loading...");
+                    },
+                    success: function(data) {
+                        $("#taskresult").html(data);
+                        if ($("#task_operation_flag").val() === 'true')
+                        {
+                            load_tasks_grd();
 
-                                // Reset Form
-                                /*
-                                 $("#task_id_val").jqxDropDownList('clearSelection', true);
-                                 $("#person_id_val").jqxDropDownList('clearSelection', true);
-                                 $("#start_month_val").jqxDropDownList('clearSelection', true);
-                                 $("#duration_val").val(0);
-                                 $("#unit_id").val(0);
-                                 $("#unit_id_val").val('');*/
-                            }
-                            else
-                                alert('حدث خطأ فى تنفيذ العملية أعد المحاولة مرة أخرى');
+                            // $("#divan_no_val").val(0);
+                            $("#task_id_val").jqxDropDownList('clearSelection', true);
+                            $("#person_id_val").jqxDropDownList('clearSelection', true);
+                            $("#start_month_val").jqxDropDownList('clearSelection', true);
+                            $("#duration_val").val(0);
+                            $("#unit_id_val").jqxDropDownList('clearSelection', true);
                         }
-                    });
-                }
+                        else
+                            alert('حدث خطأ فى تنفيذ العملية أعد المحاولة مرة أخرى');
+                    }
+                });
             }
+            else
+                alert("من فضلك أكمل باقي البيانات");
         });
 
         $('#closeButton').on('click', function() {
@@ -237,7 +197,6 @@ $project_duration = $project->GetResearchDuration($project_id);
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
                 <div style="float: right;" id="task_id_val">  </div>
-                <input type="hidden" id="project_duration" name="project_duration" <?php echo "value=" . $project_duration; ?> />
                 <input type="hidden" id="task_id" name="task_id" <?php if ($seq_id != 0) echo "value=" . $task_resources_rs["task_id"]; ?> />
             </div>
         </div> 
@@ -295,14 +254,26 @@ $project_duration = $project->GetResearchDuration($project_id);
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
                 <div style="float: right;" id="duration_val">  </div>
-                <input type="hidden" id="duration" name="duration" <?php echo "value=" . $project_duration ; ?> />
-                <input type="text" id="unit_id_val" name="unit_id_val" style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: right; border: none; background: none" <?php if ($seq_id != 0) echo "value=" . $task_resources_rs["unit_id"]; ?> disabled="true"/>
-                <input type="hidden" id="unit_id" name="unit_id" <?php if ($seq_id != 0) echo "value=" . $task_resources_rs["unit_id"]; ?> />
+                <input type="hidden" id="duration" name="duration" <?php if ($seq_id != 0) echo "value=" . $task_resources_rs["duration"]; ?> />
             </div>
         </div> 
 
+        <div class="panel_row">
 
-        </div>
+            <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+
+                <p>
+                    الوحدة الزمنية
+                    <br>
+                    Duration Unit
+                    <span class="required" style="color: red">*</span>
+                </p>
+
+            </div>
+            <div class="panel-cell" style="vertical-align: middle"> 
+                <div style="float: right;" id="unit_id_val">  </div>
+                <input type="hidden" id="unit_id" name="unit_id" <?php if ($seq_id != 0) echo "value=" . $task_resources_rs["unit_id"]; ?> />
+            </div>
         </div> 
 
 

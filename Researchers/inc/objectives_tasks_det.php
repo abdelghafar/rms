@@ -24,8 +24,8 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {name: 'task_id'},
                         {name: 'phase_id'},
                         {name: 'objective_name'},
-                        {name: 'phase_name'},
-                        {name: 'task_name'}
+                        {name: 'task_name'},
+                        {name: 'phase_name'}
                     ],
                     url: 'inc/objective_tasks_list_grid_data.php?' + post_data,
                     cache: false
@@ -53,9 +53,8 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'phase_id', datafield: 'phase_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Objective / الهدف', datafield: 'objective_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
-                        {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
-                        {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'}
-                        /*,
+                        {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
+                        {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'}/*,
                         {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
                                 return "..";
                             }, buttonclick: function(row) {
@@ -122,7 +121,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 
 
 <h2 style="font-size: 14px">
-    الربط / Mapping
+    أهداف ومهام المشروع / Objectives and Tasks Mapping
 </h2>
 <hr/>
            

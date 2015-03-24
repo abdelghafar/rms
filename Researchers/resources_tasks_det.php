@@ -13,7 +13,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 
     $(document).ready(function() {
         var theme = "energyblue";
-        $("#ResourceNewButton").jqxButton({width: '150', height: '30', theme: theme});
+        $("#ResourceNewButton").jqxButton({width: '320', height: '30', theme: theme});
 
 
         var post_data = 'project_id=' + $('#project_id').val() + '&phase_id=' + $('#global_phase_id').val();
@@ -26,6 +26,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {name: 'task_id'},
                         {name: 'person_id'},
                         {name: 'unit_id'},
+                        {name: 'phase_name'},
                         {name: 'task_name'},
                         {name: 'name_ar'},
                         {name: 'start_month'},
@@ -58,12 +59,13 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'person_id', datafield: 'person_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'unit_id', datafield: 'unit_id', align: 'center', cellsalign: 'center', hidden: true},
-                        {text: 'إسم المهمة', datafield: 'task_name', type: 'string', width: 290, align: 'center', cellsalign: 'right'},
-                        {text: 'إسم منفذ المهمة', datafield: 'name_ar', type: 'string', width: 290, align: 'center', cellsalign: 'right'},
-                        {text: 'شهر بدء المهمة', datafield: 'start_month', type: 'string', width: 100, align: 'center', cellsalign: 'center'},
-                        {text: 'مدة التنفيذ', datafield: 'duration', type: 'string', width: 100, align: 'center', cellsalign: 'center'},
-                        {text: 'الوحدة الزمنية', datafield: 'unit_name', type: 'string', width: 100, align: 'center', cellsalign: 'center'},
-                        {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
+                        {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 190, align: 'center', cellsalign: 'right'},
+                        {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 220, align: 'center', cellsalign: 'right'},
+                        {text: 'Name / الإسم', datafield: 'name_ar', type: 'string', width: 220, align: 'center', cellsalign: 'right'},
+                        {text: 'Starting Month/شهر البدء ', datafield: 'start_month', type: 'string', width: 150, align: 'center', cellsalign: 'center'},
+                        {text: '', columngroup: 'Duration', datafield: 'duration', type: 'string', width: 50, align: 'center', cellsalign: 'center'},
+                        {text: '', columngroup: 'Duration',datafield: 'unit_name', type: 'string', width: 50, align: 'center', cellsalign: 'center'},
+                        {text: 'Delete/ حذف', datafield: 'Delete/ حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
                                 return "..";
                             }, buttonclick: function(row) {
                                 //window.confirm("هل انت متأكد من حذف هذا البيان");
@@ -71,10 +73,10 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                 if (r == true)
                                 {
                                     var dataRecord = $("#tasks_grd").jqxGrid('getrowdata', row);
-                                    var post_data = '&task_id=' + dataRecord.task_id;
+                                    var post_data = 'project_id=' + $('#project_id').val()+'&seq_id=' + dataRecord.seq_id + '&person_id=' + dataRecord.person_id;
                                     $.ajax({
                                         type: 'post',
-                                        url: 'inc/deleteTask.php',
+                                        url: 'inc/deleteResource.php',
                                         datatype: "html",
                                         data: post_data,
                                         beforeSend: function() {
@@ -84,7 +86,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                             $("#taskresult").html(data);
                                             if ($("#task_operation_flag").val() === 'true')
                                             {
-                                                alert("تم الحذف بنجاح");
+                                                //alert("تم الحذف بنجاح");
                                                 //$("#form_div").html("");
                                                 load_tasks_grd();
 //                                                        var selectedrowindex = $("#tasks_grd").jqxGrid('getselectedrowindex');
@@ -99,23 +101,34 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                 }
                             }
                         }
-                    ]
+                    ],
+                    columngroups:
+                            [
+                                {text: 'Duration /المدة ', align: 'center', name: 'Duration'}
+                            ]
                 });
 
         $('#ResourceNewButton').on('click', function() {
-            var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
-            $.ajax({
-                url: "resource_task_data_form.php",
-                dataType: "html",
-                data: post_data,
-                type: 'POST',
-                beforeSend: function() {
-                    $("#form_div").html("<img src='images/load.gif'/>loading...");
-                },
-                success: function(data) {
-                    $("#form_div").html(data);
-                }
-            });
+            var phase_id = $('#global_phase_id').val();
+            if (phase_id != 0)
+            {
+                var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
+                $.ajax({
+                    url: "resource_task_data_form.php",
+                    dataType: "html",
+                    data: post_data,
+                    type: 'POST',
+                    beforeSend: function() {
+                        $("#form_div").html("<img src='images/load.gif'/>loading...");
+                    },
+                    success: function(data) {
+                        $("#form_div").html(data);
+                        $("#taskresult").html("");
+                    }
+                });
+            }
+            else
+                alert("يجب إختيار مرحلة من جدول المراحل أولا ");
         });
 
 
@@ -123,25 +136,21 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     });
 </script>
 
+<h2 style="font-size: 14px">
+    المهام وفريق العمل / HR and tasks mapping
+</h2>
+<hr/>
 
-<fieldset style="width: 95%;text-align: right;"> 
-    <legend>
-        <label>
-            <?
-           echo 'خريطة الموارد البشرية والمهمات';
-            ?>
-        </label>
-    </legend>
 
-    <div class="panel_row">
-        <div class="panel-cell" style="width: 150 ;text-align: left;padding-right: 750">
-            <input type="button" value="تخصيص عنصر بشري لمهمة" id='ResourceNewButton' style="margin: 0px 10px;"  />
-        </div>
+
+<div class="panel_row">
+    <div class="panel-cell" style="width: 320 ;text-align: left;padding-right: 580">
+        <input type="button" value="Assign task to a member / تخصص مهمة لعضو الفريق" id='ResourceNewButton' style="margin: 0px 10px;"  />
     </div>
+</div>
 
-    <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
 
-    <div id="tasks_grd">
 
-    </div>
-</fieldset>
+<div id="tasks_grd">
+
+</div>

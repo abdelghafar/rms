@@ -1,13 +1,11 @@
 <?
 session_start();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    ob_start();
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Researcher') {
-        ob_start();
-        header('Location:../Login.php');
+        header('Location:../login.php');
     }
 }
 require_once '../js/fckeditor/fckeditor.php';
@@ -16,8 +14,20 @@ require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
-if (isset($_GET['q'])) {
-    $projectId = $_GET['q'];
+$smarty = new Smarty();
+$smarty->assign('style_css', '../style.css');
+$smarty->assign('style_responsive_css', '../style.responsive.css');
+$smarty->assign('jquery_js', '../jquery.js');
+$smarty->assign('script_js', '../script.js');
+$smarty->assign('script_responsive_js', '../script.responsive.js');
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('fqa_php', '../fqa.php');
+$smarty->assign('contactus_php', '../contactus.php');
+$smarty->display('../templates/Loggedin.tpl');
+if (isset($_SESSION['q'])) {
+    $projectId = $_SESSION['q'];
     $obj = new Reseaches();
     $UserId = $_SESSION['User_Id'];
     $u = new Users();
@@ -32,24 +42,13 @@ if (isset($_GET['q'])) {
         $techId = $project['center_id'];
         $major_field_id = $project['major_field'];
         $speical_field_id = $project['special_field'];
+        $type_id = $project['type_id'];
+        $keywords = $project['keywords'];
     } else {
-        ob_start();
-        header('Location:./forbidden.php');
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
     }
 }
-
-$smarty = new Smarty();
-$smarty->assign('style_css', '../style.css');
-$smarty->assign('style_responsive_css', '../style.responsive.css');
-$smarty->assign('jquery_js', '../jquery.js');
-$smarty->assign('script_js', '../script.js');
-$smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('logout_php', '../inc/logout.inc.php');
-$smarty->assign('fqa_php', '../fqa.php');
-$smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
 ?>
 
 <head>
@@ -133,6 +132,14 @@ $smarty->display('../templates/Loggedin.tpl');
                     {name: 'subTrack_name'}
                 ],
                 url: '../Data/tracks.php?track_id=' + $("#track").val()
+            };
+            var ProjectTypesDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'title'}
+                ],
+                url: '../Data/projecttypes.php'
             };
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
             $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
@@ -249,6 +256,31 @@ if (isset($projectId)) {
 }
 ?>');
             });
+
+            dataAdapter = new $.jqx.dataAdapter(ProjectTypesDataSource);
+            $("#projecttype").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر نوع المشروع"});
+            $('#projecttype').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#projecttypeVal').val(value);
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
+                }
+            });
+            $("#projecttype").on('bindingComplete', function (event) {
+                $('#projecttype').val('<?
+if (isset($projectId)) {
+    echo $type_id;
+}
+?>');
+            });
+
         });</script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -270,6 +302,12 @@ if (isset($projectId)) {
                     {
                         input: "#subtrack", message: "من فضلك اختر التخصص الدقيق", action: 'blur', rule: function (input, commit) {
                             var index = $("#subtrack").jqxDropDownList('getSelectedIndex');
+                            return index !== -1;
+                        }
+                    },
+                    {
+                        input: "#projecttype", message: "من فضلك اختر نوع المشروع", action: 'blur', rule: function (input, commit) {
+                            var index = $("#projecttype").jqxDropDownList('getSelectedIndex');
                             return index !== -1;
                         }
                     }
@@ -298,13 +336,13 @@ if (isset($projectId)) {
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    معلومات عامة/ General Infromation 
+                    معلومات عامة / General information
                 </label>
             </legend>
-            <table style="width: 100%;margin-top: 10px;">
+            <table style="width: 100%;">
                 <tr>
                     <td>
-                        العنوان بالعربي /Arabic Title
+                        العنوان بالعربي/Arabic title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -317,7 +355,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        العنوان بالانجليزي/ English Title
+                        العنوان بالإنجليزي /English title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -330,7 +368,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        المدة / Duration
+                        المدة/ Duration  
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -340,7 +378,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        الأولوية /Priority
+                        الأولوية/Priority 
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -360,12 +398,37 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        التخصص الدقيق/SubTrack
+                        التخصص الدقيق/Sub-track
                         <span class="required">*</span>
                     </td>
                     <td>
                         <div id="subtrack"></div>
                         <input type="hidden" name="subtrackVal" id="subtrackVal"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        نوع المشروع/Project Type 
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <div id='projecttype'></div>
+                        <input type="hidden" id='projecttypeVal' name="projecttypesVal"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        الكلمات الرئيسية/Keywords
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <input id="keywords" class="textbox" type="text" placeholder="الكلمات الرئيسية/Keywords" name="keywords" value="<?
+                        if (isset($projectId)) {
+                            echo $keywords;
+                        }
+                        ?>"/>  
                     </td>
                 </tr>
             </table>

@@ -1,18 +1,18 @@
 <?php
 
-ini_set("memory_limit", "128M");
+ini_set("memory_limit", "64M");
 
 // Include the main TCPDF library (search for installation path).
-require_once('../../lib/tcpdf/tcpdf.php');
+require_once('../lib/tcpdf/tcpdf.php');
 
-require_once '../../lib/Reseaches.php';
-require_once '../../lib/research_stuff.php';
-require_once '../../lib/objectives.php';
-require_once '../../lib/projectPhases.php';
-require_once '../../lib/Settings.php';
-require_once '../../lib/budget_items.php';
-require_once '../../lib/project_budget.php';
-require_once '../../lib/objectives.php';
+require_once '../lib/Reseaches.php';
+require_once '../lib/research_stuff.php';
+require_once '../lib/objectives.php';
+require_once '../lib/projectPhases.php';
+require_once '../lib/Settings.php';
+require_once '../lib/budget_items.php';
+require_once '../lib/project_budget.php';
+require_once '../lib/objectives.php';
 
 // FILES FOR MANPOWER DUSRATIONS
 // extend TCPF with custom functions
@@ -290,17 +290,16 @@ if (isset($_GET['q'])) {
     $html.='</tbody></table>';
     $pdf->writeHTML($html, true, 0, true, 0);
     // close and output PDF document
-    $base_dir = '../../uploads/1/';
-    $uniqid = sha1($project_id);
-    $file_name = $base_dir . $uniqid;
+    $base_dir = '../uploads/generated/';
+    $file_name = $base_dir . $project_id;
     if (file_exists($file_name)) {
         unlink($file_name);
     }
     $pdf->Output($file_name . '.pdf', 'F');
-    $abs_file_name = '../../uploads/1/' . $uniqid . '.pdf';
-    echo '../../uploads/1/' . $uniqid . '.pdf';
+    $abs_file_name = '../uploads/generated/' . $project_id . '.pdf';
+    echo $abs_file_name;
     $reseach = new Reseaches();
-    $reseach->SetURL($project_id, 'uploads/1/' . $uniqid . '.pdf');
+    $reseach->SetURL($project_id, 'uploads/generated/' . $project_id . '.pdf');
 //============================================================+
 // END OF FILE
 //============================================================+

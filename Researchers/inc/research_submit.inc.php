@@ -16,6 +16,7 @@ $research_code = "";
 $Approve_session_no = 0;
 $Approve_date = '';
 $research_year = 0;
+$keywords = "";
 $program = $_SESSION['program'];
 $user = new Users();
 $UserId = $_SESSION['User_Id'];
@@ -64,6 +65,21 @@ if (!isset($_POST['subtrackVal']) || empty($_POST['subtrackVal'])) {
     $subtrackId = mysql_escape_string(trim($_POST['subtrackVal']));
 }
 
+if (!isset($_POST['projecttypesVal']) || empty($_POST['projecttypesVal'])) {
+    echo 'من فضلك ادخل نوع المشروع' . '<br/>';
+    $isValid = FALSE;
+} else {
+    $typeId = mysql_escape_string(trim($_POST['projecttypesVal']));
+}
+
+if (!isset($_POST['keywords']) || empty($_POST['keywords'])) {
+    echo 'من فضلك ادخل الكلمات الأساسية' . '<br/>';
+    $isValid = FALSE;
+} else {
+    $keywords = mysql_escape_string(trim($_POST['keywords']));
+}
+
+
 if ($isValid == FALSE) {
     echo '<label>' . 'برجاء التأكد من صحة البيانات' . '<label/>';
 }
@@ -82,7 +98,7 @@ if (isset($_GET['q'])) {
         $isValid = FALSE;
     }
     if ($isValid == TRUE) {
-        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId);
+        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId,$typeId,$keywords);
         if ($updateResult == 1) {
             echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $projectId . '")' . '</script>';
         } else {
@@ -107,7 +123,8 @@ else {
     $research_code = '';
     if ($isValid == TRUE) {
         $researcher = new Reseaches();
-        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program, '', '');
+
+        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program,$typeId,$keywords);
         $x = $research_id;
         //create dir 
 
@@ -131,5 +148,5 @@ else {
     }
 }
 ?>
-<link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
+<link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

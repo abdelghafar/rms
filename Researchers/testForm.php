@@ -1,10 +1,3 @@
-<?
-header('HTTP/1.1 403 Unauthorized');
-//$ret = array('status' => 'FALSE', 'txt' => 'Unauthorized access. Please check if You are still logged in.');
-//print json_encode($ret);
-echo '<h1>Unauthorized access. Please check if You are still logged in.</h1>';
-exit();
-?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,8 +27,3 @@ exit();
 
     </body>
 </html>
-<?
-echo urlencode(base64_encode(1));
-echo '<br/>';
-echo base64_decode(urldecode('MQ%3D%3D'));
-?>

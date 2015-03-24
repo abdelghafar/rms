@@ -3,10 +3,10 @@ session_start();
 $project_id = $_REQUEST['project_id'];
 $seq_id = $_REQUEST['seq_id'];
 
-require_once '../lib/objectives.php';
+require_once '../lib/outcomes.php';
 if ($seq_id != 0) {
-    $obj = new Objectives();
-    $obj_rs = $obj->GetObjectiveData($seq_id);
+    $obj = new Outcomes();
+    $obj_rs = $obj->GetOutcomeData($seq_id);
 } else {
     
 }
@@ -27,14 +27,13 @@ if ($seq_id != 0) {
     $(document).ready(function() {
         var theme = "energyblue";
         $("#saveButton").jqxButton({width: '100', height: '30', theme: theme});
-        $("#obj_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
-        $("#obj_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
+        $("#outcome_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
+        $("#outcome_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
     });
     
     $(document).ready(function() {
         $('#objdataForm').jqxValidator({rules: [
-                {input: '#obj_name', message: 'من فضلك ادخل الهدف', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'left'},
-                {input: '#obj_desc', message: 'من فضلك ادخل طريقة تحقيق الهدف', action: 'keyup,blur', rule: 'minLength=15,required', rtl: true, position: 'left'}
+                {input: '#outcome_name', message: 'من فضلك ادخل مخرج المشروع', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'left'}
             ], theme: 'energyblue', animation: 'fade'
         });
 
@@ -48,17 +47,17 @@ if ($seq_id != 0) {
                 project_id = $("#project_id").val();
                 $.ajax({
                     type: 'post',
-                    url: 'inc/saveObjective.php',
+                    url: 'inc/saveOutcome.php',
                     datatype: "html",
                     data: $("#objdataForm").serialize(),
                     beforeSend: function() {
-                        $("#objectiveresult").html("<img src='images/load.gif'/>loading...");
+                        $("#outcomeresult").html("<img src='images/load.gif'/>loading...");
                     },
                     success: function(data) {
-                        $("#objectiveresult").html(data);
-                        if ($("#objective_operation_flag").val() === 'true')
+                        $("#outcomeresult").html(data);
+                        if ($("#outcome_operation_flag").val() === 'true')
                         {
-                            window.location.assign('objectives_tasks.php?q=' + project_id);
+                            window.location.assign('outcomes_objectives.php?q=' + project_id);
                             //$("#obj_form_div").html("");
 
                         }
@@ -82,37 +81,36 @@ if ($seq_id != 0) {
     <fieldset style="width: 600px;text-align: right">
         <legend>
             <label>
-                اضافة -تعديل أهداف المشروع  / Add-Update Project Objectives
+                اضافة - تعديل  مخرجات المشروع / Add - Update Project Outcomes 
             </label>
         </legend>
         <div class="panel_row">
 
-            <div class="panel-cell" style="width: 150px;text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
 
                 <p>
-                    عنوان الهدف  
+                    المخرج
                     <br>
-                    Objective Title
-                    <span class="required" style="color: red">*</span>
+                   Outcome
+                   <span class="required" style="color: red">*</span>
                 </p>
 
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
-                <input type="text" id="obj_name" name="obj_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["obj_title"] . "'"; ?>/>
+                <input type="text" id="outcome_name" name="outcome_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["outcome_title"] . "'"; ?>/>
             </div>
         </div> 
 
         <div class="panel_row">
-            <div class="panel-cell" style="width: 150px;text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
                 <p>
-                    طريقة تحقيق الهدف 
-                    <br>
-                    Approach for Objective
-                    <span class="required" style="color: red">*</span>
+                  الوصف
+                   <br>
+                   Description 
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
-                <textarea name="obj_desc" rows="4" cols="20" id="obj_desc"><?php if ($seq_id != 0) echo $obj_rs["obj_desc"]; ?></textarea>
+                <textarea name="outcome_desc" rows="4" cols="20" id="outcome_desc"><?php if ($seq_id != 0) echo $obj_rs["outcome_desc"]; ?></textarea>
             </div>
         </div> 
 

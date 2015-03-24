@@ -11,7 +11,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 $project_id = $_GET["q"];
 require_once '../lib/budget.php';
 $project_budget = new Budget();
-$item_id = 1; // for manpower budget item
+$item_id = 15; // for manpower budget item
 $project_budget_total = $project_budget->GetBudgetTotal($project_id);
 $project_manpower_total = round($project_budget->GetItemTotal($project_id, $item_id));
 $manpower_percent = round($project_manpower_total / $project_budget_total * 100, 2);
@@ -80,7 +80,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //var theme = "";
                 var theme = "energyblue";
                 $("#manpower_percent").jqxInput({width: '100', height: '30', theme: theme, rtl: true, disabled: true});
@@ -90,7 +90,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 outcomes_list();
 
                 function outcomes_list() {
-                    var post_data = 'project_id=' + $('#project_id').val();
+                    var post_data = 'project_id=' + $('#project_id').val()+'&item_id=' + $('#manpower_id').val();
                     var source =
                             {
                                 datatype: "json",
@@ -129,26 +129,27 @@ $smarty->display('../templates/Loggedin.tpl');
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'item_id', datafield: 'item_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'person_id', datafield: 'person_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Researcher -Role / إسم الباحث - الوظيفة ', datafield: 'person_name', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
-                                    {text: 'Duration/ مدة العمل', datafield: 'duration', type: 'string', editable: false, width: 100, align: 'center', cellsalign: 'right'},
-                                    {text: 'Duration Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'right'},
+                                    {text: 'Name -Role / الإسم - المشاركة', datafield: 'person_name', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
+                                    {text: 'Duration/  المدة', datafield: 'duration', type: 'string', editable: false, width: 100, align: 'center', cellsalign: 'right'},
+                                    {text: 'Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'right'},
                                     {text: 'dunit_id', datafield: 'dunit_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Compensation/ أجر الوحدة', datafield: 'compensation', width: 125, align: 'center', cellsalign: 'right', columntype: 'numberinput',
-                                        validation: function (cell, value) {
+                                    {text: 'Compensation/المكافأة ', datafield: 'compensation', width: 125, align: 'center', cellsalign: 'right', columntype: 'numberinput',
+                                        validation: function(cell, value) {
                                             if (value < 0) {
                                                 return {result: false, message: "قيمة غير صحيحة"};
                                             }
                                             return true;
                                         },
-                                        createeditor: function (row, cellvalue, editor) {
+                                        createeditor: function(row, cellvalue, editor) {
                                             editor.jqxNumberInput({digits: 4});
                                         }},
                                     {text: 'Total / الإجمالى', datafield: 'total_amount', type: 'string', editable: false, width: 150, align: 'center', cellsalign: 'right'}
                                 ]
                             });
                 }
-                $("#outcomes_grd").on('cellendedit', function (event)
+                $("#outcomes_grd").on('cellendedit', function(event)
                 {
+
                     var column = args.datafield;
                     var rowid = args.rowindex;
                     var compensation = args.value;
@@ -171,10 +172,10 @@ $smarty->display('../templates/Loggedin.tpl');
                             url: 'inc/saveBudgetManPower.php',
                             datatype: "html",
                             data: post_data,
-                            beforeSend: function () {
+                            beforeSend: function() {
                                 //$("#outcomeresult").html("<img src='images/load.gif'/>loading...");
                             },
-                            success: function (data) {
+                            success: function(data) {
                                 var newmanpower_total = parseFloat($("#manpower_buget").val()) + changevalue;
                                 //alert(newmanpower_total);
                                 var newtotal_budget = parseFloat($("#total_buget").val()) + changevalue;
@@ -205,10 +206,15 @@ $smarty->display('../templates/Loggedin.tpl');
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    ميزانية المشروع - 1. الفريق البحثى / Project Budget : 1. Manpower Budget
+                    ميزانية المشروع  / Project Budget 
 
                 </label>
             </legend>
+            <h2 style="font-size: 14px">
+                1. مكافأت الفريق البحثى  / Manpower compensation
+            </h2>
+            <hr/>
+            <input type="hidden" id="manpower_id" name="manpower_id" value="<? echo $item_id; ?>" />
             <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
             <input type="hidden" id="global_outcome_id" name="global_outcome_id" value="0" />
 

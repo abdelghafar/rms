@@ -37,7 +37,7 @@ if ($task_id != 0) {
         });
 */
         $('#taskdataForm').jqxValidator({rules: [
-                {input: '#task_name', message: 'من فضلك ادخل عنوان المهمة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
+                {input: '#task_name', message: 'Please Insert Task Title / من فضلك ادخل عنوان المهمة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
         });
 
         $('#saveButton').on('click', function() {
@@ -60,6 +60,7 @@ if ($task_id != 0) {
                         $("#taskresult").html(data);
                         if ($("#task_operation_flag").val() === 'true')
                         {
+                            $("#phaseresult").html("");
                             $("#form_div").html("");
                             load_tasks_grd();
 
@@ -84,7 +85,7 @@ if ($task_id != 0) {
     <fieldset style="width: 700px;text-align: right">
         <legend>
             <label>
-                اضافة مهمة
+                اضافة -تعديل مهمة / Add -Update Task
             </label>
         </legend>
         <div class="panel_row">
@@ -92,7 +93,7 @@ if ($task_id != 0) {
             <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
 
                 <p>
-                    عنوان المهمة
+                    عنوان المهمة / Task Title <span class="required" style="color: red">*</span>
                 </p>
 
             </div>
@@ -105,7 +106,7 @@ if ($task_id != 0) {
         <div class="panel_row">
             <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
                 <p>
-                    التفاصيل
+                      التفاصيل/Description
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
@@ -114,7 +115,7 @@ if ($task_id != 0) {
         </div> 
 
         <div style="text-align:center; padding-top: 10px">
-            <input type="button" value="حفظ" id='saveButton' style="margin-top: 20px;width: 50px"  />
+            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
         </div>
     </fieldset>
 </form>

@@ -33,7 +33,7 @@ if ($seq_id != 0) {
 
 
                 $('#phasedataForm').jqxValidator({rules: [
-                        {input: '#phase_name', message: 'من فضلك ادخل عنوان المرحلة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
+                        {input: '#phase_name', message: 'من فضلك ادخل عنوان المرحلة/ Please Enter Phase Title', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
                 });
 
                 $('#saveButton').on('click', function() {
@@ -55,7 +55,7 @@ if ($seq_id != 0) {
                                 $("#phaseresult").html(data);
                                 if ($("#phase_operation_flag").val() === 'true')
                                     {
-                                        window.location.assign('phases.php?research_id=' + project_id);
+                                        window.location.assign('phases.php?q=' + project_id);
                                     //$("#phase_form_div").html("");
                                     
                                     }
@@ -63,7 +63,7 @@ if ($seq_id != 0) {
                         });
                     }
                     else
-                        alert("من فضلك أكمل باقي البيانات");
+                        alert("من فضلك أكمل باقي البيانات/ Please Complete Data");
                 });
             });</script>
 
@@ -75,16 +75,21 @@ if ($seq_id != 0) {
             <fieldset style="width: 600px;text-align: right">
                 <legend>
                     <label>
-                        اضافة مرحلة عمل
-                    </label>>
+                        اضافة -تعديل مرحلة عمل  / Add-Update Project Phase
+                    </label>
+                    
+                </legend>
                 <div class="panel_row">
 
-                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+                    <div class="panel-cell" style="width: 160px;text-align: left;padding-left: 10px;"> 
 
                         <p>
-                            عنوان المرحلة
+                           عنوان المرحلة 
+                           <br>
+                           Phase Title 
+                           <span class="required" style="color: red">*</span>
                         </p>
-
+                        
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="text" id="phase_name" name="phase_name" <?php if ($seq_id != 0) echo "value='" . $phase_rs["phase_name"]."'"; ?>/>
@@ -92,9 +97,11 @@ if ($seq_id != 0) {
                 </div> 
 
                 <div class="panel_row">
-                    <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
+                    <div class="panel-cell" style="width: 160px;text-align: left;padding-left: 10px;"> 
                         <p>
                             التفاصيل
+                            <br>
+                            Description
                         </p>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
@@ -103,7 +110,7 @@ if ($seq_id != 0) {
                 </div> 
 
                 <div style="text-align:center; padding-top: 10px">
-                    <input type="button" value="حفظ" id='saveButton' style="margin-top: 20px;width: 50px"  />
+                    <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
                 </div>
             </fieldset>
         </form>

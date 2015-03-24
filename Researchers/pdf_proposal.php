@@ -125,19 +125,18 @@ function get_project_phases($project_id) {
     while ($phases_row = mysql_fetch_array($phases_rs, MYSQL_ASSOC)) {
         $phases_list[] = array(
             'phase_id' => $phases_row['seq_id'],
-            'phase_name' => $phases_row['phase_name'],
-            'phase_desc'=>$phases_row['phase_desc']
+            'phase_name' => $phases_row['phase_name']
         );
     }
     return $phases_list;
 }
 
 //======================================= WORK PLAN AND TIME SCHEDUAL
-function get_project_work_plan($project_id,$phase_id, $duration) {
+function get_project_work_plan($phase_id, $duration) {
 
     $phaseworkplan = new StuffTasks();
 
-    $phaseworkplan_rs = $phaseworkplan->GetPhaseTasksDurations($project_id,$phase_id);
+    $phaseworkplan_rs = $phaseworkplan->GetPhaseTasksDurations($phase_id);
 
     while ($phaseworkplan_row = mysql_fetch_array($phaseworkplan_rs, MYSQL_ASSOC)) {
         $monthes_array = array();

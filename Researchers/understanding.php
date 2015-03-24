@@ -2,7 +2,7 @@
 session_start();
 require_once '../lib/understanding.php';
 $obj = new Understanding();
-$content = $obj->GetUnderstanding(1);
+$content = $obj->GetUnderstanding($_SESSION['program']);
 
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
     header('Location:../Login.php');

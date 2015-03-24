@@ -127,7 +127,7 @@ $project = new Reseaches();
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-
+                                        
                                         window.location.assign('accept.php?q=' + urlencode(base64_encode(projectId)));
                                     }
                                 },
@@ -135,7 +135,8 @@ $project = new Reseaches();
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                        window.location.assign('research_submit.php?q=' + projectId);
+                                        $.ajax({url: 'ajax/Session.php?q=' + projectId});
+                                        window.location.assign('research_submit.php');
                                     }
                                 },
                                 {text: 'Delete/حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
@@ -238,44 +239,44 @@ $project = new Reseaches();
         <title></title>
     </head>
     <body style="background-color: #ededed;">
-        <div id="window" style="visibility: hidden;">
-            <div id="windowHeader">
-            </div>
-            <div id="windowContent" style="overflow: auto;" ></div>
+    <div id="window" style="visibility: hidden;">
+        <div id="windowHeader">
         </div>
-        <fieldset style="width: 95%;text-align: right;"> 
-            <legend>
-                <label>
-                    <?
-                    echo 'مرحبا ' . $_SESSION['User_Name'];
-                    ?>
-                </label>
-            </legend>
-            <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
-                <br/>
-                <br/>
-                <label>
-                    المشاريع المحفوظة / Saved Drafts
-                </label>
-                <hr/>
-                <div id="jqxgrid"></div>
-                <br/>
+        <div id="windowContent" style="overflow: auto;" ></div>
+    </div>
+    <fieldset style="width: 95%;text-align: right;"> 
+        <legend>
+            <label>
+                <?
+                echo 'مرحبا ' . $_SESSION['User_Name'];
+                ?>
+            </label>
+        </legend>
+        <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
+            <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
+            <br/>
+            <br/>
+            <label>
+                المشاريع المحفوظة / Saved Drafts
+            </label>
+            <hr/>
+            <div id="jqxgrid"></div>
+            <br/>
 
-                <br/>
-                <br/>
-                <label>
-                    المشاريع المقدمة / Proposed Projects 
-                </label>
-                <hr/>
-                <div id="jqxSubmittedGrid"></div>
-                <br/>
+            <br/>
+            <br/>
+            <label>
+                المشاريع المقدمة / Proposed Projects 
+            </label>
+            <hr/>
+            <div id="jqxSubmittedGrid"></div>
+            <br/>
 
-            </div>
+        </div>
 
-        </fieldset>
+    </fieldset>
 
-    </body>
+</body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');

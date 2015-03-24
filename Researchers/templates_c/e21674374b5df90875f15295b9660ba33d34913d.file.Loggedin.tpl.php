@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-03-24 16:42:59
-         compiled from "..\templates\Loggedin.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1794252e5a0679ccd01-38016799%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.13, created on 2015-03-19 12:06:38
+         compiled from "../templates/Loggedin.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:185601666254dc664c19bdb7-19133097%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'd708c831ebea94065db9d5159fbf6f4e49867c13' => 
+    'e21674374b5df90875f15295b9660ba33d34913d' => 
     array (
-      0 => '..\\templates\\Loggedin.tpl',
-      1 => 1426531554,
+      0 => '../templates/Loggedin.tpl',
+      1 => 1426754904,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1794252e5a0679ccd01-38016799',
+  'nocache_hash' => '185601666254dc664c19bdb7-19133097',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_52e5a067c19f07_08014175',
+  'unifunc' => 'content_54dc664c1e92b2_48686213',
   'variables' => 
   array (
     'title' => 0,
@@ -26,16 +26,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'script_js' => 0,
     'script_responsive_js' => 0,
     'index_php' => 0,
-    'about_php' => 0,
     'logout_php' => 0,
+    'aboutus_php' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_52e5a067c19f07_08014175')) {function content_52e5a067c19f07_08014175($_smarty_tpl) {?><html dir="rtl" lang="en-US"><head>
+<?php if ($_valid && !is_callable('content_54dc664c1e92b2_48686213')) {function content_54dc664c1e92b2_48686213($_smarty_tpl) {?><html dir="rtl" lang="en-US"><head>
         <meta charset="utf-8">
         <title>
             <?php if (!isset($_smarty_tpl->tpl_vars['title']->value)){?>
-                نظام ادارة المنح البحثية
+                نظام إدارة المنح البحثية
             <?php }else{ ?>
                 <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 
@@ -66,10 +66,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <ul class="art-hmenu">
                         <li><a href="<?php echo $_smarty_tpl->tpl_vars['index_php']->value;?>
 " class="active">الصفحة الرئيسية</a></li>
-                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['about_php']->value;?>
-">حول</a></li>
                         <li><a href="<?php echo $_smarty_tpl->tpl_vars['logout_php']->value;?>
 " class="active">خروج</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['aboutus_php']->value;?>
+">حول</a></li>
                     </ul> 
                 </div>
             </nav>
@@ -82,45 +82,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
                             </div>
                             <div class="art-slide-item art-slideheader1">
-                                <div class="art-textblock art-slideheader1-object832388275" data-left="0%">
-                                    <div class="art-slideheader1-object832388275-text-container">
-                                        <div class="art-slideheader1-object832388275-text"><p style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">الإبتــــــكار</p></div>
-                                    </div>
 
-                                </div>
                             </div>
                             <div class="art-slide-item art-slideheader2">
-                                <div class="art-textblock art-slideheader2-object1285826474" data-left="0%">
-                                    <div class="art-slideheader2-object1285826474-text-container">
-                                        <div class="art-slideheader2-object1285826474-text"><p style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">الإبــــداع</p></div>
-                                    </div>
 
-                                </div>
                             </div>
                             <div class="art-slide-item art-slideheader3">
-                                <div class="art-textblock art-slideheader3-object1450141196" data-left="0%">
-                                    <div class="art-slideheader3-object1450141196-text-container">
-                                        <div class="art-slideheader3-object1450141196-text"><p style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">العمل الجماعى</p></div>
-                                    </div>
 
-                                </div>
                             </div>
                             <div class="art-slide-item art-slideheader4">
-                                <div class="art-textblock art-slideheader4-object1709499836" data-left="0%">
-                                    <div class="art-slideheader4-object1709499836-text-container">
-                                        <div class="art-slideheader4-object1709499836-text"><p style="color: #E3ECF2; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">خدمة المجتمع</p></div>
-                                    </div>
 
-                                </div>
+                            </div>
+                            <div class="art-slide-item art-slideheader5">
+
                             </div>
 
                         </div>
                     </div>
-                    <div class="art-slidenavigator art-slidenavigatorheader" data-left="92.1">
-                        <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
+                    <div class="art-slidenavigator art-slidenavigatorheader" data-left="90.6">
+                        <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
                     </div>
 
-                    <div class="art-shapes"></div>
+
+
+                    <div class="art-shapes">
+
+                    </div>
+
+
+
+
+
+
                 </header>
                 <div class="art-layout-wrapper">
                     <div class="art-content-layout">

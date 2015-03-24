@@ -69,7 +69,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var theme = "energyblue";
                 /*$("#PhaseNewButton").jqxButton({width: '100', height: '30', theme: theme});
                  $("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
@@ -82,10 +82,11 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //var theme = "";
 
                 phases_list();
+                load_tasks_grd();
                 //load_tasks_grd();
 
                 function phases_list() {
@@ -121,18 +122,36 @@ $smarty->display('../templates/Loggedin.tpl');
                                 columns: [
                                     {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'إسم المرحلة', datafield: 'phase_name', type: 'string', width: 930, align: 'center', cellsalign: 'right'}
+                                    {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 930, align: 'center', cellsalign: 'right'}
                                 ]
                             });
                 }
 
-                $("#phases_grd").on('rowdoubleclick', function (event) {
+                $("#phases_grd").on('rowdoubleclick', function(event) {
                     var phase_id = $('#phases_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_phase_id').val(phase_id);
 
                     load_tasks_grd();
 
                 });
+
+
+                /*$('#PhaseNewButton').on('click', function() {
+                 var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
+                 $.ajax({
+                 url: "phase_data_form.php",
+                 dataType: "html",
+                 data: post_data,
+                 type: 'POST',
+                 beforeSend: function() {
+                 $("#form_div").html("<img src='images/load.gif'/>loading...");
+                 },
+                 success: function(data) {
+                 $("#form_div").html(data);
+                 }
+                 });
+                 });*/
+
             });
         </script>
 
@@ -146,15 +165,37 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function () {
+                    beforeSend: function() {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function (data) {
+                    success: function(data) {
+                        $("#form_div").html("");
                         $("#tasks_div").html(data);
                     }
                 });
             }
 
+            function next_step()
+            {
+                var post_data = 'project_id=' + $('#project_id').val() + '&form_name=resources_tasks';
+                $.ajax({
+                    url: "inc/WizardCheck.inc.php",
+                    dataType: "html",
+                    data: post_data,
+                    type: 'POST',
+                    beforeSend: function() {
+                        $("#step_div").html("<img src='images/load.gif'/>loading...");
+                    },
+                    success: function(data) {
+                        //
+                        if (data == 1)
+                            window.location.assign('outcomes_objectives.php?q=' + $('#project_id').val());
+//alert(data);
+                        else
+                            $("#step_div").html(data);
+                    }
+                });
+            }
 
         </script>
         <title></title>
@@ -164,54 +205,47 @@ $smarty->display('../templates/Loggedin.tpl');
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    <?
-                    echo ' الموارد البشرية والمهمات';
-                    ?>
+                    ربط المهام بفريق العمل / HR and tasks mapping
+                    
                 </label>
             </legend>
             <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
             <input type="hidden" id="global_phase_id" name="global_phase_id" value="0" />
             <div class="panel_row">
-                لعرض الموارد البشرية المخصصة لكل مرحلة بالنقر المزدوج بالفارة على المرحلة
+                النقر المزدوج على المرحلة يظهر ربط المهام بفريق العمل
+                <br>
+                Double-click a phase to see its tasks mapping
             </div>
-
+            
 
             <div id="phases_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
             </div>
 
 
+
+            <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
+            <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
+            <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
+            <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
+            <div id="step_div" style="padding: 10px;width: 100%;">    </div>
+
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="submit_button" href="#" onclick="next_step();" style="float: right;margin-left: 25px;margin-top: 20px;">
+                            <img src="images/next.png" style="border: none;" alt="next"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                            <img src="images/back.png" style="border: none;" alt="back"/>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
         </fieldset>
-        <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
-        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
-        <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
-
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/next.png" style="border: none;" alt="next"/>
-                        <div>
-                            <span>
-                                التالي / Next
-                            </span>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/back.png" style="border: none;" alt="back"/>
-                        <div>
-                            <span>
-                                Prevoius / السابق
-                            </span>
-                        </div>
-                    </a>
-                </td>
-            </tr>
-        </table>
-
-
 
     </body>
 </html>

@@ -72,7 +72,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript">
             $(document).ready(function() {
                 var theme = "energyblue";
-                $("#ObjectiveNewButton").jqxButton({width: '250', height: '30', theme: theme});
+                $("#ObjectiveNewButton").jqxButton({width: '200', height: '30', theme: theme});
                 /*$("#obj_title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
                  $("#obj_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
                  $("#sendButton").on('click', function () {
@@ -120,8 +120,8 @@ $smarty->display('../templates/Loggedin.tpl');
                                 columns: [
                                     {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Objective / الهدف', datafield: 'obj_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
-                                    {text: 'Approach / الطريقة', datafield: 'obj_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
+                                    {text: 'Task Name / إسم المهمة', datafield: 'obj_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
+                                    {text: 'Approach for Objective / طريقة تحقيق الهدف ', datafield: 'obj_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
                                     {text: 'Edit/تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
                                             return "..";
                                         }, buttonclick: function(row) {
@@ -270,24 +270,19 @@ $smarty->display('../templates/Loggedin.tpl');
             <legend>
                 <label>
                     <?
-                    echo 'ربط الأهداف بالمراحل والمهام / Objectives, phases and tasks mapping';
+                    echo 'خريطة أهداف ومهام المشروع / Project Objectives and Tasks Mapping';
                     ?>
                 </label>
             </legend>
             <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
             <input type="hidden" id="global_objective_id" name="global_objective_id" value="0" />
-             <h2 style="font-size: 14px">
-                الأهداف / Objectives
-            </h2>
-            <hr/>
-            
             <div class="panel_row">
-                <div class="panel-cell" style="text-align: left;padding-right: 660">
-                    <input type="button" value="Add a new objective / إضافة هدف جديد" id='ObjectiveNewButton' style="margin: 0px 10px;"  />
+                <div class="panel-cell" style="width: 200 ;text-align: left;padding-right: 700">
+                    <input type="button" value="Add Objective / إضافة هدف" id='ObjectiveNewButton' style="margin: 0px 10px;"  />
                 </div>
             </div>
 
-           
+
             <div id="objectives_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
             </div>

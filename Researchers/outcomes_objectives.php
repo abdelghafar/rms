@@ -72,9 +72,9 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript">
             $(document).ready(function() {
                 var theme = "energyblue";
-                $("#ObjectiveNewButton").jqxButton({width: '250', height: '30', theme: theme});
-                /*$("#obj_title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
-                 $("#obj_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
+                $("#outcomeNewButton").jqxButton({width: '200', height: '30', theme: theme});
+                /*$("#outcome_title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
+                 $("#outcome_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
                  $("#sendButton").on('click', function () {
                  
                  });*/
@@ -86,9 +86,9 @@ $smarty->display('../templates/Loggedin.tpl');
             $(document).ready(function() {
                 //var theme = "";
 
-                objectives_list();
-                load_tasks_grd();
-                function objectives_list() {
+                outcomes_list();
+                load_objectives_grd();
+                function outcomes_list() {
                     var post_data = 'project_id=' + $('#project_id').val();
                     var source =
                             {
@@ -96,14 +96,14 @@ $smarty->display('../templates/Loggedin.tpl');
                                 datafields: [
                                     {name: 'seq_id'},
                                     {name: 'project_id'},
-                                    {name: 'obj_title'},
-                                    {name: 'obj_desc'}
+                                    {name: 'outcome_title'},
+                                    {name: 'outcome_desc'}
                                 ],
-                                url: 'inc/objectives_list_grid_data.php?' + post_data,
+                                url: 'inc/outcomes_list_grid_data.php?' + post_data,
                                 cache: false
                             };
                     var dataAdapter = new $.jqx.dataAdapter(source);
-                    $("#objectives_grd").jqxGrid(
+                    $("#outcomes_grd").jqxGrid(
                             {
                                 source: source,
                                 theme: 'energyblue',
@@ -120,15 +120,15 @@ $smarty->display('../templates/Loggedin.tpl');
                                 columns: [
                                     {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Objective / الهدف', datafield: 'obj_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
-                                    {text: 'Approach / الطريقة', datafield: 'obj_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
-                                    {text: 'Edit/تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
+                                    {text: 'Outcome / المخرج', datafield: 'outcome_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
+                                    {text: 'Description/ الوصيف ', datafield: 'outcome_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
+                                    {text: 'Update / تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
                                             return "..";
                                         }, buttonclick: function(row) {
-                                            var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
-                                            var post_data = 'seq_id=' + dataRecord.seq_id + '&project_id=' + dataRecord.project_id + '&obj_title=' + dataRecord.obj_title + '&obj_desc=' + dataRecord.obj_desc;
+                                            var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
+                                            var post_data = 'seq_id=' + dataRecord.seq_id + '&project_id=' + dataRecord.project_id + '&outcome_title=' + dataRecord.outcome_title + '&outcome_desc=' + dataRecord.outcome_desc;
                                             $.ajax({
-                                                url: "objective_data_form.php",
+                                                url: "outcome_data_form.php",
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
@@ -142,15 +142,15 @@ $smarty->display('../templates/Loggedin.tpl');
 
                                         }
                                     },
-                                    {text: 'تخصيص مهام/Asign Tasks', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function() {
-                                            return "تخصيص مهام/Asign Tasks";
+                                    {text: 'Assign a goal / تخصيص هدف', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function() {
+                                            return "Assign a goal / تخصيص هدف";
                                         }, buttonclick: function(row) {
-                                            var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
+                                            var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
                                             $("#form_div").html("");
-                                            var post_data = 'project_id=' + dataRecord.project_id + '&objective_id=' + dataRecord.seq_id;
+                                            var post_data = 'project_id=' + dataRecord.project_id + '&outcome_id=' + dataRecord.seq_id;
 
                                             $.ajax({
-                                                url: "objectives_tasks_det_edit.php",
+                                                url: "outcome_objectives_det_edit.php",
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
@@ -163,30 +163,30 @@ $smarty->display('../templates/Loggedin.tpl');
                                             });
                                         }
                                     },
-                                    {text: 'Delete/حذف', datafield: 'Delete/حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
+                                    {text: 'Delete / حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
                                             return "..";
                                         }, buttonclick: function(row) {
                                             //window.confirm("هل انت متأكد من حذف هذا البيان");
                                             var r = confirm("هل انت متأكد من حذف هذا البيان");
                                             if (r == true)
                                             {
-                                                var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
-                                                var post_data = '&objective_id=' + dataRecord.seq_id;
+                                                var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
+                                                var post_data = '&outcome_id=' + dataRecord.seq_id;
                                                 var project_id = dataRecord.project_id;
 
                                                 $.ajax({
                                                     type: 'post',
-                                                    url: 'inc/deleteObjective.php',
+                                                    url: 'inc/deleteoutcome.php',
                                                     datatype: "html",
                                                     data: post_data,
                                                     beforeSend: function() {
-                                                        $("#objectiveresult").html("<img src='images/load.gif'/>loading...");
+                                                        $("#outcomeresult").html("<img src='images/load.gif'/>loading...");
                                                     },
                                                     success: function(data) {
-                                                        $("#objectiveresult").html(data);
-                                                        if ($("#objective_operation_flag").val() === 'true')
+                                                        $("#outcomeresult").html(data);
+                                                        if ($("#outcome_operation_flag").val() === 'true')
                                                         {
-                                                            window.location.assign('objectives_tasks.php?q=' + project_id);
+                                                            window.location.assign('outcomes_objectives.php?q=' + project_id);
                                                             //$("#objective_form_div").html("");
 
                                                         }
@@ -199,16 +199,16 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#objectives_grd").on('rowdoubleclick', function(event) {
-                    var objective_id = $('#objectives_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
-                    $('#global_objective_id').val(objective_id);
-                    load_tasks_grd();
+                $("#outcomes_grd").on('rowdoubleclick', function(event) {
+                    var outcome_id = $('#outcomes_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
+                    $('#global_outcome_id').val(outcome_id);
+                    load_objectives_grd();
                 });
 
-                $('#ObjectiveNewButton').on('click', function() {
+                $('#outcomeNewButton').on('click', function() {
                     var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
                     $.ajax({
-                        url: "objective_data_form.php",
+                        url: "outcome_data_form.php",
                         dataType: "html",
                         data: post_data,
                         type: 'POST',
@@ -224,26 +224,26 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            function load_tasks_grd()
+            function load_objectives_grd()
             {
-                var post_data = 'project_id=' + $('#project_id').val() + '&objective_id=' + $('#global_objective_id').val();
+                var post_data = 'project_id=' + $('#project_id').val() + '&outcome_id=' + $('#global_outcome_id').val();
                 $.ajax({
-                    url: "objectives_tasks_det.php",
+                    url: "outcome_objectives_det.php",
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
                     beforeSend: function() {
-                        $("#tasks_div").html("<img src='images/load.gif'/>loading...");
+                        $("#objectives_div").html("<img src='images/load.gif'/>loading...");
                     },
                     success: function(data) {
-                        $("#tasks_div").html(data);
+                        $("#objectives_div").html(data);
                     }
                 });
             }
 
             function next_step()
             {
-                var post_data = 'project_id=' + $('#project_id').val() + '&form_name=objectives_tasks';
+                var post_data = 'project_id=' + $('#project_id').val() + '&form_name=outcomes_objectives';
                 $.ajax({
                     url: "inc/WizardCheck.inc.php",
                     dataType: "html",
@@ -255,7 +255,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     success: function(data) {
                         //alert(data);
                         if (data == 1)
-                            window.location.assign('resources_tasks.php?q=' + $('#project_id').val());
+                            window.location.assign('manpower_budget.php?q=' + $('#project_id').val());
                         else
                             $("#step_div").html(data);
                     }
@@ -269,32 +269,30 @@ $smarty->display('../templates/Loggedin.tpl');
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
-                    <?
-                    echo 'ربط الأهداف بالمراحل والمهام / Objectives, phases and tasks mapping';
-                    ?>
+                    ربط المخرجات بالأهداف  / Outcomes and goals mapping
                 </label>
             </legend>
-            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
-            <input type="hidden" id="global_objective_id" name="global_objective_id" value="0" />
-             <h2 style="font-size: 14px">
-                الأهداف / Objectives
+
+            <h2 style="font-size: 14px">
+                المخرجات / Outcomes
             </h2>
             <hr/>
-            
+            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
+            <input type="hidden" id="global_outcome_id" name="global_outcome_id" value="0" />
             <div class="panel_row">
-                <div class="panel-cell" style="text-align: left;padding-right: 660">
-                    <input type="button" value="Add a new objective / إضافة هدف جديد" id='ObjectiveNewButton' style="margin: 0px 10px;"  />
+                <div class="panel-cell" style="width: 100 ;text-align: left;padding-right: 720">
+                    <input type="button" value="Add an outcome / إضافة مخرج" id='outcomeNewButton' style="margin: 0px 10px;"  />
                 </div>
             </div>
 
-           
-            <div id="objectives_grd" style="margin-right: 0px !important; padding-right: 0px !important">
+
+            <div id="outcomes_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
             </div>
 
-            <div id="objectiveresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
+            <div id="outcomeresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
             <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
-            <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
+            <div id="objectives_div" style="padding-top: 10px;width: 100%">    </div>
             <div id="step_div" style="padding: 10px;width: 100%;">    </div>
             <table style="width: 100%;">
                 <tr>
@@ -304,13 +302,14 @@ $smarty->display('../templates/Loggedin.tpl');
                         </a>
                     </td>
                     <td>
-                        <a href="phases.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <a href="resources_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
                             <img src="images/back.png" style="border: none;" alt="back"/>
                         </a>
                     </td>
                 </tr>
             </table>
         </fieldset>
+
     </body>
 </html>
 <?
