@@ -8,34 +8,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-if (isset($_GET['program'])) {
-    require_once '../lib/program.php';
-    $t = new program();
-
-    $program_string = filter_input(INPUT_GET, 'program', FILTER_SANITIZE_STRING);
-    switch ($program_string) {
-        case 'ba7th': {
-                $program_id = $t->GetProgramId('ba7th');
-                $_SESSION['program'] = $program_id;
-                break;
-            }
-        case 'ra2d': {
-                $program_id = $t->GetProgramId('ra2d');
-                $_SESSION['program'] = $program_id;
-                break;
-            }
-        case 'wa3da': {
-                $program_id = $t->GetProgramId('wa3da');
-                $_SESSION['program'] = $program_id;
-                break;
-            }
-        default : {
-                header("Location: index.php");
-                break;
-            }
-    }
-} else {
+if (!isset($_SESSION['program'])) {
     header('Location: selectProgram.php');
+    exit();
 }
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once('../lib/CenterResearch.php');
@@ -127,7 +102,7 @@ $project = new Reseaches();
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                        
+
                                         window.location.assign('accept.php?q=' + urlencode(base64_encode(projectId)));
                                     }
                                 },
@@ -135,7 +110,7 @@ $project = new Reseaches();
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                        $.ajax({url: 'ajax/Session.php?q=' + projectId});
+                                        $.ajax({url: 'ajax/setSession.php?q=' + projectId});
                                         window.location.assign('research_submit.php');
                                     }
                                 },
@@ -239,44 +214,42 @@ $project = new Reseaches();
         <title></title>
     </head>
     <body style="background-color: #ededed;">
-    <div id="window" style="visibility: hidden;">
-        <div id="windowHeader">
+        <div id="window" style="visibility: hidden;">
+            <div id="windowHeader">
+            </div>
+            <div id="windowContent" style="overflow: auto;" ></div>
         </div>
-        <div id="windowContent" style="overflow: auto;" ></div>
-    </div>
-    <fieldset style="width: 95%;text-align: right;"> 
-        <legend>
-            <label>
-                <?
-                echo 'مرحبا ' . $_SESSION['User_Name'];
-                ?>
-            </label>
-        </legend>
-        <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-            <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew' style="margin-top: 10px;margin-bottom: 10px;"/>
-            <br/>
-            <br/>
-            <label>
-                المشاريع المحفوظة / Saved Drafts
-            </label>
-            <hr/>
-            <div id="jqxgrid"></div>
-            <br/>
+        <fieldset style="width: 95%;text-align: right;"> 
+            <legend>
+                <label>
+                    <?
+                    echo 'مرحبا ' . $_SESSION['User_Name'];
+                    ?>
+                </label>
+            </legend>
+            <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
 
-            <br/>
-            <br/>
-            <label>
-                المشاريع المقدمة / Proposed Projects 
-            </label>
-            <hr/>
-            <div id="jqxSubmittedGrid"></div>
-            <br/>
 
-        </div>
+                <h2 style="font-size: 14px">
+                    المشاريع المحفوظة / Saved Drafts
+                </h2>
+                <hr/>
+                <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew' style="float: left;margin-left: 45;margin-top: 10px;margin-bottom: 10px;"/>
+                <div id="jqxgrid"></div>
+                <br/>
 
-    </fieldset>
+                <h2 style="font-size: 14px">
+                    المشاريع المقدمة / Proposed Projects 
+                </h2>
+                <hr/>
+                <div id="jqxSubmittedGrid"></div>
+                <br/>
 
-</body>
+            </div>
+
+        </fieldset>
+
+    </body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
