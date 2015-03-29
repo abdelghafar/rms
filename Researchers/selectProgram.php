@@ -55,13 +55,16 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type='text/javascript'>
         $(document).ready(function () {
             $('#wa3da').click(function () {
-                window.location.assign('Researchers_View.php?program=wa3da');
+                $.ajax({url: 'ajax/setProgramSession.php?program=wa3da'});
+                window.location.assign('Researchers_View.php');
             });
             $('#ba7th').click(function () {
-                window.location.assign('Researchers_View.php?program=ba7th');
+                $.ajax({url: 'ajax/setProgramSession.php?program=ba7th'});
+                window.location.assign('Researchers_View.php');
             });
             $('#ra2d').click(function () {
-                window.location.assign('Researchers_View.php?program=ra2d');
+                $.ajax({url: 'ajax/setProgramSession.php?program=ra2d'});
+                window.location.assign('Researchers_View.php');
             });
         });
     </script>
@@ -69,12 +72,19 @@ $smarty->display('../templates/Loggedin.tpl');
 <body>
     <?php
     if ($_SESSION['gender'] == 0) {
-        echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">نظام رائد</button>
+        echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
+            نظام رائد 
+            <br>Raed System
+            </button>
 
-    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
+    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">
+    نظام باحث
+    <br>Bahes System
+    </button>';
     } else {
-        echo '<button id="wa3da" type="button" class="btn btn-warning btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
+        echo '<button id="wa3da" type="button" class="btn btn-warning btn-lg" style="width: 300px; height: 100px;margin-left: 80px">
         نظام واعدة
+        <br>Waaeda System
     </button>
 
     <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
