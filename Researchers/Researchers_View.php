@@ -10,7 +10,6 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 }
 if (!isset($_SESSION['program'])) {
     header('Location: selectProgram.php');
-    exit();
 }
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once('../lib/CenterResearch.php');
@@ -102,7 +101,7 @@ $project = new Reseaches();
                                         return '..';
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-
+                                        $.ajax({url: 'ajax/setSession.php?q=' + projectId});
                                         window.location.assign('accept.php?q=' + urlencode(base64_encode(projectId)));
                                     }
                                 },
@@ -118,6 +117,7 @@ $project = new Reseaches();
                                         return "..";
                                     }, buttonclick: function (row) {
                                         var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
+                                        //$.ajax({url: 'ajax/setSession.php?q=' + projectId});
                                         WithDraw(projectId);
                                     }
                                 }
