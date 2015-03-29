@@ -316,6 +316,22 @@ if (isset($projectId)) {
             });
         });
 
+        function wizard_step(current_step) {
+            var cs = current_step;
+            for (var i = 1; i < cs; i++)
+            {
+                $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+            }
+            $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+            //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+            for (var i = cs + 1; i <= 9; i++)
+            {
+                $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                //if (i < 9)
+                // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+            }
+        }
 
     </script>
     <title>
@@ -333,12 +349,25 @@ if (isset($projectId)) {
 <center>
 
     <form method="POST" id="researchSubmitForm" enctype="multipart/form-data"> 
+
+        <div>
+            <?
+            require_once 'wizard_steps.php';
+            ?>
+        </div>
+        <script type="text/javascript">
+            wizard_step(1);
+        </script>
+
         <fieldset style="width: 95%;text-align: right;"> 
             <legend>
                 <label>
                     معلومات عامة / General information
                 </label>
             </legend>
+
+
+
             <table style="width: 100%;">
                 <tr>
                     <td>
@@ -439,7 +468,7 @@ if (isset($projectId)) {
         <table style="width: 100%;">
             <tr>
                 <td valign="middle">
-                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <a id="submit_button" href="#" style="float: left;margin-left: 25px;margin-top: 20px;">
                         <img src="images/next.png" style="border: none;" alt="next"/>
                     </a>
                 </td>
