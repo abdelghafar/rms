@@ -68,7 +68,7 @@ if (strlen($refs) != 0) {
 
 if ($arabicAbs_file == 1 && $engAbs_file == 1 && $into_file == 1 && $review_file == 1 && $research_method_ok == 1 && $value_ok == 1 && $ref_ok == 1) {
 
-    echo '<script>' . ' window.location.assign("project_stuff.php?q=' . $projectId . '");' . '</script>';
+    echo '<script>' . ' window.location.assign("project_stuff.php");' . '</script>';
 } else {
     echo $msg;
 }
