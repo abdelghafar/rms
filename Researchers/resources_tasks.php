@@ -8,7 +8,10 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["q"];
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION["q"];
+}
+
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty();
@@ -69,7 +72,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 /*$("#PhaseNewButton").jqxButton({width: '100', height: '30', theme: theme});
                  $("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
@@ -82,7 +85,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 phases_list();
@@ -127,7 +130,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#phases_grd").on('rowdoubleclick', function(event) {
+                $("#phases_grd").on('rowdoubleclick', function (event) {
                     var phase_id = $('#phases_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_phase_id').val(phase_id);
 
@@ -165,10 +168,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#form_div").html("");
                         $("#tasks_div").html(data);
                     }
@@ -183,13 +186,13 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#step_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         //
                         if (data == 1)
-                            window.location.assign('outcomes_objectives.php?q=' + $('#project_id').val());
+                            window.location.assign('outcomes_objectives.php');
 //alert(data);
                         else
                             $("#step_div").html(data);
@@ -197,28 +200,52 @@ $smarty->display('../templates/Loggedin.tpl');
                 });
             }
 
+            function wizard_step(current_step) {
+                var cs = current_step;
+                for (var i = 1; i < cs; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                    //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+                }
+                $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+                //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+                for (var i = cs + 1; i <= 9; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                    //if (i < 9)
+                    // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+                }
+            }
         </script>
         <title></title>
     </head>
     <body style="background-color: #ededed;">
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(6);
+    </script>
 
-        <fieldset style="width: 95%;text-align: right;"> 
+    <fieldset style="width: 95%;text-align: right;">
             <legend>
                 <label>
                     ربط المهام بفريق العمل / HR and tasks mapping
-                    
+
                 </label>
             </legend>
-            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
+
+
+        <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
             <input type="hidden" id="global_phase_id" name="global_phase_id" value="0" />
             <div class="panel_row">
                 النقر المزدوج على المرحلة يظهر ربط المهام بفريق العمل
                 <br>
                 Double-click a phase to see its tasks mapping
             </div>
-            
 
-            <div id="phases_grd" style="margin-right: 0px !important; padding-right: 0px !important">
+
+        <div id="phases_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
             </div>
 
@@ -230,23 +257,24 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
             <div id="step_div" style="padding: 10px;width: 100%;">    </div>
 
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <a id="submit_button" href="#" onclick="next_step();" style="float: right;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/next.png" style="border: none;" alt="next"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/back.png" style="border: none;" alt="back"/>
-                        </a>
-                    </td>
-                </tr>
-            </table>
 
-        </fieldset>
+    </fieldset>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a href="objectives_tasks.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;" alt="back"/>
+                </a>
+            </td>
+            <td>
 
+                <a id="submit_button" href="#" onclick="next_step();"
+                   style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/next.png" style="border: none;" alt="next"/>
+                </a>
+            </td>
+        </tr>
+    </table>
     </body>
 </html>
 <?
