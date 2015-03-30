@@ -8,8 +8,9 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["q"];
-
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION["q"];
+}
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty();
@@ -70,7 +71,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 $("#outcomeNewButton").jqxButton({width: '200', height: '30', theme: theme});
                 /*$("#outcome_title").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
@@ -83,7 +84,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 outcomes_list();
@@ -122,30 +123,30 @@ $smarty->display('../templates/Loggedin.tpl');
                                     {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'Outcome / المخرج', datafield: 'outcome_title', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
                                     {text: 'Description/ الوصيف ', datafield: 'outcome_desc', type: 'string', width: 430, align: 'center', cellsalign: 'right'},
-                                    {text: 'Update / تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
-                                            return "..";
-                                        }, buttonclick: function(row) {
-                                            var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
+                                    {text: 'Update / تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function () {
+                                        return "..";
+                                    }, buttonclick: function (row) {
+                                        var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
                                             var post_data = 'seq_id=' + dataRecord.seq_id + '&project_id=' + dataRecord.project_id + '&outcome_title=' + dataRecord.outcome_title + '&outcome_desc=' + dataRecord.outcome_desc;
                                             $.ajax({
                                                 url: "outcome_data_form.php",
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
 
                                         }
                                     },
-                                    {text: 'Assign a goal / تخصيص هدف', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function() {
-                                            return "Assign a goal / تخصيص هدف";
-                                        }, buttonclick: function(row) {
-                                            var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
+                                    {text: 'Assign a goal / تخصيص هدف', width: 100, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return "Assign a goal / تخصيص هدف";
+                                    }, buttonclick: function (row) {
+                                        var dataRecord = $("#outcomes_grd").jqxGrid('getrowdata', row);
                                             $("#form_div").html("");
                                             var post_data = 'project_id=' + dataRecord.project_id + '&outcome_id=' + dataRecord.seq_id;
 
@@ -154,19 +155,19 @@ $smarty->display('../templates/Loggedin.tpl');
                                                 dataType: "html",
                                                 data: post_data,
                                                 type: 'POST',
-                                                beforeSend: function() {
+                                                beforeSend: function () {
                                                     $("#form_div").html("<img src='images/load.gif'/>loading...");
                                                 },
-                                                success: function(data) {
+                                                success: function (data) {
                                                     $("#form_div").html(data);
                                                 }
                                             });
                                         }
                                     },
-                                    {text: 'Delete / حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
-                                            return "..";
-                                        }, buttonclick: function(row) {
-                                            //window.confirm("هل انت متأكد من حذف هذا البيان");
+                                    {text: 'Delete / حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                        return "..";
+                                    }, buttonclick: function (row) {
+                                        //window.confirm("هل انت متأكد من حذف هذا البيان");
                                             var r = confirm("هل انت متأكد من حذف هذا البيان");
                                             if (r == true)
                                             {
@@ -179,10 +180,10 @@ $smarty->display('../templates/Loggedin.tpl');
                                                     url: 'inc/deleteoutcome.php',
                                                     datatype: "html",
                                                     data: post_data,
-                                                    beforeSend: function() {
+                                                    beforeSend: function () {
                                                         $("#outcomeresult").html("<img src='images/load.gif'/>loading...");
                                                     },
-                                                    success: function(data) {
+                                                    success: function (data) {
                                                         $("#outcomeresult").html(data);
                                                         if ($("#outcome_operation_flag").val() === 'true')
                                                         {
@@ -199,23 +200,23 @@ $smarty->display('../templates/Loggedin.tpl');
                             });
                 }
 
-                $("#outcomes_grd").on('rowdoubleclick', function(event) {
+                $("#outcomes_grd").on('rowdoubleclick', function (event) {
                     var outcome_id = $('#outcomes_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_outcome_id').val(outcome_id);
                     load_objectives_grd();
                 });
 
-                $('#outcomeNewButton').on('click', function() {
+                $('#outcomeNewButton').on('click', function () {
                     var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + 0;
                     $.ajax({
                         url: "outcome_data_form.php",
                         dataType: "html",
                         data: post_data,
                         type: 'POST',
-                        beforeSend: function() {
+                        beforeSend: function () {
                             $("#form_div").html("<img src='images/load.gif'/>loading...");
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#form_div").html(data);
                         }
                     });
@@ -232,10 +233,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#objectives_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#objectives_div").html(data);
                     }
                 });
@@ -249,35 +250,58 @@ $smarty->display('../templates/Loggedin.tpl');
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#step_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         //alert(data);
                         if (data == 1)
-                            window.location.assign('manpower_budget.php?q=' + $('#project_id').val());
+                            window.location.assign('manpower_budget.php');
                         else
                             $("#step_div").html(data);
                     }
                 });
             }
+            function wizard_step(current_step) {
+                var cs = current_step;
+                for (var i = 1; i < cs; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                    //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+                }
+                $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+                //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+                for (var i = cs + 1; i <= 9; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                    //if (i < 9)
+                    // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+                }
+            }
         </script>
         <title></title>
     </head>
     <body style="background-color: #ededed;">
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(7);
+    </script>
 
-        <fieldset style="width: 95%;text-align: right;"> 
+    <fieldset style="width: 95%;text-align: right;">
             <legend>
                 <label>
                     ربط المخرجات بالأهداف  / Outcomes and goals mapping
                 </label>
             </legend>
 
-            <h2 style="font-size: 14px">
+
+        <h2 style="font-size: 14px">
                 المخرجات / Outcomes
             </h2>
-            <hr/>
-            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
+        <hr>
+        <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
             <input type="hidden" id="global_outcome_id" name="global_outcome_id" value="0" />
             <div class="panel_row">
                 <div class="panel-cell" style="width: 100 ;text-align: left;padding-right: 720">
@@ -294,22 +318,24 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
             <div id="objectives_div" style="padding-top: 10px;width: 100%">    </div>
             <div id="step_div" style="padding: 10px;width: 100%;">    </div>
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <a id="submit_button" href="#" onclick="next_step();" style="float: right;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/next.png" style="border: none;" alt="next"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="resources_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/back.png" style="border: none;" alt="back"/>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
 
+    </fieldset>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a href="resources_tasks.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;" alt="back"/>
+                </a>
+
+            </td>
+            <td>
+                <a id="submit_button" href="#" onclick="next_step();"
+                   style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/next.png" style="border: none;" alt="next"/>
+                </a>
+            </td>
+        </tr>
+    </table>
     </body>
 </html>
 <?
