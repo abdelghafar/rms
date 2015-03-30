@@ -8,7 +8,10 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         header('Location:../Login.php');
     }
 }
-$project_id = $_GET["q"];
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION["q"];
+}
+
 require_once '../lib/budget.php';
 $project_budget = new Budget();
 $item_id = 15; // for manpower budget item
@@ -80,7 +83,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
                 var theme = "energyblue";
                 $("#manpower_percent").jqxInput({width: '100', height: '30', theme: theme, rtl: true, disabled: true});
@@ -90,7 +93,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 outcomes_list();
 
                 function outcomes_list() {
-                    var post_data = 'project_id=' + $('#project_id').val()+'&item_id=' + $('#manpower_id').val();
+                    var post_data = 'project_id=' + $('#project_id').val() + '&item_id=' + $('#manpower_id').val();
                     var source =
                             {
                                 datatype: "json",
@@ -134,21 +137,21 @@ $smarty->display('../templates/Loggedin.tpl');
                                     {text: 'Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'right'},
                                     {text: 'dunit_id', datafield: 'dunit_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                     {text: 'Compensation/المكافأة ', datafield: 'compensation', width: 125, align: 'center', cellsalign: 'right', columntype: 'numberinput',
-                                        validation: function(cell, value) {
+                                        validation: function (cell, value) {
                                             if (value < 0) {
                                                 return {result: false, message: "قيمة غير صحيحة"};
                                             }
                                             return true;
                                         },
-                                        createeditor: function(row, cellvalue, editor) {
+                                        createeditor: function (row, cellvalue, editor) {
                                             editor.jqxNumberInput({digits: 4});
                                         }},
                                     {text: 'Total / الإجمالى', datafield: 'total_amount', type: 'string', editable: false, width: 150, align: 'center', cellsalign: 'right'}
                                 ]
                             });
                 }
-                $("#outcomes_grd").on('cellendedit', function(event)
-                {
+
+                $("#outcomes_grd").on('cellendedit', function (event) {
 
                     var column = args.datafield;
                     var rowid = args.rowindex;
@@ -172,10 +175,10 @@ $smarty->display('../templates/Loggedin.tpl');
                             url: 'inc/saveBudgetManPower.php',
                             datatype: "html",
                             data: post_data,
-                            beforeSend: function() {
+                            beforeSend: function () {
                                 //$("#outcomeresult").html("<img src='images/load.gif'/>loading...");
                             },
-                            success: function(data) {
+                            success: function (data) {
                                 var newmanpower_total = parseFloat($("#manpower_buget").val()) + changevalue;
                                 //alert(newmanpower_total);
                                 var newtotal_budget = parseFloat($("#total_buget").val()) + changevalue;
@@ -196,21 +199,46 @@ $smarty->display('../templates/Loggedin.tpl');
                     }
                 });
             });
+
+            function wizard_step(current_step) {
+                var cs = current_step;
+                for (var i = 1; i < cs; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                    //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+                }
+                $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+                //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+                for (var i = cs + 1; i <= 9; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                    //if (i < 9)
+                    // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+                }
+            }
         </script>
 
 
         <title></title>
     </head>
     <body style="background-color: #ededed;">
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(8);
+    </script>
 
-        <fieldset style="width: 95%;text-align: right;"> 
+    <fieldset style="width: 95%;text-align: right;">
             <legend>
                 <label>
                     ميزانية المشروع  / Project Budget 
 
                 </label>
             </legend>
-            <h2 style="font-size: 14px">
+
+
+        <h2 style="font-size: 14px">
                 1. مكافأت الفريق البحثى  / Manpower compensation
             </h2>
             <hr/>
@@ -253,22 +281,23 @@ $smarty->display('../templates/Loggedin.tpl');
         <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
         <div id="objectives_div" style="padding-top: 10px;width: 100%">    </div>
 
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <a id="submit_button" href="non_manpower_budget.php?q=<? echo $project_id; ?>" style="float: right;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/next.png" style="border: none;" alt="next"/>
-                    </a>
-                </td>
-                <td>
-                    <a href="outcomes_objectives.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/back.png" style="border: none;" alt="back"/>
-                    </a>
-                </td>
-            </tr>
-        </table>
-
     </body>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a href="outcomes_objectives.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;" alt="back"/>
+                </a>
+            </td>
+            <td>
+                <a id="submit_button" href="non_manpower_budget.php"
+                   style="float: left;margin-left: 25px;margin-top: 20px;">
+                    <img src="images/next.png" style="border: none;" alt="next"/>
+                </a>
+
+            </td>
+        </tr>
+    </table>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');
