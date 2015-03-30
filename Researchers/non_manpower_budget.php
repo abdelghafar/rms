@@ -15,8 +15,8 @@ require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
 
-if (isset($_GET['q'])) {
-    $projectId = $_GET['q'];
+if (isset($_SESSION['q'])) {
+    $projectId = $_SESSION['q'];
     $obj = new Reseaches();
     $UserId = $_SESSION['User_Id'];
     $u = new Users();
@@ -54,7 +54,7 @@ $smarty->display('../templates/Loggedin.tpl');
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>تابع- الملزانية</title>
+        <title>تابع- الميزانية</title>
         <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
 
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
@@ -255,7 +255,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             editable: false,
                             pageable: false,
                             filterable: true,
-                            width: 800,
+                            width: 900,
                             pagesize: 5,
                             autoheight: true,
                             columnsresize: true,
@@ -265,9 +265,9 @@ $smarty->display('../templates/Loggedin.tpl');
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'Type/ النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
                                 {text: 'Cost / القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                        return '..';
+                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 300, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete / حذف', datafield: 'حذف', width: 100, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                    return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
                                         var seq_id = dataRecord['seq_id'];
@@ -323,7 +323,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             editable: false,
                             pageable: false,
                             filterable: true,
-                            width: 800,
+                            width: 900,
                             pagesize: 5,
                             autoheight: true,
                             columnsresize: true,
@@ -333,9 +333,9 @@ $smarty->display('../templates/Loggedin.tpl');
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'Type/ النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
                                 {text: 'Cost / القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                        return '..';
+                                {text: 'Notes / ملاحظات', dataField: 'desc', width: 300, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete / حذف', datafield: 'حذف', width: 100, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                    return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_travel").jqxGrid('getrowdata', row);
                                         var seq_id = dataRecord['seq_id'];
@@ -573,7 +573,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             editable: false,
                             pageable: false,
                             filterable: true,
-                            width: 800,
+                            width: 900,
                             pagesize: 5,
                             autoheight: true,
                             columnsresize: true,
@@ -583,9 +583,9 @@ $smarty->display('../templates/Loggedin.tpl');
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'Type / النوع', dataField: 'item_title', width: 400, align: 'right', cellsalign: 'right'},
                                 {text: 'Cost/ القيمة', dataField: 'amount', width: 100, align: 'right', cellsalign: 'right'},
-                                {text: 'Notes/ملاحظات', dataField: 'desc', width: 250, align: 'right', cellsalign: 'right'},
-                                {text: 'Delete/حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                        return '..';
+                                {text: 'Notes/ملاحظات', dataField: 'desc', width: 300, align: 'right', cellsalign: 'right'},
+                                {text: 'Delete/حذف', datafield: 'حذف', width: 100, align: 'center', columntype: 'button', cellsrenderer: function () {
+                                    return '..';
                                     }, buttonclick: function (row) {
                                         var dataRecord = $("#grid_others").jqxGrid('getrowdata', row);
                                         var seq_id = dataRecord['seq_id'];
@@ -657,20 +657,47 @@ $smarty->display('../templates/Loggedin.tpl');
                 Calc_travels_footer();
                 Calc_Others_footer();
             });
+
+            function wizard_step(current_step) {
+                var cs = current_step;
+                for (var i = 1; i < cs; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                    //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+                }
+                $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+                //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+                for (var i = cs + 1; i <= 9; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                    //if (i < 9)
+                    // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+                }
+            }
         </script>
     </head>
     <body>
-        <fieldset style="width: 95%;text-align: right;"> 
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(9);
+    </script>
+    <fieldset style="width: 95%;text-align: right;">
             <legend>
                 <label>
                     المتطلبات / Requirements 
                 </label>
             </legend>
-            <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
-                <span class="classic">المواد و الاجهزة / Materials and Equipment </span>
-                <hr/>
-                <input type="button" id='AddNewMaterials' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
-                <br/>
+
+
+            <div id='jqxWidget'
+                 style="width: 900px; font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
+            <h2 style="font-size: 14px">المواد و الاجهزة / Materials and Equipment </h2>
+            <hr/>
+            <input type="button" id='AddNewMaterials' value="Add new requirement / اضافة متطلب جديد"
+                   style="float: left;margin-bottom: 15px;"/>
+            <br/>
                 <form id="material_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="materials_table" style="display: none; width: 100%">
@@ -741,10 +768,12 @@ $smarty->display('../templates/Loggedin.tpl');
                     </tr>
                 </table>
                 <br/><br/>
-                <span class="classic">الرحلات / Travel</span>
-                <hr/>
-                <input type="button" id='AddNewTravel' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
-                <br/>
+
+            <h2 style="font-size: 14px">الرحلات / Travel</h2>
+            <hr/>
+            <input type="button" id='AddNewTravel' value="Add new requirement / اضافة متطلب جديد"
+                   style="float: left;margin-bottom: 15px;"/>
+            <br/>
                 <form id="travel_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="travel_table" style="display: none; width: 100%">
@@ -815,10 +844,12 @@ $smarty->display('../templates/Loggedin.tpl');
                     </tr>
                 </table>
                 <br/><br/>
-                <span class="classic">أخري / Others</span>
-                <hr/>
-                <input type="button" id='AddNewOthers' value="Add new requirement / اضافة متطلب جديد" style="float: right;margin-bottom: 15px;"/>
-                <br/>
+
+            <h2 style="font-size: 14px">أخري / Others</h2>
+            <hr/>
+            <input type="button" id='AddNewOthers' value="Add new requirement / اضافة متطلب جديد"
+                   style="float: left;margin-bottom: 15px;"/>
+            <br/>
                 <form id="others_form" action="#" method="post">
                     <input type="hidden" name="project_id" value="<? echo $projectId; ?>"/>
                     <table id="others_table" style="display: none; width: 100%">
@@ -894,12 +925,14 @@ $smarty->display('../templates/Loggedin.tpl');
         <table style="width: 100%;">
             <tr>
                 <td style="display: block;">
-                    <a href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
+                    <a href="manpower_budget.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/back.png" style="border: none;" alt="back"/>
+                    </a>
                 </td>
 
                 <td>
-                    <a href="manpower_budget.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/back.png" style="border: none;" alt="back"/>
+                    <a href="Researchers_View.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <img src="images/finish.png" style="border: none;" alt="next"/>
                     </a>
                 </td>
             </tr>
