@@ -1,7 +1,8 @@
 <?
 session_start();
+clearstatcache();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
+    header('Location:../login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Researcher') {
@@ -14,18 +15,7 @@ require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
-$smarty = new Smarty();
-$smarty->assign('style_css', '../style.css');
-$smarty->assign('style_responsive_css', '../style.responsive.css');
-$smarty->assign('jquery_js', '../jquery.js');
-$smarty->assign('script_js', '../script.js');
-$smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
-$smarty->assign('logout_php', '../inc/logout.inc.php');
-$smarty->assign('fqa_php', '../fqa.php');
-$smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+
 if (isset($_SESSION['q'])) {
     $projectId = $_SESSION['q'];
     $obj = new Reseaches();
@@ -49,10 +39,23 @@ if (isset($_SESSION['q'])) {
         exit();
     }
 }
+$smarty = new Smarty();
+$smarty->assign('style_css', '../style.css');
+$smarty->assign('style_responsive_css', '../style.responsive.css');
+$smarty->assign('jquery_js', '../jquery.js');
+$smarty->assign('script_js', '../script.js');
+$smarty->assign('script_responsive_js', '../script.responsive.js');
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('fqa_php', '../fqa.php');
+$smarty->assign('contactus_php', '../contactus.php');
+$smarty->display('../templates/Loggedin.tpl');
 ?>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <META HTTP-EQUIV="expires" CONTENT="0">
     <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
     <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
     <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
