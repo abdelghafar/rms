@@ -15,7 +15,7 @@ $smarty->assign('Researchers_register_php', 'Researchers/register.php');
 $smarty->assign('login_php', 'login.php');
 $smarty->assign('logout_php', 'inc/logout.inc.php');
 $smarty->assign('fqa_php', 'fqa.php');
-$smarty->assign('contactus_php', 'contactus.php');
+$smarty->assign('aboutus_php', 'aboutus.php');
 
 if (isset($_SESSION['User_Id']) == true && $_SESSION['User_Id'] != 0) {
     $smarty->display('templates/Loggedin.tpl');
