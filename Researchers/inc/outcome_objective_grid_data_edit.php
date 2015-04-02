@@ -18,8 +18,7 @@ while ($row = mysql_fetch_array($obj_rs, MYSQL_ASSOC)) {
     if (is_null($goalOutcome_id)) {
         $obj_check = false;
         $goalOutcome_id = 0;
-    }
-    else
+    } else
         $obj_check = true;
     $tasks_list[] = array(
         'seq_id' => $goalOutcome_id,

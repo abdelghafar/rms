@@ -47,8 +47,7 @@ if (isset($_GET['q'])) {
                     $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
                 },
                 success: function (data) {
-                    if (data === null)
-                    {
+                    if (data === null) {
                         tmpPerson_id = null;
                         tmpName = null;
                         tmpGender = null;
@@ -81,7 +80,8 @@ if (isset($_GET['q'])) {
             $('#showUploadCV').hide();
         });
         var CoAuthorsSource = {
-            datafields: [{
+            datafields: [
+                {
                     name: 'name_ar',
                     type: 'string'
                 },
@@ -96,10 +96,12 @@ if (isset($_GET['q'])) {
                 {
                     name: 'Major_Field',
                     type: 'string'
-                }, {
+                },
+                {
                     name: 'College',
                     type: 'string'
-                }, {
+                },
+                {
                     name: 'Dept',
                     type: 'string'
                 },
@@ -110,32 +112,33 @@ if (isset($_GET['q'])) {
                 {
                     name: 'Position',
                     type: 'string'
-                }],
+                }
+            ],
             datatype: "json"
         };
         var CoAuthorsSourceAdapter = new $.jqx.dataAdapter(CoAuthorsSource);
         $("#gridOtherStuff").jqxGrid(
-                {
-                    width: '100%',
-                    height: 400,
-                    autoheight: true,
-                    sortable: true,
-                    pagesize: 10,
-                    filterable: true,
-                    pageable: true,
-                    rtl: true,
-                    theme: Curr_theme,
-                    source: CoAuthorsSourceAdapter,
-                    columns: [
-                        {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
-                        {text: 'Name / الاسم', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
-                    ]
-                });
+            {
+                width: '100%',
+                height: 400,
+                autoheight: true,
+                sortable: true,
+                pagesize: 10,
+                filterable: true,
+                pageable: true,
+                rtl: true,
+                theme: Curr_theme,
+                source: CoAuthorsSourceAdapter,
+                columns: [
+                    {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
+                    {text: 'Name / الاسم', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
+                    {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
+                    {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
+                    {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                    {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
+                    {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
+                ]
+            });
 
         $('#agreeLetterOther').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
         $('#agreeLetterOther').on('uploadEnd', function (event) {
@@ -164,14 +167,12 @@ if (isset($_GET['q'])) {
             var person_id = dataRecord['person_id'];
 
             $.ajax({
-                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
+                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
-                    if (data === "")
-                    {
+                    if (data === "") {
                         $('#SearchPersonalFrm').html('');
                     }
-                    else
-                    {
+                    else {
                         $('#SearchPersonalFrm').html(data);
                     }
                     window.location.reload();
@@ -183,8 +184,7 @@ if (isset($_GET['q'])) {
         $('#btnClose').on('click', function () {
             $('#SearchPersonalFrm').html('');
         });
-        $('#gridOtherStuff').on('rowdoubleclick', function (event)
-        {
+        $('#gridOtherStuff').on('rowdoubleclick', function (event) {
             var args = event.args;
             // row's bound index.
             var boundIndex = args.rowindex;
@@ -206,13 +206,14 @@ if (isset($_GET['q'])) {
     });
 </script>
 <fieldset style="width: 90%;text-align: right;margin-bottom: 25px;">
-    <legend>
-        اضافة عضو جديد/ Add a new member
+    <legend style="text-align: center">
+        <h3> اضافة عضو جديد/ Add a new member</h3>
     </legend>
     <table style="width: 800px;">
         <tr>
-            <td>
+            <td><span class="classic">
                 الاسم/Name
+                </span>
                 <span class="error">*</span>
             </td>
             <td>
@@ -222,8 +223,9 @@ if (isset($_GET['q'])) {
 
         </tr>
         <tr>
-            <td>
+            <td><span class="classic">
                 نوع المشاركة / Role
+                </span>
                 <span class="error">*</span>
             </td>
             <td>
@@ -231,8 +233,9 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
-            <td>
-                الموافقة الخطية
+            <td><span class="classic">
+                    الموافقة الخطية
+                </span>
             </td>
             <td>
                 <div id="agreeLetterOther"></div>
@@ -240,9 +243,9 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr id="showUploadCV" style="display: none; ">
-            <td>
-                السيرة الذاتية
-            </td>
+            <td><span class="classic">
+                    السيرة الذاتية
+                </span></td>
             <td>
                 <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
@@ -266,9 +269,11 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 0px;"  />
-                <input type="button" value="اغلاق" id='btnClose' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 10px;"  />
+            <td colspan="2" style="text-align: center">
+                <input type="button" value="حفظ" id='btnSave'
+                       style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
+                <input type="button" value="اغلاق" id='btnClose'
+                       style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
             </td>
         </tr>
     </table>

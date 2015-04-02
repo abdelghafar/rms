@@ -17,12 +17,12 @@ $smarty->assign('contactus_php', '../contactus.php');
 
 $smarty->display('../templates/Loggedin.tpl');
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../common/css/MessageBox.css"/> 
+        <link rel="stylesheet" href="../common/css/MessageBox.css"/>
         <script type="text/javascript">
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = 'index.php';
             }, 5000);
         </script>
@@ -35,8 +35,8 @@ $smarty->display('../templates/Loggedin.tpl');
             </h2>
         </div>
     </center>
-</body>
-</html>
+    </body>
+    </html>
 <?
 session_destroy();
 $smarty->display('../templates/footer.tpl');

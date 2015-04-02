@@ -15,20 +15,16 @@ $obj = new Objectives();
 $isValid = TRUE;
 
 
-
-
 if (!isset($_POST['obj_name']) || empty($_POST['obj_name'])) {
     echo 'من فضلك أدخل  الهدف' . '<br/>';
     $isValid = FALSE;
-}
-else
+} else
     $obj_name = mysql_escape_string(trim($_POST['obj_name']));
 
 if (!isset($_POST['obj_desc']) || empty($_POST['obj_desc'])) {
     echo 'من فضلك أدخل طريقة تحقيق الهدف' . '<br/>';
     $isValid = FALSE;
-}
-else
+} else
     $obj_desc = mysql_escape_string(trim($_POST['obj_desc']));
 
 

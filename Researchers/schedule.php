@@ -31,99 +31,73 @@ $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
 ?>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>جدول المهام</title>
-    <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
-    <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
-    <link rel="stylesheet" type="text/css" href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>جدول المهام</title>
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
+        <script src="../js/dataTables/media/js/jquery.dataTables.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
+        <link rel="stylesheet" type="text/css" href="../js/dataTables/media/css/demo_table_jui.css">
+        <link rel="stylesheet" type="text/css"
+              href="../js/dataTables/media/themes/ui-lightness/jquery-ui-1.8.4.custom.css">
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
 
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
-    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxchart.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
 
-    <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
-    <Script type="text/javascript">
-        $('#datatables').dataTable({
-            sPaginationType: "full_numbers",
-            bJQueryUI: true,
-            bLengthChange: true,
-            width: 400,
-            oLanguage: {
-                sUrl: "../js/dataTables/media/ar_Ar.txt"}
-        });
-    </script>
-    <script type="text/javascript">
-        function Display_New()
-        {
-            $(document).ready(function () {
-                $('#window').css('visibility', 'visible');
-                $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 500, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
-                $('#windowContent').load("AddSchedule.php?rcode=" + $('#lstOfResearches').find(":selected").text());
-                $('#window').jqxWindow('setTitle', 'اضافة مهام المشروع');
-                $('#window').jqxWindow('open');
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+        <Script type="text/javascript">
+            $('#datatables').dataTable({
+                sPaginationType: "full_numbers",
+                bJQueryUI: true,
+                bLengthChange: true,
+                width: 400,
+                oLanguage: {
+                    sUrl: "../js/dataTables/media/ar_Ar.txt"}
             });
-        }
-
-        function Delete(seq_id)
-        {
-            if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
-            {
-                $.ajax({
-                    type: 'post',
-                    url: 'inc/DelSchedule.inc.php?seq_id=' + seq_id,
-                    datatype: "html",
-                    success: function (data) {
-                        var valueSelected = $('#lstOfResearches').val();
-                        $.ajax({
-                            url: "inc/schedule.inc.php?research_id=" + valueSelected,
-                            type: "post",
-                            datatype: "html",
-                            data: $("#Form").serialize(),
-                            success: function (data) {
-                                $('#Result').html(data);
-                            }
-                        });
-                    }
+        </script>
+        <script type="text/javascript">
+            function Display_New() {
+                $(document).ready(function () {
+                    $('#window').css('visibility', 'visible');
+                    $('#window').jqxWindow({showCollapseButton: false, rtl: true, height: 500, width: 650, autoOpen: false, isModal: true, animationType: 'fade'});
+                    $('#windowContent').load("AddSchedule.php?rcode=" + $('#lstOfResearches').find(":selected").text());
+                    $('#window').jqxWindow('setTitle', 'اضافة مهام المشروع');
+                    $('#window').jqxWindow('open');
                 });
             }
-        }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
 
-            var valueSelected = $('#lstOfResearches').val();
-            $.ajax({
-                url: "inc/schedule.inc.php?research_id=" + valueSelected,
-                type: "post",
-                datatype: "html",
-                data: $("#Form").serialize(),
-                success: function (data) {
-                    $('#Result').html(data);
+            function Delete(seq_id) {
+                if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
+                    $.ajax({
+                        type: 'post',
+                        url: 'inc/DelSchedule.inc.php?seq_id=' + seq_id,
+                        datatype: "html",
+                        success: function (data) {
+                            var valueSelected = $('#lstOfResearches').val();
+                            $.ajax({
+                                url: "inc/schedule.inc.php?research_id=" + valueSelected,
+                                type: "post",
+                                datatype: "html",
+                                data: $("#Form").serialize(),
+                                success: function (data) {
+                                    $('#Result').html(data);
+                                }
+                            });
+                        }
+                    });
                 }
-            });
-            $('#lstOfResearches').on('change', function () {
-                valueSelected = this.value;
-                $.ajax({
-                    url: "inc/schedule.inc.php?research_id=" + valueSelected,
-                    type: "post",
-                    datatype: "html",
-                    data: $("#Form").serialize(),
-                    success: function (data) {
-                        $('#Result').html(data);
-                    }
-                });
+            }
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-            });
-            $('#window').on('close', function (event) {
                 var valueSelected = $('#lstOfResearches').val();
                 $.ajax({
                     url: "inc/schedule.inc.php?research_id=" + valueSelected,
@@ -134,19 +108,43 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         $('#Result').html(data);
                     }
                 });
+                $('#lstOfResearches').on('change', function () {
+                    valueSelected = this.value;
+                    $.ajax({
+                        url: "inc/schedule.inc.php?research_id=" + valueSelected,
+                        type: "post",
+                        datatype: "html",
+                        data: $("#Form").serialize(),
+                        success: function (data) {
+                            $('#Result').html(data);
+                        }
+                    });
+
+                });
+                $('#window').on('close', function (event) {
+                    var valueSelected = $('#lstOfResearches').val();
+                    $.ajax({
+                        url: "inc/schedule.inc.php?research_id=" + valueSelected,
+                        type: "post",
+                        datatype: "html",
+                        data: $("#Form").serialize(),
+                        success: function (data) {
+                            $('#Result').html(data);
+                        }
+                    });
+                });
+
             });
 
-        });
-
-    </script>
-</head>
-<body>
+        </script>
+    </head>
+    <body>
     <div id="window" style="visibility: hidden;">
         <div id="windowHeader">
         </div>
-        <div id="windowContent" style="overflow: auto;" ></div>
+        <div id="windowContent" style="overflow: auto;"></div>
     </div>
-    <fieldset style="width: 95%;text-align: right;"> 
+    <fieldset style="width: 95%;text-align: right;">
         <legend>
             <label>
                 مهام المشروع
@@ -154,13 +152,13 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
         </legend>
 
         <div class="panel_row" style="height: 50px;">
-            <div class="panel-cell" style="text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="text-align: left;padding-left: 10px;">
                 <p>
                     اختر البحث
                 </p>
             </div>
             <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                <form action="inc/schedule.inc.php" method="post" id="Form"> 
+                <form action="inc/schedule.inc.php" method="post" id="Form">
 
                     <select id="lstOfResearches" name="lstOfResearches" style="width: 200px; height: 25px;">
                         <?
@@ -176,16 +174,18 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             </div>
         </div>
         <a href="#" style="font-size:16px;font-weight: bold;" onclick="Display_New();">اضافة جديد</a>
+
         <div id="Result">
 
         </div>
     </fieldset>
-<label>
-    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-        رجوع
-    </a></label>
+    <label>
+        <a href="index.php?program=<? echo $_SESSION['program'] ?>"
+           style="float: left;margin-left: 25px;margin-top: 20px;">
+            رجوع
+        </a></label>
 
-</body>
+    </body>
 <?
 $smarty->display('../templates/footer.tpl');
 ?>

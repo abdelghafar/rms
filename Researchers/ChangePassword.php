@@ -25,14 +25,14 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>                
+        <title>
             تغير كلمة مرور حساب
         </title>
-        <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
-        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
+        <link rel="stylesheet" href="../common/css/reigster-layout.css"/>
+        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
@@ -54,20 +54,20 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.export.js"></script>
 
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <style type="text/css">
             .demo-iframe {
                 border: none;
                 width: 400px;
                 height: 30px;
-                display:none; 
+                display: none;
             }
         </style>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
-                
+
                 $("#Current_Password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, rtl: true});
                 $("#password").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, showStrength: true, showStrengthPosition: "left", rtl: true});
                 $("#passwordConfirm").jqxPasswordInput({theme: theme, width: '200px', height: '25px', maxLength: 20, rtl: true});
@@ -79,18 +79,18 @@ $smarty->display('../templates/Loggedin.tpl');
                         {input: '#password', message: 'من فضلك ادخل كلمة المرور', action: 'keyup, blur', rule: 'required', position: 'top'},
                         {input: '#passwordConfirm', message: 'من فضلك تأكد من تطابق كلمة المرور', action: 'keyup, blur', rule: 'required', position: 'top'},
                         {input: '#password', message: 'كلمة المرور يجب أن تكون 8 حروف علي الاقل', action: 'keyup, blur', rule: 'length=8,20', position: 'top'},
-                        {input: '#passwordConfirm', message: 'من فضلك ادخل كلمة المرور بشكل صحيح', action: 'keyup, focus', position: 'top', rule: function(input, commit) {
-                                if (input.val() === $('#password').val()) {
-                                    return true;
-                                }
-                                return false;
+                        {input: '#passwordConfirm', message: 'من فضلك ادخل كلمة المرور بشكل صحيح', action: 'keyup, focus', position: 'top', rule: function (input, commit) {
+                            if (input.val() === $('#password').val()) {
+                                return true;
                             }
+                            return false;
+                        }
                         }
                     ], theme: theme
 
                 });
-                $("#sendButton").click(function() {
-                    var validationResult = function(isValid) {
+                $("#sendButton").click(function () {
+                    var validationResult = function (isValid) {
                         if (isValid) {
                             $("#form").submit();
                         }
@@ -98,7 +98,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     $('#form').jqxValidator('validate', validationResult);
                 });
 
-                $("#form").on('validationSuccess', function() {
+                $("#form").on('validationSuccess', function () {
                     $("#form-iframe").fadeIn('fast');
                 });
 
@@ -107,51 +107,56 @@ $smarty->display('../templates/Loggedin.tpl');
     </head>
     <body style="background-color: #ededed;">
     <center>
-        <form id="form" enctype="multipart/form-data" method="POST" action="inc/ChangePassword.inc.php" target="form-iframe">
+        <form id="form" enctype="multipart/form-data" method="POST" action="inc/ChangePassword.inc.php"
+              target="form-iframe">
 
-            <fieldset style="width: 95%;text-align: right;"> 
+            <fieldset style="width: 95%;text-align: right;">
                 <legend>
                     <label>
                         تعديل كلمة المرور
                     </label>
                 </legend>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell"
+                         style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p class="classic">
-                            كلمة المرور الحالية   
+                            كلمة المرور الحالية
                         </p>
                     </div>
-                    <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="Current_Password" type="password" name ="Current_Password"/>
+                    <div class="panel-cell" style="vertical-align: middle">
+                        <input id="Current_Password" type="password" name="Current_Password"/>
                     </div>
                 </div>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell"
+                         style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p class="classic">
-                            كلمة المرور   
+                            كلمة المرور
                         </p>
                     </div>
-                    <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="password" type="password" name ="password"/>
+                    <div class="panel-cell" style="vertical-align: middle">
+                        <input id="password" type="password" name="password"/>
                     </div>
                 </div>
                 <div class="panel_row">
-                    <div class="panel-cell" style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <div class="panel-cell"
+                         style="width:100px;text-align: left;padding-left: 10px;vertical-align: middle;">
                         <p class="classic">
                             تأكيد كلمة المرور
                         </p>
                     </div>
-                    <div class="panel-cell" style="vertical-align: middle"> 
-                        <input id="passwordConfirm" type="password" name ="passwordConfirm"/>
+                    <div class="panel-cell" style="vertical-align: middle">
+                        <input id="passwordConfirm" type="password" name="passwordConfirm"/>
                     </div>
                 </div>
             </fieldset>
-            <input type="button" value="حفظ" id="sendButton" />
+            <input type="button" value="حفظ" id="sendButton"/>
 
             <div class="panel_row">
                 <div class="panel-cell" style="float: left ; ">
                     <label>
-                        <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
+                        <a href="index.php?program=<? echo $_SESSION['program'] ?>"
+                           style="float: left;margin-left: 25px;margin-top: 20px;">
                             رجوع
                         </a></label>
                 </div>
@@ -160,8 +165,8 @@ $smarty->display('../templates/Loggedin.tpl');
         </form>
         <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
     </center>
-</body>
-</html>
+    </body>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');
 ?>

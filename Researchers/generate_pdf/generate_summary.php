@@ -17,7 +17,8 @@ require_once '../../lib/objectives.php';
 // FILES FOR MANPOWER DUSRATIONS
 // extend TCPF with custom functions
 
-function GetRsearchDetails($research_id) {
+function GetRsearchDetails($research_id)
+{
     $obj = new Reseaches();
     $rs = $obj->GetResearchDetailsMin($research_id);
     $array = array();
@@ -34,35 +35,42 @@ function GetRsearchDetails($research_id) {
     return $array;
 }
 
-function GetResearchIntro($research_id) {
+function GetResearchIntro($research_id)
+{
     $r = new Reseaches();
     return $r->GetIntroductionText($research_id);
 }
 
-function GetResearchAbstractAr($research_id) {
+function GetResearchAbstractAr($research_id)
+{
     $r = new Reseaches();
     return $r->GetAbstractArText($research_id);
 }
 
-function GetResearchAbstractEng($research_id) {
+function GetResearchAbstractEng($research_id)
+{
     $r = new Reseaches();
     return $r->GetAbstractEnText($research_id);
 }
 
-function GetResearchReview($research_id) {
+function GetResearchReview($research_id)
+{
     $r = new Reseaches();
     return $r->GetLiteratureReviewText($research_id);
 }
 
-function GetResearchValue($research_id) {
+function GetResearchValue($research_id)
+{
     $r = new Reseaches();
     return $r->GetValueToKingdomText($research_id);
 }
 
-class PDF extends TCPDF {
+class PDF extends TCPDF
+{
 
     // Colored table
-    public function GetCurrRound() {
+    public function GetCurrRound()
+    {
         $obj = new Settings();
         return $obj->GetCurrRound();
     }
@@ -119,7 +127,7 @@ if (isset($_GET['q'])) {
     $name_en = $details['name_en'];
     $duration = $details['duration'];
     $html = '<p>' . 'المقدمة' . '</p>';
-    $html.='<hr/><br/>';
+    $html .= '<hr/><br/>';
     $html .= '<style type="text/css">
         .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
         .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}

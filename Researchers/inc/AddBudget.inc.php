@@ -13,5 +13,5 @@ $result = $p->Save($Rid, $title, $BudgetAmount);
 if ($result > 0) {
     echo 'تم حفظ البيانات بنجاح';
 } else {
-    
+
 }

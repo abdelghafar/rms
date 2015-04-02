@@ -29,56 +29,66 @@ if (isset($_GET['q'])) {
 
     $type = filter_input(INPUT_GET, 'type');
     switch ($type) {
-        case 'arAbsUpload': {
-                $file_name .= 'summary_ar' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'summary_ar' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'enAbsUpload': {
-                $file_name .= 'summary_en' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'summary_en' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'introUpload': {
-                $file_name .= 'introduction' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'introduction' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'reviewUpload': {
-                $file_name .= 'review' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'review' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'research_method': {
-                $file_name .= 'research_method' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'research_method' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'objective_approach': {
-                $file_name .= 'objective_approach' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'objective_approach' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'objective_tasks': {
-                $file_name .= 'objective_tasks' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'objective_tasks' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'working_plan': {
-                $file_name .= 'working_plan' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'working_plan' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'value_to_kingdom': {
-                $file_name .= 'value_to_kingdom' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'value_to_kingdom' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
-        case 'refs': {
-                $file_name .= 'refs' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $target_file = $target_dir . 'refs' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                break;
-            }
+        case 'arAbsUpload':
+        {
+            $file_name .= 'summary_ar' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'summary_ar' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'enAbsUpload':
+        {
+            $file_name .= 'summary_en' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'summary_en' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'introUpload':
+        {
+            $file_name .= 'introduction' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'introduction' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'reviewUpload':
+        {
+            $file_name .= 'review' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'review' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'research_method':
+        {
+            $file_name .= 'research_method' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'research_method' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'objective_approach':
+        {
+            $file_name .= 'objective_approach' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'objective_approach' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'objective_tasks':
+        {
+            $file_name .= 'objective_tasks' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'objective_tasks' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'working_plan':
+        {
+            $file_name .= 'working_plan' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'working_plan' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'value_to_kingdom':
+        {
+            $file_name .= 'value_to_kingdom' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'value_to_kingdom' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'refs':
+        {
+            $file_name .= 'refs' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'refs' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
     }
 
 
@@ -123,79 +133,95 @@ if (isset($_GET['q'])) {
 
             switch ($_GET['type']) {
 
-                case 'arAbsUpload': {
-                        $obj->SetAbstract_ar_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'enAbsUpload': {
-                        $obj->SetAbstract_en_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'introUpload': {
-                        $obj->SetIntro_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'reviewUpload': {
-                        $obj->SetLitReview_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'research_method': {
-                        $obj->SetResearch_method_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'objective_approach': {
-                        $obj->SetObjective_approach_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'objective_tasks': {
-                        $obj->SetObjective_tasks_url($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'working_plan': {
-                        $obj->SetWorkingPlanUrl($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'value_to_kingdom': {
-                        $obj->SetValueToKingdomUrl($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'budget': {
-                        $obj->SetBudgetUrl($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'outcome_objectives': {
-                        $obj->SetOutcomeObjectiveUrl($_GET['q'], $file_name);
-                        break;
-                    }
-                case 'refs': {
-                        $obj->SetRefsUrl($_GET['q'], $file_name);
-                        break;
-                    }
+                case 'arAbsUpload':
+                {
+                    $obj->SetAbstract_ar_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'enAbsUpload':
+                {
+                    $obj->SetAbstract_en_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'introUpload':
+                {
+                    $obj->SetIntro_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'reviewUpload':
+                {
+                    $obj->SetLitReview_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'research_method':
+                {
+                    $obj->SetResearch_method_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'objective_approach':
+                {
+                    $obj->SetObjective_approach_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'objective_tasks':
+                {
+                    $obj->SetObjective_tasks_url($_GET['q'], $file_name);
+                    break;
+                }
+                case 'working_plan':
+                {
+                    $obj->SetWorkingPlanUrl($_GET['q'], $file_name);
+                    break;
+                }
+                case 'value_to_kingdom':
+                {
+                    $obj->SetValueToKingdomUrl($_GET['q'], $file_name);
+                    break;
+                }
+                case 'budget':
+                {
+                    $obj->SetBudgetUrl($_GET['q'], $file_name);
+                    break;
+                }
+                case 'outcome_objectives':
+                {
+                    $obj->SetOutcomeObjectiveUrl($_GET['q'], $file_name);
+                    break;
+                }
+                case 'refs':
+                {
+                    $obj->SetRefsUrl($_GET['q'], $file_name);
+                    break;
+                }
 
-                case 'coAuthor_agreement': {
-                        $obj = new research_stuff();
-                        $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                        $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                        $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
-                        break;
-                    }
-                case 'OtherPersonal_agreement': {
-                        $obj = new research_stuff();
-                        $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                        $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                        $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
-                        break;
-                    }
-                case 'resume': {
-                        $obj = new research_stuff();
-                        $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                        $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                        $obj->SetResumeUrl($project_id, $person_id, $file_name);
-                        break;
-                    }
+                case 'coAuthor_agreement':
+                {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
+                    break;
+                }
+                case 'OtherPersonal_agreement':
+                {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
+                    break;
+                }
+                case 'resume':
+                {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetResumeUrl($project_id, $person_id, $file_name);
+                    break;
+                }
 
-                default : {
-                        break;
+                default :
+                    {
+                    break;
                     }
             }
         } else {

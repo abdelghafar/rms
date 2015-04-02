@@ -33,13 +33,13 @@ if (isset($_GET['q'])) {
     exit();
 }
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>تحميل الملف</title>
         <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
 
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
@@ -60,61 +60,62 @@ if (isset($_GET['q'])) {
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
-        <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
-        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/> 
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
+        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
                 $.ajax({url: 'ajax/final_submit.php?q=<? echo $projectId; ?>', beforeSend: function (xhr) {
 
 
-                    }, success: function (data, textStatus, jqXHR) {
-                        if (data == 1)
-                        {
-                            $('#ResultDiv').show();
-                            $('#submit_button').show();
-                            $('#loadingDiv').hide();
-                            $('#back_button').hide();
-                            $('#ResultText').html('<p>' + 'تم حفظ المشروع بنجاح' + '</p>');
-                        }
-                        else
-                        {
-                            $('#ResultDiv').show();
-                            $('#loadingDiv').hide();
-                            $('#ResultText').html(data);
-                        }
+                }, success: function (data, textStatus, jqXHR) {
+                    if (data == 1) {
+                        $('#ResultDiv').show();
+                        $('#submit_button').show();
+                        $('#loadingDiv').hide();
+                        $('#back_button').hide();
+                        $('#ResultText').html('<p>' + 'تم حفظ المشروع بنجاح' + '</p>');
+                    }
+                    else {
+                        $('#ResultDiv').show();
+                        $('#loadingDiv').hide();
+                        $('#ResultText').html(data);
+                    }
 
-                    }});
+                }});
             });
         </script>
     </head>
     <body>
-        <div id="loadingDiv" style="width: 880px;" class="Infobox">
-            <img src="../common/images/loading.gif" style="border: none;" alt=""/>
-            <p>
-                يرجي الانتظار
-            </p>
-        </div>
-        <div id="ResultDiv" style="display: none;width: 880px;" class="successbox">
-            <label id="ResultText">
-            </label>
-        </div>
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <a id="submit_button" href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>" style="float: right;margin-top: 20px;display: none;">
-                        <img src="images/next.png" style="border: none;margin-right: 0px;" alt="next"/>
-                    </a>
-                </td>
-                <td>
-                    <a id="back_button" href="download.php?q=<? echo $rawId; ?>" style="float: left;margin-top: 20px;">
-                        <img src="images/back.png" style="border: none;margin-left: 0px;" alt="back"/>
-                    </a>
-                </td>
-            </tr>
-        </table>
+    <div id="loadingDiv" style="width: 880px;" class="Infobox">
+        <img src="../common/images/loading.gif" style="border: none;" alt=""/>
+
+        <p>
+            يرجي الانتظار
+        </p>
+    </div>
+    <div id="ResultDiv" style="display: none;width: 880px;" class="successbox">
+        <label id="ResultText">
+        </label>
+    </div>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a id="back_button" href="download.php?q=<? echo $rawId; ?>" style="float: right;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;margin-left: 0px;" alt="back"/>
+                </a>
+
+            </td>
+            <td>
+                <a id="submit_button" href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>"
+                   style="float: left;margin-top: 20px;display: none;">
+                    <img src="images/next.png" style="border: none;margin-right: 0px;" alt="next"/>
+                </a>
+            </td>
+        </tr>
+    </table>
     </body>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

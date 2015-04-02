@@ -29,8 +29,7 @@ $isValid = TRUE;
 if (!isset($_POST['duration']) || empty($_POST['duration']) || ($_POST['duration'] <= 0)) {
     echo 'من فضلك أدخل مدة تنفيذ المهمة بشكل صحيح' . '<br/>';
     $isValid = FALSE;
-}
-else
+} else
     $duration = mysql_escape_string(trim($_POST['duration']));
 
 

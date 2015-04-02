@@ -99,8 +99,7 @@ switch ($form_name) {
                     echo " <br> -  " . $stuff_row['name_ar'];
                     $title_exist = 1;
                     $isValid = FALSE;
-                }
-                else
+                } else
                     echo " <br> -  " . $stuff_row['name_ar'];
             }
             if ($title_exist === 1)
@@ -108,8 +107,7 @@ switch ($form_name) {
         }
 
 
-
-        //========== Get Tasks which haven't Stuff 
+        //========== Get Tasks which haven't Stuff
 
         $emptytasks_rs = $resources->GetEmptyTasks($project_id);
         if (mysql_num_rows($emptytasks_rs) > 0) {
@@ -118,44 +116,13 @@ switch ($form_name) {
                 echo " <br> -  " . $row['task_name'];
             }
             echo "</label> <br>" .
-            $isValid = FALSE;
+                $isValid = FALSE;
         }
 
         echo $isValid;
 
 
         break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //***************************************************************
@@ -180,7 +147,7 @@ switch ($form_name) {
                 echo " <br> -  " . $row['outcome_title'];
             }
             echo "</label> <br>" .
-            $isValid = FALSE;
+                $isValid = FALSE;
         }
 
         //========== Get Objectives which haven't Outcomes 
@@ -192,7 +159,7 @@ switch ($form_name) {
                 echo " <br> -  " . $row['obj_title'];
             }
             echo "</label> <br>" .
-            $isValid = FALSE;
+                $isValid = FALSE;
         }
 
         echo $isValid;

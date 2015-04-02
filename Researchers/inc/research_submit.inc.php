@@ -107,8 +107,7 @@ if (isset($_GET['q'])) {
     } else {
         echo 'لقد  فشلت عمليه ادخال البيانات' . '<br/>';
     }
-}
-//ToDo:insert stmt
+} //ToDo:insert stmt
 else {
     $setting = new Settings();
     $research_year = $setting->GetCurrYear();
@@ -149,4 +148,4 @@ else {
 }
 ?>
 <link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>

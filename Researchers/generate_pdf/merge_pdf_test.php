@@ -23,15 +23,15 @@ if (isset($_GET['q'])) {
     $stamp = date(DateTime_Format);
     $file_name = '../../uploads/' . $project_id . '/' . 'final_' . $stamp . ".pdf";
     $pdf->addPDF($summary_url, 'all')
-            ->addPDF($team_url, 'all')
-            ->addPDF($intro_url_rel, 'all')
-            ->addPDF($abs_ar_rel, 'all')
-            ->addPDF($abs_en_rel, 'all')
-            ->addPDF($review_rel, 'all')
-            ->addPDF($research_method, 'all')
-            ->addPDF($value_to_kingdom, 'all')
-            ->addPDF($details_url, 'all')
-            ->addPDF($ref_url, 'all')
-            ->merge('file', '../../uploads/' . $project_id . '/' . 'final_' . $stamp . ".pdf");
+        ->addPDF($team_url, 'all')
+        ->addPDF($intro_url_rel, 'all')
+        ->addPDF($abs_ar_rel, 'all')
+        ->addPDF($abs_en_rel, 'all')
+        ->addPDF($review_rel, 'all')
+        ->addPDF($research_method, 'all')
+        ->addPDF($value_to_kingdom, 'all')
+        ->addPDF($details_url, 'all')
+        ->addPDF($ref_url, 'all')
+        ->merge('file', '../../uploads/' . $project_id . '/' . 'final_' . $stamp . ".pdf");
     echo '../uploads/' . $project_id . '/' . 'final_' . $stamp . ".pdf";
 }

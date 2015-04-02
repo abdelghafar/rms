@@ -14,7 +14,7 @@ $project_id = $_POST['project_id'];
 $person_id = $_POST['person_id'];
 $item_id = 15; // for manpower
 $resource = new Resources();
-$stuff_tasks= new StuffTasks();
+$stuff_tasks = new StuffTasks();
 
 //$has_relateddata = $task->hasReleatedData($task_id);
 //if ($has_relateddata == true) {

@@ -61,7 +61,7 @@ while ($row = mysql_fetch_array($research_stuff_rs, MYSQL_ASSOC)) {
             }
         }
     }
-   // print_r($project_array);
+    // print_r($project_array);
 
     if ($dunit_id == 2) {
         for ($i = 1; $i <= $project_duration; $i++) {

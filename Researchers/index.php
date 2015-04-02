@@ -44,18 +44,18 @@ if (!isset($_GET['program'])) {
     $smarty->display('../templates/Loggedin.tpl');
 }
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
-        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/> 
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/>
+        <link rel="stylesheet" href="../common/css/MessageBox.css" type="text/css"/>
         <title></title>
-        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
+        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
         <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
     </head>
     <body>
     <center>
-        <fieldset style="width: 95%;text-align: right;"> 
+        <fieldset style="width: 95%;text-align: right;">
             <legend>
                 <label>
                     <?php
@@ -68,7 +68,8 @@ if (!isset($_GET['program'])) {
                 <div class="panel-cell">
 
                     <a href="UpdateInfo.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/Profile.png" alt="تعديل البيانات" title ="تعديل البيانات" style ="border:0;"/>
+                        <img src="images/Profile.png" alt="تعديل البيانات" title="تعديل البيانات" style="border:0;"/>
+
                         <p style="margin-top: 0px;">
                             تعديل بيانات
                         </p>
@@ -78,7 +79,9 @@ if (!isset($_GET['program'])) {
                 <div class="panel-cell" style="padding-right:100px;">
 
                     <a href="Researchers_View.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/view_research.png" alt="متابعة الأبحاث" title ="متابعة الأبحاث" style ="border:0"/>
+                        <img src="images/view_research.png" alt="متابعة الأبحاث" title="متابعة الأبحاث"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             متابعة الابحاث
                         </p>
@@ -86,7 +89,9 @@ if (!isset($_GET['program'])) {
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="understanding.php?program=<? echo $_SESSION['program'] ?>">
-                        <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث" style ="border:0" /> 
+                        <img id="new_Research" src="images/new_Research.png" alt="تقديم بحث" title="تقديم بحث"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             تقديم بحث
                         </p>
@@ -94,8 +99,10 @@ if (!isset($_GET['program'])) {
 
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
-                    <a href="project_stuff.php?program=<? echo $_SESSION['program'] ?>"> 
-                        <img src="images/team.png" alt="الباحثين المشاركين" title ="الباحثين المشاركين" style ="border:0"/>
+                    <a href="project_stuff.php?program=<? echo $_SESSION['program'] ?>">
+                        <img src="images/team.png" alt="الباحثين المشاركين" title="الباحثين المشاركين"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             الفريق البحثي
                         </p>
@@ -105,7 +112,8 @@ if (!isset($_GET['program'])) {
 
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="Objectivies.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/task-due.png" alt="اهداف المشروع" title ="اهداف المشروع" style ="border:0"/>
+                        <img src="images/task-due.png" alt="اهداف المشروع" title="اهداف المشروع" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             اهداف المشروع
                         </p>
@@ -113,10 +121,11 @@ if (!isset($_GET['program'])) {
 
                 </div>
             </div>
-            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
+            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;">
                 <div class="panel-cell" style="padding-right: 0px;">
                     <a href="workingPlan.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/view-calendar.png" alt="خطة العمل" title ="خطة العمل" style ="border:0"/>
+                        <img src="images/view-calendar.png" alt="خطة العمل" title="خطة العمل" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             خطة العمل
                         </p>
@@ -126,7 +135,8 @@ if (!isset($_GET['program'])) {
 
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="schedule.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/appointment-new.png" alt="جدول المهام" title ="جدول المهام" style ="border:0"/>
+                        <img src="images/appointment-new.png" alt="جدول المهام" title="جدول المهام" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             جدول المهام
                         </p>
@@ -135,7 +145,8 @@ if (!isset($_GET['program'])) {
 
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="budget.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/budget.png" alt="الميزانية" title ="الميزانية" style ="border:0"/>
+                        <img src="images/budget.png" alt="الميزانية" title="الميزانية" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             الميزانية التفصلية
                         </p>
@@ -146,9 +157,11 @@ if (!isset($_GET['program'])) {
 
 
                     <a href="Forms.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title ="  النماذج  و الاستمارات" style ="border:0"/>
+                        <img src="images/invoice.png" alt="  النماذج  و الاستمارات" title="  النماذج  و الاستمارات"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
-                            النماذج  و الاستمارات
+                            النماذج و الاستمارات
                         </p>
                     </a>
 
@@ -156,7 +169,9 @@ if (!isset($_GET['program'])) {
 
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="docs.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/documents.png" alt=" المستندات الهامة" title =" المستندات الهامة" style ="border:0"/>
+                        <img src="images/documents.png" alt=" المستندات الهامة" title=" المستندات الهامة"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             المستندات الهامة
                         </p>
@@ -164,12 +179,14 @@ if (!isset($_GET['program'])) {
                 </div>
             </div>
 
-            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;" >
+            <div class="panel_row" style="padding-right: 50px; height: 100px;clear: both;margin-top: 20px;">
 
                 <div class="panel-cell" style="padding-right: 0px;">
 
                     <a href="ChangePassword.php?program=<? echo $_SESSION['program'] ?>">
-                        <img src="images/password_change.png" alt="تغير كلمة المرور" title ="تغير كلمة المرور" style ="border:0"/>
+                        <img src="images/password_change.png" alt="تغير كلمة المرور" title="تغير كلمة المرور"
+                             style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             تغير كلمة المرور
                         </p>
@@ -177,7 +194,8 @@ if (!isset($_GET['program'])) {
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="understanding.php">
-                        <img src="images/appointment-new.png" alt="المعالج" title ="المعالج" style ="border:0"/>
+                        <img src="images/appointment-new.png" alt="المعالج" title="المعالج" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             المعالج
                         </p>
@@ -186,7 +204,8 @@ if (!isset($_GET['program'])) {
                 </div>
                 <div class="panel-cell" style="padding-right: 100px;">
                     <a href="../inc/logout.inc.php">
-                        <img src="images/exit.png" alt="خروج" title ="خروج" style ="border:0"/>
+                        <img src="images/exit.png" alt="خروج" title="خروج" style="border:0"/>
+
                         <p style="margin-top: 0px;">
                             خروج
                         </p>
@@ -197,7 +216,7 @@ if (!isset($_GET['program'])) {
             </div>
         </fieldset>
     </center>
-</body>
-</html>
+    </body>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

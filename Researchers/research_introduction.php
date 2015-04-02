@@ -42,90 +42,89 @@ if (isset($_GET['q'])) {
 }
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-        <link href="../common/css/reigster-layout.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#submit_button').click(function () {
-                    var inst = FCKeditorAPI.GetInstance("FCKeditor1");
-                    var sValue = inst.GetHTML();
-                    $('#FCKeditor1_Val').val(sValue);
-                    $.ajax({
-                        url: "inc/update_research_introduction_text.inc.php" + '<?
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
+    <link href="../common/css/reigster-layout.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submit_button').click(function () {
+                var inst = FCKeditorAPI.GetInstance("FCKeditor1");
+                var sValue = inst.GetHTML();
+                $('#FCKeditor1_Val').val(sValue);
+                $.ajax({
+                    url: "inc/update_research_introduction_text.inc.php" + '<?
 if (isset($projectId)) {
     echo '?q=' . $projectId;
 }
 ?>',
-                        type: "post",
-                        datatype: "html",
-                        data: $("#frm").serialize(),
-                        success: function (data) {
-                            if (data == 1 || data == 0)
-                            {
-                                window.location.assign('research_abstract.php?q=' + '<? echo $projectId; ?>');
-                            }
-                            else
-                            {
-                                $('#Result').html(data);
-                            }
+                    type: "post",
+                    datatype: "html",
+                    data: $("#frm").serialize(),
+                    success: function (data) {
+                        if (data == 1 || data == 0) {
+                            window.location.assign('research_abstract.php?q=' + '<? echo $projectId; ?>');
                         }
-                    });
+                        else {
+                            $('#Result').html(data);
+                        }
+                    }
                 });
             });
-        </script>
-    </head>
-    <body>
-        <fieldset style="width: 95%;text-align: right;"> 
-            <legend>
-                <label>
-                    مقدمة المشروع
-                </label>
-            </legend>
-            <form id="frm" method="post">
-                <input type="hidden" id="FCKeditor1_Val" name="FCKeditor1_Val"/> 
-                <table style="direction: rtl;border: 1px;width: 100%;">
-                    <tr style="margin-top: 25px;">
-                        <td style="width: 200px;">
-                            المقدمة / Introduction 
-                            <span class="required">*</span>
-                        </td>
-                        <td>
-                            <?
-                            $oFCKeditor = new FCKeditor('FCKeditor1');
-                            $oFCKeditor->BasePath = '../js/fckeditor/';
-                            $oFCKeditor->ToolbarSet = 'Advanced';
-                            $oFCKeditor->Width = 790;
-                            $oFCKeditor->Height = 400;
-                            if (isset($projectId)) {
-                                $oFCKeditor->Value = $introduction_text;
-                            }
-                            $oFCKeditor->Create();
-                            ?>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </fieldset>
-        <div id="Result" style="width: 800px; height: 50px;">
-
-        </div>
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
-                        <img src="images/next.png" style="border: none;" alt="next"/>
-                    </a>
+        });
+    </script>
+</head>
+<body>
+<fieldset style="width: 95%;text-align: right;">
+    <legend>
+        <label>
+            مقدمة المشروع
+        </label>
+    </legend>
+    <form id="frm" method="post">
+        <input type="hidden" id="FCKeditor1_Val" name="FCKeditor1_Val"/>
+        <table style="direction: rtl;border: 1px;width: 100%;">
+            <tr style="margin-top: 25px;">
+                <td style="width: 200px;">
+                    المقدمة / Introduction
+                    <span class="required">*</span>
                 </td>
                 <td>
-                    <a href="research_submit.php?q=<? echo $projectId; ?>" style="float: left;margin-left: 25px;margin-top: 20px;" onclick="GetData();">
-                        <img src="images/back.png" style="border: none;" alt="back"/>
-                    </a>
+                    <?
+                    $oFCKeditor = new FCKeditor('FCKeditor1');
+                    $oFCKeditor->BasePath = '../js/fckeditor/';
+                    $oFCKeditor->ToolbarSet = 'Advanced';
+                    $oFCKeditor->Width = 790;
+                    $oFCKeditor->Height = 400;
+                    if (isset($projectId)) {
+                        $oFCKeditor->Value = $introduction_text;
+                    }
+                    $oFCKeditor->Create();
+                    ?>
                 </td>
             </tr>
         </table>
-    </body>
+    </form>
+</fieldset>
+<div id="Result" style="width: 800px; height: 50px;">
+
+</div>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                <img src="images/next.png" style="border: none;" alt="next"/>
+            </a>
+        </td>
+        <td>
+            <a href="research_submit.php?q=<? echo $projectId; ?>"
+               style="float: left;margin-left: 25px;margin-top: 20px;" onclick="GetData();">
+                <img src="images/back.png" style="border: none;" alt="back"/>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
 </html>

@@ -36,15 +36,15 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
 
-        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script> 
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
@@ -61,7 +61,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.filter.js"></script>
 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>	
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcombobox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcheckbox.js"></script>
@@ -80,7 +80,6 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
 
-
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -95,60 +94,60 @@ $smarty->display('../templates/Loggedin.tpl');
                 function outcomes_list() {
                     var post_data = 'project_id=' + $('#project_id').val() + '&item_id=' + $('#manpower_id').val();
                     var source =
-                            {
-                                datatype: "json",
-                                datafields: [
-                                    {name: 'seq_id'},
-                                    {name: 'project_id'},
-                                    {name: 'item_id'},
-                                    {name: 'person_id'},
-                                    {name: 'person_name'},
-                                    {name: 'duration'},
-                                    {name: 'duration_unit'},
-                                    {name: 'dunit_id'},
-                                    {name: 'compensation', type: 'number'},
-                                    {name: 'total_amount', type: 'number'}
-                                ],
-                                url: 'inc/manpower_budget_grid_data.php?' + post_data,
-                                cache: false
-                            };
+                    {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'seq_id'},
+                            {name: 'project_id'},
+                            {name: 'item_id'},
+                            {name: 'person_id'},
+                            {name: 'person_name'},
+                            {name: 'duration'},
+                            {name: 'duration_unit'},
+                            {name: 'dunit_id'},
+                            {name: 'compensation', type: 'number'},
+                            {name: 'total_amount', type: 'number'}
+                        ],
+                        url: 'inc/manpower_budget_grid_data.php?' + post_data,
+                        cache: false
+                    };
                     var dataAdapter = new $.jqx.dataAdapter(source);
                     $("#outcomes_grd").jqxGrid(
-                            {
-                                source: dataAdapter,
-                                theme: 'energyblue',
-                                editable: true,
-                                pageable: true,
-                                filterable: true,
-                                width: 930,
-                                pagesize: 20,
-                                autorowheight: true,
-                                autoheight: true,
-                                columnsresize: true,
-                                sortable: true,
-                                rtl: true,
-                                columns: [
-                                    {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'item_id', datafield: 'item_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'person_id', datafield: 'person_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Name -Role / الإسم - المشاركة', datafield: 'person_name', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
-                                    {text: 'Duration/  المدة', datafield: 'duration', type: 'string', editable: false, width: 100, align: 'center', cellsalign: 'right'},
-                                    {text: 'Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'right'},
-                                    {text: 'dunit_id', datafield: 'dunit_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Compensation/المكافأة ', datafield: 'compensation', width: 125, align: 'center', cellsalign: 'right', columntype: 'numberinput',
-                                        validation: function (cell, value) {
-                                            if (value < 0) {
-                                                return {result: false, message: "قيمة غير صحيحة"};
-                                            }
-                                            return true;
-                                        },
-                                        createeditor: function (row, cellvalue, editor) {
-                                            editor.jqxNumberInput({digits: 4});
-                                        }},
-                                    {text: 'Total / الإجمالى', datafield: 'total_amount', type: 'string', editable: false, width: 150, align: 'center', cellsalign: 'right'}
-                                ]
-                            });
+                        {
+                            source: dataAdapter,
+                            theme: 'energyblue',
+                            editable: true,
+                            pageable: true,
+                            filterable: true,
+                            width: 940,
+                            pagesize: 20,
+                            autorowheight: true,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'item_id', datafield: 'item_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'person_id', datafield: 'person_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'Name -Role / الإسم - المشاركة', datafield: 'person_name', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
+                                {text: 'Duration/  المدة', datafield: 'duration', type: 'string', editable: false, width: 100, align: 'center', cellsalign: 'center'},
+                                {text: 'Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'center'},
+                                {text: 'dunit_id', datafield: 'dunit_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'Compensation/المكافأة ', datafield: 'compensation', width: 135, align: 'center', cellsalign: 'center', columntype: 'numberinput',
+                                    validation: function (cell, value) {
+                                        if (value < 0) {
+                                            return {result: false, message: "قيمة غير صحيحة"};
+                                        }
+                                        return true;
+                                    },
+                                    createeditor: function (row, cellvalue, editor) {
+                                        editor.jqxNumberInput({digits: 4});
+                                    }},
+                                {text: 'Total / الإجمالى', datafield: 'total_amount', type: 'string', editable: false, width: 150, align: 'center', cellsalign: 'right'}
+                            ]
+                        });
                 }
 
                 $("#outcomes_grd").on('cellendedit', function (event) {
@@ -162,14 +161,13 @@ $smarty->display('../templates/Loggedin.tpl');
                     var changevalue = (compensation - oldvalue) * datarow.duration;
                     //alert(changevalue);
                     // alert($("#manpower_buget").val());
-                    if (column === 'compensation' && oldvalue !== compensation)
-                    {
+                    if (column === 'compensation' && oldvalue !== compensation) {
                         var total_amount = compensation * datarow.duration;
 
                         console.log(compensation * datarow.duration);
 
                         var post_data = 'seq_id=' + datarow.seq_id + '&project_id=' + datarow.project_id + '&item_id=' + datarow.item_id + '&stuff_id=' + datarow.person_id +
-                                '&duration=' + datarow.duration + '&dunit_id=' + datarow.dunit_id + '&compensation=' + compensation + '&amount=' + total_amount;
+                            '&duration=' + datarow.duration + '&dunit_id=' + datarow.dunit_id + '&compensation=' + compensation + '&amount=' + total_amount;
                         $.ajax({
                             type: 'post',
                             url: 'inc/saveBudgetManPower.php',
@@ -188,8 +186,7 @@ $smarty->display('../templates/Loggedin.tpl');
                                 var newmanpower_percent = (newmanpower_total / newtotal_budget * 100).toFixed(2);
                                 $("#manpower_percent").val(newmanpower_percent);
 
-                                if (data !== null && datarow.seq_id === 0)
-                                {
+                                if (data !== null && datarow.seq_id === 0) {
                                     $("#outcomes_grd").jqxGrid('setcellvaluebyid', rowid, "seq_id", data);
                                 }
                             }
@@ -229,75 +226,79 @@ $smarty->display('../templates/Loggedin.tpl');
         wizard_step(8);
     </script>
 
-    <fieldset style="width: 95%;text-align: right;">
-            <legend>
-                <label>
-                    ميزانية المشروع  / Project Budget 
+    <fieldset style="width: 97%;text-align: right;">
+        <legend>
+            <label>
+                ميزانية المشروع / Project Budget
 
-                </label>
-            </legend>
+            </label>
+        </legend>
 
 
         <h2 style="font-size: 14px">
-                1. مكافأت الفريق البحثى  / Manpower compensation
-            </h2>
-            <hr/>
-            <input type="hidden" id="manpower_id" name="manpower_id" value="<? echo $item_id; ?>" />
-            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
-            <input type="hidden" id="global_outcome_id" name="global_outcome_id" value="0" />
+            1. مكافأت الفريق البحثى / Manpower compensation
+        </h2>
+        <hr/>
+        <input type="hidden" id="manpower_id" name="manpower_id" value="<? echo $item_id; ?>"/>
+        <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>"/>
+        <input type="hidden" id="global_outcome_id" name="global_outcome_id" value="0"/>
 
-            <div id="outcomes_grd" style="margin-right: 0px !important; padding-right: 0px !important">
+        <div id="outcomes_grd" style="margin-right: 0px !important; padding-right: 0px !important">
+
+        </div>
+        <div class="panel_row">
+
+            <div class="panel-cell" style="width: 250px;text-align: left;padding-left: 10px;">
+
+                <h2 style="font-size: 14px">
+                    إجمالى مكافأت الفريق البحثي
+                    <br>
+                    project Team Budget Total
+                </h2>
 
             </div>
-            <div class="panel_row">
+            <div class="panel-cell" style="width: 150px; vertical-align: middle">
+                <input type="hidden" id="total_buget" name="total_buget"
+                       style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $project_budget_total; ?>
+                       disabled="true"/>
+                <input type="text" id="manpower_buget" name="manpower_buget"
+                       style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $project_manpower_total; ?>
+                       disabled="true"/>
+            </div>
 
-                <div class="panel-cell" style="width: 250px;text-align: left;padding-left: 10px;"> 
-
-                    <h2 style="font-size: 14px"> 
-                        إجمالى مكافأت الفريق البحثي
-                        <br>
-                        project Team Budget Total
-                    </h2>
-
-                </div>
-                <div class="panel-cell" style="width: 150px; vertical-align: middle"> 
-                    <input type="hidden" id="total_buget" name="total_buget" style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $project_budget_total; ?> disabled="true"/>
-                    <input type="text" id="manpower_buget" name="manpower_buget" style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $project_manpower_total; ?> disabled="true"/>
-                </div>
-
-                <div class="panel-cell" style="width: 250px;text-align: left;padding-left: 10px;"> 
-                    <h2 style="font-size: 14px"> 
-                        نسبة مكافأت الفريق البحثي
-                        <br>
-                        project Team Budget Percent
-                    </h2>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle"> 
-                    <input type="text" id="manpower_percent" name="manpower_percent" style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $manpower_percent; ?> />%
-                </div>
-            </div> 
-        </fieldset>
-        <div id="outcomeresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
-        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
-        <div id="objectives_div" style="padding-top: 10px;width: 100%">    </div>
+            <div class="panel-cell" style="width: 250px;text-align: left;padding-left: 10px;">
+                <h2 style="font-size: 14px">
+                    نسبة مكافأت الفريق البحثي
+                    <br>
+                    project Team Budget Percent
+                </h2>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input type="text" id="manpower_percent" name="manpower_percent"
+                       style="font-size: 16;font-weight: bold;margin-right: 10; color: #0000cc ;text-align: center;" <?php echo "value=" . $manpower_percent; ?> />%
+            </div>
+        </div>
+    </fieldset>
+    <div id="outcomeresult" dir="rtl" style="padding-top: 10px; text-align: center"></div>
+    <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150"></div>
+    <div id="objectives_div" style="padding-top: 10px;width: 100%"></div>
 
     </body>
     <table style="width: 100%;">
         <tr>
             <td>
-                <a href="outcomes_objectives.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                <a href="outcomes_objectives.php" style="float: right;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
                 </a>
             </td>
             <td>
-                <a id="submit_button" href="non_manpower_budget.php"
-                   style="float: left;margin-left: 25px;margin-top: 20px;">
+                <a id="submit_button" href="non_manpower_budget.php" style="float: left;margin-top: 20px;">
                     <img src="images/next.png" style="border: none;" alt="next"/>
                 </a>
 
             </td>
         </tr>
     </table>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

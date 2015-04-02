@@ -21,33 +21,33 @@ $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 ?>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        require_once '../lib/mysqlConnection.php';
-        require_once '../lib/users.php';
-        $email = $_GET['email'];
-        $hash = $_GET['hash'];
-        echo $token . '<br/>';
-        echo $email . '<br/>';
-        echo $hash . '<br/>';
-        
-        $stmt = "Select users.user_id From users join persons on persons.person_id = users.person_id where md5(persons.email)='" . $email . "' and md5(users.hash)='" . $hash . "'";
-        echo $stmt . '<br/>';
-        $conn = new MysqlConnect();
-        $rs = $conn->ExecuteNonQuery($stmt);
-        $user_id = 0;
-        while ($row = mysql_fetch_array($rs))
-            $user_id = $row['user_id'];
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+</head>
+<body>
+<?php
+require_once '../lib/mysqlConnection.php';
+require_once '../lib/users.php';
+$email = $_GET['email'];
+$hash = $_GET['hash'];
+echo $token . '<br/>';
+echo $email . '<br/>';
+echo $hash . '<br/>';
 
-        $user = new Users();
-        $user->ActivateUser($user_id);
-        echo 'Activation Done ...!';
-        ?>
-    </body>
+$stmt = "Select users.user_id From users join persons on persons.person_id = users.person_id where md5(persons.email)='" . $email . "' and md5(users.hash)='" . $hash . "'";
+echo $stmt . '<br/>';
+$conn = new MysqlConnect();
+$rs = $conn->ExecuteNonQuery($stmt);
+$user_id = 0;
+while ($row = mysql_fetch_array($rs))
+    $user_id = $row['user_id'];
+
+$user = new Users();
+$user->ActivateUser($user_id);
+echo 'Activation Done ...!';
+?>
+</body>
 </html>
 <?
 $smarty->display('../templates/footer.tpl');

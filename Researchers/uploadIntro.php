@@ -498,7 +498,7 @@ $smarty->display('../templates/Loggedin.tpl');
         wizard_step(2);
     </script>
 
-    <fieldset style="width: 95%;text-align: right;">
+    <fieldset style="width: 97%;text-align: right;">
     <legend>
         <label>
             تحميل الملفات
@@ -853,14 +853,14 @@ $smarty->display('../templates/Loggedin.tpl');
     <table style="width: 100%;">
         <tr>
             <td>
-                <a href="research_submit.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                <a href="research_submit.php" style="float: right;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
 
                 </a>
             </td>
             <td>
                 <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>')
-                    ;" href="#" style="float: left;margin-left: 25px;margin-top: 20px;">
+                    ;" href="#" style="float: left;margin-top: 20px;">
                     <img src="images/next.png" style="border: none;" alt="next"/>
 
                 </a>

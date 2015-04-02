@@ -61,12 +61,12 @@ $users = new Users();
 $userId = $_SESSION['User_Id'];
 $personId = $users->GetPerosnId($userId, 'Researcher');
 ?>
-<head>
+    <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>الباحثين المشاركين</title>
     <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
 
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
 
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
@@ -87,110 +87,108 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
 
-    <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/> 
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <script type="text/javascript">
-        function ReloadCoIs()
-        {
+        function ReloadCoIs() {
             var theme = 'energyblue';
             var CoIsDataSource =
-                    {
-                        datatype: "json",
-                        datafields: [
-                            {name: 'person_id'},
-                            {name: 'name_ar'},
-                            {name: 'role_name'},
-                            {name: 'empCode'},
-                            {name: 'position'},
-                            {name: 'major_Field'}
-                        ],
-                        id: 'person_id',
-                        url: 'ajax/project_stuff_CoI.php?q=<? echo $projectId; ?>'
-                    };
+            {
+                datatype: "json",
+                datafields: [
+                    {name: 'person_id'},
+                    {name: 'name_ar'},
+                    {name: 'role_name'},
+                    {name: 'empCode'},
+                    {name: 'position'},
+                    {name: 'major_Field'}
+                ],
+                id: 'person_id',
+                url: 'ajax/project_stuff_CoI.php?q=<? echo $projectId; ?>'
+            };
             var dataAdapter = new $.jqx.dataAdapter(CoIsDataSource);
             $("#gridCoI").jqxGrid(
-                    {
-                        source: dataAdapter,
-                        theme: theme,
-                        editable: false,
-                        pageable: false,
-                        filterable: true,
-                        width: 880,
-                        pagesize: 5,
-                        autoheight: true,
-                        columnsresize: true,
-                        sortable: true,
-                        rtl: true,
-                        columns: [
-                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Name/ الاسم', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
-                            {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Delete/حذف', datafield: 'حذف', width: 80, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                    return '..';
-                                }, buttonclick: function (row) {
-                                    var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
-                                    var person_id = dataRecord['person_id'];
-                                    Delete(person_id);
-                                }
-                            }
-                        ]
-                    });
+                {
+                    source: dataAdapter,
+                    theme: theme,
+                    editable: false,
+                    pageable: false,
+                    filterable: true,
+                    width: 920,
+                    pagesize: 5,
+                    autoheight: true,
+                    columnsresize: true,
+                    sortable: true,
+                    rtl: true,
+                    columns: [
+                        {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
+                        {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'center', cellsalign: 'right'},
+                        {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Delete/حذف', datafield: 'حذف', width: 80, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            return '..';
+                        }, buttonclick: function (row) {
+                            var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
+                            var person_id = dataRecord['person_id'];
+                            Delete(person_id);
+                        }
+                        }
+                    ]
+                });
 
 
         }
 
-        function ReloadOtherPeronsal()
-        {
+        function ReloadOtherPeronsal() {
             var theme = 'energyblue';
             var OtherDataSource =
-                    {
-                        datatype: "json",
-                        datafields: [
-                            {name: 'person_id'},
-                            {name: 'name_ar'},
-                            {name: 'role_name'},
-                            {name: 'email'},
-                            {name: 'position'},
-                            {name: 'major_Field'},
-                            {name: 'nationality'}
-                        ],
-                        id: 'person_id',
-                        url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
-                    };
+            {
+                datatype: "json",
+                datafields: [
+                    {name: 'person_id'},
+                    {name: 'name_ar'},
+                    {name: 'role_name'},
+                    {name: 'email'},
+                    {name: 'position'},
+                    {name: 'major_Field'},
+                    {name: 'nationality'}
+                ],
+                id: 'person_id',
+                url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
+            };
             var dataAdapter = new $.jqx.dataAdapter(OtherDataSource);
             $("#gridOthers").jqxGrid(
-                    {
-                        source: dataAdapter,
-                        theme: theme,
-                        editable: false,
-                        pageable: false,
-                        filterable: true,
-                        width: 880,
-                        pagesize: 5,
-                        autoheight: true,
-                        columnsresize: true,
-                        sortable: true,
-                        rtl: true,
-                        columns: [
-                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'Specialization / التخصص', dataField: 'major_Field', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'right', cellsalign: 'right'},
-                            {text: 'Role / نوع المشاركة', dataField: 'role_name', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Email / البريد الالكتروني', dataField: 'email', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
-                                    return '..';
-                                }, buttonclick: function (row) {
-                                    var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
-                                    var person_id = dataRecord['person_id'];
-                                    Delete(person_id);
-                                }
-                            }
-                        ]
-                    });
+                {
+                    source: dataAdapter,
+                    theme: theme,
+                    editable: false,
+                    pageable: false,
+                    filterable: true,
+                    width: 920,
+                    pagesize: 5,
+                    autoheight: true,
+                    columnsresize: true,
+                    sortable: true,
+                    rtl: true,
+                    columns: [
+                        {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'center', cellsalign: 'right'},
+                        {text: 'Specialization / التخصص', dataField: 'major_Field', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'center', cellsalign: 'right'},
+                        {text: 'Role / نوع المشاركة', dataField: 'role_name', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Email / البريد الالكتروني', dataField: 'email', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            return '..';
+                        }, buttonclick: function (row) {
+                            var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
+                            var person_id = dataRecord['person_id'];
+                            Delete(person_id);
+                        }
+                        }
+                    ]
+                });
 
         }
 
@@ -203,41 +201,41 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             $('#AddNewOtherPersonal').jqxButton({width: '150', height: '30', theme: theme});
 
             var PIDataSource =
-                    {
-                        datatype: "json",
-                        datafields: [
-                            {name: 'person_id'},
-                            {name: 'name_ar'},
-                            {name: 'role_name'},
-                            {name: 'empCode'},
-                            {name: 'position'},
-                            {name: 'major_Field'}
-                        ],
-                        id: 'person_id',
-                        url: 'ajax/project_stuff_PIs.php?q=<? echo $projectId; ?>'
-                    };
+            {
+                datatype: "json",
+                datafields: [
+                    {name: 'person_id'},
+                    {name: 'name_ar'},
+                    {name: 'role_name'},
+                    {name: 'empCode'},
+                    {name: 'position'},
+                    {name: 'major_Field'}
+                ],
+                id: 'person_id',
+                url: 'ajax/project_stuff_PIs.php?q=<? echo $projectId; ?>'
+            };
             var dataAdapter = new $.jqx.dataAdapter(PIDataSource);
             $("#gridPI").jqxGrid(
-                    {
-                        source: dataAdapter,
-                        theme: theme,
-                        editable: false,
-                        pageable: false,
-                        filterable: true,
-                        width: 880,
-                        pagesize: 5,
-                        autoheight: true,
-                        columnsresize: true,
-                        sortable: true,
-                        rtl: true,
-                        columns: [
-                            {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 250, align: 'right', cellsalign: 'right'},
-                            {text: 'Name / الاسم', dataField: 'name_ar', width: 280, align: 'right', cellsalign: 'right'},
-                            {text: 'Title / الدرجة العلمية', dataField: 'position', width: 200, align: 'right', cellsalign: 'right'},
-                            {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 150, align: 'right', cellsalign: 'right'}
-                        ]
-                    });
+                {
+                    source: dataAdapter,
+                    theme: theme,
+                    editable: false,
+                    pageable: false,
+                    filterable: true,
+                    width: 920,
+                    pagesize: 5,
+                    autoheight: true,
+                    columnsresize: true,
+                    sortable: true,
+                    rtl: true,
+                    columns: [
+                        {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
+                        {text: 'Name / الاسم', dataField: 'name_ar', width: 320, align: 'center', cellsalign: 'right'},
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 150, align: 'center', cellsalign: 'right'}
+                    ]
+                });
 
             //CoI Data Source------------------------------------------------------------
             ReloadCoIs();
@@ -249,10 +247,8 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
     </script>
     <script type="text/javascript">
-        function Delete(person_id)
-        {
-            if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true)
-            {
+        function Delete(person_id) {
+            if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     type: 'post',
                     url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
@@ -305,60 +301,60 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             }
         }
     </script>
-</head>
-<body>
-<div>
-    <?
-    require_once 'wizard_steps.php';
-    ?>
-</div>
-<script type="text/javascript">
-    wizard_step(3);
-</script>
+    </head>
+    <body>
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(3);
+    </script>
 
-<fieldset style="width: 95%;text-align: right;">
+    <fieldset style="width: 97%;text-align: right;">
         <legend>
             <label>
                 الفريق البحثي / Research Team
             </label>
         </legend>
 
-    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:25px;margin-bottom: 30px;">
+        <div id='jqxWidget'
+             style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:10px;margin-bottom: 30px;margin-left: 10px">
 
-        <h2 style="font-size: 14px">الباحث الرئيس/ PI</h2>
-        <hr/>
+            <h2 style="font-size: 14px">الباحث الرئيس/ PI</h2>
+            <hr/>
             <div id="gridPI"></div>
             <br/><br/>
 
-        <h2 style="font-size: 14px">الباحثين المشاركين / CO-Is</h2>
-        <hr/>
-        <input type="button" style="margin-bottom: 15px;margin-right:730" id='AddNewCoIs' value="Add / اضافة"/>
+            <h2 style="font-size: 14px">الباحثين المشاركين / CO-Is</h2>
+            <hr/>
+            <input type="button" style="margin-bottom: 15px;float: left" id='AddNewCoIs' value="Add / اضافة"/>
 
-        <div id='SearchFrm' style="width: 852px;height: auto;">
+            <div id='SearchFrm' style="width: 852px;height: auto; margin-right: 50 ">
 
             </div>
 
             <div id='gridCoI'></div>
             <br/><br/>
 
-        <h2 style="font-size: 14px">أخري -Other Personal </h2>
-        <hr/>
-        <input type="button" style="margin-bottom: 15px;margin-right:730 " id='AddNewOtherPersonal'
-               value="Add / اضافة"/>
+            <h2 style="font-size: 14px">أخري -Other personal </h2>
+            <hr/>
+            <input type="button" style="margin-bottom: 15px;float: left " id='AddNewOtherPersonal' value="Add / اضافة"/>
 
-        <div id='SearchPersonalFrm' style="width: 852px;height: auto;"></div>
+            <div id='SearchPersonalFrm' style="width: 852px;height: auto; margin-right: 50"></div>
             <div id='gridOthers'></div>
         </div>
     </fieldset>
     <table style="width: 100%;">
         <tr>
             <td>
-                <a href="uploadIntro.php" style="float: right;margin-left: 25px;margin-top: 20px;">
+                <a href="uploadIntro.php" style="float: right;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
                 </a>
             </td>
             <td>
-                <a id="submit_button" href="phases.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                <a id="submit_button" href="phases.php" style="float: left;margin-top: 20px;">
                     <img src="images/next.png" style="border: none;" alt="next"/>
                 </a>
             </td>
@@ -366,6 +362,6 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     </table>
 
 
-</body>
+    </body>
 <?
 $smarty->display('../templates/footer.tpl');

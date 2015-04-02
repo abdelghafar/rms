@@ -9,10 +9,12 @@ require_once '../../lib/tcpdf/tcpdf.php';
 
 //require_once '../../Reports/inc/GetResearchBudgetAndCountByYearFn.php';
 // create new PDF document
-class MYPDF extends TCPDF {
+class MYPDF extends TCPDF
+{
 
     //Page header
-    public function Header() {
+    public function Header()
+    {
         // Logo
         $image_file = '../../common/images/uqu.png';
         $this->Image($image_file, 195, 5, 20, 25, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
@@ -21,8 +23,9 @@ class MYPDF extends TCPDF {
     }
 
     // Page footer
-    public function Footer() {
-        
+    public function Footer()
+    {
+
     }
 
 }

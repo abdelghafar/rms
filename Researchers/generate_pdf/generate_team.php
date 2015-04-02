@@ -18,11 +18,12 @@ require_once '../../lib/objectives.php';
 // extend TCPF with custom functions
 
 
-
-class PDF extends TCPDF {
+class PDF extends TCPDF
+{
 
     // Colored table
-    public function GetCurrRound() {
+    public function GetCurrRound()
+    {
         $obj = new Settings();
         return $obj->GetCurrRound();
     }
@@ -71,7 +72,7 @@ if (isset($_GET['q'])) {
     //new page 
     $pdf->AddPage();
     $html = '<p>' . 'فريق العمل' . '</p>';
-    $html.='<hr/><br/>';
+    $html .= '<hr/><br/>';
     $html .= '<style type="text/css">
         .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
         .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
@@ -83,7 +84,7 @@ if (isset($_GET['q'])) {
     $obj = new research_stuff();
     $rs = $obj->GetProjectStuff($project_id);
     $list = array();
-    $html.='<table border = "1" class="tg" dir="rtl" style="width:760px;">
+    $html .= '<table border = "1" class="tg" dir="rtl" style="width:760px;">
     <thead>
         <tr>
             <th style="width: 30px;">#</th>
@@ -95,15 +96,15 @@ if (isset($_GET['q'])) {
     </thead><tbody>';
     $counter = 1;
     while ($row = mysql_fetch_array($rs)) {
-        $html.= '<tr>';
-        $html.='<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
-        $html.='<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
-        $html.='<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
-        $html.='<td class="tg-uy9o">' . $row['role_name'] . '</td>';
-        $html.='<td class="tg-lrt0">' . $row['Position'] . '</td>';
-        $html.='</tr>';
+        $html .= '<tr>';
+        $html .= '<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
+        $html .= '<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
+        $html .= '<td class="tg-uy9o">' . $row['role_name'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . $row['Position'] . '</td>';
+        $html .= '</tr>';
     }
-    $html.='</tbody></table>';
+    $html .= '</tbody></table>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //--------------------------------------------------------
     //

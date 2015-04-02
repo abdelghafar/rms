@@ -18,21 +18,21 @@ $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/header.tpl');
 session_destroy();
 ?>
-<html>
+    <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
-        <div style="min-height: 400px;color: #000;text-align: left;padding-left: 10px;">
-            <h1 style="color: #006699;">403 Forbidden or No Permission to Access</h1><span>
+    <div style="min-height: 400px;color: #000;text-align: left;padding-left: 10px;">
+        <h1 style="color: #006699;">403 Forbidden or No Permission to Access</h1><span>
                 for more information click here
             </span>
 
-            <hr/>
-            <h4>For Login <a href="../login.php">Click Here</a></h4>
-        </div>
+        <hr/>
+        <h4>For Login <a href="../login.php">Click Here</a></h4>
+    </div>
     </body>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

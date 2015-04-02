@@ -30,38 +30,36 @@ $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 $program = $_SESSION['program'];
 ?>
-<html>
+    <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
         <script>
-            function agree()
-            {
+            function agree() {
                 window.location.assign('research_submit.php?program=' + '<? echo $program; ?>');
             }
-            function notAgree()
-            {
+            function notAgree() {
                 window.location.assign('index.php');
             }
         </script>
     </head>
     <body>
-        <div id="content" style="width: 100%; height: auto;min-height: 90px;">
-            <?
-            echo $content;
-            ?>
-        </div>
-        <table>
-            <tr>
-                <td>
-                    <input type="submit" value="not agree" onclick="notAgree();"/>
-                </td>
-                <td>
-                    <input type="submit" value="Agree" onclick="agree();" />
-                </td>
-            </tr>
-        </table>
+    <div id="content" style="width: 100%; height: auto;min-height: 90px;">
+        <?
+        echo $content;
+        ?>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <input type="submit" value="not agree" onclick="notAgree();"/>
+            </td>
+            <td>
+                <input type="submit" value="Agree" onclick="agree();"/>
+            </td>
+        </tr>
+    </table>
     </body>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

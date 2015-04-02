@@ -33,38 +33,36 @@ if (isset($_GET['q'])) {
     $project_id = filter_input(INPUT_GET, 'q');
 }
 ?>
-<html>
+    <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
         <script>
-            function agree()
-            {
+            function agree() {
                 window.location.assign('download.php?q=' + '<? echo $project_id; ?>');
             }
-            function notAgree()
-            {
+            function notAgree() {
                 window.location.assign('Researchers_View.php?program=<? echo $program; ?>');
             }
         </script>
     </head>
     <body>
-        <div id="content" style="width: 100%; height: auto;min-height: 90px;">
-            <?
-            echo $content;
-            ?>
-        </div>
-        <table>
-            <tr>
-                <td>
-                    <input type="submit" value="not agree" onclick="notAgree();"/>
-                </td>
-                <td>
-                    <input type="submit" value="Agree" onclick="agree();" />
-                </td>
-            </tr>
-        </table>
+    <div id="content" style="width: 100%; height: auto;min-height: 90px;">
+        <?
+        echo $content;
+        ?>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <input type="submit" value="not agree" onclick="notAgree();"/>
+            </td>
+            <td>
+                <input type="submit" value="Agree" onclick="agree();"/>
+            </td>
+        </tr>
+    </table>
     </body>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');
