@@ -23,8 +23,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
 ?>
 <?php if ($_valid && !is_callable('content_52e1339b6dded8_31226446')) {
     function content_52e1339b6dded8_31226446($_smarty_tpl)
-    {
-        ?>
+    { ?>
         </div>
         </div>
         </article></div>
@@ -48,6 +47,5 @@ $_valid = $_smarty_tpl->decodeProperties(array(
         </div>
         </div>
         </body>
-        </html><?php
-    }
+        </html><?php }
 } ?>

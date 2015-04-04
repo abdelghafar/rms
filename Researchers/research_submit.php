@@ -286,7 +286,7 @@ if (isset($projectId)) {
                 {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                 {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                 {
-                    input: "#technologies", message: "من فضلك اختر أولوية البحث", action: 'blur', rule: function (input, commit) {
+                    input: "#technologies", message: "من فضلك اختر مجال البحث", action: 'blur', rule: function (input, commit) {
                     var index = $("#technologies").jqxDropDownList('getSelectedIndex');
                     return index !== -1;
                 }
@@ -404,7 +404,7 @@ if (isset($projectId)) {
                     </tr>
                     <tr>
                         <td>
-                            الأولوية/Priority
+                            مجال البحث/Priority
                             <span class="required">*</span>
                         </td>
                         <td>

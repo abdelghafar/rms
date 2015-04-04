@@ -2,15 +2,18 @@
 
 require_once 'mysqlConnection.php';
 
-class Settings {
+class Settings
+{
 
     private $table_name = 'settings';
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
     }
 
-    public function GetCurrYear() {
+    public function GetCurrYear()
+    {
         $con = new MysqlConnect();
         $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'year' limit 0,1";
         $result = $con->ExecuteNonQuery($stmt);
@@ -21,7 +24,8 @@ class Settings {
         return $year;
     }
 
-    public function GetCurrRound() {
+    public function GetCurrRound()
+    {
         $con = new MysqlConnect();
         $stmt = "SELECT settings.setting_value from " . $this->table_name . " where settings.setting_title= 'round_date' limit 0,1";
         $result = $con->ExecuteNonQuery($stmt);

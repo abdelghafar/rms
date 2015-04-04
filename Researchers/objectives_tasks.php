@@ -144,8 +144,8 @@ $smarty->display('../templates/Loggedin.tpl');
 
                             }
                             },
-                            {text: 'تخصيص مهام/Asign Tasks', width: 150, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
-                                return "تخصيص مهام/Asign Tasks";
+                            {text: 'Asign Tasks/تخصيص مهام ', width: 150, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
+                                return "Asign Tasks/تخصيص مهام ";
                             }, buttonclick: function (row) {
                                 var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
                                 $("#form_div").html("");

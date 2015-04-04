@@ -187,7 +187,7 @@ $smarty->display('../templates/Loggedin.tpl');
             id: 'item_id',
             url: '../Data/materials_items.php'};
         var materials_items_adapter = new $.jqx.dataAdapter(materials_items_source);
-        $('#lst_materials_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: materials_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+        $('#lst_materials_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: materials_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'Select Item / من فضلك اختر'});
 
         $('#lst_materials_items').on('select', function (event) {
             var args = event.args;
@@ -209,7 +209,7 @@ $smarty->display('../templates/Loggedin.tpl');
             id: 'item_id',
             url: '../Data/travel_items.php'};
         var travel_items_adapter = new $.jqx.dataAdapter(travel_items_source);
-        $('#lst_travel_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: travel_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+        $('#lst_travel_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: travel_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'Select Item / من فضلك اختر'});
 
         $('#lst_travel_items').on('select', function (event) {
             var args = event.args;
@@ -515,7 +515,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 id: 'item_id',
                 url: '../Data/other_items.php'};
             var others_items_adapter = new $.jqx.dataAdapter(others_items_source);
-            $('#lst_others_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: others_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'من فضلك اختر '});
+            $('#lst_others_items').jqxDropDownList({width: '300', height: '30', theme: theme, source: others_items_adapter, displayMember: 'item_title', valueMember: 'item_id', rtl: true, promptText: 'Select Item / من فضلك اختر'});
 
             $('#lst_others_items').on('select', function (event) {
                 var args = event.args;

@@ -3,13 +3,16 @@
 require_once 'mysqlConnection.php';
 require_once 'users.php';
 
-class Persons {
+class Persons
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function Save($id, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, $gender, $Nationality, $BirthDate, $CountryOfBirth, $Position, $Major_Field, $Speical_Field, $university, $College, $Dept, $empCode, $EqamaCode, $Email, $Mobile, $Fax, $city, $country, $POX, $Postal_Code, $IBAN, $ResumeUrl) {
+    public function Save($id, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, $gender, $Nationality, $BirthDate, $CountryOfBirth, $Position, $Major_Field, $Speical_Field, $university, $College, $Dept, $empCode, $EqamaCode, $Email, $Mobile, $Fax, $city, $country, $POX, $Postal_Code, $IBAN, $ResumeUrl)
+    {
         $conn = new MysqlConnect();
         $stmt = "";
         if ($id == 0) {
@@ -23,19 +26,22 @@ class Persons {
         return $res;
     }
 
-    public function GetPerson($PersonId) {
+    public function GetPerson($PersonId)
+    {
         $stmt = "SELECT  `Person_id` ,  `FirstName_ar` ,  `FirstName_en` ,  `FatherName_ar` ,  `FatherName_en` ,  `GrandName_ar` ,  `GrandName_en` ,  `FamilyName_ar` ,  `FamilyName_en` ,  `Gender` ,  `Nationality` , `DateOfBirth` ,  `CountryOfBirth` ,  `Position` ,  `Major_Field` ,  `Speical_Field` ,  `university` ,  `College` ,  `Dept` ,  `empCode` ,  `EqamaCode` ,  `Email` ,  `Mobile` ,  `Fax` ,  `city` ,  `country` ,  `POX` , `Postal_Code` ,  `IBAN` ,  `SWIFT` , ResumeUrl FROM  `persons` where `Person_id`=" . $PersonId;
         $result = mysql_query($stmt);
         return $result;
     }
 
-    public function GetPersonByEmpCode($EmpCode) {
+    public function GetPersonByEmpCode($EmpCode)
+    {
         $stmt = "SELECT  `Person_id` ,  `FirstName_ar` ,  `FirstName_en` ,  `FatherName_ar` ,  `FatherName_en` ,  `GrandName_ar` ,  `GrandName_en` ,  `FamilyName_ar` ,  `FamilyName_en` ,  `Gender` ,  `Nationality` , `DateOfBirth` ,  `CountryOfBirth` ,  `Position` ,  `Major_Field` ,  `Speical_Field` ,  `university` ,  `College` ,  `Dept` ,  `empCode` ,  `EqamaCode` ,  `Email` ,  `Mobile` ,  `Fax` ,  `city` ,  `country` ,  `POX` , `Postal_Code` ,  `IBAN` ,  `SWIFT` FROM  `persons` where `empcode`=" . $EmpCode;
         $result = mysql_query($stmt);
         return $result;
     }
 
-    public function IsExist($EqamaCode) {
+    public function IsExist($EqamaCode)
+    {
         $stmt = "SELECT person_id FROM persons Where EqamaCode='" . $EqamaCode . "'";
         $result = mysql_query($stmt);
         $id = 0;
@@ -45,7 +51,8 @@ class Persons {
         return $id;
     }
 
-    public function IsExistByEmail($Email) {
+    public function IsExistByEmail($Email)
+    {
         $stmt = "SELECT person_id FROM persons Where Email='$Email'";
         $result = mysql_query($stmt);
         $person_id = 0;
@@ -55,13 +62,15 @@ class Persons {
         return $person_id;
     }
 
-    public function GetPersonByEmail($Email) {
+    public function GetPersonByEmail($Email)
+    {
         $stmt = "SELECT `Person_id` ,  `FirstName_ar` ,  `FirstName_en` ,  `FatherName_ar` ,  `FatherName_en` ,  `GrandName_ar` ,  `GrandName_en` ,  `FamilyName_ar` ,  `FamilyName_en` ,  `Gender` ,  `Nationality` , `DateOfBirth` ,  `CountryOfBirth` ,  `Position` ,  `Major_Field` ,  `Speical_Field` ,  `university` ,  `College` ,  `Dept` ,  `empCode` ,  `EqamaCode` ,  `Email` ,  `Mobile` ,  `Fax` ,  `city` ,  `country` ,  `POX` , `Postal_Code` ,  `IBAN` ,  `SWIFT` FROM  `persons` where `Email`=" . $Email;
         $result = mysql_query($stmt);
         return $result;
     }
 
-    public function Delete($personId) {
+    public function Delete($personId)
+    {
         $stmt = "DELETE from persons where `Person_id`=" . $personId;
         $result = mysql_query($stmt);
         return $result;

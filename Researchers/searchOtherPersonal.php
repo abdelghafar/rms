@@ -23,8 +23,8 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_file_name = null;
-        $("#SearchByName").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
+        $("#SearchByName").jqxInput({width: '300px', height: '25px', rtl: true, theme: Curr_theme});
+        $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         var roles_lst_dataSource = {
             datatype: "json",
             datafields: [
@@ -35,7 +35,7 @@ if (isset($_GET['q'])) {
             async: false
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
-        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 250, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
+        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
         $('#searchButton').on('click', function () {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
@@ -218,7 +218,7 @@ if (isset($_GET['q'])) {
             </td>
             <td>
                 <input type="text" id="SearchByName"/>
-                <input id="searchButton" value="بحث"/>
+                <input id="searchButton" value="Search / بحث "/>
             </td>
 
         </tr>
@@ -234,7 +234,7 @@ if (isset($_GET['q'])) {
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
             <td><span class="classic">
-                    الموافقة الخطية
+                    الموافقة الخطية/ Acceptance letter
                 </span>
             </td>
             <td>
@@ -244,7 +244,7 @@ if (isset($_GET['q'])) {
         </tr>
         <tr id="showUploadCV" style="display: none; ">
             <td><span class="classic">
-                    السيرة الذاتية
+                    السيرة الذاتية/ CV
                 </span></td>
             <td>
                 <div id="CVUpload"></div>
@@ -253,7 +253,9 @@ if (isset($_GET['q'])) {
         </tr>
         <td colspan="2">
             <p class="error">
-                لاضافة الموافقة الخطية قم بالنقر المذدوج علي الباحث
+                لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
+                <br>
+                Double click on researcher record to add acceptance letter and cv
             </p>
         </td>
         <tr>
@@ -270,9 +272,9 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="2" style="text-align: center">
-                <input type="button" value="حفظ" id='btnSave'
+                <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
-                <input type="button" value="اغلاق" id='btnClose'
+                <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
             </td>
         </tr>

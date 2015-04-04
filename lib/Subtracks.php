@@ -13,15 +13,18 @@
  */
 require_once 'mysqlConnection.php';
 
-class Subtracks {
+class Subtracks
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
     private $tableName = 'subtracks';
 
-    public function Save($seq_id, $subtrack_name, $track_id) {
+    public function Save($seq_id, $subtrack_name, $track_id)
+    {
         $conn = new MysqlConnect();
         if ($seq_id == null || $seq_id == 0) {
             $stmt = "insert into " . $this->tableName . " (subTrack_name,track_id) values ('" . $subtrack_name . "'," . $track_id . ")";
@@ -36,7 +39,8 @@ class Subtracks {
         }
     }
 
-    public function GetSubtracksBytrackId($track_id) {
+    public function GetSubtracksBytrackId($track_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,subTrack_name FROM " . $this->tableName . " Where track_id=" . $track_id;
 
@@ -44,14 +48,16 @@ class Subtracks {
         return $rs;
     }
 
-    public function Delete($seq_id) {
+    public function Delete($seq_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "Delete from " . $this->tableName . " where seq_id =" . $seq_id;
         echo $stmt;
         $conn->ExecuteNonQuery($stmt);
     }
 
-    public function GetSubtrack($seq_id) {
+    public function GetSubtrack($seq_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,subTrack_name,track_id FROM " . $this->tableName . " where seq_id=" . $seq_id;
         $rs = $conn->ExecuteNonQuery($stmt);

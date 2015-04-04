@@ -5,6 +5,7 @@ session_start();
 require_once '../../lib/stuff_tasks.php';
 require_once '../../lib/project_budget_manpower.php';
 require_once '../../lib/project_budget.php';
+require_once '../../lib/Reseaches.php';
 
 $seqId = $_REQUEST['seqId'];
 $task_id = $_REQUEST['task_id'];
@@ -62,6 +63,8 @@ if ($isValid == TRUE) {
 //        header("Location: ../register-done.php");
 //        ob_end_flush();
         if ($result == 'true') {
+            $project = new Reseaches();
+            $project_duration = $project->GetResearchDuration($project_id);
 
             if ($manpower_id <> 0) {
                 for ($i = 1; $i <= $project_duration; $i++) {

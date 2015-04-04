@@ -2,13 +2,16 @@
 
 require_once 'mysqlConnection.php';
 
-class Research_Update_Request {
+class Research_Update_Request
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seq_id, $research_id, $title, $msg, $url, $request_date) {
+    public function Save($seq_id, $research_id, $title, $msg, $url, $request_date)
+    {
         if ($seq_id == 0) {
             $stmt = "insert into research_update_request (research_id,title,msg,url,request_date) values ($research_id,'$title','$msg','$url','$request_date')";
             $conn = new MysqlConnect();
@@ -22,7 +25,8 @@ class Research_Update_Request {
         }
     }
 
-    public function Delete($seq_id) {
+    public function Delete($seq_id)
+    {
         $stmt = "Delete From research_update_request where seq_id=$seq_id";
         $conn = new MysqlConnect();
         $res = $conn->ExecuteNonQuery($stmt);

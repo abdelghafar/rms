@@ -13,15 +13,18 @@
  */
 require_once 'mysqlConnection.php';
 
-class budget_items {
+class budget_items
+{
 
     private $tableName = 'budget_items';
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
     }
 
-    public function Save($item_id, $item_title, $item_alias, $isSys) {
+    public function Save($item_id, $item_title, $item_alias, $isSys)
+    {
         $conn = new MysqlConnect();
         if ($item_id == 0) {
             $stmt = "insert into " . $this->tableName . " (item_title,item_alias,isSys) values ('" . $item_title . "','" . $item_alias . "'," . $isSys . ")";
@@ -37,14 +40,16 @@ class budget_items {
         }
     }
 
-    public function GetSysItems() {
+    public function GetSysItems()
+    {
         $conn = new MysqlConnect();
         $stmt = "Select * from " . $this->tableName . " where isSys=1";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
-    public function GetChildItems($parent_item_id) {
+    public function GetChildItems($parent_item_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "Select * from " . $this->tableName . " where isSys=0 and parent_item_id=" . $parent_item_id;
         $rs = $conn->ExecuteNonQuery($stmt);

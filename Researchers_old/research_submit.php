@@ -1,18 +1,44 @@
 <?
 session_start();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
+    ob_start();
     header('Location:../Login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Researcher') {
+        ob_start();
         header('Location:../Login.php');
     }
 }
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
-$smarty = new Smarty();
+require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
 
+if (isset($_GET['q'])) {
+    $projectId = $_GET['q'];
+    $obj = new Reseaches();
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $project = $obj->GetResearch($projectId);
+        $title_ar = $project['title_ar'];
+        $title_en = $project['title_en'];
+        $duration = $project['proposed_duration'];
+        $techId = $project['center_id'];
+        $major_field_id = $project['major_field'];
+        $speical_field_id = $project['special_field'];
+    } else {
+        ob_start();
+        header('Location:./forbidden.php');
+    }
+}
+
+$smarty = new Smarty();
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
@@ -22,14 +48,14 @@ $smarty->assign('index_php', '../index.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
-$smarty->assign('contactus_php', '../contactus.php');
+$smarty->assign('about_php', '../aboutus.php');
 $smarty->display('../templates/Loggedin.tpl');
 ?>
 
-<head>
+    <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/reigster-layout.css"/> 
-    <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
+    <link rel="stylesheet" href="../common/css/reigster-layout.css"/>
+    <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
     <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
@@ -39,7 +65,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
-
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxprogressbar.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
@@ -47,37 +73,30 @@ $smarty->display('../templates/Loggedin.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
-
-
-    <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script> 
-
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/> 
+    <script type="text/javascript" src="../js/fckeditor/fckeditor.js"></script>
+    <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
+    <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-
-            $("#proposed_duration").jqxMaskedInput({rtl: true, width: '100px', height: '25px', mask: '##', theme: 'energyblue'});
-
-            //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
-            //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '100px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true});
-            $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
-            //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
-            $('#currencyInput').on('change', function (event) {
-                var value = event.args.value;
-                $('#budgetValue').val(value);
-                //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
-
+            $("#jqxProgressBar").jqxProgressBar({width: "97%", height: 30, value: 12, theme: 'energyblue', showText: true
             });
-
-            $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
+            $('#submit_button').click(function () {
+                $.ajax({
+                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?q=' . $projectId; ?>',
+                    type: "post",
+                    datatype: "html",
+                    data: $("#researchSubmitForm").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
+                });
+            });
+            $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
 
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
-
             $('#sendButton').on('click', function () {
                 $('#researchSubmitForm').jqxValidator('validate');
             });
@@ -93,7 +112,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/durations.php'
             };
-
             var ResearchCenterDataSource = {
                 datatype: "json",
                 datafields: [
@@ -102,7 +120,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/technologies.php'
             };
-
             var TracksDataSource = {
                 datatype: "json",
                 datafields: [
@@ -111,7 +128,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
             };
-
             var SubtrackracksDataSource = {
                 datatype: "json",
                 datafields: [
@@ -120,13 +136,9 @@ $smarty->display('../templates/Loggedin.tpl');
                 ],
                 url: '../Data/tracks.php?track_id=' + $("#track").val()
             };
-
-
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
-            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '100px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
-
-            $('#durationList').on('change', function (event)
-            {
+            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
+            $('#durationList').on('change', function (event) {
                 var args = event.args;
                 if (args) {
                     // index represents the item's index.                      
@@ -140,21 +152,27 @@ $smarty->display('../templates/Loggedin.tpl');
                 }
             });
 
-            dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
-            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $("#durationList").on('bindingComplete', function (event) {
+                $('#durationList').val('<?
+if (isset($projectId)) {
+    echo $duration;
+}
+?>');
+            });
 
-            $('#technologies').on('change', function (event)
-            {
+            dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $('#technologies').on('change', function (event) {
                 var args = event.args;
                 if (args) {
                     // index represents the item's index.                      
                     var index = args.index;
                     var item = args.item;
                     // get item's label and value.
-                    var label = item.label;
+                    //var label = item.label;
                     var value = item.value;
                     $('#technologiesVal').val(value);
-                    alert('centers is:' + $("#technologies").val());
+                    //alert('centers is:' + $("#technologies").val());
                     TracksDataSource = {
                         datatype: "json",
                         datafields: [
@@ -163,17 +181,22 @@ $smarty->display('../templates/Loggedin.tpl');
                         ],
                         url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
                     };
+
                     dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
             });
-
+            $("#technologies").on('bindingComplete', function (event) {
+                $('#technologies').val('<?
+if (isset($projectId)) {
+    echo $techId;
+}
+?>');
+            });
             //-----------------------------------------------------------------
             dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
-
-            $('#track').on('change', function (event)
-            {
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+            $('#track').on('change', function (event) {
                 var args = event.args;
                 if (args) {
                     // index represents the item's index.                      
@@ -192,13 +215,19 @@ $smarty->display('../templates/Loggedin.tpl');
                         url: '../Data/subtracks.php?track_id=' + $("#track").val()
                     };
                     dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
                 }
             });
+            $("#track").on('bindingComplete', function (event) {
+                $('#track').val('<?
+if (isset($projectId)) {
+    echo $major_field_id;
+}
+?>');
+            });
             dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
-            $('#subtrack').on('change', function (event)
-            {
+            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+            $('#subtrack').on('change', function (event) {
                 var args = event.args;
                 if (args) {
                     // index represents the item's index.                      
@@ -208,40 +237,46 @@ $smarty->display('../templates/Loggedin.tpl');
                     var label = item.label;
                     var value = item.value;
                     $('#subtrackVal').val(value);
-                    alert('subtrackVal is :' + $("#subtrackVal").val());
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
                 }
             });
-
-
-        });
-    </script>
+            $("#subtrack").on('bindingComplete', function (event) {
+                $('#subtrack').val('<?
+if (isset($projectId)) {
+    echo $speical_field_id;
+}
+?>');
+            });
+        });</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#researchSubmitForm').jqxValidator({rules: [
-                    {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                    {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                    {
-                        input: "#technologies", message: "من فضلك اختر أولوية البحث", action: 'blur', rule: function (input, commit) {
-                            var index = $("#technologies").jqxDropDownList('getSelectedIndex');
-                            return index !== -1;
-                        }
-                    },
-                    {
-                        input: "#track", message: "من فضلك اختر التخصص العام", action: 'blur', rule: function (input, commit) {
-                            var index = $("#track").jqxDropDownList('getSelectedIndex');
-                            return index !== -1;
-                        }
-                    },
-                    {
-                        input: "#subtrack", message: "من فضلك اختر التخصص الدقيق", action: 'blur', rule: function (input, commit) {
-                            var index = $("#subtrack").jqxDropDownList('getSelectedIndex');
-                            return index !== -1;
-                        }
-                    }
+                {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+                {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+                {
+                    input: "#technologies", message: "من فضلك اختر أولوية البحث", action: 'blur', rule: function (input, commit) {
+                    var index = $("#technologies").jqxDropDownList('getSelectedIndex');
+                    return index !== -1;
+                }
+                },
+                {
+                    input: "#track", message: "من فضلك اختر التخصص العام", action: 'blur', rule: function (input, commit) {
+                    var index = $("#track").jqxDropDownList('getSelectedIndex');
+                    return index !== -1;
+                }
+                },
+                {
+                    input: "#subtrack", message: "من فضلك اختر التخصص الدقيق", action: 'blur', rule: function (input, commit) {
+                    var index = $("#subtrack").jqxDropDownList('getSelectedIndex');
+                    return index !== -1;
+                }
+                }
 
-                ], theme: 'energyblue', animation: 'fade'
+            ], theme: 'energyblue', animation: 'fade'
             });
         });
+
+
     </script>
     <title>
         بحث جديد
@@ -253,164 +288,109 @@ $smarty->display('../templates/Loggedin.tpl');
             height: 150px;
         }
     </style>
-</head>
+    </head>
 
-<center>
-    <form method="POST" id="researchSubmitForm"  target="form-iframe" enctype="multipart/form-data" action="inc/research_submit.inc.php"> 
+    <div
+        style="font-size: 13px; font-family: Verdana; float: left;margin-bottom: 10px;margin-left: 15px;margin-top: 10px; overflow: hidden;"
+        id='jqxProgressBar'>
 
-        <fieldset style="width: 95%;text-align: right;"> 
-            <legend>
-                <label>
-                    بيانات البحث
-                </label>
-            </legend>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        عنوان البحث-اللغة العربية
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية" name="title_ar"/>  
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        عنوان البحث - اللغة الانجليزية
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <input id="title_en" class="textbox" type="text" placeholder="عنوان البحث - اللغة الانجليزية" name="title_en"/>  
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
-                    <p>
-                        المدة المقترحة بالشهر
-                    </p>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle">
-                    <div id='durationList' style="vertical-align: middle"></div>
-                    <input type="hidden" id="proposed_duration" name="proposed_duration"/>
-                </div>
-                <div class="panel-cell" style="width:394px;text-align: left;padding-left:10px;vertical-align: middle"> 
-                    <p>
-                        الميزانية المقترحة
-                    </p>
-                </div>
-                <div class="panel-cell" style="vertical-align: middle">
-                    <div id='currencyInput' style="vertical-align: middle">
-                        <input type='hidden' id='budgetValue' name="budgetValue"/>
-                    </div>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;vertical-align: middle"> 
-                    <p>
-                        اولوية البحث
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <div id='technologies'></div>
-                    <input type="hidden" id='technologiesVal' name="technologiesVal"/>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        التخصص العام
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <div id="track"></div>
-                    <input type="hidden" name="trackVal" id="trackVal"/>
-                </div>
-            </div>
+    </div>
+    <center>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        التخصص الدقيق
-                    </p>
-                </div>
-                <div class="panel-cell">
-                    <div id="subtrack"></div>
-                    <input type="hidden" name="subtrackVal" id="subtrackVal"/>
-                </div>
-            </div>
+        <form method="POST" id="researchSubmitForm" enctype="multipart/form-data">
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        الملخص باللغة العربية
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="abstract_ar_file" id="abstract_ar_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        الملخص باللغة الانجليزية
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="abstract_en_file" id="abstract_en_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        مقدمة المشروع
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="introduction_file" id="introduction_file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
+            <fieldset style="width: 95%;text-align: right;">
+                <legend>
+                    <label>
+                        معلومات عامة/ General Infromation
+                    </label>
+                </legend>
+                <table style="width: 100%;margin-top: 10px;">
+                    <tr>
+                        <td>
+                            العنوان بالعربي /Arabic Title
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <input id="title_ar" class="textbox" type="text" placeholder="عنوان البحث باللغة العربية"
+                                   name="title_ar" value="<?
+                            if (isset($projectId)) {
+                                echo $title_ar;
+                            }
+                            ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            العنوان بالانجليزي/ English Title
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <input id="title_en" class="textbox" type="text"
+                                   placeholder="عنوان البحث - اللغة الانجليزية" name="title_en" value="<?
+                            if (isset($projectId)) {
+                                echo $title_en;
+                            }
+                            ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            المدة / Duration
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <div id='durationList' style="vertical-align: middle"></div>
+                            <input type="hidden" id="proposed_duration" name="proposed_duration"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            الأولوية /Priority
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <div id='technologies'></div>
+                            <input type="hidden" id='technologiesVal' name="technologiesVal"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            التخصص العام/Track
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <div id="track"></div>
+                            <input type="hidden" name="trackVal" id="trackVal"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            التخصص الدقيق/SubTrack
+                            <span class="required">*</span>
+                        </td>
+                        <td>
+                            <div id="subtrack"></div>
+                            <input type="hidden" name="subtrackVal" id="subtrackVal"/>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div id="Result" style="width: 800px; height: 50px;">
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px; vertical-align:central;"> 
-                    <p>
-                        المسح الأدبي
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="literature_review_file" id="literature_review_file" style="width:300px;" accept="application/pdf"/>
-                </div>
             </div>
+            <table style="width: 100%;">
+                <tr>
+                    <td valign="middle">
+                        <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;">
+                            <img src="images/next.png" style="border: none;" alt="next"/>
+                        </a>
+                    </td>
+                </tr>
 
-            <div class="panel_row">
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;"> 
-                    <p>
-                        رفع نموذج-2
-                    </p>
-                </div>
-                <div class="panel-cell" style="width: 200px;text-align: left;padding-left: 10px;">
-                    <input type="file" name="file" id="file" style="width:300px;" accept="application/pdf"/>
-                </div>
-            </div>
-
-        </fieldset>
-        <div class="panel_row">
-            <div class="panel-cell">
-                <input type="submit" value="ارسال" id='sendButton' style="margin-top: 20px;"/>
-            </div>
-        </div>
-        <div class="panel_row">
-            <div class="panel-cell" style="float: left ; ">
-                <label>
-                    <a href="index.php?program=<? echo $_SESSION['program'] ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                        رجوع
-                    </a></label>
-            </div>
-        </div>
-    </form>
-    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
-
-</center>
+            </table>
+        </form>
+    </center>
 <?
 $smarty->display('../templates/footer.tpl');

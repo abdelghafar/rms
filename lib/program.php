@@ -8,13 +8,16 @@
 
 require_once 'mysqlConnection.php';
 
-class program {
+class program
+{
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
     }
 
-    public function GetProgramId($program_code) {
+    public function GetProgramId($program_code)
+    {
         $con = new MysqlConnect();
         $stmt = "select program_id from programs where program_code='" . $program_code . "'";
         $rs = $con->ExecuteNonQuery($stmt);

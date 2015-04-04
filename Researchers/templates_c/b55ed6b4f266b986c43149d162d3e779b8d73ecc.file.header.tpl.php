@@ -35,8 +35,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
 ?>
 <?php if ($_valid && !is_callable('content_52e1339b6c9cd4_62220580')) {
     function content_52e1339b6c9cd4_62220580($_smarty_tpl)
-    {
-        ?>
+    { ?>
         <html dir="rtl" lang="en-US">
         <head>
             <meta charset="utf-8">

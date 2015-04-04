@@ -8,13 +8,16 @@
 
 require_once 'mysqlConnection.php';
 
-class Understanding {
+class Understanding
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function GetUnderstanding($programId) {
+    public function GetUnderstanding($programId)
+    {
         $stmt = "SELECT context from understanding where program_id=" . $programId;
         $result = mysql_query($stmt);
         $context = 0;

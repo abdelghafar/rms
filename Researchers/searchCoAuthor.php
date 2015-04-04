@@ -24,7 +24,7 @@ if (isset($_GET['q'])) {
         var uploaded_file_name = null;
         var resume_url = null;
         $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
+        $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
             var SearchByEmpCodeVal = $('#SearchByEmpCode').jqxMaskedInput('inputValue');
@@ -178,18 +178,18 @@ if (isset($_GET['q'])) {
     <table style="width: 800px;">
         <tr>
             <td><span class="classic">
-                رقم المنسوب / Emplyee Id
+                    رقم المنسوب / Emplyee Id
                 </span>
                 <span class="error">*</span>
             </td>
             <td>
                 <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
-                <input id="searchButton" value="بحث"/>
+                <input id="searchButton" value="Search / بحث "/>
             </td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
             <td><span class="classic">
-                الموافقة الخطية
+                    الموافقة الخطية/ Acceptance letter
                 </span></td>
             <td>
                 <div id="agreeLetter"></div>
@@ -198,7 +198,9 @@ if (isset($_GET['q'])) {
         </tr>
         <tr id="showUploadCV" style="display: none; ">
             <td>
-                <span class="classic">                السيرة الذاتية</span>
+                <span class="classic">
+                    السيرة الذاتية/ CV
+                </span>
             </td>
             <td>
                 <div id="CVUpload"></div>
@@ -208,7 +210,9 @@ if (isset($_GET['q'])) {
         <tr>
             <td colspan="2">
                 <p class="error">
-                    لاضافة السيرة الذاتية و الموافقة الخطية قم بالنقر المزدوج علي اسم الباحث
+                    لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
+                    <br>
+                    Double click on researcher record to add acceptance letter and cv
                 </p>
             </td>
         </tr>
@@ -220,9 +224,9 @@ if (isset($_GET['q'])) {
 
         <tr>
             <td colspan="2" style="text-align: center">
-                <input type="button" value="حفظ" id='btnSave'
+                <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
-                <input type="button" value="اغلاق" id='btnClose'
+                <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
             </td>
         </tr>

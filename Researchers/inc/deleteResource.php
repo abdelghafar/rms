@@ -6,6 +6,7 @@ require_once '../../lib/resources.php';
 require_once '../../lib/project_budget_manpower.php';
 require_once '../../lib/project_budget.php';
 require_once '../../lib/stuff_tasks.php';
+require_once '../../lib/Reseaches.php';
 
 $isValid = TRUE;
 
@@ -36,6 +37,8 @@ if ($isValid == TRUE) {
         $result = $resource->Delete($seq_id);
 
         if ($result == 'true') {
+            $project = new Reseaches();
+            $project_duration = $project->GetResearchDuration($project_id);
             $stuff_duration = new StuffTasks();
             if ($manpower_id <> 0) {
                 for ($i = 1; $i <= $project_duration; $i++) {
@@ -60,14 +63,16 @@ if ($isValid == TRUE) {
                         }
                     }
                 }
-                // print_r($project_array);
-
+                //print_r($project_array);
+                //echo "project_duration= " . $project_duration . "<br>";
                 if ($dunit_id == 2) {
                     for ($i = 1; $i <= $project_duration; $i++) {
                         if ($project_array[$i] == 1)
                             $actual_duration = $actual_duration + 1;
+                        //echo $actual_duration . "<br>";
                     }
                 }
+                //echo $actual_duration . "<br>" . $compensation;
 
                 $amount = $actual_duration * $compensation;
 

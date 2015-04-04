@@ -79,22 +79,35 @@ $smarty->display('../templates/Loggedin.tpl');
     <body>
     <?php
     if ($_SESSION['gender'] == 0) {
-        echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
-            نظام رائد 
-            <br>Raed System
+        if ($_SESSION['User_Id'] == 1) {
+            echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 350px; height: 100px;margin-left: 80px;">
+            أبحاث سابك 
+            <br>SABIC Researches
+            </button>
+            <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 350px; height: 100px;">
+           أبحاث المعلم محمد بن لادن
+            <br>Mohammed ben Laden Researches
+            </button>';
+        } else {
+            echo '<button id="ra2d" type="button" class="btn btn-success btn-lg" style="width: 300px; height: 100px;margin-left: 80px;">
+            برنامج رائد 
+            <br>Raed Program
             </button>
 
     <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">
-    نظام باحث
-    <br>Bahes System
+    برنامج باحث
+    <br>Bahes Program
     </button>';
+        }
     } else {
         echo '<button id="wa3da" type="button" class="btn btn-warning btn-lg" style="width: 300px; height: 100px;margin-left: 80px">
-        نظام واعدة
-        <br>Waaeda System
+        برنامج واعدة
+        <br>Waaeda Program
     </button>
 
-    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">نظام باحث</button>';
+    <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">برنامج باحث
+    <br>Bahes Program
+    </button>';
     }
     ?>
 

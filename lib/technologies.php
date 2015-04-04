@@ -13,15 +13,18 @@
  */
 require_once 'mysqlConnection.php';
 
-class Technologies {
+class Technologies
+{
 
     private $tableName = 'technologies';
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seq_id, $title, $desc, $isVisible) {
+    public function Save($seq_id, $title, $desc, $isVisible)
+    {
         $conn = new MysqlConnect();
         if ($seq_id == 0) {
             $stmt = "insert into " . $this->tableName . " (title,tech_desc,isVisible) values ('" . $title . "','" . $desc . "'," . $isVisible . ")";
@@ -36,28 +39,32 @@ class Technologies {
         }
     }
 
-    public function GetVisibileTechnologies() {
+    public function GetVisibileTechnologies()
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT title,tech_desc FROM  technologies where isVisible=1";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
-    public function GetAllTechnologies() {
+    public function GetAllTechnologies()
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,title,tech_desc,isVisible FROM technologies";
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
-    public function Delete($seqId) {
+    public function Delete($seqId)
+    {
         $conn = new MysqlConnect();
         $stmt = "Delete from " . $this->tableName . " where seq_id =" . $seqId;
         echo $stmt;
         $conn->ExecuteNonQuery($stmt);
     }
 
-    public function GetTechnologies($seq_id) {
+    public function GetTechnologies($seq_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,title,tech_desc,isVisible FROM " . $this->tableName . " where seq_id=" . $seq_id;
 
@@ -65,7 +72,8 @@ class Technologies {
         return $rs;
     }
 
-    public function GetPairValues() {
+    public function GetPairValues()
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,title FROM " . $this->tableName;
         $rs = $conn->ExecuteNonQuery($stmt);
@@ -76,18 +84,7 @@ class Technologies {
         return $result;
     }
 
-    public function GetTechCode($seq_id) {
-        $conn = new MysqlConnect();
-        $stmt = "SELECT technologies.tech_code FROM " . $this->tableName . " WHERE technologies.seq_id =" . $seq_id;
-        $res = $conn->ExecuteNonQuery($stmt);
-        $code = "";
-        while ($row = mysql_fetch_array($res)) {
-            $code = $row[0];
-        }
-        return $code;
-    }
-
 }
 
 //$t = new Technologies();
-//echo $t->GetTechCode(10); 
+//echo $t->Save(1, 'update test', 'updatae test', 1437, true, 2);

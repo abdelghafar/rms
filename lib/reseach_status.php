@@ -2,14 +2,16 @@
 
 require_once 'mysqlConnection.php';
 
-class Research_Status {
+class Research_Status
+{
 
-    public function __construct() {
-        $connection = new MysqlConnect();
-        ;
+    public function __construct()
+    {
+        $connection = new MysqlConnect();;
     }
 
-    public function GetStatusId($Status) {
+    public function GetStatusId($Status)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT  `Status_Id` FROM  `reseach_status` WHERE  `Status_name` ='" . $Status . "'";
         $rs = $rs = $conn->ExecuteNonQuery($stmt);
@@ -20,13 +22,15 @@ class Research_Status {
         return $Status_Id;
     }
 
-    public function GetAll() {
+    public function GetAll()
+    {
         $stmt = "SELECT status_id , status_name,phase_id from reseach_status";
         $conn = new MysqlConnect();
         return $conn->ExecuteNonQuery($stmt);
     }
 
-    public function GetPhaseStatus($Phase_id) {
+    public function GetPhaseStatus($Phase_id)
+    {
         $stmt = "SELECT status_id , status_name from reseach_status Where phase_id=" . $Phase_id;
         $conn = new MysqlConnect();
         return $conn->ExecuteNonQuery($stmt);
