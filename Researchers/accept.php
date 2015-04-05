@@ -29,8 +29,8 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 $program = $_SESSION['program'];
-if (isset($_GET['q'])) {
-    $project_id = filter_input(INPUT_GET, 'q');
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION['q'];
 }
 ?>
     <html>
@@ -39,10 +39,10 @@ if (isset($_GET['q'])) {
         <title></title>
         <script>
             function agree() {
-                window.location.assign('download.php?q=' + '<? echo $project_id; ?>');
+                window.location.assign('download.php');
             }
             function notAgree() {
-                window.location.assign('Researchers_View.php?program=<? echo $program; ?>');
+                window.location.assign('Researchers_View.php');
             }
         </script>
     </head>

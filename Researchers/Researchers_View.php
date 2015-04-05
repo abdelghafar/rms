@@ -100,12 +100,14 @@ $project = new Reseaches();
                             {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                             {text: 'Title/العنوان', dataField: 'title_ar', width: 450, align: 'center', cellsalign: 'right'},
                             {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 200, align: 'center', cellsalign: 'center'},
-                            {text: 'Submit / حفظ', datafield: 'submit', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
+                            {text: 'Submit / تسليم', datafield: 'submit', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
                                 return '..';
                             }, buttonclick: function (row) {
                                 var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                $.ajax({url: 'ajax/setSession.php?q=' + projectId});
-                                window.location.assign('accept.php?q=' + urlencode(base64_encode(projectId)));
+                                $.ajax({url: 'ajax/setSession.php?q=' + projectId, success: function (data) {
+                                    window.location.assign('accept.php');
+                                }});
+
                             }
                             },
                             {text: 'Edit/ تعديل', datafield: 'تعديل', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
@@ -232,7 +234,7 @@ $project = new Reseaches();
              style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:10px;margin-bottom: 30px;margin-left: 10px">
 
 
-            <h2 style="font-size: 14px">
+        <h2 style="font-size: 14px">
                 المشاريع المحفوظة / Saved Drafts
             </h2>
             <hr/>

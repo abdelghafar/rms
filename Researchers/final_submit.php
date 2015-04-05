@@ -26,9 +26,8 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 
-if (isset($_GET['q'])) {
-    $rawId = filter_input(INPUT_GET, 'q');
-    $projectId = decode($rawId);
+if (isset($_SESSION['q'])) {
+    $projectId = $_SESSION['q'];
 } else {
     exit();
 }
@@ -102,13 +101,13 @@ if (isset($_GET['q'])) {
     <table style="width: 100%;">
         <tr>
             <td>
-                <a id="back_button" href="download.php?q=<? echo $rawId; ?>" style="float: right;margin-top: 20px;">
+                <a id="back_button" href="download.php" style="float: right;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;margin-left: 0px;" alt="back"/>
                 </a>
 
             </td>
             <td>
-                <a id="submit_button" href="Researchers_View.php?program=<? echo $_SESSION['program']; ?>"
+                <a id="submit_button" href="Researchers_View.php"
                    style="float: left;margin-top: 20px;display: none;">
                     <img src="images/next.png" style="border: none;margin-right: 0px;" alt="next"/>
                 </a>
