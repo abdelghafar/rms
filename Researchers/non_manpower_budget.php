@@ -197,7 +197,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 if (item !== null) {
                     $('#materials_items_val').val(item_value);
                 }
-            }
+                    }
 
         });
 
@@ -219,8 +219,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 if (item !== null) {
                     $('#travel_items_val').val(item_value);
                 }
-            }
-        });
+                    }
+                });
 
 
         var MaterialsDataSource =
@@ -381,7 +381,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     }
                 });
             }
-        }
+            }
         function Reload_grid_materials() {
             var MaterialsDataSource =
             {
@@ -448,7 +448,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     }});
                 }});
             });
-        }
+            }
         function Calc_travels_footer() {
             $(document).ready(function () {
                 $.ajax({url: 'ajax/project_travel_total.php?q=<? echo $projectId ?>', success: function (data, textStatus, jqXHR) {
@@ -525,8 +525,8 @@ $smarty->display('../templates/Loggedin.tpl');
                     if (item !== null) {
                         $('#others_items_val').val(item_value);
                     }
-                }
-            });
+                    }
+                });
             var Others_Items_DataSource =
             {
                 datatype: "json",
@@ -589,8 +589,8 @@ $smarty->display('../templates/Loggedin.tpl');
                             $('#lst_others_items').val(others_item_id);
                             $('#others_desc').val(others_desc);
                         }
-                    }
-                });
+                        }
+                    });
             });
 
             $('#others_save_button').on('click', function () {
@@ -730,13 +730,13 @@ $smarty->display('../templates/Loggedin.tpl');
                         <span class="classic">
                             النسبة المئوية / PROJECT TEAM MATERIALS PERCENT
                         </span>
-            </td>
-            <td>
-                <label id="materials_percent">
-                    0
-                </label>
-            </td>
-        </tr>
+                    </td>
+                    <td>
+                        <label id="materials_percent">
+                            0
+                        </label>
+                    </td>
+                </tr>
     </table>
 
     <br/><br/>
@@ -810,13 +810,13 @@ $smarty->display('../templates/Loggedin.tpl');
                         <span class="classic">
                             النسبة المئوية / PROJECT TEAM MATERIALS PERCENT
                         </span>
-            </td>
-            <td>
-                <label id="travel_percent">
-                    0
-                </label>
-            </td>
-        </tr>
+                    </td>
+                    <td>
+                        <label id="travel_percent">
+                            0
+                        </label>
+                    </td>
+                </tr>
     </table>
     <br/><br/>
 
