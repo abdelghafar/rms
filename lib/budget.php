@@ -39,5 +39,20 @@ class Budget {
         echo $stmt;
         $conn->ExecuteNonQuery($stmt);
     }
-
+    
+    public function GetBudgetTotal($projectId) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT sum(amount) as project_budget FROM project_budget WHERE project_id=" . $projectId;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $row = mysql_fetch_array($rs);
+        return $row['project_budget'];
+    }
+    
+    public function GetItemTotal($projectId,$item_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT sum(amount) as item_budget FROM project_budget WHERE project_id=" . $projectId. " AND item_id=" . $item_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $row = mysql_fetch_array($rs);
+        return $row['item_budget'];
+    }
 }

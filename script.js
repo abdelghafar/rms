@@ -1244,7 +1244,7 @@ jQuery(function($) {
 
             inner.children().eq(0).addClass("active");
             slideContainer.slider({
-                pause: 2600,
+                pause: 3600,
                 speed: 600,
                 repeat: true,
                 animation: "fade",

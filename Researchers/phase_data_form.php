@@ -33,7 +33,7 @@ if ($seq_id != 0) {
 
 
                 $('#phasedataForm').jqxValidator({rules: [
-                        {input: '#phase_name', message: 'من فضلك ادخل عنوان المرحلة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
+                        {input: '#phase_name', message: 'من فضلك ادخل عنوان المرحلة/ Please Enter Phase Title', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
                 });
 
                 $('#saveButton').on('click', function() {
@@ -55,7 +55,7 @@ if ($seq_id != 0) {
                                 $("#phaseresult").html(data);
                                 if ($("#phase_operation_flag").val() === 'true')
                                     {
-                                        window.location.assign('phases.php?research_id=' + project_id);
+                                        window.location.assign('phases.php?q=' + project_id);
                                     //$("#phase_form_div").html("");
                                     
                                     }
@@ -63,7 +63,7 @@ if ($seq_id != 0) {
                         });
                     }
                     else
-                        alert("من فضلك أكمل باقي البيانات");
+                        alert("من فضلك أكمل باقي البيانات/ Please Complete Data");
                 });
             });</script>
 
@@ -73,18 +73,24 @@ if ($seq_id != 0) {
             <input type="hidden" id="seq_id" name="seq_id" <?php if ($seq_id != 0) echo "value=" . $phase_rs["seq_id"]; else echo "value=0";  ?> >
 
             <fieldset style="width: 600px;text-align: right">
-                <legend>
-                    <label>
-                        اضافة مرحلة عمل
-                    </label>>
+                <legend style="text-align: center">
+                    <h3>
+                        اضافة -تعديل مرحلة عمل  / Add-Update Project Phase
+                    </h3>
+                    
+                </legend>
+                <br>
                 <div class="panel_row">
 
-                    <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+                    <div class="panel-cell" style="width: 180px;text-align: left;padding-left: 10px;text-align: right"> 
 
-                        <p>
-                            عنوان المرحلة
-                        </p>
-
+                        <span class="classic">
+                           عنوان المرحلة 
+                           /
+                           Phase Title </span>
+                           <span class="required" style="color: red">*</span>
+                        
+                        
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <input type="text" id="phase_name" name="phase_name" <?php if ($seq_id != 0) echo "value='" . $phase_rs["phase_name"]."'"; ?>/>
@@ -92,10 +98,12 @@ if ($seq_id != 0) {
                 </div> 
 
                 <div class="panel_row">
-                    <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
-                        <p>
+                    <div class="panel-cell" style="width: 180px;text-align: left;padding-left: 10px;text-align: right"> 
+                        <span class="classic">
                             التفاصيل
-                        </p>
+                            /
+                            Description
+                        </span>
                     </div>
                     <div class="panel-cell" style="vertical-align: middle"> 
                         <textarea name="phase_desc" rows="4" cols="20" id="phase_desc"><?php if ($seq_id != 0) echo $phase_rs["phase_desc"]; ?></textarea>
@@ -103,7 +111,7 @@ if ($seq_id != 0) {
                 </div> 
 
                 <div style="text-align:center; padding-top: 10px">
-                    <input type="button" value="حفظ" id='saveButton' style="margin-top: 20px;width: 50px"  />
+                    <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
                 </div>
             </fieldset>
         </form>

@@ -92,8 +92,8 @@ $cur_obj_id = $_POST['objective_id'];
                         {text: 'project_id', datafield: 'project_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'phase_id', datafield: 'phase_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
-                        {text: 'إسم المرحلة', datafield: 'phase_name', type: 'string', width: 275, align: 'center', cellsalign: 'right', editable: false},
-                        {text: 'إسم المهمة', datafield: 'task_name', type: 'string', width: 275, align: 'center', cellsalign: 'right', editable: false},
+                        {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 275, align: 'center', cellsalign: 'right', editable: false},
+                        {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 275, align: 'center', cellsalign: 'right', editable: false},
                         {text: 'old_obj_id', datafield: 'old_obj_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: ' ', datafield: 'obj_check', align: 'center', cellsalign: 'center', width: 50, columntype: 'checkbox'}/*,
                          {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {

@@ -106,5 +106,13 @@ class projectTask {
         else
             return false;
     }
+    
+    public function CountProjectTasks($project_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT count(task_id) task_total FROM project_tasks WHERE project_id=" . $project_id;
 
+        $rs = $conn->ExecuteNonQuery($stmt);
+
+        return $rs;
+    }
 }

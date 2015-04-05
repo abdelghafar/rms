@@ -2,6 +2,8 @@
 
 session_start();
 ob_start();
+
+require_once '../lib/users.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
 
@@ -18,10 +20,12 @@ $smarty->assign('contactus_php', '../contactus.php');
 
 $smarty->display('../templates/header.tpl');
 
-require_once '../lib/users.php';
+
 
 $userName = trim($_POST['username']);
 $password = $_POST['password'];
+
+//print_r($_POST);
 
 $user = new Users();
 $userId = $user->Login($userName, $password);

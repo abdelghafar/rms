@@ -60,7 +60,7 @@ FCKConfig.AutoGrowMax = 400;
 
 FCKConfig.AutoDetectLanguage = false;
 FCKConfig.DefaultLanguage = 'ar';
-FCKConfig.ContentLangDirection = 'rtl';
+FCKConfig.ContentLangDirection = 'ltr';
 
 FCKConfig.ProcessHTMLEntities = true;
 FCKConfig.IncludeLatinEntities = true;
@@ -81,7 +81,8 @@ FCKConfig.EMailProtectionFunction = 'mt(NAME,DOMAIN,SUBJECT,BODY)';
 
 FCKConfig.StartupFocus = false;
 FCKConfig.ForcePasteAsPlainText = false;
-FCKConfig.AutoDetectPasteFromWord = true;	// IE only.
+FCKConfig.AutoDetectPasteFromWord = false;
+FCKConfig.ForcePasteAsPlainText = true;// IE only.
 FCKConfig.ShowDropDialog = true;
 FCKConfig.ForceSimpleAmpersand = false;
 FCKConfig.TabSpaces = 0;
@@ -116,7 +117,7 @@ FCKConfig.ToolbarSets["Default"] = [
 ];
 
 FCKConfig.ToolbarSets["Advanced"] = [
-    ['NewPage', 'Preview', '-', 'Templates'],
+    ['NewPage', 'Preview'],
     ['Cut', 'Copy', 'Paste', 'PasteText'],
     ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
     '/',
@@ -126,7 +127,6 @@ FCKConfig.ToolbarSets["Advanced"] = [
     ['Link', 'Unlink'],
     ['Image', 'Table', 'Rule', 'SpecialChar', 'PageBreak'],
     '/',
-    ['Style', 'FontFormat', 'FontName', 'FontSize'],
     ['TextColor', 'BGColor']		// No comma for the last row.
 ];
 

@@ -89,6 +89,7 @@ class Users {
 
     public function Login($userName, $password) {
         $stmt = "Select user_id from users where isActive=1 and user_name ='" . $userName . "' and pass='" . md5($password) . "'";
+        
         $result = mysql_query($stmt);
         while ($row = mysql_fetch_array($result)) {
             $id = $row["user_id"];

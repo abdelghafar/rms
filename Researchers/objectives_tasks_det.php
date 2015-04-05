@@ -24,8 +24,8 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {name: 'task_id'},
                         {name: 'phase_id'},
                         {name: 'objective_name'},
-                        {name: 'task_name'},
-                        {name: 'phase_name'}
+                        {name: 'phase_name'},
+                        {name: 'task_name'}
                     ],
                     url: 'inc/objective_tasks_list_grid_data.php?' + post_data,
                     cache: false
@@ -40,7 +40,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                     editable: false,
                     pageable: true,
                     filterable: true,
-                    width: 930,
+                    width: 940,
                     pagesize: 20,
                     autorowheight: true,
                     autoheight: true,
@@ -52,9 +52,10 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         {text: 'objective_id', datafield: 'objective_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'phase_id', datafield: 'phase_id', align: 'center', cellsalign: 'center', hidden: true},
-                        {text: 'الهدف', datafield: 'objective_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
-                        {text: 'المهمة', datafield: 'task_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
-                        {text: 'المرحلة', datafield: 'phase_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'}/*,
+                        {text: 'Objective / الهدف', datafield: 'objective_name', type: 'string', width: 320, align: 'center', cellsalign: 'right'},
+                        {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'},
+                        {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 310, align: 'center', cellsalign: 'right'}
+                        /*,
                         {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
                                 return "..";
                             }, buttonclick: function(row) {
@@ -120,16 +121,12 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 
 
 
-<fieldset style="width: 95%;text-align: right;"> 
-    <legend>
-        <label>
-            <?
-            echo 'خريطة الأهداف والمهمات';
-            ?>
-        </label>
-    </legend>
-
-
+<h2 style="font-size: 14px">
+    الربط / Mapping
+</h2>
+<hr/>
+           
+        
     <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
 
     <div id="tasks_grd">

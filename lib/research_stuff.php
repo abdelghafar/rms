@@ -72,5 +72,20 @@ class research_stuff {
         }
         return $url;
     }
-
+    
+    public function GetProjectAllStuffs($projectId) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT p.person_id,name_ar,rs.role_id, sr.role_name, sr.seq_id FROM persons p INNER JOIN research_stuff rs ON p.person_id = rs.person_id INNER JOIN stuff_roles sr ON rs.role_id = sr.seq_id WHERE research_id =" . $projectId . " ORDER BY rs.role_id, seq_id" ;
+        //echo $stmt;
+        $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
+    
+     public function GetProjectDuration($projectId) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT proposed_duration FROM researches WHERE seq_id =" . $projectId ;
+        //echo $stmt;
+        $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
 }

@@ -46,7 +46,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                             editable: false,
                             pageable: true,
                             filterable: true,
-                            width: 930,
+                            width: 940,
                             pagesize: 20,
                             autorowheight: true,
                             autoheight: true,
@@ -57,13 +57,13 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                 {text: 'project_id', datafield: 'project_id', align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'phase_id', datafield: 'phase_id', align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'إسم المرحلة', datafield: 'phase_name', type: 'string', width: 230, align: 'center', cellsalign: 'right'},
-                                {text: 'إسم المهمة', datafield: 'task_name', type: 'string', width: 230, align: 'center', cellsalign: 'right'},
+                                {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 230, align: 'center', cellsalign: 'right'},
+                                {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 230, align: 'center', cellsalign: 'right'},
 //                                {text: 'بداية المهمة', datafield: 'start_date', type: 'string', width: 80, align: 'center', cellsalign: 'right'},
 //                                {text: 'نهاية المهمة', datafield: 'end_date', type: 'string', width: 80, align: 'center', cellsalign: 'right'},
-                                {text: 'وصف المهمة', datafield: 'task_desc', type: 'string', width: 370, align: 'center', cellsalign: 'right'},
+                                {text: 'Description /الوصف ', datafield: 'task_desc', type: 'string', width: 300, align: 'center', cellsalign: 'right'},
                                 {text: 'objective_id', datafield: 'objective_id', align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'تعديل', datafield: '..', align: 'center', width: 50, columntype: 'button', cellsrenderer: function() {
+                                {text: 'Edit/تعديل', datafield: '..', align: 'center', width: 90, columntype: 'button', cellsrenderer: function() {
                                         return "..";
                                     }, buttonclick: function(row) {
                                         var dataRecord = $("#tasks_grd").jqxGrid('getrowdata', row);
@@ -83,11 +83,11 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
 
                                     }
                                 },
-                                {text: 'حذف', datafield: 'حذف', width: 50, align: 'center', columntype: 'button', cellsrenderer: function() {
+                                {text: 'Delete/حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function() {
                                         return "..";
                                     }, buttonclick: function(row) {
                                         //window.confirm("هل انت متأكد من حذف هذا البيان");
-                                        var r = confirm("هل انت متأكد من حذف هذا البيان");
+                                        var r = confirm("هل انت متأكد من حذف هذا البيان / Are you sure you want to Delete This item");
                                         if (r == true)
                                         {
                                             var dataRecord = $("#tasks_grd").jqxGrid('getrowdata', row);
@@ -104,7 +104,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                                     $("#taskresult").html(data);
                                                     if ($("#task_operation_flag").val() === 'true')
                                                     {
-                                                        alert("تم الحذف بنجاح");
+                                                        alert("تم الحذف بنجاح/ Item Deleted Successfully ");
                                                         //$("#form_div").html("");
                                                         load_tasks_grd();
 //                                                        var selectedrowindex = $("#tasks_grd").jqxGrid('getselectedrowindex');
@@ -127,20 +127,14 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
         </script>
 
 
-
-    <fieldset style="width: 95%;text-align: right;"> 
-        <legend>
-            <label>
-                <?
-                echo 'مهمات مراحل المشروع';
-                ?>
-            </label>
-        </legend>
+    <h2 style="font-size: 14px">
+        المهام  / Tasks
+    </h2>
+    <hr/>
 
 
-        <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
+    <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
 
-        <div id="tasks_grd">
+    <div id="tasks_grd">
 
-        </div>
-    </fieldset>
+    </div>

@@ -16,6 +16,7 @@ $research_code = "";
 $Approve_session_no = 0;
 $Approve_date = '';
 $research_year = 0;
+$keywords = "";
 $program = $_SESSION['program'];
 $user = new Users();
 $UserId = $_SESSION['User_Id'];
@@ -63,7 +64,21 @@ if (!isset($_POST['subtrackVal']) || empty($_POST['subtrackVal'])) {
 } else {
     $subtrackId = mysql_escape_string(trim($_POST['subtrackVal']));
 }
-$budget = $_POST['budgetValue'];
+
+if (!isset($_POST['projecttypesVal']) || empty($_POST['projecttypesVal'])) {
+    echo 'من فضلك ادخل نوع المشروع' . '<br/>';
+    $isValid = FALSE;
+} else {
+    $typeId = mysql_escape_string(trim($_POST['projecttypesVal']));
+}
+
+if (!isset($_POST['keywords']) || empty($_POST['keywords'])) {
+    echo 'من فضلك ادخل الكلمات الأساسية' . '<br/>';
+    $isValid = FALSE;
+} else {
+    $keywords = mysql_escape_string(trim($_POST['keywords']));
+}
+
 
 if ($isValid == FALSE) {
     echo '<label>' . 'برجاء التأكد من صحة البيانات' . '<label/>';
@@ -73,15 +88,19 @@ if ($isValid == FALSE) {
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $r = new Reseaches();
+    $upload_dir = '../../uploads/' . $projectId . '/';
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir);
+    }
     $isExist = $r->IsExist($title_ar);
     if ($isExist > 0 && $isExist != $projectId) {
         echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
         $isValid = FALSE;
     }
     if ($isValid == TRUE) {
-        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $budget, $proposed_duration, $technologiesId, $trackId, $subtrackId);
+        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId, $typeId, $keywords);
         if ($updateResult == 1) {
-            echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $projectId . '")' . '</script>';
+            echo '<script>' . 'window.location.assign("uploadIntro.php")' . '</script>';
         } else {
             echo 'Error in update data ...';
         }
@@ -104,18 +123,27 @@ else {
     $research_code = '';
     if ($isValid == TRUE) {
         $researcher = new Reseaches();
-        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $budget, $program, '', '');
+
+        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program, $typeId, $keywords);
         $x = $research_id;
+        //create dir 
+
+        $upload_dir = '../../uploads/' . $research_id . '/';
+        if (!mkdir($upload_dir)) {
+            die('Can not create project Dir');
+        }
         $track = new Reseaches_track();
-        $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
-        $research_author = new research_stuff();
-        $research_author->Save($research_id, $person_id, 1);
-        if ($x != 0 && $y == 1) {
-            echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $research_id . '")' . '</script>';
-        } else {
-            echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
-            echo 'x= ' . $x . '<br/>';
-            echo 'y= ' . $y . '<br/>';
+        if ($research_id != 0) {
+            $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
+            $research_author = new research_stuff();
+            $research_author->Save($research_id, $person_id, 1);
+            if ($x >= 0 && $y == 1) {
+                echo '<script>' . 'window.location.assign("uploadIntro.php)"' . '</script>';
+            } else {
+                echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
+                echo 'x= ' . $x . '<br/>';
+                echo 'y= ' . $y . '<br/>';
+            }
         }
     }
 }

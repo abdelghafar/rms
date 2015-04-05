@@ -1,0 +1,3 @@
+[05-Apr-2015 11:29:13 Asia/Riyadh] PHP Fatal error:  Call to a member function display() on a non-object in /home/dsr/public_html/rms/Researchers/index.php on line 203
+[05-Apr-2015 11:30:48 Asia/Riyadh] PHP Fatal error:  Call to a member function display() on a non-object in /home/dsr/public_html/rms/Researchers/index.php on line 203
+[05-Apr-2015 11:37:57 Asia/Riyadh] PHP Fatal error:  Call to a member function display() on a non-object in /home/dsr/public_html/rms/Researchers/index.php on line 203

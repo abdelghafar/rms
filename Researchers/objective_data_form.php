@@ -30,7 +30,7 @@ if ($seq_id != 0) {
         $("#obj_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
         $("#obj_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
     });
-    
+
     $(document).ready(function() {
         $('#objdataForm').jqxValidator({rules: [
                 {input: '#obj_name', message: 'من فضلك ادخل الهدف', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'left'},
@@ -58,14 +58,14 @@ if ($seq_id != 0) {
                         $("#objectiveresult").html(data);
                         if ($("#objective_operation_flag").val() === 'true')
                         {
-                            window.location.assign('objectives_tasks.php?research_id=' + project_id);
+                            window.location.assign('objectives_tasks.php?q=' + project_id);
                             //$("#obj_form_div").html("");
 
                         }
                     }
                 });
             }
-            
+
         });
     });</script>
 
@@ -79,18 +79,23 @@ if ($seq_id != 0) {
         echo "value=0";
     ?> >
 
-    <fieldset style="width: 600px;text-align: right">
-        <legend>
-            <label>
-                اضافة أهداف المشروع
-            </label>
+    <fieldset style="width: 620px;text-align: center">
+        <legend style="text-align: center">
+            <h3>
+                اضافة -تعديل أهداف المشروع  / Add-Update Project Objectives
+            </h3>
         </legend>
+        <br>
         <div class="panel_row">
 
-            <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="width: 190px;text-align: right;"> 
 
-                <p>
-                    عنوان الهدف
+                <span class="classic">
+                    عنوان الهدف  
+                    /
+                    Objective Title
+                </span>
+                <span class="required" style="color: red">*</span>
                 </p>
 
             </div>
@@ -100,9 +105,13 @@ if ($seq_id != 0) {
         </div> 
 
         <div class="panel_row">
-            <div class="panel-cell" style="width: 128px;text-align: left;padding-left: 10px;"> 
-                <p>
-                    طريقة تحقيق الهدف
+            <div class="panel-cell" style="width: 190px;text-align: right;"> 
+                <span class="classic">
+                    طريقة تحقيق الهدف 
+                    <br>
+                    Approach for Objective
+                </span>
+                    <span class="required" style="color: red">*</span>
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
@@ -111,7 +120,7 @@ if ($seq_id != 0) {
         </div> 
 
         <div style="text-align:center; padding-top: 10px">
-            <input type="button" value="حفظ" id='saveButton' style="margin-top: 20px;width: 50px"  />
+            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
         </div>
     </fieldset>
 </form>

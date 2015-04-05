@@ -2,110 +2,110 @@
 
 .art-header, #art-header-bg, .art-layout-cell, .art-layout-wrapper, .art-footer, .art-nav, #art-hmenu-bg, .art-sheet,
 .clearfix {
-    zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
 }
 
 .art-textblock > div {
-    display: block;
-    line-height: normal;
-    zoom: 1;
+   display: block;
+   line-height: normal;
+   zoom: 1;
 }
 
 .art-hmenu li {
-    direction:ltr;
+   direction:ltr;
 }
 .art-hmenu a {
-    direction:rtl;
+   direction:rtl;
 }
 .art-hmenu>li, .art-hmenu>li>a
 {
-    display: inline !important;
-    zoom: 1;
-    float: none !important;
-    vertical-align: top;
+   display: inline !important;
+   zoom: 1;
+   float: none !important;
+   vertical-align: top;
 }
 ul.art-hmenu, ul.art-hmenu ul {
-    zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
 }
 #art-hmenu-bg 
 {
-    display: none;
+   display: none;
 }
 
 ul.art-hmenu>li:first-child {
-    padding-left:5px;
+   padding-left:5px;
 }
 
 ul.art-hmenu ul, .desktop-nav ul.art-hmenu>li.ext:hover>a{
-    background-color: #4386B2 !important;
+   background-color: #4386B2 !important;
 }
 
 .art-header
 {
-    z-index: 1;
-    background-image: [headerimage];
-    background-position: [headerposition];
+   z-index: 1;
+   background-image: [headerimage];
+   background-position: [headerposition];
 }
 
 #art-header-bg 
 {
-    display: none;
+   display: none;
 }
 
 .art-content-layout, .art-content-layout-row, .art-layout-cell 
 {
-    display: block;
-    zoom: 1;
-    direction: ltr;
+   display: block;
+   zoom: 1;
+   direction: ltr;
 }
 .art-layout-cell
 {
-    position:relative;
-    float: right;
-    clear: left;
+   position:relative;
+   float: right;
+   clear: left;
 }
 
 input[type="text"]
 {
-    margin:0 0 0 -3px;
-    zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
 }
 
 * html input[type="text"]
 {
-    margin :0;
+   margin :0;
 }
 
 form.art-search>input[type="text"]
 {
-    margin:0 0 0 -3px;
-    zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
 }
 
 form.art-search div>input[type="text"]
 {
-    width: 100%;
+   width: 100%;
 }
 
 * html form.art-search>input[type="text"] 
 {
-    margin :0;
+   margin :0;
 }
 
 .art-postcontent {
-    height: 1%;
+   height: 1%;
 }
 
 .close-alt, .arrow-right-alt, .arrow-left-alt {
-    display: block !important;
+   display: block !important;
 }
 .cw, .ccw {
-    display: none !important;
+   display: none !important;
 }
 
 .art-content 
 {
-    width: auto;
-    float:none;
+   width: auto;
+   float:none;
 }
 

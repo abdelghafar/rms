@@ -12,10 +12,11 @@ $userId = $_SESSION['User_Id'];
 
 $obj = new Objectives();
 
-$result = $obj->edit_objective_task($task_id, $objective_id);
+
 
 try {
-    $result = $obj->Save($seq_id, $project_id, $obj_name, $obj_desc);
+  $result = $obj->edit_objective_task($task_id, $objective_id);
+//    $result = $obj->Save($seq_id, $project_id, $obj_name, $obj_desc);
 
 //        ob_start();
 //        header("Location: ../register-done.php");

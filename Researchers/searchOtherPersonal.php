@@ -6,7 +6,7 @@ if (isset($_GET['q'])) {
 }
 ?>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         var Curr_theme = 'energyblue';
         var tmpPersonData = null;
         var tmpPerson_id = null;
@@ -22,8 +22,9 @@ if (isset($_GET['q'])) {
         var dataRecord = null;
         var person_id = null;
         var uploaded_file_name = null;
-        $("#SearchByName").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 50, height: 20, theme: Curr_theme});
+        var resume_file_name = null;
+        $("#SearchByName").jqxInput({width: '300px', height: '25px', rtl: true, theme: Curr_theme});
+        $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         var roles_lst_dataSource = {
             datatype: "json",
             datafields: [
@@ -34,18 +35,18 @@ if (isset($_GET['q'])) {
             async: false
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
-        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 250, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
-        $('#searchButton').on('click', function () {
+        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
+        $('#searchButton').on('click', function() {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
             $.ajax({
                 url: "../Data/searchPersonByName.php?q=" + SearchByName,
                 type: "GET",
                 dataType: "json",
-                beforeSend: function () {
+                beforeSend: function() {
                     $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data === null)
                     {
                         tmpPerson_id = null;
@@ -77,6 +78,7 @@ if (isset($_GET['q'])) {
             });
 
             $('#showUploadfile').hide();
+            $('#showUploadCV').hide();
         });
         var CoAuthorsSource = {
             datafields: [{
@@ -125,19 +127,18 @@ if (isset($_GET['q'])) {
                     theme: Curr_theme,
                     source: CoAuthorsSourceAdapter,
                     columns: [
-                        {text: 'اسم الباحث-ع', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
-                        {text: 'اسم الباحث -E', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
-                        {text: 'التخصص الدقيق', datafield: 'Speical_Field', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الكلية/الادارة', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
-                        {text: 'البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
+                        {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
+                        {text: 'Name / الاسم', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
+                        {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
+                        {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
                     ]
                 });
 
         $('#agreeLetterOther').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
-        $('#agreeLetterOther').on('uploadEnd', function (event) {
+        $('#agreeLetterOther').on('uploadEnd', function(event) {
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
@@ -145,8 +146,17 @@ if (isset($_GET['q'])) {
             $('#log').html(serverResponce);
         });
 
+        $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+        $('#CVUpload').on('uploadEnd', function(event) {
+            var args = event.args;
+            var fileName = args.file;
+            var serverResponce = args.response;
+            resume_file_name = fileName;
+            $('#CVUpload_log').html(serverResponce);
+        });
+
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
-        $('#btnSave').on('click', function () {
+        $('#btnSave').on('click', function() {
             var r = $('#role_list').jqxDropDownList('val');
 
             var rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
@@ -154,8 +164,8 @@ if (isset($_GET['q'])) {
             var person_id = dataRecord['person_id'];
 
             $.ajax({
-                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "",
-                success: function (data) {
+                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> + "&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
+                success: function(data) {
                     if (data === "")
                     {
                         $('#SearchPersonalFrm').html('');
@@ -170,10 +180,10 @@ if (isset($_GET['q'])) {
             });
         });
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
-        $('#btnClose').on('click', function () {
+        $('#btnClose').on('click', function() {
             $('#SearchPersonalFrm').html('');
         });
-        $('#gridOtherStuff').on('rowdoubleclick', function (event)
+        $('#gridOtherStuff').on('rowdoubleclick', function(event)
         {
             var args = event.args;
             // row's bound index.
@@ -188,29 +198,34 @@ if (isset($_GET['q'])) {
             dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
             $('#agreeLetterOther').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=OtherPersonal_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+
             $('#showUploadfileOthers').show();
+            $('#showUploadCV').show();
         });
     });
 </script>
 <fieldset style="width: 90%;text-align: right;margin-bottom: 25px;">
-    <legend>
-        اضافة الموارد البشرية
+    <legend style="text-align: center">
+        <h3 > اضافة عضو جديد/ Add a new member</h3>
     </legend>
     <table style="width: 800px;">
         <tr>
-            <td>
-                الاسم
+            <td><span class="classic">
+                الاسم/Name
+                </span>
                 <span class="error">*</span>
             </td>
             <td>
                 <input type="text" id="SearchByName"/>
-                <input id="searchButton" value="بحث"/>
+                <input id="searchButton" value="Search / بحث "/>
             </td>
 
         </tr>
         <tr>
-            <td>
-                الوظيفة
+            <td><span class="classic">
+                نوع المشاركة / Role
+                </span>
                 <span class="error">*</span>
             </td>
             <td>
@@ -218,17 +233,29 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
-            <td>
-                الموافقة الخطية
+            <td><span class="classic">
+                    الموافقة الخطية/ Acceptance letter
+                </span>
             </td>
             <td>
                 <div id="agreeLetterOther"></div>
                 <div id="log"></div>
             </td>
         </tr>
+        <tr id="showUploadCV" style="display: none; ">
+            <td><span class="classic">
+                    السيرة الذاتية/ CV
+                </span></td>
+            <td>
+                <div id="CVUpload"></div>
+                <div id="CVUpload_log"></div>
+            </td>
+        </tr>
         <td colspan="2">
             <p class="error">
-                لاضافة الموافقة الخطية قم بالنقر المذدوج علي الباحث
+                لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
+                <br>
+                Double click on researcher record to add acceptance letter and cv
             </p>
         </td>
         <tr>
@@ -244,9 +271,9 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input type="button" value="حفظ" id='btnSave' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 0px;"  />
-                <input type="button" value="اغلاق" id='btnClose' style="direction: rtl;float: right;margin-top: 20px;float: right;margin-right: 10px;"  />
+            <td colspan="2" style="text-align: center">
+                <input type="button" value="Save / حفظ " id='btnSave' style="direction: rtl;margin-top: 20px;margin-right: 0px;"  />
+                <input type="button" value="Close / إغلاق " id='btnClose' style="direction: rtl;margin-top: 20px;margin-right: 10px;"  />
             </td>
         </tr>
     </table>

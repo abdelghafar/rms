@@ -36,14 +36,16 @@ class projectPhase {
         $conn = new MysqlConnect();
         $stmt = "Delete from project_phases where seq_id =" . $seqId;
         //echo $stmt;
-        $result= $conn->ExecuteNonQuery($stmt);
+        $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
 
     public function GetProjectPhases($projectId) {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,project_id,phase_name,phase_desc FROM project_phases WHERE project_id=" . $projectId;
+        //echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
+        //print_r($rs);
         return $rs;
     }
 
@@ -92,5 +94,27 @@ class projectPhase {
         else
             return false;
     }
+
+    public function GetEmptyPhases($project_id) {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT project_phases.seq_id,
+         project_phases.phase_name,
+         project_tasks.task_id,
+         project_phases.project_id
+    FROM project_phases
+         LEFT OUTER JOIN
+           project_tasks
+         ON (project_phases.seq_id = project_tasks.phase_id)
+   WHERE (project_tasks.task_id IS NULL) AND (project_phases.project_id = " . $project_id . " )
+   ORDER BY project_phases.seq_id ASC";
+
+        $rs = $conn->ExecuteNonQuery($stmt);
+
+        return $rs;
+    }
+    
+    
+    
+   
 
 }

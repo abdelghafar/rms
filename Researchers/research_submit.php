@@ -1,11 +1,12 @@
 <?
 session_start();
+clearstatcache();
 if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
+    header('Location:../login.php');
 } else {
     $rule = $_SESSION['Rule'];
     if ($rule != 'Researcher') {
-        header('Location:../Login.php');
+        header('Location:../login.php');
     }
 }
 require_once '../js/fckeditor/fckeditor.php';
@@ -14,6 +15,30 @@ require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
+
+if (isset($_SESSION['q'])) {
+    $projectId = $_SESSION['q'];
+    $obj = new Reseaches();
+    $UserId = $_SESSION['User_Id'];
+    $u = new Users();
+    $personId = $u->GetPerosnId($UserId, $rule);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
+    $CanEdit = $obj->CanEdit($projectId);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+        $project = $obj->GetResearch($projectId);
+        $title_ar = $project['title_ar'];
+        $title_en = $project['title_en'];
+        $duration = $project['proposed_duration'];
+        $techId = $project['center_id'];
+        $major_field_id = $project['major_field'];
+        $speical_field_id = $project['special_field'];
+        $type_id = $project['type_id'];
+        $keywords = $project['keywords'];
+    } else {
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
+    }
+}
 $smarty = new Smarty();
 $smarty->assign('style_css', '../style.css');
 $smarty->assign('style_responsive_css', '../style.responsive.css');
@@ -26,32 +51,11 @@ $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
-if (isset($_GET['q'])) {
-    $projectId = $_GET['q'];
-    $obj = new Reseaches();
-    $UserId = $_SESSION['User_Id'];
-    $u = new Users();
-    $personId = $u->GetPerosnId($UserId, $rule);
-    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
-    $CanEdit = $obj->CanEdit($projectId);
-    if ($isAuthorized == 1 && $CanEdit == 1) {
-        $project = $obj->GetResearch($projectId);
-        $title_ar = $project['title_ar'];
-        $title_en = $project['title_en'];
-        $duration = $project['proposed_duration'];
-        $budget = $project['budget'];
-        $techId = $project['center_id'];
-        $major_field_id = $project['major_field'];
-        $speical_field_id = $project['special_field'];
-    } else {
-        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
-        exit();
-    }
-}
 ?>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <META HTTP-EQUIV="expires" CONTENT="0">
     <link rel="stylesheet" href="../common/css/reigster-layout.css"/> 
     <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script> 
     <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
@@ -89,24 +93,7 @@ if (isset($_GET['q'])) {
                 });
             });
             $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
-            //$("#major_field").jqxInput({rtl: true, height: 25, width: 120, minLength: 2, theme: 'energyblue'});
-            //$("#special_field").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            //$(".small_textbox").jqxInput({rtl: true, height: 25, width: 110, minLength: 2, theme: 'energyblue'});
-            $("#currencyInput").jqxNumberInput({rtl: true, width: '200px', height: '25px', min: 0, max: 300000, theme: 'energyblue', inputMode: 'simple', decimalDigits: 0, digits: 6, spinButtons: true, value: '<?
-if (isset($project)) {
-    echo $budget;
-} else {
-    echo 0;
-}
-?>'});
-            $('#budgetValue').val($("#currencyInput").jqxNumberInput('getDecimal'));
-            //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
-            $('#currencyInput').on('change', function (event) {
-                var value = event.args.value;
-                $('#budgetValue').val(value);
-                //alert('Currencey Value is:' + $("#currencyInput").jqxNumberInput('getDecimal'));
 
-            });
             $("#proposed_reports_count").val(function () {
                 return $("#proposed_reports_count").jqxMaskedInput('value');
             });
@@ -149,6 +136,14 @@ if (isset($project)) {
                 ],
                 url: '../Data/tracks.php?track_id=' + $("#track").val()
             };
+            var ProjectTypesDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'title'}
+                ],
+                url: '../Data/projecttypes.php'
+            };
             var dataAdapter = new $.jqx.dataAdapter(durationDS);
             $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
             $('#durationList').on('change', function (event)
@@ -174,9 +169,8 @@ if (isset($projectId)) {
 ?>');
             });
 
-
             dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
-            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
             $('#technologies').on('change', function (event)
             {
                 var args = event.args;
@@ -199,7 +193,7 @@ if (isset($projectId)) {
                     };
 
                     dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
                 }
             });
             $("#technologies").on('bindingComplete', function (event) {
@@ -211,7 +205,7 @@ if (isset($projectId)) {
             });
             //-----------------------------------------------------------------
             dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
             $('#track').on('change', function (event)
             {
                 var args = event.args;
@@ -232,7 +226,7 @@ if (isset($projectId)) {
                         url: '../Data/subtracks.php?track_id=' + $("#track").val()
                     };
                     dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
                 }
             });
             $("#track").on('bindingComplete', function (event) {
@@ -243,7 +237,7 @@ if (isset($projectId)) {
 ?>');
             });
             dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '200px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
             $('#subtrack').on('change', function (event)
             {
                 var args = event.args;
@@ -265,6 +259,31 @@ if (isset($projectId)) {
 }
 ?>');
             });
+
+            dataAdapter = new $.jqx.dataAdapter(ProjectTypesDataSource);
+            $("#projecttype").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر نوع المشروع"});
+            $('#projecttype').on('change', function (event)
+            {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.                      
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#projecttypeVal').val(value);
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
+                }
+            });
+            $("#projecttype").on('bindingComplete', function (event) {
+                $('#projecttype').val('<?
+if (isset($projectId)) {
+    echo $type_id;
+}
+?>');
+            });
+
         });</script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -272,7 +291,7 @@ if (isset($projectId)) {
                     {input: '#title_ar', message: 'من فضلك ادخل عنوان  البحث باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {input: '#title_en', message: 'من فضلك ادخل عنوان البحث باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
                     {
-                        input: "#technologies", message: "من فضلك اختر أولوية البحث", action: 'blur', rule: function (input, commit) {
+                        input: "#technologies", message: "من فضلك اختر مجال البحث", action: 'blur', rule: function (input, commit) {
                             var index = $("#technologies").jqxDropDownList('getSelectedIndex');
                             return index !== -1;
                         }
@@ -288,12 +307,34 @@ if (isset($projectId)) {
                             var index = $("#subtrack").jqxDropDownList('getSelectedIndex');
                             return index !== -1;
                         }
+                    },
+                    {
+                        input: "#projecttype", message: "من فضلك اختر نوع المشروع", action: 'blur', rule: function (input, commit) {
+                            var index = $("#projecttype").jqxDropDownList('getSelectedIndex');
+                            return index !== -1;
+                        }
                     }
 
                 ], theme: 'energyblue', animation: 'fade'
             });
         });
 
+        function wizard_step(current_step) {
+            var cs = current_step;
+            for (var i = 1; i < cs; i++)
+            {
+                $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+            }
+            $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+            //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+            for (var i = cs + 1; i <= 9; i++)
+            {
+                $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                //if (i < 9)
+                // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+            }
+        }
 
     </script>
     <title>
@@ -311,16 +352,29 @@ if (isset($projectId)) {
 <center>
 
     <form method="POST" id="researchSubmitForm" enctype="multipart/form-data"> 
-        <fieldset style="width: 95%;text-align: right;"> 
+
+        <div>
+            <?
+            require_once 'wizard_steps.php';
+            ?>
+        </div>
+        <script type="text/javascript">
+            wizard_step(1);
+        </script>
+
+        <fieldset style="width: 97%;text-align: right;"> 
             <legend>
                 <label>
-                    بيانات البحث
+                    معلومات عامة / General information
                 </label>
             </legend>
+
+
+
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        عنوان البحث-اللغة العربية
+                        العنوان بالعربي/Arabic title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -333,7 +387,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        عنوان البحث - اللغة الانجليزية
+                        العنوان بالإنجليزي /English title
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -346,7 +400,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        المدة المقترحة بالشهر
+                        المدة/ Duration  
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -356,18 +410,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        الميزانية المقترحة
-                        <span class="required">*</span>
-                    </td>
-                    <td>
-                        <div id='currencyInput' style="vertical-align: middle">
-                            <input type='hidden' id='budgetValue' name="budgetValue"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        اولوية البحث
+                        مجال البحث/Priority 
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -377,7 +420,7 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        التخصص العام
+                        التخصص العام/Track
                         <span class="required">*</span>
                     </td>
                     <td>
@@ -387,12 +430,37 @@ if (isset($projectId)) {
                 </tr>
                 <tr>
                     <td>
-                        التخصص الدقيق
+                        التخصص الدقيق/Sub-track
                         <span class="required">*</span>
                     </td>
                     <td>
                         <div id="subtrack"></div>
                         <input type="hidden" name="subtrackVal" id="subtrackVal"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        نوع المشروع/Project Type 
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <div id='projecttype'></div>
+                        <input type="hidden" id='projecttypeVal' name="projecttypesVal"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        الكلمات الرئيسية/Keywords
+                        <span class="required">*</span>
+                    </td>
+                    <td>
+                        <input id="keywords" class="textbox" type="text" placeholder="الكلمات الرئيسية/Keywords" name="keywords" value="<?
+                        if (isset($projectId)) {
+                            echo $keywords;
+                        }
+                        ?>"/>  
                     </td>
                 </tr>
             </table>
@@ -402,17 +470,14 @@ if (isset($projectId)) {
         </div>
         <table style="width: 100%;">
             <tr>
-                <td>
-                    <a id="submit_button" href="#" style="float: right;margin-left: 25px;margin-top: 20px;"><img src="images/next.png" style="border: none;" alt="next"/></a>
-                </td>
-                <td>
-
+                <td valign="middle">
+                    <a id="submit_button" href="#" style="float: left;margin-top: 20px;">
+                        <img src="images/next.png" style="border: none;" alt="next"/>
+                    </a>
                 </td>
             </tr>
         </table>
     </form>
-    <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
-
 </center>
 <?
 $smarty->display('../templates/footer.tpl');

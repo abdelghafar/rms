@@ -363,7 +363,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <legend>
                 <label>
                     <?
-                    echo 'المراحل والمهام ';
+                    echo 'المراحل والمهام';
                     ?>
                 </label>
             </legend>

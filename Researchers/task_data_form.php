@@ -37,7 +37,7 @@ if ($task_id != 0) {
         });
 */
         $('#taskdataForm').jqxValidator({rules: [
-                {input: '#task_name', message: 'من فضلك ادخل عنوان المهمة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
+                {input: '#task_name', message: 'Please Insert Task Title / من فضلك ادخل عنوان المهمة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'}], theme: 'energyblue', animation: 'fade'
         });
 
         $('#saveButton').on('click', function() {
@@ -60,6 +60,7 @@ if ($task_id != 0) {
                         $("#taskresult").html(data);
                         if ($("#task_operation_flag").val() === 'true')
                         {
+                            $("#phaseresult").html("");
                             $("#form_div").html("");
                             load_tasks_grd();
 
@@ -82,18 +83,18 @@ if ($task_id != 0) {
     
 
     <fieldset style="width: 700px;text-align: right">
-        <legend>
-            <label>
-                اضافة مهمة
-            </label>
+        <legend style="text-align: center">
+            <h3>
+                اضافة -تعديل مهمة / Add -Update Task
+            </h3>
         </legend>
         <div class="panel_row">
 
-            <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="width: 180px;text-align: right"> 
 
-                <p>
-                    عنوان المهمة
-                </p>
+                <span class="classic">
+                    عنوان المهمة / Task Title <span class="required" style="color: red">*</span>
+                </span>
 
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
@@ -103,10 +104,10 @@ if ($task_id != 0) {
 
        
         <div class="panel_row">
-            <div class="panel-cell" style="width: 130px;text-align: left;padding-left: 10px;"> 
-                <p>
-                    التفاصيل
-                </p>
+            <div class="panel-cell" style="width: 180px;text-align: right"> 
+                <span class="classic">
+                      التفاصيل/Description
+                </span>
             </div>
             <div class="panel-cell" style="vertical-align: middle"> 
                 <textarea name="task_desc" rows="4" cols="20" id="task_desc"><?php if ($task_id != 0) echo $task_rs["task_desc"]; ?></textarea>
@@ -114,7 +115,7 @@ if ($task_id != 0) {
         </div> 
 
         <div style="text-align:center; padding-top: 10px">
-            <input type="button" value="حفظ" id='saveButton' style="margin-top: 20px;width: 50px"  />
+            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
         </div>
     </fieldset>
 </form>
