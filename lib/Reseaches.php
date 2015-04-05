@@ -667,4 +667,23 @@ class Reseaches
         return $proposed_duration;
     }
 
+    public function DraftCompleted($Research_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "update researches set draft_completed =1 where seq_id=" . $Research_id;
+        $result = $con->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function IsDraftCompleted($Research_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "Select draft_completed From researches Where seq_id=" . $Research_id;
+        $result = $con->ExecuteNonQuery($stmt);
+        $IsDraft_completed = 0;
+        while ($row = mysql_fetch_array($result)) {
+            $IsDraft_completed = $row['draft_completed'];
+        }
+        return $IsDraft_completed;
+    }
 }
