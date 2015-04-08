@@ -97,7 +97,7 @@ $smarty->display('../templates/Loggedin.tpl');
         $('#AddNewMaterials').jqxButton({width: 300, height: '30', theme: theme});
         $('#AddNewTravel').jqxButton({width: 300, height: '30', theme: theme});
 
-        $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
+        $('#item_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 1, decimalDigits: 0});
         $('#item_amount_val').val($('#item_amount').jqxNumberInput('getDecimal'));
 
         $('#item_amount').on('valueChanged', function () {
@@ -105,7 +105,7 @@ $smarty->display('../templates/Loggedin.tpl');
             $('#item_amount_val').val(value);
         });
 
-        $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
+        $('#travel_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 1, decimalDigits: 0});
         $('#travel_amount').on('valueChanged', function () {
             var value = $('#travel_amount').jqxNumberInput('getDecimal');
             $('#travel_amount_val').val(value);
@@ -496,7 +496,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 $('#others_desc').val('');
                 $('#others_table').show();
             });
-            $('#others_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 0, decimalDigits: 0});
+            $('#others_amount').jqxNumberInput({rtl: true, width: '250px', height: '30px', inputMode: 'simple', spinButtons: true, theme: theme, max: 100000, min: 1, decimalDigits: 0});
             $('#others_amount').on('valueChanged', function () {
                 var value = $('#others_amount').jqxNumberInput('getDecimal');
                 $('#others_amount_val').val(value);
