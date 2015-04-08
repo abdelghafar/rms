@@ -144,8 +144,8 @@ $smarty->display('../templates/Loggedin.tpl');
 
                             }
                             },
-                            {text: 'Asign Tasks/تخصيص مهام ', width: 150, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
-                                return "Asign Tasks/تخصيص مهام ";
+                            {text: 'Assign Tasks/تخصيص مهام ', width: 150, datafield: '', align: 'center', columntype: 'button', cellsrenderer: function () {
+                                return "Assign Tasks/تخصيص مهام ";
                             }, buttonclick: function (row) {
                                 var dataRecord = $("#objectives_grd").jqxGrid('getrowdata', row);
                                 $("#form_div").html("");
@@ -193,7 +193,7 @@ $smarty->display('../templates/Loggedin.tpl');
                                         }
                                     });
                                 }
-                            }
+                                        }
                             }
                         ]
                     });
@@ -229,15 +229,15 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({
                 url: "objectives_tasks_det.php",
                 dataType: "html",
-                data: post_data,
-                type: 'POST',
+                    data: post_data,
+                    type: 'POST',
                 beforeSend: function () {
                     $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                 },
                 success: function (data) {
                     $("#tasks_div").html(data);
                 }
-            });
+                });
         }
 
         function next_step() {
@@ -272,7 +272,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 //if (i < 9)
                 // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
             }
-        }
+            }
     </script>
     <title></title>
     </head>
