@@ -2,6 +2,12 @@
 
 require_once 'mysqlConnection.php';
 
+class research_stuff_categories
+{
+    static $role_based = 'role_based';
+    static $person_based = 'person_based';
+}
+
 class research_stuff
 {
 
@@ -12,10 +18,14 @@ class research_stuff
         $connection = new MysqlConnect();
     }
 
-    public function Save($research_id, $person_id, $role_id)
+    public function Save($research_id, $person_id, $role_id, $type)
     {
         $conn = new MysqlConnect();
-        $stmt = "Insert into " . $this->table_name . " (research_id,person_id,role_id) Values(" . $research_id . "," . $person_id . "," . $role_id . ")";
+        if ($type == research_stuff_categories::$person_based) {
+            $stmt = "Insert into " . $this->table_name . " (research_id,person_id,role_id,type) Values(" . $research_id . "," . $person_id . "," . $role_id . ",'" . $type . "')";
+        } else if ($type == research_stuff_categories::$role_based) {
+            $stmt = "Insert into " . $this->table_name . " (research_id,role_id,type) Values(" . $research_id . "," . $role_id . ",'" . $type . "')";
+        }
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
@@ -57,8 +67,15 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where research_id=" . $ResearchId . " and person_id=" . $PersonId;
-        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
+    }
+
+    public function Delete($seq_id)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "Delete From " . $this->table_name . " where seq_no=" . $seq_id;
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
     }
 
     //get,set accept_letter urls-------------------------------------------------------
@@ -97,6 +114,34 @@ class research_stuff
         $stmt = "SELECT proposed_duration FROM researches WHERE seq_id =" . $projectId;
         //echo $stmt;
         $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
+
+
+    public function GetProjectOtherPersonalStuff($project_id)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT research_stuff.seq_no , role_name , parent_role_id FROM research_stuff join stuff_roles ON research_stuff.role_id = stuff_roles.seq_id where research_id = " . $project_id . " and type='role_based' and stuff_roles.parent_role_id in (select seq_id from stuff_roles where stuff_roles.parent_role_id=4)";
+        //echo $stmt;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
+            $result[] = array(
+                'seq_no' => $row['seq_no'],
+                'role_name' => $row['role_name'],
+                'parent_role_id' => $row['parent_role_id'],
+                'parent_role' => ''
+            );
+        }
+
+        for ($i = 0; $i < count($result); $i++) {
+            $stmt = "SELECT role_name FROM stuff_roles where seq_id=" . $result[$i]['parent_role_id'];
+            $rs = $conn->ExecuteNonQuery($stmt);
+            $parent_role = "";
+            while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
+                $parent_role = $row['role_name'];
+            }
+            $result[$i]['parent_role'] = $parent_role;
+        }
         return $result;
     }
 }
