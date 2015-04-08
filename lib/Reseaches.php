@@ -667,10 +667,11 @@ class Reseaches
         return $proposed_duration;
     }
 
-    public function DraftCompleted($Research_id)
+    public function DraftComplete($Research_id)
     {
         $con = new MysqlConnect();
         $stmt = "update researches set draft_completed =1 where seq_id=" . $Research_id;
+        //echo $stmt;
         $result = $con->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
