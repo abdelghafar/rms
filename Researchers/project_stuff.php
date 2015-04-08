@@ -86,6 +86,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
 
     <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
@@ -140,10 +141,10 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
 
         }
-
-        function ReloadOtherPeronsal() {
+        //Consultant
+        function ReloadConsultants() {
             var theme = 'energyblue';
-            var OtherDataSource =
+            var ConsultantsDataSource =
             {
                 datatype: "json",
                 datafields: [
@@ -156,10 +157,10 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     {name: 'nationality'}
                 ],
                 id: 'person_id',
-                url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
+                url: 'ajax/project_stuff_consultants.php?q=<? echo $projectId; ?>'
             };
-            var dataAdapter = new $.jqx.dataAdapter(OtherDataSource);
-            $("#gridOthers").jqxGrid(
+            var dataAdapter = new $.jqx.dataAdapter(ConsultantsDataSource);
+            $("#gridConsultants").jqxGrid(
                 {
                     source: dataAdapter,
                     theme: theme,
@@ -182,7 +183,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                         {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                             return '..';
                         }, buttonclick: function (row) {
-                            var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
+                            var dataRecord = $("#gridConsultants").jqxGrid('getrowdata', row);
                             var person_id = dataRecord['person_id'];
                             Delete(person_id);
                         }
@@ -192,14 +193,57 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
         }
 
+        //function OtherPersoal
+        function ReloadOtherPersonal() {
+            var theme = 'energyblue';
+            var OtherPersonalDataSource =
+            {
+                datatype: "json",
+                datafields: [
+                    {name: 'role_name'},
+                    {name: 'parent_role'},
+                    {name: 'seq_no'}
+                ],
+                id: 'seq_no',
+                url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
+            };
+            var dataAdapter = new $.jqx.dataAdapter(OtherPersonalDataSource);
+            $("#gridOthers").jqxGrid(
+                {
+                    source: dataAdapter,
+                    theme: theme,
+                    editable: false,
+                    pageable: false,
+                    filterable: true,
+                    width: 920,
+                    pagesize: 5,
+                    autoheight: true,
+                    columnsresize: true,
+                    sortable: true,
+                    rtl: true,
+                    columns: [
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'Role / نوع المشاركة', dataField: 'role_name', align: 'center', cellsalign: 'right'},
+                        {text: 'Job Category / فئة المشاركة', dataField: 'parent_role', align: 'center', cellsalign: 'right'},
+                        {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
+                            return '..';
+                        }, buttonclick: function (row) {
+                            var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
+                            var seq_no = dataRecord['seq_no'];
+                            DeleteOtherPersonal(seq_no);
+                        }
+                        }
+                    ]
+                });
+        }
 
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = 'energyblue';
             $('#AddNewCoIs').jqxButton({width: '150', height: '30', theme: theme});
+            $('#AddNewConsultants').jqxButton({width: '150', height: '30', theme: theme});
             $('#AddNewOtherPersonal').jqxButton({width: '150', height: '30', theme: theme});
-
             var PIDataSource =
             {
                 datatype: "json",
@@ -237,11 +281,15 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                     ]
                 });
 
+
             //CoI Data Source------------------------------------------------------------
             ReloadCoIs();
             //------------------------------------------------------
-            //Others
-            ReloadOtherPeronsal();
+            //Consultants
+            ReloadConsultants();
+            //OtherPersonal
+
+            ReloadOtherPersonal();
 
         });
 
@@ -251,7 +299,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     type: 'post',
-                    url: 'inc/Del_Person.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
+                    url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
                     datatype: "html",
                     success: function (data) {
                         window.location.reload();
@@ -259,6 +307,32 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 });
 
             }
+        }
+        function DeleteOtherPersonal(seq_id) {
+            if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
+                $.ajax({
+                    type: 'post',
+                    url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
+                    datatype: "html",
+                    success: function (data) {
+                        var OtherPersonalDataSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {name: 'role_name'},
+                                {name: 'parent_role'},
+                                {name: 'seq_no'}
+                            ],
+                            id: 'seq_no',
+                            url: 'ajax/project_stuff_other_personal.php?q=<? echo $_SESSION['q']; ?>'
+                        };
+                        var dataAdapter = new $.jqx.dataAdapter(OtherPersonalDataSource);
+                        $("#gridOthers").jqxGrid({source: dataAdapter});
+                    }
+                });
+
+            }
+
         }
     </script>
     <script type="text/javascript">
@@ -274,13 +348,24 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
                 });
             });
 
-            $('#AddNewOtherPersonal').click(function () {
+            $('#AddNewConsultants').click(function () {
                 $.ajax({
                     url: "searchOtherPersonal.php?q=" + '<? echo $projectId; ?>',
                     type: "post",
                     datatype: "html",
                     success: function (data) {
                         $('#SearchPersonalFrm').html(data);
+                    }
+                });
+            });
+
+            $('#AddNewOtherPersonal').click(function () {
+                $.ajax({
+                    url: "AddOtherPersonal.php?q=" + '<? echo $projectId; ?>',
+                    type: "post",
+                    datatype: "html",
+                    success: function (data) {
+                        $('#AddOtherPersonal').html(data);
                     }
                 });
             });
@@ -338,12 +423,25 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
             <div id='gridCoI'></div>
             <br/><br/>
 
-            <h2 style="font-size: 14px">أخري -Other personal </h2>
+            <h2 style="font-size: 14px">
+                المستشارين / Consultants
+            </h2>
+            <hr/>
+            <input type="button" style="margin-bottom: 15px;float: left " id='AddNewConsultants' value="Add / اضافة"/>
+
+            <div id='SearchPersonalFrm' style="width: 852px;height: auto; margin-right: 50"></div>
+            <div id='gridConsultants'></div>
+
+
+            <h2 style="font-size: 14px">
+                أخري / Others
+            </h2>
             <hr/>
             <input type="button" style="margin-bottom: 15px;float: left " id='AddNewOtherPersonal' value="Add / اضافة"/>
 
-            <div id='SearchPersonalFrm' style="width: 852px;height: auto; margin-right: 50"></div>
+            <div id='AddOtherPersonal' style="width: 852px;height: auto; margin-right: 50"></div>
             <div id='gridOthers'></div>
+
         </div>
     </fieldset>
     <table style="width: 100%;">
