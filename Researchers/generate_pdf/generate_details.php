@@ -22,6 +22,7 @@ require_once '../../lib/projectPhases.php';
 require_once '../../lib/program_goals.php';
 require_once '../../lib/goals_outcomes.php';
 require_once '../../lib/outcomes.php';
+require_once '../../lib/persons.php';
 
 // extend TCPF with custom functions
 
@@ -196,11 +197,10 @@ class PDF extends TCPDF
 
     public function ManpowerDurationTable($data)
     {
-        $html = '<table border = "1" bordercolor = "#d9e4e6" rules = "cols" frame = "avoid" style = "border-collapse: collapse;">
+        $html = '<table border = "1"  rules = "cols" frame = "avoid" style = "border-collapse: collapse;">
 <tr style = "background-color: #4bacc6;color: white;" height = "50px" valign = "middle">
-<th align = "center" width = "220" style = "border-left-color:#ffffff">أعضاء الفريق</th>
-<th align = "center" width = "210" style = "border-left-color:#ffffff">الدور</th>
-<th align = "center" width = "180">مدة التنفيذ</th>
+<th align = "center" width = "400" style = "border-left-color:#ffffff">أعضاء الفريق - الدور</th>
+<th align = "center" width = "210">مدة التنفيذ</th>
 </tr>
 ';
         $seq_no = 1;
@@ -208,9 +208,8 @@ class PDF extends TCPDF
         foreach ($data as $row) {
             $html = $html . '
 <tr bgcolor = "' . $row_bg . '" style = "color: black;">
-<td align = "right">' . $row['person_name'] . '</td>
-<td align = "right">' . $row['role_name'] . '</td>
-<td align = "right">' . $row['duration'] . ' ' . $row['duration_unit'] . '</td>';
+<td align = "right">' . $row['role_person'] . '</td>
+<td align = "center">' . $row['duration'] . ' ' . $row['duration_unit'] . '</td>';
             $html = $html . '</tr>';
             if ($row_bg == "#b6dde8")
                 $row_bg = "#ffffff";
@@ -228,7 +227,7 @@ class PDF extends TCPDF
 <tr style = "background-color: #4bacc6;color: white;" height = "50px" valign = "middle">
 <th rowspan = "2" align = "center" width = "100" style = "border-left-color:#ffffff">المراحل والمهام</th>
 <th rowspan = "2" align = "center" width = "170" style = "border-left-color:#ffffff">الفريق البحثى</th>
-<th colspan = "' . $duration . '" align = "center" width = "360" style = "border-left-color:#ffffff">مدة المشروع</th>
+<th colspan = "' . $duration . '" align = "center" width = "360" style = "border-left-color:black,border-bottom-color:black">مدة المشروع</th>
 </tr>
 <tr style = "background-color: #4bacc6;color: white;" height = "50px" valign = "middle">';
         $cell_width = 360 / $duration;

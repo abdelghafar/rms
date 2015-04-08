@@ -60,8 +60,9 @@ function get_project_manpower_durations($project_id)
 
     $item_id = 15; // for manpower budget
     $research_stuff = new research_stuff();
+    $person = new Persons();
 
-    $research_stuff_rs = $research_stuff->GetProjectAllStuffs($project_id);
+    $research_stuff_rs = $research_stuff->GetProjectTeam($project_id);
 
     $stuff_budget = new project_budget_manpower();
 
@@ -71,21 +72,25 @@ function get_project_manpower_durations($project_id)
         $duration = 0;
         $duration_unit = 0;
 
-        $stuff_budget_rs = $stuff_budget->GetStuffBudget($row['person_id'], $project_id, $item_id);
+        $stuff_budget_rs = $stuff_budget->GetStuffBudget($row['seq_no'], $project_id, $item_id);
         if ($stuff_budget_row = mysql_fetch_array($stuff_budget_rs, MYSQL_ASSOC)) {
             $duration = $stuff_budget_row['duration'];
             $dunit_id = $stuff_budget_row['dunit_id'];
 
             $duration_row = $duration_obj->GetDurationUnitData($dunit_id);
             $duration_unit = $duration_row ['unit_name'];
+        }
 
+        if ($row['type'] === 'role_based') {
+            $role_person = $row['role_name'];
+        } else {
+            $role_person = $person->GetPersonName($row['person_id']) . "  ---  " . $row['role_name'];
         }
 
 
         $manspower_list[] = array(
             'person_id' => $row['person_id'],
-            'person_name' => $row['name_ar'],
-            'role_name' => $row['role_name'],
+            'role_person' => $role_person,
             'role_id' => $research_stuff_rs['role_id'],
             'duration' => $duration,
             'duration_unit' => $duration_unit,
@@ -118,6 +123,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
 {
 
     $phaseworkplan = new StuffTasks();
+    $person = new Persons();
 
     $phaseworkplan_rs = $phaseworkplan->GetPhaseTasksDurations($project_id, $phase_id);
 
@@ -150,10 +156,16 @@ function get_project_work_plan($project_id, $phase_id, $duration)
             $monthes_array[$i] = 1;
         }
 
+        if ($phaseworkplan_row['type'] === 'role_based') {
+            $role_person = $phaseworkplan_row['role_name'];
+        } else {
+            $role_person = $person->GetPersonName($phaseworkplan_row['person_id']) . "  ---  " . $phaseworkplan_row['role_name'];
+        }
+
         if ($duration <= 12) {
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
-                'person_role' => $phaseworkplan_row['name_ar'] . " -- " . $phaseworkplan_row['role_name'],
+                'person_role' => $role_person,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],
@@ -171,7 +183,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
         if ($duration > 12 && $duration <= 18) {
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
-                'person_role' => $phaseworkplan_row['name_ar'] . " -- " . $phaseworkplan_row['role_name'],
+                'person_role' => $role_person,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],
@@ -195,7 +207,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
         if ($duration > 18 && $duration <= 24) {
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
-                'person_role' => $phaseworkplan_row['name_ar'] . " -- " . $phaseworkplan_row['role_name'],
+                'person_role' => $role_person,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],

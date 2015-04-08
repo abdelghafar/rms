@@ -13,7 +13,8 @@ require_once '../../lib/Settings.php';
 require_once '../../lib/budget_items.php';
 require_once '../../lib/project_budget.php';
 require_once '../../lib/objectives.php';
-
+require_once '../../lib/config.php';
+require_once '../../lib/mysqlConnection.php';
 // FILES FOR MANPOWER DUSRATIONS
 // extend TCPF with custom functions
 
@@ -106,6 +107,41 @@ if (isset($_GET['q'])) {
     }
     $html .= '</tbody></table>';
     $pdf->writeHTML($html, true, 0, true, 0);
+    //project stuff other personal ....
+
+    $pdf->AddPage();
+    $rs = $obj->GetProjectOtherPersonalStuff($project_id);
+    $list = array();
+    $html = '<p>' . 'الفريق المساعد' . '</p>';
+    $html .= '<br/><br/><br/><br/>';
+    $html .= '<style type="text/css">
+        .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
+        .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+        .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+        .tg .tg-uy9o{font-size:18px}
+        .tg .tg-0bb8{font-weight:bold;font-size:18px;background-color:#0d516d}
+        .tg .tg-lrt0{background-color:#D2E4FC;font-size:18px}
+    </style>';
+    $html .= '<table border = "1" class="tg" dir="rtl" style="width:760px;">
+    <thead>
+        <tr>
+            <th style="width: 30px;">#</th>
+            <th>نوع المشاركة</th>
+            <th>الفئة </th>
+        </tr>
+    </thead><tbody>';
+    $counter = 1;
+    for ($i = 0; $i < count($rs); $i++) {
+        $html .= '<tr>';
+        $html .= '<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
+        $html .= '<td class="tg-uy9o">' . $rs[$i]['role_name'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . $rs[$i]['parent_role'] . '</td>';
+        $html .= '</tr>';
+    }
+    $html .= '</tbody></table>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+
+
     //--------------------------------------------------------
     //
     // close and output PDF document
