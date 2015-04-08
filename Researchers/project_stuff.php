@@ -434,7 +434,7 @@ $personId = $users->GetPerosnId($userId, 'Researcher');
 
 
             <h2 style="font-size: 14px">
-                أخري / Others
+                أخرى / Others
             </h2>
             <hr/>
             <input type="button" style="margin-bottom: 15px;float: left " id='AddNewOtherPersonal' value="Add / اضافة"/>
