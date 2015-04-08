@@ -24,7 +24,7 @@ if (isset($_SESSION['q'])) {
     $personId = $u->GetPerosnId($UserId, $rule);
     $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($projectId);
-    if ($isAuthorized == 1 && $CanEdit == 1) {
+    if ($isAuthorized == 1 && $CanEdit == 1 && $projectId != 0) {
         $project = $obj->GetResearch($projectId);
         $title_ar = $project['title_ar'];
         $title_en = $project['title_en'];
@@ -35,8 +35,8 @@ if (isset($_SESSION['q'])) {
         $type_id = $project['type_id'];
         $keywords = $project['keywords'];
     } else {
-        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
-        exit();
+//        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+//        exit();
     }
 }
 $smarty = new Smarty();
@@ -80,206 +80,206 @@ $smarty->display('../templates/Loggedin.tpl');
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#submit_button').click(function () {
-            $.ajax({
-                url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?q=' . $projectId; ?>',
-                type: "post",
-                datatype: "html",
-                data: $("#researchSubmitForm").serialize(),
-                success: function (data) {
-                    $('#Result').html(data);
+        $(document).ready(function () {
+            $('#submit_button').click(function () {
+                $.ajax({
+                    url: "inc/research_submit.inc.php" + '<? if (isset($projectId)) echo '?q=' . $projectId; ?>',
+                    type: "post",
+                    datatype: "html",
+                    data: $("#researchSubmitForm").serialize(),
+                    success: function (data) {
+                        $('#Result').html(data);
+                    }
+                });
+            });
+            $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
+
+            $("#proposed_reports_count").val(function () {
+                return $("#proposed_reports_count").jqxMaskedInput('value');
+            });
+            $('#sendButton').on('click', function () {
+                $('#researchSubmitForm').jqxValidator('validate');
+            });
+            $('#sendButton').on('click', function () {
+                $('#researchSubmitForm').submit();
+            });
+            var durationDS = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'duration_title'},
+                    {name: 'duration_month'}
+                ],
+                url: '../Data/durations.php'
+            };
+            var ResearchCenterDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'title'}
+                ],
+                url: '../Data/technologies.php'
+            };
+            var TracksDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'track_id'},
+                    {name: 'track_name'}
+                ],
+                url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
+            };
+            var SubtrackracksDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'subTrack_name'}
+                ],
+                url: '../Data/tracks.php?track_id=' + $("#track").val()
+            };
+            var ProjectTypesDataSource = {
+                datatype: "json",
+                datafields: [
+                    {name: 'seq_id'},
+                    {name: 'title'}
+                ],
+                url: '../Data/projecttypes.php'
+            };
+            var dataAdapter = new $.jqx.dataAdapter(durationDS);
+            $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
+            $('#durationList').on('change', function (event) {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#proposed_duration').val(value);
+                    //alert('proposed_duration is :' + $("#durationList").val());
                 }
             });
-        });
-        $(".textbox").jqxInput({rtl: true, height: 25, width: 605, minLength: 1, theme: 'energyblue'});
 
-        $("#proposed_reports_count").val(function () {
-            return $("#proposed_reports_count").jqxMaskedInput('value');
-        });
-        $('#sendButton').on('click', function () {
-            $('#researchSubmitForm').jqxValidator('validate');
-        });
-        $('#sendButton').on('click', function () {
-            $('#researchSubmitForm').submit();
-        });
-        var durationDS = {
-            datatype: "json",
-            datafields: [
-                {name: 'seq_id'},
-                {name: 'duration_title'},
-                {name: 'duration_month'}
-            ],
-            url: '../Data/durations.php'
-        };
-        var ResearchCenterDataSource = {
-            datatype: "json",
-            datafields: [
-                {name: 'seq_id'},
-                {name: 'title'}
-            ],
-            url: '../Data/technologies.php'
-        };
-        var TracksDataSource = {
-            datatype: "json",
-            datafields: [
-                {name: 'track_id'},
-                {name: 'track_name'}
-            ],
-            url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
-        };
-        var SubtrackracksDataSource = {
-            datatype: "json",
-            datafields: [
-                {name: 'seq_id'},
-                {name: 'subTrack_name'}
-            ],
-            url: '../Data/tracks.php?track_id=' + $("#track").val()
-        };
-        var ProjectTypesDataSource = {
-            datatype: "json",
-            datafields: [
-                {name: 'seq_id'},
-                {name: 'title'}
-            ],
-            url: '../Data/projecttypes.php'
-        };
-        var dataAdapter = new $.jqx.dataAdapter(durationDS);
-        $("#durationList").jqxDropDownList({source: dataAdapter, selectedIndex: 0, width: '200px', height: '25px', displayMember: 'duration_title', valueMember: 'duration_month', theme: 'energyblue', rtl: true});
-        $('#durationList').on('change', function (event) {
-            var args = event.args;
-            if (args) {
-                // index represents the item's index.
-                var index = args.index;
-                var item = args.item;
-                // get item's label and value.
-                var label = item.label;
-                var value = item.value;
-                $('#proposed_duration').val(value);
-                //alert('proposed_duration is :' + $("#durationList").val());
-            }
-        });
-
-        $("#durationList").on('bindingComplete', function (event) {
-            $('#durationList').val('<?
+            $("#durationList").on('bindingComplete', function (event) {
+                $('#durationList').val('<?
 if (isset($projectId)) {
     echo $duration;
 }
 ?>');
-        });
+            });
 
-        dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
-        $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
-        $('#technologies').on('change', function (event) {
-            var args = event.args;
-            if (args) {
-                // index represents the item's index.
-                var index = args.index;
-                var item = args.item;
-                // get item's label and value.
-                //var label = item.label;
-                var value = item.value;
-                $('#technologiesVal').val(value);
-                //alert('centers is:' + $("#technologies").val());
-                TracksDataSource = {
-                    datatype: "json",
-                    datafields: [
-                        {name: 'track_id'},
-                        {name: 'track_name'}
-                    ],
-                    url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
-                };
+            dataAdapter = new $.jqx.dataAdapter(ResearchCenterDataSource);
+            $("#technologies").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر الاولوية"});
+            $('#technologies').on('change', function (event) {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    //var label = item.label;
+                    var value = item.value;
+                    $('#technologiesVal').val(value);
+                    //alert('centers is:' + $("#technologies").val());
+                    TracksDataSource = {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'track_id'},
+                            {name: 'track_name'}
+                        ],
+                        url: '../Data/tracks.php?tech_id=' + $("#technologies").val()
+                    };
 
-                dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-                $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
-            }
-        });
-        $("#technologies").on('bindingComplete', function (event) {
-            $('#technologies').val('<?
+                    dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+                    $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+                }
+            });
+            $("#technologies").on('bindingComplete', function (event) {
+                $('#technologies').val('<?
 if (isset($projectId)) {
     echo $techId;
 }
 ?>');
-        });
-        //-----------------------------------------------------------------
-        dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
-        $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
-        $('#track').on('change', function (event) {
-            var args = event.args;
-            if (args) {
-                // index represents the item's index.
-                var index = args.index;
-                var item = args.item;
-                // get item's label and value.
-                var label = item.label;
-                var value = item.value;
-                $('#trackVal').val(value);
-                SubtrackracksDataSource = {
-                    datatype: "json",
-                    datafields: [
-                        {name: 'seq_id'},
-                        {name: 'subTrack_name'}
-                    ],
-                    url: '../Data/subtracks.php?track_id=' + $("#track").val()
-                };
-                dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-                $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
-            }
-        });
-        $("#track").on('bindingComplete', function (event) {
-            $('#track').val('<?
+            });
+            //-----------------------------------------------------------------
+            dataAdapter = new $.jqx.dataAdapter(TracksDataSource);
+            $("#track").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'track_name', valueMember: 'track_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص العام"});
+            $('#track').on('change', function (event) {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#trackVal').val(value);
+                    SubtrackracksDataSource = {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'seq_id'},
+                            {name: 'subTrack_name'}
+                        ],
+                        url: '../Data/subtracks.php?track_id=' + $("#track").val()
+                    };
+                    dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
+                    $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+                }
+            });
+            $("#track").on('bindingComplete', function (event) {
+                $('#track').val('<?
 if (isset($projectId)) {
     echo $major_field_id;
 }
 ?>');
-        });
-        dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
-        $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
-        $('#subtrack').on('change', function (event) {
-            var args = event.args;
-            if (args) {
-                // index represents the item's index.
-                var index = args.index;
-                var item = args.item;
-                // get item's label and value.
-                var label = item.label;
-                var value = item.value;
-                $('#subtrackVal').val(value);
-                //alert('subtrackVal is :' + $("#subtrackVal").val());
-            }
-        });
-        $("#subtrack").on('bindingComplete', function (event) {
-            $('#subtrack').val('<?
+            });
+            dataAdapter = new $.jqx.dataAdapter(SubtrackracksDataSource);
+            $("#subtrack").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'subTrack_name', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر التخصص الدقيق"});
+            $('#subtrack').on('change', function (event) {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#subtrackVal').val(value);
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
+                }
+            });
+            $("#subtrack").on('bindingComplete', function (event) {
+                $('#subtrack').val('<?
 if (isset($projectId)) {
     echo $speical_field_id;
 }
 ?>');
-        });
+            });
 
-        dataAdapter = new $.jqx.dataAdapter(ProjectTypesDataSource);
-        $("#projecttype").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر نوع المشروع"});
-        $('#projecttype').on('change', function (event) {
-            var args = event.args;
-            if (args) {
-                // index represents the item's index.
-                var index = args.index;
-                var item = args.item;
-                // get item's label and value.
-                var label = item.label;
-                var value = item.value;
-                $('#projecttypeVal').val(value);
-                //alert('subtrackVal is :' + $("#subtrackVal").val());
-            }
-        });
-        $("#projecttype").on('bindingComplete', function (event) {
-            $('#projecttype').val('<?
+            dataAdapter = new $.jqx.dataAdapter(ProjectTypesDataSource);
+            $("#projecttype").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '350px', height: '30px', displayMember: 'title', valueMember: 'seq_id', theme: 'energyblue', rtl: true, promptText: "من فضلك اختر نوع المشروع"});
+            $('#projecttype').on('change', function (event) {
+                var args = event.args;
+                if (args) {
+                    // index represents the item's index.
+                    var index = args.index;
+                    var item = args.item;
+                    // get item's label and value.
+                    var label = item.label;
+                    var value = item.value;
+                    $('#projecttypeVal').val(value);
+                    //alert('subtrackVal is :' + $("#subtrackVal").val());
+                }
+            });
+            $("#projecttype").on('bindingComplete', function (event) {
+                $('#projecttype').val('<?
 if (isset($projectId)) {
     echo $type_id;
 }
 ?>');
-        });
+            });
 
-    });</script>
+        });</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#researchSubmitForm').jqxValidator({rules: [

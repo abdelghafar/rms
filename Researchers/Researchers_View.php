@@ -68,7 +68,7 @@ $project = new Reseaches();
                 var theme = 'energyblue';
                 $('#AddNew').jqxButton({width: '350', height: '30', theme: theme});
                 $('#AddNew').click(function () {
-                    window.location.assign('understanding.php?program=<? echo $_SESSION['program']; ?>');
+                    window.location.assign('understanding.php');
                 });
                 var source =
                 {
@@ -234,7 +234,7 @@ $project = new Reseaches();
              style="font-size: 13px; font-family: Verdana; float: right;margin-top: 10px;margin-right:10px;margin-bottom: 30px;margin-left: 10px">
 
 
-        <h2 style="font-size: 14px">
+            <h2 style="font-size: 14px">
                 المشاريع المحفوظة / Saved Drafts
             </h2>
             <hr/>

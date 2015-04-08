@@ -36,7 +36,9 @@ $program = $_SESSION['program'];
         <title></title>
         <script>
             function agree() {
-                window.location.assign('research_submit.php');
+                $.ajax({url: 'ajax/setSession.php?q=0', success: function (data) {
+                    window.location.assign('research_submit.php');
+                }});
             }
             function notAgree() {
                 window.location.assign('index.php');
