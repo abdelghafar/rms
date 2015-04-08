@@ -36,7 +36,7 @@ $program = $_SESSION['program'];
         <title></title>
         <script>
             function agree() {
-                window.location.assign('research_submit.php?program=' + '<? echo $program; ?>');
+                window.location.assign('research_submit.php');
             }
             function notAgree() {
                 window.location.assign('index.php');
