@@ -109,7 +109,7 @@ if (isset($_SESSION['q'])) {
             $_SESSION['q'] = $research_id;
             $upload_dir = '../../uploads/' . $research_id . '/';
             if (!mkdir($upload_dir)) {
-                die('Can not create project Dir');
+                die('Can not create project Dir | call from insert');
             }
             $track = new Reseaches_track();
             if ($research_id != 0) {
@@ -131,7 +131,9 @@ if (isset($_SESSION['q'])) {
         $r = new Reseaches();
         $upload_dir = '../../uploads/' . $projectId . '/';
         if (!file_exists($upload_dir)) {
-            mkdir($upload_dir);
+            if (!mkdir($upload_dir)) {
+                die('Can not create project Dir | call from insert');
+            }
         }
         $isExist = $r->IsExist($title_ar);
         if ($isExist > 0 && $isExist != $projectId) {
