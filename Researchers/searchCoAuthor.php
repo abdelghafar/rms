@@ -23,13 +23,13 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_url = null;
-        $("#SearchByEmpCode").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
+        $("#Search").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
         $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
-            var SearchByEmpCodeVal = $('#SearchByEmpCode').jqxMaskedInput('inputValue');
+            var SearchVal = $('#Search').jqxMaskedInput('inputValue');
             $.ajax({
-                url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchByEmpCodeVal,
+                url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchVal,
                 type: "GET",
                 dataType: "json",
                 beforeSend: function () {
@@ -183,7 +183,7 @@ if (isset($_GET['q'])) {
                 <span class="error">*</span>
             </td>
             <td>
-                <input id="SearchByEmpCode" type="text" placeholder="رقم المنسوب" name="txtSearch"/>
+                <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton" value="Search / بحث "/>
             </td>
         </tr>
