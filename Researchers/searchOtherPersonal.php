@@ -164,7 +164,7 @@ if (isset($_GET['q'])) {
             var rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
             var dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             var person_id = dataRecord['person_id'];
-            alert(person_id);
+            //alert(person_id);
             $.ajax({
                 url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list_others').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
@@ -174,7 +174,7 @@ if (isset($_GET['q'])) {
                     else {
                         $('#SearchPersonalFrm').html(data);
                     }
-                    //window.location.reload();
+                    window.location.reload();
                 }
 
             });
@@ -196,7 +196,7 @@ if (isset($_GET['q'])) {
             rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
             dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
-            alert(person_id);
+            //alert(person_id);
             $('#agreeLetterOther').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=OtherPersonal_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
             $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
 
