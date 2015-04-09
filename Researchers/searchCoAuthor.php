@@ -103,7 +103,7 @@ if (isset($_GET['q'])) {
                 theme: Curr_theme,
                 source: CoAuthorsSourceAdapter,
                 columns: [
-                    {text: 'person_id', datafield: 'person_id', visible: false},
+                    {text: 'person_id', datafield: 'person_id', hidden: true},
                     {text: 'Employee Id / رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'Name / الاسم', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
                     {text: 'College/ الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
