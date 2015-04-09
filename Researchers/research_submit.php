@@ -42,7 +42,7 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
+$smarty->assign('index_php', '../Researchers_View.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
