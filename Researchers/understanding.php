@@ -1,17 +1,15 @@
 <?
 session_start();
 require_once '../lib/understanding.php';
-$obj = new Understanding();
-$content = $obj->GetUnderstanding($_SESSION['program']);
-
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
         header('Location:../Login.php');
     }
 }
+$obj = new Understanding();
+$content = $obj->GetUnderstanding($_SESSION['program']);
+
+
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
@@ -22,7 +20,7 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../index.php');
+$smarty->assign('index_php', '../Researchers/Researchers_View.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
