@@ -28,7 +28,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['role_id'])) {
 
     $obj = new research_stuff();
     if ($obj->IsExist($research_id, $person_id) == 0) {
-        $return_id = $obj->Save($research_id, $person_id, $role_id);
+        $return_id = $obj->Save($research_id, $person_id, $role_id, research_stuff_categories::$person_based);
         if (isset($_GET['file_name'])) {
             $url = filter_input(INPUT_GET, 'file_name', FILTER_SANITIZE_STRING);
             if (strlen($url)) {
