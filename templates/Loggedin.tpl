@@ -34,8 +34,8 @@
                 <li><a href="../aboutus.php">
                         حول / About us
                     </a></li>
-                <li><a href="{$logout_php}" class="active">
-                        خروج / Logout
+                <li><a href="../inc/logout.inc.php" class="active">
+                    خروج / Logout
                     </a></li>
             </ul>
         </div>
