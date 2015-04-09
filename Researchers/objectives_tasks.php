@@ -1,13 +1,12 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
         header('Location:../Login.php');
     }
 }
+
+
 if (isset($_SESSION['q'])) {
     $project_id = $_SESSION["q"];
 }
