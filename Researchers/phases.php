@@ -1,22 +1,18 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
-        header('Location:../login.php');
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
+        header('Location:../Login.php');
     }
 }
+
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
 if (isset($_SESSION['q'])) {
     $project_id = $_SESSION['q'];
     $obj = new Reseaches();
-    $UserId = $_SESSION['User_Id'];
-    $u = new Users();
-    $personId = $u->GetPerosnId($UserId, $rule);
+    $personId = $_SESSION['person_id'];
     $isAuthorized = $obj->IsAuthorized($project_id, $personId);
     $CanEdit = $obj->CanEdit($project_id);
     if ($isAuthorized == 1 && $CanEdit == 1) {
@@ -328,8 +324,8 @@ $smarty->display('../templates/Loggedin.tpl');
         <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>"/>
         <input type="hidden" id="global_phase_id" name="global_phase_id" value="0"/>
 
-        <h2 style="font-size: 14px">المراحل / Phases</h1>
-            <hr/>
+        <h2 style="font-size: 14px">المراحل / Phases</h2>
+        <hr/>
             <input type="button" value="Add a new Phase / إضافة مرحلة جديدة" id='PhaseNewButton'
                    style="margin-bottom: 15px;float: left"/>
 
