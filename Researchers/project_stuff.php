@@ -90,7 +90,8 @@ $smarty->display('../templates/Loggedin.tpl');
                     {name: 'name_ar'},
                     {name: 'role_name'},
                     {name: 'empCode'},
-                    {name: 'position'}
+                    {name: 'position'},
+                    {name: 'email'}
                 ],
                 id: 'person_id',
                 url: 'ajax/project_stuff_CoI.php?q=<? echo $projectId; ?>'
@@ -114,6 +115,7 @@ $smarty->display('../templates/Loggedin.tpl');
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
                         {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
+                        {text: 'Email / الدرجة العلمية', dataField: 'email', align: 'center', cellsalign: 'right'}
                         {text: 'Delete/حذف', datafield: 'حذف', width: 80, align: 'center', columntype: 'button', cellsrenderer: function () {
                             return '..';
                         }, buttonclick: function (row) {
