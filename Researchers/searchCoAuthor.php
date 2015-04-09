@@ -178,7 +178,7 @@ if (isset($_GET['q'])) {
     <table style="width: 800px;">
         <tr>
             <td><span class="classic">
-                    رقم المنسوب / Emplyee Id
+                البريد الالكتروني
                 </span>
                 <span class="error">*</span>
             </td>
