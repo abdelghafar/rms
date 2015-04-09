@@ -82,6 +82,10 @@ if (isset($_GET['q'])) {
                 {
                     name: 'Position',
                     type: 'string'
+                },
+                {
+                    name: 'person_id',
+                    type: 'string'
                 }
             ],
             datatype: "json"
@@ -97,6 +101,7 @@ if (isset($_GET['q'])) {
                 theme: Curr_theme,
                 source: CoAuthorsSourceAdapter,
                 columns: [
+                    {text: 'person_id', datafield: 'person_id', visible: false},
                     {text: 'Employee Id / رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'Name / الاسم', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
                     {text: 'College/ الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
