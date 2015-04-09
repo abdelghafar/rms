@@ -107,7 +107,7 @@ if (isset($_SESSION['q'])) {
             $_SESSION['q'] = $research_id;
             $upload_dir = '../../uploads/' . $research_id . '/';
             if (!mkdir($upload_dir)) {
-                die('Can not create project Dir | call from insert');
+                die('Can not create project Dir | call from insert' . $upload_dir);
             }
             $track = new Reseaches_track();
             if ($research_id != 0) {
