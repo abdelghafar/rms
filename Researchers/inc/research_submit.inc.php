@@ -18,9 +18,7 @@ $Approve_date = '';
 $research_year = 0;
 $keywords = "";
 $program = $_SESSION['program'];
-$user = new Users();
-$UserId = $_SESSION['User_Id'];
-$person_id = $user->GetPerosnId($UserId, 'Researcher');
+$person_id = $_SESSION['person_id'];
 $isValid = TRUE;
 
 if (!isset($_POST['title_ar']) || empty($_POST['title_ar'])) {
