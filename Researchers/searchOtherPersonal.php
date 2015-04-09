@@ -31,11 +31,11 @@ if (isset($_GET['q'])) {
                 {name: 'seq_id'},
                 {name: 'role_name'}
             ],
-            url: '../Data/GetStuff_Roles.php',
+            url: '../Data/GetConsultantRole.php',
             async: false
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
-        $("#role_list").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, promptText: "من فضلك اختر الوظيفة"});
+        $("#role_list_others").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, selectedIndex: 0});
         $('#searchButton').on('click', function () {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
@@ -131,7 +131,6 @@ if (isset($_GET['q'])) {
                 source: CoAuthorsSourceAdapter,
                 columns: [
                     {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
-                    {text: 'Name / الاسم', datafield: 'name_en', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
                     {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
@@ -160,14 +159,14 @@ if (isset($_GET['q'])) {
 
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
-            var r = $('#role_list').jqxDropDownList('val');
+            var r = $('#role_list_others').jqxDropDownList('val');
 
             var rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
             var dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             var person_id = dataRecord['person_id'];
 
             $.ajax({
-                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
+                url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list_others').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
                     if (data === "") {
                         $('#SearchPersonalFrm').html('');
@@ -229,7 +228,7 @@ if (isset($_GET['q'])) {
                 <span class="error">*</span>
             </td>
             <td>
-                <div id="role_list"></div>
+                <div id="role_list_others"></div>
             </td>
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
