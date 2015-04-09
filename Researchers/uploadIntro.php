@@ -17,8 +17,6 @@ if (isset($_SESSION['q'])) {
     $projectId = $_SESSION['q'];
     $obj = new Reseaches();
     $program = $_SESSION['program'];
-    $UserId = $_SESSION['User_Id'];
-    $u = new Users();
     $personId = $_SESSION['person_id'];
     $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($projectId);
