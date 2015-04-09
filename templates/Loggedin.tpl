@@ -28,7 +28,7 @@
     <nav class="art-nav">
         <div class="art-nav-inner">
             <ul class="art-hmenu">
-                <li><a href="../Researchers/research_review.php" class="active">
+                <li><a href="../Researchers/Researchers_View.php" class="active">
                     الصفحة الرئيسية / Home page
                     </a></li>
                 <li><a href="../aboutus.php">
