@@ -11,10 +11,7 @@ if (isset($_GET['q'])) {
         var tmpPersonData = null;
         var tmpPerson_id = null;
         var tmpName = null;
-        var tmpGender = null;
         var tmpEmpCode = null;
-        var tmpSpeicalField = null;
-        var tmpMajor_Field = null;
         var tmpEmail = null;
         var tmpDept = null;
         var tmpCollege = null;
@@ -27,9 +24,9 @@ if (isset($_GET['q'])) {
         $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
-            var SearchVal = $('#Search').jqxMaskedInput('inputValue');
+            var SearchVal = $('#Search').jqxInput('val');
             $.ajax({
-                url: "../Data/GetPersonByEmpCode.php?empcode=" + SearchVal,
+                url: "../Data/GetPersonByEmail.php?q=" + SearchVal,
                 type: "GET",
                 dataType: "json",
                 beforeSend: function () {
@@ -39,10 +36,7 @@ if (isset($_GET['q'])) {
                     if (data === null) {
                         tmpPerson_id = null;
                         tmpName = null;
-                        tmpGender = null;
                         tmpEmpCode = null;
-                        tmpSpeicalField = null;
-                        tmpMajor_Field = null;
                         tmpEmail = null;
                         tmpDept = null;
                         tmpCollege = null;
@@ -51,10 +45,7 @@ if (isset($_GET['q'])) {
                         tmpPersonData = data;
                         tmpPerson_id = data[0]['person_id'];
                         tmpName = data[0]['name'];
-                        tmpGender = data[0]['gender'];
                         tmpEmpCode = data[0]['empCode'];
-                        tmpSpeicalField = data[0]['Speical_Field'];
-                        tmpMajor_Field = data[0]['Major_Field'];
                         tmpEmail = data[0]['Email'];
                         tmpDept = data[0]['Dept'];
                         tmpCollege = data[0]['College'];
@@ -85,10 +76,6 @@ if (isset($_GET['q'])) {
                     type: 'string'
                 },
                 {
-                    name: 'Speical_Field',
-                    type: 'string'
-                },
-                {
                     name: 'Position',
                     type: 'string'
                 }
@@ -109,8 +96,7 @@ if (isset($_GET['q'])) {
                     {text: 'Employee Id / رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'Name / الاسم', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
                     {text: 'College/ الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
-                    {text: 'Title/ الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
-                    {text: 'Specialization / التخصص', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 200}
+                    {text: 'Title/ الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right'}
                 ]
             });
 
