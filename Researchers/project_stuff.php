@@ -113,7 +113,7 @@ $smarty->display('../templates/Loggedin.tpl');
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
-                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'center', cellsalign: 'right'},
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
                         {text: 'Delete/حذف', datafield: 'حذف', width: 80, align: 'center', columntype: 'button', cellsrenderer: function () {
                             return '..';
                         }, buttonclick: function (row) {
