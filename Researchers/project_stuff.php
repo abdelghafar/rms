@@ -264,8 +264,7 @@ $smarty->display('../templates/Loggedin.tpl');
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 250, align: 'center', cellsalign: 'center'},
                         {text: 'Name / الاسم', dataField: 'name_ar', width: 320, align: 'center', cellsalign: 'right'},
-                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 200, align: 'center', cellsalign: 'right'},
-                        {text: 'Specialization/ التخصص ', dataField: 'major_Field', width: 150, align: 'center', cellsalign: 'right'}
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'}
                     ]
                 });
 
