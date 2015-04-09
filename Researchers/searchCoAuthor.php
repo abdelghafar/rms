@@ -23,7 +23,7 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_url = null;
-        $("#Search").jqxMaskedInput({width: '250px', height: '25px', rtl: true, mask: '#######', theme: Curr_theme});
+        $("#Search").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
         $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
         $('#searchButton').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
