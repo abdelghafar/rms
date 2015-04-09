@@ -49,13 +49,6 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 ?>
-
-<?
-require_once '../lib/Reseaches.php';
-$users = new Users();
-$userId = $_SESSION['User_Id'];
-$personId = $users->GetPerosnId($userId, 'Researcher');
-?>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>الباحثين المشاركين</title>
