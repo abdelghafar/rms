@@ -20,7 +20,7 @@ if (isset($_GET['q'])) {
             'role_name' => $row['role_name'],
             'empCode' => $row['empCode'],
             'position' => $row['Position'],
-            'major_Field' => $row['Major_Field']
+            'email' => $row['Email']
         );
     }
     echo json_encode($result);
