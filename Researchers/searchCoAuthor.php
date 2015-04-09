@@ -76,6 +76,10 @@ if (isset($_GET['q'])) {
                     type: 'string'
                 },
                 {
+                    name: 'Email',
+                    type: 'string'
+                }
+                {
                     name: 'Position',
                     type: 'string'
                 }
@@ -96,7 +100,8 @@ if (isset($_GET['q'])) {
                     {text: 'Employee Id / رقم المنسوب', datafield: 'empCode', align: 'right', cellsalign: 'right', width: 200},
                     {text: 'Name / الاسم', datafield: 'name', cellsalign: 'right', align: 'right', width: 200},
                     {text: 'College/ الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 200},
-                    {text: 'Title/ الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right'}
+                    {text: 'Title/ الدرجة العلمية', datafield: 'Position', align: 'right', cellsalign: 'right', width: 200},
+                    {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right'}
                 ]
             });
 
