@@ -1,20 +1,17 @@
 <?
 session_start();
-clearstatcache();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
-        header('Location:../login.php');
-    }
-}
+
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/CenterResearch.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
+        header('Location:../Login.php');
+    }
+}
 
 if (isset($_SESSION['q'])) {
     $projectId = $_SESSION['q'];
