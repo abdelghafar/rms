@@ -21,7 +21,7 @@ if (isset($_SESSION['q'])) {
     $obj = new Reseaches();
     $UserId = $_SESSION['User_Id'];
     $u = new Users();
-    $personId = $u->GetPerosnId($UserId, $rule);
+    $personId = $_SESSION['person_id'];
     $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($projectId);
     if ($isAuthorized == 1 && $CanEdit == 1 && $projectId != 0) {
