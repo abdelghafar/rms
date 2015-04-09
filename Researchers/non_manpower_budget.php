@@ -1,13 +1,12 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
+
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
         header('Location:../Login.php');
     }
 }
+
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once '../lib/project_budget.php';
 require_once '../lib/budget_items.php';
@@ -18,9 +17,7 @@ require_once '../lib/users.php';
 if (isset($_SESSION['q'])) {
     $projectId = $_SESSION['q'];
     $obj = new Reseaches();
-    $UserId = $_SESSION['User_Id'];
-    $u = new Users();
-    $personId = $u->GetPerosnId($UserId, $rule);
+    $personId = $_SESSION['person_id'];
     $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($projectId);
     if ($isAuthorized == 1 && $CanEdit == 1) {
