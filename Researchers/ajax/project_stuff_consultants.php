@@ -11,7 +11,7 @@ require_once '../../lib/mysqlConnection.php';
 $conn = new MysqlConnect();
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-    $stmt = "SELECT DISTINCT persons.Person_id,persons.Nationality,persons.Position,persons.Major_Field,name_ar,stuff_roles.role_name,persons.Email from persons join research_stuff on research_stuff.person_id = persons.Person_id  join stuff_roles on stuff_roles.seq_id = research_stuff.role_id where research_stuff.research_id=" . $projectId . " and research_stuff.role_id =3 ";
+    $stmt = "SELECT DISTINCT persons.Person_id,persons.Nationality,persons.Position,name_ar,stuff_roles.role_name,persons.Email from persons join research_stuff on research_stuff.person_id = persons.Person_id  join stuff_roles on stuff_roles.seq_id = research_stuff.role_id where research_stuff.research_id=" . $projectId . " and research_stuff.role_id =3 ";
     $rs = $conn->ExecuteNonQuery($stmt);
     $r = 0;
     while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
