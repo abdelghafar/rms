@@ -78,7 +78,7 @@ if (isset($_GET['q'])) {
                 {
                     name: 'Email',
                     type: 'string'
-                }
+                },
                 {
                     name: 'Position',
                     type: 'string'
