@@ -30,7 +30,7 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../Researchers_View.php');
+$smarty->assign('index_php', '../Researchers/Researchers_View.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
