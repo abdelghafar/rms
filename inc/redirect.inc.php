@@ -1,9 +1,10 @@
 <?php
-
+session_start();
 try {
     # Call nuSOAP Library
     require_once('nusoap_lib/nusoap.php');
-
+    require_once '../lib/persons.php';
+    require_once '../UquAPI/get_uqu_instructors.php';
     # SSO for Applications
     $wsdl = "https://uqu.edu.sa/sso/ws.php?wsdl";
     $client = new nusoap_client($wsdl, 'wsdl');
@@ -17,16 +18,34 @@ try {
     $ex = explode('@', $results);
     $status = $ex[0];
     if ($status == 'Authorized') {
-        echo $userID = $ex[1];
-        echo $userEmail = $ex[2];
+        $userCode = $ex[1];
+        $userEmail = $ex[2];
+        $_SESSION['Authorized'] = 1;
+        $_SESSION['EmpCode'] = $userCode;
+        $_SESSION['UserEmail'] = $userEmail;
+        $_SESSION['User_Name'] = $userCode . '@' . $userEmail;
+        $person_id = 0;
+        $p = new Persons();
+        $u = $p->findByEmployeeCode($userCode);
+        if ($u == 0) {
+            $peron_details = get_uqu_instructors($userCode);
+            $person_id = $p->ImportPerson($peron_details);
+        } else {
+            $person_id = $u;
+        }
+        $_SESSION['person_id'] = $person_id;
+        echo '<script>window.location.assign("../Researchers/selectProgram.php");</script>';
+
     } else {
-        echo $redirectTo = $ex[1];
+        $_SESSION['Authorized'] = 0;
+        $redirectTo = $ex[1];
+        header('Location: ' . $redirectTo);
     }
 
 } catch (Exception $ex) {
+    $_SESSION['Authorized'] = 0;
     echo 'Exception: ' . $ex->getMessage();
 }
-
 
 function get_ip()
 {
