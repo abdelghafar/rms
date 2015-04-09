@@ -13,11 +13,11 @@ if (isset($_GET['q']) && isset($_GET['person_id'])) {
     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
     $obj = new research_stuff();
     if ($obj->IsExist($research_id, $person_id) == 0) {
-        $return_id = $obj->Save($research_id, $person_id, 2);
+        $return_id = $obj->Save($research_id, $person_id, 2, research_stuff_categories::$person_based);
         if (isset($_GET['file_name'])) {
             $url = filter_input(INPUT_GET, 'file_name', FILTER_SANITIZE_STRING);
             $url = "uploads/coAuthor_agreement/" . $url;
-            $obj->SetCoAuthor_agreement_url($research_id, $person_id, $url);
+            //$obj->SetCoAuthor_agreement_url($research_id, $person_id, $url);
         }
         $msg = "";
         if ($return_id != 0) {
