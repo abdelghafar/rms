@@ -95,8 +95,10 @@ if (isset($_GET['q'])) {
             {
                 width: '100%',
                 height: 400,
+                pageable: true,
                 autoheight: true,
                 sortable: true,
+                pagesize: 10,
                 rtl: true,
                 theme: Curr_theme,
                 source: CoAuthorsSourceAdapter,
@@ -131,12 +133,13 @@ if (isset($_GET['q'])) {
         $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnSave').on('click', function () {
             $.ajax({
-                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> +"&person_id=" + tmpPerson_id + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_url,
+                url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_url,
                 success: function (data) {
                     $('#SearchFrm').html('');
                     ReloadCoIs();
                 }
             });
+
         });
         $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
         $('#btnClose').on('click', function () {
@@ -156,6 +159,7 @@ if (isset($_GET['q'])) {
             rowindex = $('#gridCoAuthors').jqxGrid('getselectedrowindex');
             dataRecord = $("#gridCoAuthors").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
+            alert('person_id::' + person_id);
             $('#agreeLetter').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=coAuthor_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
             $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
 
