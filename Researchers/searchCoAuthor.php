@@ -21,8 +21,8 @@ if (isset($_GET['q'])) {
         var uploaded_file_name = null;
         var resume_url = null;
         $("#Search").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
-        $('#searchButton').on('click', function () {
+        $("#searchButton_CoAuthor_CoAuthor").jqxButton({width: 100, height: 20, theme: Curr_theme});
+        $('#searchButton_CoAuthor').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
             var SearchVal = $('#Search').jqxInput('val');
             $.ajax({
@@ -175,7 +175,7 @@ if (isset($_GET['q'])) {
             </td>
             <td>
                 <input id="Search" type="text" name="txtSearch"/>
-                <input id="searchButton" value="Search / بحث "/>
+                <input id="searchButton_CoAuthor" value="Search / بحث "/>
             </td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
