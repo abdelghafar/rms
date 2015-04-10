@@ -515,7 +515,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='arAbsUpload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -544,7 +544,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='enAbsUpload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -573,7 +573,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='introUpload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -601,7 +601,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='reviewUpload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -628,7 +628,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='research_method_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -655,7 +655,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='objective_approach_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -682,7 +682,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='objective_tasks_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -709,7 +709,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='working_plan_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -737,7 +737,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='value_to_kingdom_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -764,7 +764,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='budget_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -791,7 +791,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='outcome_objectives_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
@@ -819,7 +819,7 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <div id='ref_upload'></div>
             <div class="classic" style="color: #ff0000">
-                Only Pdf files are accepted
+                يسمح بملفات pdf فقط
             </div>
         </td>
         <td>
