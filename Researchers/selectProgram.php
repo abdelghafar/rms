@@ -93,7 +93,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">
     برنامج باحث
-    <br>Bahes Program
+    <br>BahethProgram
     </button>';
         }
     } else {
@@ -103,7 +103,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </button>
 
     <button id="ba7th" type="button" class="btn btn-primary btn-lg" style="width: 300px; height: 100px;">برنامج باحث
-    <br>Bahes Program
+    <br>BahethProgram
     </button>';
     }
     ?>
