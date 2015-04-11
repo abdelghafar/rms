@@ -39,7 +39,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
     } else {
 //        echo '<br/>' .'لقد تم حفظ هذا الشخص من قبل'. '<br/>';
         $operation_completed = 0;
-        echo $operation_completed;
+        //echo $operation_completed;
     }
 } else {
     echo 'param ar required....';
