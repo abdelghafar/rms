@@ -144,4 +144,13 @@ class research_stuff
         }
         return $result;
     }
+
+    public function GetProjectTeam($projectId)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT rs.seq_no,rs.person_id,rs.role_id,rs.type, sr.role_name, sr.seq_id FROM research_stuff rs INNER JOIN stuff_roles sr ON rs.role_id = sr.seq_id WHERE research_id =" . $projectId . " ORDER BY rs.role_id, seq_id";
+        //echo $stmt;
+        $result = $conn->ExecuteNonQuery($stmt);
+        return $result;
+    }
 }

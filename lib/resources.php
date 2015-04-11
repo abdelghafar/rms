@@ -78,10 +78,13 @@ class Resources
     public function GetProjectTasksResources($projetcId)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT pp.phase_name, pt.task_name, pt.phase_id, p.name_ar, st.seq_id, st.task_id, st.person_id, st.start_month, st.duration, st.unit_id, du.unit_name
-                FROM project_phases pp INNER JOIN project_tasks pt ON pp.seq_id = pt.phase_id 
-             INNER JOIN stuff_tasks st ON pt.task_id = st.task_id INNER JOIN persons p ON st.person_id = p.person_id  
-             INNER JOIN duration_units du ON st.unit_id = du.seq_id WHERE pt.project_id=" . $projetcId . " ORDER BY st.start_month";
+        $stmt = "SELECT pp.phase_name, pt.task_name, pt.phase_id, st.seq_id, st.task_id, rs.seq_no, rs.type, rs.person_id, st.start_month, st.duration, st.unit_id, sr.role_name, du.unit_name
+FROM project_phases pp
+INNER JOIN project_tasks pt ON pp.seq_id = pt.phase_id
+INNER JOIN stuff_tasks st ON pt.task_id = st.task_id
+INNER JOIN research_stuff rs ON st.research_stuff_id = rs.seq_no
+INNER JOIN stuff_roles sr ON sr.seq_id = rs.role_id
+INNER JOIN duration_units du ON st.unit_id = du.seq_id WHERE pt.project_id=" . $projetcId . " ORDER BY st.start_month";
 
         //echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
@@ -91,24 +94,28 @@ class Resources
     public function GetPhaseTasksResources($phaseId)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT pp.phase_name, pt.task_name, pt.phase_id, p.name_ar, st.seq_id, st.task_id, st.person_id, st.start_month, st.duration, st.unit_id, du.unit_name
-                FROM project_phases pp INNER JOIN project_tasks pt ON pp.seq_id = pt.phase_id INNER JOIN stuff_tasks st ON pt.task_id = st.task_id INNER JOIN persons p ON st.person_id = p.person_id  
-             INNER JOIN duration_units du ON st.unit_id = du.seq_id WHERE pt.phase_id=" . $phaseId . " ORDER BY st.start_month ";
+        $stmt = "SELECT pp.phase_name, pt.task_name, pt.phase_id, st.seq_id, st.task_id, rs.seq_no, rs.type, rs.person_id, st.start_month, st.duration, st.unit_id, sr.role_name, du.unit_name
+FROM project_phases pp
+INNER JOIN project_tasks pt ON pp.seq_id = pt.phase_id
+INNER JOIN stuff_tasks st ON pt.task_id = st.task_id
+INNER JOIN research_stuff rs ON st.research_stuff_id = rs.seq_no
+INNER JOIN stuff_roles sr ON sr.seq_id = rs.role_id
+INNER JOIN duration_units du ON st.unit_id = du.seq_id WHERE pt.phase_id=" . $phaseId . " ORDER BY st.start_month ";
 
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
-    public function GetStuffTasks($project_id, $stuff_id)
+    public function GetStuffTasks($project_id, $research_stuff_id)
     {
         $conn = new MysqlConnect();
-        $stmt = " SELECT project_tasks.task_name, project_tasks.project_id, stuff_tasks.person_id
-                    FROM dsr_rms.project_tasks project_tasks
-                    INNER JOIN dsr_rms.stuff_tasks stuff_tasks ON ( project_tasks.task_id = stuff_tasks.task_id )
+        $stmt = " SELECT project_tasks.task_name, project_tasks.project_id, stuff_tasks.research_stuff_id
+                    FROM project_tasks project_tasks
+                    INNER JOIN stuff_tasks stuff_tasks ON ( project_tasks.task_id = stuff_tasks.task_id )
                     WHERE 
                         (project_tasks.project_id =" . $project_id . ")
                      AND 
-                        (stuff_tasks.person_id =" . $stuff_id . ")
+                        (stuff_tasks.research_stuff_id =" . $research_stuff_id . ")
                     LIMIT 1 ";
         $rs = $conn->ExecuteNonQuery($stmt);
 
@@ -119,8 +126,8 @@ class Resources
     {
         $conn = new MysqlConnect();
         $stmt = "SELECT stuff_tasks.seq_id, project_tasks.task_id, project_tasks.task_name, project_tasks.project_id
-                FROM dsr_rms.project_tasks project_tasks
-                LEFT OUTER JOIN dsr_rms.stuff_tasks stuff_tasks ON ( project_tasks.task_id = stuff_tasks.task_id )
+                FROM project_tasks project_tasks
+                LEFT OUTER JOIN stuff_tasks stuff_tasks ON ( project_tasks.task_id = stuff_tasks.task_id )
                 WHERE (
                     (stuff_tasks.seq_id IS NULL)
                 AND 

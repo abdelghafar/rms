@@ -55,10 +55,10 @@ class project_budget_manpower
          return $rs;
      }*/
 
-    public function GetStuffBudget($stuff_id, $project_id, $item_id)
+    public function GetStuffBudget($research_stuff_id, $project_id, $item_id)
     {
         $con = new MysqlConnect();
-        $stmt = 'select * from project_budget WHERE stuff_id =' . $stuff_id . " AND project_id = " . $project_id . " AND item_id = " . $item_id;
+        $stmt = 'select * from project_budget WHERE research_stuff_id =' . $research_stuff_id . " AND project_id = " . $project_id . " AND item_id = " . $item_id;
         //echo $stmt;
         $rs = $con->ExecuteNonQuery($stmt);
         return $rs;

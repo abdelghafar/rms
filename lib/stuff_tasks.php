@@ -21,11 +21,11 @@ class StuffTasks
         $connection = new MysqlConnect();
     }
 
-    public function Save($seqId, $task_id, $person_id, $start_month, $duration, $unit_id)
+    public function Save($seqId, $task_id, $research_stuff_id, $start_month, $duration, $unit_id)
     {
         $conn = new MysqlConnect();
         if ($seqId == 0) {
-            $stmt = "insert into stuff_tasks (task_id,person_id,start_month,duration,unit_id) values (" . $task_id . "," . $person_id . "," . $start_month . "," . $duration . "," . $unit_id . ")";
+            $stmt = "insert into stuff_tasks (task_id,research_stuff_id,start_month,duration,unit_id) values (" . $task_id . "," . $research_stuff_id . "," . $start_month . "," . $duration . "," . $unit_id . ")";
             //echo $stmt;
 
         }
@@ -47,12 +47,12 @@ class StuffTasks
         return $result;
     }
 
-    public function isExist($seq_id, $person_id, $task_id)
+    public function isExist($seq_id, $research_stuff_id, $task_id)
     {
         $conn = new MysqlConnect();
         $stmt = "SELECT count(seq_id) as obj_count FROM stuff_tasks WHERE task_id=" . $task_id .
-            " AND person_id = " . $person_id;
-
+            " AND research_stuff_id = " . $research_stuff_id;
+        //echo $stmt;
         $result = $conn->ExecuteNonQuery($stmt);
         $row = mysql_fetch_array($result);
 
@@ -64,7 +64,7 @@ class StuffTasks
                 return false;
         } else {
             $stmt2 = "SELECT seq_id FROM stuff_tasks WHERE WHERE task_id=" . $task_id .
-                " AND person_id = " . $person_id;
+                " AND research_stuff_id = " . $research_stuff_id;
 
             //echo $stmt2;
             $result2 = $conn->ExecuteNonQuery($stmt2);
@@ -99,18 +99,18 @@ class StuffTasks
                  GROUP BY stuff_tasks.person_id, project_tasks.project_id, stuff_tasks.unit_id 
                  HAVING project_tasks.project_id =" . $project_id . " AND stuff_tasks.person_id = " . $person_id .
             " ORDER By stuff_tasks.unit_id";
-        //echo $stmt;
+        echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
 
-    public function GetProjectTasksPerStuff($project_id, $person_id)
+    public function GetProjectTasksPerStuff($project_id, $research_stuff_id)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT stuff_tasks.person_id, project_tasks.project_id,stuff_tasks.start_month, stuff_tasks.unit_id, stuff_tasks.duration
+        $stmt = "SELECT stuff_tasks.research_stuff_id, project_tasks.project_id,stuff_tasks.start_month, stuff_tasks.unit_id, stuff_tasks.duration
                  FROM project_tasks project_tasks
                  INNER JOIN stuff_tasks stuff_tasks ON ( project_tasks.task_id = stuff_tasks.task_id )
-                 WHERE project_tasks.project_id =" . $project_id . " AND stuff_tasks.person_id = " . $person_id .
+                 WHERE project_tasks.project_id =" . $project_id . " AND stuff_tasks.research_stuff_id = " . $research_stuff_id .
             " ORDER By stuff_tasks.unit_id";
         //echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
@@ -123,29 +123,28 @@ class StuffTasks
         $stmt = "SELECT DISTINCT project_tasks.phase_id,
                   stuff_tasks.seq_id,
                   stuff_tasks.task_id,
-                  stuff_tasks.person_id,
+                  stuff_tasks.research_stuff_id,
                   stuff_tasks.start_month,
                   stuff_tasks.duration,
                   stuff_tasks.unit_id,
                   research_stuff.role_id,
-                  persons.name_ar,
+                  research_stuff.person_id,
+                  research_stuff.type,
                   stuff_roles.role_name,
                   duration_units.convert_factor,
                   duration_units.unit_name,
                   project_tasks.task_name
-                FROM ((((dsr_rms.research_stuff research_stuff
-             INNER JOIN dsr_rms.stuff_tasks stuff_tasks
-                ON (research_stuff.person_id = stuff_tasks.person_id))
-            INNER JOIN dsr_rms.project_tasks project_tasks
+                FROM (((research_stuff research_stuff
+             INNER JOIN stuff_tasks stuff_tasks
+                ON (research_stuff.seq_no = stuff_tasks.research_stuff_id))
+            INNER JOIN project_tasks project_tasks
                ON (project_tasks.task_id = stuff_tasks.task_id))
-           INNER JOIN dsr_rms.persons persons
-              ON (persons.Person_id = stuff_tasks.person_id))
-          INNER JOIN dsr_rms.duration_units duration_units
+          INNER JOIN duration_units duration_units
              ON (duration_units.seq_id = stuff_tasks.unit_id))
-         INNER JOIN dsr_rms.stuff_roles stuff_roles
+         INNER JOIN stuff_roles stuff_roles
             ON (stuff_roles.seq_id = research_stuff.role_id)
                 WHERE (project_tasks.phase_id = " . $phase_id . " AND research_stuff.research_id=" . $project_id . ")
-                ORDER BY research_stuff.role_id ASC, persons.name_ar ASC";
+                ORDER BY research_stuff.role_id ASC";
         //echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;

@@ -23,15 +23,16 @@ class project_budget
 
     }
 
-    public function Save($seq_id, $project_id, $item_id, $stuff_id, $amount, $duration, $dunit_id, $compensation)
+    public function Save($seq_id, $project_id, $item_id, $research_stuff_id, $amount, $duration, $dunit_id, $compensation)
     {
         $con = new MysqlConnect();
         if ($seq_id == 0) {
-            $stmt = "insert into " . $this->tableName . " (project_id,item_id,stuff_id,amount,duration,dunit_id,compensation) values (" . $project_id . "," . $item_id . "," . $stuff_id . "," . $amount . "," . $duration . "," . $dunit_id . "," . $compensation . ")";
+            $stmt = "insert into " . $this->tableName . " (project_id,item_id,research_stuff_id,amount,duration,dunit_id,compensation) values (" . $project_id . "," . $item_id . "," . $research_stuff_id . "," . $amount . "," . $duration . "," . $dunit_id . "," . $compensation . ")";
+            echo $stmt;
             $con->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            $stmt = "Update " . $this->tableName . " Set project_id=" . $project_id . ", item_id=" . $item_id . ",stuff_id=" . $stuff_id . ",amount=" . $amount . ",duration=" . $duration . ",dunit_id=" . $dunit_id . ",compensation=" . $compensation . " where seq_id=" . $seq_id;
+            $stmt = "Update " . $this->tableName . " Set project_id=" . $project_id . ", item_id=" . $item_id . ",research_stuff_id=" . $research_stuff_id . ",amount=" . $amount . ",duration=" . $duration . ",dunit_id=" . $dunit_id . ",compensation=" . $compensation . " where seq_id=" . $seq_id;
             $con->ExecuteNonQuery($stmt);
             return mysql_affected_rows();
         }
