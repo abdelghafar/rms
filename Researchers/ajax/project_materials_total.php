@@ -20,5 +20,5 @@ if (isset($_GET['q'])) {
     while ($row = mysql_fetch_array($rs)) {
         $r = $row[0];
     }
-    echo number_format($r, 2);
+    echo $r;
 }
