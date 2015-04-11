@@ -442,7 +442,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         project_total = xdata;
                         var material_percent = parseFloat(material_total) / parseFloat(project_total);
                         $('#materials_percent').html(numeral(material_percent).format('00.00%'));
-                        $('#materials_percent').html(material_percent * 100);
                     }});
                 }});
             });
@@ -471,11 +470,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
                         var project_total = 0;
                         project_total = xdata;
-//                        console.log(project_total);
                         var others_percent = parseFloat(others_total) / parseFloat(project_total);
-//                        console.log("others_total:" + parseFloat(others_total));
-//                        console.log("project_total:" + parseFloat(project_total));
-
                         $('#others_percent').html(numeral(others_percent).format('00.00%'));
                     }});
                 }});
