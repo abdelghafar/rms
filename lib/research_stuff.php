@@ -87,7 +87,7 @@ class research_stuff
         return mysql_affected_rows();
     }
 
-    public function GetAccept_letter_url_url($projectId)
+    public function GetCoAuthor_agreement_url($projectId)
     {
         $stmt = "Select agreement_url From researches where seq_id =" . $projectId;
         $conn = new MysqlConnect();
