@@ -52,6 +52,7 @@ class budget_items
     {
         $conn = new MysqlConnect();
         $stmt = "Select * from " . $this->tableName . " where isSys=0 and parent_item_id=" . $parent_item_id;
+        echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
