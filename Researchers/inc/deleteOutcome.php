@@ -22,7 +22,7 @@ if ($isValid == TRUE) {
 
     try {
         $result = $outcome->Delete($outcome_id);
-        echo $result;
+        //echo $result;
         if ($result == 'true') {
             echo '<h1 style="text-align=center">' . 'تم حذف البيان بنجاح' . '</h1>';
             echo '<input type="hidden" id ="outcome_operation_flag" value ="true">';

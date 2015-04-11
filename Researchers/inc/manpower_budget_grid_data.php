@@ -5,10 +5,12 @@ require_once '../../lib/research_stuff.php';
 require_once '../../lib/project_budget_manpower.php';
 require_once '../../lib/stuff_tasks.php';
 require_once '../../lib/duration_units.php';
+require_once '../../lib/person_name.php';
 
 $project_id = $_REQUEST['project_id'];
 $item_id = $_REQUEST['item_id'];
 //$item_id = 15; // for manpower r
+$person = new PersonName();
 
 $reseach = new Reseaches();
 $research_row = $reseach->GetResearch($project_id);
@@ -18,7 +20,7 @@ $project_array = array();
 
 
 $research_stuff = new research_stuff();
-$research_stuff_rs = $research_stuff->GetProjectAllStuffs($project_id);
+$research_stuff_rs = $research_stuff->GetProjectTeam($project_id);
 
 $stuff_budget = new project_budget_manpower();
 
@@ -33,7 +35,8 @@ while ($row = mysql_fetch_array($research_stuff_rs, MYSQL_ASSOC)) {
         $project_array[$i] = 0;
     }
 
-    $stuff_budget_rs = $stuff_budget->GetStuffBudget($row['person_id'], $project_id, $item_id);
+    $research_stuff_id = $row['seq_no'];
+    $stuff_budget_rs = $stuff_budget->GetStuffBudget($research_stuff_id, $project_id, $item_id);
     if ($stuff_budget_row = mysql_fetch_array($stuff_budget_rs, MYSQL_ASSOC)) {
         $seq_id = $stuff_budget_row['seq_id'];
         $compensation = $stuff_budget_row['compensation'];
@@ -43,7 +46,7 @@ while ($row = mysql_fetch_array($research_stuff_rs, MYSQL_ASSOC)) {
         $compensation = 0;
     }
 
-    $stuff_tasks_rs = $stuff_tasks->GetProjectTasksPerStuff($project_id, $row['person_id']);
+    $stuff_tasks_rs = $stuff_tasks->GetProjectTasksPerStuff($project_id, $research_stuff_id);
     $duration = 0;
     $duration_unit = 'غير مخصص';
     $dunit_id = 0;
@@ -74,12 +77,19 @@ while ($row = mysql_fetch_array($research_stuff_rs, MYSQL_ASSOC)) {
     $duration_row = $duration_obj->GetDurationUnitData($dunit_id);
     $duration_unit = $duration_row ['unit_name'];
 
+    if ($row['type'] === 'role_based') {
+        $role_person = $row['role_name'];
+    } else {
+        $role_person = $person->GetPersonName($row['person_id']) . "  ---  " . $row['role_name'];
+    }
+
+
     $outcomes_list[] = array(
         'seq_id' => $seq_id,
         'project_id' => $project_id,
         'item_id' => $item_id,
-        'person_id' => $row['person_id'],
-        'person_name' => $row['name_ar'] . "  ---  " . $row['role_name'],
+        'research_stuff_id' => $research_stuff_id,
+        'role_person' => $role_person,
         'duration' => $actual_duration,
         'duration_unit' => $duration_unit,
         'dunit_id' => $dunit_id,

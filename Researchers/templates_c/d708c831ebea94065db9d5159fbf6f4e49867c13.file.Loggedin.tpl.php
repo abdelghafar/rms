@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-02-11 23:30:52
+<?php /* Smarty version Smarty-3.1.13, created on 2015-04-10 15:48:28
          compiled from "..\templates\Loggedin.tpl" */
 ?>
 <?php /*%%SmartyHeaderCode:1794252e5a0679ccd01-38016799%%*/
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             'd708c831ebea94065db9d5159fbf6f4e49867c13' =>
                 array(
                     0 => '..\\templates\\Loggedin.tpl',
-                    1 => 1397444590,
+                    1 => 1428588887,
                     2 => 'file',
                 ),
         ),
@@ -26,9 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             'jquery_js' => 0,
             'script_js' => 0,
             'script_responsive_js' => 0,
-            'index_php' => 0,
-            'contactus_php' => 0,
-            'logout_php' => 0,
         ),
     'has_nocache_code' => false,
 ), false); /*/%%SmartyHeaderCode%%*/
@@ -41,7 +38,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             <meta charset="utf-8">
             <title>
                 <?php if (!isset($_smarty_tpl->tpl_vars['title']->value)) { ?>
-                    نظام الباحث لادارة المشروعات البحثية
+                    نظام إدارة المنح البحثية
                 <?php } else { ?>
                     <?php echo $_smarty_tpl->tpl_vars['title']->value; ?>
 
@@ -68,91 +65,75 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             <script src="<?php echo $_smarty_tpl->tpl_vars['script_responsive_js']->value; ?>
 "></script>
         </head>
-    <body>
-    <div id="art-main">
-        <nav class="art-nav">
-            <div class="art-nav-inner">
-                <ul class="art-hmenu">
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['index_php']->value; ?>
-" class="active">الصفحة الرئيسية</a></li>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['contactus_php']->value; ?>
-" class="active">بيانات الإتصال</a></li>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['logout_php']->value; ?>
-" class="active">خروج</a></li>
-                </ul>
-            </div>
-        </nav>
+        <body>
+        <div id="art-main">
+            <nav class="art-nav">
+                <div class="art-nav-inner">
+                    <ul class="art-hmenu">
+                        <li><a href="../Researchers/Researchers_View.php" class="active">
+                                الصفحة الرئيسية / Home page
+                            </a></li>
+                        <li><a href="../aboutus.php">
+                                حول / About us
+                            </a></li>
+                        <li><a href="../inc/logout.inc.php" class="active">
+                                خروج / Logout
+                            </a></li>
+                    </ul>
+                </div>
+            </nav>
 
-        <div class="art-sheet clearfix">
-            <header class="art-header">
-                <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
-                    <div class="art-slider-inner">
-                        <div class="art-slide-item art-slideheader0">
-
-                        </div>
-                        <div class="art-slide-item art-slideheader1">
-                            <div class="art-textblock art-slideheader1-object832388275" data-left="0%">
-                                <div class="art-slideheader1-object832388275-text-container">
-                                    <div class="art-slideheader1-object832388275-text"><p
-                                            style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">
-                                            الإبتــــــكار</p></div>
-                                </div>
+            <div class="art-sheet clearfix">
+                <header class="art-header">
+                    <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
+                        <div class="art-slider-inner">
+                            <div class="art-slide-item art-slideheader0">
 
                             </div>
-                        </div>
-                        <div class="art-slide-item art-slideheader2">
-                            <div class="art-textblock art-slideheader2-object1285826474" data-left="0%">
-                                <div class="art-slideheader2-object1285826474-text-container">
-                                    <div class="art-slideheader2-object1285826474-text"><p
-                                            style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">
-                                            الإبــــداع</p></div>
-                                </div>
+                            <div class="art-slide-item art-slideheader1">
 
                             </div>
-                        </div>
-                        <div class="art-slide-item art-slideheader3">
-                            <div class="art-textblock art-slideheader3-object1450141196" data-left="0%">
-                                <div class="art-slideheader3-object1450141196-text-container">
-                                    <div class="art-slideheader3-object1450141196-text"><p
-                                            style="color: #FFF3D6; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">
-                                            العمل الجماعى</p></div>
-                                </div>
+                            <div class="art-slide-item art-slideheader2">
 
                             </div>
-                        </div>
-                        <div class="art-slide-item art-slideheader4">
-                            <div class="art-textblock art-slideheader4-object1709499836" data-left="0%">
-                                <div class="art-slideheader4-object1709499836-text-container">
-                                    <div class="art-slideheader4-object1709499836-text"><p
-                                            style="color: #E3ECF2; font-size:40px;font-family:'Century Gothic', Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;font-weight:bold;font-style:normal;text-decoration:none">
-                                            خدمة المجتمع</p></div>
-                                </div>
+                            <div class="art-slide-item art-slideheader3">
 
                             </div>
+                            <div class="art-slide-item art-slideheader4">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader5">
+
+                            </div>
+
                         </div>
+                    </div>
+                    <div class="art-slidenavigator art-slidenavigatorheader" data-left="90.6">
+                        <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
+                            href="#" class="art-slidenavigatoritem"></a><a href="#"
+                                                                           class="art-slidenavigatoritem"></a><a
+                            href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
+                    </div>
+
+
+                    <div class="art-shapes">
 
                     </div>
-                </div>
-                <div class="art-slidenavigator art-slidenavigatorheader" data-left="92.1">
-                    <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
-                        href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
-                        href="#" class="art-slidenavigatoritem"></a>
-                </div>
 
-                <div class="art-shapes"></div>
-            </header>
-            <div class="art-layout-wrapper">
-                <div class="art-content-layout">
-                    <div class="art-content-layout-row">
-                        <div class="art-layout-cell art-content">
-                            <article class="art-post art-article">
 
-                                <div class="art-postcontent art-postcontent-0 clearfix">
-                                    <div class="art-content-layout-wrapper layout-item-0">
-                                        <div class="art-content-layout layout-item-1">
+                </header>
+                <div class="art-layout-wrapper">
+                    <div class="art-content-layout">
+                        <div class="art-content-layout-row">
+                            <div class="art-layout-cell art-content">
+                                <article class="art-post art-article">
 
+                                    <div class="art-postcontent art-postcontent-0 clearfix">
+                                        <div class="art-content-layout-wrapper layout-item-0">
+                                            <div class="art-content-layout layout-item-1">
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="art-content-layout">
+                                        <div class="art-content-layout">
 <?php }
 } ?>

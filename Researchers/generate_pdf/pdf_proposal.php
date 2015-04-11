@@ -60,7 +60,7 @@ function get_project_manpower_durations($project_id)
 
     $item_id = 15; // for manpower budget
     $research_stuff = new research_stuff();
-    $person = new Persons();
+    $person = new PersonName();
 
     $research_stuff_rs = $research_stuff->GetProjectTeam($project_id);
 
@@ -123,7 +123,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
 {
 
     $phaseworkplan = new StuffTasks();
-    $person = new Persons();
+    $person = new PersonName();
 
     $phaseworkplan_rs = $phaseworkplan->GetPhaseTasksDurations($project_id, $phase_id);
 

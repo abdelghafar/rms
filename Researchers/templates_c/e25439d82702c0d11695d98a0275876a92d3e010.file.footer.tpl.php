@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-02-11 23:30:52
+<?php /* Smarty version Smarty-3.1.13, created on 2015-04-04 22:03:59
          compiled from "..\templates\footer.tpl" */
 ?>
 <?php /*%%SmartyHeaderCode:2639852e1339b6d9ec9-30400333%%*/
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             'e25439d82702c0d11695d98a0275876a92d3e010' =>
                 array(
                     0 => '..\\templates\\footer.tpl',
-                    1 => 1393317800,
+                    1 => 1428169776,
                     2 => 'file',
                 ),
         ),
@@ -23,8 +23,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
 ?>
 <?php if ($_valid && !is_callable('content_52e1339b6dded8_31226446')) {
     function content_52e1339b6dded8_31226446($_smarty_tpl)
-    { ?>
-        </div>
+    { ?></div>
         </div>
         </article></div>
         </div>
@@ -35,8 +34,8 @@ $_valid = $_smarty_tpl->decodeProperties(array(
                 <div class="art-content-layout-row">
                     <div class="art-layout-cell layout-item-0" style="width: 100%">
                         <p style="font-size: 13px;color:white; ">
-                            <span style="font-weight: bold;"><span style="text-shadow: rgb(0, 0, 0) 0px 0px 13px;">جميع الحقوق محفوظة&nbsp;</span><span
-                                    style="text-shadow: rgb(0, 0, 0) 0px 0px 14px;">© عمادة البحث العلمي - جامعة أم القري</span></span>
+                    <span style="font-weight: bold;"><span style="text-shadow: rgb(0, 0, 0) 0px 0px 13px;">جميع الحقوق محفوظة&nbsp;</span><span
+                            style="text-shadow: rgb(0, 0, 0) 0px 0px 14px;">© عمادة البحث العلمي - جامعة أم القرى</span></span>
                         </p>
                     </div>
                 </div>

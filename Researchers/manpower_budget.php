@@ -2,11 +2,24 @@
 session_start();
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
+        header('Location:../login.php');
     }
 }
+require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
+
 if (isset($_SESSION['q'])) {
-    $project_id = $_SESSION["q"];
+    $project_id = $_SESSION['q'];
+    $obj = new Reseaches();
+    $personId = $_SESSION['person_id'];
+    $isAuthorized = $obj->IsAuthorized($project_id, $personId);
+    $CanEdit = $obj->CanEdit($project_id);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+
+    } else {
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
+    }
 }
 
 require_once '../lib/budget.php';
@@ -97,8 +110,8 @@ $smarty->display('../templates/Loggedin.tpl');
                             {name: 'seq_id'},
                             {name: 'project_id'},
                             {name: 'item_id'},
-                            {name: 'person_id'},
-                            {name: 'person_name'},
+                            {name: 'research_stuff_id'},
+                            {name: 'role_person'},
                             {name: 'duration'},
                             {name: 'duration_unit'},
                             {name: 'dunit_id'},
@@ -127,8 +140,8 @@ $smarty->display('../templates/Loggedin.tpl');
                                 {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
                                 {text: 'item_id', datafield: 'item_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'person_id', datafield: 'person_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                {text: 'Name -Role / الإسم - المشاركة', datafield: 'person_name', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
+                                {text: 'research_stuff_id', datafield: 'research_stuff_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'Name -Role / الإسم - المشاركة', datafield: 'role_person', type: 'string', editable: false, width: 430, align: 'center', cellsalign: 'right'},
                                 {text: 'Duration/  المدة', datafield: 'duration', type: 'string', editable: false, width: 100, align: 'center', cellsalign: 'center'},
                                 {text: 'Unit/ الوحدة', datafield: 'duration_unit', type: 'string', editable: false, width: 125, align: 'center', cellsalign: 'center'},
                                 {text: 'dunit_id', datafield: 'dunit_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
@@ -163,7 +176,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
                         console.log(compensation * datarow.duration);
 
-                        var post_data = 'seq_id=' + datarow.seq_id + '&project_id=' + datarow.project_id + '&item_id=' + datarow.item_id + '&stuff_id=' + datarow.person_id +
+                        var post_data = 'seq_id=' + datarow.seq_id + '&project_id=' + datarow.project_id + '&item_id=' + datarow.item_id + '&research_stuff_id=' + datarow.research_stuff_id +
                             '&duration=' + datarow.duration + '&dunit_id=' + datarow.dunit_id + '&compensation=' + compensation + '&amount=' + total_amount;
                         $.ajax({
                             type: 'post',

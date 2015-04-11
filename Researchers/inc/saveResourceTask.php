@@ -9,7 +9,7 @@ require_once '../../lib/Reseaches.php';
 
 $seqId = $_REQUEST['seqId'];
 $task_id = $_REQUEST['task_id'];
-$person_id = $_REQUEST['person_id'];
+$research_stuff_id = $_REQUEST['research_stuff_id'];
 $start_month = $_REQUEST['start_month'];
 $duration = $_REQUEST['duration'];
 $unit_id = $_REQUEST['unit_id'];
@@ -34,7 +34,7 @@ if (!isset($_POST['duration']) || empty($_POST['duration']) || ($_POST['duration
     $duration = mysql_escape_string(trim($_POST['duration']));
 
 
-$isexist = $resource->isExist($seqId, $person_id, $task_id);
+$isexist = $resource->isExist($seqId, $research_stuff_id, $task_id);
 
 if ($isexist == true) {
     echo 'تم تخصيص هذه المهمة لهذا الباحث من قبل' . '<br/>';
@@ -48,7 +48,7 @@ if ($isexist == true) {
 if ($isValid == TRUE) {
 
     $stuff_budget = new project_budget_manpower();
-    $stuff_budget_rs = $stuff_budget->GetStuffBudget($person_id, $project_id, $item_id);
+    $stuff_budget_rs = $stuff_budget->GetStuffBudget($research_stuff_id, $project_id, $item_id);
     if ($stuff_budget_row = mysql_fetch_array($stuff_budget_rs, MYSQL_ASSOC)) {
         $manpower_id = $stuff_budget_row['seq_id'];
         $compensation = $stuff_budget_row['compensation'];
@@ -57,7 +57,7 @@ if ($isValid == TRUE) {
     }
 
     try {
-        $result = $resource->Save($seqId, $task_id, $person_id, $start_month, $duration, $unit_id);
+        $result = $resource->Save($seqId, $task_id, $research_stuff_id, $start_month, $duration, $unit_id);
 
 //        ob_start();
 //        header("Location: ../register-done.php");
@@ -71,7 +71,7 @@ if ($isValid == TRUE) {
                     $project_array[$i] = 0;
                 }
 
-                $stuff_tasks_rs = $resource->GetProjectTasksPerStuff($project_id, $person_id);
+                $stuff_tasks_rs = $resource->GetProjectTasksPerStuff($project_id, $research_stuff_id);
                 $duration = 0;
                 $duration_unit = 'غير مخصص';
                 $dunit_id = 0;

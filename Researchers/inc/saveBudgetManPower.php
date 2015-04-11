@@ -9,7 +9,7 @@ $obj = new project_budget();
 $seq_id = $_REQUEST['seq_id'];
 $project_id = $_REQUEST['project_id'];
 $item_id = $_REQUEST['item_id'];
-$stuff_id = $_REQUEST['stuff_id'];
+$research_stuff_id = $_REQUEST['research_stuff_id'];
 $amount = $_REQUEST['amount'];
 $duration = $_REQUEST['duration'];
 $dunit_id = $_REQUEST['dunit_id'];
@@ -17,7 +17,7 @@ $compensation = $_REQUEST['compensation'];
 
 
 try {
-    $result = $obj->Save($seq_id, $project_id, $item_id, $stuff_id, $amount, $duration, $dunit_id, $compensation);
+    $result = $obj->Save($seq_id, $project_id, $item_id, $research_stuff_id, $amount, $duration, $dunit_id, $compensation);
     echo $result;
     /*if ($result !== false ) {
         echo '<h2 style="text-align=center">' . 'تم  تنفيذ العملية بنجاح' . '</h2>';

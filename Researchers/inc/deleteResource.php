@@ -12,7 +12,7 @@ $isValid = TRUE;
 
 $seq_id = $_POST['seq_id'];
 $project_id = $_POST['project_id'];
-$person_id = $_POST['person_id'];
+$research_stuff_id = $_POST['research_stuff_id'];
 $item_id = 15; // for manpower
 $resource = new Resources();
 $stuff_tasks = new StuffTasks();
@@ -26,7 +26,7 @@ $stuff_tasks = new StuffTasks();
 
 if ($isValid == TRUE) {
     $stuff_budget = new project_budget_manpower();
-    $stuff_budget_rs = $stuff_budget->GetStuffBudget($person_id, $project_id, $item_id);
+    $stuff_budget_rs = $stuff_budget->GetStuffBudget($research_stuff_id, $project_id, $item_id);
     if ($stuff_budget_row = mysql_fetch_array($stuff_budget_rs, MYSQL_ASSOC)) {
         $manpower_id = $stuff_budget_row['seq_id'];
         $compensation = $stuff_budget_row['compensation'];
@@ -45,7 +45,7 @@ if ($isValid == TRUE) {
                     $project_array[$i] = 0;
                 }
 
-                $stuff_tasks_rs = $stuff_tasks->GetProjectTasksPerStuff($project_id, $person_id);
+                $stuff_tasks_rs = $stuff_tasks->GetProjectTasksPerStuff($project_id, $research_stuff_id);
                 $duration = 0;
                 $duration_unit = 'غير مخصص';
                 $dunit_id = 0;

@@ -1,11 +1,24 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
-        header('Location:../Login.php');
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
+        header('Location:../login.php');
+    }
+}
+require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
+
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION['q'];
+    $obj = new Reseaches();
+    $personId = $_SESSION['person_id'];
+    $isAuthorized = $obj->IsAuthorized($project_id, $personId);
+    $CanEdit = $obj->CanEdit($project_id);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+
+    } else {
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
     }
 }
 ?>
@@ -23,12 +36,13 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
             datafields: [
                 {name: 'phase_id'},
                 {name: 'seq_id'},
+                {name: 'research_stuff_id'},
                 {name: 'task_id'},
                 {name: 'person_id'},
                 {name: 'unit_id'},
                 {name: 'phase_name'},
                 {name: 'task_name'},
-                {name: 'name_ar'},
+                {name: 'role_person'},
                 {name: 'start_month'},
                 {name: 'duration'},
                 {name: 'unit_name'}
@@ -56,12 +70,13 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                 columns: [
                     {text: 'phase_id', datafield: 'phase_id', align: 'center', cellsalign: 'center', hidden: true},
                     {text: 'seq_id', datafield: 'seq_id', align: 'center', cellsalign: 'center', hidden: true},
+                    {text: 'research_stuff_id', datafield: 'research_stuff_id', align: 'center', cellsalign: 'center', hidden: true},
                     {text: 'task_id', datafield: 'task_id', align: 'center', cellsalign: 'center', hidden: true},
                     {text: 'person_id', datafield: 'person_id', align: 'center', cellsalign: 'center', hidden: true},
                     {text: 'unit_id', datafield: 'unit_id', align: 'center', cellsalign: 'center', hidden: true},
                     {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 190, align: 'center', cellsalign: 'right'},
                     {text: 'Task / المهمة', datafield: 'task_name', type: 'string', width: 220, align: 'center', cellsalign: 'right'},
-                    {text: 'Name / الإسم', datafield: 'name_ar', type: 'string', width: 220, align: 'center', cellsalign: 'right'},
+                    {text: 'Name / الإسم', datafield: 'role_person', type: 'string', width: 220, align: 'center', cellsalign: 'right'},
                     {text: 'Starting Month/شهر البدء ', datafield: 'start_month', type: 'string', width: 160, align: 'center', cellsalign: 'center'},
                     {text: '', columngroup: 'Duration', datafield: 'duration', type: 'string', width: 50, align: 'center', cellsalign: 'center'},
                     {text: '', columngroup: 'Duration', datafield: 'unit_name', type: 'string', width: 50, align: 'center', cellsalign: 'center'},
@@ -72,7 +87,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                         var r = confirm("هل انت متأكد من حذف هذا البيان");
                         if (r == true) {
                             var dataRecord = $("#tasks_grd").jqxGrid('getrowdata', row);
-                            var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + dataRecord.seq_id + '&person_id=' + dataRecord.person_id;
+                            var post_data = 'project_id=' + $('#project_id').val() + '&seq_id=' + dataRecord.seq_id + '&research_stuff_id=' + dataRecord.research_stuff_id;
                             $.ajax({
                                 type: 'post',
                                 url: 'inc/deleteResource.php',
@@ -86,7 +101,7 @@ if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
                                     if ($("#task_operation_flag").val() === 'true') {
                                         //alert("تم الحذف بنجاح");
                                         //$("#form_div").html("");
-                                        load_tasks_grd();
+                                        //load_tasks_grd();
 //                                                        var selectedrowindex = $("#tasks_grd").jqxGrid('getselectedrowindex');
 //                                                        var rowscount = $("#tasks_grd").jqxGrid('getdatainformation').rowscount;
 //                                                        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {

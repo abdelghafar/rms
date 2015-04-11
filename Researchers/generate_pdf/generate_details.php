@@ -22,7 +22,7 @@ require_once '../../lib/projectPhases.php';
 require_once '../../lib/program_goals.php';
 require_once '../../lib/goals_outcomes.php';
 require_once '../../lib/outcomes.php';
-require_once '../../lib/persons.php';
+require_once '../../lib/person_name.php';
 
 // extend TCPF with custom functions
 

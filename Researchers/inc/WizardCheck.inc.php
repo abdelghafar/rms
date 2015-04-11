@@ -84,23 +84,32 @@ switch ($form_name) {
         $isValid = TRUE;
         require_once '../../lib/research_stuff.php';
         require_once '../../lib/resources.php';
+        require_once '../../lib/persons.php';
+
         $research_stuff = new research_stuff();
+        $person = new Persons();
 
         $resources = new Resources(); //========== Get Project Objectives 
         //========== Get persons which haven't tasks 
-        $research_stuff_rs = $research_stuff->GetProjectMembers($project_id);
+        $research_team_rs = $research_stuff->GetProjectTeam($project_id);
         $title_exist = 0;
 
-        while ($stuff_row = mysql_fetch_array($research_stuff_rs)) {
-            $stufftasks_rs = $resources->GetStuffTasks($project_id, $stuff_row['person_id']);
+        while ($stuff_row = mysql_fetch_array($research_team_rs)) {
+            $stufftasks_rs = $resources->GetStuffTasks($project_id, $stuff_row['seq_no']);
             if (mysql_num_rows($stufftasks_rs) == 0) {
+                if ($stuff_row['type'] === 'role_based') {
+                    $role_person = $stuff_row['role_name'];
+                } else {
+                    $role_person = $person->GetPersonName($stuff_row['person_id']);
+                }
+
                 if ($title_exist === 0) {
                     echo "<br><h2 style='text-align=center'><u> أعضاء بالفريق البحثي لم يسند إليهم مهام :";
-                    echo " <br> -  " . $stuff_row['name_ar'];
+                    echo " <br> -  " . $role_person;
                     $title_exist = 1;
                     $isValid = FALSE;
                 } else
-                    echo " <br> -  " . $stuff_row['name_ar'];
+                    echo " <br> -  " . $role_person;
             }
             if ($title_exist === 1)
                 echo "</label> <br>";

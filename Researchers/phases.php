@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
+        header('Location:../login.php');
     }
 }
 
@@ -326,16 +326,16 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <h2 style="font-size: 14px">المراحل / Phases</h2>
         <hr/>
-            <input type="button" value="Add a new Phase / إضافة مرحلة جديدة" id='PhaseNewButton'
-                   style="margin-bottom: 15px;float: left"/>
+        <input type="button" value="Add a new Phase / إضافة مرحلة جديدة" id='PhaseNewButton'
+               style="margin-bottom: 15px;float: left"/>
 
-            <div id="phases_grd"></div>
+        <div id="phases_grd"></div>
 
 
-            <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center"></div>
-            <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150"></div>
-            <div id="tasks_div" style="padding-top: 10px;width: 100%"></div>
-            <div id="step_div" style="padding: 10px;width: 100%;"></div>
+        <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center"></div>
+        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150"></div>
+        <div id="tasks_div" style="padding-top: 10px;width: 100%"></div>
+        <div id="step_div" style="padding: 10px;width: 100%;"></div>
 
 
     </fieldset>

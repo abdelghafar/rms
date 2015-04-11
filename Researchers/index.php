@@ -1,14 +1,23 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
+//if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
+//    header('Location:../Login.php');
+//} else {
+//    $rule = $_SESSION['Rule'];
+//    if ($rule != 'Researcher') {
+//        header('Location:../Login.php');
+//    }
+//}
+
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
         header('Location:../Login.php');
+    } else {
+        echo 'person_id::' . $_SESSION['person_id'];
     }
 }
-if (!isset($_GET['program'])) {
+
+if (!isset($_SESSION['program'])) {
     header('Location: selectProgram.php');
 } else {
     $prog = $_GET['program'];

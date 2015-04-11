@@ -308,7 +308,7 @@ $smarty->display('../templates/Loggedin.tpl');
         </div>
 
         <div id="outcomeresult" dir="rtl" style="padding-top: 10px; text-align: center"></div>
-        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150"></div>
+        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 50"></div>
         <div id="objectives_div" style="padding-top: 10px;width: 100%"></div>
         <div id="step_div" style="padding: 10px;width: 100%;"></div>
 
