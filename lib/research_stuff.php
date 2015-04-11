@@ -174,4 +174,17 @@ class research_stuff
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
+
+    public function CanDelete($research_stuff_id)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT count(*) FROM `stuff_tasks` WHERE `research_stuff_id`= " . $research_stuff_id;
+        $result = $conn->ExecuteNonQuery($stmt);
+        $count = 0;
+        while ($row = mysql_fetch_array($result)) {
+            $count = $row[0];
+        }
+        return $count;
+
+    }
 }
