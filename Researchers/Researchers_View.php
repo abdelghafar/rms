@@ -166,16 +166,9 @@ $project = new Reseaches();
                         rtl: true,
                         columns: [
                             {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                            {text: 'Title/العنوان', dataField: 'title_ar', width: 350, align: 'center', cellsalign: 'right'},
+                            {text: 'Title/العنوان', dataField: 'title_ar', align: 'center', cellsalign: 'right'},
                             {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 170, align: 'center', cellsalign: 'center'},
                             {text: 'Status/الحالة', dataField: 'status_name', width: 130, align: 'center', cellsalign: 'center'},
-                            {text: 'متابعة الحالات/ Track Status', datafield: 'الحالة', align: 'center', width: 150, columntype: 'button', cellsrenderer: function () {
-                                return '..';
-                            }, buttonclick: function (row) {
-                                var projectId = $("#jqxSubmittedGrid").jqxGrid('getrowdata', row)['seq_id'];
-                                display_research_status(projectId);
-                            }
-                            },
                             {text: 'Download/ تحميل', datafield: 'Download', align: 'center', width: 120, columntype: 'button', cellsrenderer: function () {
                                 return '..';
                             }, buttonclick: function (row) {
