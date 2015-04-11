@@ -443,6 +443,7 @@ $smarty->display('../templates/Loggedin.tpl');
                         var material_percent = parseFloat(material_total) / parseFloat(project_total);
                         console.log('material_total:' + material_total);
                         console.log('project_total:' + project_total);
+                        console.log('perce' + material_total / project_total);
 //                        $('#materials_percent').html(numeral(material_percent).format('00.00%'));
                         $('#materials_percent').html(material_percent * 100);
                     }});
