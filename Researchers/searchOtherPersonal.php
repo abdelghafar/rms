@@ -167,8 +167,8 @@ if (isset($_GET['q'])) {
             $('#CVUpload_log').html(serverResponce);
         });
 
-        $("#btnSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
-        $('#btnSave').on('click', function () {
+        $("#btnOtherPersonalSave").jqxButton({width: '150', height: '25', theme: Curr_theme});
+        $('#btnOtherPersonalSave').on('click', function () {
             var r = $('#role_list_others').jqxDropDownList('val');
 
             var rowindex = $('#gridOtherStuff').jqxGrid('getselectedrowindex');
@@ -189,8 +189,8 @@ if (isset($_GET['q'])) {
 
             });
         });
-        $("#btnClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
-        $('#btnClose').on('click', function () {
+        $("#btnOtherPersonalClose").jqxButton({width: '150', height: '25', theme: Curr_theme});
+        $('#btnOtherPersonalClose').on('click', function () {
             $('#SearchPersonalFrm').html('');
         });
         $('#gridOtherStuff').on('rowdoubleclick', function (event) {
@@ -282,9 +282,9 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="2" style="text-align: center">
-                <input type="button" value="Save / حفظ " id='btnSave'
+                <input type="button" value="Save / حفظ " id='btnOtherPersonalSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
-                <input type="button" value="Close / إغلاق " id='btnClose'
+                <input type="button" value="Close / إغلاق " id='btnOtherPersonalClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
             </td>
         </tr>
