@@ -86,7 +86,7 @@ $smarty->display('../templates/Loggedin.tpl');
             {
                 datatype: "json",
                 datafields: [
-                    {name: 'person_id'},
+                    {name: 'seq_no'},
                     {name: 'name_ar'},
                     {name: 'role_name'},
                     {name: 'empCode'},
@@ -111,7 +111,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     sortable: true,
                     rtl: true,
                     columns: [
-                        {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
                         {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
@@ -120,8 +120,8 @@ $smarty->display('../templates/Loggedin.tpl');
                             return '..';
                         }, buttonclick: function (row) {
                             var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
-                            var person_id = dataRecord['person_id'];
-                            Delete(person_id);
+                            var seq_no = dataRecord['seq_no'];
+                            Delete(seq_no);
                         }
                         }
                     ]
@@ -280,16 +280,27 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </script>
     <script type="text/javascript">
-        function Delete(person_id) {
+        function Delete(seq_no) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
-                    type: 'post',
-                    url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
-                    datatype: "html",
-                    success: function (data) {
-                        window.location.reload();
+                    url: 'inc/can_del_project_stuff.inc.php?$research_stuff_id=' + seq_no, success: function (data) {
+                        if (data == 1) {
+                            $.ajax({
+                                type: 'post',
+                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + seq_no + "&q=" + '<? echo $projectId; ?>',
+                                datatype: "html",
+                                success: function (data) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                        else {
+                            alert('لا يمكن حذف الباحث المشارك من فضلك تأكد من انه غير مشارك في اي عملية');
+                        }
+
                     }
                 });
+
 
             }
         }
