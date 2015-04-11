@@ -167,15 +167,12 @@ if (isset($_GET['q'])) {
                 url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list_others').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
                     if (data == 200) {
-                        //$('#SearchPersonalFrm').html('');
-                        alert("okay");
+                        $('#SearchPersonalFrm').html('');
+                        window.location.reload();
                     }
                     else {
-                        //$('#SearchPersonalFrm').html(data);
+                        $('#SearchPersonalFrm').html(data);
                     }
-                    $('#error').html(data);
-                    console.log("data:" + data);
-                    //window.location.reload();
                 }
 
             });
