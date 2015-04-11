@@ -35,7 +35,7 @@ if (isset($_GET['q'])) {
             async: false
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
-        $("#role_list_others").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, selectedIndex: 0});
+        $("#role_list_others").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, selectedIndex: 0, disabled: true});
         $('#searchButton').on('click', function () {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
