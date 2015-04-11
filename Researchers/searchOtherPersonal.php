@@ -179,11 +179,11 @@ if (isset($_GET['q'])) {
                 url: "../Data/saveOtherPersonal.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&role_id=" + $('#role_list_others').jqxDropDownList('val') + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_file_name,
                 success: function (data) {
                     if (data == 200) {
-                        $('#SearchPersonalFrm').html('');
+                        $('#searchOtherPersonal_log').html('');
                         window.location.reload();
                     }
                     else {
-                        $('#SearchPersonalFrm').html(data);
+                        $('#searchOtherPersonal_log').html(data);
                     }
                 }
 
@@ -275,11 +275,10 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="2">
-                <div id='error' style="height: 20px;">
-
-                </div>
+                <div id="searchOtherPersonal_log" class="error"></div>
             </td>
         </tr>
+
         <tr>
             <td colspan="2" style="text-align: center">
                 <input type="button" value="Save / حفظ " id='btnOtherPersonalSave'
