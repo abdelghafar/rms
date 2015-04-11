@@ -307,34 +307,23 @@ $smarty->display('../templates/Loggedin.tpl');
                     }
                 });
 
-
             }
         }
         function DeleteOtherPersonal(seq_id) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
-                    type: 'post',
-                    url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
-                    datatype: "html",
-                    success: function (data) {
-                        var OtherPersonalDataSource =
-                        {
-                            datatype: "json",
-                            datafields: [
-                                {name: 'role_name'},
-                                {name: 'parent_role'},
-                                {name: 'seq_no'}
-                            ],
-                            id: 'seq_no',
-                            url: 'ajax/project_stuff_other_personal.php?q=<? echo $_SESSION['q']; ?>'
-                        };
-                        var dataAdapter = new $.jqx.dataAdapter(OtherPersonalDataSource);
-                        $("#gridOthers").jqxGrid({source: dataAdapter});
+                    url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_id, success: function (data) {
+                        $.ajax({
+                            type: 'post',
+                            url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
+                            datatype: "html",
+                            success: function (data) {
+                                window.location.reload();
+                            }
+                        });
                     }
                 });
-
             }
-
         }
     </script>
     <script type="text/javascript">
