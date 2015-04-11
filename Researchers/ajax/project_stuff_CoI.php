@@ -16,6 +16,7 @@ if (isset($_GET['q'])) {
     while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
         $result[] = array(
             'seq_no' => $row['seq_no'],
+            'person_id' => $row['person_id'],
             'name_ar' => $row['name_ar'],
             'role_name' => $row['role_name'],
             'empCode' => $row['empCode'],
