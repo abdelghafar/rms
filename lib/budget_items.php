@@ -51,7 +51,7 @@ class budget_items
     public function GetChildItems($parent_item_id)
     {
         $conn = new MysqlConnect();
-        $stmt = "Select sum(amount) from " . $this->tableName . " where isSys=0 and parent_item_id=" . $parent_item_id;
+        $stmt = "Select * from " . $this->tableName . " where isSys=0 and parent_item_id=" . $parent_item_id;
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
     }
