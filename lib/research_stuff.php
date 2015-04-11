@@ -179,7 +179,7 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "SELECT count(*) FROM `stuff_tasks` WHERE `research_stuff_id`= " . $research_stuff_id;
-        echo $stmt;
+        echo $stmt . '<br/>';
         $result = $conn->ExecuteNonQuery($stmt);
         $count = 0;
         while ($row = mysql_fetch_array($result)) {
