@@ -313,14 +313,20 @@ $smarty->display('../templates/Loggedin.tpl');
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_id, success: function (data) {
-                        $.ajax({
-                            type: 'post',
-                            url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
-                            datatype: "html",
-                            success: function (data) {
-                                window.location.reload();
-                            }
-                        });
+                        if (data == 1) {
+                            $.ajax({
+                                type: 'post',
+                                url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
+                                datatype: "html",
+                                success: function (data) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                        else {
+                            alert('لا يمكن حذف الباحث المشارك من فضلك تأكد من انه غير مشارك في اي عملية');
+                        }
+
                     }
                 });
             }
