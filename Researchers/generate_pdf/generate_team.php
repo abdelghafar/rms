@@ -90,7 +90,6 @@ if (isset($_GET['q'])) {
         <tr>
             <th style="width: 30px;">#</th>
             <th>اسم الباحث</th>
-            <th>التخصص العام</th>
             <th>الوظيفة</th>
             <th>الدرجة العلمية</th>
         </tr>
@@ -100,9 +99,8 @@ if (isset($_GET['q'])) {
         $html .= '<tr>';
         $html .= '<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
         $html .= '<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
-        $html .= '<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
-        $html .= '<td class="tg-uy9o">' . $row['role_name'] . '</td>';
-        $html .= '<td class="tg-lrt0">' . $row['Position'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . $row['role_name'] . '</td>';
+        $html .= '<td class="tg-uy9o">' . $row['Position'] . '</td>';
         $html .= '</tr>';
     }
     $html .= '</tbody></table>';
