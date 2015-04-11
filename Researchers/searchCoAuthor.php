@@ -135,8 +135,15 @@ if (isset($_GET['q'])) {
             $.ajax({
                 url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_url,
                 success: function (data) {
-                    $('#SearchFrm').html('');
-                    ReloadCoIs();
+                    if (data == 200) {
+                        $('#searchCoAuthor_log').html(data);
+                    }
+                    else {
+                        //$('#SearchFrm').html('');
+                        $('#searchCoAuthor_log').html(data);
+                    }
+
+
                 }
             });
 
@@ -223,7 +230,13 @@ if (isset($_GET['q'])) {
         </tr>
 
         <tr>
-            <td colspan="2" style="text-align: center">
+            <td colspan="2">
+                <div id="searchCoAuthor_log" class="error"></div>
+            </td>
+        </tr>
+
+        <tr>
+        <td colspan="2" style="text-align: center">
                 <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
