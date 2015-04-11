@@ -241,7 +241,7 @@ $project = new Reseaches();
 
 
             <h2 style="font-size: 14px">
-                المشاريع المحفوظة / Saved Drafts
+                المقترحات المحفوظة / Saved proposals
             </h2>
             <hr/>
             <input type="button" value="Apply for a new proposal / التقديم علي مقترح بحثي جديد" id='AddNew'
@@ -251,7 +251,7 @@ $project = new Reseaches();
             <br/>
 
             <h2 style="font-size: 14px">
-                المشاريع المقدمة / Proposed Projects
+                المقترحات المقدمة / submitted proposals
             </h2>
             <hr/>
             <div id="jqxSubmittedGrid"></div>
