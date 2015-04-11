@@ -51,7 +51,7 @@ class research_stuff
     public function GetProjectStuff($projectId)
     {
         $con = new MysqlConnect();
-        $stmt = "SELECT concat(persons.FirstName_ar,' ',persons.FatherName_ar,' ',persons.GrandName_ar,' ' ,persons.FamilyName_ar ) AS name_ar,stuff_roles.role_name,persons.empCode,research_stuff.person_id from persons join research_stuff on research_stuff.person_id = persons.Person_id  join stuff_roles on stuff_roles.seq_id = research_stuff.role_id where research_stuff.research_id=" . $projectId;
+        $stmt = "SELECT  name_ar,stuff_roles.role_name,persons.empCode,research_stuff.person_id from persons join research_stuff on research_stuff.person_id = persons.Person_id  join stuff_roles on stuff_roles.seq_id = research_stuff.role_id where research_stuff.research_id=" . $projectId;
         return $con->ExecuteNonQuery($stmt);
     }
 
