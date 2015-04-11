@@ -9,6 +9,8 @@ session_start();
 //        header('Location:../Login.php');
 //    }
 //}
+$_SESSION['Authorized'] = 1;
+$_SESSION['person_id'] = 3;
 
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
