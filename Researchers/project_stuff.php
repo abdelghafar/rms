@@ -326,7 +326,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         else {
                             alert('لا يمكن حذف الباحث المشارك من فضلك تأكد من انه غير مشارك في اي عملية');
                         }
-
                     }
                 });
             }
