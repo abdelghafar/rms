@@ -5,7 +5,7 @@ require_once 'mysqlConnection.php';
 class research_stuff_categories
 {
     static $role_based = 'role_based';
-    static $person_based = 'person_based';
+    static $person_based = 'personal_based';
 }
 
 class research_stuff
