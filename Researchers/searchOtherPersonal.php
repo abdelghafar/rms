@@ -172,7 +172,7 @@ if (isset($_GET['q'])) {
                     else {
                         $('#SearchPersonalFrm').html(data);
                     }
-                    window.location.reload();
+                    //window.location.reload();
                 }
 
             });
