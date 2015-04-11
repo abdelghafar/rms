@@ -87,6 +87,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 datatype: "json",
                 datafields: [
                     {name: 'seq_no'},
+                    {name: 'person_id'},
                     {name: 'name_ar'},
                     {name: 'role_name'},
                     {name: 'empCode'},
@@ -112,6 +113,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     rtl: true,
                     columns: [
                         {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
                         {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
