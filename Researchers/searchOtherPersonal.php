@@ -130,12 +130,10 @@ if (isset($_GET['q'])) {
                 theme: Curr_theme,
                 source: CoAuthorsSourceAdapter,
                 columns: [
-                    {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right', width: 200},
-                    {text: 'Specialization / التخصص العام', datafield: 'Major_Field', align: 'right', cellsalign: 'right', width: 200},
-                    {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right', width: 150},
-                    {text: 'Dept / القسم', datafield: 'Dept', align: 'right', cellsalign: 'right', width: 150},
-                    {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right', width: 150},
-                    {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right', width: 150}
+                    {text: 'Name / الاسم', datafield: 'name_ar', cellsalign: 'right', align: 'right'},
+                    {text: 'College / الكلية', datafield: 'College', align: 'right', cellsalign: 'right'},
+                    {text: 'Title / الدرجة', datafield: 'Position', align: 'right', cellsalign: 'right'},
+                    {text: 'Email / البريد الالكتروني', datafield: 'Email', align: 'right', cellsalign: 'right'}
                 ]
             });
 
