@@ -48,7 +48,7 @@ class project_budget
     public function GetProjectBudget($project_id, $item_id)
     {
         $con = new MysqlConnect();
-        $stmt = 'Select * from ' . $this->tableName . ' Where project_id=' . $project_id . ' and item_id=' . $item_id;
+        $stmt = 'Select sum(amount) as `amount` from ' . $this->tableName . ' Where project_id=' . $project_id . ' and item_id=' . $item_id;
         return $con->ExecuteNonQuery($stmt);
     }
 
