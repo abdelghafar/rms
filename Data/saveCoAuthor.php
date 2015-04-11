@@ -28,7 +28,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
             $obj->SetCoAuthor_agreement_url($research_id, $person_id, $url);
             $operation_completed = 200;
         } else {
-            echo '<br/>' . 'please choose both the resume_url and the agreement files' . '<br/>';
+            echo '<br/>' . 'من فضلك قم بتحميل الموافقة الخطية و السيرة الذاتية للباحث المشارك' . '<br/>';
             $operation_completed = 0;
         }
         echo $operation_completed;
