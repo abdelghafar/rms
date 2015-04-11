@@ -194,4 +194,4 @@ class research_stuff
 }
 
 $obj = new research_stuff();
-echo $obj->CanDelete(1);
+echo $obj->CanDelete(10001);
