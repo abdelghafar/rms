@@ -26,6 +26,7 @@ class research_stuff
         } else if ($type == research_stuff_categories::$role_based) {
             $stmt = "Insert into " . $this->table_name . " (research_id,role_id,type) Values(" . $research_id . "," . $role_id . ",'" . $type . "')";
         }
+        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
