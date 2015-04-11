@@ -40,7 +40,7 @@ if (isset($_GET['q'])) {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
             $.ajax({
-                url: "../Data/searchPersonByName.php?q=" + SearchByName,
+                url: "../Data/searchPersonByEmail.php?q=" + SearchByName,
                 type: "GET",
                 dataType: "json",
                 beforeSend: function () {
