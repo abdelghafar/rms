@@ -222,7 +222,7 @@ if (isset($_GET['q'])) {
     <table style="width: 800px;">
         <tr>
             <td><span class="classic">
-                الاسم/Name
+                البريد الالكتروني / Email 
                 </span>
                 <span class="error">*</span>
             </td>
