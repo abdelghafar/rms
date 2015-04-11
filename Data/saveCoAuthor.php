@@ -22,8 +22,8 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
     $obj = new research_stuff();
     $operation_completed = 0;
     if ($obj->IsExist($research_id, $person_id) == 0) {
-        $return_id = $obj->Save($research_id, $person_id, 2, research_stuff_categories::$person_based);
         if ($agreement_file != 'null' && $resume_url != 'null') {
+            $return_id = $obj->Save($research_id, $person_id, 2, research_stuff_categories::$person_based);
             $url = "uploads/" . $research_id . "/" . $agreement_file;
             $obj->SetCoAuthor_agreement_url($research_id, $person_id, $url);
             $operation_completed = 200;
@@ -33,7 +33,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
         }
         echo $operation_completed;
     } else {
-        //echo 'لقد تم تسجبل هذا الشخص من قبل';
+//        echo '<br/>' .'لقد تم حفظ هذا الشخص من قبل'. '<br/>';
         $operation_completed = 0;
         echo $operation_completed;
     }
