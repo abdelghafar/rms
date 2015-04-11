@@ -29,7 +29,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
 
             $obj->SetCoAuthor_agreement_url($return_id, $agreement_url);
             $obj->SetCoAuthor_resume_url($return_id, $resume_url);
-            $operation_completed = 200;
+            echo '<br/>' . 'تم حفظ البيانات بنجاح' . '<br/>';
         } else {
             echo '<br/>' . 'من فضلك قم بتحميل الموافقة الخطية و السيرة الذاتية للباحث المشارك' . '<br/>';
             return;
