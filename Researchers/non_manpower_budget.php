@@ -816,7 +816,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </table>
     <br/><br/>
 
-    <h2 style="font-size: 14px">أخري / Others</h2>
+    <h2 style="font-size: 14px">أخرى / Others</h2>
     <hr/>
     <input type="button" id='AddNewOthers' value="Add new requirement / اضافة متطلب جديد"
            style="float: left;margin-bottom: 15px;"/>
