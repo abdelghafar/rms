@@ -184,7 +184,13 @@ class research_stuff
         while ($row = mysql_fetch_array($result)) {
             $count = $row[0];
         }
-        return $count;
-
+        if ($count == 0)
+            return 1; //u can del
+        else
+            return 0;
+        //u can not delete
     }
 }
+
+$obj = new research_stuff();
+echo $obj->CanDelete(1);
