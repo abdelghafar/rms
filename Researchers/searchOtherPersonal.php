@@ -172,6 +172,7 @@ if (isset($_GET['q'])) {
                     else {
                         //$('#SearchPersonalFrm').html(data);
                     }
+                    $('#error').html(data);
                     console.log("data:" + data);
                     //window.location.reload();
                 }
