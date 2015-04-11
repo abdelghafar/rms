@@ -163,9 +163,9 @@ $smarty->display('../templates/Loggedin.tpl');
                     rtl: true,
                     columns: [
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                        {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'center', cellsalign: 'right'},
-                        {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'center', cellsalign: 'right'},
-                        {text: 'Email / البريد الالكتروني', dataField: 'email', width: 200, align: 'center', cellsalign: 'right'},
+                        {text: 'Name / الاسم', dataField: 'name_ar', align: 'center', cellsalign: 'right'},
+                        {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
+                        {text: 'Email / البريد الالكتروني', dataField: 'email', align: 'center', cellsalign: 'right'},
                         {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                             return '..';
                         }, buttonclick: function (row) {
