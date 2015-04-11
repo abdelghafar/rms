@@ -18,7 +18,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['role_id']) &&
     $obj = new research_stuff();
     if ($obj->IsExist($research_id, $person_id) == 0) {
         if ($agreement_file != 'null' && $resume_file != 'null') {
-            $return_id = $obj->Save($research_id, $person_id, 2, research_stuff_categories::$person_based);
+            $return_id = $obj->Save($research_id, $person_id, 3, research_stuff_categories::$person_based);
             $agreement_url = "uploads/" . $research_id . "/" . $agreement_file;
             $resume_url = "uploads/" . $research_id . "/" . $resume_file;
 
