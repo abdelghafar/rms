@@ -124,7 +124,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
                             var seq_no = dataRecord['seq_no'];
                             var person_id = dataRecord['person_id'];
-                            Delete(seq_no, person_id);
+                            Delete(person_id, seq_no);
                         }
                         }
                     ]
@@ -140,6 +140,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 datatype: "json",
                 datafields: [
                     {name: 'person_id'},
+                    {name: 'seq_no'},
                     {name: 'name_ar'},
                     {name: 'role_name'},
                     {name: 'email'},
@@ -166,6 +167,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     rtl: true,
                     columns: [
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Name / الاسم', dataField: 'name_ar', align: 'center', cellsalign: 'right'},
                         {text: 'Title / الدرجة العلمية', dataField: 'position', align: 'center', cellsalign: 'right'},
                         {text: 'Email / البريد الالكتروني', dataField: 'email', align: 'center', cellsalign: 'right'},
@@ -174,7 +176,8 @@ $smarty->display('../templates/Loggedin.tpl');
                         }, buttonclick: function (row) {
                             var dataRecord = $("#gridConsultants").jqxGrid('getrowdata', row);
                             var person_id = dataRecord['person_id'];
-                            Delete(person_id);
+                            var seq_no = dataRecord['seq_no'];
+                            Delete(person_id, seq_no);
                         }
                         }
                     ]
@@ -283,7 +286,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </script>
     <script type="text/javascript">
-        function Delete(seq_no, person_id) {
+        function Delete(person_id, seq_no) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
