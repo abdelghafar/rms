@@ -471,7 +471,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
                         var project_total = 0;
                         project_total = xdata;
-                        console.log(project_total);
+//                        console.log(project_total);
                         var others_percent = parseFloat(others_total) / parseFloat(project_total);
                         console.log("others_total:" + others_total);
                         console.log("project_total:" + project_total);
