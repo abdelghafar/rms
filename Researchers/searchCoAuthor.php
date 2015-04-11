@@ -143,7 +143,6 @@ if (isset($_GET['q'])) {
                         //$('#SearchFrm').html('');
                         $('#searchCoAuthor_log').html(data);
                     }
-                    console.log("data:" + data);
 
                 }
             });
@@ -237,7 +236,7 @@ if (isset($_GET['q'])) {
         </tr>
 
         <tr>
-        <td colspan="2" style="text-align: center">
+            <td colspan="2" style="text-align: center">
                 <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
