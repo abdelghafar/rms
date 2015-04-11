@@ -136,7 +136,8 @@ if (isset($_GET['q'])) {
                 url: "../Data/saveCoAuthor.php?q=" + <? echo $project_id ?> +"&person_id=" + person_id + "&file_name=" + uploaded_file_name + "&resume_url=" + resume_url,
                 success: function (data) {
                     if (data == 200) {
-                        $('#searchCoAuthor_log').html(data);
+                        $('#searchCoAuthor_log').html('');
+                        window.location.reload();
                     }
                     else {
                         //$('#SearchFrm').html('');
