@@ -123,7 +123,8 @@ $smarty->display('../templates/Loggedin.tpl');
                         }, buttonclick: function (row) {
                             var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
                             var seq_no = dataRecord['seq_no'];
-                            Delete(seq_no);
+                            var person_id = dataRecord['person_id'];
+                            Delete(seq_no, person_id);
                         }
                         }
                     ]
@@ -282,14 +283,14 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </script>
     <script type="text/javascript">
-        function Delete(seq_no) {
+        function Delete(seq_no, person_id) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
                         if (data == 1) {
                             $.ajax({
                                 type: 'post',
-                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + seq_no + "&q=" + '<? echo $projectId; ?>',
+                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
                                 datatype: "html",
                                 success: function (data) {
                                     window.location.reload();
