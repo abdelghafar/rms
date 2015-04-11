@@ -283,7 +283,7 @@ $smarty->display('../templates/Loggedin.tpl');
         function Delete(seq_no) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
-                    url: 'inc/can_del_project_stuff.inc.php?$research_stuff_id=' + seq_no, success: function (data) {
+                    url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
                         if (data == 1) {
                             $.ajax({
                                 type: 'post',
