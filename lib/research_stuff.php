@@ -79,17 +79,38 @@ class research_stuff
     }
 
     //get,set accept_letter urls-------------------------------------------------------
-    public function SetCoAuthor_agreement_url($research_id, $person_id, $url)
+    public function SetCoAuthor_agreement_url($seq_no, $url)
     {
-        $stmt = "update " . $this->table_name . " set `agreement_url` = '" . $url . "' where research_id =" . $research_id . " and person_id=" . $person_id;
+        $stmt = "update " . $this->table_name . " set `agreement_url` = '" . $url . "' where seq_no=" . $seq_no;
         $conn = new MysqlConnect();
         $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
 
-    public function GetCoAuthor_agreement_url($projectId)
+    public function GetCoAuthor_agreement_url($seq_no)
     {
-        $stmt = "Select agreement_url From researches where seq_id =" . $projectId;
+        $stmt = "Select agreement_url From " . $this->table_name . " where seq_no =" . $seq_no;
+        $conn = new MysqlConnect();
+        $result = $conn->ExecuteNonQuery($stmt);
+        $url = null;
+        while ($row = mysql_fetch_array($result)) {
+            $url = $row[0];
+        }
+        return $url;
+    }
+
+    //get set Co-Is resume file
+    public function SetCoAuthor_resume_url($seq_no, $url)
+    {
+        $stmt = "update " . $this->table_name . " set `resume_url` = '" . $url . "' where seq_no =" . $seq_no;
+        $conn = new MysqlConnect();
+        $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetCoAuthor_resume_url($seq_no)
+    {
+        $stmt = "Select resume_url From " . $this->table_name . " where seq_no =" . $seq_no;
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         $url = null;
