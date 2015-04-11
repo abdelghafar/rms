@@ -13,5 +13,5 @@ if (isset($_GET['$research_stuff_id'])) {
     $research_stuff_id = filter_input(INPUT_GET, '$research_stuff_id', FILTER_VALIDATE_INT);
     $research_stuff = new research_stuff();
     $res = $research_stuff->CanDelete($research_stuff_id);
-    return $res;
+    echo $res;
 }
