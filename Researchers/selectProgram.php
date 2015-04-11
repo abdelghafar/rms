@@ -1,8 +1,5 @@
 <?
 session_start();
-$_SESSION['Authorized'] = 1;
-$_SESSION['person_id'] = 3;
-
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
         header('Location:../Login.php');
