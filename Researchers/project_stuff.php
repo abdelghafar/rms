@@ -166,7 +166,6 @@ $smarty->display('../templates/Loggedin.tpl');
                         {text: 'Name / الاسم', dataField: 'name_ar', width: 250, align: 'center', cellsalign: 'right'},
                         {text: 'Specialization / التخصص', dataField: 'major_Field', width: 200, align: 'center', cellsalign: 'right'},
                         {text: 'Title / الدرجة العلمية', dataField: 'position', width: 150, align: 'center', cellsalign: 'right'},
-                        {text: 'Role / نوع المشاركة', dataField: 'role_name', width: 200, align: 'center', cellsalign: 'right'},
                         {text: 'Email / البريد الالكتروني', dataField: 'email', width: 200, align: 'center', cellsalign: 'right'},
                         {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
                             return '..';
