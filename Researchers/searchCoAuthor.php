@@ -112,7 +112,13 @@ if (isset($_GET['q'])) {
                 ]
             });
 
-        $('#agreeLetter').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+        $('#agreeLetter').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', uploadTemplate: 'warning', localization: {
+            browseButton: 'استعراض',
+            uploadButton: 'تحميل الملف',
+            cancelButton: 'الغاء',
+            uploadFileTooltip: 'تحميل الملف',
+            cancelFileTooltip: 'الغاء التحميل'
+        }});
         $('#agreeLetter').on('uploadEnd', function (event) {
             var args = event.args;
             var fileName = args.file;
@@ -121,7 +127,13 @@ if (isset($_GET['q'])) {
             $('#log').html(serverResponce);
         });
 
-        $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf'});
+        $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', uploadTemplate: 'warning', localization: {
+            browseButton: 'استعراض',
+            uploadButton: 'تحميل الملف',
+            cancelButton: 'الغاء',
+            uploadFileTooltip: 'تحميل الملف',
+            cancelFileTooltip: 'الغاء التحميل'
+        }});
         $('#CVUpload').on('uploadEnd', function (event) {
             var args = event.args;
             var fileName = args.file;
