@@ -29,7 +29,7 @@ if (isset($_GET['q'])) {
 
     $program_code = $research['program'];
 
-    $program_code = 3;
+    $program_code = 2;
 
     $serial = 0;
 
