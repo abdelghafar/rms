@@ -110,6 +110,7 @@ $project = new Reseaches();
                                 return '..';
                             }, cellbeginedit: function (row) {
                                 console.log(row);
+                                return 1;
                             }
                             },
                             {text: 'Edit/ تعديل', datafield: 'تعديل', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
