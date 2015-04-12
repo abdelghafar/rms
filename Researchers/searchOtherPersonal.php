@@ -228,7 +228,7 @@ if (isset($_GET['q'])) {
             </td>
             <td>
                 <input type="text" id="SearchByName"/>
-                <input id="searchButton" value="Search / بحث "/>
+                <input id="searchButton" type="button" value="Search / بحث "/>
             </td>
 
         </tr>
