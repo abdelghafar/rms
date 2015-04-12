@@ -108,19 +108,8 @@ $project = new Reseaches();
                             {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 200, align: 'center', cellsalign: 'center'},
                             {text: 'Submit / تسليم', datafield: 'submit', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
                                 return '..';
-                            }, buttonclick: function (row) {
-                                var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
-                                $.ajax({url: 'ajax/setSession.php?q=' + projectId, success: function (data) {
-                                    $.ajax({url: 'ajax/IsDraftCompleted.php?q=' + projectId, success: function (data) {
-                                        if (data == 0) {
-                                            alert("Please complete the project first");
-                                        }
-                                        else {
-                                            window.location.assign('accept.php');
-                                        }
-                                    }});
-                                }});
-
+                            }, cellbeginedit: function (row) {
+                                return alert(row);
                             }
                             },
                             {text: 'Edit/ تعديل', datafield: 'تعديل', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
