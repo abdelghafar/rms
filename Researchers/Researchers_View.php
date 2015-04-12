@@ -111,7 +111,14 @@ $project = new Reseaches();
                             }, buttonclick: function (row) {
                                 var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
                                 $.ajax({url: 'ajax/setSession.php?q=' + projectId, success: function (data) {
-//                                    window.location.assign('accept.php');
+                                    $.ajax({url: 'ajax/IsDraftCompleted.php?q=' + projectId, success: function (data) {
+                                        if (data == 0) {
+                                            alert("Please complete the project first");
+                                        }
+                                        else {
+                                            window.location.assign('accept.php');
+                                        }
+                                    }});
                                     alert('ssss');
                                 }});
 
