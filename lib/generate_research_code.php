@@ -8,7 +8,6 @@
 require_once 'Settings.php';
 require_once 'Reseaches.php';
 require_once 'technologies.php';
-require_once '';
 /*
  * code in the form Yr$PIO$Round_number$Program_code$Serial
  *                  2$3$1$1$4 = 11 digits
