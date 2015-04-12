@@ -29,6 +29,8 @@ if (isset($_GET['q'])) {
 
     $program_code = $research['program'];
     $serial = 0;
+    $stmt = "Select * From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code;
+
     echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
 
 }
