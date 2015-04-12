@@ -24,7 +24,7 @@ if (isset($_GET['q'])) {
         var uploaded_file_name = null;
         var resume_file_name = null;
         $("#SearchByName").jqxInput({width: '300px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 100, height: 25, theme: Curr_theme});
+        $("#searchButton_OtherPersonal").jqxButton({width: 100, height: 25, theme: Curr_theme});
         var roles_lst_dataSource = {
             datatype: "json",
             datafields: [
@@ -36,7 +36,7 @@ if (isset($_GET['q'])) {
         };
         var dataAdapter = new $.jqx.dataAdapter(roles_lst_dataSource);
         $("#role_list_others").jqxDropDownList({displayMember: "role_name", valueMember: "seq_id", width: 300, height: 25, rtl: true, theme: Curr_theme, source: dataAdapter, selectedIndex: 0, disabled: true});
-        $('#searchButton').on('click', function () {
+        $('#searchButton_OtherPersonal').on('click', function () {
             $('#gridOtherStuff').jqxGrid('clear');
             var SearchByName = $('#SearchByName').jqxInput('val');
             $.ajax({
@@ -228,7 +228,7 @@ if (isset($_GET['q'])) {
             </td>
             <td>
                 <input type="text" id="SearchByName"/>
-                <input id="searchButton" type="button" value="Search / بحث "/>
+                <input id="searchButton_OtherPersonal" type="button" value="Search / بحث "/>
             </td>
 
         </tr>
