@@ -28,9 +28,12 @@ if (isset($_GET['q'])) {
     $round = $setting->GetCurrRound();
 
     $program_code = $research['program'];
-    $serial = 0;
-    $stmt = "Select * From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0";
-    echo $stmt;
+    $serial = 33;
+    $s = sprintf("%04d", $serial);
+    echo $s;
+    $stmt = "Select count(*) From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0";
+
+//    echo $stmt;
     //echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
 
 }
