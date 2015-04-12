@@ -3,6 +3,7 @@
 require_once 'mysqlConnection.php';
 require_once 'CenterResearch.php';
 require_once 'Settings.php';
+require_once 'technologies.php';
 
 class Reseaches
 {
@@ -104,32 +105,38 @@ class Reseaches
         return $ResearchId;
     }
 
-    public function GenerateResearchCode($CenterId)
+    /*
+ * code in the form Yr$PIO$Round_number$Program_code$Serial
+ *                  2$3$1$1$4 = 11 digits
+ */
+
+    public function GenerateResearchCode($project_id)
     {
         $setting = new Settings();
         $year = $setting->GetCurrYear();
-        $stmt = "SELECT count(`seq_id`) as count FROM `researches` WHERE `center_id` = " . $CenterId . " and `research_year`= '" . $year . "'";
-        $res = mysql_query($stmt);
-        $count = 0;
-        while ($row = mysql_fetch_array($res)) {
-            $count = $row[0];
+        $yr = $year[2] . $year[3];
+
+        $research_obj = new Reseaches();
+        $research = $research_obj->GetResearch($project_id);
+        $tech_id = $research['center_id'];
+        $tech = new Technologies();
+        $tech_code = $tech->GetTechCode($tech_id);
+
+        $round = $setting->GetCurrRound();
+
+        $program_code = $research['program'];
+        $serial = 0;
+
+        $stmt = "Select count(*) as `count` From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0";
+        $con = new MysqlConnect();
+        $rs = $con->ExecuteNonQuery($stmt);
+        while ($row = mysql_fetch_array($rs)) {
+            $serial = $row['count'];
         }
-        $count++;
-        $center = new CenterResearch();
-        $CenterCode = $center->GetCenterCode($CenterId);
-
-        $codeFormat = '';
-        if (strlen($count) == 1) {
-            $codeFormat = '00' . $count;
-        } else if (strlen($count) == 2) {
-            $codeFormat = '0' . $count;
-        } else if (strlen($count) == 3) {
-            $codeFormat = $count;
-        }
-
-        $code = $year[1] . $year[2] . $year[3] . $CenterCode . $codeFormat;
-
+        $formatted_serial = sprintf("%04d", $serial);
+        $code = $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $formatted_serial;
         return $code;
+
     }
 
     public function GetListOfResearchPerResearcherId($researcherId)
