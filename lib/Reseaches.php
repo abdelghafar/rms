@@ -687,4 +687,16 @@ class Reseaches
         }
         return $IsDraft_completed;
     }
+
+    public function GetResearchLang($Research_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "SELECT t.lang_code FROM researches r INNER JOIN technologies t ON r.center_id = t.seq_id AND r.seq_id=" . $Research_id;
+        $result = $con->ExecuteNonQuery($stmt);
+        $lang_code = 0;
+        while ($row = mysql_fetch_array($result)) {
+            $lang_code = $row['lang_code'];
+        }
+        return $lang_code;
+    }
 }
