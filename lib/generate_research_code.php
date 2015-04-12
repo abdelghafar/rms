@@ -16,5 +16,9 @@ if (isset($_GET['q'])) {
     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $setting = new Settings();
     $year = $setting->GetCurrYear();
-    echo $year[2] . '$' . $year[3];
+    //ToDo: get research tech
+    $research_obj = new Reseaches();
+    $research = $research_obj->GetResearch($project_id);
+    print_r($research);
+
 }
