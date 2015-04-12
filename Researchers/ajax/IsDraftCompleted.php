@@ -9,5 +9,5 @@ require_once '../../lib/Reseaches.php';
 if (isset($_GET['q'])) {
     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $obj = new Reseaches();
-    echo json_encode($obj->IsDraftCompleted($project_id));
+    echo $obj->IsDraftCompleted($project_id);
 }
