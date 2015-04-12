@@ -203,7 +203,7 @@ if (isset($_GET['q'])) {
             </td>
             <td>
                 <input id="Search" type="text" name="txtSearch"/>
-                <input id="searchButton_CoAuthor" value="Search / بحث "/>
+                <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
