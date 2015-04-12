@@ -66,7 +66,7 @@ class Technologies
     public function GetTechnologies($seq_id)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT seq_id,title,tech_desc,isVisible FROM " . $this->tableName . " where seq_id=" . $seq_id;
+        $stmt = "SELECT seq_id,title,tech_desc,isVisible,tech_code,lang_code FROM " . $this->tableName . " where seq_id=" . $seq_id;
 
         $rs = $conn->ExecuteNonQuery($stmt);
         return $rs;
@@ -82,6 +82,18 @@ class Technologies
             array_push($result['PairValues'], Array($row['seq_id'], $row['title']));
         }
         return $result;
+    }
+
+    public function GetTechCode($tech_id)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "SELECT lang_code FROM " . $this->tableName . " where seq_id=" . $tech_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $code = null;
+        while ($row = mysql_fetch_array($rs)) {
+            $code = $row['tech_code'];
+        }
+        return $rs;
     }
 
 }
