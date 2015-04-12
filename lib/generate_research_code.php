@@ -15,5 +15,6 @@ require_once 'Reseaches.php';
 if (isset($_GET['q'])) {
     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $setting = new Settings();
-    $setting->GetCurrYear();
+    echo $setting->GetCurrYear();
+
 }
