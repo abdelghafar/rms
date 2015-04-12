@@ -24,7 +24,7 @@ if (isset($_GET['q'])) {
         var uploaded_file_name = null;
         var resume_file_name = null;
         $("#SearchByName").jqxInput({width: '300px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton").jqxButton({width: 100, height: 20, theme: Curr_theme});
+        $("#searchButton").jqxButton({width: 100, height: 25, theme: Curr_theme});
         var roles_lst_dataSource = {
             datatype: "json",
             datafields: [
