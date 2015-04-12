@@ -182,7 +182,7 @@ class Reseaches
 
     public function GetResearch($ResearchId)
     {
-        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar_url` ,  `abstract_en_url` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` ,  `type_id` , `keywords` FROM  `researches` WHERE seq_id =" . $ResearchId;
+        $stmt = "SELECT  `seq_id` ,  `title_ar` ,  `title_en` ,  `proposed_duration` ,  `major_field` ,  `special_field` ,  `research_code` ,  `Approve_session_no` ,  `Approve_date` ,  `url` ,  `abstract_ar_url` ,  `abstract_en_url` ,  `status_id` , `status_date` ,  `center_id` ,  `research_year` ,  `RequiresUpdate` ,  `LastUpdate` ,  `isLocked` ,  `lockFrom` ,  `lockUntill` ,  `Withdraw` ,  `withdrawDate` ,  `type_id` , `keywords` , `program` FROM  `researches` WHERE seq_id =" . $ResearchId;
 
         $conn = new MysqlConnect();
         $resultSet = $conn->ExecuteNonQuery($stmt);
@@ -211,7 +211,8 @@ class Reseaches
                 'Withdraw' => $row['Withdraw'],
                 'withdrawDate' => $row['withdrawDate'],
                 'type_id' => $row['type_id'],
-                'keywords' => $row['keywords']
+                'keywords' => $row['keywords'],
+                'program' => $row['program']
             );
         }
         return $result;
