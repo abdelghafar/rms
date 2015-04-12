@@ -34,6 +34,6 @@ if (isset($_GET['q'])) {
     $serial = 0;
 
 
-    echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
+    echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . number_format($serial, '00000');
 
 }
