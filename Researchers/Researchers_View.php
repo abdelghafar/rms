@@ -109,7 +109,7 @@ $project = new Reseaches();
                             {text: 'Submit / تسليم', datafield: 'submit', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
                                 return '..';
                             }, cellbeginedit: function (row) {
-                                return alert(row);
+                                console.log(row);
                             }
                             },
                             {text: 'Edit/ تعديل', datafield: 'تعديل', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
