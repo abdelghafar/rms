@@ -106,7 +106,7 @@ $project = new Reseaches();
                             {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                             {text: 'Title/العنوان', dataField: 'title_ar', width: 450, align: 'center', cellsalign: 'right'},
                             {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 200, align: 'center', cellsalign: 'center'},
-                            {text: 'Submit / تسليم', datafield: 'submit', align: 'center', width: 90, columntype: 'button', cellsrenderer: function () {
+                            {text: 'Submit / تسليم', datafield: 'submit', align: 'center', width: 90, columntype: 'button', disabled: true, cellsrenderer: function () {
                                 return '..';
                             }, buttonclick: function (row) {
                                 var projectId = $("#jqxgrid").jqxGrid('getrowdata', row)['seq_id'];
