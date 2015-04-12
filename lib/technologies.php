@@ -93,7 +93,7 @@ class Technologies
         while ($row = mysql_fetch_array($rs)) {
             $code = $row['tech_code'];
         }
-        return $rs;
+        return $code;
     }
 
 }
