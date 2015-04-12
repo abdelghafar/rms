@@ -30,7 +30,7 @@ if (isset($_GET['q'])) {
 
     $program_code = $research['program'];
 
-    $serial = number_format(0, '0000');
+    $serial = 0;
 
     echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
 
