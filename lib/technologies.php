@@ -87,7 +87,7 @@ class Technologies
     public function GetTechCode($tech_id)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT lang_code FROM " . $this->tableName . " where seq_id=" . $tech_id;
+        $stmt = "SELECT tech_code FROM " . $this->tableName . " where seq_id=" . $tech_id;
         $rs = $conn->ExecuteNonQuery($stmt);
         $code = null;
         while ($row = mysql_fetch_array($rs)) {
