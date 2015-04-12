@@ -9,5 +9,5 @@
 require_once 'Reseaches.php';
 
 $r = new Reseaches();
-echo $r->GenerateResearchCode(3);
+echo $r->GenerateResearchCode(7);
 
