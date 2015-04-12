@@ -16,5 +16,5 @@ if (isset($_GET['q'])) {
     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
     $setting = new Settings();
     $year = $setting->GetCurrYear();
-    echo $year[0] . '$' . $year[1];
+    echo $year[2] . '$' . $year[3];
 }
