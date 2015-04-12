@@ -29,8 +29,6 @@ if (isset($_GET['q'])) {
 
     $program_code = $research['program'];
 
-    $program_code = 2;
-
     $serial = 0;
 
     echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
