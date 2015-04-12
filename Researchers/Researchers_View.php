@@ -119,7 +119,6 @@ $project = new Reseaches();
                                             window.location.assign('accept.php');
                                         }
                                     }});
-                                    alert('ssss');
                                 }});
 
                             }
