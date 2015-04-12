@@ -32,6 +32,7 @@ if (isset($_GET['q'])) {
 
     $serial = 0;
 
-    echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
+    echo $yr;
+    //echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
 
 }
