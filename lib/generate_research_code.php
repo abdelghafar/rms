@@ -28,9 +28,7 @@ if (isset($_GET['q'])) {
     $round = $setting->GetCurrRound();
 
     $program_code = $research['program'];
-    echo $program_code;
     $serial = 0;
-
-    //echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
+    echo $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $serial;
 
 }
