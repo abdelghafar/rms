@@ -213,6 +213,7 @@ if (isset($_GET['q'])) {
                 case 'resume':
                 {
                     $obj = new research_stuff();
+                    //ToDO:apply new constructor
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $obj->SetResumeUrl($project_id, $person_id, $file_name);
