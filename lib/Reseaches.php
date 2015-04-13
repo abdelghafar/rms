@@ -135,7 +135,7 @@ class Reseaches
         }
 
         $formatted_serial = sprintf("%04d", $serial);
-        $code = $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $formatted_serial;
+        $code = $yr . '-' . $tech_code . '-' . $round . '-' . $program_code . '-' . $formatted_serial;
         return $code;
     }
 
