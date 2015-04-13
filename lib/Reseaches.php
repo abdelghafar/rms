@@ -136,7 +136,14 @@ class Reseaches
         $formatted_serial = sprintf("%04d", $serial);
         $code = $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $formatted_serial;
         return $code;
+    }
 
+    public function UpdateResearchCode($research_id, $code)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "Update researches set research_code='" . $code . "' where seq_id=" . $research_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
     }
 
     public function GetListOfResearchPerResearcherId($researcherId)
