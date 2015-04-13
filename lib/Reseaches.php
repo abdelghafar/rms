@@ -663,6 +663,8 @@ class Reseaches
         $stmt = "update researches set `isDraft`=0 where `seq_id`=" . $research_id;
         $rs = $con->ExecuteNonQuery($stmt);
         $rs2 = $this->Lock($research_id);
+        $code = $this->GenerateResearchCode($research_id);
+        $rs3 = $this->UpdateResearchCode($research_id, $code);
         if ($rs == 1 && $rs2 == 1) {
             return 1;
         } else {
