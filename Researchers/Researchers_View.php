@@ -151,7 +151,8 @@ $project = new Reseaches();
                         {name: 'seq_id'},
                         {name: 'title_ar'},
                         {name: 'status_date'},
-                        {name: 'status_name'}
+                        {name: 'status_name'},
+                        {name: 'research_code'}
                     ],
                     id: 'seq_id',
                     url: 'ajax/Researchers_View.php?id=<? echo $personId; ?>' + '&p=<? echo $_SESSION['program']; ?>' + '&q=0'
@@ -173,6 +174,7 @@ $project = new Reseaches();
                         rtl: true,
                         columns: [
                             {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                            {text: 'Code / كود البحث', dataField: 'research_code', align: 'center', cellsalign: 'right'},
                             {text: 'Title/العنوان', dataField: 'title_ar', align: 'center', cellsalign: 'right'},
                             {text: 'Application date/تاريخ التقديم', dataField: 'status_date', width: 170, align: 'center', cellsalign: 'center'},
                             {text: 'Status/الحالة', dataField: 'status_name', width: 130, align: 'center', cellsalign: 'center'},
