@@ -125,7 +125,7 @@ class Reseaches
         $round = $setting->GetCurrRound();
 
         $program_code = $research['program'];
-        $serial = 1;
+        $serial = 0;
 
         $stmt = "Select count(*) as `count` From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0 and draft_completed=1";
         $con = new MysqlConnect();
@@ -134,6 +134,8 @@ class Reseaches
             $serial = $row['count'];
         }
 
+        if ($serial == 0)
+            $serial++;
         $formatted_serial = sprintf("%04d", $serial);
         $code = $yr . '-' . $tech_code . '-' . $round . '-' . $program_code . '-' . $formatted_serial;
         return $code;
