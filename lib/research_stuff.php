@@ -49,6 +49,11 @@ class research_stuff
         }
     }
 
+    public function GetSeqId($research_id, $person_id)
+    {
+
+    }
+
     //get all stuff
     public function GetProjectStuff($projectId)
     {
