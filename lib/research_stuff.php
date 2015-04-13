@@ -4,8 +4,10 @@ require_once 'mysqlConnection.php';
 
 class research_stuff_categories
 {
+
     static $role_based = 'role_based';
     static $person_based = 'personal_based';
+
 }
 
 class research_stuff
@@ -139,7 +141,6 @@ class research_stuff
         return $result;
     }
 
-
     public function GetProjectOtherPersonalStuff($project_id)
     {
         $conn = new MysqlConnect();
@@ -170,7 +171,7 @@ class research_stuff
     public function GetProjectTeam($projectId)
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT rs.seq_no,rs.person_id,rs.role_id,rs.type, sr.role_name, sr.seq_id FROM research_stuff rs INNER JOIN stuff_roles sr ON rs.role_id = sr.seq_id WHERE research_id =" . $projectId . " ORDER BY rs.role_id, seq_id";
+        $stmt = "SELECT rs.seq_no,rs.person_id,rs.role_id,rs.type, sr.role_name, sr.role_name_en, sr.seq_id FROM research_stuff rs INNER JOIN stuff_roles sr ON rs.role_id = sr.seq_id WHERE research_id =" . $projectId . " ORDER BY rs.role_id, seq_id";
         //echo $stmt;
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
@@ -192,4 +193,5 @@ class research_stuff
             return 0;
         //u can not delete
     }
+
 }
