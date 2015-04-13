@@ -21,6 +21,7 @@ if (isset($_GET['id']) && isset($_GET['p']) && isset($_GET['q'])) {
     while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
         $result[] = array(
             'seq_id' => $row['seq_id'],
+            'research_code' => $row['research_code'],
             'title_ar' => $row['title_ar'],
             'status_date' => $row['status_date'],
             'status_name' => $row['Status_name']
