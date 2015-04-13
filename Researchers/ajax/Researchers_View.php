@@ -9,7 +9,7 @@
 require_once '../../lib/config.php';
 require_once '../../lib/mysqlConnection.php';
 $conn = new MysqlConnect();
-if (isset($_GET['id']) & isset($_GET['p']) && isset($_GET['q'])) {
+if (isset($_GET['id']) && isset($_GET['p']) && isset($_GET['q'])) {
     $ResearcherId = $_GET['id'];
     $program = $_GET['p'];
     $isDraft = $_GET['q'];
