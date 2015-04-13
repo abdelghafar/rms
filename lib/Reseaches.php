@@ -127,7 +127,7 @@ class Reseaches
         $program_code = $research['program'];
         $serial = 1;
 
-        $stmt = "Select count(*) as `count` From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0";
+        $stmt = "Select count(*) as `count` From researches where research_year=" . $year . " and center_id=" . $tech_id . " and round=" . $round . " and program=" . $program_code . " and isDraft=0 and draft_completed=1";
         $con = new MysqlConnect();
         $rs = $con->ExecuteNonQuery($stmt);
         while ($row = mysql_fetch_array($rs)) {
