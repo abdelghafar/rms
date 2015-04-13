@@ -669,7 +669,7 @@ class Reseaches
             return 0;
         }
     }
-    
+
     public function Research_Submit_Undo($research_id)
     {
         $con = new MysqlConnect();
