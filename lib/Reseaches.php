@@ -133,7 +133,9 @@ class Reseaches
         while ($row = mysql_fetch_array($rs)) {
             $serial = $row['count'];
         }
-        $serial++;
+        if ($serial == 0)
+            $serial++;
+
         $formatted_serial = sprintf("%04d", $serial);
         $code = $yr . '$' . $tech_code . '$' . $round . '$' . $program_code . '$' . $formatted_serial;
         return $code;
