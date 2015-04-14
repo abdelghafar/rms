@@ -180,8 +180,7 @@ if (isset($_GET['q'])) {
             person_id = dataRecord['person_id'];
 //            alert('person_id::' + person_id);
             $('#agreeLetter').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=coAuthor_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
-            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
-
+            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=coAuthor_resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
             $('#showUploadfile').show();
             $('#showUploadCV').show();
 
