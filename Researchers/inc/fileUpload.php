@@ -34,7 +34,7 @@ if (isset($_GET['q'])) {
 
     if ($_GET['type'] == 'consultant_resume') {
         $person_id = $_GET['person_id'];
-        $key = $uniqid();
+        $key = uniqid();
         $file_name .= 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
 
