@@ -202,7 +202,8 @@ if (isset($_GET['q'])) {
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $role_id = stuff_roles_system::$Co_Is;
-                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetCoAuthor_agreement_url($seq_id, $file_name);
                     break;
                 }
                 case 'OtherPersonal_agreement':
