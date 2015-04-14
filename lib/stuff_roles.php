@@ -8,6 +8,13 @@
 
 require_once 'mysqlConnection.php';
 
+class stuff_roles_system
+{
+    static $PI = 1;
+    static $Co_Is = 2;
+    static $Consultant = 3;
+}
+
 class stuff_roles
 {
     public function __construct()
@@ -19,4 +26,6 @@ class stuff_roles
     {
 
     }
-} 
+}
+
+echo stuff_roles_system::$Co_Is;
