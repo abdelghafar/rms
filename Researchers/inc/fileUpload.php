@@ -35,7 +35,8 @@ if (isset($_GET['q'])) {
     if ($_GET['type'] == 'consultant_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-//        $file_name .= sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $file_name .= urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+
     }
 
     $type = filter_input(INPUT_GET, 'type');
