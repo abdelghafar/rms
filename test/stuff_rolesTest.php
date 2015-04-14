@@ -8,4 +8,8 @@
 
 require_once '../lib/stuff_roles.php';
 
-echo stuff_roles_system::$Co_Is;
+$obj = new research_stuff();
+$person_id = 1;
+$project_id = 1;
+$role_id = stuff_roles_system::$Co_Is;
+$seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
