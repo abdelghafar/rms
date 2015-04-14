@@ -7,7 +7,6 @@
  */
 
 require_once '../lib/research_stuff.php';
-require_once '../lib/Reseaches.php';
 
 if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['role_id']) && isset($_GET['file_name']) && isset($_GET['resume_url'])) {
     $research_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
