@@ -22,8 +22,8 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['role_id']) &&
             $agreement_url = "uploads/" . $research_id . "/" . $agreement_file;
             $resume_url = "uploads/" . $research_id . "/" . $resume_file;
 
-            $obj->SetCoAuthor_agreement_url($return_id, $agreement_url);
-            $obj->SetCoAuthor_resume_url($return_id, $resume_url);
+            $obj->SetResearchStuffAgreement($return_id, $agreement_url);
+            $obj->SetResearchStuffResume($return_id, $resume_url);
             echo 200;
             return;
         } else {
