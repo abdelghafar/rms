@@ -101,8 +101,8 @@ class Persons
     public function ImportPerson($person_details)
     {
         $conn = new MysqlConnect();
-        $stmt = "INSERT INTO persons (Gender,Nationality,Position,College,empCode,EqamaCode,Email,Mobile,name_ar,rank_date,EMPLOYEE_CERTIFICATE,EMPLOYEE_STATUS_CODE,EMPLOYEE_STATUS,CAT_CODE) Values ('" . $person_details['GENDER'] . "','" . $person_details['NATIONALITY_DESC'] . "','" . $person_details['RANK_DESC'] . "','" . $person_details['SITE_FACULTY_NAME'] . "','" . $person_details['EMPLOYEE_ID'] . "','" . $person_details['NATIONAL_ID'] . "','" . $person_details['EMAIL'] . "','" . $person_details['MOBILE_NO'] . "','" . $person_details['EMPLOYEE_NAME'] . "','" . $person_details['RANK_DATE'] . "','" . $person_details['EMPLOYEE_CERTIFICATE'] . "'," . $person_details['EMPLOYEE_STATUS_CODE'] . ",'" . $person_details['EMPLOYEE_STATUS'] . "','" . $person_details['FORM_CODE'] . "')";
-        echo $stmt;
+        $stmt = "INSERT INTO persons (Gender,Nationality,Position,College,empCode,EqamaCode,Email,Mobile,name_ar,rank_date,EMPLOYEE_CERTIFICATE,EMPLOYEE_STATUS_CODE,EMPLOYEE_STATUS,CAT_CODE,name_en) Values ('" . $person_details['GENDER'] . "','" . $person_details['NATIONALITY_DESC'] . "','" . $person_details['RANK_DESC'] . "','" . $person_details['SITE_FACULTY_NAME'] . "','" . $person_details['EMPLOYEE_ID'] . "','" . $person_details['NATIONAL_ID'] . "','" . $person_details['EMAIL'] . "','" . $person_details['MOBILE_NO'] . "','" . $person_details['EMPLOYEE_NAME'] . "','" . $person_details['RANK_DATE'] . "','" . $person_details['EMPLOYEE_CERTIFICATE'] . "'," . $person_details['EMPLOYEE_STATUS_CODE'] . ",'" . $person_details['EMPLOYEE_STATUS'] . "','" . $person_details['FORM_CODE'] . "','" . $person_details['EMPLOYEE_NAME_S'] . "')";
+//        echo $stmt;
         $res = $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
