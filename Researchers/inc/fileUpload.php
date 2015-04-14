@@ -197,34 +197,46 @@ if (isset($_GET['q'])) {
 
                 case 'coAuthor_agreement':
                 {
-                    //ToDo:apply new constructor
                     $obj = new research_stuff();
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $role_id = stuff_roles_system::$Co_Is;
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
-                    $obj->SetCoAuthor_agreement_url($seq_id, $file_name);
+                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
                     break;
                 }
-                case 'OtherPersonal_agreement':
+                case 'coAuthor_resume':
                 {
-                    //ToDo:apply new constructor
                     $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $role_id = stuff_roles_system::$Co_Is;
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetResearchStuffResume($seq_id, $file_name);
+                    break;
+                }
+                case 'consultant_agreement':
+                {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetResearchStuffAgreement($project_id, $person_id, $file_name);
+                    $role_id = stuff_roles_system::$Consultant;
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
+                    break;
+                }
+                case 'consultant_resume':
+                {
+                    $obj = new research_stuff();
+                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $obj->SetResearchStuffResume($project_id, $person_id, $file_name);
+                    $role_id = stuff_roles_system::$Consultant;
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetResearchStuffResume($seq_id, $file_name);
+                }
 
-                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                    $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
-                    break;
-                }
-                case 'resume':
-                {
-                    $obj = new research_stuff();
-                    //ToDO:apply new constructor
-                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                    $obj->SetResumeUrl($project_id, $person_id, $file_name);
-                    break;
-                }
 
                 default :
                     {
