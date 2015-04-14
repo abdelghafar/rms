@@ -96,7 +96,7 @@ class research_stuff
     }
 
     //get,set accept_letter urls-------------------------------------------------------
-    public function SetCoAuthor_agreement_url($seq_no, $url)
+    public function SetResearchStuffAgreement($seq_no, $url)
     {
         $stmt = "update " . $this->table_name . " set `agreement_url` = '" . $url . "' where seq_no=" . $seq_no;
         $conn = new MysqlConnect();
@@ -117,7 +117,7 @@ class research_stuff
     }
 
     //get set Co-Is resume file
-    public function SetCoAuthor_resume_url($seq_no, $url)
+    public function SetResearchStuffResume($seq_no, $url)
     {
         $stmt = "update " . $this->table_name . " set `resume_url` = '" . $url . "' where seq_no =" . $seq_no;
         $conn = new MysqlConnect();
