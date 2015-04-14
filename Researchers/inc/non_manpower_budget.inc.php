@@ -12,5 +12,6 @@ if (isset($_SESSION['q'])) {
     $research_id = $_SESSION['q'];
     $rs = $obj->DraftComplete($research_id);
     ob_start();
-    header('Location:../Researchers_View.php');
+//    header('Location:../Researchers_View.php');
+    echo '<script>window.location.assign("../Researchers_View.php")</script>';
 }
