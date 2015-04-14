@@ -2,6 +2,7 @@
 
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/research_stuff.php';
+require_once '../../lib/stuff_roles.php';
 require_once '../../lib/config.php';
 
 if (isset($_GET['q'])) {
@@ -196,15 +197,19 @@ if (isset($_GET['q'])) {
 
                 case 'coAuthor_agreement':
                 {
+                    //ToDo:apply new constructor
                     $obj = new research_stuff();
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $role_id = stuff_roles_system::$Co_Is;
                     $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
                     break;
                 }
                 case 'OtherPersonal_agreement':
                 {
+                    //ToDo:apply new constructor
                     $obj = new research_stuff();
+
                     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $obj->SetCoAuthor_agreement_url($project_id, $person_id, $file_name);
