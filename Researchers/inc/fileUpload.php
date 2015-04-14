@@ -18,12 +18,17 @@ if (isset($_GET['q'])) {
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     }
 //resume
-    if ($_GET['type'] == 'resume') {
+    if ($_GET['type'] == 'coAuthor_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     }
 
-    if ($_GET['type'] == 'OtherPersonal_agreement') {
+    if ($_GET['type'] == 'consultant_agreement') {
+        $person_id = $_GET['person_id'];
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    }
+
+    if ($_GET['type'] == 'consultant_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     }
@@ -236,7 +241,6 @@ if (isset($_GET['q'])) {
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
                     $obj->SetResearchStuffResume($seq_id, $file_name);
                 }
-
 
                 default :
                     {
