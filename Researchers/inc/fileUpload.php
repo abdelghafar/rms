@@ -11,25 +11,29 @@ if (isset($_GET['q'])) {
     $file_name = "uploads/" . $prefix . "/";
 
     $target_file = $target_dir . sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-    //$file_name .= sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
 
     if ($_GET['type'] == 'coAuthor_agreement') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-//        $file_name .= sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-
+        $key = uniqid();
+        $file_name .= 'coAuthor_agreement' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'coAuthor_agreement' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 //resume
     if ($_GET['type'] == 'coAuthor_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-//        $file_name .= sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $key = uniqid();
+        $file_name .= 'coAuthor_resume' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'coAuthor_resume' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
     if ($_GET['type'] == 'consultant_agreement') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-//        $file_name .= sha1(urlencode(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME))) . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $key = uniqid();
+        $file_name .= 'consultant_agreement' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'consultant_agreement' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
     if ($_GET['type'] == 'consultant_resume') {
