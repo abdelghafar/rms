@@ -53,7 +53,7 @@ class research_stuff
     {
         $pcon = new MysqlConnect();
         $stmt = "SELECT * FROM `research_stuff` WHERE `research_id`=" . $research_id . " and `person_id`=" . $person_id . " and `role_id`=" . $role_id . " and `type`= '" . $type . "'";
-        echo $stmt;
+//        echo $stmt;
         $rs = $pcon->ExecuteNonQuery($stmt);
         $id = 0;
         while ($row = mysql_fetch_array($rs)) {
@@ -90,7 +90,7 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where seq_no=" . $seq_id;
-        echo $stmt;
+//        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
