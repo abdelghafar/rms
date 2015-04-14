@@ -207,8 +207,8 @@ if (isset($_GET['q'])) {
             dataRecord = $("#gridOtherStuff").jqxGrid('getrowdata', rowindex);
             person_id = dataRecord['person_id'];
             //alert(person_id);
-            $('#agreeLetterOther').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=OtherPersonal_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
-            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+            $('#agreeLetterOther').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=consultant_agreement&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
+            $('#CVUpload').jqxFileUpload({uploadUrl: 'inc/fileUpload.php?type=consultant_resume&q=' + '<? echo $project_id; ?>' + '&person_id=' + person_id});
 
             $('#showUploadfileOthers').show();
             $('#showUploadCV').show();
