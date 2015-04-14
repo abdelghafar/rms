@@ -28,4 +28,4 @@ class stuff_roles
     }
 }
 
-echo stuff_roles_system::$Co_Is;
+echo stuff_roles_system::$PI; 
