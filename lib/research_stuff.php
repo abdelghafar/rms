@@ -53,6 +53,7 @@ class research_stuff
     {
         $pcon = new MysqlConnect();
         $stmt = "SELECT * FROM `research_stuff` WHERE `research_id`=" . $research_id . " and `person_id`=" . $person_id . " and `role_id`=" . $role_id . " and `type`= '" . $type . "'";
+        echo $stmt;
         $rs = $pcon->ExecuteNonQuery($stmt);
         $id = 0;
         while ($row = mysql_fetch_array($rs)) {
