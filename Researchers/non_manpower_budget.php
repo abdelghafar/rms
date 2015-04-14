@@ -905,8 +905,8 @@ $smarty->display('../templates/Loggedin.tpl');
             </td>
 
             <td>
-                <a href="Researchers_View.php" style="float: left;margin-left: 25px;margin-top: 20px;">
-                    <img src="images/finish.png" style="border: none;" alt="next"/>
+                <a href="inc/non_manpower_budget.inc.php" style="float: left;margin-left: 25px;margin-top: 20px;">
+                <img src="images/finish.png" style="border: none;" alt="next"/>
                 </a>
             </td>
         </tr>
