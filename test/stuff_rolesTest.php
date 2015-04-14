@@ -7,6 +7,7 @@
  */
 
 require_once '../lib/stuff_roles.php';
+require_once '../lib/research_stuff.php';
 
 $obj = new research_stuff();
 $person_id = 1;
