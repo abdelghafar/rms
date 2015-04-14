@@ -116,7 +116,7 @@ class research_stuff
         return $url;
     }
 
-    //get set Co-Is resume file
+    //get set resume file
     public function SetResearchStuffResume($seq_no, $url)
     {
         $stmt = "update " . $this->table_name . " set `resume_url` = '" . $url . "' where seq_no =" . $seq_no;
