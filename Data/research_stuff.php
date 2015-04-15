@@ -8,10 +8,10 @@
 
 require_once '../lib/config.php';
 require_once '../lib/mysqlConnection.php';
-require_once '../lib/persons.php';
+
 
 $conn = new MysqlConnect();
-$person = new Persons();
+
 
 if (isset($_REQUEST['project_id'])) {
     $stmt = "SELECT rs.seq_no,rs.person_id,rs.type, sr.role_name, sr.seq_id
@@ -23,7 +23,12 @@ if (isset($_REQUEST['project_id'])) {
         if ($row['type'] === 'role_based') {
             $role_person = $row['role_name'];
         } else {
-            $role_person = $person->GetPersonName($row['person_id']) . " -- " . $row['role_name'];
+            $stmt = "SELECT name_ar FROM persons Where Person_id=" . $row['person_id'];
+            $person_result = mysql_query($stmt);
+            while ($person_row = mysql_fetch_array($person_result)) {
+                $name_ar = $person_row['name_ar'];
+            }
+            $role_person = $name_ar . " -- " . $row['role_name'];
         }
         $jsonArray[] = array(
             'research_stuff_id' => $row['seq_no'],
