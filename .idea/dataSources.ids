@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - @localhost" uuid="bdd33bef-b487-4422-8c31-6e715b246f6f">
+    <database-info product="MySQL" version="5.0.45-community-nt-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="bug_tracker"/>
+    <schema name="" catalog="information_schema"/>
+    <schema name="" catalog="isr_conferencealert"/>
+    <schema name="" catalog="mysql"/>
+    <schema name="" catalog="northwind"/>
+    <schema name="" catalog="phpmyadmin"/>
+    <schema name="" catalog="pms"/>
+    <schema name="" catalog="relay"/>
+    <schema name="" catalog="test"/>
+    <schema name="" catalog="testdb"/>
+    <schema name="" catalog="uquedu_isr"/>
+    <schema name="" catalog="uquedu_isr_rms"/>
+    <schema name="" catalog="uquedu_isr_rpms"/>
+    <table name="CHARACTER_SETS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DEFAULT_COLLATE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" length="60" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="MAXLEN" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+    </table>
+    <table name="COLLATIONS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="COLLATION_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="IS_DEFAULT" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_COMPILED" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SORTLEN" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+    </table>
+    <table name="COLLATION_CHARACTER_SET_APPLICABILITY" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="COLLATION_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="COLUMNS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ORDINAL_POSITION" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="COLUMN_DEFAULT" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="IS_NULLABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DATA_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CHARACTER_MAXIMUM_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="CHARACTER_OCTET_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="NUMERIC_PRECISION" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="NUMERIC_SCALE" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="COLLATION_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="COLUMN_TYPE" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="COLUMN_KEY" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EXTRA" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="PRIVILEGES" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COLUMN_COMMENT" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="COLUMN_PRIVILEGES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="GRANTEE" sqlType="VARCHAR" length="81" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_GRANTABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="KEY_COLUMN_USAGE" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="CONSTRAINT_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ORDINAL_POSITION" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="POSITION_IN_UNIQUE_CONSTRAINT" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="REFERENCED_TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="REFERENCED_TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="REFERENCED_COLUMN_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="PROFILING" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="QUERY_ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="SEQ" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="STATE" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DURATION" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CPU_USER" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CPU_SYSTEM" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CONTEXT_VOLUNTARY" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="CONTEXT_INVOLUNTARY" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="BLOCK_OPS_IN" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="BLOCK_OPS_OUT" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="MESSAGES_SENT" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="MESSAGES_RECEIVED" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="PAGE_FAULTS_MAJOR" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="PAGE_FAULTS_MINOR" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="SWAPS" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="SOURCE_FUNCTION" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE_FILE" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE_LINE" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+    </table>
+    <table name="ROUTINES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="SPECIFIC_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ROUTINE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ROUTINE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ROUTINE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ROUTINE_TYPE" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DTD_IDENTIFIER" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ROUTINE_BODY" sqlType="VARCHAR" length="8" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ROUTINE_DEFINITION" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="EXTERNAL_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="EXTERNAL_LANGUAGE" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PARAMETER_STYLE" sqlType="VARCHAR" length="8" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_DETERMINISTIC" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SQL_DATA_ACCESS" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SQL_PATH" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="SECURITY_TYPE" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CREATED" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="LAST_ALTERED" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="SQL_MODE" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="ROUTINE_COMMENT" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DEFINER" sqlType="VARCHAR" length="77" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="SCHEMATA" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="CATALOG_NAME" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="SCHEMA_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DEFAULT_CHARACTER_SET_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DEFAULT_COLLATION_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SQL_PATH" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="SCHEMA_PRIVILEGES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="GRANTEE" sqlType="VARCHAR" length="81" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_GRANTABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="STATISTICS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="NON_UNIQUE" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="INDEX_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="INDEX_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SEQ_IN_INDEX" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COLLATION" sqlType="VARCHAR" length="1" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CARDINALITY" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="SUB_PART" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="PACKED" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="NULLABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="INDEX_TYPE" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="COMMENT" sqlType="VARCHAR" length="16" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="TABLES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ENGINE" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="VERSION" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="ROW_FORMAT" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_ROWS" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="AVG_ROW_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="DATA_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="MAX_DATA_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="INDEX_LENGTH" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="DATA_FREE" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="AUTO_INCREMENT" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="CREATE_TIME" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="UPDATE_TIME" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="CHECK_TIME" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="TABLE_COLLATION" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CHECKSUM" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="CREATE_OPTIONS" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_COMMENT" sqlType="VARCHAR" length="80" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="TABLE_CONSTRAINTS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="CONSTRAINT_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CONSTRAINT_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="TABLE_PRIVILEGES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="GRANTEE" sqlType="VARCHAR" length="81" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_GRANTABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="TRIGGERS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="TRIGGER_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TRIGGER_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EVENT_MANIPULATION" sqlType="VARCHAR" length="6" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EVENT_OBJECT_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="EVENT_OBJECT_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EVENT_OBJECT_TABLE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ACTION_ORDER" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="ACTION_CONDITION" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="ACTION_STATEMENT" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="ACTION_ORIENTATION" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ACTION_TIMING" sqlType="VARCHAR" length="6" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ACTION_REFERENCE_OLD_TABLE" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_NEW_TABLE" sqlType="VARCHAR" length="64" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_OLD_ROW" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ACTION_REFERENCE_NEW_ROW" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CREATED" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="SQL_MODE" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="DEFINER" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+    </table>
+    <table name="USER_PRIVILEGES" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="GRANTEE" sqlType="VARCHAR" length="81" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_GRANTABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="VIEWS" schema="" catalog="information_schema" type="SYSTEM VIEW">
+      <column name="TABLE_CATALOG" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="VIEW_DEFINITION" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="CHECK_OPTION" sqlType="VARCHAR" length="8" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IS_UPDATABLE" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DEFINER" sqlType="VARCHAR" length="77" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SECURITY_TYPE" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="pages" schema="" catalog="isr_conferencealert" type="TABLE">
+      <column name="seq_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="url" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="content" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="register" schema="" catalog="isr_conferencealert" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="firstName" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="fatherName" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="grandName" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="familyName" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="degree" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="major_field" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="special_field" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="college_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="part_type" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="empCode" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="mobile" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="project_title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="project_abstract" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="uqu_workplaces" schema="" catalog="isr_conferencealert" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="columns_priv" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Table_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Column_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="Column_priv" sqlType="SET" length="31" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Host,Db,User,Table_name,Column_name"/>
+    </table>
+    <table name="db" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Select_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Insert_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Update_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Delete_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Drop_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Grant_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="References_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Index_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Lock_tables_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Show_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Execute_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <primary-key name="PRIMARY" columns="Host,Db,User"/>
+      <index name="User" unique="false" columns="User"/>
+    </table>
+    <table name="func" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="ret" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="dl" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="name"/>
+    </table>
+    <table name="help_category" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="help_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="false" jdbcType="5" def=""/>
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="parent_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="url" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="help_category_id"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="help_keyword" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="help_keyword_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="help_keyword_id"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="help_relation" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="help_topic_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="help_keyword_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="help_keyword_id,help_topic_id"/>
+    </table>
+    <table name="help_topic" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="help_topic_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="help_category_id" sqlType="SMALLINT UNSIGNED" length="5" precision="0" nullable="false" jdbcType="5" def=""/>
+      <column name="description" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="example" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="url" sqlType="CHAR" length="128" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="help_topic_id"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="host" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Select_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Insert_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Update_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Delete_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Drop_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Grant_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="References_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Index_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Lock_tables_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Show_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Execute_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <primary-key name="PRIMARY" columns="Host,Db"/>
+    </table>
+    <table name="proc" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="specific_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="language" sqlType="ENUM" length="4" precision="0" nullable="false" jdbcType="1" def="J1NRTCc="/>
+      <column name="sql_data_access" sqlType="ENUM" length="17" precision="0" nullable="false" jdbcType="1" def="J0NPTlRBSU5TX1NRTCc="/>
+      <column name="is_deterministic" sqlType="ENUM" length="4" precision="0" nullable="false" jdbcType="1" def="J05PJw=="/>
+      <column name="security_type" sqlType="ENUM" length="8" precision="0" nullable="false" jdbcType="1" def="J0RFRklORVIn"/>
+      <column name="param_list" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" def=""/>
+      <column name="returns" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="body" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="false" jdbcType="-4" def=""/>
+      <column name="definer" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="created" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="modified" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="sql_mode" sqlType="SET" length="431" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="comment" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="db,name,type"/>
+    </table>
+    <table name="procs_priv" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Routine_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Routine_type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Grantor" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Proc_priv" sqlType="SET" length="27" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="Host,Db,User,Routine_name,Routine_type"/>
+      <index name="Grantor" unique="false" columns="Grantor"/>
+    </table>
+    <table name="tables_priv" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Db" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Table_name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Grantor" sqlType="CHAR" length="77" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Timestamp" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="Table_priv" sqlType="SET" length="90" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Column_priv" sqlType="SET" length="31" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Host,Db,User,Table_name"/>
+      <index name="Grantor" unique="false" columns="Grantor"/>
+    </table>
+    <table name="time_zone" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Use_leap_seconds" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <primary-key name="PRIMARY" columns="Time_zone_id"/>
+    </table>
+    <table name="time_zone_leap_second" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Transition_time" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def=""/>
+      <column name="Correction" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="Transition_time"/>
+    </table>
+    <table name="time_zone_name" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Name" sqlType="CHAR" length="64" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="Name"/>
+    </table>
+    <table name="time_zone_transition" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="Transition_time" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def=""/>
+      <column name="Transition_type_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="Time_zone_id,Transition_time"/>
+    </table>
+    <table name="time_zone_transition_type" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Time_zone_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="Transition_type_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="Offset" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="Is_DST" sqlType="TINYINT UNSIGNED" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="Abbreviation" sqlType="CHAR" length="8" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Time_zone_id,Transition_type_id"/>
+    </table>
+    <table name="user" schema="" catalog="mysql" type="SYSTEM TABLE">
+      <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="User" sqlType="CHAR" length="16" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Password" sqlType="CHAR" length="41" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="Select_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Insert_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Update_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Delete_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Drop_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Reload_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Shutdown_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Process_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="File_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Grant_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="References_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Index_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Show_db_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Super_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_tmp_table_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Lock_tables_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Execute_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Repl_slave_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Repl_client_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Show_view_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Alter_routine_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="Create_user_priv" sqlType="ENUM" length="2" precision="0" nullable="false" jdbcType="1" def="J04n"/>
+      <column name="ssl_type" sqlType="ENUM" length="9" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="ssl_cipher" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" def=""/>
+      <column name="x509_issuer" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" def=""/>
+      <column name="x509_subject" sqlType="BLOB" length="65535" precision="0" nullable="false" jdbcType="-4" def=""/>
+      <column name="max_questions" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="max_updates" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="max_connections" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="max_user_connections" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="Host,User"/>
+    </table>
+    <table name="alphabetical list of products" schema="" catalog="northwind" type="VIEW">
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SupplierID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="CategoryID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="QuantityPerUnit" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+      <column name="UnitsInStock" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="UnitsOnOrder" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="ReorderLevel" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="Discontinued" sqlType="BIT" length="1" precision="0" nullable="false" jdbcType="-7" def="MQ=="/>
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="categories" schema="" catalog="northwind" type="TABLE">
+      <column name="CategoryID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Description" sqlType="MEDIUMTEXT" length="16777215" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="Picture" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="true" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="CategoryID"/>
+      <index name="CategoryName" unique="false" columns="CategoryName"/>
+    </table>
+    <table name="category sales for 1997" schema="" catalog="northwind" type="VIEW">
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CategorySales" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="current product list" schema="" catalog="northwind" type="VIEW">
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="customer and suppliers by city" schema="" catalog="northwind" type="VIEW">
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ContactName" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Relationship" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+    </table>
+    <table name="customercustomerdemo" schema="" catalog="northwind" type="TABLE">
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CustomerTypeID" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="CustomerID,CustomerTypeID"/>
+      <index name="FK_CustomerCustomerDemo" unique="false" columns="CustomerTypeID"/>
+    </table>
+    <table name="customerdemographics" schema="" catalog="northwind" type="TABLE">
+      <column name="CustomerTypeID" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CustomerDesc" sqlType="MEDIUMTEXT" length="16777215" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="CustomerTypeID"/>
+    </table>
+    <table name="customers" schema="" catalog="northwind" type="TABLE">
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ContactName" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ContactTitle" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Address" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Region" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Fax" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CustomerID"/>
+      <index name="City" unique="false" columns="City"/>
+      <index name="CompanyName" unique="false" columns="CompanyName"/>
+      <index name="PostalCode" unique="false" columns="PostalCode"/>
+      <index name="Region" unique="false" columns="Region"/>
+    </table>
+    <table name="employees" schema="" catalog="northwind" type="TABLE">
+      <column name="EmployeeID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="LastName" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FirstName" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Title" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="TitleOfCourtesy" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="BirthDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="HireDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="Address" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Region" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="HomePhone" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Extension" sqlType="VARCHAR" length="4" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Photo" sqlType="LONGBLOB" length="2147483647" precision="0" nullable="true" jdbcType="-4"/>
+      <column name="Notes" sqlType="MEDIUMTEXT" length="16777215" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="ReportsTo" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="PhotoPath" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Salary" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="EmployeeID"/>
+      <index name="FK_Employees_Employees" unique="false" columns="ReportsTo"/>
+      <index name="LastName" unique="false" columns="LastName"/>
+      <index name="PostalCode" unique="false" columns="PostalCode"/>
+    </table>
+    <table name="employeeterritories" schema="" catalog="northwind" type="TABLE">
+      <column name="EmployeeID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="TerritoryID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="EmployeeID,TerritoryID"/>
+      <index name="FK_EmployeeTerritories_Territories" unique="false" columns="TerritoryID"/>
+    </table>
+    <table name="invoices" schema="" catalog="northwind" type="VIEW">
+      <column name="ShipName" sqlType="VARCHAR" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipAddress" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCity" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipRegion" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipPostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCountry" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CustomerName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Address" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Region" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Salesperson" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8" def="MA=="/>
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="OrderDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="RequiredDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShipperName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="false" jdbcType="3" def="MC4wMDAw"/>
+      <column name="Quantity" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" def="MQ=="/>
+      <column name="Discount" sqlType="DOUBLE" length="8" precision="0" nullable="false" jdbcType="8" def="MA=="/>
+      <column name="ExtendedPrice" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+      <column name="Freight" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+    </table>
+    <table name="order details" schema="" catalog="northwind" type="TABLE">
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="false" jdbcType="3" def="MC4wMDAw"/>
+      <column name="Quantity" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" def="MQ=="/>
+      <column name="Discount" sqlType="DOUBLE" length="8" precision="0" nullable="false" jdbcType="8" def="MA=="/>
+      <primary-key name="PRIMARY" columns="OrderID,ProductID"/>
+      <index name="FK_Order_Details_Products" unique="false" columns="ProductID"/>
+    </table>
+    <table name="order details extended" schema="" catalog="northwind" type="VIEW">
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="false" jdbcType="3" def="MC4wMDAw"/>
+      <column name="Quantity" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" def="MQ=="/>
+      <column name="Discount" sqlType="DOUBLE" length="8" precision="0" nullable="false" jdbcType="8" def="MA=="/>
+      <column name="ExtendedPrice" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="order subtotals" schema="" catalog="northwind" type="VIEW">
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="Subtotal" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="orders" schema="" catalog="northwind" type="TABLE">
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="EmployeeID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="OrderDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="RequiredDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShipVia" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="Freight" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+      <column name="ShipName" sqlType="VARCHAR" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipAddress" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCity" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipRegion" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipPostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCountry" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="OrderID"/>
+      <index name="FK_Orders_Customers" unique="false" columns="CustomerID"/>
+      <index name="FK_Orders_Employees" unique="false" columns="EmployeeID"/>
+      <index name="FK_Orders_Shippers" unique="false" columns="ShipVia"/>
+      <index name="OrderDate" unique="false" columns="OrderDate"/>
+      <index name="ShippedDate" unique="false" columns="ShippedDate"/>
+      <index name="ShipPostalCode" unique="false" columns="ShipPostalCode"/>
+    </table>
+    <table name="orders qry" schema="" catalog="northwind" type="VIEW">
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="EmployeeID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="OrderDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="RequiredDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ShipVia" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="Freight" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+      <column name="ShipName" sqlType="VARCHAR" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipAddress" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCity" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipRegion" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipPostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ShipCountry" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Address" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Region" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="product sales for 1997" schema="" catalog="northwind" type="VIEW">
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductSales" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="products" schema="" catalog="northwind" type="TABLE">
+      <column name="ProductID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SupplierID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="CategoryID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="QuantityPerUnit" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+      <column name="UnitsInStock" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="UnitsOnOrder" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="ReorderLevel" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="Discontinued" sqlType="BIT" length="1" precision="0" nullable="false" jdbcType="-7" def="MA=="/>
+      <primary-key name="PRIMARY" columns="ProductID"/>
+      <index name="FK_Products_Categories" unique="false" columns="CategoryID"/>
+      <index name="FK_Products_Suppliers" unique="false" columns="SupplierID"/>
+      <index name="ProductName" unique="false" columns="ProductName"/>
+    </table>
+    <table name="products above average price" schema="" catalog="northwind" type="VIEW">
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="UnitPrice" sqlType="DECIMAL" length="10" precision="4" nullable="true" jdbcType="3" def="MC4wMDAw"/>
+    </table>
+    <table name="products by category" schema="" catalog="northwind" type="VIEW">
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="QuantityPerUnit" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="UnitsInStock" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5" def="MA=="/>
+      <column name="Discontinued" sqlType="BIT" length="1" precision="0" nullable="false" jdbcType="-7" def="MQ=="/>
+    </table>
+    <table name="quarterly orders" schema="" catalog="northwind" type="VIEW">
+      <column name="CustomerID" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="region" schema="" catalog="northwind" type="TABLE">
+      <column name="RegionID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="RegionDescription" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="RegionID"/>
+    </table>
+    <table name="sales by category" schema="" catalog="northwind" type="VIEW">
+      <column name="CategoryID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="CategoryName" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProductSales" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="sales totals by amount" schema="" catalog="northwind" type="VIEW">
+      <column name="SaleAmount" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+    </table>
+    <table name="shippers" schema="" catalog="northwind" type="TABLE">
+      <column name="ShipperID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Phone" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ShipperID"/>
+    </table>
+    <table name="summary of sales by quarter" schema="" catalog="northwind" type="VIEW">
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="Subtotal" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="summary of sales by year" schema="" catalog="northwind" type="VIEW">
+      <column name="ShippedDate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="OrderID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="Subtotal" sqlType="DOUBLE" length="25" precision="8" nullable="true" jdbcType="8"/>
+    </table>
+    <table name="suppliers" schema="" catalog="northwind" type="TABLE">
+      <column name="SupplierID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CompanyName" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ContactName" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ContactTitle" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Address" sqlType="VARCHAR" length="60" precision="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Region" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" length="15" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <column name="Fax" sqlType="VARCHAR" length="24" precision="0" nullable="true" jdbcType="12"/>
+      <column name="HomePage" sqlType="MEDIUMTEXT" length="16777215" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="SupplierID"/>
+      <index name="CompanyName" unique="false" columns="CompanyName"/>
+      <index name="PostalCode" unique="false" columns="PostalCode"/>
+    </table>
+    <table name="territories" schema="" catalog="northwind" type="TABLE">
+      <column name="TerritoryID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="TerritoryDescription" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="RegionID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="TerritoryID"/>
+      <index name="FK_Territories_Region" unique="false" columns="RegionID"/>
+    </table>
+    <table name="pma_bookmark" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="dbase" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="user" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="label" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="query" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="pma_column_info" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="db_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="table_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="column_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="comment" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="mimetype" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="transformation" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="transformation_options" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="db_name" unique="true" columns="db_name,table_name,column_name"/>
+    </table>
+    <table name="pma_history" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="db" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="table" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="timevalue" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="sqlquery" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="username" unique="false" columns="username,db,table,timevalue"/>
+    </table>
+    <table name="pma_pdf_pages" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="db_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="page_nr" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="page_descr" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="page_nr"/>
+      <index name="db_name" unique="false" columns="db_name"/>
+    </table>
+    <table name="pma_relation" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="master_db" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="master_table" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="master_field" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="foreign_db" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="foreign_table" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="foreign_field" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="master_db,master_table,master_field"/>
+      <index name="foreign_field" unique="false" columns="foreign_db,foreign_table"/>
+    </table>
+    <table name="pma_table_coords" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="db_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="table_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="pdf_page_number" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="x" sqlType="FLOAT UNSIGNED" length="12" precision="0" nullable="false" jdbcType="7" def="MA=="/>
+      <column name="y" sqlType="FLOAT UNSIGNED" length="12" precision="0" nullable="false" jdbcType="7" def="MA=="/>
+      <primary-key name="PRIMARY" columns="db_name,table_name,pdf_page_number"/>
+    </table>
+    <table name="pma_table_info" schema="" catalog="phpmyadmin" type="TABLE">
+      <column name="db_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="table_name" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="display_field" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="db_name,table_name"/>
+    </table>
+    <table name="projects" schema="" catalog="pms" type="TABLE">
+      <column name="Project_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title_ar" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="title_en" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="proposed_duration" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="major_field" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="special_field" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="project_code" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="abstract_ar" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="abstract_en" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="center_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="project_year" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="budget" sqlType="DECIMAL" length="10" precision="2" nullable="false" jdbcType="3" def=""/>
+      <column name="isLocked" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="lockFrom" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="lockUntill" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="Withdraw" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="withdrawDate" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="project_typeId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="created_on" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="last_update" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="Project_id"/>
+      <index name="project_code" unique="true" columns="project_code"/>
+      <index name="project_code_2" unique="true" columns="project_code"/>
+    </table>
+    <table name="test" schema="" catalog="test" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+      <index name="project_id" unique="true" columns="project_id,person_id"/>
+    </table>
+    <table name="glass" schema="" catalog="testdb" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RI" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Na" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Mg" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Al" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Si" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="K" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Ca" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Ba" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Fe" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="Type" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="users" schema="" catalog="testdb" type="TABLE"/>
+    <table name="app_sitting" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="app_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app_name" sqlType="VARCHAR" length="150" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="app_prefix" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="app_id"/>
+    </table>
+    <table name="site_news" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" length="1000" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="news_image" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="type_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="content" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="FromDate" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="ThruDate" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="PublishOnUniversityPage" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="Pub_on_home_uqu" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="AddedBy" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="LastUpdateBy" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="LastUpdateAt" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="NWS_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="site_newstype" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="type_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="type_image" sqlType="VARCHAR" length="250" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="type_id"/>
+    </table>
+    <table name="site_sysapplication" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="App_Code" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="App_Order" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="App_Name" sqlType="VARCHAR" length="75" precision="0" nullable="true" jdbcType="12"/>
+      <column name="App_Parent" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="App_Object" sqlType="VARCHAR" length="200" precision="0" nullable="true" jdbcType="12"/>
+      <column name="App_Enabled" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def="MA=="/>
+      <primary-key name="PRIMARY" columns="App_Code"/>
+    </table>
+    <table name="site_sysgroup" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="Group_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Group_Name" sqlType="VARCHAR" length="75" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Group_ID"/>
+    </table>
+    <table name="site_sysgroup_right" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="ID" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="Group_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="App_Code" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="pRead" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def=""/>
+      <column name="pPrint" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def=""/>
+      <column name="pNew" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def=""/>
+      <column name="pUpdate" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def=""/>
+      <column name="pDelete" sqlType="BINARY" length="1" precision="0" nullable="false" jdbcType="-2" def=""/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="site_sysuser" schema="" catalog="uquedu_isr" type="TABLE">
+      <column name="User_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Group_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="User_Name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Password" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Full_Name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="User_ID"/>
+    </table>
+    <table name="acceptance" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="program_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="context" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="budget_items" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="item_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_title" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="item_alias" sqlType="VARCHAR" length="45" precision="0" nullable="true" jdbcType="12"/>
+      <column name="isSys" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="warning_max_val" sqlType="DECIMAL" length="10" precision="3" nullable="false" jdbcType="3" def=""/>
+      <column name="warning_max_percent" sqlType="DECIMAL" length="2" precision="2" nullable="false" jdbcType="3" def=""/>
+      <column name="error_max_val" sqlType="DECIMAL" length="10" precision="3" nullable="false" jdbcType="3" def=""/>
+      <column name="error_max_percent" sqlType="DECIMAL" length="2" precision="2" nullable="false" jdbcType="3" def=""/>
+      <column name="parent_item_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+    </table>
+    <table name="council_board" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="center_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="person_id" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="doc_categories" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cat_name" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="notes" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="duration" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="duration_title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="duration_title_en" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="duration_month" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="duration_units" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" autoIncrement="true"/>
+      <column name="unit_name" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="messaging" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="msg_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="content" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="url" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="src" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="dest" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="submit_date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="isRead" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="read_date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="msg_id"/>
+    </table>
+    <table name="persons" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="Person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="FirstName_ar" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FirstName_en" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FatherName_ar" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FatherName_en" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="GrandName_ar" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="GrandName_en" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FamilyName_ar" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="FamilyName_en" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Gender" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="Nationality" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="DateOfBirth" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="CountryOfBirth" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Position" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Major_Field" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Speical_Field" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="university" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="College" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Dept" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="empCode" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EqamaCode" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Email" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Mobile" sqlType="VARCHAR" length="12" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Fax" sqlType="VARCHAR" length="12" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="city" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="country" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="POX" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Postal_Code" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="IBAN" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="SWIFT" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ResumeUrl" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="name_ar" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="name_en" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="rank_date" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EMPLOYEE_CERTIFICATE" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="EMPLOYEE_STATUS_CODE" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="EMPLOYEE_STATUS" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CAT_CODE" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="Person_id"/>
+      <index name="Email" unique="true" columns="Email"/>
+    </table>
+    <table name="programs" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="program_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="program_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="program_code" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="program_id"/>
+    </table>
+    <table name="project_budget" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="item_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="stuff_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="amount" sqlType="DECIMAL" length="10" precision="3" nullable="true" jdbcType="3" def="MC4wMDA="/>
+      <column name="duration" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="dunit_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="compensation" sqlType="FLOAT" length="12" precision="0" nullable="true" jdbcType="7" def="MA=="/>
+      <column name="desc" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_objectivies" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="obj_title" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="obj_desc" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_outcome" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="outcome_title" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="obj_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_phases" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="phase_name" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="phase_desc" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_plan" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="phase_desc" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="size" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="phase_title" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="createdon" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_schedule" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="schedule_desc" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="size" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="schedule_title" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="phase_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="start_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="JzAwMDAtMDAtMDAn"/>
+      <column name="end_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="JzAwMDAtMDAtMDAn"/>
+      <column name="createdon" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="project_tasks" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="task_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="task_name" sqlType="VARCHAR" length="512" precision="0" nullable="true" jdbcType="12"/>
+      <column name="start_date" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="end_date" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="task_desc" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="objective_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="phase_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="task_id"/>
+    </table>
+    <table name="project_types" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="title_en" sqlType="VARCHAR" length="256" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="type_desc" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="isVisible" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="createdon" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="rcenter_reviewers" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="program_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="reseach_status" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="Status_Id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Status_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Phase_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="Status_Id"/>
+    </table>
+    <table name="reseach_track" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="Status_Id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="track_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="notes" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="reseacher_centers" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="center_name" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="center_code" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="user_name" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="center_code" unique="true" columns="center_code"/>
+    </table>
+    <table name="research_docs" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="doc_cat_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="doc_url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="size" sqlType="FLOAT" length="12" precision="0" nullable="false" jdbcType="7" def=""/>
+      <column name="hash" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="notes" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="creation_date" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="title" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="research_invitation" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="accept" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="submit_stamp" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="reply_stamp" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="research_review" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="reviewer_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="submission_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="responce_Status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="responce_date" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="attachment_url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="notes" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="Phase_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="research_stuff" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_no" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="person_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="role_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="agreement_url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="resume_url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="type" sqlType="ENUM" length="15" precision="0" nullable="false" jdbcType="1" def="J3BlcnNvbmFsX2Jhc2VkJw=="/>
+      <primary-key name="PRIMARY" columns="seq_no"/>
+      <index name="research_id" unique="true" columns="research_id,person_id,role_id"/>
+      <index name="research_id_2" unique="true" columns="research_id,role_id"/>
+    </table>
+    <table name="research_update_request" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="research_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="title" sqlType="VARCHAR" length="1052" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="msg" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="request_date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="researches" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title_ar" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="title_en" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="proposed_duration" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="major_field" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="special_field" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="research_code" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Approve_session_no" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Approve_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="abstract_ar_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="abstract_en_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="introduction_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="literature_review_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="status_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="center_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="research_year" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="RequiresUpdate" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="LastUpdate" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="budget" sqlType="DECIMAL" length="10" precision="2" nullable="false" jdbcType="3" def=""/>
+      <column name="isLocked" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="lockFrom" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="lockUntill" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="Withdraw" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="withdrawDate" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="program" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="round" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="research_method_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="objective_tasks_url" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="objective_approach_url" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="working_plan_url" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="value_to_kingdom_url" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="budget_url" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="outcome_objective_url" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="refs_url" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="introduction_text" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="abstract_ar_text" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="abstract_en_text" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="literature_review_text" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="value_to_kingdom_text" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <column name="type_id" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" def=""/>
+      <column name="keywords" sqlType="VARCHAR" length="128" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="isDraft" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="draft_completed" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+      <index name="title_ar" unique="false" columns="title_ar"/>
+    </table>
+    <table name="review_phase" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="Phase_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Phase_Title" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Phase_id"/>
+    </table>
+    <table name="settings" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="setting_title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="setting_value" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="IsSys" sqlType="BIT" length="1" precision="0" nullable="true" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="stuff_roles" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role_name" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="role_name_en" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="role_desc" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="parent_role_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="value" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="stuff_tasks" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="task_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="research_stuff_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="start_month" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="duration" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="unit_id" sqlType="SMALLINT" length="5" precision="0" nullable="false" jdbcType="5" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="subtracks" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="subTrack_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="track_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="sys_groups" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="Group_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Group_name" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="Group_id"/>
+    </table>
+    <table name="technologies" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tech_desc" sqlType="VARCHAR" length="512" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="tech_code" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="isVisible" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="createdon" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="tracks" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="track_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="track_name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="tech_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="track_id"/>
+    </table>
+    <table name="understanding" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="seq_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="program_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="context" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1" def=""/>
+      <primary-key name="PRIMARY" columns="seq_id"/>
+    </table>
+    <table name="uqu_workplaces" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="users" schema="" catalog="uquedu_isr_rms" type="TABLE">
+      <column name="user_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="pass" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="hash" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="rule" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="isActive" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def=""/>
+      <column name="Sys_GroupId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def=""/>
+      <column name="FromDate" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="ThruDate" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <column name="isTemp" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="alias_name" sqlType="VARCHAR" length="1024" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="Last_Access" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93" def="Jyc="/>
+      <column name="creation_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" def="Jyc="/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <index name="user_name" unique="true" columns="user_name"/>
+    </table>
+    <table name="center_reviewers" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="duration" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="initials" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="nationalities" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="persons" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_objectivies" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_outcome" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_phases" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_roles" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_status" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_stuff" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_tasks" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="project_type" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="projects" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="projects_temp" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="reseach_track" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="reseacher_centers" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="research_centers" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="settings" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="subtracks" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="task_members" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="technologies" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="tracks" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+    <table name="uqu_workplaces" schema="" catalog="uquedu_isr_rpms" type="TABLE"/>
+  </data-source>
+</component>

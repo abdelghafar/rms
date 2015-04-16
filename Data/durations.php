@@ -15,8 +15,8 @@ $result = $conn->ExecuteNonQuery($stmt);
 $jsonArray = array();
 while ($row = mysql_fetch_array($result)) {
     $jsonArray[] = array(
-        'seq_id' => $row['seq_id'],
-        'duration_title' => $row['duration_title_en'] . " / " . $row['duration_title'],
+        'seq_id' => $row['seq_id'], 
+        'duration_title' => $row['duration_title_en']. " / " . $row['duration_title'], 
         'duration_month' => $row['duration_month']);
 }
 echo json_encode($jsonArray);

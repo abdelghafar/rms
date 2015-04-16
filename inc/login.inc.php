@@ -21,6 +21,7 @@ $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/header.tpl');
 
 
+
 $userName = trim($_POST['username']);
 $password = $_POST['password'];
 

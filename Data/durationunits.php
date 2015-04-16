@@ -13,7 +13,7 @@ require_once '../lib/mysqlConnection.php';
 $conn = new MysqlConnect();
 
 
-$stmt = "SELECT seq_id,unit_name FROM duration_units ORDER BY seq_id";
+$stmt = "SELECT seq_id,unit_name FROM duration_units ORDER BY seq_id" ;
 $result = $conn->ExecuteNonQuery($stmt);
 $jsonArray = array();
 while ($row = mysql_fetch_array($result)) {

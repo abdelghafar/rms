@@ -12,7 +12,8 @@ require_once '../lib/mysqlConnection.php';
 
 $conn = new MysqlConnect();
 
-if (isset($_REQUEST['phase_id'])) {
+if (isset($_REQUEST['phase_id'])) 
+    {
     $stmt = "SELECT task_id,task_name FROM project_tasks where phase_id =" . $_REQUEST['phase_id'];
     $result = $conn->ExecuteNonQuery($stmt);
     $jsonArray = array();

@@ -23,14 +23,17 @@ try {
         $_SESSION['Authorized'] = 1;
         $_SESSION['EmpCode'] = $userCode;
         $_SESSION['UserEmail'] = $userEmail;
-        $_SESSION['User_Name'] = $userCode . '@' . $userEmail;
-        $person_id = 0;
-        $p = new Persons();
+        $_SESSION['User_Name'] = $userCode.'@'.$userEmail;
+        $person_id =0 ;
+        $p =new Persons();
         $u = $p->findByEmployeeCode($userCode);
-        if ($u == 0) {
+        if($u==0)
+        {
             $peron_details = get_uqu_instructors($userCode);
             $person_id = $p->ImportPerson($peron_details);
-        } else {
+        }
+        else
+        {
             $person_id = $u;
         }
         $_SESSION['person_id'] = $person_id;

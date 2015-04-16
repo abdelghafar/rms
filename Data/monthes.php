@@ -19,7 +19,7 @@ if (isset($_REQUEST['project_id'])) {
     $row = mysql_fetch_array($result);
     //echo $row[proposed_duration];
     $jsonArray = array();
-    for ($i = 1; $i < $row[proposed_duration]; $i++) {
+    for ( $i = 1 ; $i < $row[proposed_duration]; $i++) {
         $jsonArray[] = array('month_id' => $i, 'month_name' => $i);
     }
     echo json_encode($jsonArray);

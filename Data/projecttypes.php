@@ -14,6 +14,6 @@ $stmt = "SELECT seq_id,title,title_en FROM project_types where isVisible = 1";
 $result = $conn->ExecuteNonQuery($stmt);
 $jsonArray = array();
 while ($row = mysql_fetch_array($result)) {
-    $jsonArray[] = array('seq_id' => $row['seq_id'], 'title' => $row['title_en'] . " / " . $row['title']);
+    $jsonArray[] = array('seq_id' => $row['seq_id'], 'title' => $row['title_en']." / ". $row['title']);
 }
 echo json_encode($jsonArray);

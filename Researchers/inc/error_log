@@ -1,0 +1,3 @@
+[14-Apr-2015 12:06:23 Asia/Riyadh] PHP Fatal error:  Call to undefined method research_stuff::SetResumeUrl() in /home/dsr/public_html/rms/Researchers/inc/fileUpload.php on line 225
+[14-Apr-2015 12:07:13 Asia/Riyadh] PHP Fatal error:  Call to undefined method research_stuff::SetResumeUrl() in /home/dsr/public_html/rms/Researchers/inc/fileUpload.php on line 225
+[14-Apr-2015 13:58:38 Asia/Riyadh] PHP Fatal error:  Function name must be a string in /home/dsr/public_html/rms/Researchers/inc/fileUpload.php on line 37

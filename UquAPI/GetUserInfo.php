@@ -32,6 +32,6 @@ function curl_send($data, $url, $requestType) {
 }
 
 
-echo GetUserInfo(4330113) ; 
+echo GetUserInfo(4330113) ;
 
 ?>
