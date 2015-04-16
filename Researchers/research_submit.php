@@ -401,7 +401,7 @@ if (isset($projectId)) {
                     </tr>
                     <tr>
                         <td>
-                            مجال البحث/Priority
+                            مجال البحث/Research area
                             <span class="required">*</span>
                         </td>
                         <td>

@@ -23,14 +23,20 @@ function GetRsearchDetails($research_id)
     $rs = $obj->GetResearchDetailsMin($research_id);
     $array = array();
     while ($row = mysql_fetch_array($rs)) {
-        $array = array('title_ar' => $row['title_ar'],
+        $array = array(
             'title_en' => $row['title_en'],
             'tech_title' => $row['tech_title'],
             'track_title' => $row['track_name'],
             'subTrack_title' => $row['subTrack_name'],
             'name_ar' => $row['name_ar'],
             'name_en' => $row['name_en'],
-            'duration' => $row['proposed_duration']);
+            'duration' => $row['proposed_duration'],
+            'status_date' => $row['status_date'],
+            'research_code' => $row['research_code'],
+            'type_title' => $row['type_title'],
+            'type_title_en' => $row['type_title_en'],
+            'keywords' => $row['keywords']
+        );
     }
     return $array;
 }
@@ -114,7 +120,7 @@ if (isset($_GET['q'])) {
     $lg['w_page'] = 'page';
 // set some language-dependent strings (optional)
     $pdf->setLanguageArray($lg);
-    $pdf->SetFont('aealarabiya', '', 12);
+    $pdf->SetFont('aealarabiya', '', 14);
     $pdf->setPrintFooter(false);
     $pdf->AddPage();
     $pdf->setRTL(true);
@@ -126,15 +132,28 @@ if (isset($_GET['q'])) {
     $name_ar = $details['name_ar'];
     $name_en = $details['name_en'];
     $duration = $details['duration'];
-    $html = '<p>' . 'المقدمة' . '</p>';
+    $status_date = $details['status_date'];
+    $research_code = $details['research_code'];
+    $type_title = $details['type_title'];
+    $type_title_en = $details['type_title_en'];
+    $keywords = $details['keywords'];
+
+    $html = '<p style="text-align: center">' . 'نموذج المقترح البحثي ' . '</p>';
+    $pdf->writeHTML($html, true, 0, true, 0);
+
+    $pdf->SetFont('aealarabiya', '', 12);
+    $html = '<p>' . 'معلومات عامة ' . '</p>';
     $html .= '<hr/><br/>';
-    $html .= '<style type="text/css">
+    $pdf->writeHTML($html, true, 0, true, 0);
+
+    $pdf->SetFont('aealarabiya', '', 10);
+    $html = '<style type="text/css">
         .tg  {border-spacing:0;border-color:#999;margin:0px auto;}
-        .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+        .tg td{font-size:12px;padding:10px 5px;border-style:solid;border-width:2px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
         .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
         .tg .tg-uy9o{font-size:18px}
         .tg .tg-0bb8{font-weight:bold;font-size:18px;background-color:#0d516d}
-        .tg .tg-lrt0{background-color:#D2E4FC;font-size:18px}
+        .tg .tg-lrt0{background-color:#D2E4FC;font-size:14px}
     </style>
     <table class="tg" border="2" dir="rtl">
         <tr>
@@ -142,15 +161,15 @@ if (isset($_GET['q'])) {
             <th class="tg-0bb8">الوصف</th>
         </tr>
         <tr>
-            <td class="tg-lrt0" style="font-weight: bold">عنوان البحث / اللغة العربية</td>
+            <td class="tg-lrt0" style="font-weight: bold">عنوان البحث باللغة العربية</td>
             <td class="tg-lrt0">' . $title_ar . '</td>
         </tr>
         <tr>
-            <td class="tg-uy9o" style="font-weight: bold">عنوان البحث / اللغة الانجليزية</td>
+            <td class="tg-uy9o" style="font-weight: bold">عنوان البحث باللغة الانجليزية</td>
             <td class="tg-uy9o">' . $title_en . '</td>
         </tr>
         <tr>
-            <td class="tg-lrt0" style="font-weight: bold">الاولوية</td>
+            <td class="tg-lrt0" style="font-weight: bold">مجال البحث</td>
             <td class="tg-lrt0">' . $tech_title . '</td>
         </tr>
         <tr>
@@ -162,16 +181,16 @@ if (isset($_GET['q'])) {
             <td class="tg-lrt0">' . $subTrack_title . '</td>
         </tr>
         <tr>
-            <td class="tg-uy9o" style="font-weight: bold">الباحث الرئيسي / اللغة العربية</td>
+            <td class="tg-uy9o" style="font-weight: bold">الباحث الرئيسي باللغة العربية  </td>
             <td class="tg-uy9o">' . $name_ar . '</td>
         </tr>
         <tr>
-            <td class="tg-lrt0" style="font-weight: bold">الباحث الرئيسي / اللغة الانجليزية</td>
+            <td class="tg-lrt0" style="font-weight: bold">الباحث الرئيسي باللغة الانجليزية</td>
             <td class="tg-lrt0">' . $name_en . '</td>
         </tr>
         <tr>
             <td class="tg-uy9o" style="font-weight: bold">تاريخ الارسال</td>
-            <td class="tg-uy9o">23-10-2015</td>
+            <td class="tg-even en">' . $status_date . '</td>
         </tr>
         <tr>
             <td class="tg-lrt0" style="font-weight: bold">مرحلة التقديم</td>
@@ -181,6 +200,19 @@ if (isset($_GET['q'])) {
             <td class="tg-uy9o" style="font-weight: bold">مدة المشروع -بالشهور</td>
             <td class="tg-uy9o">' . $duration . '</td>
         </tr>
+        <tr>
+            <td class="tg-lrt0" style="font-weight: bold">نوع المشروع</td>
+            <td class="tg-lrt0">' . $type_title . '</td>
+        </tr>
+        <tr>
+            <td class="tg-uy9o" style="font-weight: bold">الكلمات الدلالية</td>
+            <td class="tg-uy9o">' . $keywords . '</td>
+        </tr>
+        <tr>
+            <td class="tg-lrt0" style="font-weight: bold">رقم المشروع</td>
+            <td class="tg-lrt0">' . $research_code . '</td>
+        </tr>
+        
     </table>';
     $pdf->writeHTML($html, true, 0, true, 0);
     // close and output PDF document

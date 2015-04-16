@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-03-27 15:55:59
+<?php /* Smarty version Smarty-3.1.13, created on 2015-04-09 17:14:57
          compiled from "../templates/Loggedin.tpl" */
 ?>
 <?php /*%%SmartyHeaderCode:185601666254dc664c19bdb7-19133097%%*/
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             'e21674374b5df90875f15295b9660ba33d34913d' =>
                 array(
                     0 => '../templates/Loggedin.tpl',
-                    1 => 1427456521,
+                    1 => 1428588887,
                     2 => 'file',
                 ),
         ),
@@ -26,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             'jquery_js' => 0,
             'script_js' => 0,
             'script_responsive_js' => 0,
-            'index_php' => 0,
-            'logout_php' => 0,
         ),
     'has_nocache_code' => false,
 ), false); /*/%%SmartyHeaderCode%%*/
@@ -67,76 +65,75 @@ $_valid = $_smarty_tpl->decodeProperties(array(
             <script src="<?php echo $_smarty_tpl->tpl_vars['script_responsive_js']->value; ?>
 "></script>
         </head>
-    <body>
-    <div id="art-main">
-        <nav class="art-nav">
-            <div class="art-nav-inner">
-                <ul class="art-hmenu">
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['index_php']->value; ?>
-" class="active">
-                            الصفحة الرئيسية / Home page
-                        </a></li>
-                    <li><a href="../aboutus.php">
-                            حول / About us
-                        </a></li>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['logout_php']->value; ?>
-" class="active">
-                            خروج / Logout
-                        </a></li>
-                </ul>
-            </div>
-        </nav>
+        <body>
+        <div id="art-main">
+            <nav class="art-nav">
+                <div class="art-nav-inner">
+                    <ul class="art-hmenu">
+                        <li><a href="../Researchers/Researchers_View.php" class="active">
+                                الصفحة الرئيسية / Home page
+                            </a></li>
+                        <li><a href="../aboutus.php">
+                                حول / About us
+                            </a></li>
+                        <li><a href="../inc/logout.inc.php" class="active">
+                                خروج / Logout
+                            </a></li>
+                    </ul>
+                </div>
+            </nav>
 
-        <div class="art-sheet clearfix">
-            <header class="art-header">
-                <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
-                    <div class="art-slider-inner">
-                        <div class="art-slide-item art-slideheader0">
+            <div class="art-sheet clearfix">
+                <header class="art-header">
+                    <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
+                        <div class="art-slider-inner">
+                            <div class="art-slide-item art-slideheader0">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader1">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader2">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader3">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader4">
+
+                            </div>
+                            <div class="art-slide-item art-slideheader5">
+
+                            </div>
 
                         </div>
-                        <div class="art-slide-item art-slideheader1">
+                    </div>
+                    <div class="art-slidenavigator art-slidenavigatorheader" data-left="90.6">
+                        <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
+                            href="#" class="art-slidenavigatoritem"></a><a href="#"
+                                                                           class="art-slidenavigatoritem"></a><a
+                            href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
+                    </div>
 
-                        </div>
-                        <div class="art-slide-item art-slideheader2">
 
-                        </div>
-                        <div class="art-slide-item art-slideheader3">
-
-                        </div>
-                        <div class="art-slide-item art-slideheader4">
-
-                        </div>
-                        <div class="art-slide-item art-slideheader5">
-
-                        </div>
+                    <div class="art-shapes">
 
                     </div>
-                </div>
-                <div class="art-slidenavigator art-slidenavigatorheader" data-left="90.6">
-                    <a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
-                        href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a
-                        href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
-                </div>
 
 
-                <div class="art-shapes">
+                </header>
+                <div class="art-layout-wrapper">
+                    <div class="art-content-layout">
+                        <div class="art-content-layout-row">
+                            <div class="art-layout-cell art-content">
+                                <article class="art-post art-article">
 
-                </div>
+                                    <div class="art-postcontent art-postcontent-0 clearfix">
+                                        <div class="art-content-layout-wrapper layout-item-0">
+                                            <div class="art-content-layout layout-item-1">
 
-
-            </header>
-            <div class="art-layout-wrapper">
-                <div class="art-content-layout">
-                    <div class="art-content-layout-row">
-                        <div class="art-layout-cell art-content">
-                            <article class="art-post art-article">
-
-                                <div class="art-postcontent art-postcontent-0 clearfix">
-                                    <div class="art-content-layout-wrapper layout-item-0">
-                                        <div class="art-content-layout layout-item-1">
-
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="art-content-layout">
+                                        <div class="art-content-layout">
 <?php }
 } ?>

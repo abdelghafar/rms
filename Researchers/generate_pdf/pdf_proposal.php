@@ -80,20 +80,25 @@ function get_project_manpower_durations($project_id)
             $duration_row = $duration_obj->GetDurationUnitData($dunit_id);
             $duration_unit = $duration_row ['unit_name'];
         }
+        if ($dunit_id == 1) $duration_unit_en = 'Days'; else  $duration_unit_en = 'Months';
 
         if ($row['type'] === 'role_based') {
             $role_person = $row['role_name'];
+            $role_person_en = $row['role_name_en'];
         } else {
             $role_person = $person->GetPersonName($row['person_id']) . "  ---  " . $row['role_name'];
+            $role_person_en = $person->GetPersonNameEn($row['person_id']) . "  ---  " . $row['role_name_en'];
         }
 
 
         $manspower_list[] = array(
             'person_id' => $row['person_id'],
             'role_person' => $role_person,
+            'role_person_en' => $role_person_en,
             'role_id' => $research_stuff_rs['role_id'],
             'duration' => $duration,
             'duration_unit' => $duration_unit,
+            'duration_unit_en' => $duration_unit_en,
             'dunit_id' => $dunit_id,
         );
     }
@@ -158,14 +163,17 @@ function get_project_work_plan($project_id, $phase_id, $duration)
 
         if ($phaseworkplan_row['type'] === 'role_based') {
             $role_person = $phaseworkplan_row['role_name'];
+            $role_person_en = $phaseworkplan_row['role_name_en'];
         } else {
             $role_person = $person->GetPersonName($phaseworkplan_row['person_id']) . "  ---  " . $phaseworkplan_row['role_name'];
+            $role_person_en = $person->GetPersonNameEn($phaseworkplan_row['person_id']) . "  ---  " . $phaseworkplan_row['role_name_en'];
         }
 
         if ($duration <= 12) {
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
                 'person_role' => $role_person,
+                'person_role_en' => $role_person_en,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],
@@ -184,6 +192,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
                 'person_role' => $role_person,
+                'person_role_en' => $role_person_en,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],
@@ -208,6 +217,7 @@ function get_project_work_plan($project_id, $phase_id, $duration)
             $phases_list[] = array(
                 'task_name' => $phaseworkplan_row['task_name'],
                 'person_role' => $role_person,
+                'person_role_en' => $role_person_en,
                 'm_1' => $monthes_array[1],
                 'm_2' => $monthes_array[2],
                 'm_3' => $monthes_array[3],
@@ -250,7 +260,8 @@ function get_program_goals($project_id)
     while ($row = mysql_fetch_array($goals_rs, MYSQL_ASSOC)) {
         $goals_list[] = array(
             'seq_id' => $row['seq_id'],
-            'goal_title' => $row['goal_title']
+            'goal_title' => $row['goal_title'],
+            'goal_title_en' => $row['goal_title_en']
         );
     }
     //console . log($objectives_list);

@@ -28,31 +28,76 @@ $cur_outcome_id = $_POST['outcome_id'];
     $(document).ready(function () {
         var theme = "energyblue";
         $("#closeObjectivesEditButton").jqxButton({width: '100', height: '30', theme: theme});
+        Goal_list();
 
         // ================= STPGoals Dropdown List =======================
 
         var post_data = 'project_id=' + $('#project_id').val();
-        var source =
-        {
-            datatype: "json",
-            datafields: [
-                {name: 'id'},
-                {name: 'goal_title'},
-            ],
-            url: '../Data/goals.php?' + post_data,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        $("#goal_id_val").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '550px', height: '30px', displayMember: 'goal_title', valueMember: 'id', theme: 'energyblue', rtl: true, promptText: "Select a Goal / اختر الهدف الاستراتيجى "});
 
-        $('#goal_id_val').on('select', function (event) {
-            var args = event.args;
-            var item = $('#goal_id_val').jqxDropDownList('getItem', args.index);
-            if (item != null) {
-                $("#goal_id").val($("#goal_id_val").val());
-                loadGoalObjectives();
-            }
+        function Goal_list() {
+            var post_data = 'project_id=' + $('#project_id').val();
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    {name: 'id'},
+                    {name: 'goal_title'}
+                ],
+                url: 'inc/goals_list_grid_data.php?' + post_data,
+                cache: false
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            $("#goals_grd").jqxGrid(
+                {
+                    source: source,
+                    theme: 'energyblue',
+                    editable: false,
+                    pageable: true,
+                    filterable: true,
+                    width: 800,
+                    pagesize: 20,
+                    autorowheight: true,
+                    autoheight: true,
+                    columnsresize: true,
+                    sortable: true,
+                    rtl: true,
+                    columns: [
+                        {text: 'id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'STP Goals / الأهداف الإستراتيجية', datafield: 'goal_title', type: 'string', width: 800, align: 'center', cellsalign: 'right'}
+                    ]
+                });
+        }
+
+        $("#goals_grd").on('rowclick', function (event) {
+            var goal_id = $('#goals_grd').jqxGrid('getcellvalue', event.args.rowindex, 'id');
+            $('#goal_id').val(goal_id);
+
+            loadGoalObjectives();
+
         });
+        /*var source =
+         {
+         datatype: "json",
+         datafields: [
+         {name: 'id'},
+         {name: 'goal_title'},
+         ],
+         url: '../Data/goals.php?' + post_data,
+         async: false
+         };
+         var dataAdapter = new $.jqx.dataAdapter(source);
+         $("#goal_id_val").jqxDropDownList({source: dataAdapter, selectedIndex: -1, width: '550px', height: '30px', displayMember: 'goal_title', valueMember: 'id', theme: 'energyblue', rtl: true, promptText: "Select a Goal / اختر الهدف الاستراتيجى "});
+
+         $('#goal_id_val').on('select', function(event) {
+         var args = event.args;
+         var item = $('#goal_id_val').jqxDropDownList('getItem', args.index);
+         if (item != null) {
+         $("#goal_id").val($("#goal_id_val").val());
+         loadGoalObjectives();
+         }
+         });*/
         //===========================================================
 
         function loadGoalObjectives() {
@@ -163,6 +208,14 @@ $cur_outcome_id = $_POST['outcome_id'];
         </h3>
     </legend>
 
+    <div class="panel_row">
+        <span style="color: red;font-weight: bold">
+            النقر على الهدف الإستراتيجي  لعرض أهداف المشروع المتوافقة مع هذا الهدف
+            <br>
+            click a STP Goal to see its Project Objectives mapping
+        </span>
+    </div>
+
     <input type="hidden" id="cur_outcome_id" name="cur_outcome_id" value="<? echo $cur_outcome_id; ?>"/>
 
     <div class="panel_row">
@@ -177,16 +230,36 @@ $cur_outcome_id = $_POST['outcome_id'];
             </p>
 
         </div>
+    </div>
+
+
+    <div class="panel_row">
         <div class="panel-cell" style="vertical-align: middle">
+            <div style="float: right;" id="goals_grd"></div>
             <div style="float: right;" id="goal_id_val"></div>
             <input type="hidden" id="goal_id" name="goal_id" value=-1/>
         </div>
     </div>
+    <div class="panel_row">
+        <p></p>
 
-    <div id="objectiveresult" dir="rtl" style="padding-top: 10px"></div>
+        <div class="panel-cell" style="text-align: right;padding-left: 10">
+            <span class="classic">
+                أهداف المشروع 
+                /
+               Project Objectives
+            </span>
+        </div>
+    </div>
 
-    <div id="outcome_objs_grd">
+    <div class="panel_row">
+        <div class="panel-cell" style="vertical-align: middle">
+            <div id="objectiveresult" dir="rtl"></div>
 
+            <div id="outcome_objs_grd">
+
+            </div>
+        </div>
     </div>
     <div class="panel_row">
         <div class="panel-cell" style="width: 100 ;text-align: center;padding-right: 350">

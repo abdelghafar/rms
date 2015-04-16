@@ -66,61 +66,62 @@ if ($seq_id != 0) {
         });
     });</script>
 
+<div style="padding-right: 120">
+    <form id="objdataForm" enctype="multipart/form-data" method="POST">
+        <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>"/>
+        <input type="hidden" id="seq_id" name="seq_id" <?php
+        if ($seq_id != 0)
+            echo "value=" . $obj_rs["seq_id"];
+        else
+            echo "value=0";
+        ?> >
 
-<form id="objdataForm" enctype="multipart/form-data" method="POST">
-    <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>"/>
-    <input type="hidden" id="seq_id" name="seq_id" <?php
-    if ($seq_id != 0)
-        echo "value=" . $obj_rs["seq_id"];
-    else
-        echo "value=0";
-    ?> >
+        <fieldset style="width: 600px;text-align: right;">
+            <legend style="text-align: center">
+                <h3>
+                    اضافة - تعديل مخرجات المشروع / Add - Update Project Outcomes
+                </h3>
+            </legend>
+            <br>
 
-    <fieldset style="width: 600px;text-align: right">
-        <legend style="text-align: center">
-            <h3>
-                اضافة - تعديل مخرجات المشروع / Add - Update Project Outcomes
-            </h3>
-        </legend>
-        <br>
+            <div class="panel_row">
 
-        <div class="panel_row">
-
-            <div class="panel-cell" style="width: 150px;text-align: right;padding-left: 10px;"> 
+                <div class="panel-cell" style="width: 150px;text-align: right;padding-left: 10px;">
 
                 <span class="classic">
                     المخرج
                     /
                    Outcome
                 </span>
-                <span class="required" style="color: red">*</span>
-                </p>
+                    <span class="required" style="color: red">*</span>
+                    </p>
 
+                </div>
+                <div class="panel-cell" style="vertical-align: middle">
+                    <input type="text" id="outcome_name"
+                           name="outcome_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["outcome_title"] . "'"; ?>/>
+                </div>
             </div>
-            <div class="panel-cell" style="vertical-align: middle">
-                <input type="text" id="outcome_name"
-                       name="outcome_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["outcome_title"] . "'"; ?>/>
-            </div>
-        </div>
 
-        <div class="panel_row">
-            <div class="panel-cell" style="width: 150px;text-align: right;padding-left: 10px;"> 
+            <div class="panel_row">
+                <div class="panel-cell" style="width: 150px;text-align: right;padding-left: 10px;">
                 <span class="classic">
                   الوصف
                    /
                    Description 
                 </span>
-                </p>
+                    </p>
+                </div>
+                <div class="panel-cell" style="vertical-align: middle">
+                    <textarea name="outcome_desc" rows="4" cols="20"
+                              id="outcome_desc"><?php if ($seq_id != 0) echo $obj_rs["outcome_desc"]; ?></textarea>
+                </div>
             </div>
-            <div class="panel-cell" style="vertical-align: middle">
-                <textarea name="outcome_desc" rows="4" cols="20"
-                          id="outcome_desc"><?php if ($seq_id != 0) echo $obj_rs["outcome_desc"]; ?></textarea>
+
+            <div style="text-align:center; padding-top: 10px">
+                <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"/>
             </div>
-        </div>
+        </fieldset>
+    </form>
 
-        <div style="text-align:center; padding-top: 10px">
-            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"/>
-        </div>
-    </fieldset>
-</form>
-
+</div>

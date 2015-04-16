@@ -9,13 +9,14 @@ require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';
 
 if (isset($_SESSION['q'])) {
-    $project_id = $_SESSION['q'];
+    $projectId = $_SESSION['q'];
     $obj = new Reseaches();
     $personId = $_SESSION['person_id'];
-    $isAuthorized = $obj->IsAuthorized($project_id, $personId);
+    $isAuthorized = $obj->IsAuthorized($projectId, $personId);
     $CanEdit = $obj->CanEdit($project_id);
     if ($isAuthorized == 1 && $CanEdit == 1) {
-
+        $obj = new Reseaches();
+        $research_lang = $obj->GetResearchLang($projectId);
     } else {
         echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
         exit();
@@ -39,11 +40,6 @@ $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
 $smarty->display('../templates/Loggedin.tpl');
 
-if (isset($_SESSION['q'])) {
-    $projectId = $_SESSION['q'];
-} else {
-    exit();
-}
 ?>
     <html>
     <head>
@@ -78,25 +74,49 @@ if (isset($_SESSION['q'])) {
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
         <script type="text/javascript">
             $(document).ready(function () {
-                $.ajax({url: 'generate_pdf/generate_summary.php?q=<? echo $projectId; ?>', success: function (data) {
-                    $.ajax({url: 'generate_pdf/generate_team.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                        $.ajax({url: 'generate_pdf/generate_details.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                            $.ajax({url: 'generate_pdf/merge_pdf.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
-                                $('#download_file').show();
-                                $('#loadingDiv').hide();
-                                $('#download_file_url').attr('href', data);
-                                $('#submit_button').show();
+
+                if ($('#research_lang').val() === 'ar') {
+                    $.ajax({url: 'generate_pdf/generate_summary.php?q=<? echo $projectId; ?>', success: function (data) {
+                        $.ajax({url: 'generate_pdf/generate_team.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                            $.ajax({url: 'generate_pdf/generate_details.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                $.ajax({url: 'generate_pdf/merge_pdf.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                    $('#download_file').show();
+                                    $('#loadingDiv').hide();
+                                    $('#download_file_url').attr('href', data);
+                                    $('#submit_button').show();
+                                }
+                                });
+
                             }
                             });
-
                         }
                         });
+                    }, beforeSend: function () {
+                        $('#loadingDiv').show();
                     }
                     });
-                }, beforeSend: function () {
-                    $('#loadingDiv').show();
                 }
-                });
+                else {
+                    $.ajax({url: 'generate_pdf/generate_summary_en.php?q=<? echo $projectId; ?>', success: function (data) {
+                        $.ajax({url: 'generate_pdf/generate_team_en.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                            $.ajax({url: 'generate_pdf/generate_details_en.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                $.ajax({url: 'generate_pdf/merge_pdf.php?q=<? echo $projectId; ?>', success: function (data, textStatus, jqXHR) {
+                                    $('#download_file').show();
+                                    $('#loadingDiv').hide();
+                                    $('#download_file_url').attr('href', data);
+                                    $('#submit_button').show();
+                                }
+                                });
+
+                            }
+                            });
+                        }
+                        });
+                    }, beforeSend: function () {
+                        $('#loadingDiv').show();
+                    }
+                    });
+                }
             });
         </script>
     </head>
@@ -113,7 +133,7 @@ if (isset($_SESSION['q'])) {
         لقد تم انشاء الملف بنجاح
         <a id="download_file_url" href="#">اضعط هنا للحصول عليه</a>
     </div>
-
+    <input type="hidden" value="<? echo $research_lang; ?>" id="research_lang">
     <table style="width: 100%;">
         <tr>
             <td>
