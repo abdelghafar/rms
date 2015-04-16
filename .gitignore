@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.pdf
+.idea/
+lib/config.php
+nbproject/
