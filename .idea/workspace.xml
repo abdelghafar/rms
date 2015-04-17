@@ -2,131 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f4b8ad-553b-42e0-9df9-2493685368f3" name="Default" comment="reformat code">
-      <change type="DELETED" beforePath="C:\AppServ\www\rms\lib\generate_research_code.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\AppServ\www\rms\sql\uquedu_isr_rms.sql.gz" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/samplepdfs/one.pdf" afterPath="$PROJECT_DIR$/lib/PDFMerger/samplepdfs/one.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates_c/1be7ff7fdee636597edd726ee98dfef4bfd55d1f.file.footer.tpl.php" afterPath="$PROJECT_DIR$/templates_c/1be7ff7fdee636597edd726ee98dfef4bfd55d1f.file.footer.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates_c/20a5b87bf1d249a8e4b5bdf6dc560aa9c65c681a.file.header.tpl.php" afterPath="$PROJECT_DIR$/templates_c/20a5b87bf1d249a8e4b5bdf6dc560aa9c65c681a.file.header.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/20k_c1.txt" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/20k_c1.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/20k_c2.txt" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/20k_c2.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/FAQ.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/FAQ.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/filters/FilterASCII85_FPDI.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/filters/FilterASCII85_FPDI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/filters/FilterLZW_FPDI.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/filters/FilterLZW_FPDI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/GetStuff_Roles.php" afterPath="$PROJECT_DIR$/Data/GetStuff_Roles.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UquAPI/GetUserInfo.php" afterPath="$PROJECT_DIR$/UquAPI/GetUserInfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/acceptpagebreak.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/acceptpagebreak.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addfont.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addfont.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addlink.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addlink.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addpage.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/addpage.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/aliasnbpages.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/aliasnbpages.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/templates_c/b55ed6b4f266b986c43149d162d3e779b8d73ecc.file.header.tpl.php" afterPath="$PROJECT_DIR$/inc/templates_c/b55ed6b4f266b986c43149d162d3e779b8d73ecc.file.header.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/calligra.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/calligra.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/cell.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/cell.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/close.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/close.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/countries.txt" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/countries.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/courier.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/courier.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/durations.php" afterPath="$PROJECT_DIR$/Data/durations.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/durationunits.php" afterPath="$PROJECT_DIR$/Data/durationunits.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/error.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/error.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/footer.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/footer.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/fpdf.css" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/fpdf.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/fpdf.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/fpdf.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/fpdf.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/fpdf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdf_tpl.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdf_tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdi.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdi_pdf_parser.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/fpdi_pdf_parser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/getstringwidth.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/getstringwidth.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/getx.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/getx.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/gety.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/gety.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/goals.php" afterPath="$PROJECT_DIR$/Data/goals.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/header.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/header.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helvetica.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helvetica.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticab.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticab.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticabi.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticabi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticai.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/helveticai.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/histo.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/histo.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/image.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/image.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/index.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/index.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/index.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/index.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/install.txt" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/install.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/license.txt" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/license.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/line.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/line.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/link.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/link.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/ln.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/ln.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/login.inc.php" afterPath="$PROJECT_DIR$/inc/login.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/makefont/makefont.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/makefont/makefont.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/makefont.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/makefont.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/monthes.php" afterPath="$PROJECT_DIR$/Data/monthes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/multicell.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/multicell.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/output.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/output.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/pageno.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/pageno.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/pdf_context.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/pdf_context.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdi/pdf_parser.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdi/pdf_parser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/projecttypes.php" afterPath="$PROJECT_DIR$/Data/projecttypes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/rect.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/rect.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/redirect.inc.php" afterPath="$PROJECT_DIR$/inc/redirect.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/research_stuff2.php" afterPath="$PROJECT_DIR$/Data/research_stuff2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/sample.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/sample.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/sample_1.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/sample_1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setauthor.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setauthor.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setautopagebreak.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setautopagebreak.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setcompression.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setcompression.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setcreator.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setcreator.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setdisplaymode.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setdisplaymode.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setdrawcolor.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setdrawcolor.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfillcolor.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfillcolor.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfont.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfont.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfontsize.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setfontsize.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setkeywords.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setkeywords.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setleftmargin.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setleftmargin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setlinewidth.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setlinewidth.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setlink.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setlink.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setmargins.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setmargins.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setrightmargin.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setrightmargin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setsubject.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setsubject.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settextcolor.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settextcolor.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settitle.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settitle.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settopmargin.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/settopmargin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setx.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setx.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setxy.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/setxy.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/sety.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/sety.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/stuff_rolesTest_5.php" afterPath="$PROJECT_DIR$/test/stuff_rolesTest_5.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/symbol.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/symbol.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/tasks.php" afterPath="$PROJECT_DIR$/Data/tasks.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/text.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/text.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/times.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/times.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesb.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesb.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesbi.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesbi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesi.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/timesi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto1.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto1.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto1.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto2.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto2.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto2.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto3.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto3.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto3.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto3.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto4.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto4.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto4.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto5.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto5.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto5.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto5.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto6.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto6.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto6.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto6.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto7.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto7.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto7.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/tutorial/tuto7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/write.htm" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/doc/write.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/zapfdingbats.php" afterPath="$PROJECT_DIR$/lib/PDFMerger/fpdf/font/zapfdingbats.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="23dc8984-fb0b-43d6-91e4-57e6df46c474" name="Rejected commit: Default" comment="reformat code" />
-    <list id="61204349-c693-4ed0-8675-5af8bb124880" name="Failed commit: Default" comment="reformat code">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/GetPersonByEmpCode.php" afterPath="$PROJECT_DIR$/Data/GetPersonByEmpCode.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Programs.php" afterPath="$PROJECT_DIR$/Data/Programs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/ProjectPhases.php" afterPath="$PROJECT_DIR$/Data/ProjectPhases.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/doc_categories_GetList.php" afterPath="$PROJECT_DIR$/Data/doc_categories_GetList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/saveCoAuthor.php" afterPath="$PROJECT_DIR$/Data/saveCoAuthor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/saveOtherPersonal.php" afterPath="$PROJECT_DIR$/Data/saveOtherPersonal.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/subtracks.php" afterPath="$PROJECT_DIR$/Data/subtracks.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/technologies.php" afterPath="$PROJECT_DIR$/Data/technologies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/tracks.php" afterPath="$PROJECT_DIR$/Data/tracks.php" />
-    </list>
+    <list id="61204349-c693-4ed0-8675-5af8bb124880" name="Failed commit: Default" comment="reformat code" />
     <ignored path="rms.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -153,6 +32,9 @@
   <component name="FavoritesManager">
     <favorites_list name="rms" />
   </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -160,11 +42,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="project_stuff_enhancement" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Researchers/objectives_tasks.php" />
         <option value="$PROJECT_DIR$/Researchers/resources_tasks.php" />
         <option value="$PROJECT_DIR$/Researchers/outcomes_objectives.php" />
         <option value="$PROJECT_DIR$/Researchers/research_submit.php" />
@@ -182,7 +68,6 @@
         <option value="$PROJECT_DIR$/Researchers/ajax/project_stuff_CoI.php" />
         <option value="$PROJECT_DIR$/Researchers/ajax/project_stuff_consultants.php" />
         <option value="$PROJECT_DIR$/Researchers/generate_pdf/generate_team.php" />
-        <option value="$PROJECT_DIR$/Researchers/project_stuff.php" />
         <option value="$PROJECT_DIR$/Researchers/ajax/project_total_budegt.php" />
         <option value="$PROJECT_DIR$/Researchers/ajax/project_travel_total.php" />
         <option value="$PROJECT_DIR$/Researchers/ajax/project_materials_total.php" />
@@ -215,6 +100,8 @@
         <option value="$PROJECT_DIR$/Researchers/selectProgram.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/test/stuff_rolesTest_5.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Researchers/project_stuff.php" />
       </list>
     </option>
   </component>
@@ -317,7 +204,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
+              <option name="myItemId" value="Researchers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -359,6 +246,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="827" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="dynamic.classpath" value="false" />
+    <property name="ignore_missing_gitignore" value="true" />
   </component>
   <component name="RunManager" selected="PHPUnit.rms">
     <configuration default="false" name="selectProgram.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Researchers/selectProgram.php">
@@ -1785,7 +1673,19 @@
       <created>1429191167706</created>
       <updated>1429191167706</updated>
     </task>
-    <option name="localTasksCounter" value="341" />
+    <task id="LOCAL-00341" summary="reformat code">
+      <created>1429192351143</created>
+      <updated>1429192351143</updated>
+    </task>
+    <task id="LOCAL-00342" summary="reformat code">
+      <created>1429208024055</created>
+      <updated>1429208024055</updated>
+    </task>
+    <task id="LOCAL-00343" summary="reformat code">
+      <created>1429302788904</created>
+      <updated>1429302788904</updated>
+    </task>
+    <option name="localTasksCounter" value="344" />
     <servers>
       <GitHub shared="false" url="github.com">
         <commitMessageFormat>{id} {summary}</commitMessageFormat>
@@ -1826,20 +1726,20 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3282313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30952382" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41156462" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25981873" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17673716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29380664" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23187311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1971299" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3469388" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1971299" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.77040815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3101695" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41156462" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17673716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3469388" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2025,11 +1925,6 @@
         <state line="81" column="0" selection-start="5857" selection-end="5857" vertical-scroll-proportion="0.099029124" vertical-offset="1904" max-vertical-offset="2669" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Researchers/project_stuff.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="75" selection-start="7479" selection-end="7479" vertical-scroll-proportion="0.26407766" vertical-offset="2584" max-vertical-offset="8279" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Researchers/searchOtherPersonal.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="203" column="30" selection-start="8566" selection-end="8566" vertical-scroll-proportion="0.27755103" vertical-offset="3400" max-vertical-offset="5151" />
@@ -2128,6 +2023,22 @@
     <entry file="file://$PROJECT_DIR$/Data/doc_categories_GetList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <folding>
+            <marker date="1422709970000" expanded="true" signature="-1:-1" placeholder="SELECT seq_i..doc_categories..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="10" selection-start="85" selection-end="85" vertical-scroll-proportion="0.12099644" vertical-offset="0" max-vertical-offset="562">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Researchers/project_stuff.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="28" selection-start="384" selection-end="384" vertical-scroll-proportion="0.44402984" vertical-offset="0" max-vertical-offset="8075">
           <folding />
         </state>
       </provider>
