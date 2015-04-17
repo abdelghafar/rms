@@ -1,4 +1,6 @@
 <?
+//enhancement version of project_stuff....
+
 session_start();
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
