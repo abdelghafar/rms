@@ -111,6 +111,7 @@ class Persons
     {
         $conn = new MysqlConnect();
         $stmt = "update persons set ResumeUrl='" . $url . "' where Person_id=" . $person_id;
+        echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
