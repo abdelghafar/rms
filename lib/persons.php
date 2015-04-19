@@ -118,7 +118,7 @@ class Persons
     public function GetResumeUrl($person_id)
     {
         $con = new MysqlConnect();
-        $stmt = "Select ResumeUrl From persons where person_id=" . $person_id;
+        $stmt = "Select ResumeUrl From persons where Person_id=" . $person_id;
         $rs = $con->ExecuteNonQuery($stmt);
         $ResumeUrl = "";
         while ($row = mysql_fetch_array($rs)) {
