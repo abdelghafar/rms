@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
 require_once '../../lib/research_stuff.php';
