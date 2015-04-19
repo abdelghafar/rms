@@ -25,6 +25,7 @@ $review_file = 0;
 $research_method_ok = 0;
 $value_ok = 0;
 $ref_ok = 0;
+$Resume = 0;
 $msg = "";
 if (strlen($arabicAbs) != 0) {
     $arabicAbs_file = 1;
