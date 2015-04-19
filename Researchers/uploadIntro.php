@@ -107,7 +107,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var fileName = args.file;
             var serverResponce = args.response;
             $('#log').html(serverResponce);
-            console.log(fileName);
+            //console.log(fileName);
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
             localization: {
@@ -284,7 +284,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var fileName = args.file;
             var serverResponce = args.response;
             $('#Resume_upload_log').html(serverResponce);
-            console.log(fileName);
+            //console.log(fileName);
         });
         //----------------------------------------------------------------------------------------------------------
         CheckFiles('<? echo $projectId; ?>');
@@ -317,11 +317,11 @@ $smarty->display('../templates/Loggedin.tpl');
                             //alert('arabic_abs_file:' + arabic_abs_file);
                             msg += 'Please upload the arabic abstract';
                         }
-                        console.log(arabic_abs_file);
+                        //console.log(arabic_abs_file);
                     }
                 });
                 $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    console.log(data);
+                    //console.log(data);
                     if (data == 1) {
                         $('#arAbsUpload_log').html('');
                     }
@@ -347,14 +347,14 @@ $smarty->display('../templates/Loggedin.tpl');
                             eng_abs_file = 0;
                             msg += 'Please upload the english abstract';
                         }
-                        console.log(eng_abs_file);
+                        //console.log(eng_abs_file);
                     },
                     error: function (err) {
 
                     }
                 });
                 $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    console.log(data);
+                    //console.log(data);
                     if (data == 1) {
                         //ok
                     }
@@ -380,7 +380,7 @@ $smarty->display('../templates/Loggedin.tpl');
                             msg += 'Please upload the introduction';
                             intro_file = 0;
                         }
-                        console.log(intro_file);
+                        //console.log(intro_file);
                     },
                     error: function (err) {
 
