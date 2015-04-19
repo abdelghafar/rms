@@ -45,10 +45,10 @@ if (isset($_GET['q'])) {
 
     }
 
-    if ($_GET['type'] == 'Resume') {
-        $file_name .= 'Resume_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-        $target_file = $target_dir . 'Resume_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-    }
+//    if ($_GET['type'] == 'Resume') {
+//        $file_name .= 'Resume_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+//        $target_file = $target_dir . 'Resume_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+//    }
 
 
     $type = filter_input(INPUT_GET, 'type');
