@@ -115,8 +115,8 @@ if (isset($_GET['q'])) {
         }
         case 'Resume':
         {
-            $file_name .= 'Resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-            $target_file = $target_dir . 'Resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $file_name .= 'resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
     }
