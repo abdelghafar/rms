@@ -284,6 +284,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var fileName = args.file;
             var serverResponce = args.response;
             $('#Resume_upload_log').html(serverResponce);
+            alert(serverResponce);
             //console.log(fileName);
         });
         //----------------------------------------------------------------------------------------------------------
