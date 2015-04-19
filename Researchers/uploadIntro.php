@@ -284,7 +284,6 @@ $smarty->display('../templates/Loggedin.tpl');
             var fileName = args.file;
             var serverResponce = args.response;
             $('#Resume_upload_log').html(serverResponce);
-            alert(serverResponce);
             //console.log(fileName);
         });
         //----------------------------------------------------------------------------------------------------------
@@ -888,7 +887,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr>
         <td colspan="5">
-        <div id="result" class="errormsgbox" style="width: 700px;height:auto;display: none;">
+            <div id="result" class="errormsgbox" style="width: 700px;height:auto;display: none;">
                 <p>
                     يجب تحميل جميع الملفات
                 </p>
