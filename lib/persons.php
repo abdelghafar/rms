@@ -106,4 +106,24 @@ class Persons
         $res = $conn->ExecuteNonQuery($stmt);
         return mysql_insert_id();
     }
+
+    public function SetResumeUrl($person_id, $url)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "update persons set ResumeUrl='" . $url . "' where Person_id=" . $person_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetResumeUrl($person_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "Select ResumeUrl From persons where person_id=" . $person_id;
+        $rs = $con->ExecuteNonQuery($stmt);
+        $ResumeUrl = "";
+        while ($row = mysql_fetch_array($rs)) {
+            $ResumeUrl = $row['ResumeUrl'];
+        }
+        return $ResumeUrl;
+    }
 }
