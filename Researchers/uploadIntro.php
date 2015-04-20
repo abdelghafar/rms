@@ -110,7 +110,7 @@ $smarty->display('../templates/Loggedin.tpl');
             //$('#log').html(serverResponce);
             //check for the PDF Lib
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                //console.log(data);
+                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
                     //
