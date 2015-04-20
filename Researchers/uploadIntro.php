@@ -541,8 +541,8 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <table style="direction: rtl;border: 1px;width: 100%;">
     <tr style="margin-top: 25px;">
-        <td>
-            الملخص بالعربي / Arabic Summary
+        <td class="classic" style="color: #010f18">
+        الملخص بالعربي / Arabic Summary
             <span class="required">*</span>
         </td>
         <td>
@@ -570,8 +570,8 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </tr>
     <tr>
-        <td>
-            الملخص بالانجليزي / English Summary
+        <td class="classic" style="color: #010f18">
+        الملخص بالانجليزي / English Summary
             <span class="required">*</span>
         </td>
         <td>
@@ -599,8 +599,8 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </tr>
     <tr>
-        <td>
-            مقدمة المشروع / Introduction
+        <td class="classic" style="color: #010f18">
+        مقدمة المشروع / Introduction
             <span class="required">*</span>
         </td>
         <td>
@@ -627,8 +627,8 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
     </tr>
     <tr>
-        <td>
-            المسح الأدبي / Literature Review
+        <td class="classic" style="color: #010f18">
+        المسح الأدبي / Literature Review
             <span class="required">*</span>
         </td>
         <td>
@@ -654,8 +654,8 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
     </tr>
     <tr>
-        <td>
-            منهجية البحث / Research Methodology
+        <td class="classic" style="color: #010f18">
+        منهجية البحث / Research Methodology
             <span class="required">*</span>
         </td>
         <td>
@@ -682,8 +682,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td>
-            أهداف المشروع / Objectives
+        <td class="classic" style="color: #010f18">
+        أهداف المشروع / Objectives
         </td>
         <td>
             <a href="#">
@@ -709,8 +709,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td>
-            المهام و الأهداف / Tasks and Objectives
+        <td class="classic" style="color: #010f18">
+        المهام و الأهداف / Tasks and Objectives
         </td>
         <td>
             <a href="#">
@@ -736,8 +736,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td>
-            خطة العمل / Working Plan
+        <td class="classic" style="color: #010f18">
+        خطة العمل / Working Plan
         </td>
         <td>
             <a href="#">
@@ -763,8 +763,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td>
-            قيمة المشروع للدولة / Value To Kingdom
+        <td class="classic" style="color: #010f18">
+        قيمة المشروع للدولة / Value To Kingdom
             <span class="required">*</span>
         </td>
         <td>
@@ -791,8 +791,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td>
-            الميزانية / Budget
+        <td class="classic" style="color: #010f18">
+        الميزانية / Budget
         </td>
         <td>
             <a href="#">
@@ -818,8 +818,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td>
-            المخرجات و الاهداف / Outcomes and Objectives
+        <td class="classic" style="color: #010f18">
+        المخرجات و الاهداف / Outcomes and Objectives
         </td>
         <td>
             <a href="#">
@@ -845,8 +845,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td>
-            المراجع العلمية/ References
+        <td class="classic" style="color: #010f18">
+        المراجع العلمية/ References
             <span class="required">*</span>
         </td>
         <td>
@@ -874,8 +874,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td>
-            السيرة الذاتية / Resume
+        <td class="classic" style="color: #010f18">
+        السيرة الذاتية / Resume
             <span class="required">*</span>
         </td>
         <td>
