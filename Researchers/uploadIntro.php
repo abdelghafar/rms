@@ -121,11 +121,17 @@ $smarty->display('../templates/Loggedin.tpl');
                     $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
-                    $('#arAbsUpload_log').html('');
-                    $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+
                     $.ajax({
                         url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + arabic_summary_url, success: function (data) {
-                            $('#arAbsUpload_log').html(data);
+                            if (data == 1) {
+                                $('#arAbsUpload_log').html('');
+                                $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#arAbsUpload_log').html('');
+                                $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
                         }
                     });
                 }
