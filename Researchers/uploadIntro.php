@@ -109,7 +109,11 @@ $smarty->display('../templates/Loggedin.tpl');
             var fileName = args.file;
             var serverResponce = args.response;
             //get arabic_summary_url
-
+            $.ajax({
+                url: 'ajax/get_arabic_summary_url.php?q=' + projectId, data: {url: projectId}, success: function (data) {
+                    console.log(data);
+                }
+            });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
 //                console.log(data);
                 if (data == 1) {
