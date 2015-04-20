@@ -386,9 +386,9 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
         <td>
             <?
-            //            if (strlen($arabicAbs) > 0) {
-            //                echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            //            }
+            if (strlen($arabicAbs) > 0) {
+                echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+            }
             ?>
             <div id="arabic_summary_url">
 
