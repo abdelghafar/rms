@@ -109,17 +109,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //$('#log').html(serverResponce);
             //check for the PDF Lib
-            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                if (data == 1) {
-                    $('#arAbsUpload_log').html('');
-                }
-                else if (data == -1) {
-                    $('#arAbsUpload_log').html('');
-                } else {
-                    $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                }
-
-            }});
+             
 
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
