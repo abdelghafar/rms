@@ -541,7 +541,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <table style="direction: rtl;border: 1px;width: 100%;">
     <tr style="margin-top: 25px;">
-        <td class="classic" style="color: #010f18">
+        <td>
         الملخص بالعربي / Arabic Summary
             <span class="required">*</span>
         </td>
@@ -570,7 +570,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </tr>
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         الملخص بالانجليزي / English Summary
             <span class="required">*</span>
         </td>
@@ -599,7 +599,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     </tr>
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         مقدمة المشروع / Introduction
             <span class="required">*</span>
         </td>
@@ -627,7 +627,7 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
     </tr>
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         المسح الأدبي / Literature Review
             <span class="required">*</span>
         </td>
@@ -654,7 +654,7 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
     </tr>
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         منهجية البحث / Research Methodology
             <span class="required">*</span>
         </td>
@@ -682,7 +682,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td class="classic" style="color: #010f18">
+        <td>
         أهداف المشروع / Objectives
         </td>
         <td>
@@ -709,7 +709,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td class="classic" style="color: #010f18">
+        <td>
         المهام و الأهداف / Tasks and Objectives
         </td>
         <td>
@@ -736,7 +736,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td class="classic" style="color: #010f18">
+        <td>
         خطة العمل / Working Plan
         </td>
         <td>
@@ -763,7 +763,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         قيمة المشروع للدولة / Value To Kingdom
             <span class="required">*</span>
         </td>
@@ -791,7 +791,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td class="classic" style="color: #010f18">
+        <td>
         الميزانية / Budget
         </td>
         <td>
@@ -818,7 +818,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr style="display: none;">
-        <td class="classic" style="color: #010f18">
+        <td>
         المخرجات و الاهداف / Outcomes and Objectives
         </td>
         <td>
@@ -845,7 +845,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         المراجع العلمية/ References
             <span class="required">*</span>
         </td>
@@ -874,7 +874,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         السيرة الذاتية / Resume
             <span class="required">*</span>
         </td>
@@ -903,7 +903,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td class="classic" style="color: #010f18">
+        <td>
         اقرار انهاء البعثة
 
         </td>
