@@ -30,4 +30,24 @@ class PersonName
         }
         return $name_ar;
     }
+
+    public function GetPersonNameEn($personId)
+    {
+        $stmt = "SELECT name_en FROM persons Where Person_id=" . $personId;
+        $result = mysql_query($stmt);
+        while ($row = mysql_fetch_array($result)) {
+            $name_en = $row['name_en'];
+        }
+        return $name_en;
+    }
+
+    public function GetPersonPosition($personId)
+    {
+        $stmt = "SELECT Position FROM persons Where Person_id=" . $personId;
+        $result = mysql_query($stmt);
+        while ($row = mysql_fetch_array($result)) {
+            $Position = $row['Position'];
+        }
+        return $Position;
+    }
 }
