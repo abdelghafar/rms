@@ -39,6 +39,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         default:
             {
+            $msg = -1;
             break;
 
             }
