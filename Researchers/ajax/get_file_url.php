@@ -60,5 +60,5 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
 
     }
-    echo "." . $url . "'";
+    echo $url;
 }
