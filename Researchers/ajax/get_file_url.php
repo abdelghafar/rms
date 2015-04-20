@@ -8,7 +8,7 @@
 session_start();
 
 require_once '../../lib/Reseaches.php';
-//require_once '../../lib/persons.php';
+require_once '../../lib/persons.php';
 
 if (isset($_GET['q']) && isset($_GET['type'])) {
     $project_id = filter_input(INPUT_GET, 'q');
