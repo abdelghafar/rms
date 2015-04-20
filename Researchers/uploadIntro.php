@@ -118,7 +118,7 @@ $smarty->display('../templates/Loggedin.tpl');
 //                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
-                    $('#arabic_summary_url').html('<a href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#arabic_summary_url').html('');
@@ -156,7 +156,7 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#enAbsUpload_log').html('');
-                    $('#english_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#english_summary_url').html('<a id="english_summary_url" href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#english_summary_url').html('');
