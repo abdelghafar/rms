@@ -118,7 +118,7 @@ $smarty->display('../templates/Loggedin.tpl');
 //                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
-                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#arabic_summary_url').html('<a id="arabic_summary_url" target="_blank" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#arabic_summary_url').html('');
@@ -418,7 +418,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="arabic_summary_url">
                 <?
                 if (strlen($arabicAbs) > 0) {
-                    echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="arabic_summary_url" target="_blank" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
