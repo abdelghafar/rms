@@ -36,6 +36,7 @@ if (isset($_SESSION['q'])) {
         $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
         $refs_url = $obj->GetRefsUrl($projectId);
         $ResumeUrl = $person->GetResumeUrl($personId);
+        $finishing_scholarship_url = $person->GetFinishingScholarshipUrl($personId);
     } else {
         ob_start();
         header('Location:./forbidden.php');
@@ -286,7 +287,23 @@ $smarty->display('../templates/Loggedin.tpl');
             $('#Resume_upload_log').html(serverResponce);
             //console.log(fileName);
         });
-        //----------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------
+        //finishing_scholarship_url
+        $('#finishing_scholarship_url_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=finishing_scholarship&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
+            browseButton: 'استعراض',
+            uploadButton: 'تحميل الملف',
+            cancelButton: 'الغاء',
+            uploadFileTooltip: 'تحميل الملف',
+            cancelFileTooltip: 'الغاء التحميل'
+        }});
+        $('#finishing_scholarship_url_upload').on('uploadEnd', function (event) {
+            var args = event.args;
+            var fileName = args.file;
+            var serverResponce = args.response;
+            $('#finishing_scholarship_url_upload_log').html(serverResponce);
+            //console.log(fileName);
+        });
+        //--------------------------------------------------------------------------------------------------------------
         CheckFiles('<? echo $projectId; ?>');
     });</script>
     <script type="text/javascript">
@@ -882,6 +899,35 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
         <td>
             <div id="Resume_upload_log" style="width: 100%;height: auto;"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            اقرار انهاء البعثة
+            <span class="required">*</span>
+        </td>
+        <td>
+            <a href="#">
+                النموذج / Template
+            </a>
+        </td>
+        <td>
+            <div id='finishing_scholarship_url_upload'></div>
+            <div class="classic" style="color: #ff0000">
+                يسمح بملفات pdf فقط
+            </div>
+        </td>
+        <td>
+            <?
+            if (strlen($finishing_scholarship_url) > 0) {
+                echo '<a href = "' . '../' . $finishing_scholarship_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+            }
+            ?>
+
+        </td>
+        <td>
+            <div id="finishing_scholarship_url_log" style="width: 100%;height: auto;"></div>
         </td>
     </tr>
 
