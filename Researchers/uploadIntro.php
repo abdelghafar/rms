@@ -113,6 +113,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 //console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
+                    //
+                    $('#arabic_summary_url').attr('href', '#1');
                 }
                 else if (data == -1) {
                     $('#arAbsUpload_log').html('');
@@ -383,7 +385,6 @@ $smarty->display('../templates/Loggedin.tpl');
         <td>
             <?
             if (strlen($arabicAbs) > 0) {
-
                 echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
             }
             ?>
