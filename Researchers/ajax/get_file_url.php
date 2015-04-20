@@ -53,10 +53,10 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'resume':
         {
-//            $person_id = $_SESSION['person_id'];
-//            $p = new Persons();
-//            $url = $p->GetResumeUrl($person_id);
-//            break;
+            $person_id = $_SESSION['person_id'];
+            $p = new Persons();
+            $url = $p->GetResumeUrl($person_id);
+            break;
         }
 
     }
