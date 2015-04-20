@@ -123,6 +123,11 @@ $smarty->display('../templates/Loggedin.tpl');
                 else {
                     $('#arAbsUpload_log').html('');
                     $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + arabic_summary_url, data: {url: projectId}, success: function (data) {
+                            $('#arAbsUpload_log').html(data);
+                        }
+                    });
                 }
             }});
 
