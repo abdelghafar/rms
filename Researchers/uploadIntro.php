@@ -82,9 +82,9 @@ $smarty->display('../templates/Loggedin.tpl');
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
     <link href="../common/css/reigster-layout.css" rel="stylesheet" type="text/css"/>
     <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
-    <link href="../js/font/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
     $(document).ready(function () {
+        var projectId = '<? echo $projectId; ?>';
         $('#submit_button').click(function () {
             $.ajax({
                 url: "inc/uploadIntro.inc.php?q=" + '<? echo $projectId; ?>',
@@ -107,8 +107,21 @@ $smarty->display('../templates/Loggedin.tpl');
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            $('#log').html(serverResponce);
-            //console.log(fileName);
+            //$('#log').html(serverResponce);
+            //check for the PDF Lib
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+                //console.log(data);
+                if (data == 1) {
+                    $('#arAbsUpload_log').html('');
+                }
+                else if (data == -1) {
+                    $('#arAbsUpload_log').html('');
+                } else {
+                    $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                }
+
+            }});
+
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
             localization: {
@@ -304,222 +317,33 @@ $smarty->display('../templates/Loggedin.tpl');
             //console.log(fileName);
         });
         //--------------------------------------------------------------------------------------------------------------
-        CheckFiles('<? echo $projectId; ?>');
+        //CheckFiles('
+        <? echo $projectId; ?>');
     });</script>
     <script type="text/javascript">
-    //Check Files
-    var arabic_abs_file = 0;
-    var eng_abs_file = 0;
-    var intro_file = 0;
-    var lit_review_file = 0;
-    var research_method_url = 0;
-    var Resume_url = 0;
-    function CheckFiles(projectId) {
-        $(document).ready(function () {
-            var msg = "";
-            if (projectId !== '') {
-                $.ajax({
-                    url: 'ajax/checkArabicAbstractUpload.php?q=' + projectId,
-                    data: {url: projectId},
-                    dataType: 'JSON',
-                    type: 'POST',
-                    cache: false,
-                    success: function (result) {
-                        if (result == 1) {
-                            arabic_abs_file = 1;
-                            //alert('arabic_abs_file:' + arabic_abs_file);
-                        }
-                        else {
-                            arabic_abs_file = 0;
-                            //alert('arabic_abs_file:' + arabic_abs_file);
-                            msg += 'Please upload the arabic abstract';
-                        }
-                        //console.log(arabic_abs_file);
-                    }
-                });
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    //console.log(data);
-                    if (data == 1) {
-                        $('#arAbsUpload_log').html('');
-                    }
-                    else if (data == -1) {
-                        $('#arAbsUpload_log').html('');
-                    } else {
-                        $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-
-                $.ajax({
-                    url: 'ajax/checkEngAbstractUpload.php?q=' + projectId,
-                    data: {url: projectId},
-                    dataType: 'JSON',
-                    type: 'POST',
-                    cache: false,
-                    success: function (result) {
-                        if (result == 1) {
-                            eng_abs_file = 1;
-                        }
-                        else {
-                            eng_abs_file = 0;
-                            msg += 'Please upload the english abstract';
-                        }
-                        //console.log(eng_abs_file);
-                    },
-                    error: function (err) {
-
-                    }
-                });
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    //console.log(data);
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#enAbsUpload_log').html('');
-                    } else {
-                        $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-
-                $.ajax({
-                    url: 'ajax/checkIntroUpload.php?q=' + projectId,
-                    data: {url: projectId},
-                    dataType: 'JSON',
-                    type: 'POST',
-                    cache: false,
-                    success: function (result) {
-                        if (result == 1) {
-                            intro_file = 1;
-                        }
-                        else {
-                            msg += 'Please upload the introduction';
-                            intro_file = 0;
-                        }
-                        //console.log(intro_file);
-                    },
-                    error: function (err) {
-
-                    }
-                });
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#introUpload_log').html('');
-                    } else {
-                        $('#introUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-                $.ajax({
-                    url: 'ajax/checkLitReviewUpload.php?q=' + projectId,
-                    data: {url: projectId},
-                    dataType: 'JSON',
-                    type: 'POST',
-                    cache: false,
-                    success: function (result) {
-                        if (result == 1) {
-                            lit_review_file = 1;
-                        }
-                        else {
-                            msg += 'Please upload the Review';
-                            lit_review_file = 0;
-                        }
-
-                    },
-                    error: function (err) {
-
-                    }
-                });
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=reviewUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#reviewUpload_log').html('');
-                    } else {
-                        $('#reviewUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-                $.ajax({
-                    url: 'ajax/check_research_methodology.php?q=' + projectId,
-                    data: {url: projectId},
-                    dataType: 'JSON',
-                    type: 'POST',
-                    cache: false,
-                    success: function (result) {
-                        if (result == 1) {
-                            research_method_url = 1;
-                        }
-                        else {
-                            msg += 'Please upload the Review';
-                            research_method_url = 0;
-                        }
-
-                    },
-                    error: function (err) {
-
-                    }
-                });
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=research_method", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#research_method_upload_log').html('');
-                    } else {
-                        $('#research_method_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=value_to_kingdom", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#value_to_kingdom_upload_log').html('');
-                    } else {
-                        $('#value_to_kingdom_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
+        //Check Files
+        var arabic_abs_file = 0;
+        var eng_abs_file = 0;
+        var intro_file = 0;
+        var lit_review_file = 0;
+        var research_method_url = 0;
+        var Resume_url = 0;
 
 
-                }});
-                $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=refs", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        //ok
-                    }
-                    else if (data == -1) {
-                        $('#ref_upload_log').html('');
-                    } else {
-                        $('#ref_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                    }
-
-                }});
-
-                //ToDO:validate the ResumeUpload widget
-
+        function wizard_step(current_step) {
+            var cs = current_step;
+            for (var i = 1; i < cs; i++) {
+                $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
             }
-        });
-    }
-
-    function wizard_step(current_step) {
-        var cs = current_step;
-        for (var i = 1; i < cs; i++) {
-            $("#img_" + i).attr("src", "images/" + i + "_finished.png");
-            //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+            $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+            //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+            for (var i = cs + 1; i <= 9; i++) {
+                $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                //if (i < 9)
+                // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+            }
         }
-        $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
-        //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
-        for (var i = cs + 1; i <= 9; i++) {
-            $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
-            //if (i < 9)
-            // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
-        }
-    }
     </script>
     </head>
     <body>
@@ -542,12 +366,12 @@ $smarty->display('../templates/Loggedin.tpl');
     <table style="direction: rtl;border: 1px;width: 100%;">
     <tr style="margin-top: 25px;">
         <td>
-        الملخص بالعربي / Arabic Summary
+            الملخص بالعربي / Arabic Summary
             <span class="required">*</span>
         </td>
         <td>
-        <a href="#">
-                النموذج / Template
+            <a href="#">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -571,7 +395,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
     <tr>
         <td>
-        الملخص بالانجليزي / English Summary
+            الملخص بالانجليزي / English Summary
             <span class="required">*</span>
         </td>
         <td>
@@ -600,7 +424,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
     <tr>
         <td>
-        مقدمة المشروع / Introduction
+            مقدمة المشروع / Introduction
             <span class="required">*</span>
         </td>
         <td>
@@ -628,7 +452,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
     <tr>
         <td>
-        المسح الأدبي / Literature Review
+            المسح الأدبي / Literature Review
             <span class="required">*</span>
         </td>
         <td>
@@ -655,7 +479,7 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
     <tr>
         <td>
-        منهجية البحث / Research Methodology
+            منهجية البحث / Research Methodology
             <span class="required">*</span>
         </td>
         <td>
@@ -683,7 +507,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr style="display: none;">
         <td>
-        أهداف المشروع / Objectives
+            أهداف المشروع / Objectives
         </td>
         <td>
             <a href="#">
@@ -710,7 +534,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr style="display: none;">
         <td>
-        المهام و الأهداف / Tasks and Objectives
+            المهام و الأهداف / Tasks and Objectives
         </td>
         <td>
             <a href="#">
@@ -737,7 +561,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr style="display: none;">
         <td>
-        خطة العمل / Working Plan
+            خطة العمل / Working Plan
         </td>
         <td>
             <a href="#">
@@ -764,7 +588,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr>
         <td>
-        قيمة المشروع للدولة / Value To Kingdom
+            قيمة المشروع للدولة / Value To Kingdom
             <span class="required">*</span>
         </td>
         <td>
@@ -792,7 +616,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr style="display: none;">
         <td>
-        الميزانية / Budget
+            الميزانية / Budget
         </td>
         <td>
             <a href="#">
@@ -819,7 +643,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr style="display: none;">
         <td>
-        المخرجات و الاهداف / Outcomes and Objectives
+            المخرجات و الاهداف / Outcomes and Objectives
         </td>
         <td>
             <a href="#">
@@ -846,7 +670,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr>
         <td>
-        المراجع العلمية/ References
+            المراجع العلمية/ References
             <span class="required">*</span>
         </td>
         <td>
@@ -875,7 +699,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr>
         <td>
-        السيرة الذاتية / Resume
+            السيرة الذاتية / Resume
             <span class="required">*</span>
         </td>
         <td>
@@ -904,7 +728,7 @@ $smarty->display('../templates/Loggedin.tpl');
 
     <tr>
         <td>
-        اقرار انهاء البعثة
+            اقرار انهاء البعثة
 
         </td>
         <td>
