@@ -110,7 +110,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //get arabic_summary_url
             $.ajax({
-                url: 'ajax/get_file_url.php?q=' + projectId + "&type=arabic_summary", data: {url: projectId}, success: function (data) {
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=arabic_summary", success: function (data) {
                     arabic_summary_url = data;
                 }
             });
