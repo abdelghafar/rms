@@ -119,6 +119,14 @@ if (isset($_GET['q'])) {
             $target_file = $target_dir . 'resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
+        case 'finishing_scholarship':
+        {
+            //finishing_scholarship
+            $file_name .= 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+
+        }
     }
 
 
@@ -230,6 +238,14 @@ if (isset($_GET['q'])) {
                     $person->SetResumeUrl($person_id, $file_name);
                     break;
                 }
+                case 'finishing_scholarship':
+                {
+                    //finishing_scholarship
+                    $person = new Persons();
+                    $person_id = $_SESSION['person_id'];
+                    $person->SetFinishingScholarshipUrl($person_id, $file_name);
+                    break;
+                }
 
                 case 'coAuthor_agreement':
                 {
@@ -272,6 +288,7 @@ if (isset($_GET['q'])) {
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
                     $obj->SetResearchStuffResume($seq_id, $file_name);
                 }
+
 
                 default :
                     {
