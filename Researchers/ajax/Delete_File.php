@@ -8,7 +8,7 @@
 session_start();
 
 require_once '../../lib/Reseaches.php';
-require_once '../../uploads/1';
+
 if (isset($_GET['q']) && isset($_GET['url'])) {
     $project_id = filter_input(INPUT_GET, 'q');
     $url = filter_input(INPUT_GET, 'url');
