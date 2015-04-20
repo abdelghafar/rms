@@ -2,8 +2,6 @@
 
 require_once 'mysqlConnection.php';
 
-//require_once 'users.php';
-
 class Persons
 {
 
