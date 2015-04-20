@@ -15,5 +15,12 @@ if (isset($_GET['q']) && isset($_GET['url'])) {
 
     $r = new Reseaches();
     $base_url = '../../' . $url;
+    try {
+        unlink($base_url);
+        $r->SetAbstract_ar_url($project_id, '');
+        echo 1;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 
 }
