@@ -104,16 +104,17 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }});
         $('#arAbsUpload').on('uploadEnd', function (event) {
+            var arabic_summary_url = "uploads/1/summary_ar.pdf";
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            //$('#log').html(serverResponce);
-            //check for the PDF Lib
+            //get arabic_summary_url
+
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
 //                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
-                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + "#1" + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#arAbsUpload_log').html('');
