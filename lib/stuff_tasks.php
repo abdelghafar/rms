@@ -9,7 +9,7 @@
 /**
  * Description of projectPlan
  *
- * @author ahmed
+ * @author Abdelghafar
  */
 require_once 'mysqlConnection.php';
 
@@ -131,6 +131,7 @@ class StuffTasks
                   research_stuff.person_id,
                   research_stuff.type,
                   stuff_roles.role_name,
+                  stuff_roles.role_name_en,
                   duration_units.convert_factor,
                   duration_units.unit_name,
                   project_tasks.task_name
