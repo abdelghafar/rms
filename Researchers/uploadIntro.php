@@ -110,7 +110,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //$('#log').html(serverResponce);
             //check for the PDF Lib
-
+            alert('file uploaded....');
 
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
@@ -307,7 +307,7 @@ $smarty->display('../templates/Loggedin.tpl');
             //console.log(fileName);
         });
         //--------------------------------------------------------------------------------------------------------------
-        
+
     });</script>
     <script type="text/javascript">
         //Check Files
