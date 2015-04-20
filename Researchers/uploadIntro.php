@@ -84,8 +84,7 @@ $smarty->display('../templates/Loggedin.tpl');
     <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
     $(document).ready(function () {
-        <!--        var projectId = '-->
-        <?// echo $projectId; ?><!--';-->
+        var projectId = '<? echo $projectId; ?>';
         $('#submit_button').click(function () {
             $.ajax({
                 url: "inc/uploadIntro.inc.php?q=" + '<? echo $projectId; ?>',
@@ -110,7 +109,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //$('#log').html(serverResponce);
             //check for the PDF Lib
-            $.ajax({url: 'ajax/checkPDFA.php?q=' + '<?echo $projectId; ?>' + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
                 //console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
