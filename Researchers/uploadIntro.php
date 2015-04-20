@@ -110,7 +110,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //get arabic_summary_url
             $.ajax({
-                url: 'ajax/get_arabic_summary_url.php?q=' + projectId + "&type=arabic_summary", data: {url: projectId}, success: function (data) {
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=arabic_summary", data: {url: projectId}, success: function (data) {
                     arabic_summary_url = data;
                 }
             });
@@ -118,7 +118,7 @@ $smarty->display('../templates/Loggedin.tpl');
 //                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
-                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#arabic_summary_url').html('<a href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#arabic_summary_url').html('');
@@ -137,7 +137,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 }
             }});
 
-
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
             localization: {
@@ -148,10 +147,35 @@ $smarty->display('../templates/Loggedin.tpl');
                 cancelFileTooltip: 'الغاء التحميل'
             }});
         $('#enAbsUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#log').html(serverResponce);
+            var english_summary_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=english_summary", success: function (data) {
+                    english_summary_url = data;
+                }
+            });
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#enAbsUpload_log').html('');
+                    $('#english_summary_url').html('<a href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#english_summary_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + english_summary_url, success: function (data) {
+                            if (data == 1) {
+                                $('#enAbsUpload_log').html('');
+                                $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#enAbsUpload_log').html('');
+                                $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
+
+
         });
         $('#introUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=introUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
@@ -421,12 +445,14 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($engAbs) > 0) {
+            <div id="english_summary_url">
+                <?
+                if (strlen($engAbs) > 0) {
 
-                echo '<a href = "' . '../' . $engAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+                    echo '<a href = "' . '../' . $engAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
         </td>
         <td>
             <div id="enAbsUpload_log" style="width: 100%;height: auto;"></div>
