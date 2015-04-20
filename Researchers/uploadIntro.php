@@ -123,7 +123,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 else {
                     $('#arabic_summary_url').html('');
                     $.ajax({
-                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + arabic_summary_url, success: function (data) {
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=arabic_summary", success: function (data) {
                             if (data == 1) {
                                 $('#arAbsUpload_log').html('');
                                 $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
@@ -161,7 +161,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 else {
                     $('#english_summary_url').html('');
                     $.ajax({
-                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + english_summary_url, success: function (data) {
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=arabic_summary", success: function (data) {
                             if (data == 1) {
                                 $('#enAbsUpload_log').html('');
                                 $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
