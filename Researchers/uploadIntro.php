@@ -545,7 +545,7 @@ $smarty->display('../templates/Loggedin.tpl');
         الملخص بالعربي / Arabic Summary
             <span class="required">*</span>
         </td>
-        <td class="classic" style="color: #00529B">
+        <td>
         <a href="#">
                 النموذج / Template
             </a>
