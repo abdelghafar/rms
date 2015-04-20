@@ -104,14 +104,14 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }});
         $('#arAbsUpload').on('uploadEnd', function (event) {
-            var arabic_summary_url = "uploads/1/summary_ar.pdf";
+            var arabic_summary_url;
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
             //get arabic_summary_url
             $.ajax({
                 url: 'ajax/get_arabic_summary_url.php?q=' + projectId, data: {url: projectId}, success: function (data) {
-                    console.log(data);
+                    arabic_summary_url = data;
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
