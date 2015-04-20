@@ -156,7 +156,7 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#enAbsUpload_log').html('');
-                    $('#english_summary_url').html('<a href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#english_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#english_summary_url').html('');
