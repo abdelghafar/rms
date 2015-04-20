@@ -391,13 +391,12 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
+            <div id="arabic_summary_url">
             <?
             if (strlen($arabicAbs) > 0) {
                 echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
             }
             ?>
-            <div id="arabic_summary_url">
-
             </div>
         </td>
         <td>
