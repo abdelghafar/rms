@@ -15,6 +15,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
 
     $r = new Reseaches();
     $base_url = '../../';
+    $msg = -1;
     switch ($type) {
         case 'arabic_summary':
         {
@@ -22,7 +23,8 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $base_url .= $url;
             unlink($base_url);
             $r->SetAbstract_ar_url($project_id, '');
-            echo 1;
+            $msg = 1;
+            break;
         }
 
         case 'english_summary':
@@ -31,12 +33,16 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $base_url .= $url;
             unlink($base_url);
             $r->SetAbstract_en_url($project_id, '');
-            echo 1;
+            $msg = 1;
+            break;
+
         }
         default:
             {
-            echo -1;
+            break;
+
             }
     }
+    echo $msg;
 
 }
