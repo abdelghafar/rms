@@ -84,7 +84,8 @@ $smarty->display('../templates/Loggedin.tpl');
     <link href="../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
     $(document).ready(function () {
-        var projectId = '<? echo $projectId; ?>';
+        <!--        var projectId = '-->
+        <?// echo $projectId; ?><!--';-->
         $('#submit_button').click(function () {
             $.ajax({
                 url: "inc/uploadIntro.inc.php?q=" + '<? echo $projectId; ?>',
@@ -109,7 +110,7 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             //$('#log').html(serverResponce);
             //check for the PDF Lib
-             
+
 
         });
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
