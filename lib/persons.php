@@ -145,7 +145,7 @@ class Persons
         $rs = $con->ExecuteNonQuery($stmt);
         $finishing_scholarship_url = "";
         while ($row = mysql_fetch_array($rs)) {
-            $ResumeUrl = $row['finishing_scholarship_url'];
+            $finishing_scholarship_url = $row['finishing_scholarship_url'];
         }
         return $finishing_scholarship_url;
     }
