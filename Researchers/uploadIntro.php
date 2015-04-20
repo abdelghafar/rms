@@ -173,12 +173,7 @@ $smarty->display('../templates/Loggedin.tpl');
             uploadFileTooltip: 'تحميل الملف',
             cancelFileTooltip: 'الغاء التحميل'
         }});
-        $('#arAbsUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#arAbsUpload_log').html(serverResponce);
-        });
+
         $('#enAbsUpload').on('uploadEnd', function (event) {
             var args = event.args;
             var fileName = args.file;
