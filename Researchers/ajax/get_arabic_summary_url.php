@@ -14,11 +14,17 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
     $r = new Reseaches();
     $url = "";
     switch ($type) {
-        case 'arabic_summary':
-        {
-            $url = $r->GetAbstract_ar_url($project_id);
-            break;
-        }
+//        case 'arabic_summary':
+//        {
+//            $url = $r->GetAbstract_ar_url($project_id);
+//            break;
+//        }
+//        case 'english_summary':
+//        {
+//            $url= $r->GetAbstract_en_url($project_id);
+//            break;
+//        }
+
 
     }
     echo $url;
