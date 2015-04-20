@@ -8,8 +8,18 @@
 session_start();
 
 require_once '../../lib/Reseaches.php';
-if (isset($_GET['q'])) {
+if (isset($_GET['q']) && isset($_GET['type'])) {
     $project_id = filter_input(INPUT_GET, 'q');
+    $type = filter_input(INPUT_GET, 'type');
     $r = new Reseaches();
-    echo $r->GetAbstract_ar_url($project_id);
+    $url = "";
+    switch ($type) {
+        case 'arabic_summary':
+        {
+            $url = $r->GetAbstract_ar_url($project_id);
+            break;
+        }
+
+    }
+    echo $url;
 }
