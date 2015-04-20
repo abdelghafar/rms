@@ -114,7 +114,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     arabic_summary_url = data;
                 }
             });
-            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
 //                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
