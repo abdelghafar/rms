@@ -138,7 +138,7 @@ class Persons
         return mysql_affected_rows();
     }
 
-    public function GtFinishingScholarshipUrl($person_id)
+    public function GetFinishingScholarshipUrl($person_id)
     {
         $con = new MysqlConnect();
         $stmt = "Select finishing_scholarship_url From persons where Person_id=" . $person_id;
