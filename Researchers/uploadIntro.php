@@ -307,8 +307,7 @@ $smarty->display('../templates/Loggedin.tpl');
             //console.log(fileName);
         });
         //--------------------------------------------------------------------------------------------------------------
-        //CheckFiles('
-        <? echo $projectId; ?>');
+        
     });</script>
     <script type="text/javascript">
         //Check Files
