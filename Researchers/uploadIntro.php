@@ -121,7 +121,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
-
+                    $('arabic_summary_url').html('');
                     $.ajax({
                         url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + arabic_summary_url, success: function (data) {
                             if (data == 1) {
@@ -392,11 +392,11 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
         <td>
             <div id="arabic_summary_url">
-            <?
-            if (strlen($arabicAbs) > 0) {
-                echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+                <?
+                if (strlen($arabicAbs) > 0) {
+                    echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
             </div>
         </td>
         <td>
