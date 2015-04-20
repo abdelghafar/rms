@@ -114,9 +114,8 @@ $smarty->display('../templates/Loggedin.tpl');
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
                     $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + "#1" + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
-
                 }
-                else if (data == -1) {
+                else {
                     $('#arAbsUpload_log').html('');
                     $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
                 }
