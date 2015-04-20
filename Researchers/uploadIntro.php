@@ -903,8 +903,8 @@ $smarty->display('../templates/Loggedin.tpl');
     </tr>
 
     <tr>
-        <td>
-            اقرار انهاء البعثة
+        <td class="classic" style="color: #010f18">
+        اقرار انهاء البعثة
 
         </td>
         <td>
