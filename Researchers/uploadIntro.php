@@ -110,18 +110,16 @@ $smarty->display('../templates/Loggedin.tpl');
             //$('#log').html(serverResponce);
             //check for the PDF Lib
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", data: {url: projectId}, type: 'POST', success: function (data, textStatus, jqXHR) {
-                console.log(data);
+//                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
-                    //
-                    $('#arabic_summary_url').attr('href', '#1');
+                    $('#arabic_summary_url').html('<a id="arabic_summary_url" href = "' + '../' + "#1" + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+
                 }
                 else if (data == -1) {
                     $('#arAbsUpload_log').html('');
-                } else {
                     $('#arAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
                 }
-
             }});
 
 
@@ -384,10 +382,13 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
         <td>
             <?
-            if (strlen($arabicAbs) > 0) {
-                echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
+            //            if (strlen($arabicAbs) > 0) {
+            //                echo '<a id="arabic_summary_url" href = "' . '../' . $arabicAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+            //            }
             ?>
+            <div id="arabic_summary_url">
+
+            </div>
         </td>
         <td>
             <div id="arAbsUpload_log" style="width: 100%;height: auto;"></div>
