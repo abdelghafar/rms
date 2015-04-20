@@ -128,7 +128,7 @@ class Persons
     }
 
     /***********************************************************
-     *  Gettter and Setter
+     *  Gettter and Setter of FinishingScholarshipUrl
      */
     public function SetFinishingScholarshipUrl($person_id, $url)
     {
