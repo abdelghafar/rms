@@ -3,6 +3,8 @@ session_start();
 
 if ($_SESSION['Authorized'] == null) {
     header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 
 require_once '../js/fckeditor/fckeditor.php';
@@ -232,13 +234,42 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }});
 
-
         $('#reviewUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#reviewUpload_log').html(serverResponce);
+            var review_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=literature_review", success: function (data) {
+                    review_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=reviewUpload", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#reviewUpload_log').html('');
+                    $('#review_url').html('<a id="review_url" target="_blank" href = "' + '../' + review_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#review_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=literature_review", success: function (data) {
+                            if (data == 1) {
+                                $('#reviewUpload_log').html('');
+                                $('#reviewUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#reviewUpload_log').html('');
+                                $('#reviewUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
+
+
         });
+        /**
+         *
+         * research_method_upload
+         */
         $('#research_method_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=research_method&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -530,10 +561,10 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <div id="literature_review_url">
+            <div id="review_url">
                 <?
                 if (strlen($review) > 0) {
-                    echo '<a href = "' . '../' . $review . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="review_url" target="_blank" href = "' . '../' . $review . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
