@@ -1,8 +1,8 @@
 <?
 session_start();
-
+echo isset($_SESSION['Authorized']);
 if ($_SESSION['Authorized'] != 1) {
-    echo 'null';
+    echo isset($_SESSION['Authorized']);
 }
 
 if (isset($_SESSION['Authorized'])) {
