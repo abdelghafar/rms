@@ -502,7 +502,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <?
                 if (strlen($intro) > 0) {
 
-                    echo '<a id="introduction_url" href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="introduction_url" target="_blank" href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
