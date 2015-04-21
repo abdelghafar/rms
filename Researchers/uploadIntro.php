@@ -1,8 +1,11 @@
 <?
 session_start();
-echo 'person_id:' . $_SESSION['person_id'];
-echo '<br/>' . 'Authorized:' . $_SESSION['Authorized'];
 
+if (isset($_SESSION['Authorized'])) {
+    if ($_SESSION['Authorized'] != 1) {
+        echo 'Not Authorized';
+    }
+}
 
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
