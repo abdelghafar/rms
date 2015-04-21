@@ -348,7 +348,12 @@ $smarty->display('../templates/Loggedin.tpl');
             var serverResponce = args.response;
             $('#working_plan_upload_log').html(serverResponce);
         });
-        //---------------------------------------------value_to_kingdom_upload
+
+        /**
+         * Value to kingdom upload
+         *
+         */
+
         $('#value_to_kingdom_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=value_to_kingdom&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -357,9 +362,37 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }, accept: 'application/pdf'});
         $('#value_to_kingdom_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#value_to_kingdom_upload_log').html(serverResponce);
+            var value_to_kingdom_url;
+
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=value_to_kingdom", success: function (data) {
+                    value_to_kingdom_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=value_to_kingdom", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#value_to_kingdom_upload_log').html('');
+                    $('#value_to_kingdom_url').html('<a id="value_to_kingdom_url" target="_blank" href = "' + '../' + value_to_kingdom_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#value_to_kingdom_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=value_to_kingdom", success: function (data) {
+                            if (data == 1) {
+                                $('#value_to_kingdom_upload_log').html('');
+                                $('#value_to_kingdom_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#value_to_kingdom_upload_log').html('');
+                                $('#value_to_kingdom_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
+
+
         });
         //---------------------------------budget_upload
         $('#budget_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=budget&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
@@ -734,7 +767,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="value_to_kingdom_url">
                 <?
                 if (strlen($value_to_kingdom) > 0) {
-                    echo '<a href = "' . '../' . $value_to_kingdom . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="value_to_kingdom_url" target="_blank" href = "' . '../' . $value_to_kingdom . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
