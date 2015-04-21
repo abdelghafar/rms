@@ -2,9 +2,9 @@
 session_start();
 
 if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        echo 'Not Authorized';
-    }
+
+    echo 'str=' . strlen($_SESSION['Authorized']);
+
 }
 
 if (isset($_SESSION['Authorized'])) {
