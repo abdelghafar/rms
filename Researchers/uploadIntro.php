@@ -1,16 +1,11 @@
 <?
 session_start();
-echo isset($_SESSION['Authorized']);
 
+if ($_SESSION['Authorized'] == null) {
+    echo 'null session';
 
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
-    } else {
-        echo 'bad session';
-    }
-
-
+} else {
+    echo $_SESSION['Authorized'];
 }
 
 require_once '../js/fckeditor/fckeditor.php';
