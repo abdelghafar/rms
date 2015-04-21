@@ -44,12 +44,16 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../Researchers/Researchers_View.php');
 $smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('research_projects_php', 'Researchers_View.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('about_php', '../aboutus.php');
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+
+$smarty->display('../templates/header.tpl');
 ?>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
