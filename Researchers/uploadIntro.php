@@ -96,6 +96,10 @@ $smarty->display('../templates/Loggedin.tpl');
                 }
             });
         });
+
+        /*
+         arAbsUpload
+         */
         $('#arAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=arAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -115,7 +119,6 @@ $smarty->display('../templates/Loggedin.tpl');
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=arAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
-//                console.log(data);
                 if (data == 1) {
                     $('#arAbsUpload_log').html('');
                     $('#arabic_summary_url').html('<a id="arabic_summary_url" target="_blank" href = "' + '../' + arabic_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
@@ -138,6 +141,9 @@ $smarty->display('../templates/Loggedin.tpl');
             }});
 
         });
+        /*
+         enAbsUpload
+         */
         $('#enAbsUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=enAbsUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf',
             localization: {
                 browseButton: 'استعراض',
@@ -174,9 +180,10 @@ $smarty->display('../templates/Loggedin.tpl');
                     });
                 }
             }});
-
-
         });
+        /*
+         introUpload
+         */
         $('#introUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=introUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -185,11 +192,38 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }});
         $('#introUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#log').html(serverResponce);
+            var introduction_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=introduction", success: function (data) {
+                    introduction_url = data;
+                }
+            });
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introduction", type: 'POST', success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#introUpload_log').html('');
+                    $('#introduction_url').html('<a id="introduction_url" href = "' + '../' + introduction_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#introduction_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + introduction, success: function (data) {
+                            if (data == 1) {
+                                $('#introUpload_log').html('');
+                                $('#introUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#introUpload_log').html('');
+                                $('#introUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
         });
+
+        /**
+         * review
+         */
         $('#reviewUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=reviewUpload&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -198,18 +232,7 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }});
 
-        $('#enAbsUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#enAbsUpload_log').html(serverResponce);
-        });
-        $('#introUpload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#introUpload_log').html(serverResponce);
-        });
+
         $('#reviewUpload').on('uploadEnd', function (event) {
             var args = event.args;
             var fileName = args.file;
@@ -476,12 +499,15 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($intro) > 0) {
+            <div id="introduction_url">
+                <?
+                if (strlen($intro) > 0) {
 
-                echo '<a href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+                    echo '<a href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
+
         </td>
         <td>
             <div id="introUpload_log" style="width: 100%;height: auto;"></div>
@@ -504,11 +530,14 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($review) > 0) {
-                echo '<a href = "' . '../' . $review . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="literature_review_url">
+                <?
+                if (strlen($review) > 0) {
+                    echo '<a href = "' . '../' . $review . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
+
         </td>
         <td>
             <div id="reviewUpload_log" style="width: 100%;height: auto;"></div>
@@ -531,11 +560,13 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($research_method) > 0) {
-                echo '<a href = "' . '../' . $research_method . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="research_method_url">
+                <?
+                if (strlen($research_method) > 0) {
+                    echo '<a href = "' . '../' . $research_method . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
         </td>
         <td>
             <div id="research_method_upload_log" style="width: 100%;height: auto;"></div>
@@ -558,11 +589,14 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
+
+        <?
             if (strlen($objective_approach) > 0) {
                 echo '<a href="' . '../' . $objective_approach . '"/>تحميل</a>';
             }
             ?>
+
+
         </td>
         <td>
             <div id="objective_approach_upload_log" style="width: 100%;height: auto;"></div>
@@ -640,11 +674,14 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($value_to_kingdom) > 0) {
-                echo '<a href = "' . '../' . $value_to_kingdom . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="value_to_kingdom_url">
+                <?
+                if (strlen($value_to_kingdom) > 0) {
+                    echo '<a href = "' . '../' . $value_to_kingdom . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
+
         </td>
         <td>
             <div id="value_to_kingdom_upload_log" style="width: 100%;height: auto;"></div>
@@ -722,11 +759,13 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($refs_url) > 0) {
-                echo '<a href = "' . '../' . $refs_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="ref_url">
+                <?
+                if (strlen($refs_url) > 0) {
+                    echo '<a href = "' . '../' . $refs_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
 
         </td>
         <td>
@@ -751,11 +790,13 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($ResumeUrl) > 0) {
-                echo '<a href = "' . '../' . $ResumeUrl . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="Resume_url">
+                <?
+                if (strlen($ResumeUrl) > 0) {
+                    echo '<a href = "' . '../' . $ResumeUrl . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
 
         </td>
         <td>
@@ -780,11 +821,13 @@ $smarty->display('../templates/Loggedin.tpl');
             </div>
         </td>
         <td>
-            <?
-            if (strlen($finishing_scholarship_url) > 0) {
-                echo '<a href = "' . '../' . $finishing_scholarship_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
-            }
-            ?>
+            <div id="finishing_scholarship_url">
+                <?
+                if (strlen($finishing_scholarship_url) > 0) {
+                    echo '<a href = "' . '../' . $finishing_scholarship_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                }
+                ?>
+            </div>
 
         </td>
         <td>
