@@ -2,10 +2,7 @@
 session_start();
 
 if ($_SESSION['Authorized'] == null) {
-    echo 'null session';
-
-} else {
-    echo $_SESSION['Authorized'];
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 
 require_once '../js/fckeditor/fckeditor.php';
