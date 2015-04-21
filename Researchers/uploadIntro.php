@@ -361,6 +361,7 @@ $smarty->display('../templates/Loggedin.tpl');
             uploadFileTooltip: 'تحميل الملف',
             cancelFileTooltip: 'الغاء التحميل'
         }, accept: 'application/pdf'});
+
         $('#value_to_kingdom_upload').on('uploadEnd', function (event) {
             var value_to_kingdom_url;
 
