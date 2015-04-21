@@ -36,7 +36,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'value_to_kingdom':
         {
-            $file_name = $project->GetResearch_method_url($project_id);
+            $file_name = $project->GetValueToKingdomUrl($project_id);
             break;
         }
         case 'refs':
