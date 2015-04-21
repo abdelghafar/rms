@@ -1,11 +1,8 @@
 <?
 session_start();
 
-if (isset($_SESSION['Authorized'])) {
+echo 'str=' . strlen($_SESSION['Authorized']);
 
-    echo 'str=' . strlen($_SESSION['Authorized']);
-
-}
 
 if (isset($_SESSION['Authorized'])) {
     if ($_SESSION['Authorized'] != 1) {
@@ -597,7 +594,7 @@ $smarty->display('../templates/Loggedin.tpl');
         </td>
         <td>
 
-        <?
+            <?
             if (strlen($objective_approach) > 0) {
                 echo '<a href="' . '../' . $objective_approach . '"/>تحميل</a>';
             }
