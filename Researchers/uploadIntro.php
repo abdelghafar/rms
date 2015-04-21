@@ -198,7 +198,7 @@ $smarty->display('../templates/Loggedin.tpl');
                     console.log(data);
                 }
             });
-            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introduction", type: 'POST', success: function (data, textStatus, jqXHR) {
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#introUpload_log').html('');
                     $('#introduction_url').html('<a id="introduction_url" target="_blank" href = "' + '../' + introduction_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
