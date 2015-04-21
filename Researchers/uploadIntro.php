@@ -206,7 +206,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 else {
                     $('#introduction_url').html('');
                     $.ajax({
-                        url: 'ajax/Delete_File.php?q=' + projectId + "&url=" + introduction_url, success: function (data) {
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=introduction", success: function (data) {
                             if (data == 1) {
                                 $('#introUpload_log').html('');
                                 $('#introUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
