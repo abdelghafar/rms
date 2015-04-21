@@ -195,6 +195,7 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=introduction", success: function (data) {
                     introduction_url = data;
+                    console.log(data);
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introduction", type: 'POST', success: function (data, textStatus, jqXHR) {
