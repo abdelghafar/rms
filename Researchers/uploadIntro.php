@@ -1,7 +1,7 @@
 <?
 session_start();
 
-if ($_SESSION['Authorized'] == null) {
+if ($_SESSION['Authorized'] != 1) {
     echo 'null';
 }
 
