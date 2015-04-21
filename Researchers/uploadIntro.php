@@ -59,7 +59,7 @@ $smarty->assign('Researchers_register_php', '../Researchers/register.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+//$smarty->display('../templates/Loggedin.tpl');
 
 $smarty->assign('index_php', '../index.php');
 $smarty->assign('research_projects_php', 'Researchers_View.php');
