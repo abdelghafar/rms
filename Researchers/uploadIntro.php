@@ -1,7 +1,9 @@
 <?
 session_start();
 
-echo 'str=' . strlen($_SESSION['Authorized']);
+if ($_SESSION['Authorized'] == null) {
+    echo 'null session';
+}
 
 
 if (isset($_SESSION['Authorized'])) {
