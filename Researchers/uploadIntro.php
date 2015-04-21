@@ -161,12 +161,12 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=enAbsUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#enAbsUpload_log').html('');
-                    $('#english_summary_url').html('<a id="english_summary_url" href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#english_summary_url').html('<a target="_blank" id="english_summary_url" href = "' + '../' + english_summary_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#english_summary_url').html('');
                     $.ajax({
-                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=arabic_summary", success: function (data) {
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=english_summary", success: function (data) {
                             if (data == 1) {
                                 $('#enAbsUpload_log').html('');
                                 $('#enAbsUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
@@ -201,7 +201,7 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introduction", type: 'POST', success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#introUpload_log').html('');
-                    $('#introduction_url').html('<a id="introduction_url" href = "' + '../' + introduction_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#introduction_url').html('<a id="introduction_url" target="_blank" href = "' + '../' + introduction_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
                     $('#introduction_url').html('');
@@ -472,7 +472,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <?
                 if (strlen($engAbs) > 0) {
 
-                    echo '<a href = "' . '../' . $engAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a  href = "' . '../' . $engAbs . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
@@ -503,7 +503,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <?
                 if (strlen($intro) > 0) {
 
-                    echo '<a href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="arabic_summary_url" href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
