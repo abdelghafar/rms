@@ -195,7 +195,6 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=introduction", success: function (data) {
                     introduction_url = data;
-                    console.log(data);
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=introUpload", type: 'POST', success: function (data, textStatus, jqXHR) {
@@ -379,12 +378,12 @@ $smarty->display('../templates/Loggedin.tpl');
     });</script>
     <script type="text/javascript">
         //Check Files
-        var arabic_abs_file = 0;
-        var eng_abs_file = 0;
-        var intro_file = 0;
-        var lit_review_file = 0;
-        var research_method_url = 0;
-        var Resume_url = 0;
+        //        var arabic_abs_file = 0;
+        //        var eng_abs_file = 0;
+        //        var intro_file = 0;
+        //        var lit_review_file = 0;
+        //        var research_method_url = 0;
+        //        var Resume_url = 0;
 
 
         function wizard_step(current_step) {
@@ -503,7 +502,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 <?
                 if (strlen($intro) > 0) {
 
-                    echo '<a id="arabic_summary_url" href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="introduction_url" href = "' . '../' . $intro . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
