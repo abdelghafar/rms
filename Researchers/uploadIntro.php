@@ -278,10 +278,36 @@ $smarty->display('../templates/Loggedin.tpl');
             cancelFileTooltip: 'الغاء التحميل'
         }, accept: 'application/pdf'});
         $('#research_method_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var fileName = args.file;
-            var serverResponce = args.response;
-            $('#research_method_upload_log').html(serverResponce);
+            var research_method_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=research_method", success: function (data) {
+                    research_method_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=research_method", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#research_method_upload_log').html('');
+                    $('#research_method_url').html('<a id="introduction_url" target="_blank" href = "' + '../' + research_method_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#research_method_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=research_method", success: function (data) {
+                            if (data == 1) {
+                                $('#research_method_upload_log').html('');
+                                $('#research_method_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#research_method_upload_log').html('');
+                                $('#research_method_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
+
+
         });
         //Objective Approach FileUpload with Event handler.....
         $('#objective_approach_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=objective_approach&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
@@ -594,7 +620,7 @@ $smarty->display('../templates/Loggedin.tpl');
             <div id="research_method_url">
                 <?
                 if (strlen($research_method) > 0) {
-                    echo '<a href = "' . '../' . $research_method . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="research_method_url" target="_blank" href = "' . '../' . $research_method . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
