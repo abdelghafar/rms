@@ -373,20 +373,20 @@ $smarty->display('../templates/header.tpl');
             var args = event.args;
             var serverResponce = args.response;
             //$('#ref_upload_log').html(serverResponce);
-            var refs_url;
+            var ref_url;
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=refs", success: function (data) {
-                    refs_url = data;
+                    ref_url = data;
                 }
             });
 
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=refs", success: function (data, textStatus, jqXHR) {
                 if (data == 1) {
                     $('#ref_upload_log').html('');
-                    $('#refs_url').html('<a id="refs_url" target="_blank" href = "' + '../' + refs_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                    $('#ref_url').html('<a id="ref_url" target="_blank" href = "' + '../' + ref_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
                 }
                 else {
-                    $('#refs_url').html('');
+                    $('#ref_url').html('');
                     $.ajax({
                         url: 'ajax/Delete_File.php?q=' + projectId + "&type=refs", success: function (data) {
                             if (data == 1) {
