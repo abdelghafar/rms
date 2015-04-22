@@ -413,6 +413,7 @@ $smarty->display('../templates/header.tpl');
             uploadFileTooltip: 'تحميل الملف',
             cancelFileTooltip: 'الغاء التحميل'
         }});
+
         $('#ResumeUpload').on('uploadEnd', function (event) {
             var args = event.args;
             var fileName = args.file;
