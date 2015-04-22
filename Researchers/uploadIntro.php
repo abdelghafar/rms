@@ -762,10 +762,10 @@ $smarty->display('../templates/header.tpl');
             </div>
         </td>
         <td>
-            <div id="Resume_url">
+            <div id="resume_url">
                 <?
                 if (strlen($ResumeUrl) > 0) {
-                    echo '<a href = "' . '../' . $ResumeUrl . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="resume_url" target="_blank" href = "' . '../' . $ResumeUrl . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
