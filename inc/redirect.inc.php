@@ -1,5 +1,12 @@
 <?php
+
 session_start();
+$_SESSION['Authorized'] = 0;
+$_SESSION['EmpCode'] = 0;
+$_SESSION['UserEmail'] = '';
+$_SESSION['User_Name'] = '';
+
+
 try {
     # Call nuSOAP Library
     require_once('nusoap_lib/nusoap.php');
@@ -23,28 +30,23 @@ try {
         $_SESSION['Authorized'] = 1;
         $_SESSION['EmpCode'] = $userCode;
         $_SESSION['UserEmail'] = $userEmail;
-        $_SESSION['User_Name'] = $userCode.'@'.$userEmail;
-        $person_id =0 ;
-        $p =new Persons();
+        $_SESSION['User_Name'] = $userCode . '@' . $userEmail;
+        $person_id = 0;
+        $p = new Persons();
         $u = $p->findByEmployeeCode($userCode);
-        if($u==0)
-        {
+        if ($u == 0) {
             $peron_details = get_uqu_instructors($userCode);
             $person_id = $p->ImportPerson($peron_details);
-        }
-        else
-        {
+        } else {
             $person_id = $u;
         }
         $_SESSION['person_id'] = $person_id;
-        echo '<script>window.location.assign("../Researchers/selectProgram.php");</script>';
-
+        echo '<script>window.location.assign("../index.php");</script>';
     } else {
         $_SESSION['Authorized'] = 0;
         $redirectTo = $ex[1];
         header('Location: ' . $redirectTo);
     }
-
 } catch (Exception $ex) {
     $_SESSION['Authorized'] = 0;
     echo 'Exception: ' . $ex->getMessage();
