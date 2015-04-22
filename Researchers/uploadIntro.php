@@ -267,8 +267,6 @@ $smarty->display('../templates/header.tpl');
                     });
                 }
             }});
-
-
         });
         /**
          *
@@ -312,45 +310,6 @@ $smarty->display('../templates/header.tpl');
             }});
 
 
-        });
-        //Objective Approach FileUpload with Event handler.....
-        $('#objective_approach_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=objective_approach&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
-            browseButton: 'استعراض',
-            uploadButton: 'تحميل الملف',
-            cancelButton: 'الغاء',
-            uploadFileTooltip: 'تحميل الملف',
-            cancelFileTooltip: 'الغاء التحميل'
-        }, accept: 'application/pdf'});
-        $('#objective_approach_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#objective_approach_upload_log').html(serverResponce);
-        });
-        //Objective tasks FileUpload with event handler....
-        $('#objective_tasks_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=objective_tasks&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
-            browseButton: 'استعراض',
-            uploadButton: 'تحميل الملف',
-            cancelButton: 'الغاء',
-            uploadFileTooltip: 'تحميل الملف',
-            cancelFileTooltip: 'الغاء التحميل'
-        }, accept: 'application/pdf'});
-        $('#objective_tasks_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#objective_tasks_upload_log').html(serverResponce);
-        });
-        //working plan FileUpload with event handler....
-        $('#working_plan_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=working_plan&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
-            browseButton: 'استعراض',
-            uploadButton: 'تحميل الملف',
-            cancelButton: 'الغاء',
-            uploadFileTooltip: 'تحميل الملف',
-            cancelFileTooltip: 'الغاء التحميل'
-        }, accept: 'application/pdf'});
-        $('#working_plan_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#working_plan_upload_log').html(serverResponce);
         });
 
         /**
@@ -399,33 +358,10 @@ $smarty->display('../templates/header.tpl');
 
 
         });
-        //---------------------------------budget_upload
-        $('#budget_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=budget&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
-            browseButton: 'استعراض',
-            uploadButton: 'تحميل الملف',
-            cancelButton: 'الغاء',
-            uploadFileTooltip: 'تحميل الملف',
-            cancelFileTooltip: 'الغاء التحميل'
-        }, accept: 'application/pdf'});
-        $('#budget_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#budget_upload_log').html(serverResponce);
-        });
-        //------------outcome_objectives_upload
-        $('#outcome_objectives_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=outcome_objectives&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
-            browseButton: 'استعراض',
-            uploadButton: 'تحميل الملف',
-            cancelButton: 'الغاء',
-            uploadFileTooltip: 'تحميل الملف',
-            cancelFileTooltip: 'الغاء التحميل'
-        }, accept: 'application/pdf'});
-        $('#outcome_objectives_upload').on('uploadEnd', function (event) {
-            var args = event.args;
-            var serverResponce = args.response;
-            $('#outcome_objectives_upload_log').html(serverResponce);
-        });
-        //------------------------ref_upload
+
+        /**
+         * Refs
+         */
         $('#ref_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=refs&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -436,9 +372,40 @@ $smarty->display('../templates/header.tpl');
         $('#ref_upload').on('uploadEnd', function (event) {
             var args = event.args;
             var serverResponce = args.response;
-            $('#ref_upload_log').html(serverResponce);
+            //$('#ref_upload_log').html(serverResponce);
+            var refs_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=refs", success: function (data) {
+                    refs_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=refs", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#ref_upload_log').html('');
+                    $('#refs_url').html('<a id="refs_url" target="_blank" href = "' + '../' + refs_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#refs_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=refs", success: function (data) {
+                            if (data == 1) {
+                                $('#ref_upload_log').html('');
+                                $('#ref_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#ref_upload_log').html('');
+                                $('#ref_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
         });
-        //---------------------------------------upload the Resume file
+        /**
+         *ResumeUpload
+         *
+         */
         $('#ResumeUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=Resume&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -450,11 +417,41 @@ $smarty->display('../templates/header.tpl');
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            $('#Resume_upload_log').html(serverResponce);
-            //console.log(fileName);
+
+            var resume_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=resume", success: function (data) {
+                    resume_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=resume", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#ResumeUpload_log').html('');
+                    $('#resume_url').html('<a id="resume_url" target="_blank" href = "' + '../' + resume_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#resume_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=resume", success: function (data) {
+                            if (data == 1) {
+                                $('#ResumeUpload_log').html('');
+                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#ResumeUpload_log').html('');
+                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
         });
-        //--------------------------------------------------------------------------------------------------------------
-        //finishing_scholarship_url
+
+        /**
+         *finishing_scholarship_url
+         */
+
         $('#finishing_scholarship_url_upload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=finishing_scholarship&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
@@ -466,22 +463,39 @@ $smarty->display('../templates/header.tpl');
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            $('#finishing_scholarship_url_upload_log').html(serverResponce);
-            //console.log(fileName);
+            var finishing_scholarship_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + projectId + "&type=finishing_scholarship", success: function (data) {
+                    finishing_scholarship_url = data;
+                }
+            });
+
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=finishing_scholarship", success: function (data, textStatus, jqXHR) {
+                if (data == 1) {
+                    $('#finishing_scholarship_url_upload_log').html('');
+                    $('#finishing_scholarship_url').html('<a id="finishing_scholarship_url" target="_blank" href = "' + '../' + finishing_scholarship_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#finishing_scholarship_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=finishing_scholarship", success: function (data) {
+                            if (data == 1) {
+                                $('#finishing_scholarship_url_upload_log').html('');
+                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#finishing_scholarship_url_upload_log').html('');
+                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
+            }});
         });
         //--------------------------------------------------------------------------------------------------------------
 
     });</script>
     <script type="text/javascript">
-        //Check Files
-        //        var arabic_abs_file = 0;
-        //        var eng_abs_file = 0;
-        //        var intro_file = 0;
-        //        var lit_review_file = 0;
-        //        var research_method_url = 0;
-        //        var Resume_url = 0;
-
-
         function wizard_step(current_step) {
             var cs = current_step;
             for (var i = 1; i < cs; i++) {
@@ -668,90 +682,6 @@ $smarty->display('../templates/header.tpl');
         </td>
     </tr>
 
-    <tr style="display: none;">
-        <td>
-            أهداف المشروع / Objectives
-        </td>
-        <td>
-            <a href="#">
-                نموذج-أهداف المشروع/ Template
-            </a>
-        </td>
-        <td>
-            <div id='objective_approach_upload'></div>
-            <div class="classic" style="color: #ff0000">
-                يسمح بملفات pdf فقط
-            </div>
-        </td>
-        <td>
-
-            <?
-            if (strlen($objective_approach) > 0) {
-                echo '<a href="' . '../' . $objective_approach . '"/>تحميل</a>';
-            }
-            ?>
-
-
-        </td>
-        <td>
-            <div id="objective_approach_upload_log" style="width: 100%;height: auto;"></div>
-        </td>
-    </tr>
-
-    <tr style="display: none;">
-        <td>
-            المهام و الأهداف / Tasks and Objectives
-        </td>
-        <td>
-            <a href="#">
-                نموذج-المهام و الاهداف / Template
-            </a>
-        </td>
-        <td>
-            <div id='objective_tasks_upload'></div>
-            <div class="classic" style="color: #ff0000">
-                يسمح بملفات pdf فقط
-            </div>
-        </td>
-        <td>
-            <?
-            if (strlen($objective_tasks) > 0) {
-                echo '<a href="' . '../' . $objective_tasks . '"/>تحميل</a>';
-            }
-            ?>
-        </td>
-        <td>
-            <div id="objective_tasks_upload_log" style="width: 100%;height: auto;"></div>
-        </td>
-    </tr>
-
-    <tr style="display: none;">
-        <td>
-            خطة العمل / Working Plan
-        </td>
-        <td>
-            <a href="#">
-                نموذج-خطة العمل / Template
-            </a>
-        </td>
-        <td>
-            <div id='working_plan_upload'></div>
-            <div class="classic" style="color: #ff0000">
-                يسمح بملفات pdf فقط
-            </div>
-        </td>
-        <td>
-            <?
-            if (strlen($working_plan) > 0) {
-                echo '<a href="' . '../' . $working_plan . '"/>تحميل</a>';
-            }
-            ?>
-        </td>
-        <td>
-            <div id="working_plan_upload_log" style="width: 100%;height: auto;"></div>
-        </td>
-    </tr>
-
     <tr>
         <td>
             قيمة المشروع للدولة / Value To Kingdom
@@ -783,59 +713,6 @@ $smarty->display('../templates/header.tpl');
         </td>
     </tr>
 
-    <tr style="display: none;">
-        <td>
-            الميزانية / Budget
-        </td>
-        <td>
-            <a href="#">
-                نموذج-الميزانية / Template
-            </a>
-        </td>
-        <td>
-            <div id='budget_upload'></div>
-            <div class="classic" style="color: #ff0000">
-                يسمح بملفات pdf فقط
-            </div>
-        </td>
-        <td>
-            <?
-            if (strlen($budget) > 0) {
-                echo '<a href="' . '../' . $budget . '"/>تحميل</a>';
-            }
-            ?>
-        </td>
-        <td>
-            <div id="budget_upload_log" style="width: 100%;height: auto;"></div>
-        </td>
-    </tr>
-
-    <tr style="display: none;">
-        <td>
-            المخرجات و الاهداف / Outcomes and Objectives
-        </td>
-        <td>
-            <a href="#">
-                نموذج-المخرجات و الاهداف / Template
-            </a>
-        </td>
-        <td>
-            <div id='outcome_objectives_upload'></div>
-            <div class="classic" style="color: #ff0000">
-                يسمح بملفات pdf فقط
-            </div>
-        </td>
-        <td>
-            <?
-            if (strlen($outcome_objective) > 0) {
-                echo '<a href="' . '../' . $outcome_objective . '"/>تحميل</a>';
-            }
-            ?>
-        </td>
-        <td>
-            <div id="outcome_objectives_upload_log" style="width: 100%;height: auto;"></div>
-        </td>
-    </tr>
 
     <tr>
         <td>
@@ -857,7 +734,7 @@ $smarty->display('../templates/header.tpl');
             <div id="ref_url">
                 <?
                 if (strlen($refs_url) > 0) {
-                    echo '<a href = "' . '../' . $refs_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="ref_url" target="_blank" href = "' . '../' . $refs_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
@@ -919,7 +796,7 @@ $smarty->display('../templates/header.tpl');
             <div id="finishing_scholarship_url">
                 <?
                 if (strlen($finishing_scholarship_url) > 0) {
-                    echo '<a href = "' . '../' . $finishing_scholarship_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
+                    echo '<a id="finishing_scholarship_url" target="_blank" href = "' . '../' . $finishing_scholarship_url . '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>';
                 }
                 ?>
             </div>
@@ -946,14 +823,12 @@ $smarty->display('../templates/header.tpl');
             <td>
                 <a href="research_submit.php" style="float: right;margin-top: 20px;">
                     <img src="images/back.png" style="border: none;" alt="back"/>
-
                 </a>
             </td>
             <td>
                 <a id="submit_button" onclick="CheckFiles('<? echo $projectId; ?>')
                     ;" href="#" style="float: left;margin-top: 20px;">
                     <img src="images/next.png" style="border: none;" alt="next"/>
-
                 </a>
 
             </td>
