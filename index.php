@@ -1,7 +1,13 @@
 <?
 session_start();
-require_once './redirect.php';
-Redirect();
+//require_once './redirect.php';
+//Redirect();
+//$_SESSION['program'] =1;
+//session_destroy();
+//echo $_SESSION['program'];
+//$_SESSION['Authorized'] = 1;
+//$_SESSION['person_id'] = 2;
+
 require_once 'lib/Smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
 
@@ -10,11 +16,14 @@ $smarty->assign('style_responsive_css', 'style.responsive.css');
 $smarty->assign('jquery_js', 'jquery.js');
 $smarty->assign('script_js', 'script.js');
 $smarty->assign('script_responsive_js', 'script.responsive.js');
+
 $smarty->assign('index_php', 'index.php');
-$smarty->assign('Researchers_register_php', 'Researchers/register.php');
-$smarty->assign('login_php', 'login.php');
-$smarty->assign('fqa_php', 'fqa.php');
+$smarty->assign('research_projects_php', 'Researchers/selectProgram.php');
+$smarty->assign('logout_php', 'inc/logout.inc.php');
 $smarty->assign('about_php', 'aboutus.php');
+
+$smarty->assign('fqa_php', 'fqa.php');
+$smarty->assign('contactus_php', 'contactus.php');
 
 $smarty->display('templates/header.tpl');
 ?>
@@ -36,7 +45,8 @@ $smarty->display('templates/header.tpl');
                 <p style="text-align: justify;">
                     شروط التقدم لتمويل المشروعات البحثية والعناصر المطلوب إستيفائها</p>
 
-                <p style="text-align: left;"><a href="#" target="_self"><span
+                <p style="text-align: left;">
+                    <a href="subscribe_rules.php" target="_self"><span
                             style="font-weight: bold; color: rgb(245, 37, 10); ">...التفاصيل</span></a></p>
 
                 <p>
@@ -51,9 +61,10 @@ $smarty->display('templates/header.tpl');
                 <p style="text-align: justify;">خطوات ومراحل تمويل المشروع البحثيى&nbsp;من مرحلة التقديم حتى مرحلة إتمام
                     تنفيذ المشروع البحثى.</p>
 
-                <p style="text-align: left;"><span style="text-align: left;"><a href="#" target="_self"
-                                                                                style="text-decoration: underline; color: rgb(219, 157, 0);"><span
-                                style="font-weight: bold; color: rgb(245, 37, 10); ">...التفاصيل</span></a></span><a
+                <p style="text-align: left;"><span style="text-align: left;">
+                            <a href="forms/Regulations_guideline.pdf" target="_blank"
+                               style="text-decoration: underline; color: rgb(219, 157, 0);"><span
+                                    style="font-weight: bold; color: rgb(245, 37, 10); ">...التفاصيل</span></a></span><a
                         href="#" style="text-decoration: underline; color: rgb(255, 207, 87); cursor: pointer;"></a><a
                         href="#"></a></p>
             </div>
@@ -66,9 +77,10 @@ $smarty->display('templates/header.tpl');
                 <p style="text-align: justify;">كل ما يتعلق بالقواعد واللوائح &nbsp;المنظمة لعملية البحث العلمى
                     بالجامعات السعودية.<br></p>
 
-                <p style="text-align: left;"><span style="text-align: left;"><a href="#" target="_self"
-                                                                                style="text-decoration: underline; color: rgb(219, 157, 0);"><span
-                                style="font-weight: bold; color: rgb(245, 37, 10); ">...التفاصيل</span></a></span><a
+                <p style="text-align: left;"><span style="text-align: left;">
+                            <a href="forms/Unified_Sientific_Research.pdf" target="_blank"
+                               style="text-decoration: underline; color: rgb(219, 157, 0);"><span
+                                    style="font-weight: bold; color: rgb(245, 37, 10); ">...التفاصيل</span></a></span><a
                         href="#" style="text-decoration: underline; color: rgb(255, 207, 87); cursor: pointer;"></a><a
                         href="#"></a></p>
             </div>
@@ -81,9 +93,10 @@ $smarty->display('templates/header.tpl');
                 <p style="text-align: justify;">النماذج المستخدمة فى عملية تمويل المشروعات البحثية للكل من الباحثين
                     والمحكمين.</p>
 
-                <p style="text-align: left;"><span style="text-align: left;"><a href="#" target="_self"
-                                                                                style="text-decoration: underline; color: rgb(219, 157, 0);"><span
-                                style="font-weight: bold; color: rgb(245, 37, 10);">...التفاصيل</span></a></span><a
+                <p style="text-align: left;"><span style="text-align: left;">
+                            <a href="forms_templates.php" target="_self"
+                               style="text-decoration: underline; color: rgb(219, 157, 0);"><span
+                                    style="font-weight: bold; color: rgb(245, 37, 10);">...التفاصيل</span></a></span><a
                         href="#" style="text-decoration: underline; color: rgb(255, 207, 87);"></a><a href="#"></a></p>
             </div>
         </div>
