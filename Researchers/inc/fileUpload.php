@@ -113,7 +113,7 @@ if (isset($_GET['q'])) {
             $target_file = $target_dir . 'refs' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
-        case 'Resume':
+        case 'resume':
         {
             $file_name .= 'resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             $target_file = $target_dir . 'resume' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
@@ -231,7 +231,7 @@ if (isset($_GET['q'])) {
                     $obj->SetRefsUrl($_GET['q'], $file_name);
                     break;
                 }
-                case 'Resume':
+                case 'resume':
                 {
                     $person = new Persons();
                     $person_id = $_SESSION['person_id'];
