@@ -110,7 +110,7 @@ class Persons
     {
         $conn = new MysqlConnect();
         $stmt = "update persons set ResumeUrl='" . $url . "' where Person_id=" . $person_id;
-        echo $stmt;
+//        echo $stmt;
         $rs = $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
@@ -119,6 +119,7 @@ class Persons
     {
         $con = new MysqlConnect();
         $stmt = "Select ResumeUrl From persons where Person_id=" . $person_id;
+        echo $stmt;
         $rs = $con->ExecuteNonQuery($stmt);
         $ResumeUrl = "";
         while ($row = mysql_fetch_array($rs)) {
