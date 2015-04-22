@@ -82,7 +82,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $msg = 1;
             break;
         }
-        case 'Resume':
+        case 'resume':
         {
             $p = new Persons();
             $person_id = $_SESSION['person_id'];
