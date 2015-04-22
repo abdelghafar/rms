@@ -51,7 +51,6 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $person_id = $_SESSION['person_id'];
             $p = new Persons();
             $file_name = $p->GetResumeUrl($person_id);
-            echo 'person_id = ' . $_SESSION['person_id'];
             break;
         }
         case 'finishing_scholarship':
