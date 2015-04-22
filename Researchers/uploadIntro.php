@@ -567,8 +567,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/English_Summary.docx">
-                النموذج / Template
+            <a href="../forms/English_Summary.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -598,8 +598,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/Introduction.docx">
-                النموذج / Template
+            <a href="../forms/Introduction.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -629,8 +629,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/Literature_Review.docx">
-                النموذج / Template
+            <a href="../forms/Literature_Review.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -659,8 +659,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/Research_Methodology.docx">
-                النموذج / Template
+            <a href="../forms/Research_Methodology.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -689,8 +689,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/Value_to_Kingdom.docx">
-                النموذج / Template
+            <a href="../forms/Value_to_Kingdom.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -721,8 +721,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/References.docx">
-                النموذج / Template
+            <a href="../forms/References.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
@@ -752,8 +752,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/CV.docx">
-                النموذج / Template
+            <a href="../forms/CV.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
