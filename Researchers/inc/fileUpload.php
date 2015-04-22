@@ -4,7 +4,6 @@ require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
 require_once '../../lib/research_stuff.php';
 require_once '../../lib/stuff_roles.php';
-require_once '../../lib/config.php';
 
 if (isset($_GET['q'])) {
     $prefix = $_GET['q'];
@@ -20,7 +19,7 @@ if (isset($_GET['q'])) {
         $file_name .= 'coAuthor_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'coAuthor_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
-//resume
+
     if ($_GET['type'] == 'coAuthor_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -42,7 +41,6 @@ if (isset($_GET['q'])) {
         $key = uniqid();
         $file_name .= 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-
     }
 
 //    if ($_GET['type'] == 'Resume') {
@@ -125,7 +123,6 @@ if (isset($_GET['q'])) {
             $file_name .= 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             $target_file = $target_dir . 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
-
         }
     }
 
@@ -233,6 +230,7 @@ if (isset($_GET['q'])) {
                 }
                 case 'resume':
                 {
+                    //echo 'From inc/fileUpload.php::'.$file_name;
                     $person = new Persons();
                     $person_id = $_SESSION['person_id'];
                     $person->SetResumeUrl($person_id, $file_name);
