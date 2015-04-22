@@ -406,7 +406,7 @@ $smarty->display('../templates/header.tpl');
          *ResumeUpload
          *
          */
-        $('#ResumeUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $projectId ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
+        $('#ResumeUpload').jqxFileUpload({width: 200, uploadUrl: 'inc/fileUpload.php?type=resume&q=' + '<? echo $projectId; ?>', fileInputName: 'fileToUpload', theme: 'energyblue', uploadTemplate: 'warning', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', localization: {
             browseButton: 'استعراض',
             uploadButton: 'تحميل الملف',
             cancelButton: 'الغاء',
@@ -418,36 +418,14 @@ $smarty->display('../templates/header.tpl');
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-            alert(serverResponce);
             var resume_url;
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=resume", success: function (data) {
                     resume_url = data;
-                    console.log(data);
                 }
             });
 
-            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=resume", success: function (data, textStatus, jqXHR) {
-                if (data == 1) {
-                    $('#ResumeUpload_log').html('');
-                    $('#resume_url').html('<a id="resume_url" target="_blank" href = "' + '../' + resume_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
-                }
-                else {
-                    $('#resume_url').html('');
-                    $.ajax({
-                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=resume", success: function (data) {
-                            if (data == 1) {
-                                $('#ResumeUpload_log').html('');
-                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-                            }
-                            else {
-                                $('#ResumeUpload_log').html('');
-                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
-                            }
-                        }
-                    });
-                }
-            }});
+
         });
 
         /**
