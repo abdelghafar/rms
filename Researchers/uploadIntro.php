@@ -772,7 +772,7 @@ $smarty->display('../templates/header.tpl');
 
         </td>
         <td>
-            <div id="Resume_upload_log" style="width: 100%;height: auto;"></div>
+            <div id="ResumeUpload_log" style="width: 100%;height: auto;"></div>
         </td>
     </tr>
 
