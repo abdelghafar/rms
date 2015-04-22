@@ -471,7 +471,6 @@ $smarty->display('../templates/header.tpl');
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=finishing_scholarship", success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data == 1) {
                     $('#finishing_scholarship_url_log').html('');
                     $('#finishing_scholarship_url').html('<a id="finishing_scholarship_url" target="_blank" href = "' + '../' + finishing_scholarship_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
@@ -480,7 +479,6 @@ $smarty->display('../templates/header.tpl');
                     $('#finishing_scholarship_url').html('');
                     $.ajax({
                         url: 'ajax/Delete_File.php?q=' + projectId + "&type=finishing_scholarship", success: function (data) {
-                            console.log(data);
                             if (data == 1) {
                                 $('#finishing_scholarship_url_log').html('');
                                 $('#finishing_scholarship_url_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
