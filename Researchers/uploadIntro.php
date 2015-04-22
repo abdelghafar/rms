@@ -423,6 +423,7 @@ $smarty->display('../templates/header.tpl');
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=resume", success: function (data) {
                     resume_url = data;
+                    console.log(data);
                 }
             });
 
