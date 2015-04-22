@@ -425,7 +425,25 @@ $smarty->display('../templates/header.tpl');
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=resume", success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                if (data == 1) {
+                    $('#ResumeUpload_log').html('');
+                    $('#resume_url').html('<a id="resume_url" target="_blank" href = "' + '../' + resume_url + '"><img src = "images/acroread-2.png" style = "border: none;" alt = ""/></a>');
+                }
+                else {
+                    $('#resume_url').html('');
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=resume", success: function (data) {
+                            if (data == 1) {
+                                $('#ResumeUpload_log').html('');
+                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#ResumeUpload_log').html('');
+                                $('#ResumeUpload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
+                }
             }});
         });
 
