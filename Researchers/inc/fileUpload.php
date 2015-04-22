@@ -120,8 +120,8 @@ if (isset($_GET['q'])) {
         case 'finishing_scholarship':
         {
             //finishing_scholarship
-            $file_name .= 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-            $target_file = $target_dir . 'finishing_scholarship_' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $file_name .= 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
     }
