@@ -46,7 +46,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $url = $r->GetValueToKingdomUrl($project_id);
             break;
         }
-        case 'refs_url':
+        case 'refs':
         {
             $url = $r->GetRefsUrl($project_id);
             break;
@@ -58,6 +58,14 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $url = $p->GetResumeUrl($person_id);
             break;
         }
+        case 'finishing_scholarship':
+        {
+            $person_id = $_SESSION['person_id'];
+            $p = new Persons();
+            $url = $p->GetFinishingScholarshipUrl($person_id);
+            break;
+        }
+
 
     }
     echo $url;
