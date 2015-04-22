@@ -478,18 +478,19 @@ $smarty->display('../templates/header.tpl');
                 }
                 else {
 //                    $('#finishing_scholarship_url').html('');
-//                    $.ajax({
-//                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=finishing_scholarship", success: function (data) {
-//                            if (data == 1) {
-//                                $('#finishing_scholarship_url_upload_log').html('');
-//                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
-//                            }
-//                            else {
-//                                $('#finishing_scholarship_url_upload_log').html('');
-//                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
-//                            }
-//                        }
-//                    });
+                    $.ajax({
+                        url: 'ajax/Delete_File.php?q=' + projectId + "&type=finishing_scholarship", success: function (data) {
+                            console.log(data);
+                            if (data == 1) {
+                                $('#finishing_scholarship_url_upload_log').html('');
+                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + 'خطأ في تشفير الملف' + '</span>');
+                            }
+                            else {
+                                $('#finishing_scholarship_url_upload_log').html('');
+                                $('#finishing_scholarship_url_upload_log').html('<span class="glyphicon glyphicon-remove" style="color: red;font-size: 14px;">' + data + '</span>');
+                            }
+                        }
+                    });
                 }
             }});
         });
