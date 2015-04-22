@@ -501,14 +501,10 @@ $smarty->display('../templates/header.tpl');
             var cs = current_step;
             for (var i = 1; i < cs; i++) {
                 $("#img_" + i).attr("src", "images/" + i + "_finished.png");
-                //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
             }
             $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
-            //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
             for (var i = cs + 1; i <= 9; i++) {
                 $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
-                //if (i < 9)
-                // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
             }
         }
     </script>
@@ -538,7 +534,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Arabic_Summary.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -568,7 +564,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/English_Summary.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -599,7 +595,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Introduction.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -630,7 +626,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Literature_Review.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -660,7 +656,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Research_Methodology.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -690,7 +686,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Value_to_Kingdom.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -722,7 +718,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/References.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -753,7 +749,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/CV.docx" target="_blank">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
