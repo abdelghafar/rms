@@ -27,7 +27,7 @@ class Persons
 
     public function GetPerson($PersonId)
     {
-        $stmt = "SELECT  `Person_id` ,  `FirstName_ar` ,  `FirstName_en` ,  `FatherName_ar` ,  `FatherName_en` ,  `GrandName_ar` ,  `GrandName_en` ,  `FamilyName_ar` ,  `FamilyName_en` ,  `Gender` ,  `Nationality` , `DateOfBirth` ,  `CountryOfBirth` ,  `Position` ,  `Major_Field` ,  `Speical_Field` ,  `university` ,  `College` ,  `Dept` ,  `empCode` ,  `EqamaCode` ,  `Email` ,  `Mobile` ,  `Fax` ,  `city` ,  `country` ,  `POX` , `Postal_Code` ,  `IBAN` ,  `SWIFT` , ResumeUrl FROM  `persons` where `Person_id`=" . $PersonId;
+        $stmt = "SELECT  *  FROM  `persons` where `Person_id`=" . $PersonId;
         $result = mysql_query($stmt);
         return $result;
     }
