@@ -96,8 +96,10 @@ $smarty->display('../templates/header.tpl');
                 type: "post",
                 datatype: "html",
                 success: function (data) {
-                    $('#result').show();
-                    $('#result').html(data);
+                    if (data != null) {
+                        $('#result').show();
+                        $('#result').html(data);
+                    }
                 }
             });
         });
