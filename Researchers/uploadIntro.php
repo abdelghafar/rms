@@ -537,8 +537,8 @@ $smarty->display('../templates/header.tpl');
             <span class="required">*</span>
         </td>
         <td>
-            <a href="../forms/Arabic_Summary.docx">
-                النموذج / Template
+            <a href="../forms/Arabic_Summary.docx" target="_blank">
+            النموذج / Template
             </a>
         </td>
         <td>
