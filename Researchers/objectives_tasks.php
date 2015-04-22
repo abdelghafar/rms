@@ -1,9 +1,9 @@
 <?
 session_start();
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 
 
@@ -20,11 +20,15 @@ $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
 $smarty->assign('index_php', '../index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('research_projects_php', 'Researchers_View.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('about_php', '../aboutus.php');
+
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+
+$smarty->display('../templates/header.tpl');
 ?>
     <html>
     <head>
@@ -192,7 +196,7 @@ $smarty->display('../templates/Loggedin.tpl');
                                         }
                                     });
                                 }
-                                        }
+                            }
                             }
                         ]
                     });
@@ -228,15 +232,15 @@ $smarty->display('../templates/Loggedin.tpl');
             $.ajax({
                 url: "objectives_tasks_det.php",
                 dataType: "html",
-                    data: post_data,
-                    type: 'POST',
+                data: post_data,
+                type: 'POST',
                 beforeSend: function () {
                     $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                 },
                 success: function (data) {
                     $("#tasks_div").html(data);
                 }
-                });
+            });
         }
 
         function next_step() {
@@ -271,7 +275,7 @@ $smarty->display('../templates/Loggedin.tpl');
                 //if (i < 9)
                 // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
             }
-            }
+        }
     </script>
     <title></title>
     </head>

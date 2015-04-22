@@ -24,6 +24,7 @@ function GetRsearchDetails($research_id)
     $array = array();
     while ($row = mysql_fetch_array($rs)) {
         $array = array(
+            'title_ar' => $row['title_ar'],
             'title_en' => $row['title_en'],
             'tech_title' => $row['tech_title'],
             'track_title' => $row['track_name'],

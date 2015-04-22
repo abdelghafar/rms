@@ -1,10 +1,10 @@
 <?
 session_start();
 require_once '../lib/understanding.php';
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 $obj = new Understanding();
 $content = $obj->GetUnderstanding($_SESSION['program']);
@@ -20,12 +20,18 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
-$smarty->assign('index_php', '../Researchers/Researchers_View.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('research_projects_php', 'Researchers_View.php');
 $smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('about_php', '../aboutus.php');
+
+$smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+
+$smarty->display('../templates/header.tpl');
+
 $program = $_SESSION['program'];
 ?>
     <html>

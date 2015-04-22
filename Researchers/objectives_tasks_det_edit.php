@@ -1,9 +1,9 @@
 <?
 session_start();
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 require_once '../lib/Reseaches.php';
 require_once '../lib/users.php';

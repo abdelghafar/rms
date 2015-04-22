@@ -1,12 +1,9 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
-        header('Location:../Login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 $project_id = $_REQUEST["project_id"];
 ?>

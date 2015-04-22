@@ -13,6 +13,7 @@ session_start();
 //$_SESSION['person_id'] = 1029; // نورة
 //$_SESSION['person_id'] = 4; // عبدالغفار
 //$_SESSION['person_id'] = 8;
+//$_SESSION['person_id'] = 4168; //هشام عرابي
 
 $_SESSION['program'] = 0;
 
@@ -20,11 +21,12 @@ require_once '../lib/persons.php';
 require_once '../lib/program.php';
 require_once '../lib/submitRound.php';
 
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
+
 $submitround = new SubmitRound();
 $submitround_rs = $submitround->GetCurrentRound();
 
@@ -32,7 +34,7 @@ if ($submitround_data = mysql_fetch_array($submitround_rs)) {
     $submission_start_date = $submitround_data['start_date'];
 }
 
-
+echo $_SESSION['person_id'];
 $person = new Persons();
 $person_rs = $person->GetPerson($_SESSION['person_id']);
 
@@ -50,40 +52,44 @@ if ($person_data = mysql_fetch_array($person_rs)) {
 
     $Rank_Period_days = floor(abs(($submission_timestamp - $rank_timestamp) / (60 * 60 * 24)));
 
-    //echo "Name = " . $_SESSION['name_ar'] . "ps = " . $Position . " R_da   " . $RANK_DATE . "  Sub_dat " . $submission_start_date . "  Nat " . $Nationality . " Gend  " . $Gender . " Per " . $Rank_Period_days;
+    echo "Name = " . $_SESSION['name_ar'] . "ps = " . $Position . " R_da   " . $RANK_DATE . "  Sub_dat " . $submission_start_date . "  Nat " . $Nationality . " Gend  " . $Gender . " Per " . $Rank_Period_days;
 
 
     if ($Position === "محاضر" or $Position === "معيد" or ($Position === "أستاذ مساعد" and $Rank_Period_days < 720)) {
         if ($Nationality === "سعودي") {
             $program = "ra2d";
-            $_SESSION['program_alias'] = "رائد / ra2d";
+            $_SESSION['program_alias'] = "رائد / Raed";
         }
     } else {
         if ($Position === "أستاذ" or $Position === "أستاذ مشارك" or ($Position === "أستاذ مساعد" and $Rank_Period_days >= 720)) {
             if ($Gender == 2) {
                 $program = "wa3da";
-                $_SESSION['program_alias'] = " واعدة / wa3da";
+                $_SESSION['program_alias'] = " واعدة / Waeda";
             } else {
                 $program = "ba7th";
-                $_SESSION['program_alias'] = "باحث / ba7th";
+                $_SESSION['program_alias'] = "باحث / Baheth";
             }
         } else {
             //end 
         }
     }
-    //echo "<br> program = " . $program;
+    echo "<br> program = " . $program;
 
     $t = new program();
     $program_id = $t->GetProgramId($program);
     $_SESSION['program'] = $program_id;
+//    echo "<script type='text/javascript'>
+//            window.location.assign('../Researchers_View.php');
+//         </script>";
+//    
 
-    if ($_SESSION['program'] == 0) {
+    if ($_SESSION['program'] > 0) {
         echo "<script type='text/javascript'>
-            window.location.assign('../index.php');
+            window.location.assign('Researchers_View.php');
          </script>";
     } else {
         echo "<script type='text/javascript'>
-            window.location.assign('Researchers_View.php');
+            window.location.assign('../index.php');
          </script>";
     }
     //header('Location: Researchers_View.php');
