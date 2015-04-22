@@ -418,7 +418,7 @@ $smarty->display('../templates/header.tpl');
             var args = event.args;
             var fileName = args.file;
             var serverResponce = args.response;
-
+            alert(serverResponce);
             var resume_url;
             $.ajax({
                 url: 'ajax/get_file_url.php?q=' + projectId + "&type=resume", success: function (data) {
