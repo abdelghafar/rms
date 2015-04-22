@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../../lib/PDFMerger/PDFMerger.php';
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
