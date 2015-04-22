@@ -2,6 +2,8 @@
 
 require_once '../../lib/PDFMerger/PDFMerger.php';
 require_once '../../lib/Reseaches.php';
+require_once '../../lib/persons.php';
+
 $pdf = new PDFMerger;
 if (isset($_GET['q']) && isset($_GET['type'])) {
     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
@@ -44,10 +46,20 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $file_name = $project->GetRefsUrl($project_id);
             break;
         }
-
+        case 'resume':
+        {
+            $person_id = $_SESSION['person_id'];
+            $p = new Persons();
+            $file_name = $p->GetResumeUrl($person_id);
+        }
+        case 'finishing_scholarship':
+        {
+            $person_id = $_SESSION['person_id'];
+            $p = new Persons();
+            $file_name = $p->GetFinishingScholarshipUrl($person_id);
+        }
         default :
             {
-            $file_name = $project->GetAbstract_ar_url($project_id);
             break;
             }
     }
