@@ -538,7 +538,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Arabic_Summary.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -568,7 +568,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/English_Summary.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -599,7 +599,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Introduction.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -630,7 +630,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Literature_Review.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -660,7 +660,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Research_Methodology.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -690,7 +690,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/Value_to_Kingdom.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -722,7 +722,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/References.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -753,7 +753,7 @@ $smarty->display('../templates/header.tpl');
         </td>
         <td>
             <a href="../forms/CV.docx">
-            النموذج / Template
+                النموذج / Template
             </a>
         </td>
         <td>
@@ -782,11 +782,7 @@ $smarty->display('../templates/header.tpl');
             اقرار انهاء البعثة
 
         </td>
-        <td>
-            <a href="#">
-                النموذج / Template
-            </a>
-        </td>
+        <td></td>
         <td>
             <div id='finishing_scholarship_url_upload'></div>
             <div class="classic" style="color: #ff0000">
