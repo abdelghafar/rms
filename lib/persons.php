@@ -119,7 +119,7 @@ class Persons
     {
         $con = new MysqlConnect();
         $stmt = "Select ResumeUrl From persons where Person_id=" . $person_id;
-        echo $stmt;
+        
         $rs = $con->ExecuteNonQuery($stmt);
         $ResumeUrl = "";
         while ($row = mysql_fetch_array($rs)) {
