@@ -424,8 +424,9 @@ $smarty->display('../templates/header.tpl');
                     resume_url = data;
                 }
             });
-
-
+            $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=resume", success: function (data, textStatus, jqXHR) {
+                console.log(data);
+            }});
         });
 
         /**
