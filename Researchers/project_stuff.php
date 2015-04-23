@@ -2,10 +2,10 @@
 //enhancement version of project_stuff....
 
 session_start();
-if (isset($_SESSION['Authorized'])) {
-    if ($_SESSION['Authorized'] != 1) {
-        header('Location:../Login.php');
-    }
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 }
 require_once '../lib/Smarty/libs/Smarty.class.php';
 require_once('../lib/CenterResearch.php');
