@@ -59,7 +59,7 @@ class research_stuff
         $con = new MysqlConnect();
         $stmt = "Select count(*) as 'count' From research_stuff Where research_id=" . $research_id . ' and role_id=' . $role_id;
         $rs = $con->ExecuteNonQuery($stmt);
-        $IsExist = 0;
+        $IsExist = null;
         $count = 0;
         while ($row = mysql_fetch_array($stmt)) {
             $count = $row['count'];
@@ -68,6 +68,7 @@ class research_stuff
             $IsExist = 0;
         else
             $IsExist = 1;
+
         return $IsExist;
     }
 
