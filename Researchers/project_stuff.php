@@ -129,8 +129,7 @@ $smarty->display('../templates/header.tpl');
                         }, buttonclick: function (row) {
                             var dataRecord = $("#gridCoI").jqxGrid('getrowdata', row);
                             var seq_no = dataRecord['seq_no'];
-                            var person_id = dataRecord['person_id'];
-                            Delete(person_id, seq_no);
+                            Delete(seq_no);
                         }
                         }
                     ]
@@ -183,7 +182,7 @@ $smarty->display('../templates/header.tpl');
                             var dataRecord = $("#gridConsultants").jqxGrid('getrowdata', row);
                             var person_id = dataRecord['person_id'];
                             var seq_no = dataRecord['seq_no'];
-                            Delete(person_id, seq_no);
+                            Delete(seq_no);
                         }
                         }
                     ]
@@ -292,7 +291,7 @@ $smarty->display('../templates/header.tpl');
 
     </script>
     <script type="text/javascript">
-        function Delete(person_id, seq_no) {
+        function Delete(seq_no) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
