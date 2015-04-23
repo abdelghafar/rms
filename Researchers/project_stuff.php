@@ -118,7 +118,7 @@ $smarty->display('../templates/header.tpl');
                     sortable: true,
                     rtl: true,
                     columns: [
-                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center'},
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
@@ -297,22 +297,24 @@ $smarty->display('../templates/header.tpl');
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
                         if (data == 1) {
-                            <!--                            $.ajax({-->
-                            <!--                                type: 'post',-->
-                            <!--                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '-->
-                            <?// echo $projectId; ?><!--',-->
-                            <!--                                datatype: "html",-->
-                            <!--                                success: function (data) {-->
-                            <!--                                    window.location.reload();-->
-                            <!--                                }-->
-                            <!--                            });-->
+                            $.ajax({
+                                    type: 'post',
+                                    url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id,
+                                    datatype: "html",
+                                    success: function (data) {
+                                        window.location.reload();
+                                    }
+                                }
+                            )
+                            ;
                         }
                         else {
                             alert('لا يمكن حذف الباحث المشارك من فضلك تأكد من انه غير مشارك في اي عملية');
                         }
 
                     }
-                });
+                })
+                ;
 
             }
         }
