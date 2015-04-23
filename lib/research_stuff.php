@@ -90,7 +90,6 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where seq_no=" . $seq_id;
-        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
