@@ -29,7 +29,7 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
         $obj = new research_stuff();
         $IsExist = $obj->IsRoleResearchExists($role_id, $project_id);
         if ($IsExist == 1) {
-            echo '<p class="error">' . 'لقد تم تسجبل هذا النوع من المشاركين' . '</p>';
+            //echo '<p class="error">' . 'لقد تم تسجبل هذا النوع من المشاركين' . '</p>';
         } else {
             $obj->Save($project_id, 0, $role_id, research_stuff_categories::$role_based);
             $operation_completed++;
