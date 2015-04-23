@@ -56,14 +56,27 @@ class research_stuff
      */
     public function IsRoleResearchExists($role_id, $research_id)
     {
-        return 1;
+        $con = new MysqlConnect();
+        $stmt = "Select count(*) as 'count' From 'research_stuff' Where research_id=" . $research_id . ' and role_id=' . $role_id;
+        echo $stmt;
+        $rs = $con->ExecuteNonQuery($stmt);
+        $IsExist = 0;
+        $count = 0;
+        while ($row = mysql_fetch_array($stmt)) {
+            $count = $row['count'];
+        }
+        if ($count > 0)
+            $IsExist = 0;
+        else
+            $IsExist = 1;
+        return $IsExist;
     }
 
 
     public function GetSeqId($research_id, $person_id, $role_id, $type)
     {
         $pcon = new MysqlConnect();
-        $stmt = "SELECT * FROM `research_stuff` WHERE `research_id`=" . $research_id . " and `person_id`=" . $person_id . " and `role_id`=" . $role_id . " and `type`= '" . $type . "'";
+        $stmt = "SELECT * FROM research_stuff WHERE `research_id`=" . $research_id . " and `person_id`=" . $person_id . " and `role_id`=" . $role_id . " and `type`= '" . $type . "'";
 //        echo $stmt;
         $rs = $pcon->ExecuteNonQuery($stmt);
         $id = 0;
