@@ -64,7 +64,10 @@ class research_stuff
         while ($row = mysql_fetch_array($rs)) {
             $sum = $row[0];
         }
-        return $sum;
+        if ($sum > 0) {
+            return 1;
+        } else
+            return 0;
     }
 
 
