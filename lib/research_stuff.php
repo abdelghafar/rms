@@ -59,7 +59,6 @@ class research_stuff
         $con = new MysqlConnect();
         $stmt = "Select count(*) as 'count' From research_stuff Where research_id=" . $research_id . ' and role_id=' . $role_id;
         $rs = $con->ExecuteNonQuery($stmt);
-        echo $stmt . '<br/>';
         $sum = 0;
         while ($row = mysql_fetch_array($rs)) {
             $sum = $row[0];
