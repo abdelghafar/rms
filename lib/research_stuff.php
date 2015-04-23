@@ -57,7 +57,7 @@ class research_stuff
     public function IsRoleResearchExists($role_id, $research_id)
     {
         $con = new MysqlConnect();
-        $stmt = "Select count(*) as 'count' From 'research_stuff' Where research_id=" . $research_id . ' and role_id=' . $role_id;
+        $stmt = "Select count(*) as 'count' From research_stuff Where research_id=" . $research_id . ' and role_id=' . $role_id;
         echo $stmt;
         $rs = $con->ExecuteNonQuery($stmt);
         $IsExist = 0;
