@@ -13,8 +13,8 @@ if (isset($_GET['person_id'])) {
     $projectId = $_SESSION['project_id'];
     $researchAuthor = new research_stuff();
     $research = new Reseaches();
-    $res = $researchAuthor->DeleteStuff($projectId, $person_id);
-    echo $res;
+    // $res = $researchAuthor->DeleteStuff($projectId, $person_id);
+//    echo $res;
 } else {
     echo 'person_id and rcode are required..';
 }
