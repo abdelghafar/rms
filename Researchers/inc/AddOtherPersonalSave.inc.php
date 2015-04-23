@@ -38,5 +38,5 @@ if (isset($_GET['q']) && isset($_GET['p'])) {
     if ($operation_completed == count($roles))
         echo '<p class="error">' . 'تم حفظ البيانات بنجاح' . '</p>';
     else
-        echo '<p class="error">' . 'خطأفي حفط البيانات ' . '</p>';
+        echo '<p class="error">' . 'خطأ في حفظ البيانات' . '</p>';
 }
