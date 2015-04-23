@@ -38,7 +38,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
         }
         echo $operation_completed;
     } else {
-//        echo '<br/>' .'لقد تم حفظ هذا الشخص من قبل'. '<br/>';
+        echo '<br/>' . 'لقد تم حفظ هذا الشخص من قبل' . '<br/>';
         $operation_completed = 0;
         //echo $operation_completed;
     }
