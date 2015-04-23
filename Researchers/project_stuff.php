@@ -302,7 +302,7 @@ $smarty->display('../templates/header.tpl');
                                     url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id,
                                     datatype: "html",
                                     success: function (data) {
-                                        window.location.reload();
+                                        //window.location.reload();
                                     }
                                 }
                             )
