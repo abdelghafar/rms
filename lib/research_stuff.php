@@ -83,7 +83,8 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where research_id=" . $ResearchId . " and person_id=" . $PersonId;
-        $conn->ExecuteNonQuery($stmt);
+        echo $stmt;
+//        $conn->ExecuteNonQuery($stmt);
     }
 
     public function Delete($seq_id)
