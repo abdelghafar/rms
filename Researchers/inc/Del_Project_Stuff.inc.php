@@ -10,7 +10,7 @@ require_once '../../lib/Reseaches.php';
 
 if (isset($_GET['person_id'])) {
     $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-    $projectId = $_SESSION['project_id'];
+    $projectId = $_SESSION['q'];
     $researchAuthor = new research_stuff();
     $research = new Reseaches();
     // $res = $researchAuthor->DeleteStuff($projectId, $person_id);
