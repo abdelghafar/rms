@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+
+print_r($_SESSION);
+
 require_once '../../lib/persons.php';
 require_once '../../lib/research_stuff.php';
 require_once '../../lib/Reseaches.php';
