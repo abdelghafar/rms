@@ -49,6 +49,17 @@ class research_stuff
         }
     }
 
+    /**
+     * @param $role_id
+     * @param $research_id
+     *
+     */
+    public function IsRoleResearchExists($role_id, $research_id)
+    {
+        return 1;
+    }
+
+
     public function GetSeqId($research_id, $person_id, $role_id, $type)
     {
         $pcon = new MysqlConnect();
