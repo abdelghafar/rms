@@ -219,7 +219,7 @@ $smarty->display('../templates/header.tpl');
                     sortable: true,
                     rtl: true,
                     columns: [
-                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center'},
                         {text: 'Role / نوع المشاركة', dataField: 'role_name', align: 'center', cellsalign: 'right'},
                         {text: 'Job Category / فئة المشاركة', dataField: 'parent_role', align: 'center', cellsalign: 'right'},
                         {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
