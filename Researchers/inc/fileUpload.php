@@ -152,6 +152,10 @@ if (isset($_GET['q'])) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
+    if ($_FILES["fileToUpload"]["size"] == 0) {
+        echo "Sorry, your file is zero sized.";
+        $uploadOk = 0;
+    }
 // Allow certain file formats
     if ($imageFileType != "pdf") {
         echo "Sorry, only pdf files are allowed.";
