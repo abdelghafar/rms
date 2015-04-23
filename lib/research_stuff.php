@@ -64,12 +64,7 @@ class research_stuff
         while ($row = mysql_fetch_array($stmt)) {
             $count = $row['count'];
         }
-        if ($count > 0)
-            $IsExist = 1;
-        else
-            $IsExist = 0;
-
-        return $IsExist;
+        return $count;
     }
 
 
