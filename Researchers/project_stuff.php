@@ -118,7 +118,7 @@ $smarty->display('../templates/header.tpl');
                     sortable: true,
                     rtl: true,
                     columns: [
-                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center'},
                         {text: 'person_id', datafield: 'person_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
                         {text: 'Emplyoee Id / رقم المنسوب', dataField: 'empCode', width: 200, align: 'center', cellsalign: 'center'},
                         {text: 'Name/ الاسم', dataField: 'name_ar', width: 290, align: 'center', cellsalign: 'right'},
