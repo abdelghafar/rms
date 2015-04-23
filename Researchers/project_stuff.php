@@ -297,14 +297,15 @@ $smarty->display('../templates/header.tpl');
                 $.ajax({
                     url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_no, success: function (data) {
                         if (data == 1) {
-                            $.ajax({
-                                type: 'post',
-                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '<? echo $projectId; ?>',
-                                datatype: "html",
-                                success: function (data) {
-                                    window.location.reload();
-                                }
-                            });
+                            <!--                            $.ajax({-->
+                            <!--                                type: 'post',-->
+                            <!--                                url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id + "&q=" + '-->
+                            <?// echo $projectId; ?><!--',-->
+                            <!--                                datatype: "html",-->
+                            <!--                                success: function (data) {-->
+                            <!--                                    window.location.reload();-->
+                            <!--                                }-->
+                            <!--                            });-->
                         }
                         else {
                             alert('لا يمكن حذف الباحث المشارك من فضلك تأكد من انه غير مشارك في اي عملية');
