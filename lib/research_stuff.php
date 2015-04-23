@@ -60,11 +60,11 @@ class research_stuff
         $stmt = "Select count(*) as 'count' From research_stuff Where research_id=" . $research_id . ' and role_id=' . $role_id;
         $rs = $con->ExecuteNonQuery($stmt);
         echo $stmt . '<br/>';
-        $count = 0;
-        while ($row = mysql_fetch_array($stmt)) {
-            $count = $row['count'];
+        $sum = 0;
+        while ($row = mysql_fetch_array($rs)) {
+            $sum = $row[0];
         }
-        return $count;
+        return $sum;
     }
 
 
