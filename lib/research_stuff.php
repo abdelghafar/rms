@@ -83,15 +83,14 @@ class research_stuff
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where research_id=" . $ResearchId . " and person_id=" . $PersonId;
-        echo $stmt;
-//        $conn->ExecuteNonQuery($stmt);
+        $conn->ExecuteNonQuery($stmt);
     }
 
     public function Delete($seq_id)
     {
         $conn = new MysqlConnect();
         $stmt = "Delete From " . $this->table_name . " where seq_no=" . $seq_id;
-//        echo $stmt;
+        echo $stmt;
         $conn->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
