@@ -299,7 +299,7 @@ $smarty->display('../templates/header.tpl');
                         if (data == 1) {
                             $.ajax({
                                     type: 'post',
-                                    url: 'inc/Del_Project_Stuff.inc.php?person_id=' + person_id,
+                                    url: 'inc/Del_Project_Stuff.inc.php?research_stuff_id=' + seq_no,
                                     success: function (data) {
                                         //window.location.reload();
                                     }
