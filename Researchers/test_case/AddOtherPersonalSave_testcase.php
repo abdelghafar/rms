@@ -9,7 +9,7 @@ session_start();
 require_once '../../lib/config.php';
 require_once '../../lib/mysqlConnection.php';
 require_once '../../lib/research_stuff.php';
-
+require_once '../../lib/stuff_roles.php';
 
 $research_stuff_obj = new research_stuff();
 $project_busy_roles = $research_stuff_obj->GetMaxValueRole(1, 5);
