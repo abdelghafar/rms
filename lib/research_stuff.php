@@ -228,6 +228,12 @@ class research_stuff
     }
 
 
+    /**
+     * @param $research_id
+     * @param $parent_role_id
+     * @return int
+     *
+     */
     public function GetMaxValueRole($research_id, $parent_role_id)
     {
         $con = new MysqlConnect();
@@ -240,5 +246,24 @@ class research_stuff
         return $value;
     }
 
+    /***
+     * @param $research_id
+     * @param $parent_role_id
+     * @return int
+     */
+    public function GetLastRoleBasedMember($research_id, $parent_role_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "SELECT IFNULL(MAX(seq_no),0) AS seq_no FROM research_stuff JOIN stuff_roles ON research_stuff.role_id = stuff_roles.seq_id WHERE parent_role_id =" . $parent_role_id . " AND research_stuff.research_id =" . $research_id . " LIMIT 0 , 1";
+        $rs = $con->ExecuteNonQuery($stmt);
+        $seq_no = 0;
+        while ($row = mysql_fetch_array($rs)) {
+            $seq_no = $row[0];
+        }
+        return $seq_no;
+    }
+
 }
 
+$r = new research_stuff();
+echo $r->GetLastRoleBasedMember(1, 5);
