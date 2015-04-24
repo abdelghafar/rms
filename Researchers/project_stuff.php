@@ -324,17 +324,10 @@ $smarty->display('../templates/header.tpl');
                 $.ajax({
                     url: 'inc/can_del_project_role_based_stuff.inc.php?research_stuff_id=' + seq_id + "&parent_role_id=" + parent_role_id, success: function (data) {
                         if (data == 1) {
-                            $.ajax({
-                                type: 'post',
-                                url: 'inc/DelResearchStuffBySeqId.inc.php?q=' + seq_id,
-                                datatype: "html",
-                                success: function (data) {
-                                    window.location.reload();
-                                }
-                            });
+                            window.location.reload();
                         }
                         else {
-                            alert('لا يمكن حذف هذا الشخص من فضلك تأكد من انه غير مشارك في مهمة');
+                            alert(data);
                         }
                     }
                 });
