@@ -231,7 +231,7 @@ class research_stuff
     public function GetMaxValueRole($research_id, $parent_role_id)
     {
         $con = new MysqlConnect();
-        $stmt = "select max(value) from research_stuff join stuff_roles on research_stuff.role_id=stuff_roles.seq_id where parent_role_id=$parent_role_id and research_stuff.research_id=$parent_role_id";
+        $stmt = "select max(value) from research_stuff join stuff_roles on research_stuff.role_id=stuff_roles.seq_id where parent_role_id=" . $parent_role_id . " and research_stuff.research_id=" . $research_id;
         $rs = $con->ExecuteNonQuery($stmt);
         echo $stmt;
         $value = 0;
