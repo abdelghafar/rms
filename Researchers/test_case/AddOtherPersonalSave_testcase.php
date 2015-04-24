@@ -24,7 +24,13 @@ $total_roles = $stuff_roles->GetMaxValue($parent_role_id);
 $allowed_project_slots = $total_roles - $project_busy_roles;
 
 if ($OtherPersonalCount <= $allowed_project_slots) {
-    echo 'u can insert only ' . $OtherPersonalCount;
+    $initial_value = $project_busy_roles;
+    for ($i = 0; $i < $OtherPersonalCount; $i++) {
+        $next_role_id = $stuff_roles->GetNextRoleId($parent_role_id, $initial_value);
+        $output = $research_stuff_obj->Save($project_id, 0, $next_role_id, research_stuff_categories::$role_based);
+        echo $output . '<br/>';
+    }
+
 } else {
     echo 'u can not insert more than ' . $allowed_project_slots . ' roles';
 }
