@@ -199,7 +199,8 @@ $smarty->display('../templates/header.tpl');
                 datafields: [
                     {name: 'role_name'},
                     {name: 'parent_role'},
-                    {name: 'seq_no'}
+                    {name: 'seq_no'},
+                    {name: 'parent_role_id'}
                 ],
                 id: 'seq_no',
                 url: 'ajax/project_stuff_other_personal.php?q=<? echo $projectId; ?>'
@@ -220,6 +221,7 @@ $smarty->display('../templates/header.tpl');
                     rtl: true,
                     columns: [
                         {text: 'seq_no', datafield: 'seq_no', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                        {text: 'parent_role_id', datafield: 'parent_role_id', width: 3, align: 'center', cellsalign: 'center'},
                         {text: 'Role / نوع المشاركة', dataField: 'role_name', align: 'center', cellsalign: 'right'},
                         {text: 'Job Category / فئة المشاركة', dataField: 'parent_role', align: 'center', cellsalign: 'right'},
                         {text: 'Delete / حذف', datafield: 'حذف', width: 90, align: 'center', columntype: 'button', cellsrenderer: function () {
@@ -319,7 +321,7 @@ $smarty->display('../templates/header.tpl');
         function DeleteOtherPersonal(seq_id) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
-                    url: 'inc/can_del_project_stuff.inc.php?research_stuff_id=' + seq_id, success: function (data) {
+                    url: 'inc/can_del_project_role_based_stuff.inc.php?research_stuff_id=' + seq_id, success: function (data) {
                         if (data == 1) {
                             $.ajax({
                                 type: 'post',
