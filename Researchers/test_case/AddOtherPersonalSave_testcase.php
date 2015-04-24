@@ -26,7 +26,7 @@ $allowed_project_slots = $total_roles - $project_busy_roles;
 if ($OtherPersonalCount <= $allowed_project_slots) {
     echo 'u can insert only ' . $OtherPersonalCount;
 } else {
-    echo 'u can not insert more than' . $allowed_project_slots . ' roles';
+    echo 'u can not insert more than ' . $allowed_project_slots . ' roles';
 }
 
 
