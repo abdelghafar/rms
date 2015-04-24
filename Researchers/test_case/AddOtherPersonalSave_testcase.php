@@ -27,7 +27,7 @@ $input_count = 3;
 if ($input_count <= $allowed_project_roles) {
     echo 'okay';
 } else {
-    throw new Exception('u can not exceed the man limit');
+    echo 'error';
 
 }
 
