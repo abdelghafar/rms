@@ -55,4 +55,4 @@ class stuff_roles
 }
 
 $r = new stuff_roles();
-echo $r->GetNextRoleId(5, 3);
+echo $r->GetNextRoleId(5, 5);
