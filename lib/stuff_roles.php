@@ -41,4 +41,4 @@ class stuff_roles
 }
 
 $r = new stuff_roles();
-echo $r->GetMaxValue(5);
+echo $r->GetMaxValue(12);
