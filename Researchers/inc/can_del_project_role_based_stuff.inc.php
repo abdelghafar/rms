@@ -20,8 +20,15 @@ if (isset($_GET['research_stuff_id']) && isset($_GET['parent_role_id'])) {
     $res = 0;
     if ($lastRoleBasedMember == $research_stuff_id) {
         $res = $research_stuff->CanDelete($research_stuff_id);
+        if ($res == 1) {
+            //delete ;
+            $res = $research_stuff->Delete($research_stuff_id);
+        } else {
+            //can not delete
+            $res = "لا يمكن حذف هذا الشخص من فضلك تأكد من انه غير مشارك في اي مهمة";
+        }
     } else {
-        $res = "please delete the last item first....";
+        $res = "من فضلك قم بحذف العنصر الاخير أولا";
     }
     echo $res;
 }
