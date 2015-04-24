@@ -229,7 +229,8 @@ $smarty->display('../templates/header.tpl');
                         }, buttonclick: function (row) {
                             var dataRecord = $("#gridOthers").jqxGrid('getrowdata', row);
                             var seq_no = dataRecord['seq_no'];
-                            DeleteOtherPersonal(seq_no);
+                            var parent_role_id = dataRecord['parent_role_id'];
+                            DeleteOtherPersonal(seq_no, parent_role_id);
                         }
                         }
                     ]
@@ -318,10 +319,10 @@ $smarty->display('../templates/header.tpl');
 
             }
         }
-        function DeleteOtherPersonal(seq_id) {
+        function DeleteOtherPersonal(seq_id, parent_role_id) {
             if (confirm('هل انت متأكد من اتمام عملية الحذف؟ ') === true) {
                 $.ajax({
-                    url: 'inc/can_del_project_role_based_stuff.inc.php?research_stuff_id=' + seq_id, success: function (data) {
+                    url: 'inc/can_del_project_role_based_stuff.inc.php?research_stuff_id=' + seq_id + "&parent_role_id=" + parent_role_id, success: function (data) {
                         if (data == 1) {
                             $.ajax({
                                 type: 'post',
