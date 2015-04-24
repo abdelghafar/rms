@@ -264,6 +264,3 @@ class research_stuff
     }
 
 }
-
-$r = new research_stuff();
-echo $r->GetLastRoleBasedMember(1, 5);
