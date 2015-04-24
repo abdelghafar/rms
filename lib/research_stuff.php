@@ -242,6 +242,3 @@ class research_stuff
 
 }
 
-$r = new research_stuff();
-echo $r->GetMaxValueRole(11, 5);
-
