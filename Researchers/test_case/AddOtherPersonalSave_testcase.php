@@ -21,4 +21,12 @@ $allowed_project_roles = $total_roles - $project_busy_roles;
 
 echo 'allowed_project_roles=' . $allowed_project_roles;
 
+$input_count = 3;
+
+if ($input_count <= $allowed_project_roles) {
+    //okay
+} else {
+    throw new Exception('u can not exceed the man limit');
+}
+
 
