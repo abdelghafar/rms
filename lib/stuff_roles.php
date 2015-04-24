@@ -30,7 +30,7 @@ class stuff_roles
     public function GetMaxValue($parent_role_id)
     {
         $con = new MysqlConnect();
-        $stmt = "select IFNULL(MAX(value),0) AS value from research_stuff where parent_role_id=" . $parent_role_id;
+        $stmt = "select IFNULL(MAX(value),0) AS value from stuff_roles where parent_role_id=" . $parent_role_id;
         $rs = $con->ExecuteNonQuery($stmt);
         $value = 0;
         while ($row = mysql_fetch_array($rs)) {
