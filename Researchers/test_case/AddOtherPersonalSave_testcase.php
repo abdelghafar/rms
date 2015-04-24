@@ -21,6 +21,7 @@ $allowed_project_roles = $total_roles - $project_busy_roles;
 
 echo 'allowed_project_roles=' . $allowed_project_roles;
 
+$allowed_project_roles = 5;
 $input_count = 3;
 
 if ($input_count <= $allowed_project_roles) {
