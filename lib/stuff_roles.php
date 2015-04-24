@@ -44,7 +44,6 @@ class stuff_roles
         $con = new MysqlConnect();
         $next_value = $value + 1;
         $stmt = "select seq_id from stuff_roles where parent_role_id=" . $parent_role_id . " and value=" . $next_value;
-        echo $stmt . '<br/>';
         $rs = $con->ExecuteNonQuery($stmt);
         $seq_id = 0;
         while ($row = mysql_fetch_array($rs)) {
@@ -53,6 +52,3 @@ class stuff_roles
         return $seq_id;
     }
 }
-
-$r = new stuff_roles();
-echo $r->GetNextRoleId(5, 5);
