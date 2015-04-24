@@ -39,6 +39,3 @@ class stuff_roles
         return $value;
     }
 }
-
-$r = new stuff_roles();
-echo $r->GetMaxValue(12);
