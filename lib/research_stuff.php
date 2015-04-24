@@ -227,4 +227,21 @@ class research_stuff
         //u can not delete
     }
 
+
+    public function GetMaxValueRole($research_id, $parent_role_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "select max(value) from research_stuff join stuff_roles on research_stuff.role_id=stuff_roles.seq_id where parent_role_id=$.$parent_role_id and research_stuff.research_id=$parent_role_id";
+        $rs = $con->ExecuteNonQuery($stmt);
+        $value = 0;
+        while ($row = mysql_fetch_array($rs)) {
+            $value = $row[0];
+        }
+        return $value;
+    }
+
 }
+
+$r = new research_stuff();
+echo $r->GetMaxValueRole(1, 5); 
+
