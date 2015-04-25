@@ -230,8 +230,8 @@ $(document).ready(function () {
                 </span>
                 <span class="error">*</span>
             </td>
-            <td>
-                <input type="text" id="SearchByName"/>
+            <td colspan="2">
+            <input type="text" id="SearchByName"/>
                 <input id="searchButton_OtherPersonal" type="button" value="Search / بحث "/>
             </td>
 
