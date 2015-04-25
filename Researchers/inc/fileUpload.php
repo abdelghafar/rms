@@ -234,10 +234,12 @@ if (isset($_GET['q'])) {
                 }
                 case 'resume':
                 {
-                    //echo 'From inc/fileUpload.php::'.$file_name;
-                    $person = new Persons();
+                    $obj = new research_stuff();
                     $person_id = $_SESSION['person_id'];
-                    $person->SetResumeUrl($person_id, $file_name);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $role_id = stuff_roles_system::$PI;
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetResearchStuffResume($seq_id, $file_name);
                     break;
                 }
                 case 'finishing_scholarship':
