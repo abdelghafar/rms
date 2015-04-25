@@ -195,7 +195,8 @@ if (isset($_GET['q'])) {
     </legend>
     <table style="width: 800px;">
         <tr>
-            <td><span class="classic">
+            <td style="width: 171px;">
+                <span class="classic">
                 البريد الالكتروني
                 </span>
                 <span class="error">*</span>
