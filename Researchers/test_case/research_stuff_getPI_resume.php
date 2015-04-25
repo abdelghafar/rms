@@ -24,5 +24,5 @@ $personId = $_SESSION['person_id'];
 
 $research_stuff = new research_stuff();
 $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
-$pi_resume = $research_stuff->GetResearchStuffResume($pi_seqId);
-echo($pi_resume);
+$url = $research_stuff->GetFinishingScholarshipUrl($pi_seqId);
+echo($url);
