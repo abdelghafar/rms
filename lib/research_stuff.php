@@ -148,7 +148,7 @@ class research_stuff
     {
         $stmt = "Select resume_url From " . $this->table_name . " where seq_no =" . $seq_no;
         $conn = new MysqlConnect();
-        echo $stmt;
+        echo $stmt . '<br/>';
         $result = $conn->ExecuteNonQuery($stmt);
         $url = null;
         while ($row = mysql_fetch_array($result)) {
