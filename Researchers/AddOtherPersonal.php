@@ -53,7 +53,8 @@ if (isset($_GET['q'])) {
                     datafields: [
                         {name: 'role_name'},
                         {name: 'parent_role'},
-                        {name: 'seq_no'}
+                        {name: 'seq_no'},
+                        {name: 'parent_role_id'}
                     ],
                     id: 'seq_no',
                     url: 'ajax/project_stuff_other_personal.php?q=<? echo $_SESSION['q']; ?>'
