@@ -280,27 +280,27 @@ $(document).ready(function () {
                 </a>
             </td>
         </tr>
-        <td colspan="2">
-            <p class="error">
+        <td colspan="4">
+        <p class="error">
                 لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
                 <br>
                 Double click on researcher record to add acceptance letter and cv
             </p>
         </td>
         <tr>
-            <td colspan="2">
-                <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+            <td colspan="4">
+            <div id='gridOtherStuff' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <div id="searchOtherPersonal_log" class="error"></div>
+            <td colspan="4">
+            <div id="searchOtherPersonal_log" class="error"></div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="2" style="text-align: center">
-                <input type="button" value="Save / حفظ " id='btnOtherPersonalSave'
+            <td colspan="4" style="text-align: center">
+            <input type="button" value="Save / حفظ " id='btnOtherPersonalSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnOtherPersonalClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
