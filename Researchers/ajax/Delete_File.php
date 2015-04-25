@@ -9,6 +9,9 @@ session_start();
 
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
+require_once '../../lib/research_stuff.php';
+require_once '../../lib/stuff_roles.php';
+
 
 if (isset($_GET['q']) && isset($_GET['type'])) {
     $project_id = filter_input(INPUT_GET, 'q');
@@ -84,12 +87,14 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'resume':
         {
-            $p = new Persons();
-            $person_id = $_SESSION['person_id'];
-            $url = $p->GetResumeUrl($person_id);
+            $projectId = $_SESSION['q'];
+            $personId = $_SESSION['person_id'];
+            $research_stuff = new research_stuff();
+            $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+            $url = $research_stuff->GetResearchStuffResume($pi_seqId);
             $base_url .= $url;
             unlink($base_url);
-            $p->SetResumeUrl($person_id, '');
+            $research_stuff->SetResearchStuffResume($pi_seqId, '');
             $msg = 1;
             break;
         }
