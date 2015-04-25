@@ -109,6 +109,7 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             unlink($base_url);
             $research_stuff->SetFinishingScholarshipUrl($pi_seqId, '');
             $msg = 1;
+            break;
         }
 
         //ToDO: finish all status
