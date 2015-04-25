@@ -206,23 +206,9 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
-            <td><span class="classic">
-                    الموافقة الخطية/ Acceptance letter
-                </span></td>
-            <td>
-                <div id="agreeLetter"></div>
-                <div id="log"></div>
-            </td>
-            <td>
-                <a href="#">
-                    تحميل النموذج / Template
-                </a>
-            </td>
-        </tr>
-        <tr id="showUploadCV" style="display: none; ">
             <td>
                 <span class="classic">
-                    السيرة الذاتية/ CV
+                    الموافقة الخطية/ Acceptance letter
                 </span>
             </td>
             <td>
@@ -231,7 +217,19 @@ if (isset($_GET['q'])) {
                 </a>
             </td>
             <td>
-            <div id="CVUpload"></div>
+                <div id="agreeLetter"></div>
+                <div id="log"></div>
+            </td>
+
+        </tr>
+        <tr id="showUploadCV" style="display: none; ">
+            <td>
+                <span class="classic">
+                    السيرة الذاتية/ CV
+                </span>
+            </td>
+            <td>
+                <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
             </td>
         </tr>
