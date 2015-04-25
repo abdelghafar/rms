@@ -204,6 +204,8 @@ if (isset($_GET['q'])) {
             <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
+            <td></td>
+            <td></td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
             <td>
