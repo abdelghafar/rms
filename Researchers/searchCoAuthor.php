@@ -20,8 +20,8 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_url = null;
-        $("#Search").jqxInput({width: 500, height: 25, rtl: true, theme: Curr_theme});
-        $("#searchButton_CoAuthor").jqxButton({width: 100, height: 25, theme: Curr_theme});
+        $("#Search").jqxInput({width: 500, rtl: true, theme: Curr_theme});
+        $("#searchButton_CoAuthor").jqxButton({width: 100, theme: Curr_theme});
         $('#searchButton_CoAuthor').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
             var SearchVal = $('#Search').jqxInput('val');
@@ -209,7 +209,7 @@ if (isset($_GET['q'])) {
 
     <table style="width: 800px;">
         <tr id="showUploadfile" style="display: none; ">
-            <td>
+            <td style="width: 177px; ">
                 <span class="classic">
                     الموافقة الخطية/ Acceptance letter
                 </span>
@@ -246,8 +246,8 @@ if (isset($_GET['q'])) {
             <td></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <p class="error">
+            <td colspan="4">
+            <p class="error">
                     لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
                     <br>
                     Double click on researcher record to add acceptance letter and cv
@@ -255,20 +255,20 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr>
-            <td colspan="3">
-                <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+            <td colspan="4">
+            <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="3">
-                <div id="searchCoAuthor_log" class="error"></div>
+            <td colspan="4">
+            <div id="searchCoAuthor_log" class="error"></div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="3" style="text-align: center">
-                <input type="button" value="Save / حفظ " id='btnSave'
+            <td colspan="4" style="text-align: center">
+            <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
