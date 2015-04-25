@@ -248,13 +248,8 @@ $(document).ready(function () {
             <td>
                 <div id="role_list_others"></div>
             </td>
-            <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="../forms/Consultant_Consent_Letter.docx" target="_blank"
-                   style="padding-top: 10px; vertical-align: middle;">
-                    تحميل النموذج / Template
-                </a>
-            </td>
-            <td></td>
+
+        <td></td>
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
             <td><span class="classic">
@@ -264,6 +259,12 @@ $(document).ready(function () {
             <td>
                 <div id="agreeLetterOther"></div>
                 <div id="log"></div>
+            </td>
+            <td style="padding-top: 10px; vertical-align: middle;">
+                <a href="../forms/Consultant_Consent_Letter.docx" target="_blank"
+                   style="padding-top: 10px; vertical-align: middle;">
+                    تحميل النموذج / Template
+                </a>
             </td>
         </tr>
         <tr id="showUploadCV" style="display: none; ">
