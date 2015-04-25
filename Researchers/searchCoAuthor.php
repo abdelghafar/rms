@@ -216,8 +216,8 @@ if (isset($_GET['q'])) {
                 <div id="agreeLetter"></div>
                 <div id="log"></div>
             </td>
-            <td>
-                <a href="#">
+            <td style="padding-top: 10px; vertical-align: middle;">
+            <a href="#">
                     تحميل النموذج / Template
                 </a>
             </td>
@@ -233,8 +233,8 @@ if (isset($_GET['q'])) {
                 <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
             </td>
-            <td>
-                <a href="#">
+            <td style="padding-top: 10px; vertical-align: middle;">
+            <a href="#">
                     تحميل النموذج / Template
                 </a>
             </td>
@@ -250,19 +250,19 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="3">
-            <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+                <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
 
         <tr>
             <td colspan="3">
-            <div id="searchCoAuthor_log" class="error"></div>
+                <div id="searchCoAuthor_log" class="error"></div>
             </td>
         </tr>
 
         <tr>
             <td colspan="3" style="text-align: center">
-            <input type="button" value="Save / حفظ " id='btnSave'
+                <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
