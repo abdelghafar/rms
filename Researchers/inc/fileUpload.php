@@ -232,6 +232,9 @@ if (isset($_GET['q'])) {
                     $obj->SetRefsUrl($_GET['q'], $file_name);
                     break;
                 }
+                /**
+                 * Pi resume
+                 */
                 case 'resume':
                 {
                     $obj = new research_stuff();
@@ -242,12 +245,19 @@ if (isset($_GET['q'])) {
                     $obj->SetResearchStuffResume($seq_id, $file_name);
                     break;
                 }
+                /**
+                 * Pi-finishing_scholarship
+                 *
+                 */
                 case 'finishing_scholarship':
                 {
                     //finishing_scholarship
-                    $person = new Persons();
+                    $obj = new research_stuff();
                     $person_id = $_SESSION['person_id'];
-                    $person->SetFinishingScholarshipUrl($person_id, $file_name);
+                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+                    $role_id = stuff_roles_system::$PI;
+                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+                    $obj->SetFinishingScholarshipUrl($seq_id, $file_name);
                     break;
                 }
 
