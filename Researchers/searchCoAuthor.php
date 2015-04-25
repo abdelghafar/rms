@@ -200,8 +200,8 @@ if (isset($_GET['q'])) {
                 </span>
                 <span class="error">*</span>
             </td>
-            <td colspan="3">
-                <input id="Search" type="text" name="txtSearch"/>
+            <td colspan="2">
+            <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
             <td></td>
