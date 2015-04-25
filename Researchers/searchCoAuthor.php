@@ -225,7 +225,7 @@ if (isset($_GET['q'])) {
                 تحميل النموذج / Template
                 </a>
             </td>
-
+            <td></td>
         </tr>
         <tr id="showUploadCV" style="display: none; ">
             <td>
@@ -243,6 +243,7 @@ if (isset($_GET['q'])) {
                 تحميل النموذج / Template
                 </a>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td colspan="2">
