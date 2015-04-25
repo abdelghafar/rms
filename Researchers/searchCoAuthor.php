@@ -201,11 +201,9 @@ if (isset($_GET['q'])) {
                 <span class="error">*</span>
             </td>
             <td colspan="2">
-            <input id="Search" type="text" name="txtSearch"/>
+                <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
-            <td></td>
-            <td></td>
         </tr>
         <tr id="showUploadfile" style="display: none; ">
             <td>
@@ -219,7 +217,7 @@ if (isset($_GET['q'])) {
                 <div id="log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-            <a href="#">
+                <a href="#">
                     تحميل النموذج / Template
                 </a>
             </td>
@@ -236,7 +234,7 @@ if (isset($_GET['q'])) {
                 <div id="CVUpload_log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-            <a href="#">
+                <a href="#">
                     تحميل النموذج / Template
                 </a>
             </td>
