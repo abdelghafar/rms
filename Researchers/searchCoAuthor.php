@@ -222,8 +222,9 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="agreeLetter"></div>
                 <div id="log"></div>
-                <a href="../forms/CO-Is_Consent_Letter.docx" target="_blank">
-                    تحميل النموذج / Template
+                <a href="../forms/CO-Is_Consent_Letter.docx" target="_blank"
+                   style="padding-top: 10px; vertical-align: middle;">
+                تحميل النموذج / Template
                 </a>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
