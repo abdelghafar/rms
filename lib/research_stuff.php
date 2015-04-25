@@ -81,7 +81,6 @@ class research_stuff
             $id = $row['seq_no'];
         }
         return $id;
-
     }
 
     //get all stuff
