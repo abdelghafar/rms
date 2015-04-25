@@ -1,6 +1,7 @@
 <?
 session_start();
-
+//print_r($_SESSION);
+//echo $_SESSION['program_id'];
 if ($_SESSION['Authorized'] == null) {
     header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
 } else if ($_SESSION['Authorized'] == 0) {
@@ -125,7 +126,7 @@ $smarty->display('../templates/header.tpl');
                     success: function (data) {
                         if (data > 0) {
                             $('#materials_table').hide();
-                            Reload_grid_materials();
+                            ReloadAll();
                         }
                     }
                 });
@@ -136,7 +137,7 @@ $smarty->display('../templates/header.tpl');
                     success: function (data) {
                         if (data >= 0) {
                             $('#materials_table').hide();
-                            Reload_grid_materials();
+                            ReloadAll();
                         }
                     }
                 });
@@ -152,7 +153,7 @@ $smarty->display('../templates/header.tpl');
                     success: function (data) {
                         if (data > 0) {
                             $('#travel_table').hide();
-                            Reload_grid_travel();
+                            ReloadAll();
                         }
                     }
                 });
@@ -164,7 +165,7 @@ $smarty->display('../templates/header.tpl');
                     success: function (data) {
                         if (data > 0) {
                             $('#travel_table').hide();
-                            Reload_grid_travel();
+                            ReloadAll();
                         }
                     }
                 });
@@ -262,7 +263,7 @@ $smarty->display('../templates/header.tpl');
                         var dataRecord = $("#grid_materials").jqxGrid('getrowdata', row);
                         var seq_id = dataRecord['seq_id'];
                         Delete(seq_id);
-                        Reload_grid_materials();
+                        ReloadAll();
                     }
                     }
                 ]
@@ -328,7 +329,7 @@ $smarty->display('../templates/header.tpl');
                         var dataRecord = $("#grid_travel").jqxGrid('getrowdata', row);
                         var seq_id = dataRecord['seq_id'];
                         Delete(seq_id);
-                        Reload_grid_travel();
+                        ReloadAll();
                     }
                     }
                 ]
@@ -383,6 +384,11 @@ $smarty->display('../templates/header.tpl');
                     }
                 });
             }
+        }
+        function ReloadAll() {
+            Reload_grid_materials();
+            Reload_grid_travel();
+            Reload_other_items();
         }
         function Reload_grid_materials() {
             var MaterialsDataSource =
@@ -481,6 +487,28 @@ $smarty->display('../templates/header.tpl');
                 }});
             });
         }
+
+        function next_step() {
+            //alert($('#global_project_id').val());
+            var post_data = 'project_id=' + $('#global_project_id').val() + '&form_name=project_budget';
+            $.ajax({
+                url: "inc/WizardCheck.inc.php",
+                dataType: "html",
+                data: post_data,
+                type: 'POST',
+                beforeSend: function () {
+                    $("#step_div").html("<img src='images/load.gif'/>loading...");
+                },
+                success: function (data) {
+                    //alert(data);
+                    if (data == 1)
+                        window.location.assign('inc/non_manpower_budget.inc.php');
+                    else
+                        $("#step_div").html(data);
+                }
+            });
+        }
+
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -658,7 +686,7 @@ $smarty->display('../templates/header.tpl');
             تابع ميزانية المشروع(المتطلبات) / (Project Budget Cont.(Requirements
         </label>
     </legend>
-
+    <input type="hidden" id="global_project_id" value="<? echo $projectId; ?>"/>
 
     <h2 style="font-size: 14px">المواد و الاجهزة / Materials and Equipment </h2>
     <hr/>
@@ -900,6 +928,8 @@ $smarty->display('../templates/header.tpl');
     </table>
     <br/><br/>
 
+    <div id="step_div" style="padding: 10px;width: 100%;"></div>
+
     </fieldset>
     <table style="width: 100%;">
         <tr>
@@ -910,8 +940,8 @@ $smarty->display('../templates/header.tpl');
             </td>
 
             <td>
-                <a href="inc/non_manpower_budget.inc.php" style="float: left;margin-left: 25px;margin-top: 20px;">
-                    <img src="images/finish.png" style="border: none;" alt="next"/>
+                <a href="#" onclick="next_step();" style="float: left;margin-left: 25px;margin-top: 20px;">
+                <img src="images/finish.png" style="border: none;" alt="next"/>
                 </a>
             </td>
         </tr>
@@ -920,3 +950,4 @@ $smarty->display('../templates/header.tpl');
     </html>
 <?
 $smarty->display('../templates/footer.tpl');
+//href="inc/non_manpower_budget.inc.php"
