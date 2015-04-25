@@ -213,6 +213,7 @@ if (isset($_GET['q'])) {
                 <span class="classic">
                     الموافقة الخطية/ Acceptance letter
                 </span>
+                <span class="error">*</span>
             </td>
 
             <td>
@@ -231,6 +232,7 @@ if (isset($_GET['q'])) {
                 <span class="classic">
                     السيرة الذاتية/ CV
                 </span>
+                <span class="error">*</span>
             </td>
             <td>
                 <div id="CVUpload"></div>
