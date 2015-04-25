@@ -123,7 +123,7 @@ class research_stuff
         return mysql_affected_rows();
     }
 
-    public function GetCoAuthor_agreement_url($seq_no)
+    public function GetResearchStuffAgreement($seq_no)
     {
         $stmt = "Select agreement_url From " . $this->table_name . " where seq_no =" . $seq_no;
         $conn = new MysqlConnect();
