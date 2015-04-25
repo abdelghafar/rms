@@ -6,7 +6,11 @@ if (isset($_GET['q'])) {
 }
 ?>
 <script type="text/javascript">
-    $(document).ready(function () {
+    var project_id = '<?echo $project_id; ?>';
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
         var Curr_theme = 'energyblue';
         var tmpPersonData = null;
         var tmpPerson_id = null;
@@ -23,8 +27,8 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_file_name = null;
-        $("#SearchByName").jqxInput({width: '300px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton_OtherPersonal").jqxButton({width: 100, height: 25, theme: Curr_theme});
+    $("#SearchByName").jqxInput({width: 300, height: 25, rtl: true, theme: Curr_theme});
+    $("#searchButton_OtherPersonal").jqxButton({width: 100, height: 25, theme: Curr_theme});
         var roles_lst_dataSource = {
             datatype: "json",
             datafields: [
@@ -241,6 +245,13 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="role_list_others"></div>
             </td>
+            <td style="padding-top: 10px; vertical-align: middle;">
+                <a href="../forms/Consultant_Consent_Letter.docx" target="_blank"
+                   style="padding-top: 10px; vertical-align: middle;">
+                    تحميل النموذج / Template
+                </a>
+            </td>
+            <td></td>
         </tr>
         <tr id="showUploadfileOthers" style="display: none; ">
             <td><span class="classic">
@@ -259,6 +270,11 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
+            </td>
+            <td style="padding-top: 10px; vertical-align: middle;">
+                <a href="../forms/CV.docx" target="_blank">
+                    تحميل النموذج / Template
+                </a>
             </td>
         </tr>
         <td colspan="2">
