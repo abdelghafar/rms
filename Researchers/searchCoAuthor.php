@@ -213,6 +213,11 @@ if (isset($_GET['q'])) {
                 <div id="agreeLetter"></div>
                 <div id="log"></div>
             </td>
+            <td>
+                <a href="#">
+                    تحميل النموذج / Template
+                </a>
+            </td>
         </tr>
         <tr id="showUploadCV" style="display: none; ">
             <td>
@@ -221,7 +226,12 @@ if (isset($_GET['q'])) {
                 </span>
             </td>
             <td>
-                <div id="CVUpload"></div>
+                <a href="#">
+                    تحميل النموذج / Template
+                </a>
+            </td>
+            <td>
+            <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
             </td>
         </tr>
