@@ -6,6 +6,10 @@ if (isset($_GET['q'])) {
 }
 ?>
 <script type="text/javascript">
+    var project_id = '<?echo $project_id; ?>';
+</script>
+
+<script type="text/javascript">
     $(document).ready(function () {
         var Curr_theme = 'energyblue';
         var tmpPersonData = null;
@@ -124,7 +128,15 @@ if (isset($_GET['q'])) {
             var fileName = args.file;
             var serverResponce = args.response;
             uploaded_file_name = fileName;
-            $('#log').html(serverResponce);
+            //$('#log').html(serverResponce);
+            var agreement_url;
+            $.ajax({
+                url: 'ajax/get_file_url.php?q=' + project_id + "&type=CoIs_agreement_url", success: function (data) {
+                    agreement_url = data;
+                    console.log(data);
+                    alert(person_id);
+                }
+            });
 
 
         });
