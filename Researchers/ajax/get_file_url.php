@@ -74,14 +74,3 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
     }
     echo $url;
 }
-
-/**
- *
- * test case
- */
-$projectId = $_SESSION['q'];
-$personId = $_SESSION['person_id'];
-$research_stuff = new research_stuff();
-$pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
-$url = $research_stuff->GetResearchStuffResume($pi_seqId);
-echo $url;
