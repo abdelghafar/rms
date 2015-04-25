@@ -10,7 +10,9 @@ if ($_SESSION['Authorized'] == null) {
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/Reseaches.php';
 require_once '../lib/persons.php';
-require_once '../lib/users.php';
+require_once '../lib/research_stuff.php';
+require_once '../lib/stuff_roles.php';
+
 require_once '../lib/Smarty/libs/Smarty.class.php';
 $projectId = null;
 
@@ -36,8 +38,13 @@ if (isset($_SESSION['q'])) {
         $budget = $obj->GetBudgetUrl($projectId);
         $outcome_objective = $obj->GetOutcomeObjectiveUrl($projectId);
         $refs_url = $obj->GetRefsUrl($projectId);
-        $ResumeUrl = $person->GetResumeUrl($personId);
-        $finishing_scholarship_url = $person->GetFinishingScholarshipUrl($personId);
+
+        $research_stuff = new research_stuff();
+        $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+        $ResumeUrl = $research_stuff->GetResearchStuffResume($pi_seqId);
+        $finishing_scholarship_url = $research_stuff->GetFinishingScholarshipUrl($pi_seqId);
+
+
     } else {
         ob_start();
         header('Location:./forbidden.php');
@@ -422,7 +429,7 @@ $smarty->display('../templates/header.tpl');
             var serverResponce = args.response;
             var resume_url;
             $.ajax({
-                url: 'ajax/get_file_url.php?q=' + projectId + "&type=resume", success: function (data) {
+                url: 'ajax/get_file_url.php?&type=resume', success: function (data) {
                     resume_url = data;
                 }
             });
