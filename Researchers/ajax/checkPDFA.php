@@ -3,6 +3,8 @@ session_start();
 require_once '../../lib/PDFMerger/PDFMerger.php';
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
+require_once '../../lib/research_stuff.php';
+require_once '../../lib/stuff_roles.php';
 
 $pdf = new PDFMerger;
 if (isset($_GET['q']) && isset($_GET['type'])) {
@@ -55,9 +57,11 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'finishing_scholarship':
         {
-            $person_id = $_SESSION['person_id'];
-            $p = new Persons();
-            $file_name = $p->GetFinishingScholarshipUrl($person_id);
+            $projectId = $_SESSION['q'];
+            $personId = $_SESSION['person_id'];
+            $research_stuff = new research_stuff();
+            $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+            $url = $research_stuff->GetResearchStuffResume($pi_seqId);
             break;
         }
         default :
