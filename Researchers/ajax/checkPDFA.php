@@ -50,19 +50,16 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'resume':
         {
-            $person_id = $_SESSION['person_id'];
-            $p = new Persons();
-            $file_name = $p->GetResumeUrl($person_id);
-            break;
-        }
-        case 'finishing_scholarship':
-        {
             $projectId = $_SESSION['q'];
             $personId = $_SESSION['person_id'];
             $research_stuff = new research_stuff();
             $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
             $url = $research_stuff->GetResearchStuffResume($pi_seqId);
             break;
+        }
+        case 'finishing_scholarship':
+        {
+
         }
         default :
             {
