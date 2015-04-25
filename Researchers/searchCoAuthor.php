@@ -217,8 +217,8 @@ if (isset($_GET['q'])) {
                 <div id="log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="#">
-                    تحميل النموذج / Template
+                <a href="../forms/CO-Is_Consent_Letter.docx">
+                تحميل النموذج / Template
                 </a>
             </td>
 
@@ -234,8 +234,8 @@ if (isset($_GET['q'])) {
                 <div id="CVUpload_log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="#">
-                    تحميل النموذج / Template
+                <a href="../forms/CV.docx">
+                تحميل النموذج / Template
                 </a>
             </td>
         </tr>
