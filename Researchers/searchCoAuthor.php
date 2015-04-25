@@ -125,6 +125,8 @@ if (isset($_GET['q'])) {
             var serverResponce = args.response;
             uploaded_file_name = fileName;
             $('#log').html(serverResponce);
+
+
         });
 
         $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', uploadTemplate: 'warning', localization: {
@@ -195,7 +197,7 @@ if (isset($_GET['q'])) {
     </legend>
     <table style="width: 800px;">
         <tr>
-            <td style="width: 171px;">
+            <td style="width: 181px;">
                 <span class="classic">
                 البريد الالكتروني
                 </span>
@@ -220,11 +222,12 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="agreeLetter"></div>
                 <div id="log"></div>
+                <a href="../forms/CO-Is_Consent_Letter.docx" target="_blank">
+                    تحميل النموذج / Template
+                </a>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="../forms/CO-Is_Consent_Letter.docx" target="_blank">
-                تحميل النموذج / Template
-                </a>
+
             </td>
             <td></td>
         </tr>
