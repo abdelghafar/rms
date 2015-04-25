@@ -249,20 +249,20 @@ if (isset($_GET['q'])) {
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+            <td colspan="3">
+            <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="2">
-                <div id="searchCoAuthor_log" class="error"></div>
+            <td colspan="3">
+            <div id="searchCoAuthor_log" class="error"></div>
             </td>
         </tr>
 
         <tr>
-            <td colspan="2" style="text-align: center">
-                <input type="button" value="Save / حفظ " id='btnSave'
+            <td colspan="3" style="text-align: center">
+            <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
