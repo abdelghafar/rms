@@ -145,7 +145,7 @@ class research_stuff
         return mysql_affected_rows();
     }
 
-    public function GetCoAuthor_resume_url($seq_no)
+    public function GetResearchStuffResume($seq_no)
     {
         $stmt = "Select resume_url From " . $this->table_name . " where seq_no =" . $seq_no;
         $conn = new MysqlConnect();
