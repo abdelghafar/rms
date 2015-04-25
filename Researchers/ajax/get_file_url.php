@@ -65,6 +65,10 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
             $url = $p->GetFinishingScholarshipUrl($person_id);
             break;
         }
+        case 'CoIs_agreement_url':
+        {
+            break;
+        }
 
 
     }
