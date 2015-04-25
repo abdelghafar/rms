@@ -10,6 +10,7 @@ session_start();
 require_once '../../lib/persons.php';
 require_once '../../lib/research_stuff.php';
 require_once '../../lib/Reseaches.php';
+require_once '../../lib/project_budget.php';
 
 if (isset($_GET['research_stuff_id']) && isset($_GET['parent_role_id'])) {
     $research_stuff_id = filter_input(INPUT_GET, 'research_stuff_id', FILTER_VALIDATE_INT);
@@ -23,6 +24,8 @@ if (isset($_GET['research_stuff_id']) && isset($_GET['parent_role_id'])) {
         if ($res == 1) {
             //delete ;
             $res = $research_stuff->Delete($research_stuff_id);
+            $project_budget = new project_budget();
+            $project_budget->DeleteByResearchStuffId($research_stuff_id);
         } else {
             //can not delete
             $res = "لا يمكن حذف هذا الشخص من فضلك تأكد من انه غير مشارك في اي مهمة";
