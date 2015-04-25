@@ -2,7 +2,7 @@
 
 session_start();
 
-$_SESSION['Authorized'] = 1;
+//$_SESSION['Authorized'] = 1;
 
 
 //$_SESSION['person_id'] = 252; // فيصل
@@ -11,7 +11,7 @@ $_SESSION['Authorized'] = 1;
 //$_SESSION['person_id'] = 382; // باسم
 //$_SESSION['person_id'] = 123; // نعيمة
 //$_SESSION['person_id'] = 1029; // نورة
-$_SESSION['person_id'] = 4; // عبدالغفار
+//$_SESSION['person_id'] = 4; // عبدالغفار
 //$_SESSION['person_id'] = 8;
 //$_SESSION['person_id'] = 4168; //هشام عرابي
 
