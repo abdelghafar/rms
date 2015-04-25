@@ -21,7 +21,7 @@ if (isset($_GET['q'])) {
         var uploaded_file_name = null;
         var resume_url = null;
         $("#Search").jqxInput({width: '250px', height: '25px', rtl: true, theme: Curr_theme});
-        $("#searchButton_CoAuthor").jqxButton({width: 100, height: 20, theme: Curr_theme});
+        $("#searchButton_CoAuthor").jqxButton({width: 300, height: 20, theme: Curr_theme});
         $('#searchButton_CoAuthor').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
             var SearchVal = $('#Search').jqxInput('val');
