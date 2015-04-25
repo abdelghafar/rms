@@ -59,7 +59,12 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'finishing_scholarship':
         {
-
+            $projectId = $_SESSION['q'];
+            $personId = $_SESSION['person_id'];
+            $research_stuff = new research_stuff();
+            $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+            $file_name = $research_stuff->GetFinishingScholarshipUrl($pi_seqId);
+            break;
         }
         default :
             {
