@@ -48,7 +48,7 @@ $(document).ready(function () {
             type: "GET",
             dataType: "json",
             beforeSend: function () {
-                $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' />");
+                $('#coAuthorName').html("<img src='common/images/ajax-loader.gif' alt='Loading...' />");
             },
             success: function (data) {
                 if (data === null) {
