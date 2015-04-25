@@ -200,8 +200,8 @@ if (isset($_GET['q'])) {
                 </span>
                 <span class="error">*</span>
             </td>
-            <td colspan="2">
-            <input id="Search" type="text" name="txtSearch"/>
+            <td colspan="3">
+                <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
         </tr>
@@ -211,14 +211,15 @@ if (isset($_GET['q'])) {
                     الموافقة الخطية/ Acceptance letter
                 </span>
             </td>
+
+            <td>
+                <div id="agreeLetter"></div>
+                <div id="log"></div>
+            </td>
             <td>
                 <a href="#">
                     تحميل النموذج / Template
                 </a>
-            </td>
-            <td>
-                <div id="agreeLetter"></div>
-                <div id="log"></div>
             </td>
 
         </tr>
@@ -231,6 +232,11 @@ if (isset($_GET['q'])) {
             <td>
                 <div id="CVUpload"></div>
                 <div id="CVUpload_log"></div>
+            </td>
+            <td>
+                <a href="#">
+                    تحميل النموذج / Template
+                </a>
             </td>
         </tr>
         <tr>
