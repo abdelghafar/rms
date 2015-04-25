@@ -119,7 +119,7 @@ class Persons
     {
         $con = new MysqlConnect();
         $stmt = "Select ResumeUrl From persons where Person_id=" . $person_id;
-        
+
         $rs = $con->ExecuteNonQuery($stmt);
         $ResumeUrl = "";
         while ($row = mysql_fetch_array($rs)) {
@@ -128,26 +128,5 @@ class Persons
         return $ResumeUrl;
     }
 
-    /***********************************************************
-     *  Gettter and Setter of FinishingScholarshipUrl
-     */
-    public function SetFinishingScholarshipUrl($person_id, $url)
-    {
-        $conn = new MysqlConnect();
-        $stmt = "update persons set finishing_scholarship_url='" . $url . "' where Person_id=" . $person_id;
-        $rs = $conn->ExecuteNonQuery($stmt);
-        return mysql_affected_rows();
-    }
 
-    public function GetFinishingScholarshipUrl($person_id)
-    {
-        $con = new MysqlConnect();
-        $stmt = "Select finishing_scholarship_url From persons where Person_id=" . $person_id;
-        $rs = $con->ExecuteNonQuery($stmt);
-        $finishing_scholarship_url = "";
-        while ($row = mysql_fetch_array($rs)) {
-            $finishing_scholarship_url = $row['finishing_scholarship_url'];
-        }
-        return $finishing_scholarship_url;
-    }
 }
