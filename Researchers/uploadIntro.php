@@ -429,7 +429,7 @@ $smarty->display('../templates/header.tpl');
             var serverResponce = args.response;
             var resume_url;
             $.ajax({
-                url: 'ajax/get_file_url.php?&type=resume', success: function (data) {
+                url: 'ajax/get_file_url.php?type=resume', success: function (data) {
                     resume_url = data;
                     alert(resume_url);
                 }
