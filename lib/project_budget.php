@@ -61,5 +61,21 @@ class project_budget
         $con->ExecuteNonQuery($stmt);
         return mysql_affected_rows();
     }
+
+    /**
+     * @param $research_stuff_id
+     * @return int
+     * Delete project_budget by research_stuff_id
+     */
+    public function DeleteByResearchStuffId($research_stuff_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "DELETE FROM " . $this->tableName . " WHERE research_stuff_id =" . $research_stuff_id;
+        $rs = $con->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
 }
+
+
 
