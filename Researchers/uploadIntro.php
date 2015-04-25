@@ -431,7 +431,6 @@ $smarty->display('../templates/header.tpl');
             $.ajax({
                 url: 'ajax/get_file_url.php?type=resume&q=' + projectId, success: function (data) {
                     resume_url = data;
-                    alert(resume_url);
                 }
             });
             $.ajax({url: 'ajax/checkPDFA.php?q=' + projectId + "&type=resume", success: function (data, textStatus, jqXHR) {
