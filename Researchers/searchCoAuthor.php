@@ -205,6 +205,9 @@ if (isset($_GET['q'])) {
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
             </td>
         </tr>
+    </table>
+
+    <table style="width: 800px;">
         <tr id="showUploadfile" style="display: none; ">
             <td>
                 <span class="classic">
@@ -217,7 +220,7 @@ if (isset($_GET['q'])) {
                 <div id="log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="../forms/CO-Is_Consent_Letter.docx">
+                <a href="../forms/CO-Is_Consent_Letter.docx" target="_blank">
                 تحميل النموذج / Template
                 </a>
             </td>
@@ -234,7 +237,7 @@ if (isset($_GET['q'])) {
                 <div id="CVUpload_log"></div>
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
-                <a href="../forms/CV.docx">
+                <a href="../forms/CV.docx" target="_blank">
                 تحميل النموذج / Template
                 </a>
             </td>
