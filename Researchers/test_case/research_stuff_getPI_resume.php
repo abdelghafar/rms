@@ -17,6 +17,11 @@ require_once '../../lib/persons.php';
 require_once '../../lib/research_stuff.php';
 require_once '../../lib/stuff_roles.php';
 
+$projectId = $_SESSION['q'];
+$obj = new Reseaches();
+$program = $_SESSION['program'];
+$personId = $_SESSION['person_id'];
+
 $research_stuff = new research_stuff();
 $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
 $pi_resume = $research_stuff->GetResearchStuffResume($pi_seqId);
