@@ -65,9 +65,11 @@ if (isset($_GET['q']) && isset($_GET['type'])) {
         }
         case 'finishing_scholarship':
         {
-            $person_id = $_SESSION['person_id'];
-            $p = new Persons();
-            $url = $p->GetFinishingScholarshipUrl($person_id);
+            $projectId = $_SESSION['q'];
+            $personId = $_SESSION['person_id'];
+            $research_stuff = new research_stuff();
+            $pi_seqId = $research_stuff->GetSeqId($projectId, $personId, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+            $url = $research_stuff->GetFinishingScholarshipUrl($pi_seqId);
             break;
         }
 
