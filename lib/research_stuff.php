@@ -156,6 +156,30 @@ class research_stuff
         return $url;
     }
 
+    /***********************************************************
+     *  Gettter and Setter of FinishingScholarshipUrl
+     */
+    public function SetFinishingScholarshipUrl($seq_id, $url)
+    {
+        $conn = new MysqlConnect();
+        $stmt = "update " . $this->table_name . " set finishing_scholarship_url='" . $url . "' where seq_no =" . $seq_id;
+        $rs = $conn->ExecuteNonQuery($stmt);
+        return mysql_affected_rows();
+    }
+
+    public function GetFinishingScholarshipUrl($seq_id)
+    {
+        $con = new MysqlConnect();
+        $stmt = "Select finishing_scholarship_url From " . $this->table_name . " where seq_no=" . $seq_id;
+        $rs = $con->ExecuteNonQuery($stmt);
+        $finishing_scholarship_url = "";
+        while ($row = mysql_fetch_array($rs)) {
+            $finishing_scholarship_url = $row['finishing_scholarship_url'];
+        }
+        return $finishing_scholarship_url;
+    }
+
+
     public function GetProjectAllStuffs($projectId)
     {
         $conn = new MysqlConnect();
