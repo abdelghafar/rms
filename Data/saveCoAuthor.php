@@ -9,7 +9,7 @@
 /*
  * Save the Co-Is to the DB with Agreement letter and corresponding  CV.
  */
-
+session_start();
 require_once '../lib/research_stuff.php';
 
 if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) && isset($_GET['resume_url'])) {
@@ -27,6 +27,7 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
             $agreement_url = "uploads/" . $research_id . "/" . $agreement_file;
             $resume_url = "uploads/" . $research_id . "/" . $resume_file;
 
+            $agreement_file = "uploads/" . $research_id . "/" . $_SESSION['tmp_file_name'];
             $obj->SetResearchStuffAgreement($return_id, $agreement_url);
             $obj->SetResearchStuffResume($return_id, $resume_url);
             echo 200;
