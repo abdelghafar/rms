@@ -25,8 +25,8 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) 
         if ($agreement_file != 'null' && $resume_file != 'null') {
             $return_id = $obj->Save($research_id, $person_id, 2, research_stuff_categories::$person_based);
 
-            $agreement_url = "uploads/" . $research_id . "/" . $_SESSION['tmp_coAuthor_agreement_url'];
-            $resume_url = "uploads/" . $research_id . "/" . $_SESSION['tmp_coAuthor_resume_url'];
+            $agreement_url = $_SESSION['tmp_coAuthor_agreement_url'];
+            $resume_url = $_SESSION['tmp_coAuthor_resume_url'];
 
             $obj->SetResearchStuffAgreement($return_id, $agreement_url);
             $obj->SetResearchStuffResume($return_id, $resume_url);
