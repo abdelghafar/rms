@@ -381,6 +381,7 @@ $smarty->display('../templates/header.tpl');
                     url: 'inc/Del_project_budget.inc.php?q=' + seq_id,
                     datatype: "html",
                     success: function (data) {
+                        ReloadAll();
                     }
                 });
             }
