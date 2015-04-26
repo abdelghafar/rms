@@ -7,6 +7,8 @@ session_start();
  */
 require_once '../../lib/Reseaches.php';
 require_once '../../lib/persons.php';
+require_once '../../lib/research_stuff.php';
+require_once '../../lib/stuff_roles.php';
 
 $projectId = $_GET['q'];
 $obj = new Reseaches();
@@ -19,7 +21,10 @@ $value = $obj->GetValueToKingdomUrl($projectId);
 $refs = $obj->GetRefsUrl($projectId);
 $person = new Persons();
 $person_id = $_SESSION['person_id'];
-$resume = $person->GetResumeUrl($person_id);
+
+$research_stuff = new research_stuff();
+$seq_id = $research_stuff->GetSeqId($_SESSION['q'], $person_id, stuff_roles_system::$PI, research_stuff_categories::$person_based);
+$resume = $research_stuff->GetResearchStuffResume($seq_id);
 
 $arabicAbs_file = 0;
 $engAbs_file = 0;
