@@ -687,7 +687,7 @@ $smarty->display('../templates/header.tpl');
 
     <tr>
         <td>
-            قيمة المشروع للدولة / Value To Kingdom
+            فائدة المشروع للمملكة / Value To Kingdom
             <span class="required">*</span>
         </td>
         <td>
