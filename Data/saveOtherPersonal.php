@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,8 +19,8 @@ if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['role_id']) &&
     if ($obj->IsExist($research_id, $person_id) == 0) {
         if ($agreement_file != 'null' && $resume_file != 'null') {
             $return_id = $obj->Save($research_id, $person_id, 3, research_stuff_categories::$person_based);
-            $agreement_url = "uploads/" . $research_id . "/" . $agreement_file;
-            $resume_url = "uploads/" . $research_id . "/" . $resume_file;
+            $agreement_url = "uploads/" . $research_id . "/" . $_SESSION['tmp_consultant_agreement_url'];
+            $resume_url = "uploads/" . $research_id . "/" . $_SESSION['tmp_consultant_resume_url'];
 
             $obj->SetResearchStuffAgreement($return_id, $agreement_url);
             $obj->SetResearchStuffResume($return_id, $resume_url);
