@@ -3,6 +3,7 @@
 require_once 'mysqlConnection.php';
 require_once 'CenterResearch.php';
 require_once 'Settings.php';
+require_once 'submitRound.php';
 require_once 'technologies.php';
 
 class Reseaches
@@ -18,8 +19,8 @@ class Reseaches
         $conn = new MysqlConnect();
         $stmt = "";
         if ($seqId == 0) {
-            $obj = new Settings();
-            $round = $obj->GetCurrRound();
+            $obj = new SubmitRound();
+            $round = $obj->GetCurrRoundId();
             $stmt = "INSERT INTO  researches (title_ar,title_en,proposed_duration,major_field,special_field,research_code,Approve_session_no,Approve_date,abstract_ar_url,abstract_en_url,introduction_url,literature_review_url,url,Status_Id,Status_Date,center_id,research_year,program,round,type_id,keywords,isDraft) Values('" . $title_ar . "','" . $title_en . "'," . $proposed_duration . ",'" . $major_field . "','" . $speical_field . "','" . $reseach_code . "','" . $Approve_session_no . "','" . $Approve_date . "','" . $abstract_ar_url . "','" . $abstract_en_url . "','" . $introduction_url . "','" . $literature_review_url . "','" . $url . "'," . $Status_id . ",'" . $Status_date . "'," . $center_id . ",'" . $research_year . "'," . $program . "," . $round . "," . $typeId . ",'" . $keywords . "',1)";
             $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
@@ -183,7 +184,16 @@ class Reseaches
 
     public function GetResearchDetailsMin($Research_Id)
     {
-        $stmt = "select `researches`.seq_id, `researches`.title_ar,researches.title_en ,`researches`.research_code, `researches`.research_year, `researches`.keywords, technologies.title as `tech_title`,reseach_status.`Status_name`,reseach_status.`Status_Id`,`persons`.`empCode`, persons.name_ar , persons.name_en , tracks.track_name, subtracks.subTrack_name, researches.proposed_duration, project_types.title as 'type_title' , project_types.title_en  as 'type_title_en' from `researches` join `reseacher_centers` on `researches`.center_id=`reseacher_centers`.id join `persons` on `persons`.`Person_id` join reseach_status on reseach_status.`Status_Id` = researches.status_id join technologies on technologies.seq_id = researches.center_id join tracks on tracks.track_id = researches.major_field join subtracks on subtracks.seq_id = researches.special_field join project_types on researches.type_id = project_types.seq_id where `persons`.`Person_id` in (select research_stuff.person_id from research_stuff where research_stuff.role_id = 1 and research_id=$Research_Id) and `researches`.seq_id=$Research_Id";
+        $stmt = "select `researches`.seq_id, `researches`.title_ar,researches.title_en ,`researches`.research_code, `researches`.research_year ,`researches`.keywords, technologies.title as `tech_title`,reseach_status.`Status_name`,`researches`.status_date ,reseach_status.`Status_Id`,`persons`.`empCode`, persons.name_ar , persons.name_en , tracks.track_name, subtracks.subTrack_name, researches.proposed_duration, project_types.title as 'type_title' , project_types.title_en  as 'type_title_en', submit_round.round_title 
+from `researches` join `reseacher_centers` on `researches`.center_id=`reseacher_centers`.id 
+join `persons` on `persons`.`Person_id` 
+join reseach_status on reseach_status.`Status_Id` = researches.status_id 
+join technologies on technologies.seq_id = researches.center_id 
+join tracks on tracks.track_id = researches.major_field 
+join subtracks on subtracks.seq_id = researches.special_field 
+join project_types on researches.type_id = project_types.seq_id
+join  submit_round on researches.round = submit_round.id
+where `persons`.`Person_id` in (select research_stuff.person_id from research_stuff where research_stuff.role_id = 1 and research_id=$Research_Id) and `researches`.seq_id=$Research_Id";
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
