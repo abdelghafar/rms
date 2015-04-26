@@ -67,10 +67,10 @@ class project_budget_others
         while ($row = mysql_fetch_array($rs)) {
             $count = $row[0];
         }
-        return $rs;
+        return $count;
     }
 
 }
 
 $r = new project_budget_others();
-echo $r->non_manpower_item_exists(1, 5); 
+echo $r->non_manpower_item_exists(1, 5);
