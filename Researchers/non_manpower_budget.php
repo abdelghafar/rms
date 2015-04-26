@@ -397,14 +397,16 @@ $smarty->display('../templates/header.tpl');
             Reload_grid_materials();
             Reload_grid_travel();
             Reload_other_items();
+            ReloadProjectTotal();
         }
         function ReloadProjectTotal() {
             $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
                 var project_total = 0;
                 project_total = xdata;
-                $("#project_total").val(project_total);
+                $("#project_total_amount").val(project_total);
             }});
         }
+
         function Reload_grid_materials() {
             var MaterialsDataSource =
             {
@@ -952,8 +954,8 @@ $smarty->display('../templates/header.tpl');
                         </span>
             </td>
             <td>
-                <label id="project_total">
-                    0
+                <label id="project_total_amount">
+                0
                 </label>
             </td>
         </tr>
