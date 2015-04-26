@@ -929,7 +929,7 @@ $smarty->display('../templates/header.tpl');
     </table>
 
     <br/><br/>
-
+    <hr/>
     <table id="total_footer">
         <tr>
             <td>
