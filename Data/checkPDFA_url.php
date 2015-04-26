@@ -18,7 +18,7 @@ if (isset($_GET['url'])) {
         if (file_exists($target_file)) {
             unlink($target_file);
         }
-        $str = $pdf->addPDF($file_name, 'all')
+        $str = $pdf->addPDF('../../uploads/' . $file_name, 'all')
             ->merge('file', $target_file);
 
         if (file_exists($target_file)) {
