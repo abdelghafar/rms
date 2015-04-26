@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-*.pdf
 .idea/
 .idea/workspace.xml
 lib/config.php
 nbproject/
+uploads/

@@ -1,5 +1,4 @@
 <?
-
 session_start();
 
 //$_SESSION['Authorized'] = 1;
@@ -16,6 +15,8 @@ session_start();
 //$_SESSION['person_id'] = 4168; //هشام عرابي
 
 $_SESSION['program'] = 0;
+$_SESSION['program_id'] = 0;
+$_SESSION['Authorized'] = 0;
 
 require_once '../lib/persons.php';
 require_once '../lib/program.php';
@@ -34,68 +35,133 @@ if ($submitround_data = mysql_fetch_array($submitround_rs)) {
     $submission_start_date = $submitround_data['start_date'];
 }
 
-echo $_SESSION['person_id'];
+//echo $_SESSION['person_id'];
 $person = new Persons();
 $person_rs = $person->GetPerson($_SESSION['person_id']);
+require_once '../js/fckeditor/fckeditor.php';
+require_once '../lib/CenterResearch.php';
+require_once '../lib/Smarty/libs/Smarty.class.php';
+$smarty = new Smarty();
 
-if ($person_data = mysql_fetch_array($person_rs)) {
-    $Position = $person_data['Position'];
-    $RANK_DATE = $person_data['rank_date'];
-    $Nationality = $person_data['Nationality'];
-    $Gender = $person_data['Gender'];
-    $_SESSION['name_ar'] = $person_data['name_ar'];
+$smarty->assign('style_css', '../style.css');
+$smarty->assign('style_responsive_css', '../style.responsive.css');
+$smarty->assign('jquery_js', '../jquery.js');
+$smarty->assign('script_js', '../script.js');
+$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('index_php', '../index.php');
+$smarty->assign('research_projects_php', 'selectProgram.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('about_php', '../aboutus.php');
+$smarty->assign('login_php', '../login.php');
+$smarty->assign('fqa_php', '../fqa.php');
+$smarty->assign('contactus_php', '../contactus.php');
+
+$smarty->display('../templates/header.tpl');
+?>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/reigster-layout.css"/>
+        <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
+        <script type="text/javascript" src="../js/jquery-ui/js/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcalendar.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxtooltip.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxswitchbutton.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxnumberinput.js"></script>
+        <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
+        <link href="../js/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+
+        <script src="../js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+    <?php
+    if ($person_data = mysql_fetch_array($person_rs)) {
+        $Position = $person_data['Position'];
+        $RANK_DATE = $person_data['rank_date'];
+        $Nationality = $person_data['Nationality'];
+        $Gender = $person_data['Gender'];
+        $_SESSION['name_ar'] = $person_data['name_ar'];
 
 
-    $submission_timestamp = strtotime($submission_start_date);
+        $submission_timestamp = strtotime($submission_start_date);
 
-    $rank_timestamp = strtotime($RANK_DATE);
+        $rank_timestamp = strtotime($RANK_DATE);
 
-    $Rank_Period_days = floor(abs(($submission_timestamp - $rank_timestamp) / (60 * 60 * 24)));
-
-    echo "Name = " . $_SESSION['name_ar'] . "ps = " . $Position . " R_da   " . $RANK_DATE . "  Sub_dat " . $submission_start_date . "  Nat " . $Nationality . " Gend  " . $Gender . " Per " . $Rank_Period_days;
+        $Rank_Period_days = floor(abs(($submission_timestamp - $rank_timestamp) / (60 * 60 * 24)));
 
 
-    if ($Position === "محاضر" or $Position === "معيد" or ($Position === "أستاذ مساعد" and $Rank_Period_days < 720)) {
-        if ($Nationality === "سعودي") {
-            $program = "ra2d";
-            $_SESSION['program_alias'] = "رائد / Raed";
-        }
-    } else {
-        if ($Position === "أستاذ" or $Position === "أستاذ مشارك" or ($Position === "أستاذ مساعد" and $Rank_Period_days >= 720)) {
-            if ($Gender == 2) {
-                $program = "wa3da";
-                $_SESSION['program_alias'] = " واعدة / Waeda";
-            } else {
-                $program = "ba7th";
-                $_SESSION['program_alias'] = "باحث / Baheth";
+        if ($Position === "محاضر" or $Position === "معيد" or ($Position === "أستاذ مساعد" and $Rank_Period_days < 720)) {
+            if ($Nationality === "سعودي") {
+                $program = "ra2d";
+                $_SESSION['program_alias'] = "رائد / Raed";
             }
         } else {
-            //end 
+            if ($Position === "أستاذ" or $Position === "أستاذ مشارك" or ($Position === "أستاذ مساعد" and $Rank_Period_days >= 720)) {
+                if ($Gender == 2) {
+                    $program = "wa3da";
+                    $_SESSION['program_alias'] = " واعدة / Waeda";
+                } else {
+                    $program = "ba7th";
+                    $_SESSION['program_alias'] = "باحث / Baheth";
+                }
+            } else {
+                //end 
+            }
         }
-    }
-    echo "<br> program = " . $program;
+//        echo "Name = " . $_SESSION['name_ar'] . "ps = " . $Position . " R_da   " . $RANK_DATE . "  Sub_dat " . $submission_start_date . "  Nat " . $Nationality . " Gend  " . $Gender . " Per " . $Rank_Period_days;
+//        echo "<br> program = " . $program;
 
-    $t = new program();
-    $program_id = $t->GetProgramId($program);
-    $_SESSION['program'] = $program_id;
+        $_SESSION['program_code'] = $program;
+
+        $t = new program();
+        $program_id = $t->GetProgramId($program);
+
+        $_SESSION['program_id'] = $program_id;
+        $_SESSION['program'] = $program_id;
+
 //    echo "<script type='text/javascript'>
 //            window.location.assign('../Researchers_View.php');
 //         </script>";
 //    
+//echo "<br>  prog_id = ". $_SESSION['program_id']. "<br>  person_id = ". $person_data['Person_id'];
 
-    if ($_SESSION['program'] > 0) {
-        echo "<script type='text/javascript'>
+        if ($_SESSION['program_id'] > 0) {
+            echo "<script type='text/javascript'>
             window.location.assign('Researchers_View.php');
          </script>";
+        } else {
+            echo "<h2 style='text-lign:center;color:red'> لا ينطبق عليك شروط التقديم فى برامج المنح البحثية المقدمة <br><br> You do not Meet the Grant programs prerequisites </h2> ";
+            /* echo "<script type='text/javascript'>
+              window.location.assign('../index.php');
+              </script>"; */
+        }
+        //header('Location: Researchers_View.php');
     } else {
         echo "<script type='text/javascript'>
-            window.location.assign('../index.php');
+            window.location.assign('https://uqu.edu.sa/egate/');
          </script>";
     }
-    //header('Location: Researchers_View.php');
-}
+    ?>
+
+    </body>
+<?
+$smarty->display('../templates/footer.tpl');
 
 
+//echo $_SESSION['program_id'];
 /* require_once '../js/fckeditor/fckeditor.php';
   require_once '../lib/CenterResearch.php';
   require_once '../lib/Smarty/libs/Smarty.class.php';

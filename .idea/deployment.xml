@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" promptOnLocalOverwrite="false">
+  <component name="PublishConfigData" promptOnLocalOverwrite="false" uploadOnCheckin="22a1fb82-5b03-46f0-898e-1205b8665de5">
     <serverData>
       <paths name="uqu">
         <serverdata>
@@ -10,6 +10,7 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="uqu" />
   </component>
 </project>
 

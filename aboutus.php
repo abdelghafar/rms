@@ -11,7 +11,7 @@ $smarty->assign('script_js', 'script.js');
 $smarty->assign('script_responsive_js', 'script.responsive.js');
 
 $smarty->assign('index_php', 'index.php');
-$smarty->assign('research_projects_php', 'Researchers/Researchers_View.php');
+$smarty->assign('research_projects_php', 'Researchers/selectProgram.php');
 $smarty->assign('logout_php', 'inc/logout.inc.php');
 $smarty->assign('about_php', 'aboutus.php');
 
@@ -35,8 +35,9 @@ if (isset($_SESSION['program']) && $_SESSION['program'] > 0) {
     <body>
 
     <p style="font-weight: bold; font-size: 20px;line-height: 2;text-align: justify">
-        قامت عمادة البحث العلمي ممثلة في وكالة العمادة للمعلومات والنشر بتطوير هذا النظام تحت مسمى "نظام إدارة المنح
-        البحثية" لمساعدة منسوبي جامعة أم القرى من أعضاء هيئة تدريس وباحثين على التقديم على منح مالية لدعم ابحاثهم.
+        قامت عمادة البحث العلمي ممثلة في وكالة العمادة للمعلومات والنشر بالتطوير الذاتي لهذا النظام لمساعدة منسوبي جامعة
+        أم القرى من أعضاء هيئة تدريس وباحثين على التقديم على منح مالية لدعم ابحاثهم.
+
     </p>
 
     <p style="font-weight: bold; font-size: 20px;line-height: 2;text-align: justify">
