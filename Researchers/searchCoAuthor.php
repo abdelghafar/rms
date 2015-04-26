@@ -133,7 +133,15 @@ if (isset($_GET['q'])) {
             $.ajax({url: 'ajax/get_tmp_coAuthor_agreement_url_session.php', success: function (data) {
                 tmp_coAuthor_agreement_url = data;
                 console.log(tmp_coAuthor_agreement_url);
-                //ToDo:check  using the pdfA
+                $.ajax({url: 'Data/checkPDFA_url.php?type=url' + tmp_coAuthor_agreement_url, success: function (data) {
+                    if (data == 1) {
+                        alert('file is okay');
+                    }
+                    else {
+                        alert('file is not okay');
+                    }
+                }
+                });
             }});
 
 
@@ -263,7 +271,7 @@ if (isset($_GET['q'])) {
         <tr>
             <td colspan="4">
                 <p class="error">
-                لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
+                    لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
                     <br>
                     Double click on researcher record to add acceptance letter and cv
                 </p>
