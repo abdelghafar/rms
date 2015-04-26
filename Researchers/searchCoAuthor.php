@@ -128,8 +128,18 @@ if (isset($_GET['q'])) {
             var fileName = args.file;
             var serverResponce = args.response;
             uploaded_file_name = fileName;
-            alert(uploaded_file_name);
+//            alert(uploaded_file_name);
             $('#log').html(serverResponce);
+//            var agreement_url;
+//            $.ajax({
+//                url: 'ajax/get_file_url.php?q=' + project_id + "&type=CoIs_agreement?"+"coAuthor_person_id"+person_id, success: function (data) {
+//                    agreement_url = data;
+//                    console.log(data);
+//                    alert(person_id);
+//                }
+//            });
+
+
         });
 
         $('#CVUpload').jqxFileUpload({width: 250, fileInputName: 'fileToUpload', theme: 'energyblue', multipleFilesUpload: false, rtl: false, accept: 'application/pdf', uploadTemplate: 'warning', localization: {
