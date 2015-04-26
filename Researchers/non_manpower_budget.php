@@ -372,12 +372,12 @@ $smarty->display('../templates/header.tpl');
             $('#materials_table').show();
         });
 
-        $("#project_total").val(55555);
+        $("#project_total_amount").val(55555);
         $.ajax({url: 'ajax/project_total_budegt.php?q=<? echo $projectId ?>', success: function (xdata, textStatus, jqXHR) {
             var project_total = 0;
             project_total = xdata;
             console.log(project_total);
-            $("#project_total").val(project_total);
+            $("#project_total_amount").val(project_total);
         }});
     });
     </script>
