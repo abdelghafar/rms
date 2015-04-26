@@ -128,6 +128,7 @@ if (isset($_GET['q'])) {
             var fileName = args.file;
             var serverResponce = args.response;
             uploaded_file_name = fileName;
+            alert(uploaded_file_name);
             $('#log').html(serverResponce);
         });
 
