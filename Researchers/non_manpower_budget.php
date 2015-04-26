@@ -927,6 +927,23 @@ $smarty->display('../templates/header.tpl');
             </td>
         </tr>
     </table>
+
+    <br/><br/>
+
+    <table id="total_footer">
+        <tr>
+            <td>
+                        <span class="classic">
+                            الاجمالي / PROJECT  TOTAL:
+                        </span>
+            </td>
+            <td>
+                <label id="project_total">
+                    0
+                </label>
+            </td>
+        </tr>
+    </table>
     <br/><br/>
 
     <div id="step_div" style="padding: 10px;width: 100%;"></div>
@@ -942,7 +959,7 @@ $smarty->display('../templates/header.tpl');
 
             <td>
                 <a href="#" onclick="next_step();" style="float: left;margin-left: 25px;margin-top: 20px;">
-                <img src="images/finish.png" style="border: none;" alt="next"/>
+                    <img src="images/finish.png" style="border: none;" alt="next"/>
                 </a>
             </td>
         </tr>
