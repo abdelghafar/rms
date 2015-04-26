@@ -648,7 +648,7 @@ $smarty->display('../templates/header.tpl');
                         success: function (data) {
                             if (data > 0) {
                                 $('#others_table').hide();
-                                Reload_other_items();
+                                ReloadAll();
                             }
                         }
                     });
@@ -660,7 +660,7 @@ $smarty->display('../templates/header.tpl');
                         success: function (data) {
                             if (data > 0) {
                                 $('#others_table').hide();
-                                Reload_other_items();
+                                ReloadAll();
                             }
                         }
                     });
