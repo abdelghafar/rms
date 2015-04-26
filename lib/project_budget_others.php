@@ -71,3 +71,6 @@ class project_budget_others
     }
 
 }
+
+$r = new project_budget_others();
+echo $r->non_manpower_item_exists(1, 5); 
