@@ -16,31 +16,31 @@ if (isset($_GET['q'])) {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $key = uniqid();
-        $file_name .= 'coAuthor_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-        $target_file = $target_dir . 'coAuthor_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $file_name .= 'coAuthor_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'coAuthor_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
     if ($_GET['type'] == 'coAuthor_resume') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $key = uniqid();
-        $file_name .= 'coAuthor_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-        $target_file = $target_dir . 'coAuthor_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $file_name .= 'coAuthor_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'coAuthor_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
     if ($_GET['type'] == 'consultant_agreement') {
         $person_id = $_GET['person_id'];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $key = uniqid();
-        $file_name .= 'consultant_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-        $target_file = $target_dir . 'consultant_agreement_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $file_name .= 'consultant_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'consultant_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
     if ($_GET['type'] == 'consultant_resume') {
         $person_id = $_GET['person_id'];
         $key = uniqid();
-        $file_name .= 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-        $target_file = $target_dir . 'consultant_resume_' . $key . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $file_name .= 'consultant_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $target_file = $target_dir . 'consultant_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
     }
 
 //    if ($_GET['type'] == 'Resume') {
@@ -122,6 +122,12 @@ if (isset($_GET['q'])) {
             //finishing_scholarship
             $file_name .= 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             $target_file = $target_dir . 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            break;
+        }
+        case 'coAuthor_agreement':
+        {
+            $file_name .= 'coAuthor_agreement' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+            $target_file = $target_dir . 'coAuthor_agreement' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
     }
@@ -269,6 +275,7 @@ if (isset($_GET['q'])) {
                     $role_id = stuff_roles_system::$Co_Is;
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
                     $obj->SetResearchStuffAgreement($seq_id, $file_name);
+                    echo 'the file is :' . $file_name;
                     break;
                 }
                 case 'coAuthor_resume':
