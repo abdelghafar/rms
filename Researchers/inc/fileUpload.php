@@ -263,8 +263,8 @@ if (isset($_GET['q'])) {
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $role_id = stuff_roles_system::$PI;
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
-//                    $obj->SetFinishingScholarshipUrl($seq_id, $file_name);
-                    $_SESSION['tmp_file_name'] = $file_name;
+                    $obj->SetFinishingScholarshipUrl($seq_id, $file_name);
+
                     break;
                 }
 
@@ -275,8 +275,8 @@ if (isset($_GET['q'])) {
                     $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
                     $role_id = stuff_roles_system::$Co_Is;
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
-                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
-                    echo 'coAuthor_agreement file is :' . $file_name;
+//                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
+                    $_SESSION['tmp_file_name'] = $file_name;
                     break;
                 }
                 case 'coAuthor_resume':
