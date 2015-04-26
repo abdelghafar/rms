@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +9,7 @@
 /*
  * Save the Co-Is to the DB with Agreement letter and corresponding  CV.
  */
-session_start();
+
 require_once '../lib/research_stuff.php';
 
 if (isset($_GET['q']) && isset($_GET['person_id']) && isset($_GET['file_name']) && isset($_GET['resume_url'])) {
