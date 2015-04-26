@@ -135,10 +135,10 @@ if (isset($_GET['q'])) {
                 console.log(tmp_coAuthor_agreement_url);
                 $.ajax({url: '../Data/checkPDFA_url.php?url=' + "'" + tmp_coAuthor_agreement_url + "'", success: function (data) {
                     if (data == 1) {
-                        alert('file is okay');
+//                        alert('file is okay');
                     }
                     else {
-                        alert('file is not okay');
+//                        alert('file is not okay');
                     }
                 }
                 });
