@@ -18,8 +18,16 @@ if (isset($_GET['url'])) {
         if (file_exists($target_file)) {
             unlink($target_file);
         }
-        $str = $pdf->addPDF('../../' . $file_name, 'all')
-            ->merge('file', $target_file);
+        try {
+
+            $str = $pdf->addPDF('../../' . $file_name, 'all')
+                ->merge('file', $target_file);
+
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
 
         if (file_exists($target_file)) {
             unlink($target_file);
