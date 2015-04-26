@@ -58,19 +58,5 @@ class project_budget_others
         return $rs;
     }
 
-    public function non_manpower_item_exists($project_id, $budget_item_id)
-    {
-        $con = new MysqlConnect();
-        $stmt = "SELECT count(seq_id) as 'count' FROM project_budget WHERE project_id =" . $project_id . " AND item_id =" . $budget_item_id . " AND research_stuff_id =0";
-        $rs = $con->ExecuteNonQuery($stmt);
-        $count = 0;
-        while ($row = mysql_fetch_array($rs)) {
-            $count = $row[0];
-        }
-        return $count;
-    }
 
 }
-
-$r = new project_budget_others();
-echo $r->non_manpower_item_exists(1, 5);
