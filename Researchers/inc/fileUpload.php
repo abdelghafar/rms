@@ -275,7 +275,7 @@ if (isset($_GET['q'])) {
                     $role_id = stuff_roles_system::$Co_Is;
                     $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
                     $obj->SetResearchStuffAgreement($seq_id, $file_name);
-                    echo 'the file is :' . $file_name;
+                    echo 'coAuthor_agreement file is :' . $file_name;
                     break;
                 }
                 case 'coAuthor_resume':
