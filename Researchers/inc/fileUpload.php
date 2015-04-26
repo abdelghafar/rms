@@ -36,6 +36,7 @@ if (isset($_GET['q'])) {
         $key = uniqid();
         $file_name .= 'consultant_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'consultant_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $_SESSION['tmp_consultant_agreement_url'] = $file_name;
     }
 
     if ($_GET['type'] == 'consultant_resume') {
@@ -43,6 +44,7 @@ if (isset($_GET['q'])) {
         $key = uniqid();
         $file_name .= 'consultant_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'consultant_resume_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $_SESSION['tmp_consultant_resume_url'] = $file_name;
     }
 
 //    if ($_GET['type'] == 'Resume') {
