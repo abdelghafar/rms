@@ -128,16 +128,13 @@ if (isset($_GET['q'])) {
             var fileName = args.file;
             var serverResponce = args.response;
             uploaded_file_name = fileName;
-//            alert(uploaded_file_name);
             $('#log').html(serverResponce);
-//            var agreement_url;
-//            $.ajax({
-//                url: 'ajax/get_file_url.php?q=' + project_id + "&type=CoIs_agreement?"+"coAuthor_person_id"+person_id, success: function (data) {
-//                    agreement_url = data;
-//                    console.log(data);
-//                    alert(person_id);
-//                }
-//            });
+            var tmp_coAuthor_agreement_url;
+            $.ajax({url: 'ajax/get_tmp_coAuthor_agreement_url_session.php', success: function (data) {
+                tmp_coAuthor_agreement_url = data;
+                console.log(tmp_coAuthor_agreement_url);
+                //ToDo:check  using the pdfA
+            }});
 
 
         });
@@ -258,15 +255,15 @@ if (isset($_GET['q'])) {
             </td>
             <td style="padding-top: 10px; vertical-align: middle;">
                 <a href="../forms/CV.docx" target="_blank">
-                تحميل النموذج / Template
+                    تحميل النموذج / Template
                 </a>
             </td>
             <td></td>
         </tr>
         <tr>
             <td colspan="4">
-            <p class="error">
-                    لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
+                <p class="error">
+                لاضافة الموافقة الخطيةو السيرة الذاتية قم بالنقر المذدوج علي الباحث
                     <br>
                     Double click on researcher record to add acceptance letter and cv
                 </p>
@@ -274,19 +271,19 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td colspan="4">
-            <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
+                <div id='gridCoAuthors' style="direction: rtl;float: left;margin-top: 20px;float: right;"></div>
             </td>
         </tr>
 
         <tr>
             <td colspan="4">
-            <div id="searchCoAuthor_log" class="error"></div>
+                <div id="searchCoAuthor_log" class="error"></div>
             </td>
         </tr>
 
         <tr>
             <td colspan="4" style="text-align: center">
-            <input type="button" value="Save / حفظ " id='btnSave'
+                <input type="button" value="Save / حفظ " id='btnSave'
                        style="direction: rtl;margin-top: 20px;margin-right: 0px;"/>
                 <input type="button" value="Close / إغلاق " id='btnClose'
                        style="direction: rtl;margin-top: 20px;margin-right: 10px;"/>
