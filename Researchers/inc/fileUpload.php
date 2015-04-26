@@ -18,6 +18,7 @@ if (isset($_GET['q'])) {
         $key = uniqid();
         $file_name .= 'coAuthor_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
         $target_file = $target_dir . 'coAuthor_agreement_' . $person_id . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
+        $_SESSION['tmp_file_name'] = $file_name;
     }
 
     if ($_GET['type'] == 'coAuthor_resume') {
@@ -122,12 +123,6 @@ if (isset($_GET['q'])) {
             //finishing_scholarship
             $file_name .= 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             $target_file = $target_dir . 'finishing_scholarship' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-            break;
-        }
-        case 'coAuthor_agreement':
-        {
-            $file_name .= 'coAuthor_agreement' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-            $target_file = $target_dir . 'coAuthor_agreement' . '.' . pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
             break;
         }
     }
@@ -268,17 +263,17 @@ if (isset($_GET['q'])) {
                     break;
                 }
 
-                case 'coAuthor_agreement':
-                {
-                    $obj = new research_stuff();
-                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
-                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-                    $role_id = stuff_roles_system::$Co_Is;
-                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
-//                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
-                    $_SESSION['tmp_file_name'] = $file_name;
-                    break;
-                }
+//                case 'coAuthor_agreement':
+//                {
+//                    $obj = new research_stuff();
+//                    $person_id = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
+//                    $project_id = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
+//                    $role_id = stuff_roles_system::$Co_Is;
+//                    $seq_id = $obj->GetSeqId($project_id, $person_id, $role_id, research_stuff_categories::$person_based);
+////                    $obj->SetResearchStuffAgreement($seq_id, $file_name);
+//                    $_SESSION['tmp_file_name'] = $file_name;
+//                    break;
+//                }
                 case 'coAuthor_resume':
                 {
                     $obj = new research_stuff();
