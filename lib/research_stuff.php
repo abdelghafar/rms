@@ -120,6 +120,7 @@ class research_stuff
         $stmt = "update " . $this->table_name . " set `agreement_url` = '" . $url . "' where seq_no=" . $seq_no;
         $conn = new MysqlConnect();
         $conn->ExecuteNonQuery($stmt);
+//        echo '<br/>'.$stmt.'<br/>';
         return mysql_affected_rows();
     }
 
