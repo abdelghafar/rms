@@ -20,5 +20,5 @@ $result = $p->Save(0, $title, $Rid, $doc_cat_id, $doc_url, $size, 0, '');
 if ($result > 0) {
     echo 'تم حفظ البيانات بنجاح';
 } else {
-    
+
 }

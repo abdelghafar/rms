@@ -1,14 +1,31 @@
 <?
 session_start();
-if (trim($_SESSION['User_Id']) == 0 || !isset($_SESSION['User_Id'])) {
-    header('Location:../Login.php');
-} else {
-    $rule = $_SESSION['Rule'];
-    if ($rule != 'Researcher') {
-        header('Location:../Login.php');
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+}
+require_once '../lib/Reseaches.php';
+require_once '../lib/users.php';
+
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION['q'];
+    $obj = new Reseaches();
+    $personId = $_SESSION['person_id'];
+    $isAuthorized = $obj->IsAuthorized($project_id, $personId);
+    $CanEdit = $obj->CanEdit($project_id);
+    if ($isAuthorized == 1 && $CanEdit == 1) {
+
+    } else {
+        echo '<div class="errormsgbox" style="width: 850px;height: 30px;"><h4>This project is locked from the admin</h4></div>';
+        exit();
     }
 }
-$project_id = $_GET["q"];
+
+if (isset($_SESSION['q'])) {
+    $project_id = $_SESSION["q"];
+}
+
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty();
@@ -18,23 +35,29 @@ $smarty->assign('style_responsive_css', '../style.responsive.css');
 $smarty->assign('jquery_js', '../jquery.js');
 $smarty->assign('script_js', '../script.js');
 $smarty->assign('script_responsive_js', '../script.responsive.js');
+
 $smarty->assign('index_php', '../index.php');
-$smarty->assign('Researchers_register_php', '../Researchers/register.php');
+$smarty->assign('research_projects_php', 'Researchers_View.php');
+$smarty->assign('logout_php', '../inc/logout.inc.php');
+$smarty->assign('about_php', '../aboutus.php');
+
 $smarty->assign('login_php', '../login.php');
 $smarty->assign('fqa_php', '../fqa.php');
 $smarty->assign('contactus_php', '../contactus.php');
-$smarty->display('../templates/Loggedin.tpl');
+
+$smarty->display('../templates/header.tpl');
 ?>
-<html>
+    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/> 
+        <link rel="stylesheet" href="css/reigster-layout.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="../js/jquery-ui/dev/themes/ui-lightness/jquery.ui.all.css">
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
+        <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
         <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
+        <link rel="stylesheet" href="../common/css/reigster-layout.css" type="text/css"/>
 
-        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script> 
+        <script type="text/javascript" src="../js/jqwidgets/scripts/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
@@ -51,9 +74,9 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxgrid.filter.js"></script>
 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxwindow.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>	
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxcombobox.js"></script>
-        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>	
+        <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
 
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdatetimeinput.js"></script>
@@ -69,20 +92,20 @@ $smarty->display('../templates/Loggedin.tpl');
         <script type="text/javascript" src="../js/jqwidgets/scripts/gettheme.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var theme = "energyblue";
                 /*$("#PhaseNewButton").jqxButton({width: '100', height: '30', theme: theme});
                  $("#phase_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
                  $("#phase_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
                  $("#sendButton").on('click', function () {
-                 
+
                  });*/
             });
         </script>
 
         <script type="text/javascript">
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //var theme = "";
 
                 phases_list();
@@ -92,42 +115,42 @@ $smarty->display('../templates/Loggedin.tpl');
                 function phases_list() {
                     var post_data = 'project_id=' + $('#project_id').val();
                     var source =
-                            {
-                                datatype: "json",
-                                datafields: [
-                                    {name: 'seq_id'},
-                                    {name: 'project_id'},
-                                    {name: 'phase_name'}
-                                ],
-                                url: 'inc/phases_list_grid_data.php?' + post_data,
-                                cache: false
-                            };
+                    {
+                        datatype: "json",
+                        datafields: [
+                            {name: 'seq_id'},
+                            {name: 'project_id'},
+                            {name: 'phase_name'}
+                        ],
+                        url: 'inc/phases_list_grid_data.php?' + post_data,
+                        cache: false
+                    };
 
                     var dataAdapter = new $.jqx.dataAdapter(source);
 
                     $("#phases_grd").jqxGrid(
-                            {
-                                source: source,
-                                theme: 'energyblue',
-                                editable: false,
-                                pageable: true,
-                                filterable: true,
-                                width: 930,
-                                pagesize: 20,
-                                autorowheight: true,
-                                autoheight: true,
-                                columnsresize: true,
-                                sortable: true,
-                                rtl: true,
-                                columns: [
-                                    {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
-                                    {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 930, align: 'center', cellsalign: 'right'}
-                                ]
-                            });
+                        {
+                            source: source,
+                            theme: 'energyblue',
+                            editable: false,
+                            pageable: true,
+                            filterable: true,
+                            width: 940,
+                            pagesize: 20,
+                            autorowheight: true,
+                            autoheight: true,
+                            columnsresize: true,
+                            sortable: true,
+                            rtl: true,
+                            columns: [
+                                {text: 'seq_id', datafield: 'seq_id', width: 3, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'project_id', datafield: 'project_id', width: 30, align: 'center', cellsalign: 'center', hidden: true},
+                                {text: 'Phase / المرحلة', datafield: 'phase_name', type: 'string', width: 940, align: 'center', cellsalign: 'right'}
+                            ]
+                        });
                 }
 
-                $("#phases_grd").on('rowdoubleclick', function(event) {
+                $("#phases_grd").on('rowdoubleclick', function (event) {
                     var phase_id = $('#phases_grd').jqxGrid('getcellvalue', event.args.rowindex, 'seq_id');
                     $('#global_phase_id').val(phase_id);
 
@@ -157,39 +180,37 @@ $smarty->display('../templates/Loggedin.tpl');
 
         <script type="text/javascript">
 
-            function load_tasks_grd()
-            {
+            function load_tasks_grd() {
                 var post_data = 'project_id=' + $('#project_id').val() + '&phase_id=' + $('#global_phase_id').val();
                 $.ajax({
                     url: "resources_tasks_det.php",
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#tasks_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#form_div").html("");
                         $("#tasks_div").html(data);
                     }
                 });
             }
 
-            function next_step()
-            {
+            function next_step() {
                 var post_data = 'project_id=' + $('#project_id').val() + '&form_name=resources_tasks';
                 $.ajax({
                     url: "inc/WizardCheck.inc.php",
                     dataType: "html",
                     data: post_data,
                     type: 'POST',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#step_div").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         //
                         if (data == 1)
-                            window.location.assign('outcomes_objectives.php?q=' + $('#project_id').val());
+                            window.location.assign('outcomes_objectives.php');
 //alert(data);
                         else
                             $("#step_div").html(data);
@@ -197,57 +218,81 @@ $smarty->display('../templates/Loggedin.tpl');
                 });
             }
 
+            function wizard_step(current_step) {
+                var cs = current_step;
+                for (var i = 1; i < cs; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_finished.png");
+                    //$('#bar_' + i).css('backgroundImage', "url('images/finished.png')");
+                }
+                $("#img_" + cs).attr("src", "images/" + cs + "_current.png");
+                //$('#bar_' + cs).css('backgroundImage', "url('images/current.png')");
+                for (var i = cs + 1; i <= 9; i++) {
+                    $("#img_" + i).attr("src", "images/" + i + "_unfinish.png");
+                    //if (i < 9)
+                    // $('#bar_' + i).css('backgroundImage', "url('images/unfinish.png')");
+                }
+            }
         </script>
         <title></title>
     </head>
     <body style="background-color: #ededed;">
+    <div>
+        <?
+        require_once 'wizard_steps.php';
+        ?>
+    </div>
+    <script type="text/javascript">
+        wizard_step(6);
+    </script>
 
-        <fieldset style="width: 95%;text-align: right;"> 
-            <legend>
-                <label>
-                    ربط المهام بفريق العمل / HR and tasks mapping
-                    
-                </label>
-            </legend>
-            <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>" />
-            <input type="hidden" id="global_phase_id" name="global_phase_id" value="0" />
-            <div class="panel_row">
-                النقر المزدوج على المرحلة يظهر ربط المهام بفريق العمل
-                <br>
-                Double-click a phase to see its tasks mapping
-            </div>
-            
+    <fieldset style="width: 97%;text-align: right;">
+        <legend>
+            <label>
+                ربط المهام بفريق العمل / HR and tasks mapping
 
-            <div id="phases_grd" style="margin-right: 0px !important; padding-right: 0px !important">
-
-            </div>
+            </label>
+        </legend>
 
 
+        <input type="hidden" id="project_id" name="project_id" value="<? echo $project_id; ?>"/>
+        <input type="hidden" id="global_phase_id" name="global_phase_id" value="0"/>
 
-            <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center">    </div>
-            <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150" >     </div>
-            <div id="taskresult" dir="rtl" style="padding-top: 10px">    </div>
-            <div id="tasks_div" style="padding-top: 10px;width: 100%">    </div>
-            <div id="step_div" style="padding: 10px;width: 100%;">    </div>
+        <div class="panel_row">
+            النقر المزدوج على المرحلة يظهر ربط المهام بفريق العمل
+            <br>
+            Double-click a phase to see its tasks mapping
+        </div>
 
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <a id="submit_button" href="#" onclick="next_step();" style="float: right;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/next.png" style="border: none;" alt="next"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="objectives_tasks.php?q=<? echo $project_id; ?>" style="float: left;margin-left: 25px;margin-top: 20px;">
-                            <img src="images/back.png" style="border: none;" alt="back"/>
-                        </a>
-                    </td>
-                </tr>
-            </table>
 
-        </fieldset>
+        <div id="phases_grd" style="margin-right: 0px !important; padding-right: 0px !important">
 
+        </div>
+
+
+        <div id="phaseresult" dir="rtl" style="padding-top: 10px; text-align: center"></div>
+        <div id="form_div" style="padding-top: 10px;width: 100%;padding-right: 150"></div>
+        <div id="taskresult" dir="rtl" style="padding-top: 10px"></div>
+        <div id="tasks_div" style="padding-top: 10px;width: 100%"></div>
+        <div id="step_div" style="padding: 10px;width: 100%;"></div>
+
+
+    </fieldset>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <a href="objectives_tasks.php" style="float: right;margin-top: 20px;">
+                    <img src="images/back.png" style="border: none;" alt="back"/>
+                </a>
+            </td>
+            <td>
+
+                <a id="submit_button" href="#" onclick="next_step();" style="float: left;margin-top: 20px;">
+                    <img src="images/next.png" style="border: none;" alt="next"/>
+                </a>
+            </td>
+        </tr>
+    </table>
     </body>
-</html>
+    </html>
 <?
 $smarty->display('../templates/footer.tpl');

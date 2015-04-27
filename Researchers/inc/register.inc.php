@@ -43,50 +43,50 @@ $isValid = TRUE;
 $response = "";
 
 if (!isset($_POST['FirstName_ar']) || empty($_POST['FirstName_ar'])) {
-    $response.= 'من فضلك ادخل الاسم الأول باللغة العربية' . '<br/>';
+    $response .= 'من فضلك ادخل الاسم الأول باللغة العربية' . '<br/>';
     $isValid = FALSE;
 } else
     $FirstName_ar = mysql_escape_string(trim($_POST['FirstName_ar']));
 
 if (!isset($_POST['FatherName_ar']) || empty($_POST['FatherName_ar'])) {
-    $response.= 'من فضلك أدخل بسم الأب ياللغة العربية' . '<br/>';
+    $response .= 'من فضلك أدخل بسم الأب ياللغة العربية' . '<br/>';
     $isValid = FALSE;
 } else
     $FatherName_ar = mysql_escape_string(trim($_POST['FatherName_ar']));
 
 if (!isset($_POST['GrandName_ar']) || empty($_POST['GrandName_ar'])) {
-    $response.= 'من فضلك أدخل اسم الجد باللغة العربية' . '<br/>';
+    $response .= 'من فضلك أدخل اسم الجد باللغة العربية' . '<br/>';
     $isValid = FALSE;
 } else
     $GrandName_ar = mysql_escape_string(trim($_POST['GrandName_ar']));
 
 if (!isset($_POST['FamilyName_ar']) || empty($_POST['FamilyName_ar'])) {
-    $response.= 'من فضلك ادخل اسم العائلة باللغة العربية' . '<br/>';
+    $response .= 'من فضلك ادخل اسم العائلة باللغة العربية' . '<br/>';
 
     $isValid = FALSE;
 } else
     $FamilyName_ar = mysql_escape_string(trim($_POST['FamilyName_ar']));
 
 if (!isset($_POST['FirstName_en']) || empty($_POST['FirstName_en'])) {
-    $response.= 'من فضلك ادخل الاسم الاول باللغة الانجليزية' . '<br/>';
+    $response .= 'من فضلك ادخل الاسم الاول باللغة الانجليزية' . '<br/>';
     $isValid = FALSE;
 } else
     $FirstName_en = mysql_escape_string(trim($_POST['FirstName_en']));
 
 if (!isset($_POST['FatherName_en']) || empty($_POST['FatherName_en'])) {
-    $response.= 'من فضلك ادخل اسم الأب باللغة الانجليزية' . '<br/>';
+    $response .= 'من فضلك ادخل اسم الأب باللغة الانجليزية' . '<br/>';
     $isValid = FALSE;
 } else
     $FatherName_en = mysql_escape_string(trim($_POST['FatherName_en']));
 
 if (!isset($_POST['GrandName_en']) || empty($_POST['GrandName_en'])) {
-    $response.= 'من فضلك ادخل اسم الجد باللغة الانجليزية' . '<br/>';
+    $response .= 'من فضلك ادخل اسم الجد باللغة الانجليزية' . '<br/>';
     $isValid = FALSE;
 } else
     $GrandName_en = mysql_escape_string(trim($_POST['GrandName_en']));
 
 if (!isset($_POST['FamilyName_en']) || empty($_POST['FamilyName_en'])) {
-    $response.= 'من فضلك ادخل اسم العائلة باللغة الانجليزية' . '<br/>';
+    $response .= 'من فضلك ادخل اسم العائلة باللغة الانجليزية' . '<br/>';
     $isValid = FALSE;
 } else
     $FamilyName_en = mysql_escape_string(trim($_POST['FamilyName_en']));
@@ -104,7 +104,7 @@ if (!isset($_POST['Nationality']) || empty($_POST['Nationality'])) {
     $Nationality = mysql_escape_string(trim($_POST['Nationality']));
 
 if (!isset($_POST['BirthDateVal']))
-    $response.= 'من فضلك ادخل تاريخ الميلاد' . '<br/>';
+    $response .= 'من فضلك ادخل تاريخ الميلاد' . '<br/>';
 else {
     $BirthDate = date_parse($_POST['BirthDateVal']);
     $BirthDate = $BirthDate['year'] . '-' . $BirthDate['month'] . '-' . $BirthDate['day'];
@@ -118,13 +118,13 @@ else
 $Position = $_POST['Position'];
 
 if (!isset($_POST['major_field']) || empty($_POST['major_field'])) {
-    $response.= 'من فضلك ادخل التخصص العام' . '<br/>';
+    $response .= 'من فضلك ادخل التخصص العام' . '<br/>';
     $isValid = FALSE;
 } else
     $major_field = mysql_escape_string(trim($_POST['major_field']));
 
 if (!isset($_POST['special_field']) || empty($_POST['special_field'])) {
-    $response.= 'من فضلك ادخل التخصص الدقيق' . '<br/>';
+    $response .= 'من فضلك ادخل التخصص الدقيق' . '<br/>';
     $isValid = FALSE;
 } else
     $special_field = mysql_escape_string(trim($_POST['special_field']));
@@ -140,20 +140,20 @@ else
     $dept = mysql_escape_string(trim($_POST['dept']));
 
 if (!isset($_POST['empCodeVal']) || empty($_POST['empCodeVal'])) {
-    $response.= 'من فضلك ادخل رقم منسوب الجامعة' . '<br/>';
+    $response .= 'من فضلك ادخل رقم منسوب الجامعة' . '<br/>';
     $isValid = FALSE;
 } else
     $empCode = mysql_escape_string($_POST['empCodeVal']);
 
 if (!isset($_POST['eqamaCodeVal']) || empty($_POST['eqamaCodeVal'])) {
-    $response.= 'من فضلك ادخل رقم الهوية ' . '<br/>';
+    $response .= 'من فضلك ادخل رقم الهوية ' . '<br/>';
     $isValid = FALSE;
 } else
     $eqamaCode = mysql_escape_string($_POST['eqamaCodeVal']);
 
 
 if (!isset($_POST['email']) || empty($_POST['email']))
-    $response.= 'من فضلك ادخل البريد الإلكتروني' . '<br/>';
+    $response .= 'من فضلك ادخل البريد الإلكتروني' . '<br/>';
 else {
 
     $rs = explode("@", trim($_POST['email']));
@@ -161,7 +161,7 @@ else {
     if (!strcasecmp($rs, 'uqu.edu.sa'))
         $email = mysql_escape_string($_POST['email']);
     else {
-        $response.= 'يجب ان يكون البريد الالكتروني علي نطاق جامعة أم القري' . '<br/>';
+        $response .= 'يجب ان يكون البريد الالكتروني علي نطاق جامعة أم القري' . '<br/>';
         $isValid = FALSE;
     }
 }
@@ -196,18 +196,18 @@ else
     $postal_code = mysql_escape_string(trim($_POST['postal_code']));
 
 if (strlen($_POST['password']) < 8) {
-    $response.= 'Password should be 8 Char at least.' . '<br/>';
+    $response .= 'Password should be 8 Char at least.' . '<br/>';
     $isValid = FALSE;
 }
 $rs = $person->IsExistByEmail($_POST['email']);
 if ($rs > 0) {
-    $response.= 'لقد تم التسجل بواسطه هذا البريد الالكتروني من قبل';
+    $response .= 'لقد تم التسجل بواسطه هذا البريد الالكتروني من قبل';
     $isValid = FALSE;
 }
 $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
 if (!$resp->is_valid) {
     $isValid = FALSE;
-    $response.="لقد أدخلت رمز التأكيد بشكل خطأ من فضلك أعد المحاولة";
+    $response .= "لقد أدخلت رمز التأكيد بشكل خطأ من فضلك أعد المحاولة";
 } else {
     if ($isValid == TRUE) {
         $pass = $_POST['password'];
@@ -232,11 +232,11 @@ if (!$resp->is_valid) {
 }
 ?>
 <html>
-    <head>
-        <link rel="stylesheet" href="../../common/css/MessageBox.css" type="text/css"/> 
+<head>
+    <link rel="stylesheet" href="../../common/css/MessageBox.css" type="text/css"/>
 
-    </head>
-    <body>
+</head>
+<body>
 
-    </body>
+</body>
 </html>

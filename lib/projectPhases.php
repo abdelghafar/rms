@@ -13,13 +13,16 @@
  */
 require_once 'mysqlConnection.php';
 
-class projectPhase {
+class projectPhase
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function Save($seqId, $projectId, $phaseName, $phaseDesc) {
+    public function Save($seqId, $projectId, $phaseName, $phaseDesc)
+    {
         $conn = new MysqlConnect();
         if ($seqId == 0)
             $stmt = "insert into project_phases (project_id,phase_name,phase_desc) values (" . $projectId . ",'" . $phaseName . "','" . $phaseDesc . "')";
@@ -32,7 +35,8 @@ class projectPhase {
           return mysql_insert_id(); */
     }
 
-    public function Delete($seqId) {
+    public function Delete($seqId)
+    {
         $conn = new MysqlConnect();
         $stmt = "Delete from project_phases where seq_id =" . $seqId;
         //echo $stmt;
@@ -40,7 +44,8 @@ class projectPhase {
         return $result;
     }
 
-    public function GetProjectPhases($projectId) {
+    public function GetProjectPhases($projectId)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT seq_id,project_id,phase_name,phase_desc FROM project_phases WHERE project_id=" . $projectId;
         //echo $stmt;
@@ -49,7 +54,8 @@ class projectPhase {
         return $rs;
     }
 
-    public function GetPhaseData($seqId) {
+    public function GetPhaseData($seqId)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT * FROM project_phases WHERE seq_id=" . $seqId;
         $result = $conn->ExecuteNonQuery($stmt);
@@ -57,10 +63,11 @@ class projectPhase {
         return $row;
     }
 
-    public function isExist($project_id, $seq_id, $title) {
+    public function isExist($project_id, $seq_id, $title)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT count(seq_id) as phase_count FROM project_phases WHERE phase_name='" . $title .
-                "' AND project_id = " . $project_id;
+            "' AND project_id = " . $project_id;
         $result = $conn->ExecuteNonQuery($stmt);
         $row = mysql_fetch_array($result);
 
@@ -72,7 +79,7 @@ class projectPhase {
                 return false;
         } else {
             $stmt2 = "SELECT seq_id FROM project_phases WHERE phase_name='" . $title .
-                    "' AND project_id = " . $project_id;
+                "' AND project_id = " . $project_id;
 
             //echo $stmt2;
             $result2 = $conn->ExecuteNonQuery($stmt2);
@@ -85,7 +92,8 @@ class projectPhase {
         }
     }
 
-    public function hasReleatedData($id) {
+    public function hasReleatedData($id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT task_id FROM project_tasks WHERE phase_id=" . $id . " LIMIT 1";
         $result = $conn->ExecuteNonQuery($stmt);
@@ -95,7 +103,8 @@ class projectPhase {
             return false;
     }
 
-    public function GetEmptyPhases($project_id) {
+    public function GetEmptyPhases($project_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT project_phases.seq_id,
          project_phases.phase_name,
@@ -112,9 +121,6 @@ class projectPhase {
 
         return $rs;
     }
-    
-    
-    
-   
+
 
 }

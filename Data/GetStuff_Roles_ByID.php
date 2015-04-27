@@ -8,11 +8,10 @@
 
 require_once '../lib/config.php';
 require_once '../lib/mysqlConnection.php';
-$person_id = $_REQUEST['person_id'];
-$project_id = $_REQUEST['project_id'];
+$research_stuff_id = $_REQUEST['research_stuff_id'];
 
 $conn = new MysqlConnect();
-$stmt = "SELECT role_id FROM research_stuff WHERE research_id =" . $project_id . " AND person_id =" . $person_id;
+$stmt = "SELECT role_id FROM research_stuff WHERE seq_no =" . $research_stuff_id;
 //echo $stmt;
 $result = $conn->ExecuteNonQuery($stmt);
 if ($row = mysql_fetch_array($result))

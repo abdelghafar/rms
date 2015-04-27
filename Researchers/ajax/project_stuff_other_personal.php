@@ -10,21 +10,28 @@ require_once '../../lib/mysqlConnection.php';
 $conn = new MysqlConnect();
 if (isset($_GET['q'])) {
     $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-    $stmt = "SELECT DISTINCT persons.Person_id,persons.Nationality,persons.Position,persons.Major_Field,concat(persons.FirstName_ar,' ',persons.FatherName_ar,' ',persons.GrandName_ar,' ' ,persons.FamilyName_ar ) AS name_ar,stuff_roles.role_name,persons.Email from persons join research_stuff on research_stuff.person_id = persons.Person_id  join stuff_roles on stuff_roles.seq_id = research_stuff.role_id where research_stuff.research_id=" . $projectId . " and research_stuff.role_id >2 ";
+    $stmt = "SELECT research_stuff.seq_no , role_name , parent_role_id FROM research_stuff join stuff_roles ON research_stuff.role_id = stuff_roles.seq_id where research_id = " . $projectId . " and type='role_based' and stuff_roles.parent_role_id in (select seq_id from stuff_roles where stuff_roles.parent_role_id=4)";
+    //echo $stmt;
     $rs = $conn->ExecuteNonQuery($stmt);
-    $r = 0;
     while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
         $result[] = array(
-            'person_id' => $row['Person_id'],
-            'name_ar' => $row['name_ar'],
+            'seq_no' => $row['seq_no'],
             'role_name' => $row['role_name'],
-            'email' => $row['Email'],
-            'position' => $row['Position'],
-            'major_Field' => $row['Major_Field'],
-            'nationality' => $row['Nationality']
+            'parent_role_id' => $row['parent_role_id'],
+            'parent_role' => ''
         );
+    }
+
+    for ($i = 0; $i < count($result); $i++) {
+        $stmt = "SELECT role_name FROM stuff_roles where seq_id=" . $result[$i]['parent_role_id'];
+        $rs = $conn->ExecuteNonQuery($stmt);
+        $parent_role = "";
+        while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
+            $parent_role = $row['role_name'];
+        }
+        $result[$i]['parent_role'] = $parent_role;
     }
     echo json_encode($result);
 } else {
     echo json_encode('Parameters are Required...');
-} 
+}

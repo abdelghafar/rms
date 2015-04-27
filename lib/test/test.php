@@ -1,27 +1,8 @@
-<!DOCTYPE html>
 <?php
-require_once '../../lib/controller/attachmentCatController.php';
-$controller = new attachmentCatController();
-$rs = $controller->GetAll();
+require_once '../research_stuff.php';
+$obj = new research_stuff();
+$role_id = 8;
+$research_id = 1;
+echo $obj->IsRoleResearchExists($role_id, $research_id);
+
 ?>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <form action="inc/test.inc.php" method="POST" enctype="multipart/form-data">
-            <label>Category</label>
-            <select class="form-control">
-                <?php
-                foreach ($rs as $obj) {
-                    echo '<option value=' . $obj->getSeq_id() . '>' . $obj->getCat_name() . '</option>';
-                }
-                ?>
-            </select>
-            <br/>
-            <input type="file" name="upload" accept="application/pdf"/>
-            <input type="submit" value="submit" />
-        </form>
-    </body>
-</html>

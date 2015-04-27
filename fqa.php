@@ -15,19 +15,19 @@ $smarty->assign('contactus_php', 'contactus.php');
 
 $smarty->display('templates/header.tpl');
 ?>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
 
     </head>
     <body>
-    <div class="art-content-layout-row">
-        ssssssssss
-    </div>
+        <div class="art-content-layout-row">
+
+        </div>
     </body>
-    </html>
+</html>
 
 
 <?

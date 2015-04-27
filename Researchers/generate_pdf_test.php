@@ -17,7 +17,8 @@ require_once '../lib/objectives.php';
 // FILES FOR MANPOWER DUSRATIONS
 // extend TCPF with custom functions
 
-function GetRsearchDetails($research_id) {
+function GetRsearchDetails($research_id)
+{
     $obj = new Reseaches();
     $rs = $obj->GetResearchDetailsMin($research_id);
     $array = array();
@@ -34,35 +35,42 @@ function GetRsearchDetails($research_id) {
     return $array;
 }
 
-function GetResearchIntro($research_id) {
+function GetResearchIntro($research_id)
+{
     $r = new Reseaches();
     return $r->GetIntroductionText($research_id);
 }
 
-function GetResearchAbstractAr($research_id) {
+function GetResearchAbstractAr($research_id)
+{
     $r = new Reseaches();
     return $r->GetAbstractArText($research_id);
 }
 
-function GetResearchAbstractEng($research_id) {
+function GetResearchAbstractEng($research_id)
+{
     $r = new Reseaches();
     return $r->GetAbstractEnText($research_id);
 }
 
-function GetResearchReview($research_id) {
+function GetResearchReview($research_id)
+{
     $r = new Reseaches();
     return $r->GetLiteratureReviewText($research_id);
 }
 
-function GetResearchValue($research_id) {
+function GetResearchValue($research_id)
+{
     $r = new Reseaches();
     return $r->GetValueToKingdomText($research_id);
 }
 
-class PDF extends TCPDF {
+class PDF extends TCPDF
+{
 
     // Colored table
-    public function GetCurrRound() {
+    public function GetCurrRound()
+    {
         $obj = new Settings();
         return $obj->GetCurrRound();
     }
@@ -176,31 +184,31 @@ if (isset($_GET['q'])) {
     //---------------------------
     $pdf->AddPage();
     $html = '<p>' . 'مقدمة المشروع' . '</p>';
-    $html.='<hr/>';
+    $html .= '<hr/>';
     $html .= '<p>' . GetResearchIntro($project_id) . '</p>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //-----------------------------------------------------------
     $pdf->AddPage();
     $html = '<p>' . 'الملخص باللغة العربية' . '</p>';
-    $html.='<hr/>';
+    $html .= '<hr/>';
     $html .= '<p>' . GetResearchAbstractAr($project_id) . '</p>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //-----------------------------------------------------------
     $pdf->AddPage();
     $html = '<p>' . 'الملخص باللغة الانجليزية' . '</p>';
-    $html.='<hr/>';
+    $html .= '<hr/>';
     $html .= '<p>' . GetResearchAbstractEng($project_id) . '</p>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //----------------------------------------------------------------
     $pdf->AddPage();
     $html = '<p>' . 'المسح الأدبي' . '</p>';
-    $html.='<hr/>';
+    $html .= '<hr/>';
     $html .= '<p>' . GetResearchReview($project_id) . '</p>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //----------------------------------------------------------------
     $pdf->AddPage();
     $html = '<p>' . 'القيمة للمملكة' . '</p>';
-    $html.='<hr/>';
+    $html .= '<hr/>';
     $html .= '<p>' . GetResearchValue($project_id) . '</p>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //----------------------------------------------------------------
@@ -217,7 +225,7 @@ if (isset($_GET['q'])) {
     $obj = new research_stuff();
     $rs = $obj->GetProjectStuff($project_id);
     $list = array();
-    $html.='<table border = "1" class="tg" dir="rtl" style="width:760px;">
+    $html .= '<table border = "1" class="tg" dir="rtl" style="width:760px;">
     <thead>
         <tr>
             <th style="width: 30px;">#</th>
@@ -229,15 +237,15 @@ if (isset($_GET['q'])) {
     </thead><tbody>';
     $counter = 1;
     while ($row = mysql_fetch_array($rs)) {
-        $html.= '<tr>';
-        $html.='<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
-        $html.='<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
-        $html.='<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
-        $html.='<td class="tg-uy9o">' . $row['role_name'] . '</td>';
-        $html.='<td class="tg-lrt0">' . $row['Position'] . '</td>';
-        $html.='</tr>';
+        $html .= '<tr>';
+        $html .= '<td class="tg-lrt0" style="width: 30px;">' . $counter++ . '</td>';
+        $html .= '<td class="tg-uy9o" style="width:150px;">' . $row['name_ar'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . ' ' . $row['Major_Field'] . '</td>';
+        $html .= '<td class="tg-uy9o">' . $row['role_name'] . '</td>';
+        $html .= '<td class="tg-lrt0">' . $row['Position'] . '</td>';
+        $html .= '</tr>';
     }
-    $html.='</tbody></table>';
+    $html .= '</tbody></table>';
     $pdf->writeHTML($html, true, 0, true, 0);
     //--------------------------------------------------------
     //Abdo code
@@ -266,28 +274,28 @@ if (isset($_GET['q'])) {
         $parent_id = $sysItem_row['item_id'];
         $items = $budget_items->GetChildItems($parent_id);
         $items_total = 0;
-        $html.='<tr><td colspan="2" class="tg-lrt0">' . $sysItem_row['item_title'] . '</td></tr>';
+        $html .= '<tr><td colspan="2" class="tg-lrt0">' . $sysItem_row['item_title'] . '</td></tr>';
         while ($row = mysql_fetch_array($items)) {
             $item_id = $row['item_id'];
-            $html.='<tr>' . '<td class="tg-uy9o">' . $row['item_title'] . '</td>';
+            $html .= '<tr>' . '<td class="tg-uy9o">' . $row['item_title'] . '</td>';
             $project_budget = new project_budget();
             $project_budget_items = $project_budget->GetProjectBudget($project_id, $item_id);
             if (mysql_num_rows($project_budget_items) != 0) {
                 while ($project_item_row = mysql_fetch_array($project_budget_items)) {
                     $amount = $project_item_row['amount'];
-                    $total_amount+= $amount;
-                    $items_total+=$amount;
-                    $html.='<td>' . number_format($amount, 2) . '</td>';
+                    $total_amount += $amount;
+                    $items_total += $amount;
+                    $html .= '<td>' . number_format($amount, 2) . '</td>';
                 }
             } else {
-                $html.='<td>' . number_format(0, 2) . '</td>';
+                $html .= '<td>' . number_format(0, 2) . '</td>';
             }
-            $html.='</tr>';
+            $html .= '</tr>';
         }
-        $html.='<tr>' . '<td>' . 'الاجمالي' . '</td>' . '<td>' . number_format($items_total, 2) . '</td>' . '</tr>';
+        $html .= '<tr>' . '<td>' . 'الاجمالي' . '</td>' . '<td>' . number_format($items_total, 2) . '</td>' . '</tr>';
     }
-    $html.='<tr>' . '<td class="tg-lrt0">' . 'الاجمالي' . '</td>' . '<td class="tg-lrt0">' . number_format($total_amount, 2) . '</td>' . '</tr>';
-    $html.='</tbody></table>';
+    $html .= '<tr>' . '<td class="tg-lrt0">' . 'الاجمالي' . '</td>' . '<td class="tg-lrt0">' . number_format($total_amount, 2) . '</td>' . '</tr>';
+    $html .= '</tbody></table>';
     $pdf->writeHTML($html, true, 0, true, 0);
     // close and output PDF document
     $base_dir = '../uploads/generated/';

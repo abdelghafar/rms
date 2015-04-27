@@ -24,7 +24,8 @@ session_destroy();
 </head>
 <body>
     <?
-    header('Location:../index.php') ; 
+    session_destroy();
+    header('Location:https://uqu.edu.sa/user/logout') ; 
     ?> 
 
 </body>

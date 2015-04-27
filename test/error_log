@@ -1,0 +1,6 @@
+[14-Apr-2015 11:22:40 Asia/Riyadh] PHP Fatal error:  require_once(): Failed opening required 'PHPUnit/Autoload.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dsr/public_html/rms/test/stuff_rolesTest.php on line 10
+[14-Apr-2015 11:25:25 Asia/Riyadh] PHP Fatal error:  require_once(): Failed opening required 'PHPUnit/Autoload.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dsr/public_html/rms/test/stuff_rolesTest.php on line 10
+[14-Apr-2015 11:25:27 Asia/Riyadh] PHP Fatal error:  require_once(): Failed opening required 'PHPUnit/Autoload.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dsr/public_html/rms/test/stuff_rolesTest.php on line 10
+[14-Apr-2015 11:29:50 Asia/Riyadh] PHP Fatal error:  Class 'research_stuff' not found in /home/dsr/public_html/rms/test/stuff_rolesTest.php on line 11
+[14-Apr-2015 11:30:20 Asia/Riyadh] PHP Fatal error:  Class 'research_stuff' not found in /home/dsr/public_html/rms/test/stuff_rolesTest.php on line 11
+[15-Apr-2015 10:56:10 Asia/Riyadh] PHP Fatal error:  Class 'PHPUnit_Framework_TestCase' not found in /home/dsr/public_html/rms/test/stuff_rolesTest_5.php on line 10

@@ -8,7 +8,7 @@ if ($seq_id != 0) {
     $obj = new Objectives();
     $obj_rs = $obj->GetObjectiveData($seq_id);
 } else {
-    
+
 }
 ?>
 
@@ -16,33 +16,32 @@ if ($seq_id != 0) {
     .demo-iframe {
         border: none;
         width: 600px;
-        height: auto; 
+        height: auto;
         clear: both;
-        float: right; 
-        margin:0px;
+        float: right;
+        margin: 0px;
         padding: 0px;
     }
 </style>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         var theme = "energyblue";
         $("#saveButton").jqxButton({width: '100', height: '30', theme: theme});
         $("#obj_name").jqxInput({width: '400', height: '30', theme: theme, rtl: true});
         $("#obj_desc").jqxInput({width: '400', height: '130', theme: theme, rtl: true});
     });
-    
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         $('#objdataForm').jqxValidator({rules: [
-                {input: '#obj_name', message: 'من فضلك ادخل الهدف', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'left'},
-                {input: '#obj_desc', message: 'من فضلك ادخل طريقة تحقيق الهدف', action: 'keyup,blur', rule: 'minLength=15,required', rtl: true, position: 'left'}
-            ], theme: 'energyblue', animation: 'fade'
+            {input: '#obj_name', message: 'من فضلك ادخل الهدف', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'left'},
+            {input: '#obj_desc', message: 'من فضلك ادخل طريقة تحقيق الهدف', action: 'keyup,blur', rule: 'minLength=15,required', rtl: true, position: 'left'}
+        ], theme: 'energyblue', animation: 'fade'
         });
 
 
-        $('#saveButton').on('click', function() {
+        $('#saveButton').on('click', function () {
             var valid = $('#objdataForm').jqxValidator('validate');
-            if (valid)
-            {
+            if (valid) {
                 //$("#objdataForm").submit();
                 //$("#poet_id").val($("#poet_id_val").val());
                 project_id = $("#project_id").val();
@@ -51,13 +50,12 @@ if ($seq_id != 0) {
                     url: 'inc/saveObjective.php',
                     datatype: "html",
                     data: $("#objdataForm").serialize(),
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $("#objectiveresult").html("<img src='images/load.gif'/>loading...");
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $("#objectiveresult").html(data);
-                        if ($("#objective_operation_flag").val() === 'true')
-                        {
+                        if ($("#objective_operation_flag").val() === 'true') {
                             window.location.assign('objectives_tasks.php?q=' + project_id);
                             //$("#obj_form_div").html("");
 
@@ -65,7 +63,7 @@ if ($seq_id != 0) {
                     }
                 });
             }
-            
+
         });
     });</script>
 
@@ -79,45 +77,51 @@ if ($seq_id != 0) {
         echo "value=0";
     ?> >
 
-    <fieldset style="width: 600px;text-align: right">
-        <legend>
-            <label>
-                اضافة -تعديل أهداف المشروع  / Add-Update Project Objectives
-            </label>
+    <fieldset style="width: 620px;text-align: center">
+        <legend style="text-align: center">
+            <h3>
+                اضافة -تعديل أهداف المشروع / Add-Update Project Objectives
+            </h3>
         </legend>
+        <br>
+
         <div class="panel_row">
 
-            <div class="panel-cell" style="width: 150px;text-align: left;padding-left: 10px;"> 
+            <div class="panel-cell" style="width: 190px;text-align: right;"> 
 
-                <p>
+                <span class="classic">
                     عنوان الهدف  
-                    <br>
+                    /
                     Objective Title
-                    <span class="required" style="color: red">*</span>
+                </span>
+                <span class="required" style="color: red">*</span>
                 </p>
 
             </div>
-            <div class="panel-cell" style="vertical-align: middle"> 
-                <input type="text" id="obj_name" name="obj_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["obj_title"] . "'"; ?>/>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input type="text" id="obj_name"
+                       name="obj_name" <?php if ($seq_id != 0) echo "value='" . $obj_rs["obj_title"] . "'"; ?>/>
             </div>
-        </div> 
+        </div>
 
         <div class="panel_row">
-            <div class="panel-cell" style="width: 150px;text-align: left;padding-left: 10px;"> 
-                <p>
+            <div class="panel-cell" style="width: 190px;text-align: right;"> 
+                <span class="classic">
                     طريقة تحقيق الهدف 
                     <br>
                     Approach for Objective
-                    <span class="required" style="color: red">*</span>
+                </span>
+                <span class="required" style="color: red">*</span>
                 </p>
             </div>
-            <div class="panel-cell" style="vertical-align: middle"> 
-                <textarea name="obj_desc" rows="4" cols="20" id="obj_desc"><?php if ($seq_id != 0) echo $obj_rs["obj_desc"]; ?></textarea>
+            <div class="panel-cell" style="vertical-align: middle">
+                <textarea name="obj_desc" rows="4" cols="20"
+                          id="obj_desc"><?php if ($seq_id != 0) echo $obj_rs["obj_desc"]; ?></textarea>
             </div>
-        </div> 
+        </div>
 
         <div style="text-align:center; padding-top: 10px">
-            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"  />
+            <input type="button" value="Save / حفظ " id='saveButton' style="margin-top: 20px;width: 50px"/>
         </div>
     </fieldset>
 </form>

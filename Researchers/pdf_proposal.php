@@ -3,7 +3,8 @@
 session_start();
 
 //header 
-function get_project_objectives($project_id) {
+function get_project_objectives($project_id)
+{
 
 
     $objectives = new Objectives();
@@ -26,7 +27,8 @@ function get_project_objectives($project_id) {
 }
 
 //======================================= MAPPING OF PHASES AND TASKS TO ACHIEVE OBJECTIVES
-function get_project_objectives_tasks($project_id) {
+function get_project_objectives_tasks($project_id)
+{
 
 
     $projectObjectives = new Objectives();
@@ -52,7 +54,8 @@ function get_project_objectives_tasks($project_id) {
 }
 
 //======================================= MAPPING OF PHASES AND TASKS TO ACHIEVE OBJECTIVES
-function get_project_manpower_durations($project_id) {
+function get_project_manpower_durations($project_id)
+{
 
 
     $item_id = 1; // for manpower budget
@@ -116,7 +119,8 @@ function get_project_manpower_durations($project_id) {
 }
 
 //======================================= WORK PLAN AND TIME SCHEDUAL
-function get_project_phases($project_id) {
+function get_project_phases($project_id)
+{
 
     $projectphases = new projectPhase();
 
@@ -132,7 +136,8 @@ function get_project_phases($project_id) {
 }
 
 //======================================= WORK PLAN AND TIME SCHEDUAL
-function get_project_work_plan($phase_id, $duration) {
+function get_project_work_plan($phase_id, $duration)
+{
 
     $phaseworkplan = new StuffTasks();
 
@@ -243,7 +248,8 @@ function get_project_work_plan($phase_id, $duration) {
     return $phases_list;
 }
 
-function get_program_goals($project_id) {
+function get_program_goals($project_id)
+{
 
 
     $goals = new ProgramGoals();

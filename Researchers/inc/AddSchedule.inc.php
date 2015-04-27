@@ -16,5 +16,5 @@ $result = $p->Save($Rid, $title, $desc, $Phase_id, $start_date, $end_date);
 if ($result > 0) {
     echo 'تم حفظ البيانات بنجاح';
 } else {
-    
+
 }

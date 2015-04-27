@@ -13,15 +13,18 @@
  */
 require_once 'mysqlConnection.php';
 
-class project_budget_others {
+class project_budget_others
+{
 
     private $tableName = 'project_budget';
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
     }
 
-    public function Save($seq_id, $project_id, $budget_item_id, $amount, $desc) {
+    public function Save($seq_id, $project_id, $budget_item_id, $amount, $desc)
+    {
         $con = new MysqlConnect();
         if ($seq_id == 0) {
             $stmt = "insert into " . $this->tableName . " (project_id,item_id,amount,`desc`) values (" . $project_id . "," . $budget_item_id . "," . $amount . ",'" . $desc . "' )";
@@ -34,7 +37,8 @@ class project_budget_others {
         }
     }
 
-    public function others_code() {
+    public function others_code()
+    {
         $con = new MysqlConnect();
         $stmt = "SELECT item_id FROM `budget_items` WHERE `item_alias`='Others'";
         $rs = $con->ExecuteNonQuery($stmt);
@@ -45,12 +49,14 @@ class project_budget_others {
         return $item_id;
     }
 
-    public function GetProjectOtherItems($project_id) {
+    public function GetProjectOtherItems($project_id)
+    {
         $con = new MysqlConnect();
         $stmt = 'select project_budget.seq_id, project_budget.amount, project_budget.`desc`, budget_items.item_title  from project_budget join budget_items on project_budget.item_id= budget_items.item_id where budget_items.parent_item_id=' . $this->others_code() . ' and project_budget.project_id=' . $project_id;
         echo $stmt;
         $rs = $con->ExecuteNonQuery($stmt);
         return $rs;
     }
+
 
 }

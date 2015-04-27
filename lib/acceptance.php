@@ -8,13 +8,16 @@
 
 require_once 'mysqlConnection.php';
 
-class Acceptance {
+class Acceptance
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
-    public function GetAcceptance($programId) {
+    public function GetAcceptance($programId)
+    {
         $stmt = "SELECT context from acceptance where program_id=" . $programId;
         $result = mysql_query($stmt);
         $context = 0;

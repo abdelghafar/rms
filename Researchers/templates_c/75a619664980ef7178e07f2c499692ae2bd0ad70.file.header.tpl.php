@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-03-02 10:06:53
+<?php /* Smarty version Smarty-3.1.13, created on 2015-04-25 15:37:02
          compiled from "../templates/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:115901414954e03279835891-48338207%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '75a619664980ef7178e07f2c499692ae2bd0ad70' => 
     array (
       0 => '../templates/header.tpl',
-      1 => 1425209742,
+      1 => 1429965414,
       2 => 'file',
     ),
   ),
@@ -26,8 +26,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'script_js' => 0,
     'script_responsive_js' => 0,
     'index_php' => 0,
-    'login_php' => 0,
-    'aboutus_php' => 0,
+    'research_projects_php' => 0,
+    'about_php' => 0,
+    'logout_php' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -35,7 +36,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <meta charset="utf-8">
         <title>
            <?php if (!isset($_smarty_tpl->tpl_vars['title']->value)){?>
-                 نظام الباحث لادارة المشروعات البحثية
+                 نظام إدارة المنح البحثية
             <?php }else{ ?>
                 <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 
@@ -64,16 +65,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="art-nav-inner">
                     <ul class="art-hmenu">
                         <li><a href="<?php echo $_smarty_tpl->tpl_vars['index_php']->value;?>
-" class="active">الصفحة الرئيسية</a></li>
-                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['login_php']->value;?>
-">الدخول</a></li>
-                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['aboutus_php']->value;?>
-">حول</a></li>
+" class="active">
+                                الصفحة الرئيسية / Home page
+                            </a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['research_projects_php']->value;?>
+" class="active">
+                                المنح البحثية / Research grants
+                            </a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['about_php']->value;?>
+" class="active"> 
+                                حول / About us
+                            </a></li>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['logout_php']->value;?>
+" class="active">
+                    خروج / Logout
+                            </a></li>
+                        
                     </ul> 
                 </div>
             </nav>
    <div class="art-sheet clearfix">
-                <header class="art-header">
+       <header class="art-header">
 <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
     <div class="art-slider-inner">
 <div class="art-slide-item art-slideheader0">

@@ -15,13 +15,10 @@ $outcome = new Outcomes();
 $isValid = TRUE;
 
 
-
-
 if (!isset($_POST['outcome_name']) || empty($_POST['outcome_name'])) {
     echo 'من فضلك أدخل  الهدف' . '<br/>';
     $isValid = FALSE;
-}
-else
+} else
     $outcome_name = mysql_escape_string(trim($_POST['outcome_name']));
 
 

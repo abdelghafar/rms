@@ -2,7 +2,7 @@
         <meta charset="utf-8">
         <title>
            {if !isset($title)}
-                 نظام الباحث لادارة المشروعات البحثية
+                 نظام إدارة المنح البحثية
             {else}
                 {$title}
             {/if}
@@ -24,14 +24,24 @@
             <nav class="art-nav">
                 <div class="art-nav-inner">
                     <ul class="art-hmenu">
-                        <li><a href="{$index_php}" class="active">الصفحة الرئيسية</a></li>
-                        <li><a href="{$login_php}">الدخول</a></li>
-                        <li><a href="{$aboutus_php}">حول</a></li>
+                        <li><a href="{$index_php}" class="active">
+                                الصفحة الرئيسية / Home page
+                            </a></li>
+                        <li><a href="{$research_projects_php}" class="active">
+                                المنح البحثية / Research grants
+                            </a></li>
+                        <li><a href="{$about_php}" class="active"> 
+                                حول / About us
+                            </a></li>
+                        <li><a href="{$logout_php}" class="active">
+                    خروج / Logout
+                            </a></li>
+                        
                     </ul> 
                 </div>
             </nav>
    <div class="art-sheet clearfix">
-                <header class="art-header">
+       <header class="art-header">
 <div class="art-slider art-slidecontainerheader" data-width="1000" data-height="380">
     <div class="art-slider-inner">
 <div class="art-slide-item art-slideheader0">

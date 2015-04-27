@@ -7,10 +7,12 @@ require_once '../../lib/tcpdf/tcpdf.php';
 require_once '../../lib/Reseaches.php';
 
 // create new PDF document
-class MYPDF extends TCPDF {
+class MYPDF extends TCPDF
+{
 
     //Page header
-    public function Header() {
+    public function Header()
+    {
         // Logo
         $image_file = '../../common/images/uqu.png';
         $this->Image($image_file, 195, 5, 20, 25, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
@@ -19,8 +21,9 @@ class MYPDF extends TCPDF {
     }
 
     // Page footer
-    public function Footer() {
-        
+    public function Footer()
+    {
+
     }
 
 }
@@ -36,7 +39,6 @@ $rs = $obj->GetResearchDetails($ResearchId);
 //    $research_code = $row['research_code'];
 //    $center_name = $row['center_name'];
 //}
-
 
 
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

@@ -17,10 +17,8 @@ $Approve_session_no = 0;
 $Approve_date = '';
 $research_year = 0;
 $keywords = "";
-$program = $_SESSION['program'];
-$user = new Users();
-$UserId = $_SESSION['User_Id'];
-$person_id = $user->GetPerosnId($UserId, 'Researcher');
+$program = $_SESSION['program_id'];
+$person_id = $_SESSION['person_id'];
 $isValid = TRUE;
 
 if (!isset($_POST['title_ar']) || empty($_POST['title_ar'])) {
@@ -85,68 +83,74 @@ if ($isValid == FALSE) {
 }
 
 //ToDo:Update Query
-if (isset($_GET['q'])) {
-    $projectId = filter_input(INPUT_GET, 'q', FILTER_VALIDATE_INT);
-    $r = new Reseaches();
-    $upload_dir = '../../uploads/' . $projectId . '/';
-    if (!file_exists($upload_dir)) {
-        mkdir($upload_dir);
-    }
-    $isExist = $r->IsExist($title_ar);
-    if ($isExist > 0 && $isExist != $projectId) {
-        echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
-        $isValid = FALSE;
-    }
-    if ($isValid == TRUE) {
-        $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId,$typeId,$keywords);
-        if ($updateResult == 1) {
-            echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $projectId . '")' . '</script>';
-        } else {
-            echo 'Error in update data ...';
+if (isset($_SESSION['q'])) {
+    $projectId = $_SESSION['q'];
+    if ($projectId == 0) {
+        //ToDo:insert
+        $setting = new Settings();
+        $research_year = $setting->GetCurrYear();
+        $Status_Id = 1;
+        $Status_Date = date('Y-m-d');
+        $res = new Reseaches();
+        $isExist = $res->IsExist($title_ar);
+        if ($isExist > 0) {
+            echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
+            $isValid = FALSE;
         }
-    } else {
-        echo 'لقد  فشلت عمليه ادخال البيانات' . '<br/>';
-    }
-}
-//ToDo:insert stmt
-else {
-    $setting = new Settings();
-    $research_year = $setting->GetCurrYear();
-    $Status_Id = 1;
-    $Status_Date = date('Y-m-d');
-    $res = new Reseaches();
-    $isExist = $res->IsExist($title_ar);
-    if ($isExist > 0) {
-        echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
-        $isValid = FALSE;
-    }
-    $research_code = '';
-    if ($isValid == TRUE) {
-        $researcher = new Reseaches();
+        $research_code = '';
+        if ($isValid == TRUE) {
+            $researcher = new Reseaches();
 
-        $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program,$typeId,$keywords);
-        $x = $research_id;
-        //create dir 
-
-        $upload_dir = '../../uploads/' . $research_id . '/';
-        if (!mkdir($upload_dir)) {
-            die('Can not create project Dir');
-        }
-        $track = new Reseaches_track();
-        if ($research_id != 0) {
-            $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
-            $research_author = new research_stuff();
-            $research_author->Save($research_id, $person_id, 1);
-            if ($x >= 0 && $y == 1) {
-                echo '<script>' . 'window.location.assign("uploadIntro.php?q=' . $research_id . '")' . '</script>';
-            } else {
-                echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
-                echo 'x= ' . $x . '<br/>';
-                echo 'y= ' . $y . '<br/>';
+            $research_id = $researcher->Save(0, $title_ar, $title_en, $proposed_duration, $trackId, $subtrackId, $research_code, $Approve_session_no, $Approve_date, '', '', '', '', '', $Status_Id, $Status_Date, $technologiesId, $research_year, $program, $typeId, $keywords);
+            $x = $research_id;
+            //create dir
+            $_SESSION['q'] = $research_id;
+            $upload_dir = '../../uploads/' . $research_id . '/';
+            if (!mkdir($upload_dir)) {
+                die('Can not create project Dir | call from insert' . $upload_dir);
+            }
+            $track = new Reseaches_track();
+            if ($research_id != 0) {
+                $y = $track->Save($research_id, $Status_Id, $Status_Date, $notes);
+                $research_author = new research_stuff();
+                $research_author->Save($research_id, $person_id, 1, research_stuff_categories::$person_based);
+                if ($x >= 0 && $y == 1) {
+                    echo '<script>' . 'window.location.assign("uploadIntro.php")' . '</script>';
+                } else {
+                    echo '<p>لقد  فشلت عمليه ادخال البيانات</p>' . '<br/>';
+                    echo 'x= ' . $x . '<br/>';
+                    echo 'y= ' . $y . '<br/>';
+                }
             }
         }
+
+    } else {
+        //ToDo Update
+        $r = new Reseaches();
+        $upload_dir = '../../uploads/' . $projectId . '/';
+        if (!file_exists($upload_dir)) {
+            if (!mkdir($upload_dir)) {
+                die('Can not create project Dir | call from insert');
+            }
+        }
+        $isExist = $r->IsExist($title_ar);
+        if ($isExist > 0 && $isExist != $projectId) {
+            echo 'لقد تم تسجبل هذا البحث من قبل' . '<br/>';
+            $isValid = FALSE;
+        }
+        if ($isValid == TRUE) {
+            $updateResult = $r->UpdateIntro($projectId, $title_ar, $title_en, $proposed_duration, $technologiesId, $trackId, $subtrackId, $typeId, $keywords);
+            if ($updateResult == 1) {
+                echo '<script>' . 'window.location.assign("uploadIntro.php")' . '</script>';
+            } else {
+                echo 'Error in update data ...';
+            }
+        } else {
+            echo 'لقد  فشلت عمليه ادخال البيانات' . '<br/>';
+        }
     }
 }
+
 ?>
 <link href="../../common/css/MessageBox.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>

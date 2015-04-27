@@ -13,16 +13,19 @@
  */
 require_once 'mysqlConnection.php';
 
-class DurationUnits {
+class DurationUnits
+{
 
 //put your code here
-    public function __construct() {
+    public function __construct()
+    {
         $connection = new MysqlConnect();
     }
 
     private $tableName = 'duration_units';
 
-    public function GetDurationUnitData($seq_id) {
+    public function GetDurationUnitData($seq_id)
+    {
         $conn = new MysqlConnect();
         $stmt = "SELECT * FROM " . $this->tableName . " where seq_id=" . $seq_id;
         $rs = $conn->ExecuteNonQuery($stmt);

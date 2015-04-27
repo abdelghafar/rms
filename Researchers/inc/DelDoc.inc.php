@@ -10,7 +10,7 @@ require_once '../../lib/research_docs.php';
 
 if (isset($_GET['seq_id'])) {
     $seqId = $_GET['seq_id'];
-    $project = new Research_Documents(); 
+    $project = new Research_Documents();
     $res = $project->Delete($seqId);
 } else {
     echo 'person_id and rcode are required..';

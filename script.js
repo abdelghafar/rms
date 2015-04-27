@@ -188,7 +188,7 @@ jQuery(function ($) {
     'use strict';
     // ie < 9 slider multiple background fix
     if (!$.browser.msie || $.browser.version > 8) return;
-    
+
     function split(str) {
         str = str.replace(/"/g, '').replace(/%20/g, '');
         return  str.split(/\s*,\s*/);
@@ -208,7 +208,7 @@ jQuery(function ($) {
     // ie8
     if (!$.browser.msie || $.browser.version > 8) return;
     $('.art-shapes').css('z-index', 1);
-    
+
     // ie7
     if (!$.browser.msie || $.browser.version > 7) return;
     var textblockTexts = $('.art-textblock > div');
@@ -256,7 +256,9 @@ jQuery(function ($) {
 
 jQuery(function ($) {
     "use strict";
-    $(window).bind("resize", function () { navigatorResizeHandler($("html").hasClass("responsive")); });
+    $(window).bind("resize", function () {
+        navigatorResizeHandler($("html").hasClass("responsive"));
+    });
 });
 
 var navigatorResizeHandler = (function ($) {
@@ -279,7 +281,7 @@ var navigatorResizeHandler = (function ($) {
         });
     };
 })(jQuery);
-jQuery(function($) {
+jQuery(function ($) {
     "use strict";
     $('nav.art-nav').addClass("desktop-nav");
 });
@@ -290,12 +292,16 @@ jQuery(function ($) {
     if (!$.browser.msie || parseInt($.browser.version, 10) > 7) {
         return;
     }
-    $('ul.art-hmenu>li:not(:first-child)').each(function () { $(this).prepend('<span class="art-hmenu-separator"> </span>'); });
+    $('ul.art-hmenu>li:not(:first-child)').each(function () {
+        $(this).prepend('<span class="art-hmenu-separator"> </span>');
+    });
 });
 
 jQuery(function ($) {
     "use strict";
-    $("ul.art-hmenu a:not([href])").attr('href', '#').click(function (e) { e.preventDefault(); });
+    $("ul.art-hmenu a:not([href])").attr('href', '#').click(function (e) {
+        e.preventDefault();
+    });
 });
 
 
@@ -310,8 +316,8 @@ jQuery(function ($) {
     }
 
     /* Fix width of submenu items.
-    * The width of submenu item calculated incorrectly in IE6-7. IE6 has wider items, IE7 display items like stairs.
-    */
+     * The width of submenu item calculated incorrectly in IE6-7. IE6 has wider items, IE7 display items like stairs.
+     */
     $.each($("ul.art-hmenu ul"), function () {
         var maxSubitemWidth = 0;
         var submenu = $(this);
@@ -346,7 +352,7 @@ jQuery(function () {
 
 var setHMenuOpenDirection = (function ($) {
     "use strict";
-    return (function(menuInfo) {
+    return (function (menuInfo) {
         var defaultContainer = $(menuInfo.defaultContainer);
         defaultContainer = defaultContainer.length > 0 ? defaultContainer = $(defaultContainer[0]) : null;
 
@@ -385,7 +391,7 @@ var menuExtendedCreate = (function ($) {
         var sheetLeft = sheet.offset().left;
         var sheetWidth = sheet.width();
 
-        $(".art-hmenu>li").each(function(i, v) {
+        $(".art-hmenu>li").each(function (i, v) {
             var itm = $(this);
             var subm = itm.children("ul");
             if (subm.length === 0) {
@@ -398,7 +404,7 @@ var menuExtendedCreate = (function ($) {
             subm.children("li").children("a").css("width", "");
 
             var lw = 0, rw = 0;
-        
+
             if (typeof subm.attr("data-ext-l") !== "undefined" && typeof subm.attr("data-ext-r") !== "undefined") {
                 lw = parseInt(subm.attr("data-ext-l"), 10) + 0;
                 rw = parseInt(subm.attr("data-ext-r"), 10) + 0;
@@ -456,13 +462,16 @@ jQuery(function ($) {
     'use strict';
 
     if ($.browser.msie && parseInt($.browser.version, 10) < 8) {
-        $(window).bind('resize', function() {
+        $(window).bind('resize', function () {
             var c = $('div.art-content');
             var s = c.parent().children('.art-layout-cell:not(.art-content)');
             var w = 0;
             c.hide();
-            s.each(function() { w += $(this).outerWidth(true); });
-            c.w = c.parent().width(); c.css('width', c.w - w + 'px');
+            s.each(function () {
+                w += $(this).outerWidth(true);
+            });
+            c.w = c.parent().width();
+            c.css('width', c.w - w + 'px');
             c.show();
         });
     }
@@ -505,7 +514,7 @@ jQuery(function () {
     artButtonSetup("art-button");
 });
 
-jQuery(function($) {
+jQuery(function ($) {
     'use strict';
     $('input.art-search-button, form.art-search input[type="submit"]').attr('value', '');
 });
@@ -543,30 +552,30 @@ jQuery(function () {
 var Control = (function ($) {
     'use strict';
     return (function () {
-        this.init = function(label, type, callback) {
-            var chAttr = label.find('input[type="' +type + '"]').attr('checked');
+        this.init = function (label, type, callback) {
+            var chAttr = label.find('input[type="' + type + '"]').attr('checked');
             if (chAttr === 'checked') {
-              label.addClass('art-checked');
+                label.addClass('art-checked');
             }
 
             label.mouseleave(function () {
-              $(this).removeClass('hovered').removeClass('active');
+                $(this).removeClass('hovered').removeClass('active');
             });
             label.mouseover(function () {
-              $(this).addClass('hovered').removeClass('active');
+                $(this).addClass('hovered').removeClass('active');
             });
             label.mousedown(function (event) {
-              if (event.which !== 1) {
-                  return;
-              }
-              $(this).addClass('active').removeClass('hovered');
+                if (event.which !== 1) {
+                    return;
+                }
+                $(this).addClass('active').removeClass('hovered');
             });
             label.mouseup(function (event) {
-              if (event.which !== 1) {
-                  return;
-              }
-              callback.apply(this);
-              $(this).removeClass('active').addClass('hovered');
+                if (event.which !== 1) {
+                    return;
+                }
+                callback.apply(this);
+                $(this).removeClass('active').addClass('hovered');
             });
         };
     });
@@ -591,7 +600,7 @@ var fixRssIconLineHeight = (function ($) {
 jQuery(function ($) {
     "use strict";
     var rssIcons = $(".art-rss-tag-icon");
-    if (rssIcons.length){
+    if (rssIcons.length) {
         fixRssIconLineHeight("art-rss-tag-icon");
         if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
             rssIcons.each(function () {
@@ -603,20 +612,20 @@ jQuery(function ($) {
     }
 });
 /**
-* @license 
-* jQuery Tools 1.2.6 Mousewheel
-* 
-* NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
-* 
-* http://flowplayer.org/tools/toolbox/mousewheel.html
-* 
-* based on jquery.event.wheel.js ~ rev 1 ~ 
-* Copyright (c) 2008, Three Dub Media
-* http://threedubmedia.com 
-*
-* Since: Mar 2010
-* Date:  
-*/
+ * @license
+ * jQuery Tools 1.2.6 Mousewheel
+ *
+ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
+ *
+ * http://flowplayer.org/tools/toolbox/mousewheel.html
+ *
+ * based on jquery.event.wheel.js ~ rev 1 ~
+ * Copyright (c) 2008, Three Dub Media
+ * http://threedubmedia.com
+ *
+ * Since: Mar 2010
+ * Date:
+ */
 (function ($) {
     'use strict';
     $.fn.mousewheel = function (fn) {
@@ -640,7 +649,7 @@ jQuery(function ($) {
     // shared event handler
     function wheelHandler(event) {
         /*jshint validthis:true*/
-        
+
         switch (event.type) {
 
             // FF2 has incorrect event positions
@@ -650,7 +659,7 @@ jQuery(function ($) {
                     pageX: event.pageX, pageY: event.pageY
                 });
 
-                // firefox
+            // firefox
             case "DOMMouseScroll":
                 $.extend(event, event.data); // fix event properties in FF2
                 event.delta = -event.detail / 3; // normalize delta
@@ -681,7 +690,7 @@ var ThemeLightbox = (function ($) {
                 if (e.data._ctrl === true && !e.ctrlKey) {
                     return;
                 }
-                
+
                 reload();
                 current = images.index(this);
                 show(this);
@@ -713,7 +722,7 @@ var ThemeLightbox = (function ($) {
                 imgContainer = $('<div class="art-lightbox-wrapper">').css('line-height', $(window).height() + "px")
                     .appendTo($("body"));
             }
-            
+
             var img = $('<img class="art-lightbox-image active" src="' + getFullImgSrc($(src).attr("src")) + '">');
             img.appendTo(imgContainer);
 
@@ -795,7 +804,7 @@ var ThemeLightbox = (function ($) {
         function showError(enable) {
             if (enable) {
                 $(".art-lightbox-wrapper").append($('<div class="lightbox-error">The requested content cannot be loaded.<br/>Please try again later.</div>')
-                        .css({ "top": $(window).height() / 2 - 60, "left": $(window).width() / 2 - 170 }));
+                    .css({ "top": $(window).height() / 2 - 60, "left": $(window).width() / 2 - 170 }));
             } else {
                 $(".art-lightbox-wrapper .lightbox-error").remove();
             }
@@ -846,10 +855,10 @@ jQuery(function () {
     new ThemeLightbox().init();
 });
 
-(function($) {
+(function ($) {
     'use strict';
     // transition && transitionEnd && browser prefix
-    $.support.transition = (function() {
+    $.support.transition = (function () {
         var thisBody = document.body || document.documentElement,
             thisStyle = thisBody.style,
             support = thisStyle.transition !== undefined ||
@@ -858,7 +867,7 @@ jQuery(function () {
                 thisStyle.MsTransition !== undefined ||
                 thisStyle.OTransition !== undefined;
         return support && {
-            event: (function() {
+            event: (function () {
                 var e = "transitionend";
                 if ($.browser.opera) {
                     var version = parseFloat($.browser.version);
@@ -868,9 +877,9 @@ jQuery(function () {
                 }
                 return e;
             })(),
-            prefix: (function() {
+            prefix: (function () {
                 var result;
-                $.each($.browser, function(key, value) {
+                $.each($.browser, function (key, value) {
                     if (key === "version") {
                         return true;
                     }
@@ -895,7 +904,7 @@ jQuery(function () {
         var multiplier = 1;
         var transitionDuration = "";
 
-        this.init = function(motionType, dir, duration) {
+        this.init = function (motionType, dir, duration) {
             direction = dir;
             motion = motionType;
             slides = [];
@@ -905,7 +914,7 @@ jQuery(function () {
             transitionDuration = duration;
         };
 
-        this.processSlide = function(element, modify) {
+        this.processSlide = function (element, modify) {
             this.updateSize(element, null);
             var pos = [];
 
@@ -926,11 +935,11 @@ jQuery(function () {
                 "sizes": element.css("background-size"),
                 "positions": pos
             });
-            
+
             if (modify)
                 element.css("background-image", "none");
         };
-        
+
         this.updateSize = function (element, initialSize) {
             width = element.outerWidth(false);
             height = element.outerHeight();
@@ -944,7 +953,7 @@ jQuery(function () {
             }
         };
 
-        this.setBackground = function(element, items) {
+        this.setBackground = function (element, items) {
             var bg = [];
             var sizes = [];
             $.each(items, function (i, o) {
@@ -958,9 +967,9 @@ jQuery(function () {
             });
         };
 
-        this.setPosition = function(element, items) {
+        this.setPosition = function (element, items) {
             var pos = [];
-            $.each(items, function(i, o) {
+            $.each(items, function (i, o) {
                 pos.push(o.positions);
             });
             element.css({
@@ -968,11 +977,11 @@ jQuery(function () {
             });
         };
 
-        this.current = function(index) {
+        this.current = function (index) {
             return slides[index] || null;
         };
 
-        this.next = function(index) {
+        this.next = function (index) {
             var next;
             if (direction === "next") {
                 next = (index + 1) % slides.length;
@@ -985,7 +994,7 @@ jQuery(function () {
             return slides[next];
         };
 
-        this.items = function(prev, next, move) {
+        this.items = function (prev, next, move) {
             var prevItem = { x: 0, y: 0 };
             var nextItem = { x: 0, y: 0 };
             var isDirectionNext = direction === "next";
@@ -1011,7 +1020,7 @@ jQuery(function () {
             if (!!next) {
                 result.push({ images: next.images, positions: getCssPositions(next.positions, nextItem), sizes: next.sizes });
             }
-            
+
             if (direction === "next") {
                 result.reverse();
             }
@@ -1019,10 +1028,10 @@ jQuery(function () {
             return result;
         };
 
-        this.transition = function(container, on) {
+        this.transition = function (container, on) {
             container.css($.support.transition.prefix + "transition", on ? transitionDuration + " ease-in-out background-position" : "");
         };
-        
+
         function getCssPositions(positions, offset) {
             var result = [];
             if (positions === undefined) {
@@ -1069,22 +1078,28 @@ jQuery(function () {
 
             active = true;
 
-            if (moving) { this.stop(true); }
+            if (moving) {
+                this.stop(true);
+            }
 
             if (!nextItem.length) {
                 nextItem = element.find(".art-slide-item")[reset]();
-                if (!this.settings.repeat) { last = true; active = false; return; }
+                if (!this.settings.repeat) {
+                    last = true;
+                    active = false;
+                    return;
+                }
             }
 
             if ($.support.transition) {
                 nextItem.addClass(this.settings.direction);
                 tmp = nextItem.get(0).offsetHeight;
-                
+
                 activeItem.addClass(innerDirection);
                 nextItem.addClass(innerDirection);
-                
+
                 element.trigger("beforeSlide", children.length);
-                
+
                 element.one($.support.transition.event, function () {
                     nextItem.removeClass(slider.settings.direction)
                         .removeClass(innerDirection)
@@ -1098,17 +1113,19 @@ jQuery(function () {
                 });
             } else {
                 element.trigger("beforeSlide", children.length);
-                
+
                 activeItem.removeClass("active");
                 nextItem.addClass("active");
                 active = false;
-                
+
                 element.trigger("afterSlide", children.length);
             }
 
             this.navigate(nextItem);
 
-            if (moving) { this.start(); }
+            if (moving) {
+                this.start();
+            }
         };
 
         this.navigate = function (position) {
@@ -1131,7 +1148,7 @@ jQuery(function () {
                     slider.to(index);
                 });
             }
-            
+
             if (activeIndex === index) {
                 return;
             }
@@ -1141,14 +1158,20 @@ jQuery(function () {
 
         this.next = function () {
             if (!active) {
-                if (last) { this.stop(); return;  }
+                if (last) {
+                    this.stop();
+                    return;
+                }
                 this.move("next");
             }
         };
 
         this.prev = function () {
             if (!active) {
-                if (last) { this.stop(); return; }
+                if (last) {
+                    this.stop();
+                    return;
+                }
                 this.move("prev");
             }
         };
@@ -1175,7 +1198,7 @@ jQuery(function () {
         this.moving = function () {
             return active;
         };
-        
+
         this.navigate(children.filter(".active"));
 
         if (this.settings.clickevents) {
@@ -1188,15 +1211,19 @@ jQuery(function () {
                 event.preventDefault();
             });
         }
-        
+
         if (this.settings.hover) {
             var slider = this;
             element.add(this.settings.navigator)
-                   .add(element.siblings(".art-shapes")).hover(function () {
-                if (element.is(":visible") && !last) { slider.stop(true); }
-            }, function () {
-                if (element.is(":visible") && !last) { slider.start(); }
-            });
+                .add(element.siblings(".art-shapes")).hover(function () {
+                    if (element.is(":visible") && !last) {
+                        slider.stop(true);
+                    }
+                }, function () {
+                    if (element.is(":visible") && !last) {
+                        slider.start();
+                    }
+                });
         }
     };
 
@@ -1210,7 +1237,7 @@ jQuery(function () {
                 data = new Slider(element, options);
                 element.data("slider", data);
             }
-            
+
             if (typeof arg === "string" && data[arg]) {
                 data[arg]();
             } else if (data.settings.auto && element.is(":visible")) {
@@ -1222,9 +1249,7 @@ jQuery(function () {
 })(jQuery);
 
 
-
-
-jQuery(function($) {
+jQuery(function ($) {
     'use strict';
     if ($.fn.slider) {
         $(".art-slidecontainerheader").each(function () {
@@ -1250,7 +1275,7 @@ jQuery(function($) {
                 animation: "fade",
                 direction: "next",
                 navigator: slideContainer.siblings(".art-slidenavigatorheader"),
-                helper: helper                
+                helper: helper
             });
         });
     }

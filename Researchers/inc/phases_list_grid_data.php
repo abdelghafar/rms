@@ -9,7 +9,7 @@ $projectPhases = new projectPhase();
 $project_id = $_REQUEST['project_id'];
 
 
-$phases_rs = $projectPhases->GetProjectPhases ($project_id);
+$phases_rs = $projectPhases->GetProjectPhases($project_id);
 
 
 while ($row = mysql_fetch_array($phases_rs, MYSQL_ASSOC)) {

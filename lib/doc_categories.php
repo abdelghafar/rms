@@ -2,14 +2,16 @@
 
 require_once 'mysqlConnection.php';
 
-class Document_categories {
+class Document_categories
+{
 
-    public function __construct() {
-        $connection = new MysqlConnect();
-        ;
+    public function __construct()
+    {
+        $connection = new MysqlConnect();;
     }
 
-    public function isExsit($cat_name) {
+    public function isExsit($cat_name)
+    {
         $stmt = "SELECT seq_id from doc_categories where cat_name ='" . $cat_name . "'";
         $conn = new MysqlConnect();
         $seq_id = 0;
@@ -21,7 +23,8 @@ class Document_categories {
         return $seq_id;
     }
 
-    public function Save($seqId, $cat_name, $notes) {
+    public function Save($seqId, $cat_name, $notes)
+    {
         if ($seqId == 0) {
             $stmt = "INSERT INTO doc_categories (cat_name,notes) Values ('" . $cat_name . "','" . $notes . "')";
             $conn = new MysqlConnect();
@@ -40,14 +43,16 @@ class Document_categories {
         }
     }
 
-    public function GetList() {
+    public function GetList()
+    {
         $stmt = "SELECT seq_id , cat_name,notes From doc_categories";
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);
         return $result;
     }
 
-    public function Delete($seqId) {
+    public function Delete($seqId)
+    {
         $stmt = "delete from doc_categories where seq_id=" . $seqId;
         $conn = new MysqlConnect();
         echo $stmt;
@@ -55,7 +60,8 @@ class Document_categories {
         return $result;
     }
 
-    public function GetBySeqId($seqId) {
+    public function GetBySeqId($seqId)
+    {
         $stmt = "SELECT cat_name,notes From doc_categories Where seq_id=" . $seqId;
         $conn = new MysqlConnect();
         $result = $conn->ExecuteNonQuery($stmt);

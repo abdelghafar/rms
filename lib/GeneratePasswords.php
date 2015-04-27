@@ -1,6 +1,7 @@
 ﻿<?php
 
-function generatePassword($l = 8, $c = 0, $n = 0, $s = 0) {
+function generatePassword($l = 8, $c = 0, $n = 0, $s = 0)
+{
     // get count of all required minimum special chars
     $count = $c + $n + $s;
 
@@ -53,7 +54,7 @@ function generatePassword($l = 8, $c = 0, $n = 0, $s = 0) {
         for ($i = 0; $i < $s; $i++) {
             array_push($tmp2, substr($syms, mt_rand(0, strlen($syms) - 1), 1));
         }
-        
+
         // hack off a chunk of the base password array that's as big as the special chars array
         $tmp1 = array_slice($tmp1, 0, $l - $count);
         // merge special character(s) array with base password array

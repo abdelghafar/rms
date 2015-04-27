@@ -29,10 +29,10 @@ if ($userInfo['pass'] != $Current_Password) {
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../../common/css/reigster-layout.css"/> 
-    <link rel="stylesheet" href="../../common/css/MessageBox.css" type="text/css"/> 
+    <link rel="stylesheet" href="../../common/css/reigster-layout.css"/>
+    <link rel="stylesheet" href="../../common/css/MessageBox.css" type="text/css"/>
     <style>
-        body{
+        body {
             margin: 0px;
         }
     </style>

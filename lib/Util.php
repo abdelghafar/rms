@@ -1,6 +1,7 @@
 <?php
 
-function get_time_difference_php($created_time) {
+function get_time_difference_php($created_time)
+{
 
     $str = strtotime($created_time);
     $today = strtotime(date('Y-m-d H:i:s'));
@@ -55,10 +56,12 @@ function get_time_difference_php($created_time) {
     }
 }
 
-function encode($url) {
+function encode($url)
+{
     return urlencode(base64_encode($url));
 }
 
-function decode($data) {
+function decode($data)
+{
     return base64_decode(urldecode($data));
 }

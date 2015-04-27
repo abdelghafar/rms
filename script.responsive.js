@@ -56,7 +56,9 @@ var responsiveDesign = {
             var resizeTimeout;
             $(window).resize(function () {
                 clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function () { responsiveDesign.responsive(); }, 25);
+                resizeTimeout = setTimeout(function () {
+                    responsiveDesign.responsive();
+                }, 25);
             });
             $(window).trigger("resize");
         };
@@ -154,7 +156,9 @@ var responsiveTextblocks = (function ($) {
                     "width": tbWidth * c
                 });
                 tb.css("top", tbTop * c);
-                tb.attr("style", function (i, s) { return s + "margin-left: " + (tbMargin * c) + "px !important"; });
+                tb.attr("style", function (i, s) {
+                    return s + "margin-left: " + (tbMargin * c) + "px !important";
+                });
             }
         });
     };
@@ -250,9 +254,9 @@ jQuery(window).bind("responsive", (function ($) {
     return function (event, responsiveDesign) {
         responsiveImages(responsiveDesign);
         responsiveVideos(responsiveDesign);
-    
+
         if ($.browser.msie && $.browser.version <= 8) return;
-    
+
         if (responsiveDesign.isResponsive) {
             $(window).on("responsiveResize.slider", function () {
                 responsiveSlideshow(responsiveDesign);
@@ -272,10 +276,6 @@ function responsiveSlideshow(responsiveDesign) {
 }
 
 
-
-
-
-
 jQuery(window).bind("responsiveResize", (function ($) {
     "use strict";
     return function (event, responsiveDesign) {
@@ -284,18 +284,15 @@ jQuery(window).bind("responsiveResize", (function ($) {
 })(jQuery));
 
 
-
-
-
-jQuery(function($) {
-    $("<a href=\"#\" class=\"art-menu-btn\"><span></span><span></span><span></span></a>").insertBefore(".art-hmenu").click(function(e) {
+jQuery(function ($) {
+    $("<a href=\"#\" class=\"art-menu-btn\"><span></span><span></span><span></span></a>").insertBefore(".art-hmenu").click(function (e) {
         var menu = $(this).next();
         if (menu.is(":visible")) {
-            menu.slideUp("fast", function() {
+            menu.slideUp("fast", function () {
                 $(this).removeClass("visible").css("display", "");
             });
         } else {
-            menu.slideDown("fast", function() {
+            menu.slideDown("fast", function () {
                 $(this).addClass("visible").css("display", "");
             });
         }
@@ -315,7 +312,7 @@ jQuery(window).bind("responsiveNav", (function ($) {
 
 var responsiveHeader = (function ($) {
     "use strict";
-    return function(responsiveDesign) {
+    return function (responsiveDesign) {
         var header = $("header.art-header");
         var headerSlider = header.find(".art-slider");
 
@@ -389,8 +386,6 @@ jQuery(window).bind("responsive", function (event, responsiveDesign) {
     "use strict";
     responsiveLayoutCell(responsiveDesign);
 });
-
-
 
 
 if (!jQuery.browser.msie || jQuery.browser.version > 8) {
