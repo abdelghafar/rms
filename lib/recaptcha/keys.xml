@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root domain="uqu.edu.sa">
+    <keys>
+        <public>
+            6LeKVOwSAAAAAFX9Sz34NI_csz1eNLwNpWOaylZJ
+        </public>
+        <private>
+            6LeKVOwSAAAAAH-ndokZDu-ehw9Utiv97D3firlA
+        </private>
+    </keys>
+</root>

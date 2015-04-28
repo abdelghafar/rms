@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.idea/workspace.xml
+lib/config.php
+nbproject/
+uploads/
+templates_c/
