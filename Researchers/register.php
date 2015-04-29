@@ -42,6 +42,7 @@ $smarty->display('../templates/header.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxdata.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxfileupload.js"></script>
@@ -99,33 +100,26 @@ $smarty->display('../templates/header.tpl');
 
     </legend>
     <div class="panel_row">
-        <div class="panel-cell" style="width: 270px;text-align: left;padding-left: 10px;">
+        <div class="panel-cell" style="width: 295px;text-align: left;padding-left: 10px;">
             <p style="font-weight: bold" class="classic">
-                الاسم بالغة العربية / Name in Ar
+    الاسم باللغة العربية / Arabic Name
             </p>
         </div>
         <div class="panel-cell" style="width: 700px;">
-            <input id="FirstName-ar" class="textbox" type="text" placeholder="" name="FirstName_ar"/>
-            <input id="FatherName-ar" class="textbox" type="text" placeholder="" name="FatherName_ar"/>
-            <input id="GrandName-ar" class="textbox" type="text" placeholder="" name="GrandName_ar"/>
-            <input id="FamilyName-ar" class="textbox" type="text" placeholder="" name="FamilyName_ar"/>
-
+            <input id="name_ar" type="text" placeholder="" name="name_ar"/>
         </div>
         <div class="panel_row">
-            <div class="panel-cell" style="width: 259px;text-align: left;padding-left: 10px;">
+            <div class="panel-cell" style="width: 280px;text-align: left;padding-left: 10px;">
                 <p style="font-weight: bold" class="classic">
-                    الاسم باللغة الانجليزية / Name in Eng
+    الاسم باللغة الانجلزية / English Name
                 </p>
             </div>
             <div class="panel-cell" style="width: 700px;">
-                <input id="FamilyName-en" class="textbox" type="text" placeholder="" name="FamilyName_en"/>
-                <input id="GrandName-en" class="textbox" type="text" placeholder="" name="GrandName_en"/>
-                <input id="FatherName-en" class="textbox" type="text" placeholder="" name="FatherName_en"/>
-                <input id="FirstName-en" class="textbox" type="text" placeholder="" name="FirstName_en"/>
+                <input id="name_en" type="text" placeholder="" name="name_en"/>
             </div>
         </div>
         <div class="panel_row">
-            <div class="panel-cell" style="width: 240px;text-align: left;padding-left: 12px;vertical-align: middle;">
+            <div class="panel-cell" style="width: 218px;text-align: left;padding-left: 12px;vertical-align: middle;">
                 <p style="font-weight: bold" class="classic">
                     النوع / Gender
                 </p>
@@ -136,40 +130,29 @@ $smarty->display('../templates/header.tpl');
                 </div>
             </div>
 
-            <div class="panel-cell" style="width:384px;text-align: left;padding-left: 10px;vertical-align: middle;">
+            <div class="panel-cell" style="width:315px;text-align: left;padding-left: 10px;vertical-align: middle;">
                 <p style="font-weight: bold" class="classic">
                     الجنسية / Nationality
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle">
-                <input class="textbox" type="text" placeholder="" name="Nationality"/>
-            </div>
-        </div>
-
-        <div class="panel_row">
-            <div class="panel-cell" style="width:240px;text-align: left;padding-left: 9px;vertical-align: middle;">
-                <p style="font-weight: bold" class="classic">
-                    تاريخ الميلاد/ DoB
-                </p>
-            </div>
-            <div class="panel-cell" style="vertical-align: middle">
-                <div style="float:right;" id="BirthDate">
-                </div>
-                <input type="hidden" id="BirthDateVal" name="BirthDateVal"/>
+                <div id="countriesList"></div>
+                <input type="hidden" id="selectedCountry" name="selectedCountry">
             </div>
         </div>
     </div>
 </fieldset>
 <br/>
+<br/>
 <fieldset style="width: 95%;text-align: right;">
     <legend>
-        <label>
-            بيانات أكاديمية / Acadmic data
-        </label>
 
+        <label>
+            بيانات العمل/ Working Data
+        </label>
     </legend>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:248px;text-align: left;padding-left: 10px;vertical-align: middle;">
+	 <div class="panel_row">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 الدرجة العلمية / Scientific Degree
             </p>
@@ -183,40 +166,9 @@ $smarty->display('../templates/header.tpl');
 
     </div>
     <div class="panel_row">
-        <div class="panel-cell" style="width:250px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
-                التخصص العام / Major Field
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input id="major-field" name="major_field" class="textbox" type="text" placeholder=""/>
-        </div>
-        <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                التخصص الدقيق / Special Field
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input id="special-field" name="special_field" class="textbox" type="text" placeholder=""/>
-        </div>
-
-    </div>
-
-</fieldset>
-
-<br/>
-<fieldset style="width: 95%;text-align: right;">
-    <legend>
-
-        <label>
-            بيانات العمل/ Working Data
-        </label>
-    </legend>
-
-    <div class="panel_row">
-        <div class="panel-cell" style="width:250px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                جهة العمل/ University
+              جهة العمل / Institution
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
@@ -224,26 +176,27 @@ $smarty->display('../templates/header.tpl');
         </div>
     </div>
     <div class="panel_row">
-
-        <div class="panel-cell" style="width:251px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 الكلية / College
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input name="college" class="textbox" type="text" placeholder=""/>
+            <input name="college" id="college" class="textbox" type="text" placeholder=""/>
         </div>
-        <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
+    </div>
+    <div class="panel_row">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 القسم/ Dept
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input name="dept" class="textbox" type="text" placeholder=""/>
+            <input name="dept" id="dept" class="textbox" type="text" placeholder=""/>
         </div>
     </div>
     <div class="panel_row">
-        <div class="panel-cell" style="width:252px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 صورة اثبات الهوية / NI Image
             </p>
@@ -262,7 +215,7 @@ $smarty->display('../templates/header.tpl');
         </label>
     </legend>
     <div class="panel_row">
-        <div class="panel-cell" style="width:252px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 البريد الالكتروني الرسمى / Offical Email
             </p>
@@ -272,22 +225,13 @@ $smarty->display('../templates/header.tpl');
         </div>
     </div>
     <div class="panel_row">
-        <div class="panel-cell" style="width:252px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 جوال / Mobile
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
             <input id="mobile" name="mobile" class="textbox" type="text" value=""/>
-        </div>
-
-        <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                فاكس / Fax
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input name="fax" class="textbox" type="text" placeholder=""/>
         </div>
     </div>
 </fieldset>
