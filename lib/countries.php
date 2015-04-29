@@ -17,9 +17,9 @@ class countries {
         $stmt = "SELECT * FROM  `countries` order by title_ar ORDER BY  `countries`.`title_ar` ASC ";
         $rs = $conn->ExecuteNonQuery($stmt);
         while($row = mysql_fetch_array($rs)){
-            $rs = array('seq_id'=>$row['seq_id'],'title_ar'=>$row['title_ar']);
+            $list = array('seq_id'=>$row['seq_id'],'title_ar'=>$row['title_ar']);
         }
-        echo $rs;
+        echo $list;
     }
 
 }
