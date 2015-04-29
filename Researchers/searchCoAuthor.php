@@ -24,7 +24,7 @@ if (isset($_GET['q'])) {
         var person_id = null;
         var uploaded_file_name = null;
         var resume_url = null;
-        $("#Search").jqxInput({width: 500, height: 30, rtl: true, theme: Curr_theme});
+        $("#Search").jqxInput({width: 370, height: 30, rtl: true, theme: Curr_theme});
         $("#searchButton_CoAuthor").jqxButton({width: 100, height: 30, theme: Curr_theme});
         $('#searchButton_CoAuthor').on('click', function () {
             $('#gridCoAuthors').jqxGrid('clear');
@@ -224,6 +224,9 @@ if (isset($_GET['q'])) {
             <td colspan="2">
                 <input id="Search" type="text" name="txtSearch"/>
                 <input id="searchButton_CoAuthor" value="Search / بحث " type="button"/>
+                <a href="register.php" target="_blank">
+                    اضافة جديد / New Co-I
+                </a>
             </td>
         </tr>
     </table>

@@ -207,7 +207,7 @@ if (isset($_GET['q'])) {
         </tr>
         <tr>
             <td class="tg-even en" style="font-weight: bold">Keywords</td>
-            <td class="tg-even en">' . $keywords . '</td>
+            <td class="tg-even">' . $keywords . '</td>
         </tr>
         <tr>
             <td class="tg-odd en" style="font-weight: bold">Project code</td>

@@ -1,4 +1,5 @@
 <?
+session_start();
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
@@ -37,15 +38,13 @@ $smarty->display('../templates/header.tpl');
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxmaskedinput.js"></script>
     <script src="../js/jqwidgets/jqwidgets/globalization/globalize.js" type="text/javascript"></script>
     <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxvalidator.js"></script>
+    <script type="text/javascript" src="../js/jqwidgets/jqwidgets/jqxfileupload.js"></script>
 
+    <script type="text/javascript" src="js/register.js"></script>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css"/>
     <link rel="stylesheet" href="../js/jqwidgets/jqwidgets/styles/jqx.energyblue.css" type="text/css"/>
 
-    <script type="text/javascript">
-        var RecaptchaOptions = {
-            theme: 'white'
-        };
-    </script>
+
     <style type="text/css">
         #recaptcha_area {
             width: 318px !important;
@@ -53,114 +52,20 @@ $smarty->display('../templates/header.tpl');
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function () {
 
-            $("#gender").jqxSwitchButton({rtl: true, height: 25, theme: 'energyblue', width: 70, onLabel: "أنثي", offLabel: "ذكر"});
-
-            $("#BirthDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
-
-            $('#BirthDate').on('change', function (event) {
-                $('#BirthDateVal').val($('#BirthDate').jqxDateTimeInput('getText'));
-            });
-            $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
-            $("#empCode").jqxMaskedInput({rtl: true, width: '150px', height: '25px', mask: '#######', theme: 'energyblue'});
-            var comboSrc = ["أستاذ مساعد", "أستاذ مشارك", "أستاذ"];
-            $("#jqxdropdownlist").jqxDropDownList({rtl: true, source: comboSrc, selectedIndex: 0, width: '150px', height: '25px', theme: 'energyblue'});
-            $("#email").on('change', function () {
-                var emailTxt = $("#email").val();
-
-            });
-
-            $('#sendButton').on('click', function () {
-                $('#registerFrom').jqxValidator('validate');
-            });
-            $("#sendButton").jqxButton({width: '100px', height: '30px', theme: 'energyblue'});
-
-            $("#sendButton").click(function () {
-                var validationResult = function (isValid) {
-                    if (isValid) {
-                        $("#registerFrom").submit();
-
-                    }
-                };
-                $('#registerFrom').jqxValidator('validate', validationResult);
-            });
-
-            $("#registerFrom").on('validationSuccess', function () {
-                $("#form-iframe").fadeIn('fast');
-            });
-        });
 
     </script>
 
     <script type="text/javascript">
         $(document).ready(
             function () {
-                checked = false;
-                genderText = "ذكر";
-                $('#genderType').val(genderText);
-                $("#gender").bind('change', function (event) {
-                    checked = event.args.check;
-                    if (checked === true) {
-                        genderText = "أنثي";
-                    }
-                    else {
-                        genderText = "ذكر";
-                    }
-                    $('#genderType').val(genderText);
-                });
-                var item = "أستاذ مساعد";
-                $("#Position").val(item);
-                $('#jqxdropdownlist').bind('select', function (event) {
-                    var args = event.args;
-                    item = $('#jqxdropdownlist').jqxDropDownList('getItem', args.index);
-                    $("#Position").val(item.label);
-                });
+
             });
 
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#registerFrom').jqxValidator({rules: [
-                {input: '#FirstName-ar', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#FatherName-ar', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#GrandName-ar', message: 'من فضلك ادخل اسم الجد بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#FamilyName-ar', message: 'من فضلك ادخل اسم العائلة بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#FirstName-en', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#FatherName-en', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#GrandName-en', message: 'من فضلك ادخل اسم الجد بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#FamilyName-en', message: 'من فضلك ادخل اسم العائلة بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#major-field', message: 'من فضلك ادخل التخصص العام بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#special-field', message: 'من فضلك ادخل التخصص الدقيق بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#university', message: 'من فضلك ادخل جهة العمل بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-                {input: '#empCode', message: 'من فضلك ادخل رقم منسوب الجامعة', action: 'valuechanged, blur', rtl: true, position: 'topcenter', rule: function (input, commit) {
-                    if (input === "")
-                        return true;
-                    var c = /\d{7}/;
 
-                    $("#empCodeVal").val(function () {
-                        return $("#empCode").jqxMaskedInput('value');
-                    });
-                    return c.test(($("#empCode").jqxMaskedInput('value')));
-                }},
-                {input: '#email', message: 'من فضلك ادخل البريد الالكتروني', action: 'keyup, blur', rule: 'required', rtl: true, position: 'topcenter'},
-                {input: '#email', message: 'من فضلك ادخل البريد الاكتروني بصورة صحيحة', action: 'keyup', rule: 'email', position: 'topcenter'},
-                {input: '#mobile', message: 'من فضلك ادخل رقم الجوال', action: 'keyup,blur', rule: 'required', rtl: true, position: 'topcenter'},
-                {input: "#password", message: "من فضلك ادخل كلمة المرور", action: 'keyup, blur', rule: 'required', position: 'left'},
-                {input: "#passwordConfirm", message: "من فضلك ادخل كلمة المرور", action: 'keyup, blur', rule: 'required', position: 'left'},
-                {input: "#password", message: "كلمة المرور تترواح من  8 الي 20 حرف", action: 'keyup, blur', rule: 'length=8,20', position: 'left'},
-                {
-                    input: "#passwordConfirm", message: "من فضلك تأكد من تطابق كلمة المرور", action: 'keyup, blur', position: 'left', rule: function (input, commit) {
-                    var firstPassword = $("#password").jqxPasswordInput('val');
-                    var secondPassword = $("#passwordConfirm").jqxPasswordInput('val');
-                    return firstPassword === secondPassword;
-                }
-                }
-
-            ], theme: 'energyblue', animation: 'fade'
-            });
-        });
     </script>
     <style type="text/css">
         .demo-iframe {
@@ -178,7 +83,8 @@ $smarty->display('../templates/header.tpl');
     <title>تسجيل باحث</title>
 </head>
 <body>
-<form method="POST" id="registerFrom" target="form-iframe" action="inc/register.inc.php">
+<form method="POST" id="registerFrom" target="form-iframe" action="inc/register.inc.php" enctype="multipart/form-data">
+<input type="hidden" name="key" value="<? echo uniqid(); ?>">
 <fieldset style="width: 95%;text-align: right;">
     <legend>
         <label>
@@ -193,10 +99,10 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="width: 700px;">
-            <input id="FirstName-ar" class="textbox" type="text" placeholder="الاسم الاول" name="FirstName_ar"/>
-            <input id="FatherName-ar" class="textbox" type="text" placeholder="اسم الأب" name="FatherName_ar"/>
-            <input id="GrandName-ar" class="textbox" type="text" placeholder="اسم الجد" name="GrandName_ar"/>
-            <input id="FamilyName-ar" class="textbox" type="text" placeholder="لقب العائلة" name="FamilyName_ar"/>
+            <input id="FirstName-ar" class="textbox" type="text" placeholder="" name="FirstName_ar"/>
+            <input id="FatherName-ar" class="textbox" type="text" placeholder="" name="FatherName_ar"/>
+            <input id="GrandName-ar" class="textbox" type="text" placeholder="" name="GrandName_ar"/>
+            <input id="FamilyName-ar" class="textbox" type="text" placeholder="" name="FamilyName_ar"/>
 
         </div>
         <div class="panel_row">
@@ -206,10 +112,10 @@ $smarty->display('../templates/header.tpl');
                 </p>
             </div>
             <div class="panel-cell" style="width: 700px;">
-                <input id="FamilyName-en" class="textbox" type="text" placeholder="FamilyName" name="FamilyName_en"/>
-                <input id="GrandName-en" class="textbox" type="text" placeholder="GrandName" name="GrandName_en"/>
-                <input id="FatherName-en" class="textbox" type="text" placeholder="FatherName" name="FatherName_en"/>
-                <input id="FirstName-en" class="textbox" type="text" placeholder="FirstName" name="FirstName_en"/>
+                <input id="FamilyName-en" class="textbox" type="text" placeholder="" name="FamilyName_en"/>
+                <input id="GrandName-en" class="textbox" type="text" placeholder="" name="GrandName_en"/>
+                <input id="FatherName-en" class="textbox" type="text" placeholder="" name="FatherName_en"/>
+                <input id="FirstName-en" class="textbox" type="text" placeholder="" name="FirstName_en"/>
             </div>
         </div>
         <div class="panel_row">
@@ -230,7 +136,7 @@ $smarty->display('../templates/header.tpl');
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle">
-                <input class="textbox" type="text" placeholder="Nationality" name="Nationality"/>
+                <input class="textbox" type="text" placeholder="" name="Nationality"/>
             </div>
         </div>
 
@@ -244,16 +150,6 @@ $smarty->display('../templates/header.tpl');
                 <div style="float:right;" id="BirthDate">
                 </div>
                 <input type="hidden" id="BirthDateVal" name="BirthDateVal"/>
-
-            </div>
-
-            <div class="panel-cell" style="width:317px;text-align: left;padding-left: 10px;vertical-align: middle;">
-                <p style="font-weight: bold" class="classic">
-                    بلد الاقامة / Country of residence
-                </p>
-            </div>
-            <div class="panel-cell" style="vertical-align: middle">
-                <input class="textbox" type="text" placeholder="بلد الميلاد" name="CountryOfBirth"/>
             </div>
         </div>
     </div>
@@ -287,7 +183,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input id="major-field" name="major_field" class="textbox" type="text" placeholder="التخصص العام"/>
+            <input id="major-field" name="major_field" class="textbox" type="text" placeholder=""/>
         </div>
         <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
@@ -295,7 +191,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input id="special-field" name="special_field" class="textbox" type="text" placeholder="التخصص الدقيق"/>
+            <input id="special-field" name="special_field" class="textbox" type="text" placeholder=""/>
         </div>
 
     </div>
@@ -318,7 +214,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input id="university" name="university" class="textbox" type="text" value="" placeholder="الجامعة"/>
+            <input id="university" name="university" class="textbox" type="text" value="" placeholder=""/>
         </div>
     </div>
     <div class="panel_row">
@@ -329,7 +225,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input name="college" class="textbox" type="text" placeholder="الكلية / الادارة"/>
+            <input name="college" class="textbox" type="text" placeholder=""/>
         </div>
         <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
@@ -337,7 +233,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input name="dept" class="textbox" type="text" placeholder="القسم"/>
+            <input name="dept" class="textbox" type="text" placeholder=""/>
         </div>
     </div>
     <div class="panel_row">
@@ -347,8 +243,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <div id="empCode"></div>
-            <input type="hidden" name="empCodeVal" id="empCodeVal"/>
+            <input type="file" name="uploadFile" id="uploadFile">
         </div>
     </div>
 
@@ -367,7 +262,7 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input id="email" name="email" class="textbox" type="text" placeholder="@uqu.edu.sa"/>
+            <input id="email" name="email" class="textbox" type="text" placeholder=""/>
         </div>
     </div>
     <div class="panel_row">
@@ -377,34 +272,16 @@ $smarty->display('../templates/header.tpl');
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input id="mobile" name="mobile" class="textbox" type="text" value=""/>966+
+            <input id="mobile" name="mobile" class="textbox" type="text" value=""/>
         </div>
 
-        <div class="panel-cell" style="width:278px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
             <p style="font-weight: bold" class="classic">
                 فاكس / Fax
             </p>
         </div>
         <div class="panel-cell" style="vertical-align: middle">
-            <input name="fax" class="textbox" type="text" placeholder="فاكس"/>
-        </div>
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:252px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                المدينة / City
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input class="textbox" type="text" placeholder="المدينة" name="city"/>
-        </div>
-        <div class="panel-cell" style="width:307px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                الدولة / Country
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input class="textbox" type="text" placeholder="الدولة" name="country"/>
+            <input name="fax" class="textbox" type="text" placeholder=""/>
         </div>
     </div>
 </fieldset>

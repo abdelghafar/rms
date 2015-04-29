@@ -233,6 +233,9 @@ $(document).ready(function () {
             <td colspan="2">
                 <input type="text" id="SearchByName"/>
                 <input id="searchButton_OtherPersonal" type="button" value="Search / بحث "/>
+                <a href="register.php" target="_blank">
+                    اضافة جديد / New Consultant
+                </a>
             </td>
 
         </tr>
