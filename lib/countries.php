@@ -23,5 +23,5 @@ class countries {
     }
 
 }
-
+echo 'sss';
 echo countries::GetAll_Json();
