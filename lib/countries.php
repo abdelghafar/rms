@@ -20,8 +20,4 @@ class countries {
         }
         echo json_encode($list);
     }
-
 }
-
-$obj = new countries();
-echo $obj->GetAll_Json();
