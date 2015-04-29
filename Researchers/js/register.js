@@ -23,18 +23,44 @@ $(document).ready(function () {
 
     $("#gender").jqxSwitchButton({rtl: true, height: 25, theme: 'energyblue', width: 70, onLabel: "أنثي", offLabel: "ذكر"});
 
-    $("#BirthDate").jqxDateTimeInput({width: '140px', height: '25px', rtl: true, theme: 'energyblue', formatString: 'yyyy-MM-dd'});
+    $(".textbox").jqxInput({rtl: true, height: 25, width: 300, minLength: 1, theme: 'energyblue'});
+    $("#name_ar").jqxInput({rtl: true, height: 25, width: 600, minLength: 1, theme: 'energyblue'});
+    $("#name_en").jqxInput({rtl: true, height: 25, width: 600, minLength: 1, theme: 'energyblue'});
 
-    $('#BirthDate').on('change', function (event) {
-        $('#BirthDateVal').val($('#BirthDate').jqxDateTimeInput('getText'));
-    });
-    $(".textbox").jqxInput({rtl: true, height: 25, width: 150, minLength: 1, theme: 'energyblue'});
     var comboSrc = ["أستاذ مساعد", "أستاذ مشارك", "أستاذ"];
-    $("#jqxdropdownlist").jqxDropDownList({rtl: true, source: comboSrc, selectedIndex: 0, width: '150px', height: '25px', theme: 'energyblue'});
+    $("#jqxdropdownlist").jqxDropDownList({rtl: true, source: comboSrc, selectedIndex: 0, width: 300, height: 25, theme: 'energyblue'});
     $("#email").on('change', function () {
         var emailTxt = $("#email").val();
-
     });
+
+    var url = "../Data/getAll_countries.php";
+
+    // prepare the data
+    var source =
+    {
+        datatype: "json",
+        datafields: [
+            { name: 'seq_id' },
+            { name: 'title_ar' }
+        ],
+        url: url,
+        async: false
+    };
+    var dataAdapter = new $.jqx.dataAdapter(source);
+
+    $("#countriesList").jqxDropDownList({rtl:true,source: dataAdapter, displayMember: 'title_ar', valueMember: 'title_ar', selectedIndex: 0, width: 200, height: 25, theme: 'energyblue'});
+    //selectedCountry
+    var item = $("#countriesList").jqxDropDownList('getSelectedItem');
+    alert(item.value);
+    $('#countriesList').on('select', function (event) {
+        var args = event.args;
+        var item = $('#countriesList').jqxDropDownList('getItem', args.index);
+        if (item != null) {
+            $('#selectedCountry').val(item.value);
+            alert(item.value);
+        }
+    });
+
 
     $('#sendButton').on('click', function () {
         $('#registerFrom').jqxValidator('validate');
@@ -79,17 +105,11 @@ $(document).ready(function () {
  */
 $(document).ready(function () {
     $('#registerFrom').jqxValidator({rules: [
-        {input: '#FirstName-ar', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#FatherName-ar', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#GrandName-ar', message: 'من فضلك ادخل اسم الجد بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#FamilyName-ar', message: 'من فضلك ادخل اسم العائلة بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#FirstName-en', message: 'من فضلك ادخل الاسم الاول بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#FatherName-en', message: 'من فضلك ادخل اسم الاب بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#GrandName-en', message: 'من فضلك ادخل اسم الجد بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#FamilyName-en', message: 'من فضلك ادخل اسم العائلة بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#major-field', message: 'من فضلك ادخل التخصص العام بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
-        {input: '#special-field', message: 'من فضلك ادخل التخصص الدقيق بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+        {input:'#name_ar', message: 'من فضلك ادخل الاسم باللغة العربية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+        {input: '#name_en', message: 'من فضلك ادخل الاسم باللغة الانجليزية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
         {input: '#university', message: 'من فضلك ادخل جهة العمل بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+		 {input: '#college', message: 'من فضلك ادخل الكلية بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
+		 	 {input: '#dept', message: 'من فضلك ادخل القسم بصورة صحيحية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
         {input: '#email', message: 'من فضلك ادخل البريد الالكتروني', action: 'keyup, blur', rule: 'required', rtl: true, position: 'topcenter'},
         {input: '#email', message: 'من فضلك ادخل البريد الاكتروني بصورة صحيحة', action: 'keyup', rule: 'email', position: 'topcenter'},
         {input: '#mobile', message: 'من فضلك ادخل رقم الجوال', action: 'keyup,blur', rule: 'required', rtl: true, position: 'topcenter'}
