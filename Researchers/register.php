@@ -1,5 +1,11 @@
 <?
 session_start();
+if ($_SESSION['Authorized'] == null) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+} else if ($_SESSION['Authorized'] == 0) {
+    header('Location: https://uqu.edu.sa/e_services/esso/gotoApp/DSR');
+}
+
 require_once '../js/fckeditor/fckeditor.php';
 require_once '../lib/Smarty/libs/Smarty.class.php';
 
