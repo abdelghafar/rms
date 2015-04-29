@@ -10,17 +10,15 @@ class Persons
         $connection = new MysqlConnect();
     }
 
-    public function Save($id, $FirstName_ar, $FirstName_en, $FatherName_ar, $FatherName_en, $GrandName_ar, $GrandName_en, $FamilyName_ar, $FamilyName_en, $gender, $Nationality, $BirthDate, $CountryOfBirth, $Position, $Major_Field, $Speical_Field, $university, $College, $Dept, $empCode, $EqamaCode, $Email, $Mobile, $Fax, $city, $country, $POX, $Postal_Code, $IBAN, $ResumeUrl)
+    public function Save($id,$name_ar, $name_en, $gender, $Nationality, $Position, $university, $College, $Dept,$Email, $Mobile,$cat_code,$ni_image_url)
     {
         $conn = new MysqlConnect();
-        $stmt = "";
+        $stmt = "insert into persons (name_ar,name_en,gender,nationality,Position,university,college,dept,email,mobile,cat_code,ni_image_url) VALUES ('".$name_ar."','".$name_en."',".$gender.",'".$Nationality."','".$Position."','".$university."','".$College."','".$Dept."','".$Email."','".$Mobile."',".$cat_code.",'".$ni_image_url."')";
         if ($id == 0) {
-            $stmt = "Insert into persons(FirstName_ar,FirstName_en,FatherName_ar,FatherName_en,GrandName_ar,GrandName_en,FamilyName_ar,FamilyName_en,Gender,Nationality,DateOfBirth,CountryOfBirth,Position,Major_Field,Speical_Field,university,College,Dept,empCode,EqamaCode,Email,Mobile,Fax,city,country,POX,Postal_Code,IBAN,name_ar,name_en) values('" . $FirstName_ar . "','" . $FirstName_en . "','" . $FatherName_ar . "','" . $FatherName_en . "','" . $GrandName_ar . "','" . $GrandName_en . "','" . $FamilyName_ar . "','" . $FamilyName_en . "','" . $gender . "','" . $Nationality . "','" . $BirthDate . "','" . $CountryOfBirth . "','" . $Position . "','" . $Major_Field . "','" . $Speical_Field . "','" . $university . "','" . $College . "','" . $Dept . "','" . $empCode . "','" . $EqamaCode . "','" . $Email . "','" . $Mobile . "','" . $Fax . "','" . $city . "','" . $country . "','" . $POX . "','" . $Postal_Code . "','" . $IBAN . "',concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`),concat(`FirstName_en`,' ',`FatherName_en`,' ',`GrandName_en`,' ',`FamilyName_en`)" . ")";
             $res = $conn->ExecuteNonQuery($stmt);
             return mysql_insert_id();
         } else {
-            $stmt = "update persons set FirstName_ar='" . $FirstName_ar . "',FirstName_en='" . $FirstName_en . "',FatherName_ar='" . $FatherName_ar . "',FatherName_en='" . $FatherName_en . "',GrandName_ar='" . $GrandName_ar . "',GrandName_en='" . $GrandName_en . "',FamilyName_ar='" . $FamilyName_ar . "',FamilyName_en='" . $FamilyName_en . "' , Nationality='" . $Nationality . "',DateOfBirth='" . $BirthDate . "',CountryOfBirth='" . $CountryOfBirth . "',Position='" . $Position . "',Major_Field='" . $Major_Field . "',Speical_Field='" . $Speical_Field . "',College='" . $College . "',Dept='" . $Dept . "', Mobile='" . $Mobile . "',Fax='" . $Fax . "',city='" . $city . "',country='" . $country . "',POX='" . $POX . "',Postal_Code='" . $Postal_Code . "',IBAN='" . $IBAN . "' ,ResumeUrl ='" . $ResumeUrl . "',`name_ar` = concat(`FirstName_ar`,' ',`FatherName_ar`,' ',`GrandName_ar`,' ',`FamilyName_ar`),name_en=concat(`FirstName_en`,' ',`FatherName_en`,' ',`GrandName_en`,' ',`FamilyName_en`) " . "where `Person_id`=" . $id;
-            $res = $conn->ExecuteNonQuery($stmt);
+            throw new ErrorException('Not implemented function');
         }
         return $res;
     }
@@ -127,6 +125,4 @@ class Persons
         }
         return $ResumeUrl;
     }
-
-
 }
