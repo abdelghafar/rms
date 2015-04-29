@@ -9,19 +9,19 @@ require_once 'mysqlConnection.php';
 
 class countries {
 
-    static  $table_name = 'countries';
-
-    public static function GetAll_Json()
+    public function GetAll_Json()
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT * FROM  `countries` order by title_ar ORDER BY  `countries`.`title_ar` ASC ";
+        $stmt = "SELECT * FROM  `countries` order by title_ar ASC ";
         $rs = $conn->ExecuteNonQuery($stmt);
+        $list = array();
         while($row = mysql_fetch_array($rs)){
-            $list = array('seq_id'=>$row['seq_id'],'title_ar'=>$row['title_ar']);
+            $list[] = array('seq_id'=>$row['seq_id'],'title_ar'=>$row['title_ar']);
         }
-        echo $list;
+        echo json_encode($list);
     }
 
 }
-echo 'sss';
-echo countries::GetAll_Json();
+
+$obj = new countries();
+echo $obj->GetAll_Json();
