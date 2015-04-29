@@ -24,4 +24,4 @@ class countries {
 
 }
 
-countries::GetAll_Json();
+echo countries::GetAll_Json();
