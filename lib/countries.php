@@ -12,7 +12,7 @@ class countries {
     public function GetAll_Json()
     {
         $conn = new MysqlConnect();
-        $stmt = "SELECT * FROM  `countries` order by title_ar ASC ";
+        $stmt = "SELECT * FROM  countries order by title_ar ASC ";
         $rs = $conn->ExecuteNonQuery($stmt);
         $list = array();
         while($row = mysql_fetch_array($rs)){
