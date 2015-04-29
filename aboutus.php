@@ -58,7 +58,7 @@ if (isset($_SESSION['program']) && $_SESSION['program'] > 0) {
         <h1 style="color: #ff0000" >
             للمساعدة وطلب الدعم الفني
         </h1>
-        <h2 style="text-align: right">- خلال فترة الدوام الرسمي فقط (حسب توفر مسئول الدعم)<br></h3>
+        <h2 style="text-align: right">- خلال فترة الدوام الرسمي فقط (حسب توفر مسئول الدعم)<br></h2>
             <p style="font-weight: bold; font-size: 20px;line-height: 2;text-align: justify">
 
                 الاتصال على أ/سعيد الطلحي جوال: 0582520295 لأعضاء هيئة التدريس <br>
