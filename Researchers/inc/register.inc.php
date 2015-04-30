@@ -79,16 +79,21 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $uploadOk = 1;
     $ni_image_url = "";
     $target_dir = "../../uploads/";
-    $target_file = $target_dir . pathinfo($_FILES['uploadFile']['name'], PATHINFO_FILENAME).'.'.pathinfo($_FILES['uploadFile']['name'], PATHINFO_EXTENSION);
+    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
         $uploadOk = 0;
     }
-    if ($_FILES["uploadFile"]["size"] > 500000 || $_FILES["uploadFile"]["size"] == 0) {
+    if ($_FILES["uploadFile"]["size"] > 500000 ) {
         echo "<pre>" . "Sorry, your file is too large." . '</pre>';
         $uploadOk = 0;
     }
+    if ($_FILES["uploadFile"]["size"] == 0 ) {
+        echo "<pre>" . "Sorry, your file is not correct." . '</pre>';
+        $uploadOk = 0;
+    }
+
 // Allow certain file formats
     if ($imageFileType != "pdf") {
         echo "<pre>" . "Sorry, only PDF files are allowed." . '</pre>';
@@ -120,11 +125,8 @@ if ($rs > 0) {
 }
 if ($isValid == TRUE && isset($_POST['key'])) {
     try {
-//        unset($_POST);
-        var_dump($ni_image_url);
+
         $person_id = $person->Save(0, $name_ar, $name_en, $gender, $Nationality, $Position, $university, $college, $dept, $email, $mobile, $cat_code, $ni_image_url);
-
-
         echo ' <div class="successbox" style="direction:rtl;width:800px;text-align: right;">';
         echo 'تم حفظ البيانات بنجاح ';
         echo '';
