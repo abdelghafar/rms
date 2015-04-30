@@ -74,6 +74,13 @@ else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
 
+if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
+{
+    $uploadOk =0;
+    echo '<pre>'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</pre>';
+    exit();
+}
+
 $rs = $person->IsExistByEmail($_POST['email']);
 /**
  *
@@ -86,29 +93,29 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    echo "<pre>"."Sorry, file already exists.".'</pre>';
     $uploadOk = 0;
 }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
+    echo "<pre>"."Sorry, your file is too large.".'</pre>';
     $uploadOk = 0;
 }
 // Allow certain file formats
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" && $imageFileType != "pdf"
 ) {
-    echo "Sorry, only JPG, JPEG, PNG,GIF and PDF files are allowed.";
+    echo "<pre>"."Sorry, only JPG, JPEG, PNG,GIF and PDF files are allowed.".'</pre>';
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo "<pre>"."Sorry, your file was not uploaded."."<pre>";
 // if everything is ok, try to upload file
 }
 
 if ($rs > 0) {
-    $response .= 'لقد تم التسجل بواسطه هذا البريد الالكتروني من قبل';
+    $response .= 'لقد تم التسجل بواسطه هذا البريد الالكتروني من قبل.';
     $isValid = FALSE;
 }
 if ($isValid == TRUE && isset($_POST['key']) && $uploadOk == 1) {
