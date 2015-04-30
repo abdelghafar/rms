@@ -82,8 +82,6 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $key = uniqid();
     $target_file = $target_dir.$key.'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION) ;
 
-    echo 'target_file='.$target_file;
-
     $imageFileType = pathinfo($_FILES["uploadFile"]["name"], PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
