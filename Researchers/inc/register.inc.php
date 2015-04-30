@@ -117,7 +117,7 @@ $rs = $person->IsExistByEmail($_POST['email']);
 if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
-        $ni_image_url = $file_name;
+        $ni_image_url = $target_file;
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
