@@ -75,8 +75,8 @@ else
 
 $uploadOk =0;
 if (!empty($_FILES['fileToUpload']['name'])) {
+    echo 'File upload is set...';
     $uploadOk = 1;
-    echo '<p class="error">' . 'من فضلك قم بتحميل صورة اثبات الهوية' . '</p>';
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
         $uploadOk = 0;
@@ -97,6 +97,9 @@ if (!empty($_FILES['fileToUpload']['name'])) {
         echo "<pre>" . "Sorry, your file was not uploaded." . "<pre>";
 // if everything is ok, try to upload file
     }
+}else
+{
+    echo 'file upload is not set.....';
 }
 
 $rs = $person->IsExistByEmail($_POST['email']);
