@@ -107,7 +107,7 @@ $ni_image_url = "";
 $target_dir = "../../uploads/";
 $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
+echo 'uploadFile='.$uploadOk;
 if ($uploadOk == 1) {
 
     echo 'uploadFile='.$uploadOk;
