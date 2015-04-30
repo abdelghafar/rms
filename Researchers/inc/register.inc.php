@@ -73,7 +73,7 @@ if (!isset($_POST['mobile']) || empty($_POST['mobile']))
 else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
-
+$uploadOk =0;
 if (!empty($_FILES['fileToUpload']['name'])) {
     $uploadOk = 1;
     echo '<p class="error">' . 'من فضلك قم بتحميل صورة اثبات الهوية' . '</p>';
@@ -97,10 +97,6 @@ if (!empty($_FILES['fileToUpload']['name'])) {
         echo "<pre>" . "Sorry, your file was not uploaded." . "<pre>";
 // if everything is ok, try to upload file
     }
-
-}else
-{
-    echo 'fileupload is not set';
 }
 
 $rs = $person->IsExistByEmail($_POST['email']);
@@ -110,7 +106,6 @@ $rs = $person->IsExistByEmail($_POST['email']);
 $ni_image_url = "";
 $target_dir = "../../uploads/";
 $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
-$uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 if ($uploadOk == 1) {
