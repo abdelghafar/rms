@@ -109,8 +109,9 @@ $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 if ($uploadOk == 1) {
+    var_dump($uploadOk);
+
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
-//        echo "The file " . basename($_FILES["uploadFile"]["name"]) . " has been uploaded.";
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
         $ni_image_url = $file_name;
         echo 'file name is = ' . $file_name;
@@ -127,7 +128,7 @@ if ($rs > 0) {
 if ($isValid == TRUE && isset($_POST['key'])) {
     try {
 //        unset($_POST);
-
+        var_dump($ni_image_url);
         $person_id = $person->Save(0, $name_ar, $name_en, $gender, $Nationality, $Position, $university, $college, $dept, $email, $mobile, $cat_code, $ni_image_url);
 
 
