@@ -79,7 +79,7 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $uploadOk = 1;
     $ni_image_url = "";
     $target_dir = "../../uploads/";
-    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
+    $target_file = $target_dir . pathinfo($_FILES['uploadFile']['name'], PATHINFO_FILENAME).'.'.pathinfo($_FILES['uploadFile']['name'], PATHINFO_EXTENSION);
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
@@ -90,10 +90,8 @@ if (!empty($_FILES['uploadFile']['name'])) {
         $uploadOk = 0;
     }
 // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" && $imageFileType != "pdf"
-    ) {
-        echo "<pre>" . "Sorry, only JPG, JPEG, PNG,GIF and PDF files are allowed." . '</pre>';
+    if ($imageFileType != "pdf") {
+        echo "<pre>" . "Sorry, only PDF files are allowed." . '</pre>';
         $uploadOk = 0;
     }
 // Check if $uploadOk is set to 0 by an error
@@ -101,14 +99,9 @@ if (!empty($_FILES['uploadFile']['name'])) {
         echo "<pre>" . "Sorry, your file was not uploaded." . "<pre>";
 // if everything is ok, try to upload file
     }
-} else {
-    echo 'file upload is not set.....';
 }
 
 $rs = $person->IsExistByEmail($_POST['email']);
-/**
- *
- */
 
 if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
