@@ -81,7 +81,7 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $target_dir = "../../uploads/";
 //    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
 //    $target_dir = $target_dir.basename(pathinfo($_FILES["uploadFile"]["name"],PATHINFO_FILENAME).'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION));
-    $target_file = $target_dir.uniqid().pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION) ;
+    $target_file = $target_dir.uniqid().'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION) ;
 
     echo 'target_file='.$target_file;
 
@@ -117,9 +117,7 @@ $rs = $person->IsExistByEmail($_POST['email']);
 if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
-//        $ni_image_url = $file_name;
-        echo 'file name is = ' . $file_name;
-        $ni_image_url = basename($_FILES["uploadFile"]["name"]);
+        $ni_image_url = $file_name;
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
