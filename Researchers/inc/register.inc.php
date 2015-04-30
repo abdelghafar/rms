@@ -109,11 +109,11 @@ $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 if ($uploadOk == 1) {
-    var_dump($uploadOk);
 
+    echo 'uploadFile='.$uploadOk;
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
-        $ni_image_url = $file_name;
+//        $ni_image_url = $file_name;
         echo 'file name is = ' . $file_name;
         $ni_image_url = basename($_FILES["uploadFile"]["name"]);
     } else {
