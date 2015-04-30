@@ -113,22 +113,29 @@ if ($uploadOk == 0) {
     echo "<pre>"."Sorry, your file was not uploaded."."<pre>";
 // if everything is ok, try to upload file
 }
+if($uploadOk==1)
+{
+    if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
+//        echo "The file " . basename($_FILES["uploadFile"]["name"]) . " has been uploaded.";
+        $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]),PATHINFO_FILENAME).pathinfo(basename($_FILES["uploadFile"]["name"]),PATHINFO_EXTENSION);
+        echo 'file name is = '.$file_name;
+        $ni_image_url = basename($_FILES["uploadFile"]["name"]);
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
 
 if ($rs > 0) {
     $response .= 'لقد تم التسجل بواسطه هذا البريد الالكتروني من قبل.';
     $isValid = FALSE;
 }
-if ($isValid == TRUE && isset($_POST['key']) && $uploadOk == 1) {
+if ($isValid == TRUE && isset($_POST['key'])) {
     try {
 //        unset($_POST);
-        if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
-            echo "The file " . basename($_FILES["uploadFile"]["name"]) . " has been uploaded.";
-            $ni_image_url = basename($_FILES["uploadFile"]["name"]);
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
 
         $person_id = $person->Save(0,$name_ar,$name_en,$gender,$Nationality,$Position,$university,$college,$dept,$email,$mobile,$cat_code,$ni_image_url);
+
+
 
         echo ' <div class="successbox" style="direction:rtl;width:800px;text-align: right;">';
         echo 'تم حفظ البيانات بنجاح ';
