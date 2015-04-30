@@ -51,13 +51,11 @@ $(document).ready(function () {
     $("#countriesList").jqxDropDownList({rtl:true,source: dataAdapter, displayMember: 'title_ar', valueMember: 'title_ar', selectedIndex: 0, width: 200, height: 25, theme: 'energyblue'});
     //selectedCountry
     var item = $("#countriesList").jqxDropDownList('getSelectedItem');
-    alert(item.value);
     $('#countriesList').on('select', function (event) {
         var args = event.args;
         var item = $('#countriesList').jqxDropDownList('getItem', args.index);
         if (item != null) {
             $('#selectedCountry').val(item.value);
-            alert(item.value);
         }
     });
 
