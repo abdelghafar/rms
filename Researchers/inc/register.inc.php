@@ -74,12 +74,12 @@ else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
 
-if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
-{
-    $uploadOk =0;
-    echo '<p class="error">'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</p>';
-    exit();
-}
+//if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
+//{
+//    $uploadOk =0;
+//    echo '<p class="error">'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</p>';
+//    exit();
+//}
 
 $rs = $person->IsExistByEmail($_POST['email']);
 /**
