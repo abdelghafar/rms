@@ -80,8 +80,11 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $ni_image_url = "";
     $target_dir = "../../uploads/";
 //    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
-    $target_dir = $target_dir.basename(pathinfo($_FILES["uploadFile"]["name"],PATHINFO_FILENAME).'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION));
-    echo 'target_dir='.$target_dir;
+//    $target_dir = $target_dir.basename(pathinfo($_FILES["uploadFile"]["name"],PATHINFO_FILENAME).'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION));
+    $target_file = $target_dir.uniqid().pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION) ;
+
+    echo 'target_file='.$target_file;
+
     $imageFileType = pathinfo($_FILES["uploadFile"]["name"], PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
