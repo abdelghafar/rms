@@ -63,10 +63,17 @@ if (!isset($_POST['dept']) || empty($_POST['dept']))
 else
     $dept = mysql_real_escape_string(trim($_POST['dept']));
 
-if (!isset($_POST['email']) || empty($_POST['email']))
+if (!isset($_POST['email']) || empty($_POST['email'])) {
     $response .= 'من فضلك ادخل البريد الإلكتروني' . '<br/>';
-else {
-    $email = mysql_real_escape_string(trim($_POST['email']));
+
+} else {
+    $email = test_input($_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $response .= 'من فضلك ادخل البريد الالكتروني بشكل صحيح' . '<br/>';
+    }else
+    {
+        $email = mysql_real_escape_string(trim($_POST['email']));
+    }
 }
 if (!isset($_POST['mobile']) || empty($_POST['mobile']))
     $mobile = "";
@@ -80,7 +87,7 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $ni_image_url = "";
     $target_dir = "../../uploads/";
     $key = uniqid();
-    $target_file = $target_dir.$key.'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION) ;
+    $target_file = $target_dir . $key . '.' . pathinfo($_FILES["uploadFile"]["name"], PATHINFO_EXTENSION);
 
     $imageFileType = pathinfo($_FILES["uploadFile"]["name"], PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
@@ -88,11 +95,11 @@ if (!empty($_FILES['uploadFile']['name'])) {
         $uploadOk = 0;
     }
     //not greater than 5 MB
-    if ($_FILES["uploadFile"]["size"] > 5*1024*1024 ) {
+    if ($_FILES["uploadFile"]["size"] > 5 * 1024 * 1024) {
         echo "<pre>" . "Sorry, your file is too large." . '</pre>';
         $uploadOk = 0;
     }
-    if ($_FILES["uploadFile"]["size"] == 0 ) {
+    if ($_FILES["uploadFile"]["size"] == 0) {
         echo "<pre>" . "Sorry, your file is not correct." . '</pre>';
         $uploadOk = 0;
     }
@@ -114,7 +121,7 @@ $rs = $person->IsExistByEmail($_POST['email']);
 if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
-        $ni_image_url= "uploads/".$key.'.'.pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
+        $ni_image_url = "uploads/" . $key . '.' . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
