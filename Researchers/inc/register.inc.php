@@ -77,7 +77,7 @@ else
 if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
 {
     $uploadOk =0;
-    echo '<pre>'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</pre>';
+    echo '<p class="error">'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</p>';
     exit();
 }
 
