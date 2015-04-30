@@ -74,12 +74,32 @@ else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
 
-//if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
-//{
-//    $uploadOk =0;
-//    echo '<p class="error">'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</p>';
-//    exit();
-//}
+if(!isset($_FILES['uploadFile']['name']) || empty($_FILES['uploadFile']['name']))
+{
+    $uploadOk =1;
+    echo '<p class="error">'.'من فضلك قم بتحميل صورة اثبات الهوية'.'</p>';
+    if (file_exists($target_file)) {
+        echo "<pre>"."Sorry, file already exists.".'</pre>';
+        $uploadOk = 0;
+    }
+    if ($_FILES["fileToUpload"]["size"] > 500000 || $_FILES["fileToUpload"]["size"]==0) {
+        echo "<pre>"."Sorry, your file is too large.".'</pre>';
+        $uploadOk = 0;
+    }
+// Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" && $imageFileType != "pdf"
+    ) {
+        echo "<pre>"."Sorry, only JPG, JPEG, PNG,GIF and PDF files are allowed.".'</pre>';
+        $uploadOk = 0;
+    }
+// Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "<pre>"."Sorry, your file was not uploaded."."<pre>";
+// if everything is ok, try to upload file
+    }
+
+}
 
 $rs = $person->IsExistByEmail($_POST['email']);
 /**
@@ -91,28 +111,6 @@ $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "<pre>"."Sorry, file already exists.".'</pre>';
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "<pre>"."Sorry, your file is too large.".'</pre>';
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" && $imageFileType != "pdf"
-) {
-    echo "<pre>"."Sorry, only JPG, JPEG, PNG,GIF and PDF files are allowed.".'</pre>';
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "<pre>"."Sorry, your file was not uploaded."."<pre>";
-// if everything is ok, try to upload file
-}
 if($uploadOk==1)
 {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
