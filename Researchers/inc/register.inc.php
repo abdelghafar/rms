@@ -81,6 +81,7 @@ if (!empty($_FILES['uploadFile']['name'])) {
     $target_dir = "../../uploads/";
 //    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
     $target_dir = $target_dir.basename(pathinfo($_FILES["uploadFile"]["name"],PATHINFO_FILENAME).'.'.pathinfo($_FILES["uploadFile"]["name"],PATHINFO_EXTENSION));
+    echo 'target_dir='.$target_dir;
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
