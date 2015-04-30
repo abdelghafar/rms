@@ -73,14 +73,14 @@ if (!isset($_POST['mobile']) || empty($_POST['mobile']))
 else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
-$uploadOk =0;
-
-echo "FILES['uploadFile']['tmp_name']:".$_FILES['uploadFile']['tmp_name'];
-
+$uploadOk = 0;
 
 if (!empty($_FILES['uploadFile']['name'])) {
-    echo 'File upload is set...';
     $uploadOk = 1;
+    $ni_image_url = "";
+    $target_dir = "../../uploads/";
+    $target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
+    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
         $uploadOk = 0;
@@ -101,8 +101,7 @@ if (!empty($_FILES['uploadFile']['name'])) {
         echo "<pre>" . "Sorry, your file was not uploaded." . "<pre>";
 // if everything is ok, try to upload file
     }
-}else
-{
+} else {
     echo 'file upload is not set.....';
 }
 
@@ -110,14 +109,8 @@ $rs = $person->IsExistByEmail($_POST['email']);
 /**
  *
  */
-$ni_image_url = "";
-$target_dir = "../../uploads/";
-$target_file = $target_dir . basename($_FILES["uploadFile"]["name"]);
-$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-echo 'uploadFile='.$uploadOk;
-if ($uploadOk == 1) {
 
-    echo 'uploadFile='.$uploadOk;
+if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
 //        $ni_image_url = $file_name;
