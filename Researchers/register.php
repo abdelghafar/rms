@@ -203,7 +203,7 @@ $smarty->display('../templates/header.tpl');
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle">
-                <input type="file" name="uploadFile" id="uploadFile">
+                <input type="file" name="uploadFile" id="uploadFile" accept="application/pdf">
             </div>
         </div>
 
