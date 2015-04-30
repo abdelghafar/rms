@@ -110,7 +110,7 @@ $(document).ready(function () {
 		 {input: '#college', message: 'من فضلك ادخل الكلية بصورة صحيحة', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
 		 	 {input: '#dept', message: 'من فضلك ادخل القسم بصورة صحيحية', action: 'keyup,blur', rule: 'minLength=3,required', rtl: true, position: 'topcenter'},
         {input: '#email', message: 'من فضلك ادخل البريد الالكتروني', action: 'keyup, blur', rule: 'required', rtl: true, position: 'topcenter'},
-        {input: '#email', message: 'من فضلك ادخل البريد الاكتروني بصورة صحيحة', action: 'keyup', rule: 'email', position: 'topcenter'},
+        {input: '#email', message: 'من فضلك ادخل البريد الاكتروني بصورة صحيحة', action: 'keyup,blur', rule: 'email', position: 'topcenter'},
         {input: '#mobile', message: 'من فضلك ادخل رقم الجوال', action: 'keyup,blur', rule: 'required', rtl: true, position: 'topcenter'}
     ], theme: 'energyblue', animation: 'fade'
     });
