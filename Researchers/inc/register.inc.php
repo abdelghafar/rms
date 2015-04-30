@@ -74,7 +74,7 @@ else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
 
-if (isset($_FILES['uploadFile']['name']) && count($_FILES['uploadFile']['name']) > 0) {
+if (!empty($_FILES['fileToUpload']['name'])) {
     $uploadOk = 1;
     echo '<p class="error">' . 'من فضلك قم بتحميل صورة اثبات الهوية' . '</p>';
     if (file_exists($target_file)) {
@@ -98,6 +98,9 @@ if (isset($_FILES['uploadFile']['name']) && count($_FILES['uploadFile']['name'])
 // if everything is ok, try to upload file
     }
 
+}else
+{
+    echo 'fileupload is not set';
 }
 
 $rs = $person->IsExistByEmail($_POST['email']);
