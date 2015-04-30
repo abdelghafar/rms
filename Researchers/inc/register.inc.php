@@ -75,17 +75,17 @@ else
 
 $uploadOk =0;
 
-echo "FILES['fileToUpload']['name']:".$_FILES['fileToUpload']['name'];
+echo "FILES['uploadFile']['tmp_name']:".$_FILES['uploadFile']['tmp_name'];
 
 
-if (!empty($_FILES['fileToUpload']['name'])) {
+if (!empty($_FILES['uploadFile']['name'])) {
     echo 'File upload is set...';
     $uploadOk = 1;
     if (file_exists($target_file)) {
         echo "<pre>" . "Sorry, file already exists." . '</pre>';
         $uploadOk = 0;
     }
-    if ($_FILES["fileToUpload"]["size"] > 500000 || $_FILES["fileToUpload"]["size"] == 0) {
+    if ($_FILES["uploadFile"]["size"] > 500000 || $_FILES["uploadFile"]["size"] == 0) {
         echo "<pre>" . "Sorry, your file is too large." . '</pre>';
         $uploadOk = 0;
     }
