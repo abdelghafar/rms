@@ -112,6 +112,7 @@ if ($uploadOk == 1) {
     if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
 //        echo "The file " . basename($_FILES["uploadFile"]["name"]) . " has been uploaded.";
         $file_name = pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_FILENAME) . pathinfo(basename($_FILES["uploadFile"]["name"]), PATHINFO_EXTENSION);
+        $ni_image_url = $file_name;
         echo 'file name is = ' . $file_name;
         $ni_image_url = basename($_FILES["uploadFile"]["name"]);
     } else {
