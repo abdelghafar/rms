@@ -74,6 +74,10 @@ else
     $mobile = mysql_real_escape_string(trim($_POST['mobile']));
 
 $uploadOk =0;
+
+echo "FILES['fileToUpload']['name']:".$_FILES['fileToUpload']['name'];
+
+
 if (!empty($_FILES['fileToUpload']['name'])) {
     echo 'File upload is set...';
     $uploadOk = 1;
