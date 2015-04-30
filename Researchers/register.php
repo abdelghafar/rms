@@ -91,152 +91,153 @@ $smarty->display('../templates/header.tpl');
 </head>
 <body>
 <form method="POST" id="registerFrom" target="form-iframe" action="inc/register.inc.php" enctype="multipart/form-data">
-<input type="hidden" name="key" value="<? echo uniqid(); ?>">
-<fieldset style="width: 95%;text-align: right;">
-    <legend>
-        <label>
-            بيانات شخصية / Personal Data
-        </label>
+    <input type="hidden" name="key" value="<? echo uniqid(); ?>">
+    <fieldset style="width: 95%;text-align: right;">
+        <legend>
+            <label>
+                بيانات شخصية / Personal Data
+            </label>
 
-    </legend>
-    <div class="panel_row">
-        <div class="panel-cell" style="width: 295px;text-align: left;padding-left: 10px;">
-            <p style="font-weight: bold" class="classic">
-    الاسم باللغة العربية / Arabic Name
-            </p>
-        </div>
-        <div class="panel-cell" style="width: 700px;">
-            <input id="name_ar" type="text" placeholder="" name="name_ar"/>
-        </div>
+        </legend>
         <div class="panel_row">
-            <div class="panel-cell" style="width: 280px;text-align: left;padding-left: 10px;">
+            <div class="panel-cell" style="width: 295px;text-align: left;padding-left: 10px;">
                 <p style="font-weight: bold" class="classic">
-    الاسم باللغة الانجلزية / English Name
+                    الاسم باللغة العربية / Arabic Name
                 </p>
             </div>
             <div class="panel-cell" style="width: 700px;">
-                <input id="name_en" type="text" placeholder="" name="name_en"/>
+                <input id="name_ar" type="text" placeholder="" name="name_ar"/>
+            </div>
+            <div class="panel_row">
+                <div class="panel-cell" style="width: 280px;text-align: left;padding-left: 10px;">
+                    <p style="font-weight: bold" class="classic">
+                        الاسم باللغة الانجلزية / English Name
+                    </p>
+                </div>
+                <div class="panel-cell" style="width: 700px;">
+                    <input id="name_en" type="text" placeholder="" name="name_en"/>
+                </div>
+            </div>
+            <div class="panel_row">
+                <div class="panel-cell"
+                     style="width: 218px;text-align: left;padding-left: 12px;vertical-align: middle;">
+                    <p style="font-weight: bold" class="classic">
+                        النوع / Gender
+                    </p>
+                </div>
+                <div class="panel-cell" style="vertical-align: middle">
+                    <div id="gender">
+                        <input type="hidden" name="genderType" id="genderType"/>
+                    </div>
+                </div>
+
+                <div class="panel-cell" style="width:315px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                    <p style="font-weight: bold" class="classic">
+                        الجنسية / Nationality
+                    </p>
+                </div>
+                <div class="panel-cell" style="vertical-align: middle">
+                    <div id="countriesList"></div>
+                    <input type="hidden" id="selectedCountry" name="selectedCountry">
+                </div>
             </div>
         </div>
+    </fieldset>
+    <br/>
+    <br/>
+    <fieldset style="width: 95%;text-align: right;">
+        <legend>
+
+            <label>
+                بيانات العمل/ Working Data
+            </label>
+        </legend>
         <div class="panel_row">
-            <div class="panel-cell" style="width: 218px;text-align: left;padding-left: 12px;vertical-align: middle;">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
                 <p style="font-weight: bold" class="classic">
-                    النوع / Gender
+                    الدرجة العلمية / Scientific Degree
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle">
-                <div id="gender">
-                    <input type="hidden" name="genderType" id="genderType"/>
+                <input type="hidden" name="Position" id="Position"/>
+
+                <div id='jqxdropdownlist' style="height: 20px;">
                 </div>
             </div>
 
-            <div class="panel-cell" style="width:315px;text-align: left;padding-left: 10px;vertical-align: middle;">
+        </div>
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
                 <p style="font-weight: bold" class="classic">
-                    الجنسية / Nationality
+                    جهة العمل / Institution
                 </p>
             </div>
             <div class="panel-cell" style="vertical-align: middle">
-                <div id="countriesList"></div>
-                <input type="hidden" id="selectedCountry" name="selectedCountry">
+                <input id="university" name="university" class="textbox" type="text" value="" placeholder=""/>
             </div>
         </div>
-    </div>
-</fieldset>
-<br/>
-<br/>
-<fieldset style="width: 95%;text-align: right;">
-    <legend>
-
-        <label>
-            بيانات العمل/ Working Data
-        </label>
-    </legend>
-	 <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                الدرجة العلمية / Scientific Degree
-            </p>
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                <p style="font-weight: bold" class="classic">
+                    الكلية / College
+                </p>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input name="college" id="college" class="textbox" type="text" placeholder=""/>
+            </div>
         </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input type="hidden" name="Position" id="Position"/>
-
-            <div id='jqxdropdownlist' style="height: 20px;">
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                <p style="font-weight: bold" class="classic">
+                    القسم/ Dept
+                </p>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input name="dept" id="dept" class="textbox" type="text" placeholder=""/>
+            </div>
+        </div>
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                <p style="font-weight: bold" class="classic">
+                    صورة اثبات الهوية / NI Image
+                </p>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input type="file" name="uploadFile" id="uploadFile">
             </div>
         </div>
 
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-              جهة العمل / Institution
-            </p>
+    </fieldset>
+    <br/>
+    <fieldset style="width: 95%;text-align: right;">
+        <legend>
+            <label>
+                للإتصـــال / Contact
+            </label>
+        </legend>
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                <p style="font-weight: bold" class="classic">
+                    البريد الالكتروني الرسمى / Offical Email
+                </p>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input id="email" name="email" class="textbox" type="text" placeholder=""/>
+            </div>
         </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input id="university" name="university" class="textbox" type="text" value="" placeholder=""/>
+        <div class="panel_row">
+            <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
+                <p style="font-weight: bold" class="classic">
+                    جوال / Mobile
+                </p>
+            </div>
+            <div class="panel-cell" style="vertical-align: middle">
+                <input id="mobile" name="mobile" class="textbox" type="text" value=""/>
+            </div>
         </div>
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                الكلية / College
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input name="college" id="college" class="textbox" type="text" placeholder=""/>
-        </div>
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                القسم/ Dept
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input name="dept" id="dept" class="textbox" type="text" placeholder=""/>
-        </div>
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                صورة اثبات الهوية / NI Image
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input type="file" name="uploadFile" id="uploadFile">
-        </div>
-    </div>
+    </fieldset>
 
-</fieldset>
-<br/>
-<fieldset style="width: 95%;text-align: right;">
-    <legend>
-        <label>
-            للإتصـــال / Contact
-        </label>
-    </legend>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                البريد الالكتروني الرسمى / Offical Email
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input id="email" name="email" class="textbox" type="text" placeholder=""/>
-        </div>
-    </div>
-    <div class="panel_row">
-        <div class="panel-cell" style="width:225px;text-align: left;padding-left: 10px;vertical-align: middle;">
-            <p style="font-weight: bold" class="classic">
-                جوال / Mobile
-            </p>
-        </div>
-        <div class="panel-cell" style="vertical-align: middle">
-            <input id="mobile" name="mobile" class="textbox" type="text" value=""/>
-        </div>
-    </div>
-</fieldset>
-
-<input type="submit" value="ارسال" id='sendButton' style="margin-top: 10px;"/>
+    <input type="submit" value="ارسال" id='sendButton' style="margin-top: 10px;"/>
 </form>
 <iframe id="form-iframe" name="form-iframe" class="demo-iframe" frameborder="0"></iframe>
 
